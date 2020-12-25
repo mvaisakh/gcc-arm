@@ -15,6 +15,9 @@ extern enum attr_ce_enabled get_attr_ce_enabled (rtx_insn *);
 #define HAVE_ATTR_tune 1
 extern enum attr_tune get_attr_tune (void);
 
+#define HAVE_ATTR_autodetect_type 1
+extern enum attr_autodetect_type get_attr_autodetect_type (rtx_insn *);
+
 #define HAVE_ATTR_type 1
 extern enum attr_type get_attr_type (rtx_insn *);
 

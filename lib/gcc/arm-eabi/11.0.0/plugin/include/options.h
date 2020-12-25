@@ -7493,6 +7493,12 @@ extern int flag_lto_size_sort;
 #define flag_lto_size_sort global_options.x_flag_lto_size_sort
 #endif
 #ifdef GENERATOR_FILE
+extern int flag_stdlib_kind;
+#else
+  int x_flag_stdlib_kind;
+#define flag_stdlib_kind global_options.x_flag_stdlib_kind
+#endif
+#ifdef GENERATOR_FILE
 extern const char *flag_lto_dump_symbol;
 #else
   const char *x_flag_lto_dump_symbol;
@@ -10175,24 +10181,25 @@ enum opt_code
   /* OPT_std_iso9899_2017 = 1829, */         /* -std=iso9899:2017 */
   /* OPT_std_iso9899_2018 = 1830, */         /* -std=iso9899:2018 */
   OPT_std_legacy = 1831,                     /* -std=legacy */
-  OPT_symbol_ = 1832,                        /* -symbol= */
-  OPT_symbolic = 1833,                       /* -symbolic */
-  OPT_t = 1834,                              /* -t */
-  OPT_time = 1835,                           /* -time */
-  OPT_time_ = 1836,                          /* -time= */
-  OPT_traditional = 1837,                    /* -traditional */
-  OPT_traditional_cpp = 1838,                /* -traditional-cpp */
-  OPT_tree_stats = 1839,                     /* -tree-stats */
-  OPT_trigraphs = 1840,                      /* -trigraphs */
-  OPT_type_stats = 1841,                     /* -type-stats */
-  OPT_u = 1842,                              /* -u */
-  OPT_undef = 1843,                          /* -undef */
-  OPT_v = 1844,                              /* -v */
-  OPT_version = 1845,                        /* -version */
-  OPT_w = 1846,                              /* -w */
-  OPT_wrapper = 1847,                        /* -wrapper */
-  OPT_x = 1848,                              /* -x */
-  OPT_z = 1849,                              /* -z */
+  OPT_stdlib_ = 1832,                        /* -stdlib= */
+  OPT_symbol_ = 1833,                        /* -symbol= */
+  OPT_symbolic = 1834,                       /* -symbolic */
+  OPT_t = 1835,                              /* -t */
+  OPT_time = 1836,                           /* -time */
+  OPT_time_ = 1837,                          /* -time= */
+  OPT_traditional = 1838,                    /* -traditional */
+  OPT_traditional_cpp = 1839,                /* -traditional-cpp */
+  OPT_tree_stats = 1840,                     /* -tree-stats */
+  OPT_trigraphs = 1841,                      /* -trigraphs */
+  OPT_type_stats = 1842,                     /* -type-stats */
+  OPT_u = 1843,                              /* -u */
+  OPT_undef = 1844,                          /* -undef */
+  OPT_v = 1845,                              /* -v */
+  OPT_version = 1846,                        /* -version */
+  OPT_w = 1847,                              /* -w */
+  OPT_wrapper = 1848,                        /* -wrapper */
+  OPT_x = 1849,                              /* -x */
+  OPT_z = 1850,                              /* -z */
   N_OPTS,
   OPT_SPECIAL_unknown,
   OPT_SPECIAL_ignore,
