@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "11.0.0 20210109 (experimental)")
+(!version  "11.0.0 20210114 (experimental)")
 (!srcdir  "../../gcc/gcc")
 (!languages 11 ada brig c cp d fortran go jit lto objc objcp)
 (!fileslist 223
@@ -8499,109 +8499,109 @@
                            (!type struct 420 
                             (!type already_seen 419)
                             gc_maybe_pointed_to "machine_function"
-                            (!srcfileloc  "config/arm/arm.h" 1569)
+                            (!srcfileloc  "config/arm/arm.h" 1609)
                             (!fields 17 
                              (!pair  "eh_epilogue_sp_ofs"
                               (!type already_seen 100)
-                              (!srcfileloc  "config/arm/arm.h" 1532)
+                              (!srcfileloc  "config/arm/arm.h" 1572)
                               nil )
                              (!pair  "far_jump_used"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1534)
+                              (!srcfileloc  "config/arm/arm.h" 1574)
                               nil )
                              (!pair  "arg_pointer_live"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1536)
+                              (!srcfileloc  "config/arm/arm.h" 1576)
                               nil )
                              (!pair  "lr_save_eliminated"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1538)
+                              (!srcfileloc  "config/arm/arm.h" 1578)
                               nil )
                              (!pair  "stack_offsets"
                               (!type struct 421 nil  gc_used "arm_stack_offsets"
-                               (!srcfileloc  "config/arm/arm.h" 1523)
+                               (!srcfileloc  "config/arm/arm.h" 1563)
                                (!fields 7 
                                 (!pair  "saved_args"
                                  (!type already_seen 2)
-                                 (!srcfileloc  "config/arm/arm.h" 1516)
+                                 (!srcfileloc  "config/arm/arm.h" 1556)
                                  nil )
                                 (!pair  "frame"
                                  (!type already_seen 2)
-                                 (!srcfileloc  "config/arm/arm.h" 1517)
+                                 (!srcfileloc  "config/arm/arm.h" 1557)
                                  nil )
                                 (!pair  "saved_regs"
                                  (!type already_seen 2)
-                                 (!srcfileloc  "config/arm/arm.h" 1518)
+                                 (!srcfileloc  "config/arm/arm.h" 1558)
                                  nil )
                                 (!pair  "soft_frame"
                                  (!type already_seen 2)
-                                 (!srcfileloc  "config/arm/arm.h" 1519)
+                                 (!srcfileloc  "config/arm/arm.h" 1559)
                                  nil )
                                 (!pair  "locals_base"
                                  (!type already_seen 2)
-                                 (!srcfileloc  "config/arm/arm.h" 1520)
+                                 (!srcfileloc  "config/arm/arm.h" 1560)
                                  nil )
                                 (!pair  "outgoing_args"
                                  (!type already_seen 2)
-                                 (!srcfileloc  "config/arm/arm.h" 1521)
+                                 (!srcfileloc  "config/arm/arm.h" 1561)
                                  nil )
                                 (!pair  "saved_regs_mask"
                                  (!type already_seen 2)
-                                 (!srcfileloc  "config/arm/arm.h" 1522)
+                                 (!srcfileloc  "config/arm/arm.h" 1562)
                                  nil )
                                )
                                nil 2047 nil nil )
-                              (!srcfileloc  "config/arm/arm.h" 1540)
+                              (!srcfileloc  "config/arm/arm.h" 1580)
                               nil )
                              (!pair  "func_type"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1542)
+                              (!srcfileloc  "config/arm/arm.h" 1582)
                               nil )
                              (!pair  "uses_anonymous_args"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1544)
+                              (!srcfileloc  "config/arm/arm.h" 1584)
                               nil )
                              (!pair  "sibcall_blocked"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1547)
+                              (!srcfileloc  "config/arm/arm.h" 1587)
                               nil )
                              (!pair  "pic_reg"
                               (!type already_seen 100)
-                              (!srcfileloc  "config/arm/arm.h" 1549)
+                              (!srcfileloc  "config/arm/arm.h" 1589)
                               nil )
                              (!pair  "call_via"
                               (!type array 422 nil  gc_used "14" 
                                (!type already_seen 100)
                               )
-                              (!srcfileloc  "config/arm/arm.h" 1553)
+                              (!srcfileloc  "config/arm/arm.h" 1593)
                               nil )
                              (!pair  "return_used_this_function"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1556)
+                              (!srcfileloc  "config/arm/arm.h" 1596)
                               nil )
                              (!pair  "thumb1_cc_insn"
                               (!type already_seen 100)
-                              (!srcfileloc  "config/arm/arm.h" 1559)
+                              (!srcfileloc  "config/arm/arm.h" 1599)
                               nil )
                              (!pair  "thumb1_cc_op0"
                               (!type already_seen 100)
-                              (!srcfileloc  "config/arm/arm.h" 1560)
+                              (!srcfileloc  "config/arm/arm.h" 1600)
                               nil )
                              (!pair  "thumb1_cc_op1"
                               (!type already_seen 100)
-                              (!srcfileloc  "config/arm/arm.h" 1561)
+                              (!srcfileloc  "config/arm/arm.h" 1601)
                               nil )
                              (!pair  "thumb1_cc_mode"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1563)
+                              (!srcfileloc  "config/arm/arm.h" 1603)
                               nil )
                              (!pair  "after_arm_reorg"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1565)
+                              (!srcfileloc  "config/arm/arm.h" 1605)
                               nil )
                              (!pair  "static_chain_stack_bytes"
                               (!type already_seen 2)
-                              (!srcfileloc  "config/arm/arm.h" 1568)
+                              (!srcfileloc  "config/arm/arm.h" 1608)
                               nil )
                             )
                             nil 2047 nil nil )
@@ -17264,7 +17264,7 @@
  
  (!type already_seen 420)
  
- (!type struct 842 nil  gc_unused "anonymous:../../gcc/gcc/config/arm/arm.h:1604"nil 
+ (!type struct 842 nil  gc_unused "anonymous:../../gcc/gcc/config/arm/arm.h:1644"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -27569,15 +27569,15 @@
    (!type already_seen 1976)
   )
   gc_pointed_to "hash_map<tree,int>"
-  (!srcfileloc  "cp/class.c" 3366)
+  (!srcfileloc  "cp/class.c" 3374)
   (!fields 2 
    (!pair  "int"
     (!type already_seen 372)
-    (!srcfileloc  "cp/class.c" 3366)
+    (!srcfileloc  "cp/class.c" 3374)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/class.c" 3366)
+    (!srcfileloc  "cp/class.c" 3374)
     nil )
   )
  )
@@ -28664,15 +28664,15 @@
    (!type already_seen 2132)
   )
   gc_pointed_to "hash_map<tree,tree_pair_p>"
-  (!srcfileloc  "cp/pt.c" 29003)
+  (!srcfileloc  "cp/pt.c" 29006)
   (!fields 2 
    (!pair  "tree_pair_p"
     (!type already_seen 530)
-    (!srcfileloc  "cp/pt.c" 29003)
+    (!srcfileloc  "cp/pt.c" 29006)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/pt.c" 29003)
+    (!srcfileloc  "cp/pt.c" 29006)
     nil )
   )
  )
@@ -29839,7 +29839,7 @@
   nil )
  (!pair  "hash_map<tree,tree_pair_p>"
   (!type already_seen 2132)
-  (!srcfileloc  "cp/pt.c" 29003)
+  (!srcfileloc  "cp/pt.c" 29006)
   nil )
  (!pair  "pending_template"
   (!type already_seen 2119)
@@ -30167,7 +30167,7 @@
   nil )
  (!pair  "hash_map<tree,int>"
   (!type already_seen 1976)
-  (!srcfileloc  "cp/class.c" 3366)
+  (!srcfileloc  "cp/class.c" 3374)
   nil )
  (!pair  "subobject_offset_fn"
   (!type already_seen 2)
@@ -32737,11 +32737,11 @@
   nil )
  (!pair  "machine_function"
   (!type already_seen 420)
-  (!srcfileloc  "config/arm/arm.h" 1570)
+  (!srcfileloc  "config/arm/arm.h" 1610)
   nil )
  (!pair  "arm_stack_offsets"
   (!type already_seen 421)
-  (!srcfileloc  "config/arm/arm.h" 1524)
+  (!srcfileloc  "config/arm/arm.h" 1564)
   nil )
  (!pair  "arm_cc"
   (!type already_seen 2)
@@ -34088,11 +34088,11 @@
   nil )
  (!pair  "d_eh_personality_decl"
   (!type already_seen 23)
-  (!srcfileloc  "d/d-lang.cc" 1703)
+  (!srcfileloc  "d/d-lang.cc" 1695)
   nil )
  (!pair  "d_keep_list"
   (!type already_seen 23)
-  (!srcfileloc  "d/d-lang.cc" 1692)
+  (!srcfileloc  "d/d-lang.cc" 1684)
   nil )
  (!pair  "global_declarations"
   (!type already_seen 84)
@@ -34202,7 +34202,7 @@
   nil )
  (!pair  "dguide_cache"
   (!type already_seen 2133)
-  (!srcfileloc  "cp/pt.c" 29003)
+  (!srcfileloc  "cp/pt.c" 29006)
   (!options 
    (!option deletable string  "")
   )
@@ -34435,19 +34435,19 @@
   nil )
  (!pair  "ssdf_decls"
   (!type already_seen 84)
-  (!srcfileloc  "cp/decl2.c" 3794)
+  (!srcfileloc  "cp/decl2.c" 3795)
   nil )
  (!pair  "ssdf_decl"
   (!type already_seen 23)
-  (!srcfileloc  "cp/decl2.c" 3790)
+  (!srcfileloc  "cp/decl2.c" 3791)
   nil )
  (!pair  "priority_decl"
   (!type already_seen 23)
-  (!srcfileloc  "cp/decl2.c" 3787)
+  (!srcfileloc  "cp/decl2.c" 3788)
   nil )
  (!pair  "initialize_p_decl"
   (!type already_seen 23)
-  (!srcfileloc  "cp/decl2.c" 3784)
+  (!srcfileloc  "cp/decl2.c" 3785)
   nil )
  (!pair  "mangled_decls"
   (!type already_seen 2038)
@@ -34672,15 +34672,15 @@
   nil )
  (!pair  "dvirt_fn"
   (!type already_seen 23)
-  (!srcfileloc  "cp/class.c" 9743)
+  (!srcfileloc  "cp/class.c" 9751)
   nil )
  (!pair  "abort_fndecl_addr"
   (!type already_seen 23)
-  (!srcfileloc  "cp/class.c" 9742)
+  (!srcfileloc  "cp/class.c" 9750)
   nil )
  (!pair  "enum_to_min_precision"
   (!type already_seen 1977)
-  (!srcfileloc  "cp/class.c" 3366)
+  (!srcfileloc  "cp/class.c" 3374)
   (!options 
    (!option deletable string  "")
   )
@@ -35251,7 +35251,7 @@
   nil )
  (!pair  "arm_previous_fndecl"
   (!type already_seen 23)
-  (!srcfileloc  "config/arm/arm.c" 32643)
+  (!srcfileloc  "config/arm/arm.c" 32652)
   nil )
  (!pair  "tls_get_addr_libfunc"
   (!type already_seen 100)
@@ -36443,7 +36443,7 @@
   (!type array 2311 nil  gc_used "14" 
    (!type already_seen 100)
   )
-  (!srcfileloc  "config/arm/arm.h" 1578)
+  (!srcfileloc  "config/arm/arm.h" 1618)
   nil )
  (!pair  "arm_target_insn"
   (!type already_seen 100)
