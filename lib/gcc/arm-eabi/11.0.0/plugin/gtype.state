@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "11.0.0 20210114 (experimental)")
+(!version  "11.0.0 20210116 (experimental)")
 (!srcdir  "../../gcc/gcc")
 (!languages 11 ada brig c cp d fortran go jit lto objc objcp)
 (!fileslist 223
@@ -27111,19 +27111,19 @@
   (!fields 4 
    (!pair  "decl"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8170)
+    (!srcfileloc  "cp/cp-tree.h" 8171)
     nil )
    (!pair  "body"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8171)
+    (!srcfileloc  "cp/cp-tree.h" 8172)
     nil )
    (!pair  "parms"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8172)
+    (!srcfileloc  "cp/cp-tree.h" 8173)
     nil )
    (!pair  "result"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8173)
+    (!srcfileloc  "cp/cp-tree.h" 8174)
     nil )
   )
   (!options 
@@ -28754,7 +28754,7 @@
   nil 0 nil nil )
  
  (!type struct 2142 nil  gc_used "cplus_array_hasher"
-  (!srcfileloc  "cp/tree.c" 984)
+  (!srcfileloc  "cp/tree.c" 992)
   (!fields 0 )
   nil 1032 nil nil )
  
@@ -28763,11 +28763,11 @@
    (!type already_seen 2143)
   )
   gc_pointed_to "hash_table<cplus_array_hasher>"
-  (!srcfileloc  "cp/tree.c" 984)
+  (!srcfileloc  "cp/tree.c" 992)
   (!fields 1 
    (!pair  "cplus_array_hasher"
     (!type already_seen 2142)
-    (!srcfileloc  "cp/tree.c" 984)
+    (!srcfileloc  "cp/tree.c" 992)
     nil )
   )
  )
@@ -28777,7 +28777,7 @@
   nil 0 nil nil )
  
  (!type struct 2146 nil  gc_used "list_hasher"
-  (!srcfileloc  "cp/tree.c" 2077)
+  (!srcfileloc  "cp/tree.c" 2087)
   (!fields 0 )
   nil 1032 nil nil )
  
@@ -28786,11 +28786,11 @@
    (!type already_seen 2147)
   )
   gc_pointed_to "hash_table<list_hasher>"
-  (!srcfileloc  "cp/tree.c" 2077)
+  (!srcfileloc  "cp/tree.c" 2087)
   (!fields 1 
    (!pair  "list_hasher"
     (!type already_seen 2146)
-    (!srcfileloc  "cp/tree.c" 2077)
+    (!srcfileloc  "cp/tree.c" 2087)
     nil )
   )
  )
@@ -29807,19 +29807,19 @@
   nil )
  (!pair  "list_hasher"
   (!type already_seen 2146)
-  (!srcfileloc  "cp/tree.c" 2077)
+  (!srcfileloc  "cp/tree.c" 2087)
   nil )
  (!pair  "hash_table<list_hasher>"
   (!type already_seen 2147)
-  (!srcfileloc  "cp/tree.c" 2077)
+  (!srcfileloc  "cp/tree.c" 2087)
   nil )
  (!pair  "cplus_array_hasher"
   (!type already_seen 2142)
-  (!srcfileloc  "cp/tree.c" 984)
+  (!srcfileloc  "cp/tree.c" 992)
   nil )
  (!pair  "hash_table<cplus_array_hasher>"
   (!type already_seen 2143)
-  (!srcfileloc  "cp/tree.c" 984)
+  (!srcfileloc  "cp/tree.c" 992)
   nil )
  (!pair  "deferred_access"
   (!type already_seen 2137)
@@ -34178,15 +34178,15 @@
   nil )
  (!pair  "deleted_copy_types"
   (!type already_seen 463)
-  (!srcfileloc  "cp/tree.c" 4227)
+  (!srcfileloc  "cp/tree.c" 4237)
   nil )
  (!pair  "list_hash_table"
   (!type already_seen 2148)
-  (!srcfileloc  "cp/tree.c" 2077)
+  (!srcfileloc  "cp/tree.c" 2087)
   nil )
  (!pair  "cplus_array_htab"
   (!type already_seen 2144)
-  (!srcfileloc  "cp/tree.c" 984)
+  (!srcfileloc  "cp/tree.c" 992)
   nil )
  (!pair  "deferred_access_no_check"
   (!type already_seen 2)
@@ -34695,7 +34695,7 @@
   nil )
  (!pair  "unemitted_tinfo_decls"
   (!type already_seen 84)
-  (!srcfileloc  "cp/cp-tree.h" 7260)
+  (!srcfileloc  "cp/cp-tree.h" 7261)
   nil )
  (!pair  "ovl_op_alternate"
   (!type array 2274 nil  gc_used "OVL_OP_MAX" 
