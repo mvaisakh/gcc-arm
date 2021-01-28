@@ -4699,6 +4699,78 @@
 		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
 #define HAVE_cadd270v4sf3 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
 		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_cmulv8hf3 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT)) \
+   && !BYTES_BIG_ENDIAN)
+#define HAVE_cmul_conjv8hf3 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT)) \
+   && !BYTES_BIG_ENDIAN)
+#define HAVE_cmulv4sf3 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT)) \
+   && !BYTES_BIG_ENDIAN)
+#define HAVE_cmul_conjv4sf3 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT)) \
+   && !BYTES_BIG_ENDIAN)
+#define HAVE_arm_vcmla0v4hf (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_arm_vcmla90v4hf (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_arm_vcmla180v4hf (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_arm_vcmla270v4hf (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_arm_vcmla0v8hf (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V8HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_arm_vcmla90v8hf (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V8HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_arm_vcmla180v8hf (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V8HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_arm_vcmla270v8hf (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V8HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_arm_vcmla0v2sf ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V2SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_arm_vcmla90v2sf ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V2SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_arm_vcmla180v2sf ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V2SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_arm_vcmla270v2sf ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V2SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_arm_vcmla0v4sf ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_arm_vcmla90v4sf ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_arm_vcmla180v4sf ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_arm_vcmla270v4sf ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_cmlav4hf4 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_cmla_conjv4hf4 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_cmlsv4hf4 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_cmls_conjv4hf4 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_cmlav8hf4 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V8HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_cmla_conjv8hf4 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V8HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_cmlsv8hf4 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V8HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_cmls_conjv8hf4 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V8HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
+#define HAVE_cmlav2sf4 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V2SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_cmla_conjv2sf4 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V2SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_cmlsv2sf4 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V2SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_cmls_conjv2sf4 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V2SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_cmlav4sf4 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_cmla_conjv4sf4 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_cmlsv4sf4 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
+#define HAVE_cmls_conjv4sf4 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
+		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
 #define HAVE_movmisalignv8qi (ARM_HAVE_V8QI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
 #define HAVE_movmisalignv16qi (ARM_HAVE_V16QI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
 #define HAVE_movmisalignv4hi (ARM_HAVE_V4HI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
@@ -5030,6 +5102,10 @@
 #define HAVE_neon_vnegv4si (TARGET_NEON)
 #define HAVE_neon_vnegv2sf (TARGET_NEON)
 #define HAVE_neon_vnegv4sf (TARGET_NEON)
+#define HAVE_cmulv2sf3 (TARGET_COMPLEX && !BYTES_BIG_ENDIAN)
+#define HAVE_cmul_conjv2sf3 (TARGET_COMPLEX && !BYTES_BIG_ENDIAN)
+#define HAVE_cmulv4hf3 (TARGET_COMPLEX && !BYTES_BIG_ENDIAN)
+#define HAVE_cmul_conjv4hf3 (TARGET_COMPLEX && !BYTES_BIG_ENDIAN)
 #define HAVE_sdot_prodv8qi (TARGET_DOTPROD)
 #define HAVE_udot_prodv8qi (TARGET_DOTPROD)
 #define HAVE_sdot_prodv16qi (TARGET_DOTPROD)
@@ -10158,6 +10234,42 @@ extern rtx        gen_cadd90v2sf3                                    (rtx, rtx, 
 extern rtx        gen_cadd270v2sf3                                   (rtx, rtx, rtx);
 extern rtx        gen_cadd90v4sf3                                    (rtx, rtx, rtx);
 extern rtx        gen_cadd270v4sf3                                   (rtx, rtx, rtx);
+extern rtx        gen_cmulv8hf3                                      (rtx, rtx, rtx);
+extern rtx        gen_cmul_conjv8hf3                                 (rtx, rtx, rtx);
+extern rtx        gen_cmulv4sf3                                      (rtx, rtx, rtx);
+extern rtx        gen_cmul_conjv4sf3                                 (rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla0v4hf                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla90v4hf                                (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla180v4hf                               (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla270v4hf                               (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla0v8hf                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla90v8hf                                (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla180v8hf                               (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla270v8hf                               (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla0v2sf                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla90v2sf                                (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla180v2sf                               (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla270v2sf                               (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla0v4sf                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla90v4sf                                (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla180v4sf                               (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_vcmla270v4sf                               (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmlav4hf4                                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmla_conjv4hf4                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmlsv4hf4                                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmls_conjv4hf4                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmlav8hf4                                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmla_conjv8hf4                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmlsv8hf4                                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmls_conjv8hf4                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmlav2sf4                                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmla_conjv2sf4                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmlsv2sf4                                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmls_conjv2sf4                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmlav4sf4                                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmla_conjv4sf4                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmlsv4sf4                                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_cmls_conjv4sf4                                 (rtx, rtx, rtx, rtx);
 extern rtx        gen_movmisalignv8qi                                (rtx, rtx);
 extern rtx        gen_movmisalignv16qi                               (rtx, rtx);
 extern rtx        gen_movmisalignv4hi                                (rtx, rtx);
@@ -10487,6 +10599,10 @@ extern rtx        gen_neon_vnegv2si                                  (rtx, rtx);
 extern rtx        gen_neon_vnegv4si                                  (rtx, rtx);
 extern rtx        gen_neon_vnegv2sf                                  (rtx, rtx);
 extern rtx        gen_neon_vnegv4sf                                  (rtx, rtx);
+extern rtx        gen_cmulv2sf3                                      (rtx, rtx, rtx);
+extern rtx        gen_cmul_conjv2sf3                                 (rtx, rtx, rtx);
+extern rtx        gen_cmulv4hf3                                      (rtx, rtx, rtx);
+extern rtx        gen_cmul_conjv4hf3                                 (rtx, rtx, rtx);
 extern rtx        gen_sdot_prodv8qi                                  (rtx, rtx, rtx, rtx);
 extern rtx        gen_udot_prodv8qi                                  (rtx, rtx, rtx, rtx);
 extern rtx        gen_sdot_prodv16qi                                 (rtx, rtx, rtx, rtx);
