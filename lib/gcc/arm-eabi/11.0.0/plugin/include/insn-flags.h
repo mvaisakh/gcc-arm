@@ -2761,11 +2761,8 @@
 #define HAVE_mve_vmulqv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vmulqv8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_vmulqv4si (TARGET_HAVE_MVE)
-#define HAVE_mve_vornq_uv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vornq_sv16qi (TARGET_HAVE_MVE)
-#define HAVE_mve_vornq_uv8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_vornq_sv8hi (TARGET_HAVE_MVE)
-#define HAVE_mve_vornq_uv4si (TARGET_HAVE_MVE)
 #define HAVE_mve_vornq_sv4si (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_sv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_sv8hi (TARGET_HAVE_MVE)
@@ -5544,6 +5541,9 @@
 #define HAVE_mve_veorq_sv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_veorq_sv8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_veorq_sv4si (TARGET_HAVE_MVE)
+#define HAVE_mve_vornq_uv16qi (TARGET_HAVE_MVE)
+#define HAVE_mve_vornq_uv8hi (TARGET_HAVE_MVE)
+#define HAVE_mve_vornq_uv4si (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_uv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_uv8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_vorrq_uv4si (TARGET_HAVE_MVE)
@@ -8355,11 +8355,8 @@ extern rtx        gen_mve_vmulq_sv4si                                (rtx, rtx, 
 extern rtx        gen_mve_vmulqv16qi                                 (rtx, rtx, rtx);
 extern rtx        gen_mve_vmulqv8hi                                  (rtx, rtx, rtx);
 extern rtx        gen_mve_vmulqv4si                                  (rtx, rtx, rtx);
-extern rtx        gen_mve_vornq_uv16qi                               (rtx, rtx, rtx);
 extern rtx        gen_mve_vornq_sv16qi                               (rtx, rtx, rtx);
-extern rtx        gen_mve_vornq_uv8hi                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vornq_sv8hi                                (rtx, rtx, rtx);
-extern rtx        gen_mve_vornq_uv4si                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vornq_sv4si                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_sv16qi                               (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_sv8hi                                (rtx, rtx, rtx);
@@ -11039,6 +11036,9 @@ extern rtx        gen_cadd270v4si3                                   (rtx, rtx, 
 extern rtx        gen_mve_veorq_sv16qi                               (rtx, rtx, rtx);
 extern rtx        gen_mve_veorq_sv8hi                                (rtx, rtx, rtx);
 extern rtx        gen_mve_veorq_sv4si                                (rtx, rtx, rtx);
+extern rtx        gen_mve_vornq_uv16qi                               (rtx, rtx, rtx);
+extern rtx        gen_mve_vornq_uv8hi                                (rtx, rtx, rtx);
+extern rtx        gen_mve_vornq_uv4si                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_uv16qi                               (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_uv8hi                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vorrq_uv4si                                (rtx, rtx, rtx);
