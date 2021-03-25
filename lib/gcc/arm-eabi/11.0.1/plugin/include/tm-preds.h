@@ -264,6 +264,7 @@ enum constraint_num
   CONSTRAINT_F,
   CONSTRAINT_X,
   CONSTRAINT_Tu,
+  CONSTRAINT_Ui,
   CONSTRAINT__LIMIT
 };
 
@@ -307,6 +308,12 @@ insn_extra_memory_constraint (enum constraint_num c)
 
 static inline bool
 insn_extra_special_memory_constraint (enum constraint_num)
+{
+  return false;
+}
+
+static inline bool
+insn_extra_relaxed_memory_constraint (enum constraint_num)
 {
   return false;
 }
@@ -377,6 +384,7 @@ enum constraint_type
   CT_CONST_INT,
   CT_MEMORY,
   CT_SPECIAL_MEMORY,
+  CT_RELAXED_MEMORY,
   CT_ADDRESS,
   CT_FIXED_FORM
 };

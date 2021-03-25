@@ -4659,27 +4659,27 @@
 #define HAVE_xorv2sf3 (ARM_HAVE_V2SF_ARITH)
 #define HAVE_xorv4sf3 (ARM_HAVE_V4SF_ARITH)
 #define HAVE_xorv2di3 (ARM_HAVE_V2DI_ARITH)
-#define HAVE_one_cmplv8qi2 (ARM_HAVE_V8QI_ARITH)
-#define HAVE_one_cmplv16qi2 (ARM_HAVE_V16QI_ARITH)
-#define HAVE_one_cmplv4hi2 (ARM_HAVE_V4HI_ARITH)
-#define HAVE_one_cmplv8hi2 (ARM_HAVE_V8HI_ARITH)
-#define HAVE_one_cmplv2si2 (ARM_HAVE_V2SI_ARITH)
-#define HAVE_one_cmplv4si2 (ARM_HAVE_V4SI_ARITH)
-#define HAVE_one_cmplv4hf2 (ARM_HAVE_V4HF_ARITH)
-#define HAVE_one_cmplv8hf2 (ARM_HAVE_V8HF_ARITH)
-#define HAVE_one_cmplv2sf2 (ARM_HAVE_V2SF_ARITH)
-#define HAVE_one_cmplv4sf2 (ARM_HAVE_V4SF_ARITH)
-#define HAVE_one_cmplv2di2 (ARM_HAVE_V2DI_ARITH)
-#define HAVE_negv8qi2 (ARM_HAVE_V8QI_ARITH)
-#define HAVE_negv16qi2 (ARM_HAVE_V16QI_ARITH)
-#define HAVE_negv4hi2 (ARM_HAVE_V4HI_ARITH)
-#define HAVE_negv8hi2 (ARM_HAVE_V8HI_ARITH)
-#define HAVE_negv2si2 (ARM_HAVE_V2SI_ARITH)
-#define HAVE_negv4si2 (ARM_HAVE_V4SI_ARITH)
-#define HAVE_negv2sf2 (ARM_HAVE_V2SF_ARITH)
-#define HAVE_negv4sf2 (ARM_HAVE_V4SF_ARITH)
-#define HAVE_negv8hf2 (ARM_HAVE_V8HF_ARITH)
-#define HAVE_negv4hf2 (ARM_HAVE_V4HF_ARITH)
+#define HAVE_one_cmplv8qi2 (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv16qi2 (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv4hi2 (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv8hi2 (ARM_HAVE_V8HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv2si2 (ARM_HAVE_V2SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv4si2 (ARM_HAVE_V4SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv4hf2 (ARM_HAVE_V4HF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv8hf2 (ARM_HAVE_V8HF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv2sf2 (ARM_HAVE_V2SF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv4sf2 (ARM_HAVE_V4SF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_one_cmplv2di2 (ARM_HAVE_V2DI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv8qi2 (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv16qi2 (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv4hi2 (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv8hi2 (ARM_HAVE_V8HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv2si2 (ARM_HAVE_V2SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv4si2 (ARM_HAVE_V4SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv2sf2 (ARM_HAVE_V2SF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv4sf2 (ARM_HAVE_V4SF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv8hf2 (ARM_HAVE_V8HF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_negv4hf2 (ARM_HAVE_V4HF_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_cadd90v4hf3 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
 		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
 #define HAVE_cadd270v4hf3 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
@@ -4768,20 +4768,34 @@
 		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
 #define HAVE_cmls_conjv4sf4 ((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
 		      && ARM_HAVE_V4SF_ARITH)) && !BYTES_BIG_ENDIAN)
-#define HAVE_movmisalignv8qi (ARM_HAVE_V8QI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv16qi (ARM_HAVE_V16QI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv4hi (ARM_HAVE_V4HI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv8hi (ARM_HAVE_V8HI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv2si (ARM_HAVE_V2SI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv4si (ARM_HAVE_V4SI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv4hf (ARM_HAVE_V4HF_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv8hf (ARM_HAVE_V8HF_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv4bf (ARM_HAVE_V4BF_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv8bf (ARM_HAVE_V8BF_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv2sf (ARM_HAVE_V2SF_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv4sf (ARM_HAVE_V4SF_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisaligndi (ARM_HAVE_DI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
-#define HAVE_movmisalignv2di (ARM_HAVE_V2DI_LDST && !BYTES_BIG_ENDIAN && unaligned_access)
+#define HAVE_movmisalignv8qi (ARM_HAVE_V8QI_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv16qi (ARM_HAVE_V16QI_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv4hi (ARM_HAVE_V4HI_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv8hi (ARM_HAVE_V8HI_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv2si (ARM_HAVE_V2SI_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv4si (ARM_HAVE_V4SI_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv4hf (ARM_HAVE_V4HF_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv8hf (ARM_HAVE_V8HF_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv4bf (ARM_HAVE_V4BF_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv8bf (ARM_HAVE_V8BF_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv2sf (ARM_HAVE_V2SF_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv4sf (ARM_HAVE_V4SF_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisaligndi (ARM_HAVE_DI_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
+#define HAVE_movmisalignv2di (ARM_HAVE_V2DI_LDST && !BYTES_BIG_ENDIAN \
+  && unaligned_access && !TARGET_REALLY_IWMMXT)
 #define HAVE_vashlv8qi3 (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_vashlv16qi3 (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_vashlv4hi3 (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
