@@ -4574,16 +4574,46 @@
 #define HAVE_subv2sf3 (ARM_HAVE_V2SF_ARITH)
 #define HAVE_subv4sf3 (ARM_HAVE_V4SF_ARITH)
 #define HAVE_subv2di3 (ARM_HAVE_V2DI_ARITH)
-#define HAVE_mulv8qi3 (ARM_HAVE_V8QI_ARITH)
-#define HAVE_mulv16qi3 (ARM_HAVE_V16QI_ARITH)
-#define HAVE_mulv4hi3 (ARM_HAVE_V4HI_ARITH)
-#define HAVE_mulv8hi3 (ARM_HAVE_V8HI_ARITH)
-#define HAVE_mulv2si3 (ARM_HAVE_V2SI_ARITH)
-#define HAVE_mulv4si3 (ARM_HAVE_V4SI_ARITH)
-#define HAVE_mulv2sf3 (ARM_HAVE_V2SF_ARITH)
-#define HAVE_mulv4sf3 (ARM_HAVE_V4SF_ARITH)
-#define HAVE_mulv8hf3 (ARM_HAVE_V8HF_ARITH)
-#define HAVE_mulv4hf3 (ARM_HAVE_V4HF_ARITH)
+#define HAVE_mulv8qi3 (ARM_HAVE_V8QI_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V8QImode == V4HImode \
+       || V8QImode == V2SImode))
+#define HAVE_mulv16qi3 (ARM_HAVE_V16QI_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V16QImode == V4HImode \
+       || V16QImode == V2SImode))
+#define HAVE_mulv4hi3 (ARM_HAVE_V4HI_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V4HImode == V4HImode \
+       || V4HImode == V2SImode))
+#define HAVE_mulv8hi3 (ARM_HAVE_V8HI_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V8HImode == V4HImode \
+       || V8HImode == V2SImode))
+#define HAVE_mulv2si3 (ARM_HAVE_V2SI_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V2SImode == V4HImode \
+       || V2SImode == V2SImode))
+#define HAVE_mulv4si3 (ARM_HAVE_V4SI_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V4SImode == V4HImode \
+       || V4SImode == V2SImode))
+#define HAVE_mulv2sf3 (ARM_HAVE_V2SF_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V2SFmode == V4HImode \
+       || V2SFmode == V2SImode))
+#define HAVE_mulv4sf3 (ARM_HAVE_V4SF_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V4SFmode == V4HImode \
+       || V4SFmode == V2SImode))
+#define HAVE_mulv8hf3 (ARM_HAVE_V8HF_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V8HFmode == V4HImode \
+       || V8HFmode == V2SImode))
+#define HAVE_mulv4hf3 (ARM_HAVE_V4HF_ARITH \
+   && (!TARGET_REALLY_IWMMXT \
+       || V4HFmode == V4HImode \
+       || V4HFmode == V2SImode))
 #define HAVE_sminv2si3 (ARM_HAVE_V2SI_ARITH)
 #define HAVE_sminv4hi3 (ARM_HAVE_V4HI_ARITH)
 #define HAVE_sminv8qi3 (ARM_HAVE_V8QI_ARITH)
