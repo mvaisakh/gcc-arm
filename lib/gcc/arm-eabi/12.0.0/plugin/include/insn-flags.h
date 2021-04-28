@@ -4861,6 +4861,7 @@
 #define HAVE_neon_vcvthu_nsi (TARGET_VFP_FP16INST)
 #define HAVE_thumb_movhi_clobber (TARGET_THUMB1)
 #define HAVE_cbranchqi4 (TARGET_THUMB1)
+#define HAVE_cbranchsi4_neg_late (TARGET_THUMB1)
 #define HAVE_cstoresi_eq0_thumb1 (TARGET_THUMB1)
 #define HAVE_cstoresi_ne0_thumb1 (TARGET_THUMB1)
 #define HAVE_thumb1_casesi_internal_pic (TARGET_THUMB1)
@@ -10360,6 +10361,7 @@ extern rtx        gen_neon_vcvths_nsi                                (rtx, rtx, 
 extern rtx        gen_neon_vcvthu_nsi                                (rtx, rtx, rtx);
 extern rtx        gen_thumb_movhi_clobber                            (rtx, rtx, rtx);
 extern rtx        gen_cbranchqi4                                     (rtx, rtx, rtx, rtx);
+extern rtx        gen_cbranchsi4_neg_late                            (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_cstoresi_eq0_thumb1                            (rtx, rtx);
 extern rtx        gen_cstoresi_ne0_thumb1                            (rtx, rtx);
 extern rtx        gen_thumb1_casesi_internal_pic                     (rtx, rtx, rtx, rtx);
