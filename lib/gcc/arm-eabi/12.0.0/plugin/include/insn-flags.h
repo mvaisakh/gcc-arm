@@ -1181,6 +1181,12 @@
 #define HAVE_neon_vtstv8hi (TARGET_NEON)
 #define HAVE_neon_vtstv2si (TARGET_NEON)
 #define HAVE_neon_vtstv4si (TARGET_NEON)
+#define HAVE_neon_vtst_combinev8qi (TARGET_NEON)
+#define HAVE_neon_vtst_combinev16qi (TARGET_NEON)
+#define HAVE_neon_vtst_combinev4hi (TARGET_NEON)
+#define HAVE_neon_vtst_combinev8hi (TARGET_NEON)
+#define HAVE_neon_vtst_combinev2si (TARGET_NEON)
+#define HAVE_neon_vtst_combinev4si (TARGET_NEON)
 #define HAVE_neon_vabdsv8qi (TARGET_NEON)
 #define HAVE_neon_vabduv8qi (TARGET_NEON)
 #define HAVE_neon_vabdsv16qi (TARGET_NEON)
@@ -6842,6 +6848,12 @@ extern rtx        gen_neon_vtstv4hi                                  (rtx, rtx, 
 extern rtx        gen_neon_vtstv8hi                                  (rtx, rtx, rtx);
 extern rtx        gen_neon_vtstv2si                                  (rtx, rtx, rtx);
 extern rtx        gen_neon_vtstv4si                                  (rtx, rtx, rtx);
+extern rtx        gen_neon_vtst_combinev8qi                          (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_vtst_combinev16qi                         (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_vtst_combinev4hi                          (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_vtst_combinev8hi                          (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_vtst_combinev2si                          (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_vtst_combinev4si                          (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_vabdsv8qi                                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vabduv8qi                                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vabdsv16qi                                (rtx, rtx, rtx);

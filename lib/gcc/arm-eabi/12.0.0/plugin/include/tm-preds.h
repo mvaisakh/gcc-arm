@@ -52,6 +52,7 @@ extern int arm_general_adddi_operand (rtx, machine_mode);
 extern int vfp_register_operand (rtx, machine_mode);
 extern int vfp_hard_register_operand (rtx, machine_mode);
 extern int zero_operand (rtx, machine_mode);
+extern int minus_one_operand (rtx, machine_mode);
 extern int reg_or_zero_operand (rtx, machine_mode);
 extern int subreg_lowpart_operator (rtx, machine_mode);
 extern int reg_or_int_operand (rtx, machine_mode);
