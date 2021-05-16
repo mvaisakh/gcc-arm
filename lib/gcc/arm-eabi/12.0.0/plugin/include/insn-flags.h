@@ -1175,12 +1175,6 @@
 #define HAVE_neon_vcagtv4hf_fp16insn_unspec (TARGET_NEON)
 #define HAVE_neon_vcalev4hf_fp16insn_unspec (TARGET_NEON)
 #define HAVE_neon_vcaltv4hf_fp16insn_unspec (TARGET_NEON)
-#define HAVE_neon_vtstv8qi (TARGET_NEON)
-#define HAVE_neon_vtstv16qi (TARGET_NEON)
-#define HAVE_neon_vtstv4hi (TARGET_NEON)
-#define HAVE_neon_vtstv8hi (TARGET_NEON)
-#define HAVE_neon_vtstv2si (TARGET_NEON)
-#define HAVE_neon_vtstv4si (TARGET_NEON)
 #define HAVE_neon_vtst_combinev8qi (TARGET_NEON)
 #define HAVE_neon_vtst_combinev16qi (TARGET_NEON)
 #define HAVE_neon_vtst_combinev4hi (TARGET_NEON)
@@ -6830,12 +6824,6 @@ extern rtx        gen_neon_vcagev4hf_fp16insn_unspec                 (rtx, rtx, 
 extern rtx        gen_neon_vcagtv4hf_fp16insn_unspec                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vcalev4hf_fp16insn_unspec                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vcaltv4hf_fp16insn_unspec                 (rtx, rtx, rtx);
-extern rtx        gen_neon_vtstv8qi                                  (rtx, rtx, rtx);
-extern rtx        gen_neon_vtstv16qi                                 (rtx, rtx, rtx);
-extern rtx        gen_neon_vtstv4hi                                  (rtx, rtx, rtx);
-extern rtx        gen_neon_vtstv8hi                                  (rtx, rtx, rtx);
-extern rtx        gen_neon_vtstv2si                                  (rtx, rtx, rtx);
-extern rtx        gen_neon_vtstv4si                                  (rtx, rtx, rtx);
 extern rtx        gen_neon_vtst_combinev8qi                          (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_vtst_combinev16qi                         (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_vtst_combinev4hi                          (rtx, rtx, rtx, rtx, rtx);
