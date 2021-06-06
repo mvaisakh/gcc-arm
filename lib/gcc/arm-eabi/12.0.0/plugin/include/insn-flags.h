@@ -695,14 +695,14 @@
 #define HAVE_one_cmplv2sf2_neon (TARGET_NEON)
 #define HAVE_one_cmplv4sf2_neon (TARGET_NEON)
 #define HAVE_one_cmplv2di2_neon (TARGET_NEON)
-#define HAVE_absv8qi2 (TARGET_NEON)
-#define HAVE_absv16qi2 (TARGET_NEON)
-#define HAVE_absv4hi2 (TARGET_NEON)
-#define HAVE_absv8hi2 (TARGET_NEON)
-#define HAVE_absv2si2 (TARGET_NEON)
-#define HAVE_absv4si2 (TARGET_NEON)
-#define HAVE_absv2sf2 (TARGET_NEON)
-#define HAVE_absv4sf2 (TARGET_NEON)
+#define HAVE_neon_absv8qi2 (TARGET_NEON)
+#define HAVE_neon_absv16qi2 (TARGET_NEON)
+#define HAVE_neon_absv4hi2 (TARGET_NEON)
+#define HAVE_neon_absv8hi2 (TARGET_NEON)
+#define HAVE_neon_absv2si2 (TARGET_NEON)
+#define HAVE_neon_absv4si2 (TARGET_NEON)
+#define HAVE_neon_absv2sf2 (TARGET_NEON)
+#define HAVE_neon_absv4sf2 (TARGET_NEON)
 #define HAVE_neon_negv8qi2 (TARGET_NEON)
 #define HAVE_neon_negv16qi2 (TARGET_NEON)
 #define HAVE_neon_negv4hi2 (TARGET_NEON)
@@ -4688,15 +4688,25 @@
 #define HAVE_one_cmplv2sf2 (ARM_HAVE_V2SF_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_one_cmplv4sf2 (ARM_HAVE_V4SF_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_one_cmplv2di2 (ARM_HAVE_V2DI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv8qi2 (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv8qi2 (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv16qi2 (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv16qi2 (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv4hi2 (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv4hi2 (ARM_HAVE_V4HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv8hi2 (ARM_HAVE_V8HI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv8hi2 (ARM_HAVE_V8HI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv2si2 (ARM_HAVE_V2SI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv2si2 (ARM_HAVE_V2SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv4si2 (ARM_HAVE_V4SI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv4si2 (ARM_HAVE_V4SI_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv2sf2 (ARM_HAVE_V2SF_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv2sf2 (ARM_HAVE_V2SF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv4sf2 (ARM_HAVE_V4SF_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv4sf2 (ARM_HAVE_V4SF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv8hf2 (ARM_HAVE_V8HF_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv8hf2 (ARM_HAVE_V8HF_ARITH && !TARGET_REALLY_IWMMXT)
+#define HAVE_absv4hf2 (ARM_HAVE_V4HF_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_negv4hf2 (ARM_HAVE_V4HF_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_cadd90v4hf3 (((TARGET_COMPLEX || (TARGET_HAVE_MVE && TARGET_HAVE_MVE_FLOAT \
 		      && ARM_HAVE_V4HF_ARITH)) && !BYTES_BIG_ENDIAN) && (TARGET_NEON_FP16INST))
@@ -6512,14 +6522,14 @@ extern rtx        gen_one_cmplv8hf2_neon                             (rtx, rtx);
 extern rtx        gen_one_cmplv2sf2_neon                             (rtx, rtx);
 extern rtx        gen_one_cmplv4sf2_neon                             (rtx, rtx);
 extern rtx        gen_one_cmplv2di2_neon                             (rtx, rtx);
-extern rtx        gen_absv8qi2                                       (rtx, rtx);
-extern rtx        gen_absv16qi2                                      (rtx, rtx);
-extern rtx        gen_absv4hi2                                       (rtx, rtx);
-extern rtx        gen_absv8hi2                                       (rtx, rtx);
-extern rtx        gen_absv2si2                                       (rtx, rtx);
-extern rtx        gen_absv4si2                                       (rtx, rtx);
-extern rtx        gen_absv2sf2                                       (rtx, rtx);
-extern rtx        gen_absv4sf2                                       (rtx, rtx);
+extern rtx        gen_neon_absv8qi2                                  (rtx, rtx);
+extern rtx        gen_neon_absv16qi2                                 (rtx, rtx);
+extern rtx        gen_neon_absv4hi2                                  (rtx, rtx);
+extern rtx        gen_neon_absv8hi2                                  (rtx, rtx);
+extern rtx        gen_neon_absv2si2                                  (rtx, rtx);
+extern rtx        gen_neon_absv4si2                                  (rtx, rtx);
+extern rtx        gen_neon_absv2sf2                                  (rtx, rtx);
+extern rtx        gen_neon_absv4sf2                                  (rtx, rtx);
 extern rtx        gen_neon_negv8qi2                                  (rtx, rtx);
 extern rtx        gen_neon_negv16qi2                                 (rtx, rtx);
 extern rtx        gen_neon_negv4hi2                                  (rtx, rtx);
@@ -10342,15 +10352,25 @@ extern rtx        gen_one_cmplv8hf2                                  (rtx, rtx);
 extern rtx        gen_one_cmplv2sf2                                  (rtx, rtx);
 extern rtx        gen_one_cmplv4sf2                                  (rtx, rtx);
 extern rtx        gen_one_cmplv2di2                                  (rtx, rtx);
+extern rtx        gen_absv8qi2                                       (rtx, rtx);
 extern rtx        gen_negv8qi2                                       (rtx, rtx);
+extern rtx        gen_absv16qi2                                      (rtx, rtx);
 extern rtx        gen_negv16qi2                                      (rtx, rtx);
+extern rtx        gen_absv4hi2                                       (rtx, rtx);
 extern rtx        gen_negv4hi2                                       (rtx, rtx);
+extern rtx        gen_absv8hi2                                       (rtx, rtx);
 extern rtx        gen_negv8hi2                                       (rtx, rtx);
+extern rtx        gen_absv2si2                                       (rtx, rtx);
 extern rtx        gen_negv2si2                                       (rtx, rtx);
+extern rtx        gen_absv4si2                                       (rtx, rtx);
 extern rtx        gen_negv4si2                                       (rtx, rtx);
+extern rtx        gen_absv2sf2                                       (rtx, rtx);
 extern rtx        gen_negv2sf2                                       (rtx, rtx);
+extern rtx        gen_absv4sf2                                       (rtx, rtx);
 extern rtx        gen_negv4sf2                                       (rtx, rtx);
+extern rtx        gen_absv8hf2                                       (rtx, rtx);
 extern rtx        gen_negv8hf2                                       (rtx, rtx);
+extern rtx        gen_absv4hf2                                       (rtx, rtx);
 extern rtx        gen_negv4hf2                                       (rtx, rtx);
 extern rtx        gen_cadd90v4hf3                                    (rtx, rtx, rtx);
 extern rtx        gen_cadd270v4hf3                                   (rtx, rtx, rtx);
