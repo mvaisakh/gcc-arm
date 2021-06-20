@@ -565,6 +565,16 @@ enum isa_feature {
   isa_bit_armv5te, \
   isa_bit_armv5t
 
+#define ISA_IGNORE_FOR_MULTILIB \
+  isa_bit_cdecp0, \
+  isa_bit_cdecp1, \
+  isa_bit_cdecp2, \
+  isa_bit_cdecp3, \
+  isa_bit_cdecp4, \
+  isa_bit_cdecp5, \
+  isa_bit_cdecp6, \
+  isa_bit_cdecp7
+
 #define ISA_MVE_FP \
   isa_bit_fp16, \
   isa_bit_armv7em, \
