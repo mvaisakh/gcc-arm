@@ -1153,12 +1153,20 @@
 #define HAVE_neon_vcgeuv4si (TARGET_NEON)
 #define HAVE_neon_vcagtv2sf_insn (TARGET_NEON && flag_unsafe_math_optimizations)
 #define HAVE_neon_vcagev2sf_insn (TARGET_NEON && flag_unsafe_math_optimizations)
+#define HAVE_neon_vcaltv2sf_insn (TARGET_NEON && flag_unsafe_math_optimizations)
+#define HAVE_neon_vcalev2sf_insn (TARGET_NEON && flag_unsafe_math_optimizations)
 #define HAVE_neon_vcagtv4sf_insn (TARGET_NEON && flag_unsafe_math_optimizations)
 #define HAVE_neon_vcagev4sf_insn (TARGET_NEON && flag_unsafe_math_optimizations)
+#define HAVE_neon_vcaltv4sf_insn (TARGET_NEON && flag_unsafe_math_optimizations)
+#define HAVE_neon_vcalev4sf_insn (TARGET_NEON && flag_unsafe_math_optimizations)
 #define HAVE_neon_vcagev2sf_insn_unspec (TARGET_NEON)
 #define HAVE_neon_vcagtv2sf_insn_unspec (TARGET_NEON)
+#define HAVE_neon_vcalev2sf_insn_unspec (TARGET_NEON)
+#define HAVE_neon_vcaltv2sf_insn_unspec (TARGET_NEON)
 #define HAVE_neon_vcagev4sf_insn_unspec (TARGET_NEON)
 #define HAVE_neon_vcagtv4sf_insn_unspec (TARGET_NEON)
+#define HAVE_neon_vcalev4sf_insn_unspec (TARGET_NEON)
+#define HAVE_neon_vcaltv4sf_insn_unspec (TARGET_NEON)
 #define HAVE_neon_vcagtv8hf_fp16insn (TARGET_NEON_FP16INST && flag_unsafe_math_optimizations)
 #define HAVE_neon_vcagev8hf_fp16insn (TARGET_NEON_FP16INST && flag_unsafe_math_optimizations)
 #define HAVE_neon_vcaltv8hf_fp16insn (TARGET_NEON_FP16INST && flag_unsafe_math_optimizations)
@@ -5319,8 +5327,12 @@
 #define HAVE_neon_vcltv4hf (TARGET_NEON_FP16INST)
 #define HAVE_neon_vcagtv2sf (TARGET_NEON)
 #define HAVE_neon_vcagev2sf (TARGET_NEON)
+#define HAVE_neon_vcaltv2sf (TARGET_NEON)
+#define HAVE_neon_vcalev2sf (TARGET_NEON)
 #define HAVE_neon_vcagtv4sf (TARGET_NEON)
 #define HAVE_neon_vcagev4sf (TARGET_NEON)
+#define HAVE_neon_vcaltv4sf (TARGET_NEON)
+#define HAVE_neon_vcalev4sf (TARGET_NEON)
 #define HAVE_neon_vcagtv8hf (TARGET_NEON_FP16INST)
 #define HAVE_neon_vcagev8hf (TARGET_NEON_FP16INST)
 #define HAVE_neon_vcaltv8hf (TARGET_NEON_FP16INST)
@@ -6996,12 +7008,20 @@ extern rtx        gen_neon_vcgtuv4si                                 (rtx, rtx, 
 extern rtx        gen_neon_vcgeuv4si                                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagtv2sf_insn                            (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagev2sf_insn                            (rtx, rtx, rtx);
+extern rtx        gen_neon_vcaltv2sf_insn                            (rtx, rtx, rtx);
+extern rtx        gen_neon_vcalev2sf_insn                            (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagtv4sf_insn                            (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagev4sf_insn                            (rtx, rtx, rtx);
+extern rtx        gen_neon_vcaltv4sf_insn                            (rtx, rtx, rtx);
+extern rtx        gen_neon_vcalev4sf_insn                            (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagev2sf_insn_unspec                     (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagtv2sf_insn_unspec                     (rtx, rtx, rtx);
+extern rtx        gen_neon_vcalev2sf_insn_unspec                     (rtx, rtx, rtx);
+extern rtx        gen_neon_vcaltv2sf_insn_unspec                     (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagev4sf_insn_unspec                     (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagtv4sf_insn_unspec                     (rtx, rtx, rtx);
+extern rtx        gen_neon_vcalev4sf_insn_unspec                     (rtx, rtx, rtx);
+extern rtx        gen_neon_vcaltv4sf_insn_unspec                     (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagtv8hf_fp16insn                        (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagev8hf_fp16insn                        (rtx, rtx, rtx);
 extern rtx        gen_neon_vcaltv8hf_fp16insn                        (rtx, rtx, rtx);
@@ -10850,8 +10870,12 @@ extern rtx        gen_neon_vclev4hf                                  (rtx, rtx, 
 extern rtx        gen_neon_vcltv4hf                                  (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagtv2sf                                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagev2sf                                 (rtx, rtx, rtx);
+extern rtx        gen_neon_vcaltv2sf                                 (rtx, rtx, rtx);
+extern rtx        gen_neon_vcalev2sf                                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagtv4sf                                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagev4sf                                 (rtx, rtx, rtx);
+extern rtx        gen_neon_vcaltv4sf                                 (rtx, rtx, rtx);
+extern rtx        gen_neon_vcalev4sf                                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagtv8hf                                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vcagev8hf                                 (rtx, rtx, rtx);
 extern rtx        gen_neon_vcaltv8hf                                 (rtx, rtx, rtx);
