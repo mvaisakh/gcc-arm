@@ -114,6 +114,9 @@ struct die_struct;
    referenced by it can escape.  */
 #define EAF_NODIRECTESCAPE	(1 << 4)
 
+/* Nonzero if the argument does not escape to return value.  */
+#define EAF_NOT_RETURNED	(1 << 8)
+
 /* Call return flags.  */
 /* Mask for the argument number that is returned.  Lower two bits of
    the return flags, encodes argument slots zero to three.  */
@@ -888,6 +891,7 @@ enum size_type_kind {
   stk_type_kind_last
 };
 
+/* Flags controlling operand_equal_p() behavior.  */
 enum operand_equal_flag {
   OEP_ONLY_CONST = 1,
   OEP_PURE_SAME = 2,
@@ -902,7 +906,11 @@ enum operand_equal_flag {
   OEP_BITWISE = 128,
   /* For OEP_ADDRESS_OF of COMPONENT_REFs, only consider same fields as
      equivalent rather than also different fields with the same offset.  */
-  OEP_ADDRESS_OF_SAME_FIELD = 256
+  OEP_ADDRESS_OF_SAME_FIELD = 256,
+  /* In conjunction with OEP_LEXICOGRAPHIC considers names of declarations
+     of the same kind.  Used to compare VLA bounds involving parameters
+     across redeclarations of the same function.  */
+  OEP_DECL_NAME = 512
 };
 
 /* Enum and arrays used for tree allocation stats.

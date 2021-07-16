@@ -579,6 +579,9 @@ major data about the file and pointers to the rest of the data.
           be used only for archive elements.  */
        int archive_pass;
 
+       /* The total size of memory from bfd_alloc.  */
+       bfd_size_type alloc_size;
+
        /* Stuff only useful for object files:
           The start address.  */
        bfd_vma start_address;
@@ -14829,62 +14832,62 @@ Node: BFD information loss6244
 Node: Canonical format8785
 Node: BFD front end13128
 Node: typedef bfd13552
-Node: Error reporting31510
-Node: Miscellaneous36761
-Node: Memory Usage55423
-Node: Initialization56654
-Node: Sections57330
-Node: Section Input57813
-Node: Section Output59007
-Node: typedef asection61494
-Node: section prototypes86342
-Node: Symbols97016
-Node: Reading Symbols98619
-Node: Writing Symbols99727
-Node: Mini Symbols101471
-Node: typedef asymbol102445
-Node: symbol handling functions108652
-Node: Archives113985
-Node: Formats118115
-Node: Relocations121045
-Node: typedef arelent121772
-Node: howto manager136683
-Node: Core Files270659
-Node: Targets272683
-Node: bfd_target274658
-Node: Architectures301419
-Node: Opening and Closing333106
-Node: Internal351274
-Node: File Caching360667
-Node: Linker Functions362564
-Node: Creating a Linker Hash Table364238
-Node: Adding Symbols to the Hash Table365977
-Node: Differing file formats366877
-Node: Adding symbols from an object file368602
-Node: Adding symbols from an archive370752
-Node: Performing the Final Link373098
-Node: Information provided by the linker374339
-Node: Relocating the section contents375493
-Node: Writing the symbol table377245
-Node: Hash Tables384336
-Node: Creating and Freeing a Hash Table385534
-Node: Looking Up or Entering a String386784
-Node: Traversing a Hash Table388037
-Node: Deriving a New Hash Table Type388826
-Node: Define the Derived Structures389892
-Node: Write the Derived Creation Routine390973
-Node: Write Other Derived Routines393598
-Node: BFD back ends394913
-Node: What to Put Where395183
-Node: aout395363
-Node: coff401617
-Node: elf429598
-Node: mmo429999
-Node: File layout430869
-Node: Symbol-table436782
-Node: mmo section mapping440545
-Node: GNU Free Documentation License444199
-Node: BFD Index469263
+Node: Error reporting31599
+Node: Miscellaneous36850
+Node: Memory Usage55512
+Node: Initialization56743
+Node: Sections57419
+Node: Section Input57902
+Node: Section Output59096
+Node: typedef asection61583
+Node: section prototypes86431
+Node: Symbols97105
+Node: Reading Symbols98708
+Node: Writing Symbols99816
+Node: Mini Symbols101560
+Node: typedef asymbol102534
+Node: symbol handling functions108741
+Node: Archives114074
+Node: Formats118204
+Node: Relocations121134
+Node: typedef arelent121861
+Node: howto manager136772
+Node: Core Files270748
+Node: Targets272772
+Node: bfd_target274747
+Node: Architectures301508
+Node: Opening and Closing333195
+Node: Internal351363
+Node: File Caching360756
+Node: Linker Functions362653
+Node: Creating a Linker Hash Table364327
+Node: Adding Symbols to the Hash Table366066
+Node: Differing file formats366966
+Node: Adding symbols from an object file368691
+Node: Adding symbols from an archive370841
+Node: Performing the Final Link373187
+Node: Information provided by the linker374428
+Node: Relocating the section contents375582
+Node: Writing the symbol table377334
+Node: Hash Tables384425
+Node: Creating and Freeing a Hash Table385623
+Node: Looking Up or Entering a String386873
+Node: Traversing a Hash Table388126
+Node: Deriving a New Hash Table Type388915
+Node: Define the Derived Structures389981
+Node: Write the Derived Creation Routine391062
+Node: Write Other Derived Routines393687
+Node: BFD back ends395002
+Node: What to Put Where395272
+Node: aout395452
+Node: coff401706
+Node: elf429687
+Node: mmo430088
+Node: File layout430958
+Node: Symbol-table436871
+Node: mmo section mapping440634
+Node: GNU Free Documentation License444288
+Node: BFD Index469352
 
 End Tag Table
 

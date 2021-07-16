@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-07-08" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-07-16" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -451,6 +451,7 @@ in the following sections.
 \&\-fdump\-analyzer\-exploded\-nodes 
 \&\-fdump\-analyzer\-exploded\-nodes\-2 
 \&\-fdump\-analyzer\-exploded\-nodes\-3 
+\&\-fdump\-analyzer\-exploded\-paths 
 \&\-fdump\-analyzer\-feasibility 
 \&\-fdump\-analyzer\-json 
 \&\-fdump\-analyzer\-state\-purge 
@@ -8578,6 +8579,7 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-tainted\-array\-index 
 \&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler 
 \&\-Wanalyzer\-use\-after\-free 
+\&\-Wanalyzer\-use\-of\-uninitialized\-value 
 \&\-Wanalyzer\-use\-of\-pointer\-in\-stale\-stack\-frame 
 \&\-Wanalyzer\-write\-to\-const 
 \&\-Wanalyzer\-write\-to\-string\-literal\fR
@@ -8778,6 +8780,13 @@ This diagnostic warns for paths through the code in which the analyzer
 detects an attempt to write through a pointer to a string literal.
 However, the analyzer does not prioritize detection of such paths, so
 false negatives are more likely relative to other warnings.
+.IP "\fB\-Wno\-analyzer\-use\-of\-uninitialized\-value\fR" 4
+.IX Item "-Wno-analyzer-use-of-uninitialized-value"
+This warning requires \fB\-fanalyzer\fR, which enables it; use
+\&\fB\-Wno\-analyzer\-use\-of\-uninitialized\-value\fR to disable it.
+.Sp
+This diagnostic warns for paths through the code in which an uninitialized
+value is used.
 .PP
 Pertinent parameters for controlling the exploration are:
 \&\fB\-\-param analyzer\-bb\-explosion\-factor=\fR\fIvalue\fR,
@@ -8927,6 +8936,10 @@ Dump a textual representation of the \*(L"exploded graph\*(R" to
 Dump a textual representation of the \*(L"exploded graph\*(R" to
 one dump file per node, to \fI\fIfile\fI.eg\-\fIid\fI.txt\fR.
 This is typically a large number of dump files.
+.IP "\fB\-fdump\-analyzer\-exploded\-paths\fR" 4
+.IX Item "-fdump-analyzer-exploded-paths"
+Dump a textual representation of the \*(L"exploded path\*(R" for each
+diagnostic to \fI\fIfile\fI.\fIidx\fI.\fIkind\fI.epath.txt\fR.
 .IP "\fB\-fdump\-analyzer\-feasibility\fR" 4
 .IX Item "-fdump-analyzer-feasibility"
 Dump internal details about the analyzer's search for feasible paths.
@@ -15756,8 +15769,10 @@ arbitrary signal handlers such as \f(CW\*(C`SIGALRM\*(C'\fR.
 .IX Item "-fdelete-dead-exceptions"
 Consider that instructions that may throw exceptions but don't otherwise
 contribute to the execution of the program can be optimized away.
-This option is enabled by default for the Ada compiler, as permitted by
-the Ada language specification.
+This does not affect calls to functions except those with the
+\&\f(CW\*(C`pure\*(C'\fR or \f(CW\*(C`const\*(C'\fR attributes.
+This option is enabled by default for the Ada and \*(C+ compilers, as permitted by
+the language specifications.
 Optimization passes that cause dead exceptions to be removed are enabled independently at different optimization levels.
 .IP "\fB\-funwind\-tables\fR" 4
 .IX Item "-funwind-tables"
