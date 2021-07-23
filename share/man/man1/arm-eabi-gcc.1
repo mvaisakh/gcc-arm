@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-07-16" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-07-23" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -18120,6 +18120,18 @@ Compile for \s-1GCN5\s0 Vega 20 devices (gfx906).
 .RE
 .RS 4
 .RE
+.IP "\fB\-msram\-ecc=on\fR" 4
+.IX Item "-msram-ecc=on"
+.PD 0
+.IP "\fB\-msram\-ecc=off\fR" 4
+.IX Item "-msram-ecc=off"
+.IP "\fB\-msram\-ecc=any\fR" 4
+.IX Item "-msram-ecc=any"
+.PD
+Compile binaries suitable for devices with the SRAM-ECC feature enabled,
+disabled, or either mode.  This feature can be enabled per-process on some
+devices.  The compiled code must match the device mode. The default is
+\&\fBany\fR, for devices that support it.
 .IP "\fB\-mstack\-size=\fR\fIbytes\fR" 4
 .IX Item "-mstack-size=bytes"
 Specify how many \fIbytes\fR of stack space will be requested for each \s-1GPU\s0
@@ -18127,6 +18139,13 @@ thread (wave-front).  Beware that there may be many threads and limited memory
 available.  The size of the stack allocation may also have an impact on
 run-time performance.  The default is 32KB when using OpenACC or OpenMP, and
 1MB otherwise.
+.IP "\fB\-mxnack\fR" 4
+.IX Item "-mxnack"
+Compile binaries suitable for devices with the \s-1XNACK\s0 feature enabled.  Some
+devices always require \s-1XNACK\s0 and some allow the user to configure \s-1XNACK.\s0  The
+compiled code must match the device mode.  The default is \fB\-mno\-xnack\fR.
+At present this option is a placeholder for support that is not yet
+implemented.
 .PP
 \fI\s-1ARC\s0 Options\fR
 .IX Subsection "ARC Options"
