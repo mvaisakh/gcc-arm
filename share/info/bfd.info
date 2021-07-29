@@ -1190,7 +1190,16 @@ Set the maximum size of objects to be optimized using the GP register
 under ECOFF or MIPS ELF. This is typically set by the '-G' argument to
 the compiler, assembler or linker.
 
-2.3.1.10 'bfd_scan_vma'
+2.3.1.10 'bfd_set_gp_value'
+...........................
+
+*Synopsis*
+     void bfd_set_gp_value (bfd *abfd, bfd_vma v);
+   *Description*
+Allow external access to the fucntion to set the GP value.  This is
+specifically added for gdb-compile support.
+
+2.3.1.11 'bfd_scan_vma'
 .......................
 
 *Synopsis*
@@ -1206,7 +1215,7 @@ found, otherwise in decimal.
 
    If the value would overflow, the maximum 'bfd_vma' value is returned.
 
-2.3.1.11 'bfd_copy_private_header_data'
+2.3.1.12 'bfd_copy_private_header_data'
 .......................................
 
 *Synopsis*
@@ -1223,7 +1232,7 @@ error.  Possible error returns are:
             BFD_SEND (obfd, _bfd_copy_private_header_data, \
                       (ibfd, obfd))
 
-2.3.1.12 'bfd_copy_private_bfd_data'
+2.3.1.13 'bfd_copy_private_bfd_data'
 ....................................
 
 *Synopsis*
@@ -1238,7 +1247,7 @@ Return 'TRUE' on success, 'FALSE' on error.  Possible error returns are:
             BFD_SEND (obfd, _bfd_copy_private_bfd_data, \
                       (ibfd, obfd))
 
-2.3.1.13 'bfd_set_private_flags'
+2.3.1.14 'bfd_set_private_flags'
 ................................
 
 *Synopsis*
@@ -1252,7 +1261,7 @@ success, 'FALSE' on error.  Possible error returns are:
      #define bfd_set_private_flags(abfd, flags) \
             BFD_SEND (abfd, _bfd_set_private_flags, (abfd, flags))
 
-2.3.1.14 'Other functions'
+2.3.1.15 'Other functions'
 ..........................
 
 *Description*
@@ -1356,7 +1365,7 @@ The following functions exist but have not yet been documented.
         bool, asymbol **);
 
 
-2.3.1.15 'bfd_alt_mach_code'
+2.3.1.16 'bfd_alt_mach_code'
 ............................
 
 *Synopsis*
@@ -1367,7 +1376,7 @@ type, this function can be used to switch between the preferred one
 (alternative == 0) and any others.  Currently, only ELF supports this
 feature, with up to two alternate machine codes.
 
-2.3.1.16 'bfd_emul_get_maxpagesize'
+2.3.1.17 'bfd_emul_get_maxpagesize'
 ...................................
 
 *Synopsis*
@@ -1378,7 +1387,7 @@ Returns the maximum page size, in bytes, as determined by emulation.
    *Returns*
 Returns the maximum page size in bytes for ELF, 0 otherwise.
 
-2.3.1.17 'bfd_emul_get_commonpagesize'
+2.3.1.18 'bfd_emul_get_commonpagesize'
 ......................................
 
 *Synopsis*
@@ -1389,7 +1398,7 @@ Returns the common page size, in bytes, as determined by emulation.
    *Returns*
 Returns the common page size in bytes for ELF, 0 otherwise.
 
-2.3.1.18 'bfd_demangle'
+2.3.1.19 'bfd_demangle'
 .......................
 
 *Synopsis*
@@ -1400,7 +1409,7 @@ such chars that would otherwise confuse the demangler.  If passed a g++
 v3 ABI mangled name, returns a buffer allocated with malloc holding the
 demangled name.  Returns NULL otherwise and on memory alloc failure.
 
-2.3.1.19 'bfd_update_compression_header'
+2.3.1.20 'bfd_update_compression_header'
 ........................................
 
 *Synopsis*
@@ -1410,7 +1419,7 @@ demangled name.  Returns NULL otherwise and on memory alloc failure.
 Set the compression header at CONTENTS of SEC in ABFD and update
 elf_section_flags for compression.
 
-2.3.1.20 'bfd_check_compression_header'
+2.3.1.21 'bfd_check_compression_header'
 .......................................
 
 *Synopsis*
@@ -1427,7 +1436,7 @@ valid.
    *Returns*
 Return TRUE if the compression header is valid.
 
-2.3.1.21 'bfd_get_compression_header_size'
+2.3.1.22 'bfd_get_compression_header_size'
 ..........................................
 
 *Synopsis*
@@ -1438,7 +1447,7 @@ Return the size of the compression header of SEC in ABFD.
    *Returns*
 Return the size of the compression header in bytes.
 
-2.3.1.22 'bfd_convert_section_size'
+2.3.1.23 'bfd_convert_section_size'
 ...................................
 
 *Synopsis*
@@ -1448,7 +1457,7 @@ Return the size of the compression header in bytes.
 Convert the size SIZE of the section ISEC in input BFD IBFD to the
 section size in output BFD OBFD.
 
-2.3.1.23 'bfd_convert_section_contents'
+2.3.1.24 'bfd_convert_section_contents'
 .......................................
 
 *Synopsis*
@@ -1461,7 +1470,7 @@ IBFD to output BFD OBFD if needed.  The original buffer pointed to by
 *PTR may be freed and *PTR is returned with memory malloc'd by this
 function, and the new size written to PTR_SIZE.
 
-2.3.1.24 'struct bfd_iovec'
+2.3.1.25 'struct bfd_iovec'
 ...........................
 
 *Description*
@@ -1500,7 +1509,7 @@ is assumed that the instance implements all methods listed below).
      };
      extern const struct bfd_iovec _bfd_memory_iovec;
 
-2.3.1.25 'bfd_get_mtime'
+2.3.1.26 'bfd_get_mtime'
 ........................
 
 *Synopsis*
@@ -1509,7 +1518,7 @@ is assumed that the instance implements all methods listed below).
 Return the file modification time (as read from the file system, or from
 the archive header for archive members).
 
-2.3.1.26 'bfd_get_size'
+2.3.1.27 'bfd_get_size'
 .......................
 
 *Synopsis*
@@ -1539,7 +1548,7 @@ at least allows us to answer the question, "is the size reasonable?".
 
    A return value of zero indicates the file size is unknown.
 
-2.3.1.27 'bfd_get_file_size'
+2.3.1.28 'bfd_get_file_size'
 ............................
 
 *Synopsis*
@@ -1548,7 +1557,7 @@ at least allows us to answer the question, "is the size reasonable?".
 Return the file size (as read from file system) for the file associated
 with BFD ABFD.  It supports both normal files and archive elements.
 
-2.3.1.28 'bfd_mmap'
+2.3.1.29 'bfd_mmap'
 ...................
 
 *Synopsis*
@@ -12162,7 +12171,7 @@ BFD Index
 * BFD canonical format:                  Canonical format.   (line   11)
 * bfd_alloc:                             Opening and Closing.
                                                              (line  248)
-* bfd_alt_mach_code:                     Miscellaneous.      (line  292)
+* bfd_alt_mach_code:                     Miscellaneous.      (line  301)
 * bfd_arch_bits_per_address:             Architectures.      (line  666)
 * bfd_arch_bits_per_byte:                Architectures.      (line  658)
 * bfd_arch_default_fill:                 Architectures.      (line  748)
@@ -12197,7 +12206,7 @@ BFD Index
 * bfd_canonicalize_reloc:                Miscellaneous.      (line   18)
 * bfd_canonicalize_symtab:               symbol handling functions.
                                                              (line   52)
-* bfd_check_compression_header:          Miscellaneous.      (line  346)
+* bfd_check_compression_header:          Miscellaneous.      (line  355)
 * bfd_check_format:                      Formats.            (line   20)
 * bfd_check_format_matches:              Formats.            (line   51)
 * bfd_check_overflow:                    typedef arelent.    (line  328)
@@ -12206,10 +12215,10 @@ BFD Index
 * bfd_close_all_done:                    Opening and Closing.
                                                              (line  188)
 * bfd_coff_backend_data:                 coff.               (line  296)
-* bfd_convert_section_contents:          Miscellaneous.      (line  384)
-* bfd_convert_section_size:              Miscellaneous.      (line  374)
-* bfd_copy_private_bfd_data:             Miscellaneous.      (line  159)
-* bfd_copy_private_header_data:          Miscellaneous.      (line  142)
+* bfd_convert_section_contents:          Miscellaneous.      (line  393)
+* bfd_convert_section_size:              Miscellaneous.      (line  383)
+* bfd_copy_private_bfd_data:             Miscellaneous.      (line  168)
+* bfd_copy_private_header_data:          Miscellaneous.      (line  151)
 * bfd_copy_private_section_data:         section prototypes. (line  279)
 * bfd_copy_private_symbol_data:          symbol handling functions.
                                                              (line  145)
@@ -12227,9 +12236,9 @@ BFD Index
 * bfd_default_reloc_type_lookup:         howto manager.      (line 3467)
 * bfd_default_scan:                      Architectures.      (line  684)
 * bfd_default_set_arch_mach:             Architectures.      (line  631)
-* bfd_demangle:                          Miscellaneous.      (line  325)
-* bfd_emul_get_commonpagesize:           Miscellaneous.      (line  314)
-* bfd_emul_get_maxpagesize:              Miscellaneous.      (line  303)
+* bfd_demangle:                          Miscellaneous.      (line  334)
+* bfd_emul_get_commonpagesize:           Miscellaneous.      (line  323)
+* bfd_emul_get_maxpagesize:              Miscellaneous.      (line  312)
 * bfd_errmsg:                            Error reporting.    (line   79)
 * bfd_fdopenr:                           Opening and Closing.
                                                              (line   56)
@@ -12267,17 +12276,17 @@ BFD Index
 * bfd_get_arch:                          Architectures.      (line  642)
 * bfd_get_arch_info:                     Architectures.      (line  694)
 * bfd_get_arch_size:                     Miscellaneous.      (line   63)
-* bfd_get_compression_header_size:       Miscellaneous.      (line  363)
+* bfd_get_compression_header_size:       Miscellaneous.      (line  372)
 * bfd_get_debug_link_info:               Opening and Closing.
                                                              (line  302)
 * bfd_get_debug_link_info_1:             Opening and Closing.
                                                              (line  280)
 * bfd_get_error:                         Error reporting.    (line   49)
-* bfd_get_file_size:                     Miscellaneous.      (line  475)
+* bfd_get_file_size:                     Miscellaneous.      (line  484)
 * bfd_get_gp_size:                       Miscellaneous.      (line  106)
 * bfd_get_linker_section:                section prototypes. (line   37)
 * bfd_get_mach:                          Architectures.      (line  650)
-* bfd_get_mtime:                         Miscellaneous.      (line  436)
+* bfd_get_mtime:                         Miscellaneous.      (line  445)
 * bfd_get_next_mapent:                   Archives.           (line   57)
 * bfd_get_next_section_by_name:          section prototypes. (line   25)
 * bfd_get_reloc_code_name:               howto manager.      (line 3476)
@@ -12287,7 +12296,7 @@ BFD Index
 * bfd_get_section_by_name_if:            section prototypes. (line   46)
 * bfd_get_section_contents:              section prototypes. (line  252)
 * bfd_get_sign_extend_vma:               Miscellaneous.      (line   78)
-* bfd_get_size:                          Miscellaneous.      (line  445)
+* bfd_get_size:                          Miscellaneous.      (line  454)
 * bfd_get_size <1>:                      Internal.           (line   90)
 * bfd_get_symtab_upper_bound:            symbol handling functions.
                                                              (line    5)
@@ -12347,7 +12356,7 @@ BFD Index
 * bfd_map_over_sections:                 section prototypes. (line  176)
 * bfd_merge_private_bfd_data:            Writing the symbol table.
                                                              (line  155)
-* bfd_mmap:                              Miscellaneous.      (line  484)
+* bfd_mmap:                              Miscellaneous.      (line  493)
 * bfd_octets_per_byte:                   Architectures.      (line  725)
 * bfd_openr:                             Opening and Closing.
                                                              (line   37)
@@ -14757,7 +14766,7 @@ BFD Index
 * BFD_RELOC_Z8K_IMM4L:                   howto manager.      (line 2678)
 * bfd_rename_section:                    section prototypes. (line  167)
 * bfd_scan_arch:                         Architectures.      (line  582)
-* bfd_scan_vma:                          Miscellaneous.      (line  126)
+* bfd_scan_vma:                          Miscellaneous.      (line  135)
 * bfd_sections_find_if:                  section prototypes. (line  197)
 * bfd_section_already_linked:            Writing the symbol table.
                                                              (line   55)
@@ -14774,8 +14783,9 @@ BFD Index
 * bfd_set_file_flags:                    Miscellaneous.      (line   45)
 * bfd_set_format:                        Formats.            (line   67)
 * bfd_set_gp_size:                       Miscellaneous.      (line  116)
+* bfd_set_gp_value:                      Miscellaneous.      (line  126)
 * bfd_set_input_error:                   Error reporting.    (line   69)
-* bfd_set_private_flags:                 Miscellaneous.      (line  174)
+* bfd_set_private_flags:                 Miscellaneous.      (line  183)
 * bfd_set_reloc:                         Miscellaneous.      (line   33)
 * bfd_set_section_contents:              section prototypes. (line  228)
 * bfd_set_section_flags:                 section prototypes. (line  154)
@@ -14786,7 +14796,7 @@ BFD Index
 * bfd_symbol_info:                       symbol handling functions.
                                                              (line  135)
 * bfd_target_list:                       bfd_target.         (line  623)
-* bfd_update_compression_header:         Miscellaneous.      (line  336)
+* bfd_update_compression_header:         Miscellaneous.      (line  345)
 * bfd_write_bigendian_4byte_int:         Internal.           (line   78)
 * bfd_zalloc:                            Opening and Closing.
                                                              (line  257)
@@ -14805,12 +14815,12 @@ BFD Index
 * Hash tables:                           Hash Tables.        (line    6)
 * internal object-file format:           Canonical format.   (line   11)
 * Linker:                                Linker Functions.   (line    6)
-* Other functions:                       Miscellaneous.      (line  188)
+* Other functions:                       Miscellaneous.      (line  197)
 * separate_alt_debug_file_exists:        Opening and Closing.
                                                              (line  347)
 * separate_debug_file_exists:            Opening and Closing.
                                                              (line  334)
-* struct bfd_iovec:                      Miscellaneous.      (line  397)
+* struct bfd_iovec:                      Miscellaneous.      (line  406)
 * target vector (_bfd_final_link):       Performing the Final Link.
                                                              (line    6)
 * target vector (_bfd_link_add_symbols): Adding Symbols to the Hash Table.
@@ -14834,60 +14844,60 @@ Node: BFD front end13128
 Node: typedef bfd13552
 Node: Error reporting31599
 Node: Miscellaneous36850
-Node: Memory Usage55512
-Node: Initialization56743
-Node: Sections57419
-Node: Section Input57902
-Node: Section Output59096
-Node: typedef asection61583
-Node: section prototypes86431
-Node: Symbols97105
-Node: Reading Symbols98708
-Node: Writing Symbols99816
-Node: Mini Symbols101560
-Node: typedef asymbol102534
-Node: symbol handling functions108741
-Node: Archives114074
-Node: Formats118204
-Node: Relocations121134
-Node: typedef arelent121861
-Node: howto manager136772
-Node: Core Files270748
-Node: Targets272772
-Node: bfd_target274747
-Node: Architectures301508
-Node: Opening and Closing333195
-Node: Internal351363
-Node: File Caching360756
-Node: Linker Functions362653
-Node: Creating a Linker Hash Table364327
-Node: Adding Symbols to the Hash Table366066
-Node: Differing file formats366966
-Node: Adding symbols from an object file368691
-Node: Adding symbols from an archive370841
-Node: Performing the Final Link373187
-Node: Information provided by the linker374428
-Node: Relocating the section contents375582
-Node: Writing the symbol table377334
-Node: Hash Tables384425
-Node: Creating and Freeing a Hash Table385623
-Node: Looking Up or Entering a String386873
-Node: Traversing a Hash Table388126
-Node: Deriving a New Hash Table Type388915
-Node: Define the Derived Structures389981
-Node: Write the Derived Creation Routine391062
-Node: Write Other Derived Routines393687
-Node: BFD back ends395002
-Node: What to Put Where395272
-Node: aout395452
-Node: coff401706
-Node: elf429687
-Node: mmo430088
-Node: File layout430958
-Node: Symbol-table436871
-Node: mmo section mapping440634
-Node: GNU Free Documentation License444288
-Node: BFD Index469352
+Node: Memory Usage55761
+Node: Initialization56992
+Node: Sections57668
+Node: Section Input58151
+Node: Section Output59345
+Node: typedef asection61832
+Node: section prototypes86680
+Node: Symbols97354
+Node: Reading Symbols98957
+Node: Writing Symbols100065
+Node: Mini Symbols101809
+Node: typedef asymbol102783
+Node: symbol handling functions108990
+Node: Archives114323
+Node: Formats118453
+Node: Relocations121383
+Node: typedef arelent122110
+Node: howto manager137021
+Node: Core Files270997
+Node: Targets273021
+Node: bfd_target274996
+Node: Architectures301757
+Node: Opening and Closing333444
+Node: Internal351612
+Node: File Caching361005
+Node: Linker Functions362902
+Node: Creating a Linker Hash Table364576
+Node: Adding Symbols to the Hash Table366315
+Node: Differing file formats367215
+Node: Adding symbols from an object file368940
+Node: Adding symbols from an archive371090
+Node: Performing the Final Link373436
+Node: Information provided by the linker374677
+Node: Relocating the section contents375831
+Node: Writing the symbol table377583
+Node: Hash Tables384674
+Node: Creating and Freeing a Hash Table385872
+Node: Looking Up or Entering a String387122
+Node: Traversing a Hash Table388375
+Node: Deriving a New Hash Table Type389164
+Node: Define the Derived Structures390230
+Node: Write the Derived Creation Routine391311
+Node: Write Other Derived Routines393936
+Node: BFD back ends395251
+Node: What to Put Where395521
+Node: aout395701
+Node: coff401955
+Node: elf429936
+Node: mmo430337
+Node: File layout431207
+Node: Symbol-table437120
+Node: mmo section mapping440883
+Node: GNU Free Documentation License444537
+Node: BFD Index469601
 
 End Tag Table
 
