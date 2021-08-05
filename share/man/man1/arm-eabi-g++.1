@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-07-29" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-08-05" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -12453,6 +12453,9 @@ Setting to 0 disables the analysis completely.
 .IP "\fBmodref-max-escape-points\fR" 4
 .IX Item "modref-max-escape-points"
 Specifies the maximum number of escape points tracked by modref per SSA-name.
+.IP "\fBthreader-mode\fR" 4
+.IX Item "threader-mode"
+Specifies the mode the backwards threader should run in.
 .IP "\fBprofile-func-internal-id\fR" 4
 .IX Item "profile-func-internal-id"
 A parameter to control whether to use function internal id in profile
@@ -17678,10 +17681,10 @@ performance of the code.  Permissible values for this option are:
 \&\fBcortex\-a65\fR, \fBcortex\-a65ae\fR, \fBcortex\-a34\fR,
 \&\fBcortex\-a78\fR, \fBcortex\-a78ae\fR, \fBcortex\-a78c\fR,
 \&\fBares\fR, \fBexynos\-m1\fR, \fBemag\fR, \fBfalkor\fR,
-\&\fBneoverse\-e1\fR, \fBneoverse\-n1\fR, \fBneoverse\-n2\fR,
-\&\fBneoverse\-v1\fR, \fBqdf24xx\fR, \fBsaphira\fR,
-\&\fBphecda\fR, \fBxgene1\fR, \fBvulcan\fR, \fBocteontx\fR,
-\&\fBocteontx81\fR,  \fBocteontx83\fR,
+\&\fBneoverse\-512tvb\fR, \fBneoverse\-e1\fR, \fBneoverse\-n1\fR,
+\&\fBneoverse\-n2\fR, \fBneoverse\-v1\fR, \fBqdf24xx\fR,
+\&\fBsaphira\fR, \fBphecda\fR, \fBxgene1\fR, \fBvulcan\fR,
+\&\fBocteontx\fR, \fBocteontx81\fR,  \fBocteontx83\fR,
 \&\fBocteontx2\fR, \fBocteontx2t98\fR, \fBocteontx2t96\fR
 \&\fBocteontx2t93\fR, \fBocteontx2f95\fR, \fBocteontx2f95n\fR,
 \&\fBocteontx2f95mm\fR,
@@ -17698,6 +17701,15 @@ The values \fBcortex\-a57.cortex\-a53\fR, \fBcortex\-a72.cortex\-a53\fR,
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
 \&\fBcortex\-a75.cortex\-a55\fR, \fBcortex\-a76.cortex\-a55\fR specify that \s-1GCC\s0
 should tune for a big.LITTLE system.
+.Sp
+The value \fBneoverse\-512tvb\fR specifies that \s-1GCC\s0 should tune
+for Neoverse cores that (a) implement \s-1SVE\s0 and (b) have a total vector
+bandwidth of 512 bits per cycle.  In other words, the option tells \s-1GCC\s0 to
+tune for Neoverse cores that can execute 4 128\-bit Advanced \s-1SIMD\s0 arithmetic
+instructions a cycle and that can execute an equivalent number of \s-1SVE\s0
+arithmetic instructions per cycle (2 for 256\-bit \s-1SVE, 4\s0 for 128\-bit \s-1SVE\s0).
+This is more general than tuning for a specific core like Neoverse V1
+but is more specific than the default tuning described below.
 .Sp
 Additionally on native AArch64 GNU/Linux systems the value
 \&\fBnative\fR tunes performance to the host system.  This option has no effect
@@ -17726,6 +17738,16 @@ the target processor for which to tune for performance (as if
 by \fB\-mtune\fR).  Where this option is used in conjunction
 with \fB\-march\fR or \fB\-mtune\fR, those options take precedence
 over the appropriate part of this option.
+.Sp
+\&\fB\-mcpu=neoverse\-512tvb\fR is special in that it does not refer
+to a specific core, but instead refers to all Neoverse cores that
+(a) implement \s-1SVE\s0 and (b) have a total vector bandwidth of 512 bits
+a cycle.  Unless overridden by \fB\-march\fR,
+\&\fB\-mcpu=neoverse\-512tvb\fR generates code that can run on a
+Neoverse V1 core, since Neoverse V1 is the first Neoverse core with
+these properties.  Unless overridden by \fB\-mtune\fR,
+\&\fB\-mcpu=neoverse\-512tvb\fR tunes code in the same way as for
+\&\fB\-mtune=neoverse\-512tvb\fR.
 .IP "\fB\-moverride=\fR\fIstring\fR" 4
 .IX Item "-moverride=string"
 Override tuning decisions made by the back-end in response to a
