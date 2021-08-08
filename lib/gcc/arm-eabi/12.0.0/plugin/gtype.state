@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "12.0.0 20210805 (experimental)")
+(!version  "12.0.0 20210808 (experimental)")
 (!srcdir  "../../gcc/gcc")
 (!languages 10 ada c cp d fortran go jit lto objc objcp)
 (!fileslist 226 0
@@ -13840,7 +13840,7 @@
                        (!type struct 614 
                         (!type already_seen 613)
                         gc_pointed_to "cl_target_option"
-                        (!fileloc  "options.h" 8229)
+                        (!srcfileloc  "config/arm/arm.c" 28104)
                         (!fields 10 
                          (!pair  "x_arm_arch_string"
                           (!type already_seen 11)
@@ -25013,25 +25013,25 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1652 nil  gc_unused "anonymous:../../gcc/gcc/config/arm/arm.c:2471"nil 
+ (!type struct 1652 nil  gc_unused "anonymous:../../gcc/gcc/config/arm/arm.c:2468"nil 
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1653 nil  gc_unused "anonymous:../../gcc/gcc/config/arm/arm.c:3933"nil 
+ (!type struct 1653 nil  gc_unused "anonymous:../../gcc/gcc/config/arm/arm.c:3937"nil 
   (!fields 0 )
   nil 0 nil nil )
  
  (!type struct 1654 nil  gc_unused "libcall_hasher"
-  (!srcfileloc  "config/arm/arm.c" 5754)
+  (!srcfileloc  "config/arm/arm.c" 5758)
   (!fields 0 )
   nil 1023 nil nil )
  
  (!type user_struct 1655 nil  gc_unused "hash_table<libcall_hasher>"
-  (!srcfileloc  "config/arm/arm.c" 5754)
+  (!srcfileloc  "config/arm/arm.c" 5758)
   (!fields 1 
    (!pair  "libcall_hasher"
     (!type already_seen 1654)
-    (!srcfileloc  "config/arm/arm.c" 5754)
+    (!srcfileloc  "config/arm/arm.c" 5758)
     nil )
   )
  )
@@ -26914,7 +26914,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1927 nil  gc_unused "anonymous:../../gcc/gcc/c/c-parser.c:7770"nil 
+ (!type struct 1927 nil  gc_unused "anonymous:../../gcc/gcc/c/c-parser.c:7774"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -30244,7 +30244,7 @@
   )
  )
 )
-(!typedefs 925
+(!typedefs 926
  (!pair  "ivarref_entry"
   (!type already_seen 2282)
   (!srcfileloc  "objc/objc-next-runtime-abi-02.c" 3001)
@@ -31589,29 +31589,33 @@
   (!type already_seen 9)
   (!srcfileloc  "passes.c" 917)
   nil )
+ (!pair  "cl_target_option"
+  (!type already_seen 614)
+  (!srcfileloc  "config/arm/arm.c" 28104)
+  nil )
  (!pair  "arm_pragma_enum"
   (!type already_seen 2)
-  (!srcfileloc  "config/arm/arm.c" 7221)
+  (!srcfileloc  "config/arm/arm.c" 7225)
   nil )
  (!pair  "libcall_table_type"
   (!type already_seen 1655)
-  (!srcfileloc  "config/arm/arm.c" 5754)
+  (!srcfileloc  "config/arm/arm.c" 5758)
   nil )
  (!pair  "libcall_hasher"
   (!type already_seen 1654)
-  (!srcfileloc  "config/arm/arm.c" 5754)
+  (!srcfileloc  "config/arm/arm.c" 5758)
   nil )
  (!pair  "hash_table<libcall_hasher>"
   (!type already_seen 1655)
-  (!srcfileloc  "config/arm/arm.c" 5754)
+  (!srcfileloc  "config/arm/arm.c" 5758)
   nil )
  (!pair  "isr_attribute_arg"
   (!type already_seen 1653)
-  (!srcfileloc  "config/arm/arm.c" 3937)
+  (!srcfileloc  "config/arm/arm.c" 3941)
   nil )
  (!pair  "arm_fixed_mode_set"
   (!type already_seen 1652)
-  (!srcfileloc  "config/arm/arm.c" 2474)
+  (!srcfileloc  "config/arm/arm.c" 2471)
   nil )
  (!pair  "Mfix"
   (!type already_seen 1648)
@@ -33952,7 +33956,7 @@
   (!srcfileloc  "gengtype.c" 5201)
   nil )
 )
-(!variables 741
+(!variables 742
  (!pair  "objc_eh_personality_decl"
   (!type already_seen 23)
   (!srcfileloc  "objc/objc-next-runtime-abi-02.c" 3844)
@@ -35669,7 +35673,7 @@
   nil )
  (!pair  "ext_block"
   (!type already_seen 23)
-  (!srcfileloc  "c/c-decl.c" 12157)
+  (!srcfileloc  "c/c-decl.c" 12158)
   nil )
  (!pair  "last_structptr_types"
   (!type array 2325 nil  gc_used "builtin_structptr_type_count" 
@@ -36019,31 +36023,35 @@
   nil )
  (!pair  "arm_previous_fndecl"
   (!type already_seen 23)
-  (!srcfileloc  "config/arm/arm.c" 32860)
+  (!srcfileloc  "config/arm/arm.c" 32892)
+  nil )
+ (!pair  "last_asm_targ_options"
+  (!type already_seen 613)
+  (!srcfileloc  "config/arm/arm.c" 28104)
   nil )
  (!pair  "tls_get_addr_libfunc"
   (!type already_seen 99)
-  (!srcfileloc  "config/arm/arm.c" 8996)
+  (!srcfileloc  "config/arm/arm.c" 9000)
   nil )
  (!pair  "pic_labelno"
   (!type already_seen 2)
-  (!srcfileloc  "config/arm/arm.c" 8132)
+  (!srcfileloc  "config/arm/arm.c" 8136)
   nil )
  (!pair  "init_optimize"
   (!type already_seen 23)
-  (!srcfileloc  "config/arm/arm.c" 3034)
+  (!srcfileloc  "config/arm/arm.c" 3031)
   nil )
  (!pair  "thumb_flipper"
   (!type already_seen 2)
-  (!srcfileloc  "config/arm/arm.c" 3031)
+  (!srcfileloc  "config/arm/arm.c" 3028)
   nil )
  (!pair  "va_list_type"
   (!type already_seen 23)
-  (!srcfileloc  "config/arm/arm.c" 2827)
+  (!srcfileloc  "config/arm/arm.c" 2824)
   nil )
  (!pair  "speculation_barrier_libfunc"
   (!type already_seen 99)
-  (!srcfileloc  "config/arm/arm.c" 2513)
+  (!srcfileloc  "config/arm/arm.c" 2510)
   nil )
  (!pair  "stack_chk_fail_decl"
   (!type already_seen 23)
