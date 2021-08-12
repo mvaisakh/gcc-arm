@@ -5253,9 +5253,10 @@ File: ld.info,  Node: Expressions,  Next: Implicit Linker Scripts,  Prev: VERSIO
 ==================================
 
 The syntax for expressions in the linker script language is identical to
-that of C expressions.  All expressions are evaluated as integers.  All
-expressions are evaluated in the same size, which is 32 bits if both the
-host and target are 32 bits, and is otherwise 64 bits.
+that of C expressions, except that whitespace is required in some places
+to resolve syntactic ambiguities.  All expressions are evaluated as
+integers.  All expressions are evaluated in the same size, which is 32
+bits if both the host and target are 32 bits, and is otherwise 64 bits.
 
    You can use and set symbol values in expressions.
 
@@ -9318,46 +9319,46 @@ Node: MEMORY212668
 Node: PHDRS217274
 Node: VERSION222600
 Node: Expressions230691
-Node: Constants231620
-Node: Symbolic Constants232494
-Node: Symbols233045
-Node: Orphan Sections233792
-Node: Location Counter235377
-Node: Operators239811
-Node: Evaluation240733
-Node: Expression Section242097
-Node: Builtin Functions246067
-Node: Implicit Linker Scripts254418
-Node: Plugins255193
-Node: libdep Plugin255653
-Node: Machine Dependent257450
-Node: H8/300258538
-Node: M68HC11/68HC12260611
-Node: ARM262058
-Node: HPPA ELF32274168
-Node: M68K275791
-Node: MIPS276700
-Node: MMIX277816
-Node: MSP430278981
-Node: NDS32280894
-Node: Nios II281858
-Node: PowerPC ELF32283174
-Node: PowerPC64 ELF64286005
-Node: S/390 ELF295763
-Node: SPU ELF296110
-Node: TI COFF298738
-Node: WIN32299264
-Node: Xtensa319411
-Node: BFD322854
-Node: BFD outline324312
-Node: BFD information loss325600
-Node: Canonical format328126
-Node: Reporting Bugs332454
-Node: Bug Criteria333148
-Node: Bug Reporting333847
-Node: MRI340886
-Node: GNU Free Documentation License345357
-Node: LD Index370494
+Node: Constants231704
+Node: Symbolic Constants232578
+Node: Symbols233129
+Node: Orphan Sections233876
+Node: Location Counter235461
+Node: Operators239895
+Node: Evaluation240817
+Node: Expression Section242181
+Node: Builtin Functions246151
+Node: Implicit Linker Scripts254502
+Node: Plugins255277
+Node: libdep Plugin255737
+Node: Machine Dependent257534
+Node: H8/300258622
+Node: M68HC11/68HC12260695
+Node: ARM262142
+Node: HPPA ELF32274252
+Node: M68K275875
+Node: MIPS276784
+Node: MMIX277900
+Node: MSP430279065
+Node: NDS32280978
+Node: Nios II281942
+Node: PowerPC ELF32283258
+Node: PowerPC64 ELF64286089
+Node: S/390 ELF295847
+Node: SPU ELF296194
+Node: TI COFF298822
+Node: WIN32299348
+Node: Xtensa319495
+Node: BFD322938
+Node: BFD outline324396
+Node: BFD information loss325684
+Node: Canonical format328210
+Node: Reporting Bugs332538
+Node: Bug Criteria333232
+Node: Bug Reporting333931
+Node: MRI340970
+Node: GNU Free Documentation License345441
+Node: LD Index370578
 
 End Tag Table
 

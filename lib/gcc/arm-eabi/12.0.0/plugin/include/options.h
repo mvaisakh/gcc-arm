@@ -5897,12 +5897,6 @@ extern int flag_objc1_only;
 #define flag_objc1_only global_options.x_flag_objc1_only
 #endif
 #ifdef GENERATOR_FILE
-extern enum offload_abi flag_offload_abi;
-#else
-  enum offload_abi x_flag_offload_abi;
-#define flag_offload_abi global_options.x_flag_offload_abi
-#endif
-#ifdef GENERATOR_FILE
 extern int flag_omit_frame_pointer;
 #else
   int x_flag_omit_frame_pointer;
