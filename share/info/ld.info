@@ -5843,7 +5843,6 @@ use in linker script expressions.
           ... }
 
 'SIZEOF_HEADERS'
-'sizeof_headers'
      Return the size in bytes of the output file's headers.  This is
      information which appears at the start of the output file.  You can
      use this number when setting the start address of the first
@@ -8888,7 +8887,7 @@ LD Index
 * grouping input files:                  File Commands.      (line   53)
 * groups of archives:                    Options.            (line 1102)
 * H8/300 support:                        H8/300.             (line    6)
-* header size:                           Builtin Functions.  (line  191)
+* header size:                           Builtin Functions.  (line  190)
 * heap size:                             Options.            (line 2346)
 * help:                                  Options.            (line 1469)
 * HIDDEN:                                HIDDEN.             (line    6)
@@ -9009,7 +9008,7 @@ LD Index
                                                              (line  104)
 * NOLOAD:                                Output Section Type.
                                                              (line   23)
-* not enough room for program headers:   Builtin Functions.  (line  196)
+* not enough room for program headers:   Builtin Functions.  (line  195)
 * NO_ENUM_SIZE_WARNING:                  ARM.                (line  155)
 * NO_WCHAR_SIZE_WARNING:                 ARM.                (line  162)
 * o =:                                   MEMORY.             (line   67)
@@ -9093,7 +9092,7 @@ LD Index
 * program headers:                       PHDRS.              (line    6)
 * program headers and sections:          Output Section Phdr.
                                                              (line    6)
-* program headers, not enough room:      Builtin Functions.  (line  196)
+* program headers, not enough room:      Builtin Functions.  (line  195)
 * program segments:                      PHDRS.              (line    6)
 * PROVIDE:                               PROVIDE.            (line    6)
 * PROVIDE_HIDDEN:                        PROVIDE_HIDDEN.     (line    6)
@@ -9176,7 +9175,7 @@ LD Index
 * SHORT(EXPRESSION):                     Output Section Data.
                                                              (line    6)
 * SIZEOF(SECTION):                       Builtin Functions.  (line  175)
-* SIZEOF_HEADERS:                        Builtin Functions.  (line  191)
+* SIZEOF_HEADERS:                        Builtin Functions.  (line  190)
 * small common symbols:                  Input Section Common.
                                                              (line   20)
 * SORT:                                  Input Section Wildcards.
@@ -9328,37 +9327,37 @@ Node: Operators239895
 Node: Evaluation240817
 Node: Expression Section242181
 Node: Builtin Functions246151
-Node: Implicit Linker Scripts254502
-Node: Plugins255277
-Node: libdep Plugin255737
-Node: Machine Dependent257534
-Node: H8/300258622
-Node: M68HC11/68HC12260695
-Node: ARM262142
-Node: HPPA ELF32274252
-Node: M68K275875
-Node: MIPS276784
-Node: MMIX277900
-Node: MSP430279065
-Node: NDS32280978
-Node: Nios II281942
-Node: PowerPC ELF32283258
-Node: PowerPC64 ELF64286089
-Node: S/390 ELF295847
-Node: SPU ELF296194
-Node: TI COFF298822
-Node: WIN32299348
-Node: Xtensa319495
-Node: BFD322938
-Node: BFD outline324396
-Node: BFD information loss325684
-Node: Canonical format328210
-Node: Reporting Bugs332538
-Node: Bug Criteria333232
-Node: Bug Reporting333931
-Node: MRI340970
-Node: GNU Free Documentation License345441
-Node: LD Index370578
+Node: Implicit Linker Scripts254485
+Node: Plugins255260
+Node: libdep Plugin255720
+Node: Machine Dependent257517
+Node: H8/300258605
+Node: M68HC11/68HC12260678
+Node: ARM262125
+Node: HPPA ELF32274235
+Node: M68K275858
+Node: MIPS276767
+Node: MMIX277883
+Node: MSP430279048
+Node: NDS32280961
+Node: Nios II281925
+Node: PowerPC ELF32283241
+Node: PowerPC64 ELF64286072
+Node: S/390 ELF295830
+Node: SPU ELF296177
+Node: TI COFF298805
+Node: WIN32299331
+Node: Xtensa319478
+Node: BFD322921
+Node: BFD outline324379
+Node: BFD information loss325667
+Node: Canonical format328193
+Node: Reporting Bugs332521
+Node: Bug Criteria333215
+Node: Bug Reporting333914
+Node: MRI340953
+Node: GNU Free Documentation License345424
+Node: LD Index370561
 
 End Tag Table
 
