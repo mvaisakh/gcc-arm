@@ -1427,6 +1427,9 @@ class auto_suppress_location_wrappers
 #define OMP_SINGLE_BODY(NODE)	   TREE_OPERAND (OMP_SINGLE_CHECK (NODE), 0)
 #define OMP_SINGLE_CLAUSES(NODE)   TREE_OPERAND (OMP_SINGLE_CHECK (NODE), 1)
 
+#define OMP_SCOPE_BODY(NODE)	   TREE_OPERAND (OMP_SCOPE_CHECK (NODE), 0)
+#define OMP_SCOPE_CLAUSES(NODE)	   TREE_OPERAND (OMP_SCOPE_CHECK (NODE), 1)
+
 #define OMP_MASTER_BODY(NODE)	   TREE_OPERAND (OMP_MASTER_CHECK (NODE), 0)
 
 #define OMP_MASKED_BODY(NODE)	   TREE_OPERAND (OMP_MASKED_CHECK (NODE), 0)
@@ -6484,5 +6487,11 @@ extern void copy_warning (tree, const_tree);
    deallocated if FNDECL is a deallocation function or an out-of-bounds
    value if it isn't.  */
 extern unsigned fndecl_dealloc_argno (tree);
+
+/* If an expression refers to a character array or pointer declared
+   attribute nonstring, return a decl for that array or pointer and
+   if nonnull, set the second argument to the referenced enclosing
+   object or pointer.  Otherwise return null.  */
+extern tree get_attr_nonstring_decl (tree, tree * = NULL);
 
 #endif  /* GCC_TREE_H  */
