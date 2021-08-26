@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-08-22" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-08-26" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -816,6 +816,7 @@ in the following sections.
 \&\-mverbose\-cost\-dump 
 \&\-mpure\-code 
 \&\-mcmse 
+\&\-mfix\-cmse\-cve\-2021\-35465 
 \&\-mfdpic\fR
 .Sp
 \&\fI\s-1AVR\s0 Options\fR
@@ -12454,6 +12455,10 @@ Setting to 0 disables the analysis completely.
 .IP "\fBmodref-max-escape-points\fR" 4
 .IX Item "modref-max-escape-points"
 Specifies the maximum number of escape points tracked by modref per SSA-name.
+.IP "\fBmodref-max-adjustments\fR" 4
+.IX Item "modref-max-adjustments"
+Specifies the maximum number the access range is enlarged during modref dataflow
+analysis.
 .IP "\fBprofile-func-internal-id\fR" 4
 .IX Item "profile-func-internal-id"
 A parameter to control whether to use function internal id in profile
@@ -13420,9 +13425,10 @@ The parameter only has an effect on targets that support partial
 vector loads and stores.
 .IP "\fBvect-inner-loop-cost-factor\fR" 4
 .IX Item "vect-inner-loop-cost-factor"
-The factor which the loop vectorizer applies to the cost of statements
-in an inner loop relative to the loop being vectorized.  The default
-value is 50.
+The maximum factor which the loop vectorizer applies to the cost of statements
+in an inner loop relative to the loop being vectorized.  The factor applied
+is the maximum of the estimated number of iterations of the inner loop and
+this parameter.  The default value of this parameter is 50.
 .IP "\fBavoid-fma-max-bits\fR" 4
 .IX Item "avoid-fma-max-bits"
 Maximum number of bits for which we avoid creating FMAs.
@@ -19966,6 +19972,13 @@ is only available when generating non-pic code for M\-profile targets.
 Generate secure code as per the \*(L"ARMv8\-M Security Extensions: Requirements on
 Development Tools Engineering Specification\*(R", which can be found on
 <\fBhttps://developer.arm.com/documentation/ecm0359818/latest/\fR>.
+.IP "\fB\-mfix\-cmse\-cve\-2021\-35465\fR" 4
+.IX Item "-mfix-cmse-cve-2021-35465"
+Mitigate against a potential security issue with the \f(CW\*(C`VLLDM\*(C'\fR instruction
+in some M\-profile devices when using \s-1CMSE\s0 (\s-1CVE\-2021\-365465\s0).  This option is
+enabled by default when the option \fB\-mcpu=\fR is used with
+\&\f(CW\*(C`cortex\-m33\*(C'\fR, \f(CW\*(C`cortex\-m35p\*(C'\fR or \f(CW\*(C`cortex\-m55\*(C'\fR.  The option
+\&\fB\-mno\-fix\-cmse\-cve\-2021\-35465\fR can be used to disable the mitigation.
 .IP "\fB\-mfdpic\fR" 4
 .IX Item "-mfdpic"
 .PD 0
@@ -23543,11 +23556,6 @@ Select application model \fIapp-model\fR.  Valid models are
 .IP "\fBexecutable\fR" 4
 .IX Item "executable"
 normal executable (default), uses startup code \fIcrt0.o\fR.
-.IP "\fB\-mpic\-data\-is\-text\-relative\fR" 4
-.IX Item "-mpic-data-is-text-relative"
-Assume that the displacement between the text and data segments is fixed
-at static link time.  This allows data to be referenced by offset from start of
-text address instead of \s-1GOT\s0 since PC-relative addressing is not supported.
 .IP "\fBxmdstub\fR" 4
 .IX Item "xmdstub"
 for use with Xilinx Microprocessor Debugger (\s-1XMD\s0) based
@@ -23570,6 +23578,11 @@ within a monitoring application. This model uses \fIcrt3.o\fR as a startup file.
 Option \fB\-xl\-mode\-\fR\fIapp-model\fR is a deprecated alias for
 \&\fB\-mxl\-mode\-\fR\fIapp-model\fR.
 .RE
+.IP "\fB\-mpic\-data\-is\-text\-relative\fR" 4
+.IX Item "-mpic-data-is-text-relative"
+Assume that the displacement between the text and data segments is fixed
+at static link time.  This allows data to be referenced by offset from start of
+text address instead of \s-1GOT\s0 since PC-relative addressing is not supported.
 .PP
 \fI\s-1MIPS\s0 Options\fR
 .IX Subsection "MIPS Options"
