@@ -617,6 +617,13 @@
 #endif
 
 
+/* Define if your Mac OS X assembler supports -mllvm -x86-pad-for-align=false.
+   */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_AS_MLLVM_X86_PAD_FOR_ALIGN */
+#endif
+
+
 /* Define if your Mac OS X assembler supports the -mmacos-version-min option.
    */
 #ifndef USED_FOR_TARGET
@@ -1450,6 +1457,30 @@
 #endif
 
 
+/* Define if your assembler allows -mattr=+sram-ecc for fiji. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_GCN_SRAM_ECC_FIJI */
+#endif
+
+
+/* Define if your assembler allows -mattr=+sram-ecc for gfx900. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_GCN_SRAM_ECC_GFX900 */
+#endif
+
+
+/* Define if your assembler allows -mattr=+sram-ecc for gfx906. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_GCN_SRAM_ECC_GFX906 */
+#endif
+
+
+/* Define if your assembler allows -mattr=+sram-ecc for gfx908. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_GCN_SRAM_ECC_GFX908 */
+#endif
+
+
 /* Define to 1 if you have the `getchar_unlocked' function. */
 #ifndef USED_FOR_TARGET
 #define HAVE_GETCHAR_UNLOCKED 1
@@ -1669,6 +1700,12 @@
    into PC-relative form. */
 #ifndef USED_FOR_TARGET
 /* #undef HAVE_LD_PERSONALITY_RELAXATION */
+#endif
+
+
+/* Define if the PE linker supports --disable-dynamicbase option. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_LD_PE_DISABLE_DYNAMICBASE */
 #endif
 
 

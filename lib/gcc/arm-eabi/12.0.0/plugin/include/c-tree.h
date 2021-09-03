@@ -370,6 +370,8 @@ struct c_declspecs {
   BOOL_BITFIELD explicit_signed_p : 1;
   /* Whether the specifiers include a deprecated typedef.  */
   BOOL_BITFIELD deprecated_p : 1;
+  /* Whether the specifiers include an unavailable typedef.  */
+  BOOL_BITFIELD unavailable_p : 1;
   /* Whether the type defaulted to "int" because there were no type
      specifiers.  */
   BOOL_BITFIELD default_int_p : 1;
@@ -595,7 +597,7 @@ extern void finish_function (location_t = input_location);
 extern tree finish_struct (location_t, tree, tree, tree,
 			   class c_struct_parse_info *);
 extern tree c_simulate_enum_decl (location_t, const char *,
-				  vec<string_int_pair>);
+				  vec<string_int_pair> *);
 extern struct c_arg_info *build_arg_info (void);
 extern struct c_arg_info *get_parm_info (bool, tree);
 extern tree grokfield (location_t, struct c_declarator *,

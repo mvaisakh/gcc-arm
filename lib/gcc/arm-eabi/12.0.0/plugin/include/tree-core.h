@@ -115,7 +115,10 @@ struct die_struct;
 #define EAF_NODIRECTESCAPE	(1 << 4)
 
 /* Nonzero if the argument does not escape to return value.  */
-#define EAF_NOT_RETURNED	(1 << 8)
+#define EAF_NOT_RETURNED	(1 << 5)
+
+/* Nonzero if the argument is not read.  */
+#define EAF_NOREAD		(1 << 6)
 
 /* Call return flags.  */
 /* Mask for the argument number that is returned.  Lower two bits of
@@ -475,6 +478,9 @@ enum omp_clause_code {
 
   /* OpenMP clause: bind (binding).  */
   OMP_CLAUSE_BIND,
+
+  /* OpenMP clause: filter (integer-expression).  */
+  OMP_CLAUSE_FILTER,
 
   /* Internally used only clause, holding SIMD uid.  */
   OMP_CLAUSE__SIMDUID_,
@@ -1032,7 +1038,8 @@ struct GTY(()) tree_base {
       unsigned user_align : 1;
       unsigned nameless_flag : 1;
       unsigned atomic_flag : 1;
-      unsigned spare0 : 3;
+      unsigned unavailable_flag : 1;
+      unsigned spare0 : 2;
 
       unsigned spare1 : 8;
 
@@ -1354,6 +1361,12 @@ struct GTY(()) tree_base {
        SSA_NAME_POINTS_TO_READONLY_MEMORY in
 	   SSA_NAME
 
+   unavailable_flag:
+
+       TREE_UNAVAILABLE in
+	   all decls
+	   all types
+
    visited:
 
        TREE_VISITED in
@@ -1401,6 +1414,7 @@ struct GTY(()) tree_base {
 
        CALL_EXPR_BY_DESCRIPTOR in
            CALL_EXPR
+
 */
 
 struct GTY(()) tree_typed {
@@ -1498,6 +1512,7 @@ enum omp_clause_proc_bind_kind
   /* Numbers should match omp_proc_bind_t enum in omp.h.  */
   OMP_CLAUSE_PROC_BIND_FALSE = 0,
   OMP_CLAUSE_PROC_BIND_TRUE = 1,
+  OMP_CLAUSE_PROC_BIND_PRIMARY = 2,
   OMP_CLAUSE_PROC_BIND_MASTER = 2,
   OMP_CLAUSE_PROC_BIND_CLOSE = 3,
   OMP_CLAUSE_PROC_BIND_SPREAD = 4,

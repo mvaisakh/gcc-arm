@@ -173,7 +173,9 @@ enum rid
   RID_IS_ABSTRACT,             RID_IS_AGGREGATE,
   RID_IS_BASE_OF,              RID_IS_CLASS,
   RID_IS_EMPTY,                RID_IS_ENUM,
-  RID_IS_FINAL,                RID_IS_LITERAL_TYPE,
+  RID_IS_FINAL,                RID_IS_LAYOUT_COMPATIBLE,
+  RID_IS_LITERAL_TYPE,
+  RID_IS_POINTER_INTERCONVERTIBLE_BASE_OF,
   RID_IS_POD,                  RID_IS_POLYMORPHIC,
   RID_IS_SAME_AS,
   RID_IS_STD_LAYOUT,           RID_IS_TRIVIAL,
@@ -1200,7 +1202,8 @@ enum c_omp_clause_split
   C_OMP_CLAUSE_SPLIT_COUNT,
   C_OMP_CLAUSE_SPLIT_SECTIONS = C_OMP_CLAUSE_SPLIT_FOR,
   C_OMP_CLAUSE_SPLIT_TASKLOOP = C_OMP_CLAUSE_SPLIT_FOR,
-  C_OMP_CLAUSE_SPLIT_LOOP = C_OMP_CLAUSE_SPLIT_FOR
+  C_OMP_CLAUSE_SPLIT_LOOP = C_OMP_CLAUSE_SPLIT_FOR,
+  C_OMP_CLAUSE_SPLIT_MASKED = C_OMP_CLAUSE_SPLIT_DISTRIBUTE
 };
 
 enum c_omp_region_type
@@ -1214,6 +1217,7 @@ enum c_omp_region_type
 };
 
 extern tree c_finish_omp_master (location_t, tree);
+extern tree c_finish_omp_masked (location_t, tree, tree);
 extern tree c_finish_omp_taskgroup (location_t, tree, tree);
 extern tree c_finish_omp_critical (location_t, tree, tree, tree);
 extern tree c_finish_omp_ordered (location_t, tree, tree);

@@ -22,6 +22,7 @@
 
 enum isa_feature {
   isa_nobit = 0,
+  isa_bit_quirk_vlldm,
   isa_bit_fp16fml,
   isa_bit_mve,
   isa_bit_cmse,
@@ -163,6 +164,7 @@ enum isa_feature {
 
 #define ISA_ALL_QUIRKS \
   isa_bit_quirk_no_asmcpu, \
+  isa_bit_quirk_vlldm, \
   isa_bit_xscale, \
   isa_bit_quirk_cm3_ldrd, \
   isa_bit_quirk_no_volatile_ce, \
