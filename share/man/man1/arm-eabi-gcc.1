@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-09-05" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-09-09" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -912,7 +912,7 @@ in the following sections.
 .Sp
 \&\fIeBPF Options\fR
 \&\fB\-mbig\-endian \-mlittle\-endian \-mkernel=\fR\fIversion\fR
-\&\fB\-mframe\-limit=\fR\fIbytes\fR \fB\-mxbpf\fR
+\&\fB\-mframe\-limit=\fR\fIbytes\fR \fB\-mxbpf \-mco\-re \-mno\-co\-re\fR
 .Sp
 \&\fI\s-1FR30\s0 Options\fR
 \&\fB\-msmall\-model  \-mno\-lsim\fR
@@ -1403,6 +1403,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-mavx5124fmaps  \-mavx512vnni  \-mavx5124vnniw  \-mprfchw  \-mrdpid 
 \&\-mrdseed  \-msgx \-mavx512vp2intersect \-mserialize \-mtsxldtrk
 \&\-mamx\-tile  \-mamx\-int8  \-mamx\-bf16 \-muintr \-mhreset \-mavxvnni
+\&\-mavx512fp16 
 \&\-mcldemote  \-mms\-bitfields  \-mno\-align\-stringops  \-minline\-all\-stringops 
 \&\-minline\-stringops\-dynamically  \-mstringop\-strategy=\fR\fIalg\fR 
 \&\fB\-mkl \-mwidekl 
@@ -21940,6 +21941,15 @@ Generate code for a big-endian target.
 .IP "\fB\-mlittle\-endian\fR" 4
 .IX Item "-mlittle-endian"
 Generate code for a little-endian target.  This is the default.
+.IP "\fB\-mco\-re\fR" 4
+.IX Item "-mco-re"
+Enable \s-1BPF\s0 Compile Once \- Run Everywhere (CO-RE) support. Requires and
+is implied by \fB\-gbtf\fR.
+.IP "\fB\-mno\-co\-re\fR" 4
+.IX Item "-mno-co-re"
+Disable \s-1BPF\s0 Compile Once \- Run Everywhere (CO-RE) support. \s-1BPF\s0 CO-RE
+support is enabled by default when generating \s-1BTF\s0 debug information for
+the \s-1BPF\s0 target.
 .IP "\fB\-mxbpf\fR" 4
 .IX Item "-mxbpf"
 Generate code for an expanded version of \s-1BPF,\s0 which relaxes some of
@@ -30116,6 +30126,8 @@ preferred alignment to \fB\-mpreferred\-stack\-boundary=2\fR.
 .IX Item "-mavx512vbmi2"
 .IP "\fB\-mavx512bf16\fR" 4
 .IX Item "-mavx512bf16"
+.IP "\fB\-mavx512fp16\fR" 4
+.IX Item "-mavx512fp16"
 .IP "\fB\-mgfni\fR" 4
 .IX Item "-mgfni"
 .IP "\fB\-mvaes\fR" 4
@@ -30174,9 +30186,9 @@ WBNOINVD, FMA4, PREFETCHW, RDPID, PREFETCHWT1, RDSEED, SGX, XOP, LWP,\s0
 XSAVEOPT, XSAVEC, XSAVES, RTM, HLE, TBM, MWAITX, CLZERO, PKU, AVX512VBMI2,
 GFNI, VAES, WAITPKG, VPCLMULQDQ, AVX512BITALG, MOVDIRI, MOVDIR64B, AVX512BF16,
 ENQCMD, AVX512VPOPCNTDQ, AVX5124FMAPS, AVX512VNNI, AVX5124VNNIW, SERIALIZE,
-UINTR, HRESET, AMXTILE, AMXINT8, AMXBF16, KL, WIDEKL, AVXVNNI\s0 or \s-1CLDEMOTE\s0
-extended instruction sets. Each has a corresponding \fB\-mno\-\fR option to
-disable use of these instructions.
+UINTR, HRESET, AMXTILE, AMXINT8, AMXBF16, KL, WIDEKL, AVXVNNI, AVX512FP16\s0
+or \s-1CLDEMOTE\s0 extended instruction sets. Each has a corresponding
+\&\fB\-mno\-\fR option to disable use of these instructions.
 .Sp
 These extensions are also available as built-in functions: see
 \&\fBx86 Built-in Functions\fR, for details of the functions enabled and
