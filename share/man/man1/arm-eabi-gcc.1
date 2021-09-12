@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-09-09" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-09-12" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -593,9 +593,9 @@ in the following sections.
 \&\-ftree\-parallelize\-loops=\fR\fIn\fR  \fB\-ftree\-pre  \-ftree\-partial\-pre  \-ftree\-pta 
 \&\-ftree\-reassoc  \-ftree\-scev\-cprop  \-ftree\-sink  \-ftree\-slsr  \-ftree\-sra 
 \&\-ftree\-switch\-conversion  \-ftree\-tail\-merge 
-\&\-ftree\-ter  \-ftree\-vectorize  \-ftree\-vrp  \-funconstrained\-commons 
-\&\-funit\-at\-a\-time  \-funroll\-all\-loops  \-funroll\-loops 
-\&\-funsafe\-math\-optimizations  \-funswitch\-loops 
+\&\-ftree\-ter  \-ftree\-vectorize  \-ftree\-vrp  \-ftrivial\-auto\-var\-init 
+\&\-funconstrained\-commons \-funit\-at\-a\-time  \-funroll\-all\-loops 
+\&\-funroll\-loops \-funsafe\-math\-optimizations  \-funswitch\-loops 
 \&\-fipa\-ra  \-fvariable\-expansion\-in\-unroller  \-fvect\-cost\-model  \-fvpt 
 \&\-fweb  \-fwhole\-program  \-fwpa  \-fuse\-linker\-plugin \-fzero\-call\-used\-regs 
 \&\-\-param\fR \fIname\fR\fB=\fR\fIvalue\fR
@@ -912,7 +912,8 @@ in the following sections.
 .Sp
 \&\fIeBPF Options\fR
 \&\fB\-mbig\-endian \-mlittle\-endian \-mkernel=\fR\fIversion\fR
-\&\fB\-mframe\-limit=\fR\fIbytes\fR \fB\-mxbpf \-mco\-re \-mno\-co\-re\fR
+\&\fB\-mframe\-limit=\fR\fIbytes\fR \fB\-mxbpf \-mco\-re \-mno\-co\-re
+\&\-mjmpext \-mjmp32 \-malu32 \-mcpu=\fR\fIversion\fR
 .Sp
 \&\fI\s-1FR30\s0 Options\fR
 \&\fB\-msmall\-model  \-mno\-lsim\fR
@@ -10918,6 +10919,39 @@ and \fB\-fauto\-profile\fR.
 Perform basic block vectorization on trees. This flag is enabled by default at
 \&\fB\-O3\fR and by \fB\-ftree\-vectorize\fR, \fB\-fprofile\-use\fR,
 and \fB\-fauto\-profile\fR.
+.IP "\fB\-ftrivial\-auto\-var\-init=\fR\fIchoice\fR" 4
+.IX Item "-ftrivial-auto-var-init=choice"
+Initialize automatic variables with either a pattern or with zeroes to increase
+the security and predictability of a program by preventing uninitialized memory
+disclosure and use.
+\&\s-1GCC\s0 still considers an automatic variable that doesn't have an explicit
+initializer as uninitialized, \-Wuninitialized will still report warning messages
+on such automatic variables.
+With this option, \s-1GCC\s0 will also initialize any padding of automatic variables
+that have structure or union types to zeroes.
+.Sp
+The three values of \fIchoice\fR are:
+.RS 4
+.IP "*" 4
+\&\fBuninitialized\fR doesn't initialize any automatic variables.
+This is C and \*(C+'s default.
+.IP "*" 4
+\&\fBpattern\fR Initialize automatic variables with values which will likely
+transform logic bugs into crashes down the line, are easily recognized in a
+crash dump and without being values that programmers can rely on for useful
+program semantics.
+The current value is byte-repeatable pattern with byte \*(L"0xFE\*(R".
+The values used for pattern initialization might be changed in the future.
+.IP "*" 4
+\&\fBzero\fR Initialize automatic variables with zeroes.
+.RE
+.RS 4
+.Sp
+The default is \fBuninitialized\fR.
+.Sp
+You can control this behavior for a specific variable by using the variable
+attribute \f(CW\*(C`uninitialized\*(C'\fR.
+.RE
 .IP "\fB\-fvect\-cost\-model=\fR\fImodel\fR" 4
 .IX Item "-fvect-cost-model=model"
 Alter the cost model used for vectorization.  The \fImodel\fR argument
@@ -21941,8 +21975,47 @@ Generate code for a big-endian target.
 .IP "\fB\-mlittle\-endian\fR" 4
 .IX Item "-mlittle-endian"
 Generate code for a little-endian target.  This is the default.
+.IP "\fB\-mjmpext\fR" 4
+.IX Item "-mjmpext"
+Enable generation of extra conditional-branch instructions.
+Enabled for \s-1CPU\s0 v2 and above.
+.IP "\fB\-mjmp32\fR" 4
+.IX Item "-mjmp32"
+Enable 32\-bit jump instructions. Enabled for \s-1CPU\s0 v3 and above.
+.IP "\fB\-malu32\fR" 4
+.IX Item "-malu32"
+Enable 32\-bit \s-1ALU\s0 instructions. Enabled for \s-1CPU\s0 v3 and above.
+.IP "\fB\-mcpu=\fR\fIversion\fR" 4
+.IX Item "-mcpu=version"
+This specifies which version of the eBPF \s-1ISA\s0 to target. Newer versions
+may not be supported by all kernels. The default is \fBv3\fR.
+.Sp
+Supported values for \fIversion\fR are:
+.RS 4
+.IP "\fBv1\fR" 4
+.IX Item "v1"
+The first stable eBPF \s-1ISA\s0 with no special features or extensions.
+.IP "\fBv2\fR" 4
+.IX Item "v2"
+Supports the jump extensions, as in \fB\-mjmpext\fR.
+.IP "\fBv3\fR" 4
+.IX Item "v3"
+All features of v2, plus:
+.RS 4
+.IP "\-<32\-bit jump operations, as in \fB\-mjmp32\fR>" 4
+.IX Item "-<32-bit jump operations, as in -mjmp32>"
+.PD 0
+.IP "\-<32\-bit \s-1ALU\s0 operations, as in \fB\-malu32\fR>" 4
+.IX Item "-<32-bit ALU operations, as in -malu32>"
+.RE
+.RS 4
+.RE
+.RE
+.RS 4
+.RE
 .IP "\fB\-mco\-re\fR" 4
 .IX Item "-mco-re"
+.PD
 Enable \s-1BPF\s0 Compile Once \- Run Everywhere (CO-RE) support. Requires and
 is implied by \fB\-gbtf\fR.
 .IP "\fB\-mno\-co\-re\fR" 4
