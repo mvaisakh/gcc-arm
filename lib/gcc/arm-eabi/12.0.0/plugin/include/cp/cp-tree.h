@@ -204,12 +204,11 @@ enum cp_tree_index
     /* These are created at init time, but the library/headers provide
        definitions.  */
     CPTI_ALIGN_TYPE,
-    CPTI_CONST_TYPE_INFO_TYPE,
-    CPTI_TYPE_INFO_PTR_TYPE,
     CPTI_TERMINATE_FN,
     CPTI_CALL_UNEXPECTED_FN,
 
     /* These are lazily inited.  */
+    CPTI_CONST_TYPE_INFO_TYPE,
     CPTI_GET_EXCEPTION_PTR_FN,
     CPTI_BEGIN_CATCH_FN,
     CPTI_END_CATCH_FN,
@@ -251,7 +250,6 @@ extern GTY(()) tree cp_global_trees[CPTI_MAX];
 #define abi_node			cp_global_trees[CPTI_ABI]
 #define global_namespace		cp_global_trees[CPTI_GLOBAL]
 #define const_type_info_type_node	cp_global_trees[CPTI_CONST_TYPE_INFO_TYPE]
-#define type_info_ptr_type		cp_global_trees[CPTI_TYPE_INFO_PTR_TYPE]
 #define conv_op_marker			cp_global_trees[CPTI_CONV_OP_MARKER]
 #define abort_fndecl			cp_global_trees[CPTI_ABORT_FNDECL]
 #define current_aggr			cp_global_trees[CPTI_AGGR_TAG]
@@ -493,6 +491,7 @@ extern GTY(()) tree cp_global_trees[CPTI_MAX];
       CONSTRUCTOR_C99_COMPOUND_LITERAL (in CONSTRUCTOR)
       OVL_NESTED_P (in OVERLOAD)
       DECL_MODULE_EXPORT_P (in _DECL)
+      PACK_EXPANSION_FORCE_EXTRA_ARGS_P (in *_PACK_EXPANSION)
    4: IDENTIFIER_MARKED (IDENTIFIER_NODEs)
       TREE_HAS_CONSTRUCTOR (in INDIRECT_REF, SAVE_EXPR, CONSTRUCTOR,
 	  CALL_EXPR, or FIELD_DECL).
@@ -3903,6 +3902,10 @@ struct GTY(()) lang_decl {
 /* True iff this pack expansion is for auto... in lambda init-capture.  */
 #define PACK_EXPANSION_AUTO_P(NODE) TREE_LANG_FLAG_2 (NODE)
 
+/* True if we must use PACK_EXPANSION_EXTRA_ARGS and avoid partial
+   instantiation of this pack expansion.  */
+#define PACK_EXPANSION_FORCE_EXTRA_ARGS_P(NODE) TREE_LANG_FLAG_3 (NODE)
+
 /* True iff the wildcard can match a template parameter pack.  */
 #define WILDCARD_PACK_P(NODE) TREE_LANG_FLAG_0 (NODE)
 
@@ -7133,6 +7136,7 @@ extern void cp_convert_omp_range_for (tree &, vec<tree, va_gc> *, tree &,
 				      tree &, tree &, tree &, tree &, tree &);
 extern void cp_finish_omp_range_for (tree, tree);
 extern bool parsing_nsdmi (void);
+extern bool parsing_function_declarator ();
 extern bool parsing_default_capturing_generic_lambda_in_template (void);
 extern void inject_this_parameter (tree, cp_cv_quals);
 extern location_t defparse_location (tree);

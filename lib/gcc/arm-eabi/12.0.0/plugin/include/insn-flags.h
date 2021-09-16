@@ -4515,6 +4515,7 @@
 #define HAVE_bswaphi2 (arm_arch6)
 #define HAVE_copysignsf3 (TARGET_SOFT_FLOAT && arm_arch_thumb2)
 #define HAVE_copysigndf3 (TARGET_SOFT_FLOAT && arm_arch_thumb2)
+#define HAVE_movmisaligndi (unaligned_access)
 #define HAVE_movmisalignhi (unaligned_access)
 #define HAVE_movmisalignsi (unaligned_access)
 #define HAVE_arm_ldc (arm_coproc_builtin_available (VUNSPEC_LDC))
@@ -4827,15 +4828,9 @@
   && unaligned_access && !TARGET_REALLY_IWMMXT)
 #define HAVE_movmisalignv8hf (ARM_HAVE_V8HF_LDST && !BYTES_BIG_ENDIAN \
   && unaligned_access && !TARGET_REALLY_IWMMXT)
-#define HAVE_movmisalignv4bf (ARM_HAVE_V4BF_LDST && !BYTES_BIG_ENDIAN \
-  && unaligned_access && !TARGET_REALLY_IWMMXT)
-#define HAVE_movmisalignv8bf (ARM_HAVE_V8BF_LDST && !BYTES_BIG_ENDIAN \
-  && unaligned_access && !TARGET_REALLY_IWMMXT)
 #define HAVE_movmisalignv2sf (ARM_HAVE_V2SF_LDST && !BYTES_BIG_ENDIAN \
   && unaligned_access && !TARGET_REALLY_IWMMXT)
 #define HAVE_movmisalignv4sf (ARM_HAVE_V4SF_LDST && !BYTES_BIG_ENDIAN \
-  && unaligned_access && !TARGET_REALLY_IWMMXT)
-#define HAVE_movmisaligndi (ARM_HAVE_DI_LDST && !BYTES_BIG_ENDIAN \
   && unaligned_access && !TARGET_REALLY_IWMMXT)
 #define HAVE_movmisalignv2di (ARM_HAVE_V2DI_LDST && !BYTES_BIG_ENDIAN \
   && unaligned_access && !TARGET_REALLY_IWMMXT)
@@ -10321,6 +10316,7 @@ extern rtx        gen_bswapsi2                                       (rtx, rtx);
 extern rtx        gen_bswaphi2                                       (rtx, rtx);
 extern rtx        gen_copysignsf3                                    (rtx, rtx, rtx);
 extern rtx        gen_copysigndf3                                    (rtx, rtx, rtx);
+extern rtx        gen_movmisaligndi                                  (rtx, rtx);
 extern rtx        gen_movmisalignhi                                  (rtx, rtx);
 extern rtx        gen_movmisalignsi                                  (rtx, rtx);
 extern rtx        gen_arm_ldc                                        (rtx, rtx, rtx);
@@ -10532,11 +10528,8 @@ extern rtx        gen_movmisalignv2si                                (rtx, rtx);
 extern rtx        gen_movmisalignv4si                                (rtx, rtx);
 extern rtx        gen_movmisalignv4hf                                (rtx, rtx);
 extern rtx        gen_movmisalignv8hf                                (rtx, rtx);
-extern rtx        gen_movmisalignv4bf                                (rtx, rtx);
-extern rtx        gen_movmisalignv8bf                                (rtx, rtx);
 extern rtx        gen_movmisalignv2sf                                (rtx, rtx);
 extern rtx        gen_movmisalignv4sf                                (rtx, rtx);
-extern rtx        gen_movmisaligndi                                  (rtx, rtx);
 extern rtx        gen_movmisalignv2di                                (rtx, rtx);
 extern rtx        gen_vashlv8qi3                                     (rtx, rtx, rtx);
 extern rtx        gen_vashlv16qi3                                    (rtx, rtx, rtx);
