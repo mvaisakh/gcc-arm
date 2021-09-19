@@ -1715,6 +1715,10 @@ class auto_suppress_location_wrappers
 #define OMP_CLAUSE_ORDERED_EXPR(NODE) \
   OMP_CLAUSE_OPERAND (OMP_CLAUSE_SUBCODE_CHECK (NODE, OMP_CLAUSE_ORDERED), 0)
 
+/* True for unconstrained modifier on order(concurrent) clause.  */
+#define OMP_CLAUSE_ORDER_UNCONSTRAINED(NODE) \
+  (OMP_CLAUSE_SUBCODE_CHECK (NODE, OMP_CLAUSE_ORDER)->base.public_flag)
+
 #define OMP_CLAUSE_REDUCTION_CODE(NODE)	\
   (OMP_CLAUSE_RANGE_CHECK (NODE, OMP_CLAUSE_REDUCTION, \
      OMP_CLAUSE_IN_REDUCTION)->omp_clause.subcode.reduction_code)
@@ -4591,6 +4595,7 @@ extern tree build_string_literal (unsigned, const char * = NULL,
 extern tree signed_or_unsigned_type_for (int, tree);
 extern tree signed_type_for (tree);
 extern tree unsigned_type_for (tree);
+extern bool is_truth_type_for (tree, tree);
 extern tree truth_type_for (tree);
 extern tree build_pointer_type_for_mode (tree, machine_mode, bool);
 extern tree build_pointer_type (tree);
