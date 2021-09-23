@@ -2245,6 +2245,24 @@ double underscores.
      This macro is defined if '-fno-math-errno' is used, or enabled by
      another option such as '-ffast-math' or by default.
 
+'__RECIPROCAL_MATH__'
+     This macro is defined if '-freciprocal-math' is used, or enabled by
+     another option such as '-ffast-math' or by default.
+
+'__NO_SIGNED_ZEROS__'
+     This macro is defined if '-fno-signed-zeros' is used, or enabled by
+     another option such as '-ffast-math' or by default.
+
+'__NO_TRAPPING_MATH__'
+     This macro is defined if '-fno-trapping-math' is used.
+
+'__ASSOCIATIVE_MATH__'
+     This macro is defined if '-fassociative-math' is used, or enabled
+     by another option such as '-ffast-math' or by default.
+
+'__ROUNDING_MATH__'
+     This macro is defined if '-frounding-math' is used.
+
 '__GNUC_EXECUTION_CHARSET_NAME'
 '__GNUC_WIDE_EXECUTION_CHARSET_NAME'
      These macros are defined to expand to a narrow string literal of
@@ -5547,56 +5565,56 @@ Node: Variadic Macros59129
 Node: Predefined Macros64081
 Node: Standard Predefined Macros64669
 Node: Common Predefined Macros71043
-Node: System-specific Predefined Macros93055
-Node: C++ Named Operators95078
-Node: Undefining and Redefining Macros96042
-Node: Directives Within Macro Arguments98140
-Node: Macro Pitfalls99081
-Node: Misnesting99614
-Node: Operator Precedence Problems100726
-Node: Swallowing the Semicolon102592
-Node: Duplication of Side Effects104615
-Node: Self-Referential Macros106798
-Node: Argument Prescan109207
-Node: Newlines in Arguments112958
-Node: Conditionals113909
-Node: Conditional Uses115605
-Node: Conditional Syntax116963
-Node: Ifdef117385
-Node: If120542
-Node: Defined122846
-Node: Else124239
-Node: Elif124809
-Node: __has_attribute126122
-Node: __has_cpp_attribute127716
-Node: __has_c_attribute128606
-Node: __has_builtin129379
-Node: __has_include130512
-Node: Deleted Code132101
-Node: Diagnostics133348
-Node: Line Control134897
-Node: Pragmas137175
-Node: Other Directives141572
-Node: Preprocessor Output142622
-Node: Traditional Mode145775
-Node: Traditional lexical analysis146912
-Node: Traditional macros149415
-Node: Traditional miscellany153212
-Node: Traditional warnings154208
-Node: Implementation Details156405
-Node: Implementation-defined behavior156968
-Ref: Identifier characters157718
-Node: Implementation limits160766
-Node: Obsolete Features163439
-Node: Invocation166283
-Ref: dashMF172318
-Ref: fdollars-in-identifiers176980
-Ref: Wtrigraphs191106
-Node: Environment Variables193161
-Node: GNU Free Documentation License196852
-Node: Index of Directives221997
-Node: Option Index224150
-Node: Concept Index230252
+Node: System-specific Predefined Macros93678
+Node: C++ Named Operators95701
+Node: Undefining and Redefining Macros96665
+Node: Directives Within Macro Arguments98763
+Node: Macro Pitfalls99704
+Node: Misnesting100237
+Node: Operator Precedence Problems101349
+Node: Swallowing the Semicolon103215
+Node: Duplication of Side Effects105238
+Node: Self-Referential Macros107421
+Node: Argument Prescan109830
+Node: Newlines in Arguments113581
+Node: Conditionals114532
+Node: Conditional Uses116228
+Node: Conditional Syntax117586
+Node: Ifdef118008
+Node: If121165
+Node: Defined123469
+Node: Else124862
+Node: Elif125432
+Node: __has_attribute126745
+Node: __has_cpp_attribute128339
+Node: __has_c_attribute129229
+Node: __has_builtin130002
+Node: __has_include131135
+Node: Deleted Code132724
+Node: Diagnostics133971
+Node: Line Control135520
+Node: Pragmas137798
+Node: Other Directives142195
+Node: Preprocessor Output143245
+Node: Traditional Mode146398
+Node: Traditional lexical analysis147535
+Node: Traditional macros150038
+Node: Traditional miscellany153835
+Node: Traditional warnings154831
+Node: Implementation Details157028
+Node: Implementation-defined behavior157591
+Ref: Identifier characters158341
+Node: Implementation limits161389
+Node: Obsolete Features164062
+Node: Invocation166906
+Ref: dashMF172941
+Ref: fdollars-in-identifiers177603
+Ref: Wtrigraphs191729
+Node: Environment Variables193784
+Node: GNU Free Documentation License197475
+Node: Index of Directives222620
+Node: Option Index224773
+Node: Concept Index230875
 
 End Tag Table
 

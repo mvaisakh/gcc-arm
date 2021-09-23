@@ -208,6 +208,9 @@ GNU binutils
      host/target specific instructions for your platform for the exact
      requirements.
 
+     Note binutils 2.35 or newer is required for LTO to work correctly
+     with GNU libtool that includes doing a bootstrap with LTO enabled.
+
 gzip version 1.2.4 (or later) or
 bzip2 version 1.0.2 (or later)
 
@@ -4820,102 +4823,102 @@ Node: Top1696
 Node: Installing GCC2201
 Node: Prerequisites3835
 Ref: GNAT-prerequisite5901
-Node: Downloading the source15513
-Node: Configuration17184
-Ref: with-gnu-as35471
-Ref: with-as36366
-Ref: with-gnu-ld37775
-Ref: WithAixSoname62482
-Ref: AixLdCommand63143
-Node: Building105308
-Node: Testing121431
-Node: Final install129260
-Node: Binaries134560
-Node: Specific135667
-Ref: aarch64-x-x136201
-Ref: alpha-x-x138221
-Ref: amd64-x-solaris2138435
-Ref: amdgcn-x-amdhsa138517
-Ref: arc-x-elf32139043
-Ref: arc-linux-uclibc139219
-Ref: arm-x-eabi139360
-Ref: avr139613
-Ref: bfin140194
-Ref: cr16140457
-Ref: cris140873
-Ref: dos141571
-Ref: epiphany-x-elf141894
-Ref: x-x-freebsd141999
-Ref: ft32-x-elf143799
-Ref: h8300-hms143897
-Ref: hppa-hp-hpux144249
-Ref: hppa-hp-hpux10146621
-Ref: hppa-hp-hpux11147034
-Ref: x-x-linux-gnu152436
-Ref: ix86-x-linux152759
-Ref: ix86-x-solaris2153072
-Ref: ia64-x-linux154148
-Ref: ia64-x-hpux154918
-Ref: x-ibm-aix155473
-Ref: TransferAixShobj159135
-Ref: iq2000-x-elf162945
-Ref: lm32-x-elf163085
-Ref: lm32-x-uclinux163189
-Ref: m32c-x-elf163317
-Ref: m32r-x-elf163419
-Ref: m68k-x-x163521
-Ref: m68k-x-uclinux164559
-Ref: microblaze-x-elf164804
-Ref: mips-x-x164923
-Ref: moxie-x-elf166833
-Ref: msp430-x-elf166880
-Ref: nds32le-x-elf167437
-Ref: nds32be-x-elf167509
-Ref: nvptx-x-none167578
-Ref: or1k-x-elf168141
-Ref: or1k-x-linux168272
-Ref: powerpc-x-x168353
-Ref: powerpc-x-darwin168544
-Ref: powerpc-x-elf169038
-Ref: powerpc-x-linux-gnu169123
-Ref: powerpc-x-netbsd169218
-Ref: powerpc-x-eabisim169306
-Ref: powerpc-x-eabi169432
-Ref: powerpcle-x-elf169508
-Ref: powerpcle-x-eabisim169600
-Ref: powerpcle-x-eabi169733
-Ref: rl78-x-elf169816
-Ref: riscv32-x-elf169922
-Ref: riscv32-x-linux170111
-Ref: riscv64-x-elf170268
-Ref: riscv64-x-linux170457
-Ref: rx-x-elf170614
-Ref: s390-x-linux170660
-Ref: s390x-x-linux170732
-Ref: s390x-ibm-tpf170819
-Ref: x-x-solaris2170950
-Ref: sparc-x-x174057
-Ref: sparc-sun-solaris2174559
-Ref: sparc-x-linux175702
-Ref: sparc64-x-solaris2175733
-Ref: sparcv9-x-solaris2176451
-Ref: c6x-x-x176538
-Ref: tilegx-*-linux176630
-Ref: tilegxbe-*-linux176772
-Ref: tilepro-*-linux176915
-Ref: visium-x-elf177036
-Ref: x-x-vxworks177144
-Ref: x86-64-x-x178667
-Ref: x86-64-x-solaris2178995
-Ref: xtensa-x-elf179645
-Ref: xtensa-x-linux180316
-Ref: windows180657
-Ref: x-x-cygwin182498
-Ref: x-x-mingw32183051
-Ref: older183433
-Ref: elf185550
-Node: GNU Free Documentation License185808
-Node: Concept Index210941
+Node: Downloading the source15657
+Node: Configuration17328
+Ref: with-gnu-as35615
+Ref: with-as36510
+Ref: with-gnu-ld37919
+Ref: WithAixSoname62626
+Ref: AixLdCommand63287
+Node: Building105452
+Node: Testing121575
+Node: Final install129404
+Node: Binaries134704
+Node: Specific135811
+Ref: aarch64-x-x136345
+Ref: alpha-x-x138365
+Ref: amd64-x-solaris2138579
+Ref: amdgcn-x-amdhsa138661
+Ref: arc-x-elf32139187
+Ref: arc-linux-uclibc139363
+Ref: arm-x-eabi139504
+Ref: avr139757
+Ref: bfin140338
+Ref: cr16140601
+Ref: cris141017
+Ref: dos141715
+Ref: epiphany-x-elf142038
+Ref: x-x-freebsd142143
+Ref: ft32-x-elf143943
+Ref: h8300-hms144041
+Ref: hppa-hp-hpux144393
+Ref: hppa-hp-hpux10146765
+Ref: hppa-hp-hpux11147178
+Ref: x-x-linux-gnu152580
+Ref: ix86-x-linux152903
+Ref: ix86-x-solaris2153216
+Ref: ia64-x-linux154292
+Ref: ia64-x-hpux155062
+Ref: x-ibm-aix155617
+Ref: TransferAixShobj159279
+Ref: iq2000-x-elf163089
+Ref: lm32-x-elf163229
+Ref: lm32-x-uclinux163333
+Ref: m32c-x-elf163461
+Ref: m32r-x-elf163563
+Ref: m68k-x-x163665
+Ref: m68k-x-uclinux164703
+Ref: microblaze-x-elf164948
+Ref: mips-x-x165067
+Ref: moxie-x-elf166977
+Ref: msp430-x-elf167024
+Ref: nds32le-x-elf167581
+Ref: nds32be-x-elf167653
+Ref: nvptx-x-none167722
+Ref: or1k-x-elf168285
+Ref: or1k-x-linux168416
+Ref: powerpc-x-x168497
+Ref: powerpc-x-darwin168688
+Ref: powerpc-x-elf169182
+Ref: powerpc-x-linux-gnu169267
+Ref: powerpc-x-netbsd169362
+Ref: powerpc-x-eabisim169450
+Ref: powerpc-x-eabi169576
+Ref: powerpcle-x-elf169652
+Ref: powerpcle-x-eabisim169744
+Ref: powerpcle-x-eabi169877
+Ref: rl78-x-elf169960
+Ref: riscv32-x-elf170066
+Ref: riscv32-x-linux170255
+Ref: riscv64-x-elf170412
+Ref: riscv64-x-linux170601
+Ref: rx-x-elf170758
+Ref: s390-x-linux170804
+Ref: s390x-x-linux170876
+Ref: s390x-ibm-tpf170963
+Ref: x-x-solaris2171094
+Ref: sparc-x-x174201
+Ref: sparc-sun-solaris2174703
+Ref: sparc-x-linux175846
+Ref: sparc64-x-solaris2175877
+Ref: sparcv9-x-solaris2176595
+Ref: c6x-x-x176682
+Ref: tilegx-*-linux176774
+Ref: tilegxbe-*-linux176916
+Ref: tilepro-*-linux177059
+Ref: visium-x-elf177180
+Ref: x-x-vxworks177288
+Ref: x86-64-x-x178811
+Ref: x86-64-x-solaris2179139
+Ref: xtensa-x-elf179789
+Ref: xtensa-x-linux180460
+Ref: windows180801
+Ref: x-x-cygwin182642
+Ref: x-x-mingw32183195
+Ref: older183577
+Ref: elf185694
+Node: GNU Free Documentation License185952
+Node: Concept Index211085
 
 End Tag Table
 
