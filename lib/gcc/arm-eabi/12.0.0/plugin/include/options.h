@@ -149,6 +149,12 @@ extern int flag_debug_asm;
 #define flag_debug_asm global_options.x_flag_debug_asm
 #endif
 #ifdef GENERATOR_FILE
+extern int flag_default_complex_method;
+#else
+  int x_flag_default_complex_method;
+#define flag_default_complex_method global_options.x_flag_default_complex_method
+#endif
+#ifdef GENERATOR_FILE
 extern int flag_dump_rtl_in_asm;
 #else
   int x_flag_dump_rtl_in_asm;

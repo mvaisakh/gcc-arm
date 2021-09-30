@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-09-26" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-09-30" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -9968,7 +9968,7 @@ so, the first branch is redirected to either the destination of the
 second branch or a point immediately following it, depending on whether
 the condition is known to be true or false.
 .Sp
-Enabled at levels \fB\-O2\fR, \fB\-O3\fR, \fB\-Os\fR.
+Enabled at levels \fB\-O1\fR, \fB\-O2\fR, \fB\-O3\fR, \fB\-Os\fR.
 .IP "\fB\-fsplit\-wide\-types\fR" 4
 .IX Item "-fsplit-wide-types"
 When using a type that occupies multiple registers, such as \f(CW\*(C`long
@@ -17835,6 +17835,8 @@ and the features that they enable by default:
 .IX Item "armv8.5-a : Armv8.5-A : armv8.4-a, +sb, +ssbs, +predres"
 .IP "\fBarmv8.6\-a\fR : Armv8.6\-A : \fBarmv8.5\-a\fR, \fB+bf16\fR, \fB+i8mm\fR" 4
 .IX Item "armv8.6-a : Armv8.6-A : armv8.5-a, +bf16, +i8mm"
+.IP "\fBarmv8.7\-a\fR : Armv8.7\-a : \fBarmv8.6\-a\fR, \fB+ls64\fR" 4
+.IX Item "armv8.7-a : Armv8.7-a : armv8.6-a, +ls64"
 .IP "\fBarmv8\-r\fR : Armv8\-R : \fBarmv8\-r\fR" 4
 .IX Item "armv8-r : Armv8-R : armv8-r"
 .RE
@@ -18151,6 +18153,10 @@ Enable brain half-precision floating-point instructions.  This also enables
 Advanced \s-1SIMD\s0 and floating-point instructions.  This option is enabled by
 default for \fB\-march=armv8.6\-a\fR.  Use of this option with architectures
 prior to Armv8.2\-A is not supported.
+.IP "\fBls64\fR" 4
+.IX Item "ls64"
+Enable the 64\-byte atomic load and store instructions for accelerators.
+This option is enabled by default for \fB\-march=armv8.7\-a\fR.
 .IP "\fBflagm\fR" 4
 .IX Item "flagm"
 Enable the Flag Manipulation instructions Extension.

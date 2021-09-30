@@ -214,6 +214,7 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS (pass_merge_phi, 2);
       NEXT_PASS (pass_thread_jumps, 1);
       NEXT_PASS_WITH_ARG (pass_vrp, 1, true /* warn_array_bounds_p */);
+      NEXT_PASS (pass_vrp_threader, 1);
       NEXT_PASS (pass_dse, 2);
       NEXT_PASS (pass_dce, 2);
       /* pass_stdarg is always run and at this point we execute
@@ -244,7 +245,7 @@ along with GCC; see the file COPYING3.  If not see
       /* Identify paths that should never be executed in a conforming
 	 program and isolate those paths.  */
       NEXT_PASS (pass_isolate_erroneous_paths, 1);
-      NEXT_PASS_WITH_ARG (pass_reassoc, 1, true /* insert_powi_p */);
+      NEXT_PASS_WITH_ARG (pass_reassoc, 1, true /* early_p */);
       NEXT_PASS (pass_dce, 3);
       NEXT_PASS (pass_forwprop, 3);
       NEXT_PASS_WITH_ARG (pass_phiopt, 3, false /* early_p */);
@@ -327,7 +328,7 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS (pass_lower_vector_ssa, 1);
       NEXT_PASS (pass_lower_switch, 1);
       NEXT_PASS (pass_cse_reciprocals, 1);
-      NEXT_PASS_WITH_ARG (pass_reassoc, 2, false /* insert_powi_p */);
+      NEXT_PASS_WITH_ARG (pass_reassoc, 2, false /* early_p */);
       NEXT_PASS (pass_strength_reduction, 1);
       NEXT_PASS (pass_split_paths, 1);
       NEXT_PASS (pass_tracer, 1);
@@ -339,6 +340,7 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS (pass_strlen, 1);
       NEXT_PASS (pass_thread_jumps, 4);
       NEXT_PASS_WITH_ARG (pass_vrp, 2, false /* warn_array_bounds_p */);
+      NEXT_PASS (pass_vrp_threader, 2);
       /* Threading can leave many const/copy propagations in the IL.
 	 Clean them up.  Instead of just copy_prop, we use ccp to
 	 compute alignment and nonzero bits.  */
