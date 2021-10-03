@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-09-30" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-10-03" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -8027,17 +8027,49 @@ transposed and no warning is emitted.  This warning is enabled
 by \fB\-Wall\fR.
 .IP "\fB\-Waddress\fR" 4
 .IX Item "-Waddress"
-Warn about suspicious uses of memory addresses. These include using
-the address of a function in a conditional expression, such as
-\&\f(CW\*(C`void func(void); if (func)\*(C'\fR, and comparisons against the memory
-address of a string literal, such as \f(CW\*(C`if (x == "abc")\*(C'\fR.  Such
-uses typically indicate a programmer error: the address of a function
-always evaluates to true, so their use in a conditional usually
-indicate that the programmer forgot the parentheses in a function
-call; and comparisons against string literals result in unspecified
-behavior and are not portable in C, so they usually indicate that the
-programmer intended to use \f(CW\*(C`strcmp\*(C'\fR.  This warning is enabled by
-\&\fB\-Wall\fR.
+Warn about suspicious uses of address expressions. These include comparing
+the address of a function or a declared object to the null pointer constant
+such as in
+.Sp
+.Vb 6
+\&        void f (void);
+\&        void g (void)
+\&        {
+\&          if (!func)   // warning: expression evaluates to false
+\&            abort ();
+\&        }
+.Ve
+.Sp
+comparisons of a pointer to a string literal, such as in
+.Sp
+.Vb 5
+\&        void f (const char *x)
+\&        {
+\&          if (x == "abc")   // warning: expression evaluates to false
+\&            puts ("equal");
+\&        }
+.Ve
+.Sp
+and tests of the results of pointer addition or subtraction for equality
+to null, such as in
+.Sp
+.Vb 4
+\&        void f (const int *p, int i)
+\&        {
+\&          return p + i == NULL;
+\&        }
+.Ve
+.Sp
+Such uses typically indicate a programmer error: the address of most
+functions and objects necessarily evaluates to true (the exception are
+weak symbols), so their use in a conditional might indicate missing
+parentheses in a function call or a missing dereference in an array
+expression.  The subset of the warning for object pointers can be
+suppressed by casting the pointer operand to an integer type such
+as \f(CW\*(C`inptr_t\*(C'\fR or \f(CW\*(C`uinptr_t\*(C'\fR.
+Comparisons against string literals result in unspecified behavior
+and are not portable, and suggest the intent was to call \f(CW\*(C`strcmp\*(C'\fR.
+\&\fB\-Waddress\fR warning is enabled by \fB\-Wall\fR.
 .IP "\fB\-Wno\-address\-of\-packed\-member\fR" 4
 .IX Item "-Wno-address-of-packed-member"
 Do not warn when the address of packed member of struct or union is taken,
@@ -14213,7 +14245,7 @@ considered undefined differs slightly between C and \*(C+, as well as between
 \&\s-1ISO C90\s0 and C99, etc.
 .IP "\fB\-fsanitize=integer\-divide\-by\-zero\fR" 4
 .IX Item "-fsanitize=integer-divide-by-zero"
-Detect integer division by zero as well as \f(CW\*(C`INT_MIN / \-1\*(C'\fR division.
+Detect integer division by zero.
 .IP "\fB\-fsanitize=unreachable\fR" 4
 .IX Item "-fsanitize=unreachable"
 With this option, the compiler turns the \f(CW\*(C`_\|_builtin_unreachable\*(C'\fR
@@ -14240,7 +14272,8 @@ returning a value.  This option works in \*(C+ only.
 .IX Item "-fsanitize=signed-integer-overflow"
 This option enables signed integer overflow checking.  We check that
 the result of \f(CW\*(C`+\*(C'\fR, \f(CW\*(C`*\*(C'\fR, and both unary and binary \f(CW\*(C`\-\*(C'\fR
-does not overflow in the signed arithmetics.  Note, integer promotion
+does not overflow in the signed arithmetics.  This also detects
+\&\f(CW\*(C`INT_MIN / \-1\*(C'\fR signed division.  Note, integer promotion
 rules must be taken into account.  That is, the following is not an
 overflow:
 .Sp
@@ -17835,8 +17868,10 @@ and the features that they enable by default:
 .IX Item "armv8.5-a : Armv8.5-A : armv8.4-a, +sb, +ssbs, +predres"
 .IP "\fBarmv8.6\-a\fR : Armv8.6\-A : \fBarmv8.5\-a\fR, \fB+bf16\fR, \fB+i8mm\fR" 4
 .IX Item "armv8.6-a : Armv8.6-A : armv8.5-a, +bf16, +i8mm"
-.IP "\fBarmv8.7\-a\fR : Armv8.7\-a : \fBarmv8.6\-a\fR, \fB+ls64\fR" 4
-.IX Item "armv8.7-a : Armv8.7-a : armv8.6-a, +ls64"
+.IP "\fBarmv8.7\-a\fR : Armv8.7\-A : \fBarmv8.6\-a\fR, \fB+ls64\fR" 4
+.IX Item "armv8.7-a : Armv8.7-A : armv8.6-a, +ls64"
+.IP "\fBarmv9\-a\fR : Armv9\-A : \fBarmv8.5\-a\fR, \fB+sve\fR, \fB+sve2\fR" 4
+.IX Item "armv9-a : Armv9-A : armv8.5-a, +sve, +sve2"
 .IP "\fBarmv8\-r\fR : Armv8\-R : \fBarmv8\-r\fR" 4
 .IX Item "armv8-r : Armv8-R : armv8-r"
 .RE
@@ -17883,7 +17918,8 @@ performance of the code.  Permissible values for this option are:
 \&\fBcortex\-a57.cortex\-a53\fR, \fBcortex\-a72.cortex\-a53\fR,
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
 \&\fBcortex\-a75.cortex\-a55\fR, \fBcortex\-a76.cortex\-a55\fR,
-\&\fBcortex\-r82\fR, \fBcortex\-x1\fR, \fBnative\fR.
+\&\fBcortex\-r82\fR, \fBcortex\-x1\fR, \fBcortex\-x2\fR,
+\&\fBcortex\-a510\fR, \fBcortex\-a710\fR, \fBnative\fR.
 .Sp
 The values \fBcortex\-a57.cortex\-a53\fR, \fBcortex\-a72.cortex\-a53\fR,
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
@@ -19147,6 +19183,7 @@ Permissible names are:
 \&\fBarmv8.4\-a\fR,
 \&\fBarmv8.5\-a\fR,
 \&\fBarmv8.6\-a\fR,
+\&\fBarmv9\-a\fR,
 \&\fBarmv7\-r\fR,
 \&\fBarmv8\-r\fR,
 \&\fBarmv6\-m\fR, \fBarmv6s\-m\fR,
@@ -19725,8 +19762,8 @@ Permissible names are: \fBarm7tdmi\fR, \fBarm7tdmi\-s\fR, \fBarm710t\fR,
 \&\fBcortex\-a57\fR, \fBcortex\-a72\fR, \fBcortex\-a73\fR, \fBcortex\-a75\fR,
 \&\fBcortex\-a76\fR, \fBcortex\-a76ae\fR, \fBcortex\-a77\fR,
 \&\fBcortex\-a78\fR, \fBcortex\-a78ae\fR, \fBcortex\-a78c\fR,
-\&\fBares\fR, \fBcortex\-r4\fR, \fBcortex\-r4f\fR,
-\&\fBcortex\-r5\fR, \fBcortex\-r7\fR, \fBcortex\-r8\fR, \fBcortex\-r52\fR,
+\&\fBares\fR, \fBcortex\-r4\fR, \fBcortex\-r4f\fR, \fBcortex\-r5\fR,
+\&\fBcortex\-r7\fR, \fBcortex\-r8\fR, \fBcortex\-r52\fR, \fBcortex\-r52plus\fR,
 \&\fBcortex\-m0\fR, \fBcortex\-m0plus\fR, \fBcortex\-m1\fR, \fBcortex\-m3\fR,
 \&\fBcortex\-m4\fR, \fBcortex\-m7\fR, \fBcortex\-m23\fR, \fBcortex\-m33\fR,
 \&\fBcortex\-m35p\fR, \fBcortex\-m55\fR, \fBcortex\-x1\fR,
@@ -19809,8 +19846,8 @@ Disables the floating-point and \s-1SIMD\s0 instructions on
 .IP "\fB+nofp.dp\fR" 4
 .IX Item "+nofp.dp"
 Disables the double-precision component of the floating-point instructions
-on \fBcortex\-r5\fR, \fBcortex\-r7\fR, \fBcortex\-r8\fR, \fBcortex\-r52\fR and
-\&\fBcortex\-m7\fR.
+on \fBcortex\-r5\fR, \fBcortex\-r7\fR, \fBcortex\-r8\fR, \fBcortex\-r52\fR,
+\&\fBcortex\-r52plus\fR and \fBcortex\-m7\fR.
 .IP "\fB+nosimd\fR" 4
 .IX Item "+nosimd"
 Disables the \s-1SIMD\s0 (but not floating-point) instructions on
