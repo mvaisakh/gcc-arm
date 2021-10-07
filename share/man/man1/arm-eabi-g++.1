@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-10-03" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-10-07" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -277,7 +277,8 @@ in the following sections.
 \&\-Wcomma\-subscript  \-Wconditionally\-supported 
 \&\-Wno\-conversion\-null  \-Wctad\-maybe\-unsupported 
 \&\-Wctor\-dtor\-privacy  \-Wno\-delete\-incomplete 
-\&\-Wdelete\-non\-virtual\-dtor  \-Wdeprecated\-copy \-Wdeprecated\-copy\-dtor 
+\&\-Wdelete\-non\-virtual\-dtor  \-Wno\-deprecated\-array\-compare 
+\&\-Wdeprecated\-copy \-Wdeprecated\-copy\-dtor 
 \&\-Wno\-deprecated\-enum\-enum\-conversion \-Wno\-deprecated\-enum\-float\-conversion 
 \&\-Weffc++  \-Wno\-exceptions \-Wextra\-semi  \-Wno\-inaccessible\-base 
 \&\-Wno\-inherited\-variadic\-ctor  \-Wno\-init\-list\-lifetime 
@@ -347,8 +348,8 @@ in the following sections.
 \&\-Walloca  \-Walloca\-larger\-than=\fR\fIbyte-size\fR 
 \&\fB\-Wno\-aggressive\-loop\-optimizations 
 \&\-Warith\-conversion 
-\&\-Warray\-bounds  \-Warray\-bounds=\fR\fIn\fR 
-\&\fB\-Wno\-attributes  \-Wattribute\-alias=\fR\fIn\fR \fB\-Wno\-attribute\-alias 
+\&\-Warray\-bounds  \-Warray\-bounds=\fR\fIn\fR  \fB\-Warray\-compare 
+\&\-Wno\-attributes  \-Wattribute\-alias=\fR\fIn\fR \fB\-Wno\-attribute\-alias 
 \&\-Wno\-attribute\-warning  \-Wbool\-compare  \-Wbool\-operation 
 \&\-Wno\-builtin\-declaration\-mismatch 
 \&\-Wno\-builtin\-macro\-redefined  \-Wc90\-c99\-compat  \-Wc99\-c11\-compat 
@@ -5299,7 +5300,8 @@ Options\fR and \fBObjective-C and Objective\-\*(C+ Dialect Options\fR.
 .Sp
 \&\fB\-Waddress   
 \&\-Warray\-bounds=1\fR (only with\fB \fR\fB\-O2\fR)  
-\&\fB\-Warray\-parameter=2\fR (C and Objective-C only) 
+\&\fB\-Warray\-compare 
+\&\-Warray\-parameter=2\fR (C and Objective-C only) 
 \&\fB\-Wbool\-compare  
 \&\-Wbool\-operation  
 \&\-Wc++11\-compat  \-Wc++14\-compat  
@@ -7101,6 +7103,18 @@ false positives and is deactivated by default.
 .RE
 .RS 4
 .RE
+.IP "\fB\-Warray\-compare\fR" 4
+.IX Item "-Warray-compare"
+Warn about equality and relational comparisons between two operands of array
+type.  This comparison was deprecated in \*(C+20.  For example:
+.Sp
+.Vb 3
+\&        int arr1[5];
+\&        int arr2[5];
+\&        bool same = arr1 == arr2;
+.Ve
+.Sp
+\&\fB\-Warray\-compare\fR is enabled by \fB\-Wall\fR.
 .IP "\fB\-Warray\-parameter\fR" 4
 .IX Item "-Warray-parameter"
 .PD 0
@@ -13525,6 +13539,9 @@ Maximum number of basic blocks before \s-1EVRP\s0 uses a sparse cache.
 .IP "\fBevrp-mode\fR" 4
 .IX Item "evrp-mode"
 Specifies the mode Early \s-1VRP\s0 should operate in.
+.IP "\fBevrp-switch-limit\fR" 4
+.IX Item "evrp-switch-limit"
+Specifies the maximum number of switch cases before \s-1EVRP\s0 ignores a switch.
 .IP "\fBunroll-jam-min-percent\fR" 4
 .IX Item "unroll-jam-min-percent"
 The minimum percentage of memory references that must be optimized
