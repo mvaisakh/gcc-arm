@@ -1414,6 +1414,10 @@ gen_rtx_fmt_ssss_stat (RTX_CODE code, machine_mode mode,
   gen_rtx_fmt_ee (SS_MULT, (MODE), (ARG0), (ARG1))
 #define gen_rtx_US_MULT(MODE, ARG0, ARG1) \
   gen_rtx_fmt_ee (US_MULT, (MODE), (ARG0), (ARG1))
+#define gen_rtx_SMUL_HIGHPART(MODE, ARG0, ARG1) \
+  gen_rtx_fmt_ee (SMUL_HIGHPART, (MODE), (ARG0), (ARG1))
+#define gen_rtx_UMUL_HIGHPART(MODE, ARG0, ARG1) \
+  gen_rtx_fmt_ee (UMUL_HIGHPART, (MODE), (ARG0), (ARG1))
 #define gen_rtx_DIV(MODE, ARG0, ARG1) \
   gen_rtx_fmt_ee (DIV, (MODE), (ARG0), (ARG1))
 #define gen_rtx_SS_DIV(MODE, ARG0, ARG1) \
