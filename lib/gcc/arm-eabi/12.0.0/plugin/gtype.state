@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "12.0.0 20211010 (experimental)")
+(!version  "12.0.0 20211014 (experimental)")
 (!srcdir  "../../gcc/gcc")
 (!languages 10 ada c cp d fortran go jit lto objc objcp)
 (!fileslist 225 0
@@ -13919,7 +13919,7 @@
                        (!type struct 616 
                         (!type already_seen 615)
                         gc_pointed_to "cl_target_option"
-                        (!srcfileloc  "config/arm/arm.c" 28137)
+                        (!srcfileloc  "config/arm/arm.c" 28132)
                         (!fields 10 
                          (!pair  "x_arm_arch_string"
                           (!type already_seen 11)
@@ -21330,7 +21330,7 @@
    (!type already_seen 1215)
   )
   gc_pointed_to "modref_summary"
-  (!srcfileloc  "ipa-modref.h" 40)
+  (!srcfileloc  "ipa-modref.h" 42)
   (!fields 4 
    (!pair  "loads"
     (!type already_seen 1213)
@@ -21375,7 +21375,7 @@
   nil 0 nil nil )
  
  (!type user_struct 1222 nil  gc_unused "modref_summaries"
-  (!srcfileloc  "ipa-modref.c" 223)
+  (!srcfileloc  "ipa-modref.c" 224)
   (!fields 0 )
  )
  
@@ -21384,44 +21384,44 @@
    (!type already_seen 1223)
   )
   gc_pointed_to "modref_summary_lto"
-  (!srcfileloc  "ipa-modref.c" 366)
+  (!srcfileloc  "ipa-modref.c" 372)
   (!fields 4 
    (!pair  "loads"
     (!type pointer 1225 nil  gc_used
      (!type user_struct 1226 
       (!type already_seen 1225)
       gc_pointed_to "modref_tree<tree>"
-      (!srcfileloc  "ipa-modref.c" 350)
+      (!srcfileloc  "ipa-modref.c" 356)
       (!fields 1 
        (!pair  "tree"
         (!type already_seen 23)
-        (!srcfileloc  "ipa-modref.c" 350)
+        (!srcfileloc  "ipa-modref.c" 356)
         nil )
       )
      )
     )
-    (!srcfileloc  "ipa-modref.c" 357)
+    (!srcfileloc  "ipa-modref.c" 363)
     nil )
    (!pair  "stores"
     (!type already_seen 1225)
-    (!srcfileloc  "ipa-modref.c" 358)
+    (!srcfileloc  "ipa-modref.c" 364)
     nil )
    (!pair  "arg_flags"
     (!type already_seen 1214)
-    (!srcfileloc  "ipa-modref.c" 359)
+    (!srcfileloc  "ipa-modref.c" 365)
     (!options 
      (!option skip string  "")
     )
    )
    (!pair  "writes_errno"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-modref.c" 360)
+    (!srcfileloc  "ipa-modref.c" 366)
     nil )
   )
   nil 1023 nil nil )
  
  (!type user_struct 1227 nil  gc_unused "modref_summaries_lto"
-  (!srcfileloc  "ipa-modref.c" 248)
+  (!srcfileloc  "ipa-modref.c" 249)
   (!fields 0 )
  )
  
@@ -21430,15 +21430,15 @@
    (!type already_seen 1228)
   )
   gc_pointed_to "fast_function_summary<modref_summary*,va_gc>"
-  (!srcfileloc  "ipa-modref.c" 253)
+  (!srcfileloc  "ipa-modref.c" 254)
   (!fields 2 
    (!pair  "va_gc"
     (!type already_seen 79)
-    (!srcfileloc  "ipa-modref.c" 253)
+    (!srcfileloc  "ipa-modref.c" 254)
     nil )
    (!pair  "modref_summary"
     (!type already_seen 1216)
-    (!srcfileloc  "ipa-modref.c" 253)
+    (!srcfileloc  "ipa-modref.c" 254)
     nil )
   )
  )
@@ -21448,15 +21448,15 @@
    (!type already_seen 1230)
   )
   gc_pointed_to "fast_function_summary<modref_summary_lto*,va_gc>"
-  (!srcfileloc  "ipa-modref.c" 265)
+  (!srcfileloc  "ipa-modref.c" 266)
   (!fields 2 
    (!pair  "va_gc"
     (!type already_seen 79)
-    (!srcfileloc  "ipa-modref.c" 265)
+    (!srcfileloc  "ipa-modref.c" 266)
     nil )
    (!pair  "modref_summary_lto"
     (!type already_seen 1224)
-    (!srcfileloc  "ipa-modref.c" 265)
+    (!srcfileloc  "ipa-modref.c" 266)
     nil )
   )
  )
@@ -21544,7 +21544,7 @@
  )
  
  (!type user_struct 1244 nil  gc_unused "modref_tree"
-  (!srcfileloc  "ipa-modref-tree.h" 1075)
+  (!srcfileloc  "ipa-modref-tree.h" 1100)
   (!fields 0 )
  )
  
@@ -26093,7 +26093,7 @@
   )
  )
  
- (!type struct 1826 nil  gc_unused "anonymous:../../gcc/gcc/ada/gcc-interface/decl.c:259"nil 
+ (!type struct 1826 nil  gc_unused "anonymous:../../gcc/gcc/ada/gcc-interface/decl.c:261"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -29735,7 +29735,7 @@
   nil 0 nil nil )
  
  (!type struct 2222 nil  gc_used "module_hasher"
-  (!srcfileloc  "fortran/trans-decl.c" 5188)
+  (!srcfileloc  "fortran/trans-decl.c" 5189)
   (!fields 0 )
   nil 16 nil nil )
  
@@ -29744,11 +29744,11 @@
    (!type already_seen 2223)
   )
   gc_pointed_to "hash_table<module_hasher>"
-  (!srcfileloc  "fortran/trans-decl.c" 5188)
+  (!srcfileloc  "fortran/trans-decl.c" 5189)
   (!fields 1 
    (!pair  "module_hasher"
     (!type already_seen 2222)
-    (!srcfileloc  "fortran/trans-decl.c" 5188)
+    (!srcfileloc  "fortran/trans-decl.c" 5189)
     nil )
   )
  )
@@ -30516,11 +30516,11 @@
   nil )
  (!pair  "module_hasher"
   (!type already_seen 2222)
-  (!srcfileloc  "fortran/trans-decl.c" 5188)
+  (!srcfileloc  "fortran/trans-decl.c" 5189)
   nil )
  (!pair  "hash_table<module_hasher>"
   (!type already_seen 2223)
-  (!srcfileloc  "fortran/trans-decl.c" 5188)
+  (!srcfileloc  "fortran/trans-decl.c" 5189)
   nil )
  (!pair  "tree_frame_info"
   (!type already_seen 647)
@@ -31320,11 +31320,11 @@
   nil )
  (!pair  "vinfo_t"
   (!type already_seen 1828)
-  (!srcfileloc  "ada/gcc-interface/decl.c" 7746)
+  (!srcfileloc  "ada/gcc-interface/decl.c" 7843)
   nil )
  (!pair  "intrin_binding_t"
   (!type already_seen 1826)
-  (!srcfileloc  "ada/gcc-interface/decl.c" 263)
+  (!srcfileloc  "ada/gcc-interface/decl.c" 265)
   nil )
  (!pair  "dummy_type_hasher"
   (!type already_seen 1823)
@@ -31716,7 +31716,7 @@
   nil )
  (!pair  "cl_target_option"
   (!type already_seen 616)
-  (!srcfileloc  "config/arm/arm.c" 28137)
+  (!srcfileloc  "config/arm/arm.c" 28132)
   nil )
  (!pair  "arm_pragma_enum"
   (!type already_seen 2)
@@ -32656,7 +32656,7 @@
   nil )
  (!pair  "modref_tree"
   (!type already_seen 1244)
-  (!srcfileloc  "ipa-modref-tree.h" 1075)
+  (!srcfileloc  "ipa-modref-tree.h" 1100)
   nil )
  (!pair  "modref_base_node"
   (!type already_seen 1243)
@@ -32668,31 +32668,31 @@
   nil )
  (!pair  "modref_summary_lto"
   (!type already_seen 1223)
-  (!srcfileloc  "ipa-modref.c" 362)
+  (!srcfileloc  "ipa-modref.c" 368)
   nil )
  (!pair  "modref_records_lto"
   (!type already_seen 1226)
-  (!srcfileloc  "ipa-modref.c" 350)
+  (!srcfileloc  "ipa-modref.c" 356)
   nil )
  (!pair  "modref_tree<tree>"
   (!type already_seen 1226)
-  (!srcfileloc  "ipa-modref.c" 350)
+  (!srcfileloc  "ipa-modref.c" 356)
   nil )
  (!pair  "fast_function_summary<modref_summary_lto*,va_gc>"
   (!type already_seen 1230)
-  (!srcfileloc  "ipa-modref.c" 265)
+  (!srcfileloc  "ipa-modref.c" 266)
   nil )
  (!pair  "fast_function_summary<modref_summary*,va_gc>"
   (!type already_seen 1228)
-  (!srcfileloc  "ipa-modref.c" 253)
+  (!srcfileloc  "ipa-modref.c" 254)
   nil )
  (!pair  "modref_summaries_lto"
   (!type already_seen 1227)
-  (!srcfileloc  "ipa-modref.c" 248)
+  (!srcfileloc  "ipa-modref.c" 249)
   nil )
  (!pair  "modref_summaries"
   (!type already_seen 1222)
-  (!srcfileloc  "ipa-modref.c" 223)
+  (!srcfileloc  "ipa-modref.c" 224)
   nil )
  (!pair  "modref_summary"
   (!type already_seen 1215)
@@ -34975,7 +34975,7 @@
   nil )
  (!pair  "module_htab"
   (!type already_seen 2224)
-  (!srcfileloc  "fortran/trans-decl.c" 5188)
+  (!srcfileloc  "fortran/trans-decl.c" 5189)
   nil )
  (!pair  "saved_local_decls"
   (!type already_seen 23)
@@ -35974,7 +35974,7 @@
  )
  (!pair  "thunk_labelno"
   (!type already_seen 2)
-  (!srcfileloc  "ada/gcc-interface/trans.c" 10715)
+  (!srcfileloc  "ada/gcc-interface/trans.c" 10718)
   nil )
  (!pair  "gnu_loop_stack"
   (!type already_seen 1840)
@@ -36176,15 +36176,15 @@
   nil )
  (!pair  "arm_previous_fndecl"
   (!type already_seen 23)
-  (!srcfileloc  "config/arm/arm.c" 32925)
+  (!srcfileloc  "config/arm/arm.c" 32920)
   nil )
  (!pair  "last_asm_targ_options"
   (!type already_seen 615)
-  (!srcfileloc  "config/arm/arm.c" 28137)
+  (!srcfileloc  "config/arm/arm.c" 28132)
   nil )
  (!pair  "tls_get_addr_libfunc"
   (!type already_seen 99)
-  (!srcfileloc  "config/arm/arm.c" 9032)
+  (!srcfileloc  "config/arm/arm.c" 9031)
   nil )
  (!pair  "pic_labelno"
   (!type already_seen 2)
@@ -36216,7 +36216,7 @@
   nil )
  (!pair  "critical_name_mutexes"
   (!type already_seen 392)
-  (!srcfileloc  "omp-low.c" 10256)
+  (!srcfileloc  "omp-low.c" 10260)
   nil )
  (!pair  "omp_declare_variant_alt"
   (!type already_seen 1637)
@@ -36378,7 +36378,7 @@
   nil )
  (!pair  "gcc_eh_personality_decl"
   (!type already_seen 23)
-  (!srcfileloc  "tree.c" 11789)
+  (!srcfileloc  "tree.c" 11772)
   nil )
  (!pair  "anon_cnt"
   (!type already_seen 2)
@@ -37054,15 +37054,15 @@
   nil )
  (!pair  "summaries_lto"
   (!type already_seen 1231)
-  (!srcfileloc  "ipa-modref.c" 266)
+  (!srcfileloc  "ipa-modref.c" 267)
   nil )
  (!pair  "optimization_summaries"
   (!type already_seen 1229)
-  (!srcfileloc  "ipa-modref.c" 260)
+  (!srcfileloc  "ipa-modref.c" 261)
   nil )
  (!pair  "summaries"
   (!type already_seen 1229)
-  (!srcfileloc  "ipa-modref.c" 254)
+  (!srcfileloc  "ipa-modref.c" 255)
   nil )
  (!pair  "lastfile_is_base"
   (!type already_seen 2)

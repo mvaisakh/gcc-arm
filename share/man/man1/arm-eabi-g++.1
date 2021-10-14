@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-10-10" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-10-14" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -13900,6 +13900,10 @@ concurrent instances of your program, and provided that the file system
 supports locking, the data files will be correctly updated.  Unless
 a strict \s-1ISO C\s0 dialect option is in effect, \f(CW\*(C`fork\*(C'\fR calls are
 detected and correctly handled without double counting.
+.Sp
+Moreover, an object file can be recompiled multiple times
+and the corresponding \fI.gcda\fR file merges as long as
+the source file and the compiler options are unchanged.
 .IP "*" 4
 For profile-directed optimizations, compile the source files again with
 the same optimization and code generation options plus
@@ -14240,7 +14244,8 @@ The option cannot be combined with \fB\-fsanitize=thread\fR.
 .IX Item "-fsanitize=undefined"
 Enable UndefinedBehaviorSanitizer, a fast undefined behavior detector.
 Various computations are instrumented to detect undefined behavior
-at runtime.  Current suboptions are:
+at runtime.  See <\fBhttps://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html\fR> for more details.   The run-time behavior can be influenced using the
+\&\fB\s-1UBSAN_OPTIONS\s0\fR environment variable.  Current suboptions are:
 .RS 4
 .IP "\fB\-fsanitize=shift\fR" 4
 .IX Item "-fsanitize=shift"
