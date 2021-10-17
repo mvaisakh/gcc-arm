@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-10-14" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-10-17" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -13280,6 +13280,10 @@ Maximum depth of recursive cloning for self-recursive function.
 .IX Item "ipa-cp-min-recursive-probability"
 Recursive cloning only when the probability of call being executed exceeds
 the parameter.
+.IP "\fBipa-cp-recursive-freq-factor\fR" 4
+.IX Item "ipa-cp-recursive-freq-factor"
+The number of times interprocedural copy propagation expects recursive
+functions to call themselves.
 .IP "\fBipa-cp-recursion-penalty\fR" 4
 .IX Item "ipa-cp-recursion-penalty"
 Percentage penalty the recursive functions will receive when they
@@ -13498,14 +13502,6 @@ Emit instrumentation calls to _\|\fB_tsan_func_entry()\fR and _\|\fB_tsan_func_e
 .IX Item "max-fsm-thread-path-insns"
 Maximum number of instructions to copy when duplicating blocks on a
 finite state automaton jump thread path.
-.IP "\fBmax-fsm-thread-length\fR" 4
-.IX Item "max-fsm-thread-length"
-Maximum number of basic blocks on a finite state automaton jump thread
-path.
-.IP "\fBmax-fsm-thread-paths\fR" 4
-.IX Item "max-fsm-thread-paths"
-Maximum number of new jump thread paths to create for a finite state
-automaton.
 .IP "\fBparloops-chunk-size\fR" 4
 .IX Item "parloops-chunk-size"
 Chunk size of omp schedule for loops parallelized by parloops.
@@ -13660,10 +13656,6 @@ The maximum depth of recursive inlining for non-inline functions.
 .IX Item "fsm-scale-path-stmts"
 Scale factor to apply to the number of statements in a threading path
 when comparing to the number of (scaled) blocks.
-.IP "\fBfsm-maximum-phi-arguments\fR" 4
-.IX Item "fsm-maximum-phi-arguments"
-Maximum number of arguments a \s-1PHI\s0 may have before the \s-1FSM\s0 threader
-will not try to thread through its block.
 .IP "\fBuninit-control-dep-attempts\fR" 4
 .IX Item "uninit-control-dep-attempts"
 Maximum number of nested calls to search for control dependencies
