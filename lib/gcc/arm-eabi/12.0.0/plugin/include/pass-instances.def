@@ -341,9 +341,7 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS (pass_thread_jumps, 4);
       NEXT_PASS_WITH_ARG (pass_vrp, 2, false /* warn_array_bounds_p */);
       NEXT_PASS (pass_vrp_threader, 2);
-      /* Threading can leave many const/copy propagations in the IL.
-	 Clean them up.  Instead of just copy_prop, we use ccp to
-	 compute alignment and nonzero bits.  */
+      /* Run CCP to compute alignment and nonzero bits.  */
       NEXT_PASS_WITH_ARG (pass_ccp, 4, true /* nonzero_p */);
       NEXT_PASS (pass_warn_restrict, 1);
       NEXT_PASS (pass_dse, 5);

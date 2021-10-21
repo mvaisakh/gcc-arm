@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-10-17" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-10-21" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2547,14 +2547,14 @@ supported for C as this construct is allowed by \*(C+.
 Do not recognize \f(CW\*(C`asm\*(C'\fR, \f(CW\*(C`inline\*(C'\fR or \f(CW\*(C`typeof\*(C'\fR as a
 keyword, so that code can use these words as identifiers.  You can use
 the keywords \f(CW\*(C`_\|_asm_\|_\*(C'\fR, \f(CW\*(C`_\|_inline_\|_\*(C'\fR and \f(CW\*(C`_\|_typeof_\|_\*(C'\fR
-instead.  \fB\-ansi\fR implies \fB\-fno\-asm\fR.
+instead.  In C, \fB\-ansi\fR implies \fB\-fno\-asm\fR.
 .Sp
-In \*(C+, this switch only affects the \f(CW\*(C`typeof\*(C'\fR keyword, since
-\&\f(CW\*(C`asm\*(C'\fR and \f(CW\*(C`inline\*(C'\fR are standard keywords.  You may want to
-use the \fB\-fno\-gnu\-keywords\fR flag instead, which has the same
-effect.  In C99 mode (\fB\-std=c99\fR or \fB\-std=gnu99\fR), this
-switch only affects the \f(CW\*(C`asm\*(C'\fR and \f(CW\*(C`typeof\*(C'\fR keywords, since
-\&\f(CW\*(C`inline\*(C'\fR is a standard keyword in \s-1ISO C99.\s0
+In \*(C+, \f(CW\*(C`inline\*(C'\fR is a standard keyword and is not affected by
+this switch.  You may want to use the \fB\-fno\-gnu\-keywords\fR flag
+instead, which disables \f(CW\*(C`typeof\*(C'\fR but not \f(CW\*(C`asm\*(C'\fR and
+\&\f(CW\*(C`inline\*(C'\fR.  In C99 mode (\fB\-std=c99\fR or \fB\-std=gnu99\fR),
+this switch only affects the \f(CW\*(C`asm\*(C'\fR and \f(CW\*(C`typeof\*(C'\fR keywords,
+since \f(CW\*(C`inline\*(C'\fR is a standard keyword in \s-1ISO C99.\s0
 .IP "\fB\-fno\-builtin\fR" 4
 .IX Item "-fno-builtin"
 .PD 0
@@ -13502,6 +13502,9 @@ Emit instrumentation calls to _\|\fB_tsan_func_entry()\fR and _\|\fB_tsan_func_e
 .IX Item "max-fsm-thread-path-insns"
 Maximum number of instructions to copy when duplicating blocks on a
 finite state automaton jump thread path.
+.IP "\fBmax-fsm-thread-length\fR" 4
+.IX Item "max-fsm-thread-length"
+Maximum number of basic blocks on a jump thread path.
 .IP "\fBparloops-chunk-size\fR" 4
 .IX Item "parloops-chunk-size"
 Chunk size of omp schedule for loops parallelized by parloops.
