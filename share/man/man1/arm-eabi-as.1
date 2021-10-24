@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "AS 1"
-.TH AS 1 "2021-10-21" "binutils-2.37.50" "GNU Development Tools"
+.TH AS 1 "2021-10-24" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1537,6 +1537,10 @@ Valid \fI\s-1CPU\s0\fR values are identical to the processor list of
 .IX Item "-msse2avx"
 This option specifies that the assembler should encode \s-1SSE\s0 instructions
 with \s-1VEX\s0 prefix.
+.IP "\fB\-muse\-unaligned\-vector\-move\fR" 4
+.IX Item "-muse-unaligned-vector-move"
+This option specifies that the assembler should encode aligned vector
+move as unaligned vector move.
 .IP "\fB\-msse\-check=\fR\fInone\fR" 4
 .IX Item "-msse-check=none"
 .PD 0

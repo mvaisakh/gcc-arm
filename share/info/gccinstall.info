@@ -4199,7 +4199,7 @@ Intel 64-bit versions
 ---------------------
 
 GCC contains support for x86-64 using the mingw-w64 runtime library,
-available from <http://mingw-w64.org/doku.php>.  This library should be
+available from <https://mingw-w64.org/doku.php>.  This library should be
 used with the target triple x86_64-pc-mingw32.
 
    Presently Windows for Itanium is not supported.
@@ -4913,12 +4913,12 @@ Ref: x86-64-x-solaris2179139
 Ref: xtensa-x-elf179789
 Ref: xtensa-x-linux180460
 Ref: windows180801
-Ref: x-x-cygwin182642
-Ref: x-x-mingw32183195
-Ref: older183577
-Ref: elf185694
-Node: GNU Free Documentation License185952
-Node: Concept Index211085
+Ref: x-x-cygwin182643
+Ref: x-x-mingw32183196
+Ref: older183578
+Ref: elf185695
+Node: GNU Free Documentation License185953
+Node: Concept Index211086
 
 End Tag Table
 
