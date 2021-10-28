@@ -3480,15 +3480,6 @@ GNU/Linux.
    If you are using the installed system libunwind library with
 '--with-system-libunwind', then you must use libunwind 0.98 or later.
 
-   None of the following versions of GCC has an ABI that is compatible
-with any of the other versions in this list, with the exception that Red
-Hat 2.96 and Trillian 000171 are compatible with each other: 3.1, 3.0.2,
-3.0.1, 3.0, Red Hat 2.96, and Trillian 000717.  This primarily affects
-C++ programs and programs that create shared libraries.  GCC 3.1 or
-later is recommended for compiling linux, the kernel.  As of version 3.1
-GCC is believed to be fully ABI compliant, and hence no more major ABI
-changes are expected.
-
 ia64-*-hpux*
 ============
 
@@ -4202,8 +4193,6 @@ GCC contains support for x86-64 using the mingw-w64 runtime library,
 available from <https://mingw-w64.org/doku.php>.  This library should be
 used with the target triple x86_64-pc-mingw32.
 
-   Presently Windows for Itanium is not supported.
-
 Windows CE
 ----------
 
@@ -4858,67 +4847,67 @@ Ref: x-x-linux-gnu152580
 Ref: ix86-x-linux152903
 Ref: ix86-x-solaris2153216
 Ref: ia64-x-linux154292
-Ref: ia64-x-hpux155062
-Ref: x-ibm-aix155617
-Ref: TransferAixShobj159279
-Ref: iq2000-x-elf163089
-Ref: lm32-x-elf163229
-Ref: lm32-x-uclinux163333
-Ref: m32c-x-elf163461
-Ref: m32r-x-elf163563
-Ref: m68k-x-x163665
-Ref: m68k-x-uclinux164703
-Ref: microblaze-x-elf164948
-Ref: mips-x-x165067
-Ref: moxie-x-elf166977
-Ref: msp430-x-elf167024
-Ref: nds32le-x-elf167581
-Ref: nds32be-x-elf167653
-Ref: nvptx-x-none167722
-Ref: or1k-x-elf168285
-Ref: or1k-x-linux168416
-Ref: powerpc-x-x168497
-Ref: powerpc-x-darwin168688
-Ref: powerpc-x-elf169182
-Ref: powerpc-x-linux-gnu169267
-Ref: powerpc-x-netbsd169362
-Ref: powerpc-x-eabisim169450
-Ref: powerpc-x-eabi169576
-Ref: powerpcle-x-elf169652
-Ref: powerpcle-x-eabisim169744
-Ref: powerpcle-x-eabi169877
-Ref: rl78-x-elf169960
-Ref: riscv32-x-elf170066
-Ref: riscv32-x-linux170255
-Ref: riscv64-x-elf170412
-Ref: riscv64-x-linux170601
-Ref: rx-x-elf170758
-Ref: s390-x-linux170804
-Ref: s390x-x-linux170876
-Ref: s390x-ibm-tpf170963
-Ref: x-x-solaris2171094
-Ref: sparc-x-x174201
-Ref: sparc-sun-solaris2174703
-Ref: sparc-x-linux175846
-Ref: sparc64-x-solaris2175877
-Ref: sparcv9-x-solaris2176595
-Ref: c6x-x-x176682
-Ref: tilegx-*-linux176774
-Ref: tilegxbe-*-linux176916
-Ref: tilepro-*-linux177059
-Ref: visium-x-elf177180
-Ref: x-x-vxworks177288
-Ref: x86-64-x-x178811
-Ref: x86-64-x-solaris2179139
-Ref: xtensa-x-elf179789
-Ref: xtensa-x-linux180460
-Ref: windows180801
-Ref: x-x-cygwin182643
-Ref: x-x-mingw32183196
-Ref: older183578
-Ref: elf185695
-Node: GNU Free Documentation License185953
-Node: Concept Index211086
+Ref: ia64-x-hpux154539
+Ref: x-ibm-aix155094
+Ref: TransferAixShobj158756
+Ref: iq2000-x-elf162566
+Ref: lm32-x-elf162706
+Ref: lm32-x-uclinux162810
+Ref: m32c-x-elf162938
+Ref: m32r-x-elf163040
+Ref: m68k-x-x163142
+Ref: m68k-x-uclinux164180
+Ref: microblaze-x-elf164425
+Ref: mips-x-x164544
+Ref: moxie-x-elf166454
+Ref: msp430-x-elf166501
+Ref: nds32le-x-elf167058
+Ref: nds32be-x-elf167130
+Ref: nvptx-x-none167199
+Ref: or1k-x-elf167762
+Ref: or1k-x-linux167893
+Ref: powerpc-x-x167974
+Ref: powerpc-x-darwin168165
+Ref: powerpc-x-elf168659
+Ref: powerpc-x-linux-gnu168744
+Ref: powerpc-x-netbsd168839
+Ref: powerpc-x-eabisim168927
+Ref: powerpc-x-eabi169053
+Ref: powerpcle-x-elf169129
+Ref: powerpcle-x-eabisim169221
+Ref: powerpcle-x-eabi169354
+Ref: rl78-x-elf169437
+Ref: riscv32-x-elf169543
+Ref: riscv32-x-linux169732
+Ref: riscv64-x-elf169889
+Ref: riscv64-x-linux170078
+Ref: rx-x-elf170235
+Ref: s390-x-linux170281
+Ref: s390x-x-linux170353
+Ref: s390x-ibm-tpf170440
+Ref: x-x-solaris2170571
+Ref: sparc-x-x173678
+Ref: sparc-sun-solaris2174180
+Ref: sparc-x-linux175323
+Ref: sparc64-x-solaris2175354
+Ref: sparcv9-x-solaris2176072
+Ref: c6x-x-x176159
+Ref: tilegx-*-linux176251
+Ref: tilegxbe-*-linux176393
+Ref: tilepro-*-linux176536
+Ref: visium-x-elf176657
+Ref: x-x-vxworks176765
+Ref: x86-64-x-x178288
+Ref: x86-64-x-solaris2178616
+Ref: xtensa-x-elf179266
+Ref: xtensa-x-linux179937
+Ref: windows180278
+Ref: x-x-cygwin182068
+Ref: x-x-mingw32182621
+Ref: older183003
+Ref: elf185120
+Node: GNU Free Documentation License185378
+Node: Concept Index210511
 
 End Tag Table
 

@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJDUMP 1"
-.TH OBJDUMP 1 "2021-10-24" "binutils-2.37.50" "GNU Development Tools"
+.TH OBJDUMP 1 "2021-10-28" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1123,15 +1123,24 @@ This can be used in conjunction with \fB\-\-dwarf\-depth\fR.
 .IP "\fB\-\-dwarf\-check\fR" 4
 .IX Item "--dwarf-check"
 Enable additional checks for consistency of Dwarf information.
-.IP "\fB\-\-ctf=\fR\fIsection\fR" 4
-.IX Item "--ctf=section"
+.IP "\fB\-\-ctf[=\fR\fIsection\fR\fB]\fR" 4
+.IX Item "--ctf[=section]"
 Display the contents of the specified \s-1CTF\s0 section.  \s-1CTF\s0 sections themselves
 contain many subsections, all of which are displayed in order.
-.IP "\fB\-\-ctf\-parent=\fR\fIsection\fR" 4
-.IX Item "--ctf-parent=section"
-Specify the name of another section from which the \s-1CTF\s0 dictionary can inherit
-types.  (If none is specified, we assume the \s-1CTF\s0 dictionary inherits types
-from the default-named member of the archive contained within this section.)
+.Sp
+By default, display the name of the section named \fI.ctf\fR, which is the
+name emitted by \fBld\fR.
+.IP "\fB\-\-ctf\-parent=\fR\fImember\fR" 4
+.IX Item "--ctf-parent=member"
+If the \s-1CTF\s0 section contains ambiguously-defined types, it will consist
+of an archive of many \s-1CTF\s0 dictionaries, all inheriting from one
+dictionary containing unambiguous types.  This member is by default
+named \fI.ctf\fR, like the section containing it, but it is possible to
+change this name using the \f(CW\*(C`ctf_link_set_memb_name_changer\*(C'\fR
+function at link time.  When looking at \s-1CTF\s0 archives that have been
+created by a linker that uses the name changer to rename the parent
+archive member, \fB\-\-ctf\-parent\fR can be used to specify the name
+used for the parent.
 .IP "\fB\-G\fR" 4
 .IX Item "-G"
 .PD 0

@@ -2609,18 +2609,26 @@ given.
 '--dwarf-check'
      Enable additional checks for consistency of Dwarf information.
 
-'--ctf=SECTION'
+'--ctf[=SECTION]'
 
      Display the contents of the specified CTF section.  CTF sections
      themselves contain many subsections, all of which are displayed in
      order.
 
-'--ctf-parent=SECTION'
+     By default, display the name of the section named .CTF, which is
+     the name emitted by 'ld'.
 
-     Specify the name of another section from which the CTF dictionary
-     can inherit types.  (If none is specified, we assume the CTF
-     dictionary inherits types from the default-named member of the
-     archive contained within this section.)
+'--ctf-parent=MEMBER'
+
+     If the CTF section contains ambiguously-defined types, it will
+     consist of an archive of many CTF dictionaries, all inheriting from
+     one dictionary containing unambiguous types.  This member is by
+     default named .CTF, like the section containing it, but it is
+     possible to change this name using the
+     'ctf_link_set_memb_name_changer' function at link time.  When
+     looking at CTF archives that have been created by a linker that
+     uses the name changer to rename the parent archive member,
+     '--ctf-parent' can be used to specify the name used for the parent.
 
 '-G'
 '--stabs'
@@ -4716,18 +4724,26 @@ equivalent.  At least one option besides '-v' or '-H' must be given.
      automatically implies the '-wK' option, and only sections requested
      by other command line options will be displayed.
 
-'--ctf=SECTION'
+'--ctf[=SECTION]'
 
      Display the contents of the specified CTF section.  CTF sections
      themselves contain many subsections, all of which are displayed in
      order.
 
-'--ctf-parent=SECTION'
+     By default, display the name of the section named .CTF, which is
+     the name emitted by 'ld'.
 
-     Specify the name of another section from which the CTF dictionary
-     can inherit types.  (If none is specified, we assume the CTF
-     dictionary inherits types from the default-named member of the
-     archive contained within this section.)
+'--ctf-parent=MEMBER'
+
+     If the CTF section contains ambiguously-defined types, it will
+     consist of an archive of many CTF dictionaries, all inheriting from
+     one dictionary containing unambiguous types.  This member is by
+     default named .CTF, like the section containing it, but it is
+     possible to change this name using the
+     'ctf_link_set_memb_name_changer' function at link time.  When
+     looking at CTF archives that have been created by a linker that
+     uses the name changer to rename the parent archive member,
+     '--ctf-parent' can be used to specify the name used for the parent.
 '--ctf-symbols=SECTION'
 '--ctf-strings=SECTION'
      Specify the name of another section from which the CTF file can
@@ -5724,11 +5740,11 @@ Binutils Index
 * -enable-deterministic-archives <5>:    ranlib.              (line  44)
 * -enable-deterministic-archives <6>:    strip.               (line 158)
 * -enable-deterministic-archives <7>:    strip.               (line 168)
-* .stab:                                 objdump.             (line 718)
+* .stab:                                 objdump.             (line 726)
 * Add prefix to absolute paths:          objdump.             (line 515)
 * addr2line:                             addr2line.           (line   6)
 * address to file name and line number:  addr2line.           (line   6)
-* all header information, object file:   objdump.             (line 840)
+* all header information, object file:   objdump.             (line 848)
 * ar:                                    ar.                  (line   6)
 * ar compatibility:                      ar.                  (line  63)
 * architecture:                          objdump.             (line 267)
@@ -5760,7 +5776,7 @@ Binutils Index
 * CTF <1>:                               readelf.             (line 414)
 * cxxfilt:                               c++filt.             (line  16)
 * dates in archive:                      ar cmdline.          (line 188)
-* debug symbols:                         objdump.             (line 718)
+* debug symbols:                         objdump.             (line 726)
 * debugging symbols:                     nm.                  (line 187)
 * deleting from archive:                 ar cmdline.          (line  26)
 * demangling C++ symbols:                c++filt.             (line   6)
@@ -5785,14 +5801,14 @@ Binutils Index
 * DLL:                                   dlltool.             (line   6)
 * dlltool:                               dlltool.             (line   6)
 * dynamic relocation entries, in object file: objdump.        (line 492)
-* dynamic symbol table entries, printing: objdump.            (line 817)
+* dynamic symbol table entries, printing: objdump.            (line 825)
 * dynamic symbols:                       nm.                  (line 225)
 * ELF dynamic section information:       readelf.             (line 187)
 * ELF dynamic symbol table information:  readelf.             (line 116)
 * ELF file header information:           readelf.             (line  76)
 * ELF file information:                  readelf.             (line   6)
 * ELF notes:                             readelf.             (line 169)
-* ELF object file format:                objdump.             (line 718)
+* ELF object file format:                objdump.             (line 726)
 * ELF program header information:        readelf.             (line  82)
 * ELF reloc information:                 readelf.             (line 173)
 * ELF section group information:         readelf.             (line  96)
@@ -5810,7 +5826,7 @@ Binutils Index
 * extract from archive:                  ar cmdline.          (line 114)
 * fatal signal:                          Bug Criteria.        (line   9)
 * file name:                             nm.                  (line 181)
-* header information, all:               objdump.             (line 840)
+* header information, all:               objdump.             (line 848)
 * input .def file:                       dlltool.             (line 120)
 * input file name:                       nm.                  (line 181)
 * Instruction width:                     objdump.             (line 532)
@@ -5874,9 +5890,9 @@ Binutils Index
 * source disassembly <1>:                objdump.             (line 508)
 * source file name:                      nm.                  (line 181)
 * source filenames for object files:     objdump.             (line 261)
-* stab:                                  objdump.             (line 718)
-* start-address:                         objdump.             (line 727)
-* stop-address:                          objdump.             (line 731)
+* stab:                                  objdump.             (line 726)
+* start-address:                         objdump.             (line 735)
+* stop-address:                          objdump.             (line 739)
 * strings:                               strings.             (line   6)
 * strings, printing:                     strings.             (line   6)
 * strip:                                 strip.               (line   6)
@@ -5885,7 +5901,7 @@ Binutils Index
 * symbol index <1>:                      ranlib.              (line   6)
 * symbol index, listing:                 nm.                  (line 302)
 * symbol line numbers:                   nm.                  (line 257)
-* symbol table entries, printing:        objdump.             (line 736)
+* symbol table entries, printing:        objdump.             (line 744)
 * symbol table size base:                readelf.             (line 124)
 * symbols:                               nm.                  (line   6)
 * symbols, discarding:                   strip.               (line   6)
@@ -5898,7 +5914,7 @@ Binutils Index
 * updating an archive:                   ar cmdline.          (line 229)
 * version:                               Top.                 (line   6)
 * VMA in objdump:                        objdump.             (line  84)
-* wide output, printing:                 objdump.             (line 846)
+* wide output, printing:                 objdump.             (line 854)
 * writing archive index:                 ar cmdline.          (line 211)
 
 
@@ -5911,29 +5927,29 @@ Node: ar scripts20010
 Node: nm25696
 Node: objcopy40182
 Node: objdump81030
-Node: ranlib114978
-Node: size116577
-Node: strings120546
-Node: strip124918
-Node: c++filt134760
-Ref: c++filt-Footnote-1140621
-Node: addr2line140727
-Node: windmc146405
-Node: windres150064
-Node: dlltool156634
-Node: def file format169631
-Node: readelf172161
-Node: elfedit188798
-Node: Common Options191772
-Node: Selecting the Target System192806
-Node: Target Selection193734
-Node: Architecture Selection195715
-Node: debuginfod196543
-Node: Reporting Bugs197302
-Node: Bug Criteria198064
-Node: Bug Reporting198617
-Node: GNU Free Documentation License205488
-Node: Binutils Index230648
+Node: ranlib115425
+Node: size117024
+Node: strings120993
+Node: strip125365
+Node: c++filt135207
+Ref: c++filt-Footnote-1141068
+Node: addr2line141174
+Node: windmc146852
+Node: windres150511
+Node: dlltool157081
+Node: def file format170078
+Node: readelf172608
+Node: elfedit189692
+Node: Common Options192666
+Node: Selecting the Target System193700
+Node: Target Selection194628
+Node: Architecture Selection196609
+Node: debuginfod197437
+Node: Reporting Bugs198196
+Node: Bug Criteria198958
+Node: Bug Reporting199511
+Node: GNU Free Documentation License206382
+Node: Binutils Index231542
 
 End Tag Table
 

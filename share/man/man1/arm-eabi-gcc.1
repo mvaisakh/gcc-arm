@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-10-24" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-10-28" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -13280,6 +13280,11 @@ Maximum depth of recursive cloning for self-recursive function.
 .IX Item "ipa-cp-min-recursive-probability"
 Recursive cloning only when the probability of call being executed exceeds
 the parameter.
+.IP "\fBipa-cp-profile-count-base\fR" 4
+.IX Item "ipa-cp-profile-count-base"
+When using \fB\-fprofile\-use\fR option, IPA-CP will consider the measured
+execution count of a call graph edge at this percentage position in their
+histogram as the basis for its heuristics calculation.
 .IP "\fBipa-cp-recursive-freq-factor\fR" 4
 .IX Item "ipa-cp-recursive-freq-factor"
 The number of times interprocedural copy propagation expects recursive
