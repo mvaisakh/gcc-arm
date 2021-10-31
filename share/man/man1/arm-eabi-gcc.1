@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-10-28" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-10-31" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -615,7 +615,8 @@ in the following sections.
 \&\fB\-fasan\-shadow\-offset=\fR\fInumber\fR  \fB\-fsanitize\-sections=\fR\fIs1\fR\fB,\fR\fIs2\fR\fB,... 
 \&\-fsanitize\-undefined\-trap\-on\-error  \-fbounds\-check 
 \&\-fcf\-protection=\fR[\fBfull\fR|\fBbranch\fR|\fBreturn\fR|\fBnone\fR|\fBcheck\fR] 
-\&\fB\-fstack\-protector  \-fstack\-protector\-all  \-fstack\-protector\-strong 
+\&\fB\-fharden\-compares \-fharden\-conditional\-branches 
+\&\-fstack\-protector  \-fstack\-protector\-all  \-fstack\-protector\-strong 
 \&\-fstack\-protector\-explicit  \-fstack\-check 
 \&\-fstack\-limit\-register=\fR\fIreg\fR  \fB\-fstack\-limit\-symbol=\fR\fIsym\fR 
 \&\fB\-fno\-stack\-limit  \-fsplit\-stack 
@@ -14501,6 +14502,22 @@ which functions and calls should be skipped from instrumentation.
 Currently the x86 GNU/Linux target provides an implementation based
 on Intel Control-flow Enforcement Technology (\s-1CET\s0) which works for
 i686 processor or newer.
+.IP "\fB\-fharden\-compares\fR" 4
+.IX Item "-fharden-compares"
+For every logical test that survives gimple optimizations and is
+\&\fInot\fR the condition in a conditional branch (for example,
+conditions tested for conditional moves, or to store in boolean
+variables), emit extra code to compute and verify the reversed
+condition, and to call \f(CW\*(C`_\|_builtin_trap\*(C'\fR if the results do not
+match.  Use with \fB\-fharden\-conditional\-branches\fR to cover all
+conditionals.
+.IP "\fB\-fharden\-conditional\-branches\fR" 4
+.IX Item "-fharden-conditional-branches"
+For every non-vectorized conditional branch that survives gimple
+optimizations, emit extra code to compute and verify the reversed
+condition, and to call \f(CW\*(C`_\|_builtin_trap\*(C'\fR if the result is
+unexpected.  Use with \fB\-fharden\-compares\fR to cover all
+conditionals.
 .IP "\fB\-fstack\-protector\fR" 4
 .IX Item "-fstack-protector"
 Emit extra code to check for buffer overflows, such as stack smashing
