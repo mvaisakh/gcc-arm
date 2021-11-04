@@ -83,7 +83,7 @@ along with GCC; see the file COPYING3.  If not see
 	  /* After CCP we rewrite no longer addressed locals into SSA
 	     form if possible.  */
 	  NEXT_PASS (pass_forwprop, 1);
-          NEXT_PASS (pass_early_thread_jumps, 1);
+          NEXT_PASS_WITH_ARG (pass_early_thread_jumps, 1, /*first=*/true);
 	  NEXT_PASS (pass_sra_early, 1);
 	  /* pass_build_ealias is a dummy pass that ensures that we
 	     execute TODO_rebuild_alias at this point.  */
@@ -212,7 +212,7 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS (pass_return_slot, 1);
       NEXT_PASS_WITH_ARG (pass_fre, 3, true /* may_iterate */);
       NEXT_PASS (pass_merge_phi, 2);
-      NEXT_PASS (pass_thread_jumps_full, 1);
+      NEXT_PASS_WITH_ARG (pass_thread_jumps_full, 1, /*first=*/true);
       NEXT_PASS_WITH_ARG (pass_vrp, 1, true /* warn_array_bounds_p */);
       NEXT_PASS (pass_dse, 2);
       NEXT_PASS (pass_dce, 2);
@@ -235,7 +235,7 @@ along with GCC; see the file COPYING3.  If not see
 	 propagations have already run, but before some more dead code
 	 is removed, and this place fits nicely.  Remember this when
 	 trying to move or duplicate pass_dominator somewhere earlier.  */
-      NEXT_PASS (pass_thread_jumps, 1);
+      NEXT_PASS_WITH_ARG (pass_thread_jumps, 1, /*first=*/true);
       NEXT_PASS_WITH_ARG (pass_dominator, 2, true /* may_peel_loop_headers_p */);
       /* Threading can leave many const/copy propagations in the IL.
 	 Clean them up.  Failure to do so well can lead to false
@@ -334,10 +334,10 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS_WITH_ARG (pass_fre, 5, false /* may_iterate */);
       /* After late FRE we rewrite no longer addressed locals into SSA
          form if possible.  */
-      NEXT_PASS (pass_thread_jumps, 2);
+      NEXT_PASS_WITH_ARG (pass_thread_jumps, 2, /*first=*/false);
       NEXT_PASS_WITH_ARG (pass_dominator, 3, false /* may_peel_loop_headers_p */);
       NEXT_PASS (pass_strlen, 1);
-      NEXT_PASS (pass_thread_jumps_full, 2);
+      NEXT_PASS_WITH_ARG (pass_thread_jumps_full, 2, /*first=*/false);
       NEXT_PASS_WITH_ARG (pass_vrp, 2, false /* warn_array_bounds_p */);
       /* Run CCP to compute alignment and nonzero bits.  */
       NEXT_PASS_WITH_ARG (pass_ccp, 4, true /* nonzero_p */);

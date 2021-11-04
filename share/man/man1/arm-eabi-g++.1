@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-10-31" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-11-04" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -337,7 +337,8 @@ in the following sections.
 \&\fB\-fdiagnostics\-show\-path\-depths 
 \&\-fno\-show\-column 
 \&\-fdiagnostics\-column\-unit=\fR[\fBdisplay\fR|\fBbyte\fR] 
-\&\fB\-fdiagnostics\-column\-origin=\fR\fIorigin\fR
+\&\fB\-fdiagnostics\-column\-origin=\fR\fIorigin\fR 
+\&\fB\-fdiagnostics\-escape\-format=\fR[\fBunicode\fR|\fBbytes\fR]
 .IP "\fIWarning Options\fR" 4
 .IX Item "Warning Options"
 \&\fB\-fsyntax\-only  \-fmax\-errors=\fR\fIn\fR  \fB\-Wpedantic 
@@ -4896,6 +4897,37 @@ Select the origin for column numbers, i.e. the column number assigned to the
 first column.  The default value of 1 corresponds to traditional \s-1GCC\s0
 behavior and to the \s-1GNU\s0 style guide.  Some utilities may perform better with an
 origin of 0; any non-negative value may be specified.
+.IP "\fB\-fdiagnostics\-escape\-format=\fR\fI\s-1FORMAT\s0\fR" 4
+.IX Item "-fdiagnostics-escape-format=FORMAT"
+When \s-1GCC\s0 prints pertinent source lines for a diagnostic it normally attempts
+to print the source bytes directly.  However, some diagnostics relate to encoding
+issues in the source file, such as malformed \s-1UTF\-8,\s0 or issues with Unicode
+normalization.  These diagnostics are flagged so that \s-1GCC\s0 will escape bytes
+that are not printable \s-1ASCII\s0 when printing their pertinent source lines.
+.Sp
+This option controls how such bytes should be escaped.
+.Sp
+The default \fI\s-1FORMAT\s0\fR, \fBunicode\fR displays Unicode characters that
+are not printable \s-1ASCII\s0 in the form \fB<U+XXXX>\fR, and bytes that do not
+correspond to a Unicode character validly-encoded in UTF\-8\-encoded will be
+displayed as hexadecimal in the form \fB<\s-1XX\s0>\fR.
+.Sp
+For example, a source line containing the string \fBbefore\fR followed by the
+Unicode character U+03C0 (\*(L"\s-1GREEK SMALL LETTER PI\*(R",\s0 with \s-1UTF\-8\s0 encoding
+0xCF 0x80) followed by the byte 0xBF (a stray \s-1UTF\-8\s0 trailing byte), followed by
+the string \fBafter\fR will be printed for such a diagnostic as:
+.Sp
+.Vb 1
+\&         before<U+03C0><BF>after
+.Ve
+.Sp
+Setting \fI\s-1FORMAT\s0\fR to \fBbytes\fR will display all non-printable-ASCII bytes
+in the form \fB<\s-1XX\s0>\fR, thus showing the underlying encoding of non-ASCII
+Unicode characters.  For the example above, the following will be printed:
+.Sp
+.Vb 1
+\&         before<CF><80><BF>after
+.Ve
 .IP "\fB\-fdiagnostics\-format=\fR\fI\s-1FORMAT\s0\fR" 4
 .IX Item "-fdiagnostics-format=FORMAT"
 Select a different format for printing diagnostics.
@@ -4962,9 +4994,11 @@ might be printed in \s-1JSON\s0 form (after formatting) like this:
 \&                                }
 \&                            }
 \&                        ],
+\&                        "escape\-source": false,
 \&                        "message": "...this statement, but the latter is ..."
 \&                    }
 \&                ]
+\&                "escape\-source": false,
 \&                "column\-origin": 1,
 \&            }
 \&        ]
@@ -5046,6 +5080,7 @@ of the expression, which have labels.  It might be printed in \s-1JSON\s0 form a
 \&                        "label": "T {aka struct t}"
 \&                    }
 \&                ],
+\&                "escape\-source": false,
 \&                "message": "invalid operands to binary + ..."
 \&            }
 .Ve
@@ -5098,6 +5133,7 @@ might be printed in \s-1JSON\s0 form as:
 \&                        }
 \&                    }
 \&                ],
+\&                "escape\-source": false,
 \&                "message": "\eu2018struct s\eu2019 has no member named ..."
 \&            }
 .Ve
@@ -5153,6 +5189,10 @@ For example, the intraprocedural example shown for
 \&                }
 \&            ]
 .Ve
+.Sp
+Diagnostics have a boolean attribute \f(CW\*(C`escape\-source\*(C'\fR, hinting whether
+non-ASCII bytes should be escaped when printing the pertinent lines of
+source code (\f(CW\*(C`true\*(C'\fR for diagnostics involving source encoding issues).
 .RE
 .SS "Options to Request or Suppress Warnings"
 .IX Subsection "Options to Request or Suppress Warnings"
@@ -17968,7 +18008,7 @@ performance of the code.  Permissible values for this option are:
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
 \&\fBcortex\-a75.cortex\-a55\fR, \fBcortex\-a76.cortex\-a55\fR,
 \&\fBcortex\-r82\fR, \fBcortex\-x1\fR, \fBcortex\-x2\fR,
-\&\fBcortex\-a510\fR, \fBcortex\-a710\fR, \fBnative\fR.
+\&\fBcortex\-a510\fR, \fBcortex\-a710\fR, \fBampere1\fR, \fBnative\fR.
 .Sp
 The values \fBcortex\-a57.cortex\-a53\fR, \fBcortex\-a72.cortex\-a53\fR,
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
