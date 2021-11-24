@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "ELFEDIT 1"
-.TH ELFEDIT 1 "2021-11-04" "binutils-2.37.50" "GNU Development Tools"
+.TH ELFEDIT 1 "2021-11-23" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -145,9 +145,11 @@ elfedit \- update ELF header and program property of ELF files
 elfedit [\fB\-\-input\-mach=\fR\fImachine\fR]
         [\fB\-\-input\-type=\fR\fItype\fR]
         [\fB\-\-input\-osabi=\fR\fIosabi\fR]
+        [\fB\-\-input\-abiversion=\fR\fIversion\fR]
         \fB\-\-output\-mach=\fR\fImachine\fR
         \fB\-\-output\-type=\fR\fItype\fR
         \fB\-\-output\-osabi=\fR\fIosabi\fR
+        \fB\-\-output\-abiversion=\fR\fIversion\fR
         \fB\-\-enable\-x86\-feature=\fR\fIfeature\fR
         \fB\-\-disable\-x86\-feature=\fR\fIfeature\fR
         [\fB\-v\fR|\fB\-\-version\fR]
@@ -167,6 +169,7 @@ should be updated.
 The long and short forms of options, shown here as alternatives, are
 equivalent. At least one of the \fB\-\-output\-mach\fR,
 \&\fB\-\-output\-type\fR, \fB\-\-output\-osabi\fR,
+\&\fB\-\-output\-abiversion\fR,
 \&\fB\-\-enable\-x86\-feature\fR and \fB\-\-disable\-x86\-feature\fR
 options must be given.
 .IP "\fB\-\-input\-mach=\fR\fImachine\fR" 4
@@ -205,6 +208,15 @@ The supported \s-1ELF\s0 OSABIs are, \fInone\fR, \fI\s-1HPUX\s0\fR, \fINetBSD\fR
 .IX Item "--output-osabi=osabi"
 Change the \s-1ELF OSABI\s0 in the \s-1ELF\s0 header to \fIosabi\fR.  The
 supported \s-1ELF OSABI\s0 are the same as \fB\-\-input\-osabi\fR.
+.IP "\fB\-\-input\-abiversion=\fR\fIversion\fR" 4
+.IX Item "--input-abiversion=version"
+Set the matching input \s-1ELF\s0 file \s-1ABIVERSION\s0 to \fIversion\fR.
+\&\fIversion\fR must be between 0 and 255.  If \fB\-\-input\-abiversion\fR
+isn't specified, it will match any \s-1ELF\s0 ABIVERSIONs.
+.IP "\fB\-\-output\-abiversion=\fR\fIversion\fR" 4
+.IX Item "--output-abiversion=version"
+Change the \s-1ELF ABIVERSION\s0 in the \s-1ELF\s0 header to \fIversion\fR.
+\&\fIversion\fR must be between 0 and 255.
 .IP "\fB\-\-enable\-x86\-feature=\fR\fIfeature\fR" 4
 .IX Item "--enable-x86-feature=feature"
 Set the \fIfeature\fR bit in program property in \fIexec\fR or \fIdyn\fR

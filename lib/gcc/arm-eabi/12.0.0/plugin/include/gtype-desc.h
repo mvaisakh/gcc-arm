@@ -529,10 +529,10 @@ extern void gt_ggc_mx_fast_function_summary_modref_summary_lto__va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_modref_tree_tree_ (X);\
   } while (0)
 extern void gt_ggc_mx_modref_tree_tree_ (void *);
-#define gt_ggc_m_35hash_map_xint_hash_t_nowarn_spec_t_(X) do { \
-  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_map_xint_hash_t_nowarn_spec_t_ (X);\
+#define gt_ggc_m_37hash_map_location_hash_nowarn_spec_t_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_map_location_hash_nowarn_spec_t_ (X);\
   } while (0)
-extern void gt_ggc_mx_hash_map_xint_hash_t_nowarn_spec_t_ (void *);
+extern void gt_ggc_mx_hash_map_location_hash_nowarn_spec_t_ (void *);
 #define gt_ggc_m_11dw_cfi_node(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_dw_cfi_node (X);\
   } while (0)
@@ -1974,10 +1974,10 @@ extern void gt_pch_nx_fast_function_summary_modref_summary_lto__va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_modref_tree_tree_ (X);\
   } while (0)
 extern void gt_pch_nx_modref_tree_tree_ (void *);
-#define gt_pch_n_35hash_map_xint_hash_t_nowarn_spec_t_(X) do { \
-  if ((intptr_t)(X) != 0) gt_pch_nx_hash_map_xint_hash_t_nowarn_spec_t_ (X);\
+#define gt_pch_n_37hash_map_location_hash_nowarn_spec_t_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_map_location_hash_nowarn_spec_t_ (X);\
   } while (0)
-extern void gt_pch_nx_hash_map_xint_hash_t_nowarn_spec_t_ (void *);
+extern void gt_pch_nx_hash_map_location_hash_nowarn_spec_t_ (void *);
 #define gt_pch_n_11dw_cfi_node(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_dw_cfi_node (X);\
   } while (0)
@@ -3253,7 +3253,7 @@ extern void gt_pch_p_48fast_function_summary_modref_summary_lto__va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17modref_tree_tree_
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_35hash_map_xint_hash_t_nowarn_spec_t_
+extern void gt_pch_p_37hash_map_location_hash_nowarn_spec_t_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11dw_cfi_node
     (void *, void *, gt_pointer_operator, void *);

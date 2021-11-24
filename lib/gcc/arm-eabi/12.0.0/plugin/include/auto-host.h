@@ -2227,6 +2227,12 @@
 #endif
 
 
+/* Define to 1 if ld64 supports '-platform_version'. */
+#ifndef USED_FOR_TARGET
+/* #undef LD64_HAS_PLATFORM_VERSION */
+#endif
+
+
 /* Define to ld64 version. */
 #ifndef USED_FOR_TARGET
 /* #undef LD64_VERSION */

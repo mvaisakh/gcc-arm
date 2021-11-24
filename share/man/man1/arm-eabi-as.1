@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "AS 1"
-.TH AS 1 "2021-11-04" "binutils-2.37.50" "GNU Development Tools"
+.TH AS 1 "2021-11-23" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -161,6 +161,7 @@ as [\fB\-a\fR[\fBcdghlns\fR][=\fIfile\fR]] [\fB\-\-alternate\fR] [\fB\-D\fR]
  [\fB\-\-sectname\-subst\fR] [\fB\-\-size\-check=[error|warning]\fR]
  [\fB\-\-elf\-stt\-common=[no|yes]\fR]
  [\fB\-\-generate\-missing\-build\-notes=[no|yes]\fR]
+ [\fB\-\-multibyte\-handling=[allow|warn|warn\-sym\-only]\fR]
  [\fB\-\-target\-help\fR] [\fItarget-options\fR]
  [\fB\-\-\fR|\fIfiles\fR ...]
 .SH "TARGET"
@@ -749,6 +750,22 @@ Set the maximum width of an input source line, as displayed in a listing, to
 .IX Item "--listing-cont-lines=number"
 Set the maximum number of lines printed in a listing for a single line of input
 to \fInumber\fR + 1.
+.IP "\fB\-\-multibyte\-handling=allow\fR" 4
+.IX Item "--multibyte-handling=allow"
+.PD 0
+.IP "\fB\-\-multibyte\-handling=warn\fR" 4
+.IX Item "--multibyte-handling=warn"
+.IP "\fB\-\-multibyte\-handling=warn\-sym\-only\fR" 4
+.IX Item "--multibyte-handling=warn-sym-only"
+.PD
+Controls how the assembler handles multibyte characters in the input.  The
+default (which can be restored by using the \fBallow\fR argument) is to
+allow such characters without complaint.  Using the \fBwarn\fR argument will
+make the assembler generate a warning message whenever any multibyte character
+is encountered.  Using the \fBwarn-sym-only\fR argument will only cause a
+warning to be generated when a symbol is defined with a name that contains
+multibyte characters.  (References to undefined symbols will not generate a
+warning).
 .IP "\fB\-\-no\-pad\-sections\fR" 4
 .IX Item "--no-pad-sections"
 Stop the assembler for padding the ends of output sections to the alignment

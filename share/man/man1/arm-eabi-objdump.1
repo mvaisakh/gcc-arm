@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJDUMP 1"
-.TH OBJDUMP 1 "2021-11-04" "binutils-2.37.50" "GNU Development Tools"
+.TH OBJDUMP 1 "2021-11-23" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -193,6 +193,7 @@ objdump [\fB\-a\fR|\fB\-\-archive\-headers\fR]
         [\fB\-\-prefix\-strip=\fR\fIlevel\fR]
         [\fB\-\-insn\-width=\fR\fIwidth\fR]
         [\fB\-\-visualize\-jumps[=color|=extended\-color|=off]\fR
+        [\fB\-U\fR \fImethod\fR] [\fB\-\-unicode=\fR\fImethod\fR]
         [\fB\-V\fR|\fB\-\-version\fR]
         [\fB\-H\fR|\fB\-\-help\fR]
         \fIobjfile\fR...
@@ -1303,6 +1304,24 @@ otherwise it's put into parentheses.
 When displaying symbols include those which the target considers to be
 special in some way and which would not normally be of interest to the
 user.
+.IP "\fB\-U\fR \fI[d|i|l|e|x|h]\fR" 4
+.IX Item "-U [d|i|l|e|x|h]"
+.PD 0
+.IP "\fB\-\-unicode=\fR\fI[default|invalid|locale|escape|hex|highlight]\fR" 4
+.IX Item "--unicode=[default|invalid|locale|escape|hex|highlight]"
+.PD
+Controls the display of \s-1UTF\-8\s0 encoded mulibyte characters in strings.
+The default (\fB\-\-unicode=default\fR) is to give them no special
+treatment.  The \fB\-\-unicode=locale\fR option displays the sequence
+in the current locale, which may or may not support them.  The options
+\&\fB\-\-unicode=hex\fR and \fB\-\-unicode=invalid\fR display them as
+hex byte sequences enclosed by either angle brackets or curly braces.
+.Sp
+The \fB\-\-unicode=escape\fR option displays them as escape sequences
+(\fI\euxxxx\fR) and the \fB\-\-unicode=highlight\fR option displays
+them as escape sequences highlighted in red (if supported by the
+output device).  The colouring is intended to draw attention to the
+presence of unicode sequences where they might not be expected.
 .IP "\fB\-V\fR" 4
 .IX Item "-V"
 .PD 0

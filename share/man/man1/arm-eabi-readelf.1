@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "READELF 1"
-.TH READELF 1 "2021-11-04" "binutils-2.37.50" "GNU Development Tools"
+.TH READELF 1 "2021-11-23" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -155,6 +155,7 @@ readelf [\fB\-a\fR|\fB\-\-all\fR]
         [\fB\-\-demangle\fR\fI=style\fR|\fB\-\-no\-demangle\fR]
         [\fB\-\-quiet\fR]
         [\fB\-\-recurse\-limit\fR|\fB\-\-no\-recurse\-limit\fR]
+        [\fB\-U\fR \fImethod\fR|\fB\-\-unicode=\fR\fImethod\fR]
         [\fB\-n\fR|\fB\-\-notes\fR]
         [\fB\-r\fR|\fB\-\-relocs\fR]
         [\fB\-u\fR|\fB\-\-unwind\fR]
@@ -333,6 +334,31 @@ The default is for this limit to be enabled, but disabling it may be
 necessary in order to demangle truly complicated names.  Note however
 that if the recursion limit is disabled then stack exhaustion is
 possible and any bug reports about such an event will be rejected.
+.IP "\fB\-U\fR \fI[d|i|l|e|x|h]\fR" 4
+.IX Item "-U [d|i|l|e|x|h]"
+.PD 0
+.IP "\fB\-\-unicode=[default|invalid|locale|escape|hex|highlight]\fR" 4
+.IX Item "--unicode=[default|invalid|locale|escape|hex|highlight]"
+.PD
+Controls the display of non-ASCII characters in identifier names.
+The default (\fB\-\-unicode=locale\fR or \fB\-\-unicode=default\fR) is
+to treat them as multibyte characters and display them in the current
+locale.  All other versions of this option treat the bytes as \s-1UTF\-8\s0
+encoded values and attempt to interpret them.  If they cannot be
+interpreted or if the \fB\-\-unicode=invalid\fR option is used then
+they are displayed as a sequence of hex bytes, encloses in curly
+parethesis characters.
+.Sp
+Using the \fB\-\-unicode=escape\fR option will display the characters
+as as unicode escape sequences (\fI\euxxxx\fR).  Using the
+\&\fB\-\-unicode=hex\fR will display the characters as hex byte
+sequences enclosed between angle brackets.
+.Sp
+Using the \fB\-\-unicode=highlight\fR will display the characters as 
+unicode escape sequences but it will also highlighted them in red,
+assuming that colouring is supported by the output device.  The
+colouring is intended to draw attention to the presence of unicode
+sequences when they might not be expected.
 .IP "\fB\-e\fR" 4
 .IX Item "-e"
 .PD 0

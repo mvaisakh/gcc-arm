@@ -57,6 +57,7 @@ enum isa_feature {
   isa_bit_quirk_no_asmcpu,
   isa_bit_armv7,
   isa_bit_armv8,
+  isa_bit_armv9,
   isa_bit_i8mm,
   isa_bit_fp_dbl,
   isa_bit_armv5te,
@@ -282,6 +283,33 @@ enum isa_feature {
 
 #define ISA_FP_DBL \
   isa_bit_fp_dbl
+
+#define ISA_ARMv9a \
+  isa_bit_be8, \
+  isa_bit_sb, \
+  isa_bit_adiv, \
+  isa_bit_lpae, \
+  isa_bit_armv8_1, \
+  isa_bit_armv8_2, \
+  isa_bit_armv8_3, \
+  isa_bit_armv8_4, \
+  isa_bit_armv8_5, \
+  isa_bit_tdiv, \
+  isa_bit_predres, \
+  isa_bit_notm, \
+  isa_bit_crc32, \
+  isa_bit_armv4, \
+  isa_bit_armv6, \
+  isa_bit_armv7, \
+  isa_bit_armv8, \
+  isa_bit_armv9, \
+  isa_bit_mp, \
+  isa_bit_thumb2, \
+  isa_bit_armv5t, \
+  isa_bit_armv5te, \
+  isa_bit_thumb, \
+  isa_bit_armv6k, \
+  isa_bit_sec
 
 #define ISA_ARMv8_3a \
   isa_bit_armv5te, \

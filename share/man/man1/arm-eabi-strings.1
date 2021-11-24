@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "STRINGS 1"
-.TH STRINGS 1 "2021-11-04" "binutils-2.37.50" "GNU Development Tools"
+.TH STRINGS 1 "2021-11-23" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -146,6 +146,7 @@ strings [\fB\-afovV\fR] [\fB\-\fR\fImin-len\fR]
         [\fB\-n\fR \fImin-len\fR] [\fB\-\-bytes=\fR\fImin-len\fR]
         [\fB\-t\fR \fIradix\fR] [\fB\-\-radix=\fR\fIradix\fR]
         [\fB\-e\fR \fIencoding\fR] [\fB\-\-encoding=\fR\fIencoding\fR]
+        [\fB\-U\fR \fImethod\fR] [\fB\-\-unicode=\fR\fImethod\fR]
         [\fB\-\fR] [\fB\-\-all\fR] [\fB\-\-print\-file\-name\fR]
         [\fB\-T\fR \fIbfdname\fR] [\fB\-\-target=\fR\fIbfdname\fR]
         [\fB\-w\fR] [\fB\-\-include\-all\-whitespace\fR]
@@ -250,6 +251,31 @@ single\-8\-bit\-byte characters, \fBb\fR = 16\-bit bigendian, \fBl\fR =
 16\-bit littleendian, \fBB\fR = 32\-bit bigendian, \fBL\fR = 32\-bit
 littleendian.  Useful for finding wide character strings. (\fBl\fR
 and \fBb\fR apply to, for example, Unicode \s-1UTF\-16/UCS\-2\s0 encodings).
+.IP "\fB\-U\fR \fI[d|i|l|e|x|h]\fR" 4
+.IX Item "-U [d|i|l|e|x|h]"
+.PD 0
+.IP "\fB\-\-unicode=\fR\fI[default|invalid|locale|escape|hex|highlight]\fR" 4
+.IX Item "--unicode=[default|invalid|locale|escape|hex|highlight]"
+.PD
+Controls the display of \s-1UTF\-8\s0 encoded mulibyte characters in strings.
+The default (\fB\-\-unicode=default\fR) is to give them no special
+treatment, and instead rely upon the setting of the
+\&\fB\-\-encoding\fR option.  The other values for this option
+automatically enable \fB\-\-encoding=S\fR.
+.Sp
+The \fB\-\-unicode=invalid\fR option treats them as non-graphic
+characters and hence not part of a valid string.  All the remaining
+options treat them as valid string characters.
+.Sp
+The \fB\-\-unicode=locale\fR option displays them in the current
+locale, which may or may not support \s-1UTF\-8\s0 encoding.  The
+\&\fB\-\-unicode=hex\fR option displays them as hex byte sequences
+enclosed between \fI<>\fR characters.  The \fB\-\-unicode=escape\fR
+option displays them as escape sequences (\fI\euxxxx\fR) and the
+\&\fB\-\-unicode=highlight\fR option displays them as escape sequences
+highlighted in red (if supported by the output device).  The colouring
+is intended to draw attention to the presence of unicode sequences
+where they might not be expected.
 .IP "\fB\-T\fR \fIbfdname\fR" 4
 .IX Item "-T bfdname"
 .PD 0
