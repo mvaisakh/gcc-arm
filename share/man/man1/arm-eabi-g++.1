@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-11-23" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-11-25" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -383,6 +383,7 @@ in the following sections.
 \&\-Wignored\-qualifiers  \-Wno\-incompatible\-pointer\-types 
 \&\-Wimplicit  \-Wimplicit\-fallthrough  \-Wimplicit\-fallthrough=\fR\fIn\fR 
 \&\fB\-Wno\-implicit\-function\-declaration  \-Wno\-implicit\-int 
+\&\-Winfinite\-recursion 
 \&\-Winit\-self  \-Winline  \-Wno\-int\-conversion  \-Wint\-in\-bool\-context 
 \&\-Wno\-int\-to\-pointer\-cast  \-Wno\-invalid\-memory\-model 
 \&\-Winvalid\-pch  \-Wjump\-misses\-init  \-Wlarger\-than=\fR\fIbyte-size\fR 
@@ -5879,6 +5880,12 @@ undefined behavior due to dereferencing a null pointer.  This option
 is only active when \fB\-fdelete\-null\-pointer\-checks\fR is active,
 which is enabled by optimizations in most targets.  The precision of
 the warnings depends on the optimization options used.
+.IP "\fB\-Winfinite\-recursion\fR" 4
+.IX Item "-Winfinite-recursion"
+Warn about infinitely recursive calls.  The warning is effective at all
+optimization levels but requires optimization in order to detect infinite
+recursion in calls between two or more functions.
+\&\fB\-Winfinite\-recursion\fR is included in \fB\-Wall\fR.
 .IP "\fB\-Winit\-self\fR (C, \*(C+, Objective-C and Objective\-\*(C+ only)" 4
 .IX Item "-Winit-self (C, , Objective-C and Objective- only)"
 Warn about uninitialized variables that are initialized with themselves.
