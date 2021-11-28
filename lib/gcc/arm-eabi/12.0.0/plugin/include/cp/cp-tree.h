@@ -703,6 +703,7 @@ struct GTY(()) template_parm_index {
 struct GTY(()) ptrmem_cst {
   struct tree_common common;
   tree member;
+  location_t locus;
 };
 typedef struct ptrmem_cst * ptrmem_cst_t;
 
@@ -1007,7 +1008,9 @@ public:
      (bootstrap/91828).  */
   tree& operator[] (ptrdiff_t i) const { return (*v)[i]; }
 
-  ~releasing_vec() { release_tree_vector (v); }
+  void release () { release_tree_vector (v); v = NULL; }
+
+  ~releasing_vec () { release_tree_vector (v); }
 private:
   vec_t *v;
 };
@@ -4724,6 +4727,11 @@ more_aggr_init_expr_args_p (const aggr_init_expr_arg_iterator *iter)
 #define PTRMEM_CST_MEMBER(NODE) \
   (((ptrmem_cst_t)PTRMEM_CST_CHECK (NODE))->member)
 
+/* For a pointer-to-member constant `X::Y' this is a location where
+   the address of the member has been taken.  */
+#define PTRMEM_CST_LOCATION(NODE) \
+  (((ptrmem_cst_t)PTRMEM_CST_CHECK (NODE))->locus)
+
 /* The expression in question for a TYPEOF_TYPE.  */
 #define TYPEOF_TYPE_EXPR(NODE) (TYPE_VALUES_RAW (TYPEOF_TYPE_CHECK (NODE)))
 
@@ -6471,6 +6479,9 @@ inline tree build_new_op (const op_location_t &loc, enum tree_code code,
 }
 extern tree build_op_call			(tree, vec<tree, va_gc> **,
 						 tsubst_flags_t);
+extern tree build_op_subscript			(const op_location_t &, tree,
+						 vec<tree, va_gc> **, tree *,
+						 tsubst_flags_t);
 extern bool aligned_allocation_fn_p		(tree);
 extern tree destroying_delete_p			(tree);
 extern bool usual_deallocation_fn_p		(tree);
@@ -6813,7 +6824,8 @@ extern void maybe_make_one_only			(tree);
 extern bool vague_linkage_p			(tree);
 extern void grokclassfn				(tree, tree,
 						 enum overload_flags);
-extern tree grok_array_decl			(location_t, tree, tree, bool);
+extern tree grok_array_decl			(location_t, tree, tree,
+						 vec<tree, va_gc> **, tsubst_flags_t);
 extern tree delete_sanity			(location_t, tree, tree, bool,
 						 int, tsubst_flags_t);
 extern tree check_classfn			(tree, tree, tree);
@@ -7711,6 +7723,8 @@ extern tree build_min_nt_loc			(location_t, enum tree_code,
 						 ...);
 extern tree build_min_non_dep			(enum tree_code, tree, ...);
 extern tree build_min_non_dep_op_overload	(enum tree_code, tree, tree, ...);
+extern tree build_min_non_dep_op_overload	(tree, tree, tree,
+						 vec<tree, va_gc> *);
 extern tree build_min_nt_call_vec (tree, vec<tree, va_gc> *);
 extern tree build_min_non_dep_call_vec		(tree, tree, vec<tree, va_gc> *);
 extern vec<tree, va_gc>* vec_copy_and_insert    (vec<tree, va_gc>*, tree, unsigned);

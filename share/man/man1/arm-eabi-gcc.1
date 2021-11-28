@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-11-25" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-11-28" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -3438,17 +3438,25 @@ about \s-1ABI\s0 tags.
 .IP "\fB\-Wcomma\-subscript\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wcomma-subscript ( and Objective- only)"
 Warn about uses of a comma expression within a subscripting expression.
-This usage was deprecated in \*(C+20.  However, a comma expression wrapped
-in \f(CW\*(C`( )\*(C'\fR is not deprecated.  Example:
+This usage was deprecated in \*(C+20 and is going to be removed in \*(C+23.
+However, a comma expression wrapped in \f(CW\*(C`( )\*(C'\fR is not deprecated.  Example:
 .Sp
 .Vb 4
 \&        void f(int *a, int b, int c) {
-\&            a[b,c];     // deprecated
+\&            a[b,c];     // deprecated in C++20, invalid in C++23
 \&            a[(b,c)];   // OK
 \&        }
 .Ve
 .Sp
-Enabled by default with \fB\-std=c++20\fR.
+In \*(C+23 it is valid to have comma separated expressions in a subscript
+when an overloaded subscript operator is found and supports the right
+number and types of arguments.  G++ will accept the formerly valid syntax
+for code that is not valid in \*(C+23 but used to be valid but deprecated
+in \*(C+20 with a pedantic warning that can be disabled with
+\&\fB\-Wno\-comma\-subscript\fR.
+.Sp
+Enabled by default with \fB\-std=c++20\fR unless \fB\-Wno\-deprecated\fR,
+and with \fB\-std=c++23\fR regardless of \fB\-Wno\-deprecated\fR.
 .IP "\fB\-Wctad\-maybe\-unsupported\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wctad-maybe-unsupported ( and Objective- only)"
 Warn when performing class template argument deduction (\s-1CTAD\s0) on a type with
@@ -11172,8 +11180,8 @@ Initialize automatic variables with either a pattern or with zeroes to increase
 the security and predictability of a program by preventing uninitialized memory
 disclosure and use.
 \&\s-1GCC\s0 still considers an automatic variable that doesn't have an explicit
-initializer as uninitialized, \-Wuninitialized will still report warning messages
-on such automatic variables.
+initializer as uninitialized, \fB\-Wuninitialized\fR will still report
+warning messages on such automatic variables.
 With this option, \s-1GCC\s0 will also initialize any padding of automatic variables
 that have structure or union types to zeroes.
 .Sp
