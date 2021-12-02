@@ -180,6 +180,28 @@ GNAT
      is clean by verifying that 'gnatls -v' lists only one explicit path
      in each section.
 
+GDC
+
+     In order to build GDC, the D compiler, you need a working GDC
+     compiler (GCC version 9.1 or later), as the D front end is written
+     in D.
+
+     Versions of GDC prior to 12 can be built with an ISO C++11
+     compiler, which can then be installed and used to bootstrap newer
+     versions of the D front end.
+
+     It is strongly recommended to use an older version of GDC to build
+     GDC. More recent versions of GDC than the version built are not
+     guaranteed to work and will often fail during the build with
+     compilation errors relating to deprecations or removed features.
+
+     Note that 'configure' does not test whether the GDC installation
+     works and has a sufficiently recent version.  Though the
+     implementation of the D front end does not make use of any
+     GDC-specific extensions, or novel features of the D language, if
+     too old a GDC version is installed and '--enable-languages=d' is
+     used, the build will fail.
+
 A "working" POSIX compatible shell, or GNU bash
 
      Necessary when running 'configure' because some '/bin/sh' shells
@@ -2655,7 +2677,12 @@ filesystems.
 
 *note GNAT-prerequisite::.
 
-5.5 Building with profile feedback
+5.5 Building the D compiler
+===========================
+
+*note GDC-prerequisite::.
+
+5.6 Building with profile feedback
 ==================================
 
 It is possible to use profile feedback to optimize the compiler itself.
@@ -4812,102 +4839,103 @@ Node: Top1696
 Node: Installing GCC2201
 Node: Prerequisites3835
 Ref: GNAT-prerequisite5901
-Node: Downloading the source15676
-Node: Configuration17347
-Ref: with-gnu-as35634
-Ref: with-as36529
-Ref: with-gnu-ld37938
-Ref: WithAixSoname62645
-Ref: AixLdCommand63306
-Node: Building105471
-Node: Testing121594
-Node: Final install129423
-Node: Binaries134723
-Node: Specific135830
-Ref: aarch64-x-x136364
-Ref: alpha-x-x138384
-Ref: amd64-x-solaris2138598
-Ref: amdgcn-x-amdhsa138680
-Ref: arc-x-elf32139206
-Ref: arc-linux-uclibc139382
-Ref: arm-x-eabi139523
-Ref: avr139776
-Ref: bfin140357
-Ref: cr16140620
-Ref: cris141036
-Ref: dos141734
-Ref: epiphany-x-elf142057
-Ref: x-x-freebsd142162
-Ref: ft32-x-elf143962
-Ref: h8300-hms144060
-Ref: hppa-hp-hpux144412
-Ref: hppa-hp-hpux10146784
-Ref: hppa-hp-hpux11147197
-Ref: x-x-linux-gnu152599
-Ref: ix86-x-linux152922
-Ref: ix86-x-solaris2153235
-Ref: ia64-x-linux154311
-Ref: ia64-x-hpux154558
-Ref: x-ibm-aix155113
-Ref: TransferAixShobj158775
-Ref: iq2000-x-elf162585
-Ref: lm32-x-elf162725
-Ref: lm32-x-uclinux162829
-Ref: m32c-x-elf162957
-Ref: m32r-x-elf163059
-Ref: m68k-x-x163161
-Ref: m68k-x-uclinux164199
-Ref: microblaze-x-elf164444
-Ref: mips-x-x164563
-Ref: moxie-x-elf166473
-Ref: msp430-x-elf166520
-Ref: nds32le-x-elf167077
-Ref: nds32be-x-elf167149
-Ref: nvptx-x-none167218
-Ref: or1k-x-elf167781
-Ref: or1k-x-linux167912
-Ref: powerpc-x-x167993
-Ref: powerpc-x-darwin168184
-Ref: powerpc-x-elf168678
-Ref: powerpc-x-linux-gnu168763
-Ref: powerpc-x-netbsd168858
-Ref: powerpc-x-eabisim168946
-Ref: powerpc-x-eabi169072
-Ref: powerpcle-x-elf169148
-Ref: powerpcle-x-eabisim169240
-Ref: powerpcle-x-eabi169373
-Ref: rl78-x-elf169456
-Ref: riscv32-x-elf169562
-Ref: riscv32-x-linux169751
-Ref: riscv64-x-elf169908
-Ref: riscv64-x-linux170097
-Ref: rx-x-elf170254
-Ref: s390-x-linux170300
-Ref: s390x-x-linux170372
-Ref: s390x-ibm-tpf170459
-Ref: x-x-solaris2170590
-Ref: sparc-x-x173697
-Ref: sparc-sun-solaris2174199
-Ref: sparc-x-linux175342
-Ref: sparc64-x-solaris2175373
-Ref: sparcv9-x-solaris2176091
-Ref: c6x-x-x176178
-Ref: tilegx-*-linux176270
-Ref: tilegxbe-*-linux176412
-Ref: tilepro-*-linux176555
-Ref: visium-x-elf176676
-Ref: x-x-vxworks176784
-Ref: x86-64-x-x178307
-Ref: x86-64-x-solaris2178635
-Ref: xtensa-x-elf179285
-Ref: xtensa-x-linux179956
-Ref: windows180297
-Ref: x-x-cygwin182087
-Ref: x-x-mingw32182640
-Ref: older183022
-Ref: elf185139
-Node: GNU Free Documentation License185397
-Node: Concept Index210530
+Ref: GDC-prerequisite7298
+Node: Downloading the source16649
+Node: Configuration18320
+Ref: with-gnu-as36607
+Ref: with-as37502
+Ref: with-gnu-ld38911
+Ref: WithAixSoname63618
+Ref: AixLdCommand64279
+Node: Building106444
+Node: Testing122651
+Node: Final install130480
+Node: Binaries135780
+Node: Specific136887
+Ref: aarch64-x-x137421
+Ref: alpha-x-x139441
+Ref: amd64-x-solaris2139655
+Ref: amdgcn-x-amdhsa139737
+Ref: arc-x-elf32140263
+Ref: arc-linux-uclibc140439
+Ref: arm-x-eabi140580
+Ref: avr140833
+Ref: bfin141414
+Ref: cr16141677
+Ref: cris142093
+Ref: dos142791
+Ref: epiphany-x-elf143114
+Ref: x-x-freebsd143219
+Ref: ft32-x-elf145019
+Ref: h8300-hms145117
+Ref: hppa-hp-hpux145469
+Ref: hppa-hp-hpux10147841
+Ref: hppa-hp-hpux11148254
+Ref: x-x-linux-gnu153656
+Ref: ix86-x-linux153979
+Ref: ix86-x-solaris2154292
+Ref: ia64-x-linux155368
+Ref: ia64-x-hpux155615
+Ref: x-ibm-aix156170
+Ref: TransferAixShobj159832
+Ref: iq2000-x-elf163642
+Ref: lm32-x-elf163782
+Ref: lm32-x-uclinux163886
+Ref: m32c-x-elf164014
+Ref: m32r-x-elf164116
+Ref: m68k-x-x164218
+Ref: m68k-x-uclinux165256
+Ref: microblaze-x-elf165501
+Ref: mips-x-x165620
+Ref: moxie-x-elf167530
+Ref: msp430-x-elf167577
+Ref: nds32le-x-elf168134
+Ref: nds32be-x-elf168206
+Ref: nvptx-x-none168275
+Ref: or1k-x-elf168838
+Ref: or1k-x-linux168969
+Ref: powerpc-x-x169050
+Ref: powerpc-x-darwin169241
+Ref: powerpc-x-elf169735
+Ref: powerpc-x-linux-gnu169820
+Ref: powerpc-x-netbsd169915
+Ref: powerpc-x-eabisim170003
+Ref: powerpc-x-eabi170129
+Ref: powerpcle-x-elf170205
+Ref: powerpcle-x-eabisim170297
+Ref: powerpcle-x-eabi170430
+Ref: rl78-x-elf170513
+Ref: riscv32-x-elf170619
+Ref: riscv32-x-linux170808
+Ref: riscv64-x-elf170965
+Ref: riscv64-x-linux171154
+Ref: rx-x-elf171311
+Ref: s390-x-linux171357
+Ref: s390x-x-linux171429
+Ref: s390x-ibm-tpf171516
+Ref: x-x-solaris2171647
+Ref: sparc-x-x174754
+Ref: sparc-sun-solaris2175256
+Ref: sparc-x-linux176399
+Ref: sparc64-x-solaris2176430
+Ref: sparcv9-x-solaris2177148
+Ref: c6x-x-x177235
+Ref: tilegx-*-linux177327
+Ref: tilegxbe-*-linux177469
+Ref: tilepro-*-linux177612
+Ref: visium-x-elf177733
+Ref: x-x-vxworks177841
+Ref: x86-64-x-x179364
+Ref: x86-64-x-solaris2179692
+Ref: xtensa-x-elf180342
+Ref: xtensa-x-linux181013
+Ref: windows181354
+Ref: x-x-cygwin183144
+Ref: x-x-mingw32183697
+Ref: older184079
+Ref: elf186196
+Node: GNU Free Documentation License186454
+Node: Concept Index211587
 
 End Tag Table
 

@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "STRINGS 1"
-.TH STRINGS 1 "2021-11-28" "binutils-2.37.50" "GNU Development Tools"
+.TH STRINGS 1 "2021-12-02" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -222,8 +222,13 @@ Print a summary of the program usage on the standard output and exit.
 .IP "\fB\-\-bytes=\fR\fImin-len\fR" 4
 .IX Item "--bytes=min-len"
 .PD
-Print sequences of characters that are at least \fImin-len\fR characters
-long, instead of the default 4.
+Print sequences of displayable characters that are at least
+\&\fImin-len\fR characters long.  If not specified a default minimum
+length of 4 is used.  The distinction between displayable and
+non-displayable characters depends upon the setting of the 
+\&\fB\-e\fR and \fB\-U\fR options.  Sequences are always terminated
+at control characters such as new-line and carriage-return, but not
+the tab character.
 .IP "\fB\-o\fR" 4
 .IX Item "-o"
 Like \fB\-t o\fR.  Some other versions of \fBstrings\fR have \fB\-o\fR
