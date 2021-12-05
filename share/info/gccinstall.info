@@ -3236,15 +3236,11 @@ Adapteva Epiphany.  This configuration is intended for embedded systems.
 *-*-freebsd*
 ============
 
-Support for FreeBSD 1 was discontinued in GCC 3.2.  Support for FreeBSD
-2 (and any mutant a.out variants of FreeBSD 3) was discontinued in GCC
-4.0.
-
-   In order to better utilize FreeBSD base system functionality and
-match the configuration of the system compiler, GCC 4.5 and above as
-well as GCC 4.4 past 2010-06-20 leverage SSP support in libc (which is
-present on FreeBSD 7 or later) and the use of '__cxa_atexit' by default
-(on FreeBSD 6 or later).  The use of 'dl_iterate_phdr' inside
+In order to better utilize FreeBSD base system functionality and match
+the configuration of the system compiler, GCC 4.5 and above as well as
+GCC 4.4 past 2010-06-20 leverage SSP support in libc (which is present
+on FreeBSD 7 or later) and the use of '__cxa_atexit' by default (on
+FreeBSD 6 or later).  The use of 'dl_iterate_phdr' inside
 'libgcc_s.so.1' and boehm-gc (on FreeBSD 7 or later) is enabled by GCC
 4.5 and above.
 
@@ -4866,76 +4862,76 @@ Ref: cris142093
 Ref: dos142791
 Ref: epiphany-x-elf143114
 Ref: x-x-freebsd143219
-Ref: ft32-x-elf145019
-Ref: h8300-hms145117
-Ref: hppa-hp-hpux145469
-Ref: hppa-hp-hpux10147841
-Ref: hppa-hp-hpux11148254
-Ref: x-x-linux-gnu153656
-Ref: ix86-x-linux153979
-Ref: ix86-x-solaris2154292
-Ref: ia64-x-linux155368
-Ref: ia64-x-hpux155615
-Ref: x-ibm-aix156170
-Ref: TransferAixShobj159832
-Ref: iq2000-x-elf163642
-Ref: lm32-x-elf163782
-Ref: lm32-x-uclinux163886
-Ref: m32c-x-elf164014
-Ref: m32r-x-elf164116
-Ref: m68k-x-x164218
-Ref: m68k-x-uclinux165256
-Ref: microblaze-x-elf165501
-Ref: mips-x-x165620
-Ref: moxie-x-elf167530
-Ref: msp430-x-elf167577
-Ref: nds32le-x-elf168134
-Ref: nds32be-x-elf168206
-Ref: nvptx-x-none168275
-Ref: or1k-x-elf168838
-Ref: or1k-x-linux168969
-Ref: powerpc-x-x169050
-Ref: powerpc-x-darwin169241
-Ref: powerpc-x-elf169735
-Ref: powerpc-x-linux-gnu169820
-Ref: powerpc-x-netbsd169915
-Ref: powerpc-x-eabisim170003
-Ref: powerpc-x-eabi170129
-Ref: powerpcle-x-elf170205
-Ref: powerpcle-x-eabisim170297
-Ref: powerpcle-x-eabi170430
-Ref: rl78-x-elf170513
-Ref: riscv32-x-elf170619
-Ref: riscv32-x-linux170808
-Ref: riscv64-x-elf170965
-Ref: riscv64-x-linux171154
-Ref: rx-x-elf171311
-Ref: s390-x-linux171357
-Ref: s390x-x-linux171429
-Ref: s390x-ibm-tpf171516
-Ref: x-x-solaris2171647
-Ref: sparc-x-x174754
-Ref: sparc-sun-solaris2175256
-Ref: sparc-x-linux176399
-Ref: sparc64-x-solaris2176430
-Ref: sparcv9-x-solaris2177148
-Ref: c6x-x-x177235
-Ref: tilegx-*-linux177327
-Ref: tilegxbe-*-linux177469
-Ref: tilepro-*-linux177612
-Ref: visium-x-elf177733
-Ref: x-x-vxworks177841
-Ref: x86-64-x-x179364
-Ref: x86-64-x-solaris2179692
-Ref: xtensa-x-elf180342
-Ref: xtensa-x-linux181013
-Ref: windows181354
-Ref: x-x-cygwin183144
-Ref: x-x-mingw32183697
-Ref: older184079
-Ref: elf186196
-Node: GNU Free Documentation License186454
-Node: Concept Index211587
+Ref: ft32-x-elf144867
+Ref: h8300-hms144965
+Ref: hppa-hp-hpux145317
+Ref: hppa-hp-hpux10147689
+Ref: hppa-hp-hpux11148102
+Ref: x-x-linux-gnu153504
+Ref: ix86-x-linux153827
+Ref: ix86-x-solaris2154140
+Ref: ia64-x-linux155216
+Ref: ia64-x-hpux155463
+Ref: x-ibm-aix156018
+Ref: TransferAixShobj159680
+Ref: iq2000-x-elf163490
+Ref: lm32-x-elf163630
+Ref: lm32-x-uclinux163734
+Ref: m32c-x-elf163862
+Ref: m32r-x-elf163964
+Ref: m68k-x-x164066
+Ref: m68k-x-uclinux165104
+Ref: microblaze-x-elf165349
+Ref: mips-x-x165468
+Ref: moxie-x-elf167378
+Ref: msp430-x-elf167425
+Ref: nds32le-x-elf167982
+Ref: nds32be-x-elf168054
+Ref: nvptx-x-none168123
+Ref: or1k-x-elf168686
+Ref: or1k-x-linux168817
+Ref: powerpc-x-x168898
+Ref: powerpc-x-darwin169089
+Ref: powerpc-x-elf169583
+Ref: powerpc-x-linux-gnu169668
+Ref: powerpc-x-netbsd169763
+Ref: powerpc-x-eabisim169851
+Ref: powerpc-x-eabi169977
+Ref: powerpcle-x-elf170053
+Ref: powerpcle-x-eabisim170145
+Ref: powerpcle-x-eabi170278
+Ref: rl78-x-elf170361
+Ref: riscv32-x-elf170467
+Ref: riscv32-x-linux170656
+Ref: riscv64-x-elf170813
+Ref: riscv64-x-linux171002
+Ref: rx-x-elf171159
+Ref: s390-x-linux171205
+Ref: s390x-x-linux171277
+Ref: s390x-ibm-tpf171364
+Ref: x-x-solaris2171495
+Ref: sparc-x-x174602
+Ref: sparc-sun-solaris2175104
+Ref: sparc-x-linux176247
+Ref: sparc64-x-solaris2176278
+Ref: sparcv9-x-solaris2176996
+Ref: c6x-x-x177083
+Ref: tilegx-*-linux177175
+Ref: tilegxbe-*-linux177317
+Ref: tilepro-*-linux177460
+Ref: visium-x-elf177581
+Ref: x-x-vxworks177689
+Ref: x86-64-x-x179212
+Ref: x86-64-x-solaris2179540
+Ref: xtensa-x-elf180190
+Ref: xtensa-x-linux180861
+Ref: windows181202
+Ref: x-x-cygwin182992
+Ref: x-x-mingw32183545
+Ref: older183927
+Ref: elf186044
+Node: GNU Free Documentation License186302
+Node: Concept Index211435
 
 End Tag Table
 

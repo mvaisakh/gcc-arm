@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-12-02" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-12-05" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -632,7 +632,8 @@ in the following sections.
 \&\fB\-fvtv\-counts  \-fvtv\-debug 
 \&\-finstrument\-functions 
 \&\-finstrument\-functions\-exclude\-function\-list=\fR\fIsym\fR\fB,\fR\fIsym\fR\fB,... 
-\&\-finstrument\-functions\-exclude\-file\-list=\fR\fIfile\fR\fB,\fR\fIfile\fR\fB,...\fR
+\&\-finstrument\-functions\-exclude\-file\-list=\fR\fIfile\fR\fB,\fR\fIfile\fR\fB,...\fR 
+\&\-fprofile\-prefix\-map=\fIold\fR=\fInew\fR
 .IP "\fIPreprocessor Options\fR" 4
 .IX Item "Preprocessor Options"
 \&\fB\-A\fR\fIquestion\fR\fB=\fR\fIanswer\fR 
@@ -1401,6 +1402,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\fB\-mcld  \-mcx16  \-msahf  \-mmovbe  \-mcrc32 \-mmwait 
 \&\-mrecip  \-mrecip=\fR\fIopt\fR 
 \&\fB\-mvzeroupper  \-mprefer\-avx128  \-mprefer\-vector\-width=\fR\fIopt\fR 
+\&\fB\-mmove\-max=\fR\fIbits\fR \fB\-mstore\-max=\fR\fIbits\fR 
 \&\fB\-mmmx  \-msse  \-msse2  \-msse3  \-mssse3  \-msse4.1  \-msse4.2  \-msse4  \-mavx 
 \&\-mavx2  \-mavx512f  \-mavx512pf  \-mavx512er  \-mavx512cd  \-mavx512vl 
 \&\-mavx512bw  \-mavx512dq  \-mavx512ifma  \-mavx512vbmi  \-msha  \-maes 
@@ -2201,7 +2203,8 @@ files resided in directory \fI\fInew\fI\fR instead.  Specifying this
 option is equivalent to specifying all the individual
 \&\fB\-f*\-prefix\-map\fR options.  This can be used to make reproducible
 builds that are location independent.  See also
-\&\fB\-fmacro\-prefix\-map\fR and \fB\-fdebug\-prefix\-map\fR.
+\&\fB\-fmacro\-prefix\-map\fR, \fB\-fdebug\-prefix\-map\fR and
+\&\fB\-fprofile\-prefix\-map\fR.
 .IP "\fB\-fplugin=\fR\fIname\fR\fB.so\fR" 4
 .IX Item "-fplugin=name.so"
 Load the plugin code in file \fIname\fR.so, assumed to be a
@@ -14265,6 +14268,13 @@ feedback because the profile data will not be found during the optimized build.
 In such setups \fB\-fprofile\-prefix\-path=\fR\fIpath\fR with \fIpath\fR
 pointing to the base directory of the build can be used to strip the irrelevant
 part of the path and keep all file names relative to the main build directory.
+.IP "\fB\-fprofile\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR" 4
+.IX Item "-fprofile-prefix-map=old=new"
+When compiling files residing in directory \fI\fIold\fI\fR, record
+profiling information (with \fB\-\-coverage\fR)
+describing them as if the files resided in
+directory \fI\fInew\fI\fR instead.
+See also \fB\-ffile\-prefix\-map\fR.
 .IP "\fB\-fprofile\-update=\fR\fImethod\fR" 4
 .IX Item "-fprofile-update=method"
 Alter the update method for an application instrumented for profile
@@ -30662,6 +30672,16 @@ This option instructs \s-1GCC\s0 to use 128\-bit \s-1AVX\s0 instructions instead
 .IX Item "-mprefer-vector-width=opt"
 This option instructs \s-1GCC\s0 to use \fIopt\fR\-bit vector width in instructions
 instead of default on the selected platform.
+.IP "\fB\-mmove\-max=\fR\fIbits\fR" 4
+.IX Item "-mmove-max=bits"
+This option instructs \s-1GCC\s0 to set the maximum number of bits can be
+moved from memory to memory efficiently to \fIbits\fR.  The valid
+\&\fIbits\fR are 128, 256 and 512.
+.IP "\fB\-mstore\-max=\fR\fIbits\fR" 4
+.IX Item "-mstore-max=bits"
+This option instructs \s-1GCC\s0 to set the maximum number of bits can be
+stored to memory efficiently to \fIbits\fR.  The valid \fIbits\fR are
+128, 256 and 512.
 .RS 4
 .IP "\fBnone\fR" 4
 .IX Item "none"

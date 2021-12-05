@@ -43832,6 +43832,10 @@ Here are several miscellaneous parameters.
      support includes the assembler, linker and dynamic linker.  The
      default value of this hook is based on target's libc.
 
+ -- Target Hook: bool TARGET_IFUNC_REF_LOCAL_OK (void)
+     Return true if it is OK to reference indirect function resolvers
+     locally.  The default is to return false.
+
  -- Target Hook: unsigned int TARGET_ATOMIC_ALIGN_FOR_MODE (machine_mode
           MODE)
      If defined, this function returns an appropriate alignment in bits
@@ -44767,6 +44771,14 @@ helpful when you have a complicated expression.
      If 'skip' is applied to a field, the type machinery will ignore it.
      This is somewhat dangerous; the only safe use is in a union when
      one field really isn't ever used.
+
+'callback'
+
+     'callback' should be applied to fields with pointer to function
+     type and causes the field to be ignored similarly to 'skip', except
+     when writing PCH and the field is non-NULL it will remember the
+     field's address for relocation purposes if the process writing PCH
+     has different load base from a process reading PCH.
 
 'for_user'
 
@@ -53828,7 +53840,7 @@ Concept Index
 * AS_NEEDS_DASH_FOR_PIPED_INPUT:         Driver.             (line   88)
 * atan2M3 instruction pattern:           Standard Names.     (line 1163)
 * atanM2 instruction pattern:            Standard Names.     (line 1074)
-* atomic:                                GTY Options.        (line  197)
+* atomic:                                GTY Options.        (line  205)
 * atomic_addMODE instruction pattern:    Standard Names.     (line 2663)
 * atomic_add_fetchMODE instruction pattern: Standard Names.  (line 2692)
 * atomic_andMODE instruction pattern:    Standard Names.     (line 2663)
@@ -53970,7 +53982,7 @@ Concept Index
 * BYTES_BIG_ENDIAN, effect on subreg:    Regs and Memory.    (line  229)
 * byte_mode:                             Machine Modes.      (line  462)
 * C statements for assembler output:     Output Statement.   (line    6)
-* cache:                                 GTY Options.        (line  127)
+* cache:                                 GTY Options.        (line  135)
 * cadd270M3 instruction pattern:         Standard Names.     (line 1281)
 * cadd90M3 instruction pattern:          Standard Names.     (line 1259)
 * call:                                  Flags.              (line  230)
@@ -53991,6 +54003,7 @@ Concept Index
 * call-used register <1>:                Register Basics.    (line   50)
 * call-used register <2>:                Register Basics.    (line   58)
 * call-used register <3>:                Register Basics.    (line   76)
+* callback:                              GTY Options.        (line   82)
 * calling conventions:                   Stack and Calling.  (line    6)
 * calling functions in RTL:              Calls.              (line    6)
 * CALL_EXPR:                             Unary and Binary Expressions.
@@ -54047,9 +54060,9 @@ Concept Index
 * cfghooks.h:                            Maintaining the CFG.
                                                              (line    6)
 * cgraph_finalize_function:              Parsing pass.       (line   51)
-* chain_circular:                        GTY Options.        (line  160)
-* chain_next:                            GTY Options.        (line  160)
-* chain_prev:                            GTY Options.        (line  160)
+* chain_circular:                        GTY Options.        (line  168)
+* chain_next:                            GTY Options.        (line  168)
+* chain_prev:                            GTY Options.        (line  168)
 * change_address:                        Standard Names.     (line   47)
 * CHAR_TYPE_SIZE:                        Type Layout.        (line   38)
 * check_raw_ptrsM instruction pattern:   Standard Names.     (line  330)
@@ -54409,7 +54422,7 @@ Concept Index
 * DECL_VIRTUAL_P:                        Function Properties.
                                                              (line   44)
 * DECL_VOLATILE_MEMFUNC_P:               Functions for C++.  (line   74)
-* default:                               GTY Options.        (line   90)
+* default:                               GTY Options.        (line   98)
 * default_file_start:                    File Framework.     (line    8)
 * DEFAULT_GDB_EXTENSIONS:                DBX Options.        (line   17)
 * DEFAULT_INCOMING_FRAME_SP_OFFSET:      Frame Layout.       (line  199)
@@ -54494,10 +54507,10 @@ Concept Index
 * degenerate phi node, RTL SSA:          RTL SSA Access Lists.
                                                              (line   25)
 * delay slots, defining:                 Delay Slots.        (line    6)
-* deletable:                             GTY Options.        (line  134)
+* deletable:                             GTY Options.        (line  142)
 * DELETE_IF_ORDINARY:                    Filesystem.         (line   79)
 * Dependent Patterns:                    Dependent Patterns. (line    6)
-* desc:                                  GTY Options.        (line   90)
+* desc:                                  GTY Options.        (line   98)
 * descriptors for nested functions:      Trampolines.        (line    6)
 * destructors, output of:                Initialization.     (line    6)
 * deterministic finite state automaton:  Processor pipeline description.
@@ -54780,7 +54793,7 @@ Concept Index
                                                              (line    6)
 * FOR_STMT:                              Statements for C and C++.
                                                              (line    6)
-* for_user:                              GTY Options.        (line   82)
+* for_user:                              GTY Options.        (line   90)
 * fractional types:                      Fixed-point fractional library routines.
                                                              (line    6)
 * fractMN2 instruction pattern:          Standard Names.     (line 1725)
@@ -55793,7 +55806,7 @@ Concept Index
 * MAX_OFILE_ALIGNMENT:                   Storage Layout.     (line  233)
 * MAX_REGS_PER_ADDRESS:                  Addressing Modes.   (line   42)
 * MAX_STACK_ALIGNMENT:                   Storage Layout.     (line  227)
-* maybe_undef:                           GTY Options.        (line  141)
+* maybe_undef:                           GTY Options.        (line  149)
 * may_trap_p, tree_could_trap_p:         Edges.              (line  114)
 * mcount:                                Profiling.          (line   12)
 * MD_EXEC_PREFIX:                        Driver.             (line  271)
@@ -55942,7 +55955,7 @@ Concept Index
 * negMODEcc instruction pattern:         Standard Names.     (line 1924)
 * negvM3 instruction pattern:            Standard Names.     (line  977)
 * nested functions, support for:         Trampolines.        (line    6)
-* nested_ptr:                            GTY Options.        (line  149)
+* nested_ptr:                            GTY Options.        (line  157)
 * next_bb, prev_bb, FOR_EACH_BB, FOR_ALL_BB: Basic Blocks.   (line   25)
 * NEXT_INSN:                             Insns.              (line   30)
 * NEXT_OBJC_RUNTIME:                     Library Calls.      (line   89)
@@ -56417,7 +56430,7 @@ Concept Index
 * reload_out instruction pattern:        Standard Names.     (line   98)
 * remainder:                             Arithmetic.         (line  142)
 * remainderM3 instruction pattern:       Standard Names.     (line 1010)
-* reorder:                               GTY Options.        (line  175)
+* reorder:                               GTY Options.        (line  183)
 * representation of RTL:                 RTL.                (line    6)
 * reservation delays:                    Processor pipeline description.
                                                              (line    6)
@@ -56648,7 +56661,7 @@ Concept Index
                                                              (line    6)
 * source code, location information:     Guidelines for Diagnostics.
                                                              (line  183)
-* special:                               GTY Options.        (line  238)
+* special:                               GTY Options.        (line  246)
 * special predicates:                    Predicates.         (line   31)
 * SPECS:                                 Target Fragment.    (line  194)
 * speculation_barrier instruction pattern: Standard Names.   (line 2461)
@@ -56854,7 +56867,7 @@ Concept Index
 * t-TARGET:                              Target Fragment.    (line    6)
 * table jump:                            Basic Blocks.       (line   67)
 * tablejump instruction pattern:         Standard Names.     (line 2133)
-* tag:                                   GTY Options.        (line   90)
+* tag:                                   GTY Options.        (line   98)
 * tagging insns:                         Tagging Insns.      (line    6)
 * tail calls:                            Tail Calls.         (line    6)
 * TAmode:                                Machine Modes.      (line  158)
@@ -56978,8 +56991,8 @@ Concept Index
 * TARGET_ASM_UNIQUE_SECTION:             Sections.           (line  213)
 * TARGET_ASM_UNWIND_EMIT:                Dispatch Tables.    (line   96)
 * TARGET_ASM_UNWIND_EMIT_BEFORE_INSN:    Dispatch Tables.    (line  108)
-* TARGET_ATOMIC_ALIGN_FOR_MODE:          Misc.               (line 1146)
-* TARGET_ATOMIC_ASSIGN_EXPAND_FENV:      Misc.               (line 1152)
+* TARGET_ATOMIC_ALIGN_FOR_MODE:          Misc.               (line 1150)
+* TARGET_ATOMIC_ASSIGN_EXPAND_FENV:      Misc.               (line 1156)
 * TARGET_ATOMIC_TEST_AND_SET_TRUEVAL:    Misc.               (line 1137)
 * TARGET_ATTRIBUTE_TABLE:                Target Attributes.  (line   10)
 * TARGET_ATTRIBUTE_TAKES_IDENTIFIER_P:   Target Attributes.  (line   17)
@@ -57135,7 +57148,7 @@ Concept Index
 * TARGET_FUNCTION_OK_FOR_SIBCALL:        Tail Calls.         (line    6)
 * TARGET_FUNCTION_VALUE:                 Scalar Return.      (line    9)
 * TARGET_FUNCTION_VALUE_REGNO_P:         Scalar Return.      (line   96)
-* TARGET_GCOV_TYPE_SIZE:                 Misc.               (line 1325)
+* TARGET_GCOV_TYPE_SIZE:                 Misc.               (line 1329)
 * TARGET_GENERATE_VERSION_DISPATCHER_BODY: Misc.             (line  722)
 * TARGET_GEN_CCMP_FIRST:                 Misc.               (line  905)
 * TARGET_GEN_CCMP_NEXT:                  Misc.               (line  916)
@@ -57176,10 +57189,11 @@ Concept Index
 * TARGET_HAVE_CTORS_DTORS:               Macros for Initialization.
                                                              (line   63)
 * TARGET_HAVE_NAMED_SECTIONS:            File Framework.     (line  150)
-* TARGET_HAVE_SPECULATION_SAFE_VALUE:    Misc.               (line 1224)
+* TARGET_HAVE_SPECULATION_SAFE_VALUE:    Misc.               (line 1228)
 * TARGET_HAVE_SRODATA_SECTION:           Sections.           (line  311)
 * TARGET_HAVE_SWITCHABLE_BSS_SECTIONS:   File Framework.     (line  155)
 * TARGET_HAVE_TLS:                       Sections.           (line  331)
+* TARGET_IFUNC_REF_LOCAL_OK:             Misc.               (line 1146)
 * TARGET_INIT_BUILTINS:                  Misc.               (line  626)
 * TARGET_INIT_DWARF_REG_SIZES_EXTRA:     Exception Region Output.
                                                              (line  119)
@@ -57225,14 +57239,14 @@ Concept Index
 * TARGET_MEMBER_TYPE_FORCES_BLK:         Storage Layout.     (line  454)
 * TARGET_MEMMODEL_CHECK:                 Misc.               (line 1132)
 * TARGET_MEMORY_MOVE_COST:               Costs.              (line   79)
-* TARGET_MEMTAG_ADD_TAG:                 Misc.               (line 1296)
-* TARGET_MEMTAG_CAN_TAG_ADDRESSES:       Misc.               (line 1264)
-* TARGET_MEMTAG_EXTRACT_TAG:             Misc.               (line 1313)
-* TARGET_MEMTAG_GRANULE_SIZE:            Misc.               (line 1277)
-* TARGET_MEMTAG_INSERT_RANDOM_TAG:       Misc.               (line 1289)
-* TARGET_MEMTAG_SET_TAG:                 Misc.               (line 1306)
-* TARGET_MEMTAG_TAG_SIZE:                Misc.               (line 1272)
-* TARGET_MEMTAG_UNTAGGED_POINTER:        Misc.               (line 1319)
+* TARGET_MEMTAG_ADD_TAG:                 Misc.               (line 1300)
+* TARGET_MEMTAG_CAN_TAG_ADDRESSES:       Misc.               (line 1268)
+* TARGET_MEMTAG_EXTRACT_TAG:             Misc.               (line 1317)
+* TARGET_MEMTAG_GRANULE_SIZE:            Misc.               (line 1281)
+* TARGET_MEMTAG_INSERT_RANDOM_TAG:       Misc.               (line 1293)
+* TARGET_MEMTAG_SET_TAG:                 Misc.               (line 1310)
+* TARGET_MEMTAG_TAG_SIZE:                Misc.               (line 1276)
+* TARGET_MEMTAG_UNTAGGED_POINTER:        Misc.               (line 1323)
 * TARGET_MEM_CONSTRAINT:                 Addressing Modes.   (line  107)
 * TARGET_MEM_REF:                        Storage References. (line    6)
 * TARGET_MERGE_DECL_ATTRIBUTES:          Target Attributes.  (line   45)
@@ -57266,7 +57280,7 @@ Concept Index
                                                              (line  104)
 * TARGET_OBJECT_SUFFIX:                  Misc.               (line  868)
 * TARGET_OBJFMT_CPP_BUILTINS:            Run-time Target.    (line   45)
-* TARGET_OFFLOAD_OPTIONS:                Misc.               (line 1175)
+* TARGET_OFFLOAD_OPTIONS:                Misc.               (line 1179)
 * TARGET_OMIT_STRUCT_RETURN_REG:         Scalar Return.      (line  117)
 * TARGET_OMP_DEVICE_KIND_ARCH_ISA:       Addressing Modes.   (line  507)
 * TARGET_OPTAB_SUPPORTED_P:              Costs.              (line  306)
@@ -57305,7 +57319,7 @@ Concept Index
 * TARGET_PROMOTE_PROTOTYPES:             Stack Arguments.    (line   10)
 * TARGET_PTRMEMFUNC_VBIT_LOCATION:       Type Layout.        (line  250)
 * TARGET_PUSH_ARGUMENT:                  Stack Arguments.    (line   17)
-* TARGET_RECORD_OFFLOAD_SYMBOL:          Misc.               (line 1170)
+* TARGET_RECORD_OFFLOAD_SYMBOL:          Misc.               (line 1174)
 * TARGET_REF_MAY_ALIAS_ERRNO:            Register Arguments. (line  312)
 * TARGET_REGISTER_MOVE_COST:             Costs.              (line   31)
 * TARGET_REGISTER_PRIORITY:              Register Classes.   (line  584)
@@ -57317,7 +57331,7 @@ Concept Index
 * TARGET_RETURN_IN_MSB:                  Scalar Return.      (line  124)
 * TARGET_RETURN_POPS_ARGS:               Stack Arguments.    (line  101)
 * TARGET_RTX_COSTS:                      Costs.              (line  320)
-* TARGET_RUN_TARGET_SELFTESTS:           Misc.               (line 1261)
+* TARGET_RUN_TARGET_SELFTESTS:           Misc.               (line 1265)
 * TARGET_SCALAR_MODE_SUPPORTED_P:        Register Arguments. (line  328)
 * TARGET_SCHED_ADJUST_COST:              Scheduling.         (line   35)
 * TARGET_SCHED_ADJUST_PRIORITY:          Scheduling.         (line   50)
@@ -57398,7 +57412,7 @@ Concept Index
 * TARGET_SLOW_UNALIGNED_ACCESS:          Costs.              (line  132)
 * TARGET_SMALL_REGISTER_CLASSES_FOR_MODE_P: Register Arguments.
                                                              (line  442)
-* TARGET_SPECULATION_SAFE_VALUE:         Misc.               (line 1243)
+* TARGET_SPECULATION_SAFE_VALUE:         Misc.               (line 1247)
 * TARGET_SPILL_CLASS:                    Register Classes.   (line  637)
 * TARGET_SPLIT_COMPLEX_ARG:              Register Arguments. (line  263)
 * TARGET_STACK_CLASH_PROTECTION_ALLOCA_PROBE_RANGE: Stack Checking.
@@ -57421,7 +57435,7 @@ Concept Index
 * TARGET_SUPPORTS_SPLIT_STACK:           Stack Smashing Protection.
                                                              (line   30)
 * TARGET_SUPPORTS_WEAK:                  Label Output.       (line  272)
-* TARGET_SUPPORTS_WIDE_INT:              Misc.               (line 1183)
+* TARGET_SUPPORTS_WIDE_INT:              Misc.               (line 1187)
 * TARGET_TERMINATE_DW2_EH_FRAME_INFO:    Exception Region Output.
                                                              (line   98)
 * TARGET_TRAMPOLINE_ADJUST_ADDRESS:      Trampolines.        (line  144)
@@ -57768,7 +57782,7 @@ Concept Index
 * use:                                   Side Effects.       (line  161)
 * used:                                  Flags.              (line  325)
 * used, in symbol_ref:                   Flags.              (line  211)
-* user:                                  GTY Options.        (line  245)
+* user:                                  GTY Options.        (line  253)
 * user experience guidelines:            User Experience Guidelines.
                                                              (line    6)
 * user gc:                               User GC.            (line    6)
@@ -58421,58 +58435,58 @@ Node: D Language and ABI1842060
 Node: Named Address Spaces1845003
 Node: Misc1850930
 Ref: TARGET_SHIFT_TRUNCATION_MASK1858801
-Node: Host Config1919337
-Node: Host Common1920406
-Node: Filesystem1922780
-Node: Host Misc1926895
-Node: Fragments1929344
-Node: Target Fragment1930539
-Node: Host Fragment1941351
-Node: Collect21941591
-Node: Header Dirs1944227
-Node: Type Information1945650
-Node: GTY Options1949181
-Node: Inheritance and GTY1960440
-Ref: Inheritance and GTY-Footnote-11962005
-Node: User GC1962275
-Node: GGC Roots1966014
-Node: Files1966727
-Node: Invoking the garbage collector1969355
-Node: Troubleshooting1970997
-Node: Plugins1972072
-Node: Plugins loading1973201
-Node: Plugin API1974300
-Node: Plugins pass1982167
-Node: Plugins GC1984138
-Node: Plugins description1985855
-Node: Plugins attr1986391
-Node: Plugins recording1988671
-Node: Plugins gate1989521
-Node: Plugins tracking1990112
-Node: Plugins building1990700
-Node: LTO1994201
-Node: LTO Overview1995073
-Node: LTO object file layout2000825
-Node: IPA2005455
-Node: WHOPR2014505
-Node: Internal flags2019065
-Node: Match and Simplify2020476
-Node: GIMPLE API2021438
-Node: The Language2024233
-Node: Static Analyzer2036732
-Node: Analyzer Internals2036997
-Node: Debugging the Analyzer2052884
-Node: User Experience Guidelines2055804
-Node: Guidelines for Diagnostics2056740
-Ref: input_location_example2064915
-Node: Guidelines for Options2074600
-Node: Funding2074777
-Node: GNU Project2077284
-Node: Copying2077933
-Node: GNU Free Documentation License2115444
-Node: Contributors2140565
-Node: Option Index2181541
-Node: Concept Index2182418
+Node: Host Config1919510
+Node: Host Common1920579
+Node: Filesystem1922953
+Node: Host Misc1927068
+Node: Fragments1929517
+Node: Target Fragment1930712
+Node: Host Fragment1941524
+Node: Collect21941764
+Node: Header Dirs1944400
+Node: Type Information1945823
+Node: GTY Options1949354
+Node: Inheritance and GTY1960966
+Ref: Inheritance and GTY-Footnote-11962531
+Node: User GC1962801
+Node: GGC Roots1966540
+Node: Files1967253
+Node: Invoking the garbage collector1969881
+Node: Troubleshooting1971523
+Node: Plugins1972598
+Node: Plugins loading1973727
+Node: Plugin API1974826
+Node: Plugins pass1982693
+Node: Plugins GC1984664
+Node: Plugins description1986381
+Node: Plugins attr1986917
+Node: Plugins recording1989197
+Node: Plugins gate1990047
+Node: Plugins tracking1990638
+Node: Plugins building1991226
+Node: LTO1994727
+Node: LTO Overview1995599
+Node: LTO object file layout2001351
+Node: IPA2005981
+Node: WHOPR2015031
+Node: Internal flags2019591
+Node: Match and Simplify2021002
+Node: GIMPLE API2021964
+Node: The Language2024759
+Node: Static Analyzer2037258
+Node: Analyzer Internals2037523
+Node: Debugging the Analyzer2053410
+Node: User Experience Guidelines2056330
+Node: Guidelines for Diagnostics2057266
+Ref: input_location_example2065441
+Node: Guidelines for Options2075126
+Node: Funding2075303
+Node: GNU Project2077810
+Node: Copying2078459
+Node: GNU Free Documentation License2115970
+Node: Contributors2141091
+Node: Option Index2182067
+Node: Concept Index2182944
 
 End Tag Table
 
