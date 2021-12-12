@@ -1,5 +1,6 @@
 USER_H=float.h iso646.h stdarg.h stdbool.h stddef.h varargs.h stdfix.h stdnoreturn.h stdalign.h stdatomic.h config/arm/mmintrin.h arm_neon.h arm_acle.h arm_fp16.h arm_cmse.h arm_bf16.h arm_mve_types.h arm_mve.h arm_cde.h tgmath.h unwind-arm-common.h
 T_GLIMITS_H=glimits.h
+T_STDINT_GCC_H=stdint-gcc.h
 HASHTAB_H=hashtab.h
 OBSTACK_H=obstack.h
 SPLAY_TREE_H=splay-tree.h

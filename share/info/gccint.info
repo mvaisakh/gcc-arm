@@ -45032,7 +45032,7 @@ functions should be defined to mark 'my_struct':
      void gt_pch_nx (my_struct *p, gt_pointer_operator op, void *cookie)
      {
        /* For every field 'fld', call the given pointer operator.  */
-       op (&(tp->fld), cookie);
+       op (&(tp->fld), NULL, cookie);
      }
 
  In general, each marker 'M' should call 'M' for every pointer field in
@@ -45081,7 +45081,7 @@ these snippets, there is only one type 'T', but there could be more.
      {
        /* For every field 'fld' of 'tp' with type 'T *', call the given
           pointer operator.  */
-       op (&(tp->fld), cookie);
+       op (&(tp->fld), NULL, cookie);
      }
 
      template<typename T>
@@ -58449,44 +58449,44 @@ Node: GTY Options1949354
 Node: Inheritance and GTY1960966
 Ref: Inheritance and GTY-Footnote-11962531
 Node: User GC1962801
-Node: GGC Roots1966540
-Node: Files1967253
-Node: Invoking the garbage collector1969881
-Node: Troubleshooting1971523
-Node: Plugins1972598
-Node: Plugins loading1973727
-Node: Plugin API1974826
-Node: Plugins pass1982693
-Node: Plugins GC1984664
-Node: Plugins description1986381
-Node: Plugins attr1986917
-Node: Plugins recording1989197
-Node: Plugins gate1990047
-Node: Plugins tracking1990638
-Node: Plugins building1991226
-Node: LTO1994727
-Node: LTO Overview1995599
-Node: LTO object file layout2001351
-Node: IPA2005981
-Node: WHOPR2015031
-Node: Internal flags2019591
-Node: Match and Simplify2021002
-Node: GIMPLE API2021964
-Node: The Language2024759
-Node: Static Analyzer2037258
-Node: Analyzer Internals2037523
-Node: Debugging the Analyzer2053410
-Node: User Experience Guidelines2056330
-Node: Guidelines for Diagnostics2057266
-Ref: input_location_example2065441
-Node: Guidelines for Options2075126
-Node: Funding2075303
-Node: GNU Project2077810
-Node: Copying2078459
-Node: GNU Free Documentation License2115970
-Node: Contributors2141091
-Node: Option Index2182067
-Node: Concept Index2182944
+Node: GGC Roots1966552
+Node: Files1967265
+Node: Invoking the garbage collector1969893
+Node: Troubleshooting1971535
+Node: Plugins1972610
+Node: Plugins loading1973739
+Node: Plugin API1974838
+Node: Plugins pass1982705
+Node: Plugins GC1984676
+Node: Plugins description1986393
+Node: Plugins attr1986929
+Node: Plugins recording1989209
+Node: Plugins gate1990059
+Node: Plugins tracking1990650
+Node: Plugins building1991238
+Node: LTO1994739
+Node: LTO Overview1995611
+Node: LTO object file layout2001363
+Node: IPA2005993
+Node: WHOPR2015043
+Node: Internal flags2019603
+Node: Match and Simplify2021014
+Node: GIMPLE API2021976
+Node: The Language2024771
+Node: Static Analyzer2037270
+Node: Analyzer Internals2037535
+Node: Debugging the Analyzer2053422
+Node: User Experience Guidelines2056342
+Node: Guidelines for Diagnostics2057278
+Ref: input_location_example2065453
+Node: Guidelines for Options2075138
+Node: Funding2075315
+Node: GNU Project2077822
+Node: Copying2078471
+Node: GNU Free Documentation License2115982
+Node: Contributors2141103
+Node: Option Index2182079
+Node: Concept Index2182956
 
 End Tag Table
 

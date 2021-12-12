@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-12-09" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-12-12" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -12607,6 +12607,14 @@ needlessly consume memory and resources.
 The maximum number of backtrack attempts the scheduler should make
 when modulo scheduling a loop.  Larger values can exponentially increase
 compilation time.
+.IP "\fBmax-inline-functions-called-once-loop-depth\fR" 4
+.IX Item "max-inline-functions-called-once-loop-depth"
+Maximal loop depth of a call considered by inline heuristics that tries to
+inline all functions called once.
+.IP "\fBmax-inline-functions-called-once-insns\fR" 4
+.IX Item "max-inline-functions-called-once-insns"
+Maximal estimated size of functions produced while inlining functions called
+once.
 .IP "\fBmax-inline-insns-single\fR" 4
 .IX Item "max-inline-insns-single"
 Several parameters control the tree inliner used in \s-1GCC.\s0  This number sets the
