@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-12-16" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-12-19" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -608,7 +608,7 @@ in the following sections.
 \&\-fipa\-ra  \-fvariable\-expansion\-in\-unroller  \-fvect\-cost\-model  \-fvpt 
 \&\-fweb  \-fwhole\-program  \-fwpa  \-fuse\-linker\-plugin \-fzero\-call\-used\-regs 
 \&\-\-param\fR \fIname\fR\fB=\fR\fIvalue\fR
-\&\fB\-O  \-O0  \-O1  \-O2  \-O3  \-Os  \-Ofast  \-Og\fR
+\&\fB\-O  \-O0  \-O1  \-O2  \-O3  \-Os  \-Ofast  \-Og  \-Oz\fR
 .IP "\fIProgram Instrumentation Options\fR" 4
 .IX Item "Program Instrumentation Options"
 \&\fB\-p  \-pg  \-fprofile\-arcs  \-\-coverage  \-ftest\-coverage 
@@ -786,7 +786,7 @@ in the following sections.
 \&\fB\-malign\-call  \-mauto\-modify\-reg  \-mbbit\-peephole  \-mno\-brcc 
 \&\-mcase\-vector\-pcrel  \-mcompact\-casesi  \-mno\-cond\-exec  \-mearly\-cbranchsi 
 \&\-mexpand\-adddi  \-mindexed\-loads  \-mlra  \-mlra\-priority\-none 
-\&\-mlra\-priority\-compact mlra-priority-noncompact  \-mmillicode 
+\&\-mlra\-priority\-compact \-mlra\-priority\-noncompact  \-mmillicode 
 \&\-mmixed\-code  \-mq\-class  \-mRcq  \-mRcw  \-msize\-level=\fR\fIlevel\fR 
 \&\fB\-mtune=\fR\fIcpu\fR  \fB\-mmultcost=\fR\fInum\fR  \fB\-mcode\-density\-frame 
 \&\-munalign\-prob\-threshold=\fR\fIprobability\fR  \fB\-mmpy\-option=\fR\fImulto\fR 
@@ -9941,6 +9941,12 @@ optimization flags except for those that may interfere with debugging:
 \&\-finline\-functions\-called\-once 
 \&\-fmove\-loop\-invariants  \-fmove\-loop\-stores  \-fssa\-phiopt 
 \&\-ftree\-bit\-ccp  \-ftree\-dse  \-ftree\-pta  \-ftree\-sra\fR
+.IP "\fB\-Oz\fR" 4
+.IX Item "-Oz"
+Optimize aggressively for size rather than speed.  This may increase
+the number of instructions executed if those instructions require
+fewer bytes to encode.  \fB\-Oz\fR behaves similarly to \fB\-Os\fR
+including enabling most \fB\-O2\fR optimizations.
 .PP
 If you use multiple \fB\-O\fR options, with or without level numbers,
 the last such option is the one that is effective.
@@ -11469,10 +11475,10 @@ The \fB\-fstrict\-aliasing\fR option is enabled at levels
 \&\fB\-O2\fR, \fB\-O3\fR, \fB\-Os\fR.
 .IP "\fB\-fipa\-strict\-aliasing\fR" 4
 .IX Item "-fipa-strict-aliasing"
-Constrols whether rules of \fB\-fstrict\-aliasing\fR are applied across
+Controls whether rules of \fB\-fstrict\-aliasing\fR are applied across
 function boundaries.  Note that if multiple functions gets inlined into a
-signle function the memory accesses are no longer considred to be crossing a
-function bounday.
+single function the memory accesses are no longer considered to be crossing a
+function boundary.
 .Sp
 The \fB\-fipa\-strict\-aliasing\fR option is enabled by default and is
 effective only in combination with \fB\-fstrict\-aliasing\fR.
@@ -13196,7 +13202,7 @@ value of a shared integer constant.
 .IP "\fBssp-buffer-size\fR" 4
 .IX Item "ssp-buffer-size"
 The minimum size of buffers (i.e. arrays) that receive stack smashing
-protection when \fB\-fstack\-protection\fR is used.
+protection when \fB\-fstack\-protector\fR is used.
 .IP "\fBmin-size-for-stack-sharing\fR" 4
 .IX Item "min-size-for-stack-sharing"
 The minimum size of variables taking part in stack slot sharing when not
