@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "STRINGS 1"
-.TH STRINGS 1 "2021-12-19" "binutils-2.37.50" "GNU Development Tools"
+.TH STRINGS 1 "2021-12-23" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -150,7 +150,7 @@ strings [\fB\-afovV\fR] [\fB\-\fR\fImin-len\fR]
         [\fB\-\fR] [\fB\-\-all\fR] [\fB\-\-print\-file\-name\fR]
         [\fB\-T\fR \fIbfdname\fR] [\fB\-\-target=\fR\fIbfdname\fR]
         [\fB\-w\fR] [\fB\-\-include\-all\-whitespace\fR]
-        [\fB\-s\fR] [\fB\-\-output\-separator\fR\fIsep_string\fR]
+        [\fB\-s\fR] [\fB\-\-output\-separator\fR \fIsep_string\fR]
         [\fB\-\-help\fR] [\fB\-\-version\fR] \fIfile\fR...
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -262,7 +262,7 @@ and \fBb\fR apply to, for example, Unicode \s-1UTF\-16/UCS\-2\s0 encodings).
 .IP "\fB\-\-unicode=\fR\fI[default|invalid|locale|escape|hex|highlight]\fR" 4
 .IX Item "--unicode=[default|invalid|locale|escape|hex|highlight]"
 .PD
-Controls the display of \s-1UTF\-8\s0 encoded mulibyte characters in strings.
+Controls the display of \s-1UTF\-8\s0 encoded multibyte characters in strings.
 The default (\fB\-\-unicode=default\fR) is to give them no special
 treatment, and instead rely upon the setting of the
 \&\fB\-\-encoding\fR option.  The other values for this option
