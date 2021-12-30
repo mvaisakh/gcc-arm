@@ -65,7 +65,7 @@ File: gccinstall.info,  Node: Installing GCC,  Next: Binaries,  Up: Top
 ****************
 
 The latest version of this document is always available at
-http://gcc.gnu.org/install/.  It refers to the current development
+https://gcc.gnu.org/install/.  It refers to the current development
 sources, instructions for specific released versions are included with
 the sources.
 
@@ -81,7 +81,7 @@ host/target specific installation notes: Specific.  We recommend you
 browse the entire generic installation instructions before you proceed.
 
    Lists of successful builds for released versions of GCC are available
-at <http://gcc.gnu.org/buildstat.html>.  These lists are updated as new
+at <https://gcc.gnu.org/buildstat.html>.  These lists are updated as new
 information becomes available.
 
    The installation procedure itself is broken into five steps.
@@ -2722,10 +2722,10 @@ Before you install GCC, we encourage you to run the testsuites and to
 compare your results with results from a similar configuration that have
 been submitted to the gcc-testresults mailing list.  Some of these
 archived results are linked from the build status lists at
-<http://gcc.gnu.org/buildstat.html>, although not everyone who reports a
-successful build runs the testsuites and submits the results.  This step
-is optional and may require you to download additional software, but it
-can give you confidence in your new GCC installation or point out
+<https://gcc.gnu.org/buildstat.html>, although not everyone who reports
+a successful build runs the testsuites and submits the results.  This
+step is optional and may require you to download additional software,
+but it can give you confidence in your new GCC installation or point out
 problems before you install and start using your new GCC.
 
    First, you must have downloaded the testsuites.  These are part of
@@ -2759,7 +2759,7 @@ ignored.
 
    If you are testing a cross-compiler, you may want to run the
 testsuite on a simulator as described at
-<http://gcc.gnu.org/simtest-howto.html>.
+<https://gcc.gnu.org/simtest-howto.html>.
 
 6.1 How can you run the testsuite on selected tests?
 ====================================================
@@ -2948,7 +2948,7 @@ feature.
 
    If you are bootstrapping a released version of GCC then please
 quickly review the build status page for your release, available from
-<http://gcc.gnu.org/buildstat.html>.  If your system is not listed for
+<https://gcc.gnu.org/buildstat.html>.  If your system is not listed for
 the version of GCC that you built, send a note to <gcc@gcc.gnu.org>
 indicating that you successfully built and installed GCC.  Include the
 following information:
@@ -3850,7 +3850,7 @@ binaries are available at <https://opensource.apple.com>.
 
    This version of GCC requires at least cctools-590.36.  The
 cctools-590.36 package referenced from
-<http://gcc.gnu.org/ml/gcc/2006-03/msg00507.html> will not work on
+<https://gcc.gnu.org/ml/gcc/2006-03/msg00507.html> will not work on
 systems older than 10.3.9 (aka darwin7.9.0).
 
 powerpc-*-elf
@@ -4322,7 +4322,7 @@ GNU Free Documentation License
                      Version 1.3, 3 November 2008
 
      Copyright (C) 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc.
-     <http://fsf.org/>
+     <https://fsf.org/>
 
      Everyone is permitted to copy and distribute verbatim copies
      of this license document, but changing it is not allowed.
@@ -4719,7 +4719,7 @@ GNU Free Documentation License
      the GNU Free Documentation License from time to time.  Such new
      versions will be similar in spirit to the present version, but may
      differ in detail to address new problems or concerns.  See
-     <http://www.gnu.org/copyleft/>.
+     <https://www.gnu.org/copyleft/>.
 
      Each version of the License is given a distinguishing version
      number.  If the Document specifies that a particular numbered
@@ -4833,105 +4833,105 @@ Concept Index
 Tag Table:
 Node: Top1696
 Node: Installing GCC2201
-Node: Prerequisites3835
-Ref: GNAT-prerequisite5901
-Ref: GDC-prerequisite7298
-Node: Downloading the source16649
-Node: Configuration18320
-Ref: with-gnu-as36607
-Ref: with-as37502
-Ref: with-gnu-ld38911
-Ref: WithAixSoname63618
-Ref: AixLdCommand64279
-Node: Building106444
-Node: Testing122651
-Node: Final install130480
-Node: Binaries135780
-Node: Specific136887
-Ref: aarch64-x-x137421
-Ref: alpha-x-x139441
-Ref: amd64-x-solaris2139655
-Ref: amdgcn-x-amdhsa139737
-Ref: arc-x-elf32140263
-Ref: arc-linux-uclibc140439
-Ref: arm-x-eabi140580
-Ref: avr140833
-Ref: bfin141414
-Ref: cr16141677
-Ref: cris142093
-Ref: dos142791
-Ref: epiphany-x-elf143114
-Ref: x-x-freebsd143219
-Ref: ft32-x-elf144867
-Ref: h8300-hms144965
-Ref: hppa-hp-hpux145317
-Ref: hppa-hp-hpux10147689
-Ref: hppa-hp-hpux11148102
-Ref: x-x-linux-gnu153504
-Ref: ix86-x-linux153827
-Ref: ix86-x-solaris2154140
-Ref: ia64-x-linux155216
-Ref: ia64-x-hpux155463
-Ref: x-ibm-aix156018
-Ref: TransferAixShobj159680
-Ref: iq2000-x-elf163490
-Ref: lm32-x-elf163630
-Ref: lm32-x-uclinux163734
-Ref: m32c-x-elf163862
-Ref: m32r-x-elf163964
-Ref: m68k-x-x164066
-Ref: m68k-x-uclinux165104
-Ref: microblaze-x-elf165349
-Ref: mips-x-x165468
-Ref: moxie-x-elf167378
-Ref: msp430-x-elf167425
-Ref: nds32le-x-elf167982
-Ref: nds32be-x-elf168054
-Ref: nvptx-x-none168123
-Ref: or1k-x-elf168686
-Ref: or1k-x-linux168817
-Ref: powerpc-x-x168898
-Ref: powerpc-x-darwin169089
-Ref: powerpc-x-elf169583
-Ref: powerpc-x-linux-gnu169668
-Ref: powerpc-x-netbsd169763
-Ref: powerpc-x-eabisim169851
-Ref: powerpc-x-eabi169977
-Ref: powerpcle-x-elf170053
-Ref: powerpcle-x-eabisim170145
-Ref: powerpcle-x-eabi170278
-Ref: rl78-x-elf170361
-Ref: riscv32-x-elf170467
-Ref: riscv32-x-linux170656
-Ref: riscv64-x-elf170813
-Ref: riscv64-x-linux171002
-Ref: rx-x-elf171159
-Ref: s390-x-linux171205
-Ref: s390x-x-linux171277
-Ref: s390x-ibm-tpf171364
-Ref: x-x-solaris2171495
-Ref: sparc-x-x174602
-Ref: sparc-sun-solaris2175104
-Ref: sparc-x-linux176247
-Ref: sparc64-x-solaris2176278
-Ref: sparcv9-x-solaris2176996
-Ref: c6x-x-x177083
-Ref: tilegx-*-linux177175
-Ref: tilegxbe-*-linux177317
-Ref: tilepro-*-linux177460
-Ref: visium-x-elf177581
-Ref: x-x-vxworks177689
-Ref: x86-64-x-x179212
-Ref: x86-64-x-solaris2179540
-Ref: xtensa-x-elf180190
-Ref: xtensa-x-linux180861
-Ref: windows181202
-Ref: x-x-cygwin182992
-Ref: x-x-mingw32183545
-Ref: older183927
-Ref: elf186044
-Node: GNU Free Documentation License186302
-Node: Concept Index211435
+Node: Prerequisites3837
+Ref: GNAT-prerequisite5903
+Ref: GDC-prerequisite7300
+Node: Downloading the source16651
+Node: Configuration18322
+Ref: with-gnu-as36609
+Ref: with-as37504
+Ref: with-gnu-ld38913
+Ref: WithAixSoname63620
+Ref: AixLdCommand64281
+Node: Building106446
+Node: Testing122653
+Node: Final install130484
+Node: Binaries135785
+Node: Specific136892
+Ref: aarch64-x-x137426
+Ref: alpha-x-x139446
+Ref: amd64-x-solaris2139660
+Ref: amdgcn-x-amdhsa139742
+Ref: arc-x-elf32140268
+Ref: arc-linux-uclibc140444
+Ref: arm-x-eabi140585
+Ref: avr140838
+Ref: bfin141419
+Ref: cr16141682
+Ref: cris142098
+Ref: dos142796
+Ref: epiphany-x-elf143119
+Ref: x-x-freebsd143224
+Ref: ft32-x-elf144872
+Ref: h8300-hms144970
+Ref: hppa-hp-hpux145322
+Ref: hppa-hp-hpux10147694
+Ref: hppa-hp-hpux11148107
+Ref: x-x-linux-gnu153509
+Ref: ix86-x-linux153832
+Ref: ix86-x-solaris2154145
+Ref: ia64-x-linux155221
+Ref: ia64-x-hpux155468
+Ref: x-ibm-aix156023
+Ref: TransferAixShobj159685
+Ref: iq2000-x-elf163495
+Ref: lm32-x-elf163635
+Ref: lm32-x-uclinux163739
+Ref: m32c-x-elf163867
+Ref: m32r-x-elf163969
+Ref: m68k-x-x164071
+Ref: m68k-x-uclinux165109
+Ref: microblaze-x-elf165354
+Ref: mips-x-x165473
+Ref: moxie-x-elf167383
+Ref: msp430-x-elf167430
+Ref: nds32le-x-elf167987
+Ref: nds32be-x-elf168059
+Ref: nvptx-x-none168128
+Ref: or1k-x-elf168691
+Ref: or1k-x-linux168822
+Ref: powerpc-x-x168903
+Ref: powerpc-x-darwin169094
+Ref: powerpc-x-elf169589
+Ref: powerpc-x-linux-gnu169674
+Ref: powerpc-x-netbsd169769
+Ref: powerpc-x-eabisim169857
+Ref: powerpc-x-eabi169983
+Ref: powerpcle-x-elf170059
+Ref: powerpcle-x-eabisim170151
+Ref: powerpcle-x-eabi170284
+Ref: rl78-x-elf170367
+Ref: riscv32-x-elf170473
+Ref: riscv32-x-linux170662
+Ref: riscv64-x-elf170819
+Ref: riscv64-x-linux171008
+Ref: rx-x-elf171165
+Ref: s390-x-linux171211
+Ref: s390x-x-linux171283
+Ref: s390x-ibm-tpf171370
+Ref: x-x-solaris2171501
+Ref: sparc-x-x174608
+Ref: sparc-sun-solaris2175110
+Ref: sparc-x-linux176253
+Ref: sparc64-x-solaris2176284
+Ref: sparcv9-x-solaris2177002
+Ref: c6x-x-x177089
+Ref: tilegx-*-linux177181
+Ref: tilegxbe-*-linux177323
+Ref: tilepro-*-linux177466
+Ref: visium-x-elf177587
+Ref: x-x-vxworks177695
+Ref: x86-64-x-x179218
+Ref: x86-64-x-solaris2179546
+Ref: xtensa-x-elf180196
+Ref: xtensa-x-linux180867
+Ref: windows181208
+Ref: x-x-cygwin182998
+Ref: x-x-mingw32183551
+Ref: older183933
+Ref: elf186050
+Node: GNU Free Documentation License186308
+Node: Concept Index211443
 
 End Tag Table
 

@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2021-12-26" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2021-12-30" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2362,7 +2362,7 @@ with \s-1ISO C90\s0 are disabled). Same as \fB\-ansi\fR for C code.
 bugs and floating-point issues
 (mainly but not entirely relating to optional C99 features from
 Annexes F and G).  See
-<\fBhttp://gcc.gnu.org/c99status.html\fR> for more information.  The
+<\fBhttps://gcc.gnu.org/c99status.html\fR> for more information.  The
 names \fBc9x\fR and \fBiso9899:199x\fR are deprecated.
 .IP "\fBc11\fR" 4
 .IX Item "c11"
@@ -6373,7 +6373,7 @@ The standard is worded confusingly, therefore there is some debate
 over the precise meaning of the sequence point rules in subtle cases.
 Links to discussions of the problem, including proposed formal
 definitions, may be found on the \s-1GCC\s0 readings page, at
-<\fBhttp://gcc.gnu.org/readings.html\fR>.
+<\fBhttps://gcc.gnu.org/readings.html\fR>.
 .Sp
 This warning is enabled by \fB\-Wall\fR for C and \*(C+.
 .IP "\fB\-Wno\-return\-local\-addr\fR" 4
@@ -15606,6 +15606,9 @@ Use the \fBgold\fR linker instead of the default linker.
 .IP "\fB\-fuse\-ld=lld\fR" 4
 .IX Item "-fuse-ld=lld"
 Use the \s-1LLVM\s0 \fBlld\fR linker instead of the default linker.
+.IP "\fB\-fuse\-ld=mold\fR" 4
+.IX Item "-fuse-ld=mold"
+Use the Modern Linker (\fBmold\fR) instead of the default linker.
 .IP "\fB\-l\fR\fIlibrary\fR" 4
 .IX Item "-llibrary"
 .PD 0
@@ -16691,7 +16694,7 @@ visibility so that the \fBtype_info\fR nodes are unified between
 the DSOs.
 .Sp
 An overview of these techniques, their benefits and how to use them
-is at <\fBhttp://gcc.gnu.org/wiki/Visibility\fR>.
+is at <\fBhttps://gcc.gnu.org/wiki/Visibility\fR>.
 .IP "\fB\-fstrict\-volatile\-bitfields\fR" 4
 .IX Item "-fstrict-volatile-bitfields"
 This option should be used if accesses to volatile bit-fields (or other
@@ -24251,7 +24254,7 @@ generates 64\-bit code when you select a 64\-bit architecture, but you
 can use \fB\-mgp32\fR to get 32\-bit code instead.
 .Sp
 For information about the O64 \s-1ABI,\s0 see
-<\fBhttp://gcc.gnu.org/projects/mipso64\-abi.html\fR>.
+<\fBhttps://gcc.gnu.org/projects/mipso64\-abi.html\fR>.
 .Sp
 \&\s-1GCC\s0 supports a variant of the o32 \s-1ABI\s0 in which floating-point registers
 are 64 rather than 32 bits wide.  You can select this combination with
@@ -31847,7 +31850,7 @@ and the Info entries for \fIgcc\fR, \fIcpp\fR, \fIas\fR,
 .SH "AUTHOR"
 .IX Header "AUTHOR"
 See the Info entry for \fBgcc\fR, or
-<\fBhttp://gcc.gnu.org/onlinedocs/gcc/Contributors.html\fR>,
+<\fBhttps://gcc.gnu.org/onlinedocs/gcc/Contributors.html\fR>,
 for contributors to \s-1GCC.\s0
 .SH "COPYRIGHT"
 .IX Header "COPYRIGHT"
