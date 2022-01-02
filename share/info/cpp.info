@@ -3882,7 +3882,7 @@ free to do what it likes, but must document its choice and stick to it.
      operating system.
 
      You can override the default with '-fdollars-in-identifiers' or
-     'fno-dollars-in-identifiers'.  *Note fdollars-in-identifiers::.
+     '-fno-dollars-in-identifiers'.  *Note fdollars-in-identifiers::.
 
    * Non-empty sequences of whitespace characters.
 
@@ -5604,17 +5604,17 @@ Node: Traditional warnings154831
 Node: Implementation Details157028
 Node: Implementation-defined behavior157591
 Ref: Identifier characters158341
-Node: Implementation limits161389
-Node: Obsolete Features164062
-Node: Invocation166906
-Ref: dashMF172941
-Ref: fdollars-in-identifiers177603
-Ref: Wtrigraphs191729
-Node: Environment Variables193784
-Node: GNU Free Documentation License197475
-Node: Index of Directives222622
-Node: Option Index224775
-Node: Concept Index230877
+Node: Implementation limits161390
+Node: Obsolete Features164063
+Node: Invocation166907
+Ref: dashMF172942
+Ref: fdollars-in-identifiers177604
+Ref: Wtrigraphs191730
+Node: Environment Variables193785
+Node: GNU Free Documentation License197476
+Node: Index of Directives222623
+Node: Option Index224776
+Node: Concept Index230878
 
 End Tag Table
 
