@@ -1,6 +1,6 @@
 This is gccint.info, produced by makeinfo version 6.7 from gccint.texi.
 
-Copyright (C) 1988-2021 Free Software Foundation, Inc.
+Copyright (C) 1988-2022 Free Software Foundation, Inc.
 
  Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -26,7 +26,7 @@ END-INFO-DIR-ENTRY
 
  This file documents the internals of the GNU compilers.
 
- Copyright (C) 1988-2021 Free Software Foundation, Inc.
+ Copyright (C) 1988-2022 Free Software Foundation, Inc.
 
  Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -28918,6 +28918,25 @@ pattern to accomplish a certain task.
      counterparts.  If none of these are available a compare-and-swap
      loop will be used.
 
+'atomic_add_fetch_cmp_0MODE'
+'atomic_sub_fetch_cmp_0MODE'
+'atomic_and_fetch_cmp_0MODE'
+'atomic_or_fetch_cmp_0MODE'
+'atomic_xor_fetch_cmp_0MODE'
+     These patterns emit code for an atomic operation on memory with
+     memory model semantics if the fetch result is used only in a
+     comparison against zero.  Operand 0 is an output operand which
+     contains a boolean result of comparison of the value after the
+     operation against zero.  Operand 1 is the memory on which the
+     atomic operation is performed.  Operand 2 is the second operand to
+     the binary operator.  Operand 3 is the memory model to be used by
+     the operation.  Operand 4 is an integer holding the comparison
+     code, one of 'EQ', 'NE', 'LT', 'GT', 'LE' or 'GE'.
+
+     If these patterns are not defined, attempts will be made to use
+     separate atomic operation and fetch pattern followed by comparison
+     of the result against zero.
+
 'mem_thread_fence'
      This pattern emits code required to implement a thread fence with
      memory model semantics.  Operand 0 is the memory model to be used.
@@ -42280,6 +42299,38 @@ be documented in 'extend.texi'.
      specific target options and the caller does not use the same
      options.
 
+ -- Target Hook: bool TARGET_UPDATE_IPA_FN_TARGET_INFO (unsigned int&
+          INFO, const gimple* STMT)
+     Allow target to analyze all gimple statements for the given
+     function to record and update some target specific information for
+     inlining.  A typical example is that a caller with one isa feature
+     disabled is normally not allowed to inline a callee with that same
+     isa feature enabled even which is attributed by always_inline, but
+     with the conservative analysis on all statements of the callee if
+     we are able to guarantee the callee does not exploit any
+     instructions from the mismatch isa feature, it would be safe to
+     allow the caller to inline the callee.  INFO is one 'unsigned int'
+     value to record information in which one set bit indicates one
+     corresponding feature is detected in the analysis, STMT is the
+     statement being analyzed.  Return true if target still need to
+     analyze the subsequent statements, otherwise return false to stop
+     subsequent analysis.  The default version of this hook returns
+     false.
+
+ -- Target Hook: bool TARGET_NEED_IPA_FN_TARGET_INFO (const_tree DECL,
+          unsigned int& INFO)
+     Allow target to check early whether it is necessary to analyze all
+     gimple statements in the given function to update target specific
+     information for inlining.  See hook 'update_ipa_fn_target_info' for
+     usage example of target specific information.  This hook is
+     expected to be invoked ahead of the iterating with hook
+     'update_ipa_fn_target_info'.  DECL is the function being analyzed,
+     INFO is the same as what in hook 'update_ipa_fn_target_info',
+     target can do one time update into INFO without iterating for some
+     case.  Return true if target decides to analyze all gimple
+     statements to collect information, otherwise return false.  The
+     default version of this hook returns false.
+
  -- Target Hook: void TARGET_RELAYOUT_FUNCTION (tree FNDECL)
      This target hook fixes function FNDECL after attributes are
      processed.  Default does nothing.  On ARM, the default function's
@@ -53851,8 +53902,12 @@ Concept Index
 * atomic:                                GTY Options.        (line  205)
 * atomic_addMODE instruction pattern:    Standard Names.     (line 2663)
 * atomic_add_fetchMODE instruction pattern: Standard Names.  (line 2692)
+* atomic_add_fetch_cmp_0MODE instruction pattern: Standard Names.
+                                                             (line 2745)
 * atomic_andMODE instruction pattern:    Standard Names.     (line 2663)
 * atomic_and_fetchMODE instruction pattern: Standard Names.  (line 2692)
+* atomic_and_fetch_cmp_0MODE instruction pattern: Standard Names.
+                                                             (line 2745)
 * atomic_bit_test_and_complementMODE instruction pattern: Standard Names.
                                                              (line 2720)
 * atomic_bit_test_and_resetMODE instruction pattern: Standard Names.
@@ -53873,12 +53928,18 @@ Concept Index
 * atomic_nand_fetchMODE instruction pattern: Standard Names. (line 2692)
 * atomic_orMODE instruction pattern:     Standard Names.     (line 2663)
 * atomic_or_fetchMODE instruction pattern: Standard Names.   (line 2692)
+* atomic_or_fetch_cmp_0MODE instruction pattern: Standard Names.
+                                                             (line 2745)
 * atomic_storeMODE instruction pattern:  Standard Names.     (line 2640)
 * atomic_subMODE instruction pattern:    Standard Names.     (line 2663)
 * atomic_sub_fetchMODE instruction pattern: Standard Names.  (line 2692)
+* atomic_sub_fetch_cmp_0MODE instruction pattern: Standard Names.
+                                                             (line 2745)
 * atomic_test_and_set instruction pattern: Standard Names.   (line 2709)
 * atomic_xorMODE instruction pattern:    Standard Names.     (line 2663)
 * atomic_xor_fetchMODE instruction pattern: Standard Names.  (line 2692)
+* atomic_xor_fetch_cmp_0MODE instruction pattern: Standard Names.
+                                                             (line 2745)
 * attr:                                  Expressions.        (line  163)
 * attr <1>:                              Tagging Insns.      (line   54)
 * attribute expressions:                 Expressions.        (line    6)
@@ -54095,7 +54156,7 @@ Concept Index
                                                              (line    6)
 * CLEANUP_STMT:                          Statements for C and C++.
                                                              (line    6)
-* clear_cache instruction pattern:       Standard Names.     (line 2826)
+* clear_cache instruction pattern:       Standard Names.     (line 2845)
 * CLEAR_INSN_CACHE:                      Trampolines.        (line  168)
 * CLEAR_RATIO:                           Costs.              (line  232)
 * clobber:                               Side Effects.       (line   99)
@@ -54896,7 +54957,7 @@ Concept Index
 * GET_RTX_FORMAT:                        RTL Classes.        (line  136)
 * GET_RTX_LENGTH:                        RTL Classes.        (line  133)
 * get_thread_pointerMODE instruction pattern: Standard Names.
-                                                             (line 2760)
+                                                             (line 2779)
 * geu:                                   Comparisons.        (line   62)
 * geu and attributes:                    Expressions.        (line   83)
 * GE_EXPR:                               Unary and Binary Expressions.
@@ -55850,7 +55911,7 @@ Concept Index
 * MEM_REF:                               Storage References. (line    6)
 * MEM_SIZE:                              Special Accessors.  (line   39)
 * MEM_SIZE_KNOWN_P:                      Special Accessors.  (line   35)
-* mem_thread_fence instruction pattern:  Standard Names.     (line 2745)
+* mem_thread_fence instruction pattern:  Standard Names.     (line 2764)
 * MEM_VOLATILE_P:                        Flags.              (line   65)
 * METHOD_TYPE:                           Types.              (line    6)
 * MINIMUM_ALIGNMENT:                     Storage Layout.     (line  343)
@@ -56616,7 +56677,7 @@ Concept Index
 * SET_RATIO:                             Costs.              (line  244)
 * SET_SRC:                               Side Effects.       (line   62)
 * set_thread_pointerMODE instruction pattern: Standard Names.
-                                                             (line 2760)
+                                                             (line 2779)
 * SET_TYPE_STRUCTURAL_EQUALITY:          Types.              (line    6)
 * SET_TYPE_STRUCTURAL_EQUALITY <1>:      Types.              (line   81)
 * SFmode:                                Machine Modes.      (line   69)
@@ -56729,11 +56790,11 @@ Concept Index
                                                              (line   83)
 * stack_pointer_rtx:                     Frame Registers.    (line  104)
 * stack_protect_combined_set instruction pattern: Standard Names.
-                                                             (line 2770)
+                                                             (line 2789)
 * stack_protect_combined_test instruction pattern: Standard Names.
-                                                             (line 2800)
-* stack_protect_set instruction pattern: Standard Names.     (line 2786)
-* stack_protect_test instruction pattern: Standard Names.    (line 2817)
+                                                             (line 2819)
+* stack_protect_set instruction pattern: Standard Names.     (line 2805)
+* stack_protect_test instruction pattern: Standard Names.    (line 2836)
 * STACK_PUSH_CODE:                       Frame Layout.       (line   12)
 * STACK_REGS:                            Stack Registers.    (line   19)
 * STACK_REG_COVER_CLASS:                 Stack Registers.    (line   22)
@@ -57277,6 +57338,7 @@ Concept Index
 * TARGET_MUST_PASS_IN_STACK, and TARGET_FUNCTION_ARG: Register Arguments.
                                                              (line   43)
 * TARGET_NARROW_VOLATILE_BITFIELD:       Storage Layout.     (line  447)
+* TARGET_NEED_IPA_FN_TARGET_INFO:        Target Attributes.  (line  198)
 * TARGET_NEW_ADDRESS_PROFITABLE_P:       Costs.              (line  422)
 * TARGET_NOCE_CONVERSION_PROFITABLE_P:   Costs.              (line  416)
 * TARGET_NO_REGISTER_ALLOCATION:         DWARF.              (line   85)
@@ -57332,7 +57394,7 @@ Concept Index
 * TARGET_REGISTER_MOVE_COST:             Costs.              (line   31)
 * TARGET_REGISTER_PRIORITY:              Register Classes.   (line  584)
 * TARGET_REGISTER_USAGE_LEVELING_P:      Register Classes.   (line  596)
-* TARGET_RELAYOUT_FUNCTION:              Target Attributes.  (line  180)
+* TARGET_RELAYOUT_FUNCTION:              Target Attributes.  (line  212)
 * TARGET_RESET_LOCATION_VIEW:            DWARF.              (line   57)
 * TARGET_RESOLVE_OVERLOADED_BUILTIN:     Misc.               (line  663)
 * TARGET_RETURN_IN_MEMORY:               Aggregate Return.   (line   15)
@@ -57454,6 +57516,7 @@ Concept Index
 * TARGET_UNWIND_TABLES_DEFAULT:          Exception Region Output.
                                                              (line   73)
 * TARGET_UNWIND_WORD_MODE:               Storage Layout.     (line  514)
+* TARGET_UPDATE_IPA_FN_TARGET_INFO:      Target Attributes.  (line  180)
 * TARGET_UPDATE_STACK_BOUNDARY:          Misc.               (line 1075)
 * TARGET_USES_WEAK_UNWIND_INFO:          Exception Handling. (line  123)
 * TARGET_USE_ANCHORS_FOR_SYMBOL_P:       Anchored Addresses. (line   53)
@@ -58330,171 +58393,171 @@ Ref: shift patterns1121573
 Ref: prologue instruction pattern1182398
 Ref: window_save instruction pattern1182891
 Ref: epilogue instruction pattern1183168
-Node: Pattern Ordering1205144
-Node: Dependent Patterns1206380
-Node: Jump Patterns1208000
-Node: Looping Patterns1209677
-Node: Insn Canonicalizations1215316
-Node: Expander Definitions1220512
-Node: Insn Splitting1228725
-Node: Including Patterns1243755
-Node: Peephole Definitions1245539
-Node: define_peephole1246792
-Node: define_peephole21253122
-Node: Insn Attributes1257211
-Node: Defining Attributes1258308
-Ref: define_enum_attr1261800
-Node: Expressions1262836
-Node: Tagging Insns1269586
-Node: Attr Example1273939
-Node: Insn Lengths1276312
-Node: Constant Attributes1279724
-Node: Mnemonic Attribute1280900
-Node: Delay Slots1282419
-Node: Processor pipeline description1285642
-Ref: Processor pipeline description-Footnote-11304454
-Node: Conditional Execution1304778
-Node: Define Subst1308261
-Node: Define Subst Example1310296
-Node: Define Subst Pattern Matching1313291
-Node: Define Subst Output Template1314517
-Node: Constant Definitions1316840
-Ref: define_enum1320699
-Node: Iterators1321187
-Node: Mode Iterators1321832
-Node: Defining Mode Iterators1322810
-Node: Substitutions1324304
-Node: Examples1326546
-Node: Code Iterators1327994
-Node: Int Iterators1331124
-Node: Subst Iterators1333588
-Node: Parameterized Names1335308
-Node: Target Macros1339326
-Node: Target Structure1342389
-Node: Driver1344881
-Node: Run-time Target1363851
-Node: Per-Function Data1373384
-Node: Storage Layout1376148
-Node: Type Layout1404044
-Node: Registers1417385
-Node: Register Basics1418359
-Node: Allocation Order1425921
-Node: Values in Registers1428405
-Node: Leaf Functions1435881
-Node: Stack Registers1438740
-Node: Register Classes1440012
-Node: Stack and Calling1474799
-Node: Frame Layout1475405
-Node: Exception Handling1487240
-Node: Stack Checking1493450
-Node: Frame Registers1499076
-Node: Elimination1507627
-Node: Stack Arguments1511483
-Node: Register Arguments1518936
-Node: Scalar Return1543494
-Node: Aggregate Return1549950
-Node: Caller Saves1554504
-Node: Function Entry1555246
-Node: Profiling1566798
-Node: Tail Calls1568908
-Node: Shrink-wrapping separate components1570818
-Node: Stack Smashing Protection1573859
-Node: Miscellaneous Register Hooks1576348
-Node: Varargs1577213
-Node: Trampolines1585099
-Node: Library Calls1594792
-Node: Addressing Modes1599878
-Node: Anchored Addresses1630495
-Node: Condition Code1633138
-Node: MODE_CC Condition Codes1634983
-Node: Costs1641746
-Node: Scheduling1664066
-Node: Sections1687988
-Node: PIC1704353
-Node: Assembler Format1706412
-Node: File Framework1707550
-Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1715149
-Node: Data Output1716824
-Node: Uninitialized Data1725112
-Node: Label Output1730126
-Node: Initialization1754737
-Node: Macros for Initialization1760698
-Node: Instruction Output1767849
-Node: Dispatch Tables1778478
-Node: Exception Region Output1784229
-Node: Alignment Output1791311
-Node: Debugging Info1794998
-Node: All Debuggers1795756
-Node: DBX Options1798528
-Node: DBX Hooks1803966
-Node: File Names and DBX1805275
-Node: DWARF1807379
-Node: VMS Debug1813194
-Node: CTF Debug1813791
-Node: BTF Debug1814152
-Node: Floating Point1814495
-Node: Mode Switching1817250
-Node: Target Attributes1821687
-Node: Emulated TLS1831163
-Node: MIPS Coprocessors1834553
-Node: PCH Target1835712
-Node: C++ ABI1837554
-Node: D Language and ABI1842346
-Node: Named Address Spaces1845289
-Node: Misc1851216
-Ref: TARGET_SHIFT_TRUNCATION_MASK1859087
-Node: Host Config1919796
-Node: Host Common1920865
-Node: Filesystem1923239
-Node: Host Misc1927354
-Node: Fragments1929803
-Node: Target Fragment1930998
-Node: Host Fragment1941810
-Node: Collect21942050
-Node: Header Dirs1944686
-Node: Type Information1946109
-Node: GTY Options1949640
-Node: Inheritance and GTY1961252
-Ref: Inheritance and GTY-Footnote-11962817
-Node: User GC1963087
-Node: GGC Roots1966838
-Node: Files1967551
-Node: Invoking the garbage collector1970179
-Node: Troubleshooting1971821
-Node: Plugins1972896
-Node: Plugins loading1974025
-Node: Plugin API1975124
-Node: Plugins pass1982991
-Node: Plugins GC1984962
-Node: Plugins description1986679
-Node: Plugins attr1987215
-Node: Plugins recording1989495
-Node: Plugins gate1990345
-Node: Plugins tracking1990936
-Node: Plugins building1991524
-Node: LTO1995025
-Node: LTO Overview1995897
-Node: LTO object file layout2001649
-Node: IPA2006279
-Node: WHOPR2015329
-Node: Internal flags2019889
-Node: Match and Simplify2021300
-Node: GIMPLE API2022262
-Node: The Language2025057
-Node: Static Analyzer2037556
-Node: Analyzer Internals2037821
-Node: Debugging the Analyzer2053708
-Node: User Experience Guidelines2056628
-Node: Guidelines for Diagnostics2057564
-Ref: input_location_example2065739
-Node: Guidelines for Options2075424
-Node: Funding2075601
-Node: GNU Project2078108
-Node: Copying2078759
-Node: GNU Free Documentation License2116273
-Node: Contributors2141396
-Node: Option Index2182372
-Node: Concept Index2183249
+Node: Pattern Ordering1206069
+Node: Dependent Patterns1207305
+Node: Jump Patterns1208925
+Node: Looping Patterns1210602
+Node: Insn Canonicalizations1216241
+Node: Expander Definitions1221437
+Node: Insn Splitting1229650
+Node: Including Patterns1244680
+Node: Peephole Definitions1246464
+Node: define_peephole1247717
+Node: define_peephole21254047
+Node: Insn Attributes1258136
+Node: Defining Attributes1259233
+Ref: define_enum_attr1262725
+Node: Expressions1263761
+Node: Tagging Insns1270511
+Node: Attr Example1274864
+Node: Insn Lengths1277237
+Node: Constant Attributes1280649
+Node: Mnemonic Attribute1281825
+Node: Delay Slots1283344
+Node: Processor pipeline description1286567
+Ref: Processor pipeline description-Footnote-11305379
+Node: Conditional Execution1305703
+Node: Define Subst1309186
+Node: Define Subst Example1311221
+Node: Define Subst Pattern Matching1314216
+Node: Define Subst Output Template1315442
+Node: Constant Definitions1317765
+Ref: define_enum1321624
+Node: Iterators1322112
+Node: Mode Iterators1322757
+Node: Defining Mode Iterators1323735
+Node: Substitutions1325229
+Node: Examples1327471
+Node: Code Iterators1328919
+Node: Int Iterators1332049
+Node: Subst Iterators1334513
+Node: Parameterized Names1336233
+Node: Target Macros1340251
+Node: Target Structure1343314
+Node: Driver1345806
+Node: Run-time Target1364776
+Node: Per-Function Data1374309
+Node: Storage Layout1377073
+Node: Type Layout1404969
+Node: Registers1418310
+Node: Register Basics1419284
+Node: Allocation Order1426846
+Node: Values in Registers1429330
+Node: Leaf Functions1436806
+Node: Stack Registers1439665
+Node: Register Classes1440937
+Node: Stack and Calling1475724
+Node: Frame Layout1476330
+Node: Exception Handling1488165
+Node: Stack Checking1494375
+Node: Frame Registers1500001
+Node: Elimination1508552
+Node: Stack Arguments1512408
+Node: Register Arguments1519861
+Node: Scalar Return1544419
+Node: Aggregate Return1550875
+Node: Caller Saves1555429
+Node: Function Entry1556171
+Node: Profiling1567723
+Node: Tail Calls1569833
+Node: Shrink-wrapping separate components1571743
+Node: Stack Smashing Protection1574784
+Node: Miscellaneous Register Hooks1577273
+Node: Varargs1578138
+Node: Trampolines1586024
+Node: Library Calls1595717
+Node: Addressing Modes1600803
+Node: Anchored Addresses1631420
+Node: Condition Code1634063
+Node: MODE_CC Condition Codes1635908
+Node: Costs1642671
+Node: Scheduling1664991
+Node: Sections1688913
+Node: PIC1705278
+Node: Assembler Format1707337
+Node: File Framework1708475
+Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1716074
+Node: Data Output1717749
+Node: Uninitialized Data1726037
+Node: Label Output1731051
+Node: Initialization1755662
+Node: Macros for Initialization1761623
+Node: Instruction Output1768774
+Node: Dispatch Tables1779403
+Node: Exception Region Output1785154
+Node: Alignment Output1792236
+Node: Debugging Info1795923
+Node: All Debuggers1796681
+Node: DBX Options1799453
+Node: DBX Hooks1804891
+Node: File Names and DBX1806200
+Node: DWARF1808304
+Node: VMS Debug1814119
+Node: CTF Debug1814716
+Node: BTF Debug1815077
+Node: Floating Point1815420
+Node: Mode Switching1818175
+Node: Target Attributes1822612
+Node: Emulated TLS1834014
+Node: MIPS Coprocessors1837404
+Node: PCH Target1838563
+Node: C++ ABI1840405
+Node: D Language and ABI1845197
+Node: Named Address Spaces1848140
+Node: Misc1854067
+Ref: TARGET_SHIFT_TRUNCATION_MASK1861938
+Node: Host Config1922647
+Node: Host Common1923716
+Node: Filesystem1926090
+Node: Host Misc1930205
+Node: Fragments1932654
+Node: Target Fragment1933849
+Node: Host Fragment1944661
+Node: Collect21944901
+Node: Header Dirs1947537
+Node: Type Information1948960
+Node: GTY Options1952491
+Node: Inheritance and GTY1964103
+Ref: Inheritance and GTY-Footnote-11965668
+Node: User GC1965938
+Node: GGC Roots1969689
+Node: Files1970402
+Node: Invoking the garbage collector1973030
+Node: Troubleshooting1974672
+Node: Plugins1975747
+Node: Plugins loading1976876
+Node: Plugin API1977975
+Node: Plugins pass1985842
+Node: Plugins GC1987813
+Node: Plugins description1989530
+Node: Plugins attr1990066
+Node: Plugins recording1992346
+Node: Plugins gate1993196
+Node: Plugins tracking1993787
+Node: Plugins building1994375
+Node: LTO1997876
+Node: LTO Overview1998748
+Node: LTO object file layout2004500
+Node: IPA2009130
+Node: WHOPR2018180
+Node: Internal flags2022740
+Node: Match and Simplify2024151
+Node: GIMPLE API2025113
+Node: The Language2027908
+Node: Static Analyzer2040407
+Node: Analyzer Internals2040672
+Node: Debugging the Analyzer2056559
+Node: User Experience Guidelines2059479
+Node: Guidelines for Diagnostics2060415
+Ref: input_location_example2068590
+Node: Guidelines for Options2078275
+Node: Funding2078452
+Node: GNU Project2080959
+Node: Copying2081610
+Node: GNU Free Documentation License2119124
+Node: Contributors2144247
+Node: Option Index2185223
+Node: Concept Index2186100
 
 End Tag Table
 

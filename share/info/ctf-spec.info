@@ -1,7 +1,7 @@
 This is ctf-spec.info, produced by makeinfo version 6.7 from
 ctf-spec.texi.
 
-Copyright (C) 2021 Free Software Foundation, Inc.
+Copyright (C) 2021-2022 Free Software Foundation, Inc.
 
    Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU General Public License, Version 3 or any
@@ -1719,33 +1719,33 @@ Index
 
 
 Tag Table:
-Node: Top543
-Node: Overview856
-Node: CTF archive4131
-Node: CTF dictionaries8757
-Node: CTF Preamble9174
-Node: CTF file-wide flags11784
-Node: CTF header13242
-Node: The type section19165
-Node: The info word23829
-Node: Type indexes and type IDs26359
-Node: Type kinds29727
-Node: Integer types33009
-Node: Floating-point types36557
-Node: Slices40582
-Node: Pointers typedefs and cvr-quals44086
-Node: Arrays45257
-Node: Function pointers46988
-Node: Enums47653
-Node: Structs and unions48935
-Node: Forward declarations52792
-Node: The symtypetab sections54371
-Node: The variable section57449
-Node: The label section58587
-Node: The string section59562
-Node: Data models60824
-Node: Limits of CTF61493
-Node: Index62538
+Node: Top548
+Node: Overview861
+Node: CTF archive4136
+Node: CTF dictionaries8762
+Node: CTF Preamble9179
+Node: CTF file-wide flags11789
+Node: CTF header13247
+Node: The type section19170
+Node: The info word23834
+Node: Type indexes and type IDs26364
+Node: Type kinds29732
+Node: Integer types33014
+Node: Floating-point types36562
+Node: Slices40587
+Node: Pointers typedefs and cvr-quals44091
+Node: Arrays45262
+Node: Function pointers46993
+Node: Enums47658
+Node: Structs and unions48940
+Node: Forward declarations52797
+Node: The symtypetab sections54376
+Node: The variable section57454
+Node: The label section58592
+Node: The string section59567
+Node: Data models60829
+Node: Limits of CTF61498
+Node: Index62543
 
 End Tag Table
 
