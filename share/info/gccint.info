@@ -47198,6 +47198,12 @@ it reaches the call in its traversal of the source.
  will emit a warning describing the capacity of the base region of the
 region pointed to by the 1st argument.
 
+     extern void __analyzer_dump_escaped (void);
+
+ will emit a warning giving the number of decls that have escaped on
+this analysis path, followed by a comma-separated list of their names,
+in alphabetical order.
+
      __analyzer_dump_path ();
 
  will emit a placeholder "note" diagnostic with a path to that call
@@ -47243,6 +47249,14 @@ exploded graph in compressed JSON form.
  One approach when tracking down where a particular bogus state is
 introduced into the 'exploded_graph' is to add custom code to
 'program_state::validate'.
+
+ The debug function 'region::is_named_decl_p' can be used when
+debugging, such as for assertions and conditional breakpoints.  For
+example, when tracking down a bug in handling a decl called
+'yy_buffer_stack', I temporarily added a:
+       gcc_assert (!m_base_region->is_named_decl_p ("yy_buffer_stack"));
+ to 'binding_cluster::mark_as_escaped' to trap a point where
+'yy_buffer_stack' was mistakenly being treated as having escaped.
 
 
 File: gccint.info,  Node: User Experience Guidelines,  Next: Funding,  Prev: Static Analyzer,  Up: Top
@@ -58547,17 +58561,17 @@ Node: The Language2027908
 Node: Static Analyzer2040407
 Node: Analyzer Internals2040672
 Node: Debugging the Analyzer2056559
-Node: User Experience Guidelines2059479
-Node: Guidelines for Diagnostics2060415
-Ref: input_location_example2068590
-Node: Guidelines for Options2078275
-Node: Funding2078452
-Node: GNU Project2080959
-Node: Copying2081610
-Node: GNU Free Documentation License2119124
-Node: Contributors2144247
-Node: Option Index2185223
-Node: Concept Index2186100
+Node: User Experience Guidelines2060127
+Node: Guidelines for Diagnostics2061063
+Ref: input_location_example2069238
+Node: Guidelines for Options2078923
+Node: Funding2079100
+Node: GNU Project2081607
+Node: Copying2082258
+Node: GNU Free Documentation License2119772
+Node: Contributors2144895
+Node: Option Index2185871
+Node: Concept Index2186748
 
 End Tag Table
 
