@@ -153,7 +153,7 @@ File: binutils.info,  Node: ar cmdline,  Next: ar scripts,  Up: ar
 1.1 Controlling 'ar' on the Command Line
 ========================================
 
-     ar [-X32_64] [-]P[MOD] [--plugin NAME] [--target BFDNAME] [--output DIRNAME] [--record-libdeps LIBDEPS] [RELPOS] [COUNT] ARCHIVE [MEMBER...]
+     ar [-X32_64] [-]P[MOD] [--plugin NAME] [--target BFDNAME] [--output DIRNAME] [--record-libdeps LIBDEPS] [--thin] [RELPOS] [COUNT] ARCHIVE [MEMBER...]
 
    When you use 'ar' in the Unix style, 'ar' insists on at least two
 arguments to execute: one keyletter specifying the _operation_
@@ -371,9 +371,9 @@ to specify variations on an operation's behavior:
      you must run 'ranlib' on the archive.
 
 'T'
-     Make the specified ARCHIVE a _thin_ archive.  If it already exists
-     and is a regular archive, the existing members must be present in
-     the same directory as ARCHIVE.
+     Deprecated alias for '--thin'.  'T' is not recommended because in
+     many ar implementations 'T' has a different meaning, as specified
+     by X/Open System Interface.
 
 'u'
      Normally, 'ar r'... inserts all files listed into the archive.  If
@@ -459,6 +459,11 @@ specific ways:
 '--record-libdeps LIBDEPS'
      The '--record-libdeps' option is identical to the 'l' modifier,
      just handled in long form.
+
+'--thin'
+     Make the specified ARCHIVE a _thin_ archive.  If it already exists
+     and is a regular archive, the existing members must be present in
+     the same directory as ARCHIVE.
 
 
 File: binutils.info,  Node: ar scripts,  Prev: ar cmdline,  Up: ar
@@ -5865,7 +5870,7 @@ Binutils Index
 * contents of archive:                   ar cmdline.          (line  97)
 * crash:                                 Bug Criteria.        (line   9)
 * creating archives:                     ar cmdline.          (line 144)
-* creating thin archive:                 ar cmdline.          (line 224)
+* creating thin archive:                 ar cmdline.          (line 314)
 * CTF:                                   objdump.             (line 705)
 * CTF <1>:                               readelf.             (line 437)
 * cxxfilt:                               c++filt.             (line  16)
@@ -6017,33 +6022,33 @@ Tag Table:
 Node: Top1834
 Node: ar3554
 Node: ar cmdline6888
-Node: ar scripts20010
-Node: nm25696
-Node: objcopy41069
-Node: objdump81917
-Node: ranlib117205
-Node: size118804
-Node: strings122773
-Node: strip128630
-Node: c++filt138472
-Ref: c++filt-Footnote-1144333
-Node: addr2line144439
-Node: windmc150117
-Node: windres153776
-Node: dlltool160346
-Node: def file format173343
-Node: readelf175873
-Node: elfedit194162
-Node: Common Options197588
-Node: Selecting the Target System198622
-Node: Target Selection199550
-Node: Architecture Selection201531
-Node: debuginfod202359
-Node: Reporting Bugs203118
-Node: Bug Criteria203880
-Node: Bug Reporting204433
-Node: GNU Free Documentation License211300
-Node: Binutils Index236460
+Node: ar scripts20204
+Node: nm25890
+Node: objcopy41263
+Node: objdump82111
+Node: ranlib117399
+Node: size118998
+Node: strings122967
+Node: strip128824
+Node: c++filt138666
+Ref: c++filt-Footnote-1144527
+Node: addr2line144633
+Node: windmc150311
+Node: windres153970
+Node: dlltool160540
+Node: def file format173537
+Node: readelf176067
+Node: elfedit194356
+Node: Common Options197782
+Node: Selecting the Target System198816
+Node: Target Selection199744
+Node: Architecture Selection201725
+Node: debuginfod202553
+Node: Reporting Bugs203312
+Node: Bug Criteria204074
+Node: Bug Reporting204627
+Node: GNU Free Documentation License211494
+Node: Binutils Index236654
 
 End Tag Table
 

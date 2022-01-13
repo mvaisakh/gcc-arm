@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2022-01-09" "binutils-2.37.50" "GNU Development Tools"
+.TH LD 1 "2022-01-13" "binutils-2.37.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1315,6 +1315,20 @@ called.
 .IP "\fBorigin\fR" 4
 .IX Item "origin"
 Specify that the object requires \fB\f(CB$ORIGIN\fB\fR handling in paths.
+.IP "\fBpack-relative-relocs\fR" 4
+.IX Item "pack-relative-relocs"
+.PD 0
+.IP "\fBnopack-relative-relocs\fR" 4
+.IX Item "nopack-relative-relocs"
+.PD
+Generate compact relative relocation in position-independent executable
+and shared library.  It adds \f(CW\*(C`DT_RELR\*(C'\fR, \f(CW\*(C`DT_RELRSZ\*(C'\fR and
+\&\f(CW\*(C`DT_RELRENT\*(C'\fR entries to the dynamic section.  It is ignored when
+building position-dependent executable and relocatable output.
+\&\fBnopack-relative-relocs\fR is the default, which disables compact
+relative relocation.  When linked against the \s-1GNU C\s0 Library, a
+\&\s-1GLIBC_ABI_DT_RELR\s0 symbol version dependency on the shared C Library is
+added to the output.  Supported for i386 and x86\-64.
 .IP "\fBrelro\fR" 4
 .IX Item "relro"
 .PD 0
