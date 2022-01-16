@@ -65,6 +65,7 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS (pass_ubsan, 1);
       NEXT_PASS (pass_nothrow, 1);
       NEXT_PASS (pass_rebuild_cgraph_edges, 1);
+      NEXT_PASS_WITH_ARG (pass_warn_access, 1, /*early=*/true);
   POP_INSERT_PASSES ()
 
   NEXT_PASS (pass_local_optimization_passes, 1);
@@ -203,6 +204,8 @@ along with GCC; see the file COPYING3.  If not see
 	 form if possible.  */
       NEXT_PASS (pass_object_sizes, 1);
       NEXT_PASS (pass_post_ipa_warn, 1);
+      /* Must run before loop unrolling.  */
+      NEXT_PASS_WITH_ARG (pass_warn_access, 2, /*early=*/true);
       NEXT_PASS (pass_complete_unrolli, 1);
       NEXT_PASS (pass_backprop, 1);
       NEXT_PASS (pass_phiprop, 1);
@@ -428,7 +431,7 @@ along with GCC; see the file COPYING3.  If not see
   NEXT_PASS (pass_harden_compares, 1);
   NEXT_PASS (pass_cleanup_cfg_post_optimizing, 1);
   NEXT_PASS (pass_warn_function_noreturn, 1);
-  NEXT_PASS (pass_warn_access, 1);
+  NEXT_PASS_WITH_ARG (pass_warn_access, 3, /*early=*/false);
 
   NEXT_PASS (pass_expand, 1);
 

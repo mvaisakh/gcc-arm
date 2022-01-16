@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-01-13" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2022-01-16" "gcc-12.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -365,7 +365,8 @@ in the following sections.
 \&\-Wchar\-subscripts 
 \&\-Wclobbered  \-Wcomment 
 \&\-Wconversion  \-Wno\-coverage\-mismatch  \-Wno\-cpp 
-\&\-Wdangling\-else  \-Wdate\-time 
+\&\-Wdangling\-else  \-Wdangling\-pointer  \-Wdangling\-pointer=\fR\fIn\fR  
+\&\fB\-Wdate\-time 
 \&\-Wno\-deprecated  \-Wno\-deprecated\-declarations  \-Wno\-designated\-init 
 \&\-Wdisabled\-optimization 
 \&\-Wno\-discarded\-array\-qualifiers  \-Wno\-discarded\-qualifiers 
@@ -4232,6 +4233,75 @@ annotations.
 .IX Item "-Wsuggest-override"
 Warn about overriding virtual functions that are not marked with the
 \&\f(CW\*(C`override\*(C'\fR keyword.
+.IP "\fB\-Wuse\-after\-free\fR" 4
+.IX Item "-Wuse-after-free"
+.PD 0
+.IP "\fB\-Wuse\-after\-free=\fR\fIn\fR" 4
+.IX Item "-Wuse-after-free=n"
+.PD
+Warn about uses of pointers to dynamically allocated objects that have
+been rendered indeterminate by a call to a deallocation function.
+The warning is enabled at all optimization levels but may yield different
+results with optimization than without.
+.RS 4
+.IP "\fB\-Wuse\-after\-free=1\fR" 4
+.IX Item "-Wuse-after-free=1"
+At level 1 the warning attempts to diagnose only unconditional uses
+of pointers made indeterminate by a deallocation call or a successful
+call to \f(CW\*(C`realloc\*(C'\fR, regardless of whether or not the call resulted
+in an actual reallocatio of memory.  This includes double\-\f(CW\*(C`free\*(C'\fR
+calls as well as uses in arithmetic and relational expressions.  Although
+undefined, uses of indeterminate pointers in equality (or inequality)
+expressions are not diagnosed at this level.
+.IP "\fB\-Wuse\-after\-free=2\fR" 4
+.IX Item "-Wuse-after-free=2"
+At level 2, in addition to unconditional uses, the warning also diagnoses
+conditional uses of pointers made indeterminate by a deallocation call.
+As at level 2, uses in equality (or inequality) expressions are not
+diagnosed.  For example, the second call to \f(CW\*(C`free\*(C'\fR in the following
+function is diagnosed at this level:
+.Sp
+.Vb 1
+\&        struct A { int refcount; void *data; };
+\&        
+\&        void release (struct A *p)
+\&        {
+\&          int refcount = \-\-p\->refcount;
+\&          free (p);
+\&          if (refcount == 0)
+\&            free (p\->data);   // warning: p may be used after free
+\&        }
+.Ve
+.IP "\fB\-Wuse\-after\-free=3\fR" 4
+.IX Item "-Wuse-after-free=3"
+At level 3, the warning also diagnoses uses of indeterminate pointers in
+equality expressions.  All uses of indeterminate pointers are undefined
+but equality tests sometimes appear after calls to \f(CW\*(C`realloc\*(C'\fR as
+an attempt to determine whether the call resulted in relocating the object
+to a different address.  They are diagnosed at a separate level to aid
+legacy code gradually transition to safe alternatives.  For example,
+the equality test in the function below is diagnosed at this level:
+.Sp
+.Vb 1
+\&        void adjust_pointers (int**, int);
+\&        
+\&        void grow (int **p, int n)
+\&        {
+\&          int **q = (int**)realloc (p, n *= 2);
+\&          if (q == p)
+\&            return;
+\&          adjust_pointers ((int**)q, n);
+\&        }
+.Ve
+.Sp
+To avoid the warning at this level, store offsets into allocated memory
+instead of pointers.  This approach obviates needing to adjust the stored
+pointers after reallocation.
+.RE
+.RS 4
+.Sp
+\&\fB\-Wuse\-after\-free=2\fR is included in \fB\-Wall\fR.
+.RE
 .IP "\fB\-Wuseless\-cast\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wuseless-cast ( and Objective- only)"
 Warn when an expression is casted to its own type.
@@ -5389,6 +5459,7 @@ Options\fR and \fBObjective-C and Objective\-\*(C+ Dialect Options\fR.
 \&\-Wcatch\-value\fR (\*(C+ and Objective\-\*(C+ only)  
 \&\fB\-Wchar\-subscripts  
 \&\-Wcomment  
+\&\-Wdangling\-pointer=2  
 \&\-Wduplicate\-decl\-specifier\fR (C and Objective-C only) 
 \&\fB\-Wenum\-compare\fR (in C/ObjC; this is on by default in \*(C+) 
 \&\fB\-Wformat   
@@ -5437,6 +5508,7 @@ Options\fR and \fBObjective-C and Objective\-\*(C+ Dialect Options\fR.
 \&\-Wunused\-label     
 \&\-Wunused\-value     
 \&\-Wunused\-variable  
+\&\-Wuse\-after\-free=3  
 \&\-Wvla\-parameter\fR (C and Objective-C only) 
 \&\fB\-Wvolatile\-register\-var  
 \&\-Wzero\-length\-bounds\fR
@@ -8027,6 +8099,68 @@ looks like this:
 .Ve
 .Sp
 This warning is enabled by \fB\-Wparentheses\fR.
+.IP "\fB\-Wdangling\-pointer\fR" 4
+.IX Item "-Wdangling-pointer"
+.PD 0
+.IP "\fB\-Wdangling\-pointer=\fR\fIn\fR" 4
+.IX Item "-Wdangling-pointer=n"
+.PD
+Warn about uses of pointers (or \*(C+ references) to objects with automatic
+storage duration after their lifetime has ended.  This includes local
+variables declared in nested blocks, compound literals and other unnamed
+temporary objects.  In addition, warn about storing the address of such
+objects in escaped pointers.  The warning is enabled at all optimization
+levels but may yield different results with optimization than without.
+.RS 4
+.IP "\fB\-Wdangling\-pointer=1\fR" 4
+.IX Item "-Wdangling-pointer=1"
+At level 1 the warning diagnoses only unconditional uses of dangling pointers.
+For example
+.Sp
+.Vb 5
+\&        int f (int c1, int c2, x)
+\&        {
+\&          char *p = strchr ((char[]){ c1, c2 }, c3);
+\&          return p ? *p : \*(Aqx\*(Aq;   // warning: dangling pointer to a compound literal
+\&        }
+.Ve
+.Sp
+In the following function the store of the address of the local variable
+\&\f(CW\*(C`x\*(C'\fR in the escaped pointer \f(CW*p\fR also triggers the warning.
+.Sp
+.Vb 5
+\&        void g (int **p)
+\&        {
+\&          int x = 7;
+\&          *p = &x;   // warning: storing the address of a local variable in *p
+\&        }
+.Ve
+.IP "\fB\-Wdangling\-pointer=2\fR" 4
+.IX Item "-Wdangling-pointer=2"
+At level 2, in addition to unconditional uses the warning also diagnoses
+conditional uses of dangling pointers.
+.Sp
+For example, because the array \fIa\fR in the following function is out of
+scope when the pointer \fIs\fR that was set to point is used, the warning
+triggers at this level.
+.Sp
+.Vb 10
+\&        void f (char *s)
+\&        {
+\&          if (!s)
+\&            {
+\&              char a[12] = "tmpname";
+\&              s = a;
+\&            }
+\&          strcat (s, ".tmp");   // warning: dangling pointer to a may be used
+\&          ...
+\&        }
+.Ve
+.RE
+.RS 4
+.Sp
+\&\fB\-Wdangling\-pointer=2\fR is included in \fB\-Wall\fR.
+.RE
 .IP "\fB\-Wdate\-time\fR" 4
 .IX Item "-Wdate-time"
 Warn when macros \f(CW\*(C`_\|_TIME_\|_\*(C'\fR, \f(CW\*(C`_\|_DATE_\|_\*(C'\fR or \f(CW\*(C`_\|_TIMESTAMP_\|_\*(C'\fR
@@ -8402,6 +8536,36 @@ so \fBsatisfied\fR is only true if concept \fBC\fR is satisfied for
 type \fBT\fR.
 .Sp
 This warning can be disabled with \fB\-Wno\-missing\-requires\fR.
+.IP "\fB\-Wno\-missing\-template\-keyword\fR" 4
+.IX Item "-Wno-missing-template-keyword"
+The member access tokens ., \-> and :: must be followed by the \f(CW\*(C`template\*(C'\fR
+keyword if the parent object is dependent and the member being named is a
+template.
+.Sp
+.Vb 6
+\&        template <class X>
+\&        void DoStuff (X x)
+\&        {
+\&          x.template DoSomeOtherStuff<X>(); // Good.
+\&          x.DoMoreStuff<X>(); // Warning, x is dependent.
+\&        }
+.Ve
+.Sp
+In rare cases it is possible to get false positives. To silence this, wrap
+the expression in parentheses. For example, the following is treated as a
+template, even where m and N are integers:
+.Sp
+.Vb 3
+\&        void NotATemplate (my_class t)
+\&        {
+\&          int N = 5;
+\&        
+\&          bool test = t.m < N > (0); // Treated as a template.
+\&          test = (t.m < N) > (0); // Same meaning, but not treated as a template.
+\&        }
+.Ve
+.Sp
+This warning can be disabled with \fB\-Wno\-missing\-template\-keyword\fR.
 .IP "\fB\-Wno\-multichar\fR" 4
 .IX Item "-Wno-multichar"
 Do not warn if a multicharacter constant (\fB'\s-1FOOF\s0'\fR) is used.
