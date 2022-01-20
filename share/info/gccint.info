@@ -55,7 +55,7 @@ Introduction
 This manual documents the internals of the GNU compilers, including how
 to port them to new targets and some information about how to write
 front ends for new languages.  It corresponds to the compilers (Eva GCC)
-version 12.0.0.  The use of the GNU compilers is documented in a
+version 12.0.1.  The use of the GNU compilers is documented in a
 separate manual.  *Note Introduction: (gcc)Top.
 
  This manual is mainly a reference manual rather than a tutorial.  It
@@ -3825,7 +3825,7 @@ A front end for a language in GCC has the following parts:
      to such information in the front end's own manual.
    * Details of source file suffixes for that language and '-x LANG'
      options supported, in 'gcc/doc/invoke.texi'.
-   * Entries in 'default_compilers' in 'gcc.c' for source file suffixes
+   * Entries in 'default_compilers' in 'gcc.cc' for source file suffixes
      for that language.
    * Preferably testsuites, which may be under 'gcc/testsuite' or
      runtime library directories.  FIXME: document somewhere how to
@@ -3896,9 +3896,9 @@ other parts of the compiler depend on their names:
      This file registers the set of switches that the front end accepts
      on the command line, and their '--help' text.  *Note Options::.
 'lang-specs.h'
-     This file provides entries for 'default_compilers' in 'gcc.c' which
-     override the default of giving an error that a compiler for that
-     language is not installed.
+     This file provides entries for 'default_compilers' in 'gcc.cc'
+     which override the default of giving an error that a compiler for
+     that language is not installed.
 'LANGUAGE-tree.def'
      This file, which need not exist, defines any language-specific tree
      codes.
@@ -3958,7 +3958,7 @@ language:
      from the single 'gcc/Makefile' is preferred.
 'gtfiles'
      If defined, a space-separated list of files that should be scanned
-     by 'gengtype.c' to generate the garbage collection tables and
+     by 'gengtype.cc' to generate the garbage collection tables and
      routines for this language.  This excludes the files that are
      common to all front ends.  *Note Type Information::.
 
@@ -7105,7 +7105,7 @@ semicolon.
      name of the include file.
 
    * A variable record to record any additional files that the
-     'options.c' or 'options-save.c' file should include.  This is
+     'options.cc' or 'options-save.cc' file should include.  This is
      useful to provide inline functions needed for target variables
      and/or '#ifdef' sequences to properly set up the initialization.
      These records have two fields: the string 'SourceInclude' and the
@@ -7658,7 +7658,7 @@ Usually it is easier to generate GENERIC trees plus extensions and let
 the language-independent gimplifier do most of the work.
 
  The main entry point to this pass is 'gimplify_function_tree' located
-in 'gimplify.c'.  From here we process the entire function gimplifying
+in 'gimplify.cc'.  From here we process the entire function gimplifying
 each statement in turn.  The main workhorse for this pass is
 'gimplify_expr'.  Approximately everything passes through here at least
 once, and it is from here that we invoke the 'lang_hooks.gimplify_expr'
@@ -7681,7 +7681,7 @@ File: gccint.info,  Node: Pass manager,  Next: IPA passes,  Prev: Gimplification
 9.3 Pass manager
 ================
 
-The pass manager is located in 'passes.c', 'tree-optimize.c' and
+The pass manager is located in 'passes.cc', 'tree-optimize.c' and
 'tree-pass.h'.  It processes passes as described in 'passes.def'.  Its
 job is to run all of the individual passes in the correct order, and
 take care of standard bookkeeping that applies to every pass.
@@ -7751,33 +7751,33 @@ function bodies.  No 'generate_summary', 'read_summary', or
    * IPA free lang data
 
      This pass frees resources that are used by the front end but are
-     not needed once it is done.  It is located in 'tree.c' and is
+     not needed once it is done.  It is located in 'tree.cc' and is
      described by 'pass_ipa_free_lang_data'.
 
    * IPA function and variable visibility
 
      This is a local function pass handling visibilities of all symbols.
      This happens before LTO streaming, so '-fwhole-program' should be
-     ignored at this level.  It is located in 'ipa-visibility.c' and is
+     ignored at this level.  It is located in 'ipa-visibility.cc' and is
      described by 'pass_ipa_function_and_variable_visibility'.
 
    * IPA remove symbols
 
      This pass performs reachability analysis and reclaims all
-     unreachable nodes.  It is located in 'passes.c' and is described by
-     'pass_ipa_remove_symbols'.
+     unreachable nodes.  It is located in 'passes.cc' and is described
+     by 'pass_ipa_remove_symbols'.
 
    * IPA OpenACC
 
      This is a pass group for OpenACC processing.  It is located in
-     'tree-ssa-loop.c' and is described by 'pass_ipa_oacc'.
+     'tree-ssa-loop.cc' and is described by 'pass_ipa_oacc'.
 
    * IPA points-to analysis
 
      This is a tree-based points-to analysis pass.  The idea behind this
      analyzer is to generate set constraints from the program, then
      solve the resulting constraints in order to generate the points-to
-     sets.  It is located in 'tree-ssa-structalias.c' and is described
+     sets.  It is located in 'tree-ssa-structalias.cc' and is described
      by 'pass_ipa_pta'.
 
    * IPA OpenACC kernels
@@ -7785,50 +7785,50 @@ function bodies.  No 'generate_summary', 'read_summary', or
      This is a pass group for processing OpenACC kernels regions.  It is
      a subpass of the IPA OpenACC pass group that runs on offloaded
      functions containing OpenACC kernels loops.  It is located in
-     'tree-ssa-loop.c' and is described by 'pass_ipa_oacc_kernels'.
+     'tree-ssa-loop.cc' and is described by 'pass_ipa_oacc_kernels'.
 
    * Target clone
 
      This is a pass for parsing functions with multiple target
-     attributes.  It is located in 'multiple_target.c' and is described
+     attributes.  It is located in 'multiple_target.cc' and is described
      by 'pass_target_clone'.
 
    * IPA auto profile
 
      This pass uses AutoFDO profiling data to annotate the control flow
-     graph.  It is located in 'auto-profile.c' and is described by
+     graph.  It is located in 'auto-profile.cc' and is described by
      'pass_ipa_auto_profile'.
 
    * IPA tree profile
 
      This pass does profiling for all functions in the call graph.  It
      calculates branch probabilities and basic block execution counts.
-     It is located in 'tree-profile.c' and is described by
+     It is located in 'tree-profile.cc' and is described by
      'pass_ipa_tree_profile'.
 
    * IPA free function summary
 
      This pass is a small IPA pass when argument 'small_p' is true.  It
      releases inline function summaries and call summaries.  It is
-     located in 'ipa-fnsummary.c' and is described by
+     located in 'ipa-fnsummary.cc' and is described by
      'pass_ipa_free_free_fn_summary'.
 
    * IPA increase alignment
 
      This pass increases the alignment of global arrays to improve
-     vectorization.  It is located in 'tree-vectorizer.c' and is
+     vectorization.  It is located in 'tree-vectorizer.cc' and is
      described by 'pass_ipa_increase_alignment'.
 
    * IPA transactional memory
 
      This pass is for transactional memory support.  It is located in
-     'trans-mem.c' and is described by 'pass_ipa_tm'.
+     'trans-mem.cc' and is described by 'pass_ipa_tm'.
 
    * IPA lower emulated TLS
 
      This pass lowers thread-local storage (TLS) operations to emulation
-     functions provided by libgcc.  It is located in 'tree-emutls.c' and
-     is described by 'pass_ipa_lower_emutls'.
+     functions provided by libgcc.  It is located in 'tree-emutls.cc'
+     and is described by 'pass_ipa_lower_emutls'.
 
 
 File: gccint.info,  Node: Regular IPA passes,  Next: Late IPA passes,  Prev: Small IPA passes,  Up: IPA passes
@@ -7846,13 +7846,13 @@ IPA::).
      This pass performs various optimizations involving symbol
      visibility with '-fwhole-program', including symbol privatization,
      discovering local functions, and dismantling comdat groups.  It is
-     located in 'ipa-visibility.c' and is described by
+     located in 'ipa-visibility.cc' and is described by
      'pass_ipa_whole_program_visibility'.
 
    * IPA profile
 
      The IPA profile pass propagates profiling frequencies across the
-     call graph.  It is located in 'ipa-profile.c' and is described by
+     call graph.  It is located in 'ipa-profile.cc' and is described by
      'pass_ipa_profile'.
 
    * IPA identical code folding
@@ -7860,14 +7860,14 @@ IPA::).
      This is the inter-procedural identical code folding pass.  The goal
      of this transformation is to discover functions and read-only
      variables that have exactly the same semantics.  It is located in
-     'ipa-icf.c' and is described by 'pass_ipa_icf'.
+     'ipa-icf.cc' and is described by 'pass_ipa_icf'.
 
    * IPA devirtualization
 
      This pass performs speculative devirtualization based on the type
      inheritance graph.  When a polymorphic call has only one likely
      target in the unit, it is turned into a speculative call.  It is
-     located in 'ipa-devirt.c' and is described by 'pass_ipa_devirt'.
+     located in 'ipa-devirt.cc' and is described by 'pass_ipa_devirt'.
 
    * IPA constant propagation
 
@@ -7875,7 +7875,7 @@ IPA::).
      invoked with some arguments with the same known constant values and
      to modify the functions accordingly.  It can also do partial
      specialization and type-based devirtualization.  It is located in
-     'ipa-cp.c' and is described by 'pass_ipa_cp'.
+     'ipa-cp.cc' and is described by 'pass_ipa_cp'.
 
    * IPA scalar replacement of aggregates
 
@@ -7883,7 +7883,7 @@ IPA::).
      parameters representing part of the original, turning those passed
      by reference into new ones which pass the value directly.  It also
      removes unused function return values and unused function
-     parameters.  This pass is located in 'ipa-sra.c' and is described
+     parameters.  This pass is located in 'ipa-sra.cc' and is described
      by 'pass_ipa_sra'.
 
    * IPA constructor/destructor merge
@@ -7891,7 +7891,7 @@ IPA::).
      This pass merges multiple constructors and destructors for static
      objects into single functions.  It's only run at LTO time unless
      the target doesn't support constructors and destructors natively.
-     The pass is located in 'ipa.c' and is described by
+     The pass is located in 'ipa.cc' and is described by
      'pass_ipa_cdtor_merge'.
 
    * IPA function summary
@@ -7901,7 +7901,7 @@ IPA::).
      frame size for each function.  It also estimates information about
      function calls: call statement size, time and how often the
      parameters change for each call.  It is located in
-     'ipa-fnsummary.c' and is described by 'pass_ipa_fn_summary'.
+     'ipa-fnsummary.cc' and is described by 'pass_ipa_fn_summary'.
 
    * IPA inline
 
@@ -7910,7 +7910,8 @@ IPA::).
      ordered in increasing badness, bounded by unit growth parameters.
      Unreachable functions are removed from the call graph.  Functions
      called once and not exported from the unit are inlined.  This pass
-     is located in 'ipa-inline.c' and is described by 'pass_ipa_inline'.
+     is located in 'ipa-inline.cc' and is described by
+     'pass_ipa_inline'.
 
    * IPA pure/const analysis
 
@@ -7918,32 +7919,33 @@ IPA::).
      or pure ('DECL_PURE_P').  The per-function information is produced
      by 'pure_const_generate_summary', then the global information is
      computed by performing a transitive closure over the call graph.
-     It is located in 'ipa-pure-const.c' and is described by
+     It is located in 'ipa-pure-const.cc' and is described by
      'pass_ipa_pure_const'.
 
    * IPA free function summary
 
      This pass is a regular IPA pass when argument 'small_p' is false.
      It releases inline function summaries and call summaries.  It is
-     located in 'ipa-fnsummary.c' and is described by
+     located in 'ipa-fnsummary.cc' and is described by
      'pass_ipa_free_fn_summary'.
 
    * IPA reference
 
      This pass gathers information about how variables whose scope is
      confined to the compilation unit are used.  It is located in
-     'ipa-reference.c' and is described by 'pass_ipa_reference'.
+     'ipa-reference.cc' and is described by 'pass_ipa_reference'.
 
    * IPA single use
 
      This pass checks whether variables are used by a single function.
-     It is located in 'ipa.c' and is described by 'pass_ipa_single_use'.
+     It is located in 'ipa.cc' and is described by
+     'pass_ipa_single_use'.
 
    * IPA comdats
 
      This pass looks for static symbols that are used exclusively within
      one comdat group, and moves them into that comdat group.  It is
-     located in 'ipa-comdats.c' and is described by 'pass_ipa_comdats'.
+     located in 'ipa-comdats.cc' and is described by 'pass_ipa_comdats'.
 
 
 File: gccint.info,  Node: Late IPA passes,  Prev: Regular IPA passes,  Up: IPA passes
@@ -7958,7 +7960,7 @@ just parts of the compiled unit.
    * Materialize all clones
 
      Once all functions from compilation unit are in memory, produce all
-     clones and update all calls.  It is located in 'ipa.c' and is
+     clones and update all calls.  It is located in 'ipa.cc' and is
      described by 'pass_materialize_all_clones'.
 
    * IPA points-to analysis
@@ -7970,8 +7972,8 @@ just parts of the compiled unit.
 
      This is the OpenMP constructs' SIMD clone pass.  It creates the
      appropriate SIMD clones for functions tagged as elemental SIMD
-     functions.  It is located in 'omp-simd-clone.c' and is described by
-     'pass_omp_simd_clone'.
+     functions.  It is located in 'omp-simd-clone.cc' and is described
+     by 'pass_omp_simd_clone'.
 
 
 File: gccint.info,  Node: Tree SSA passes,  Next: RTL passes,  Prev: IPA passes,  Up: Passes
@@ -7992,7 +7994,7 @@ run after gimplification and what source files they are located in.
      variables, and other assorted simplistic cleanups.  The idea is to
      get rid of the obvious stuff quickly rather than wait until later
      when it's more work to get rid of it.  This pass is located in
-     'tree-cfg.c' and described by 'pass_remove_useless_stmts'.
+     'tree-cfg.cc' and described by 'pass_remove_useless_stmts'.
 
    * OpenMP lowering
 
@@ -8003,14 +8005,14 @@ run after gimplification and what source files they are located in.
      expressions for local variables that have been mapped using data
      sharing clauses, exposing the control flow of most synchronization
      directives and adding region markers to facilitate the creation of
-     the control flow graph.  The pass is located in 'omp-low.c' and is
+     the control flow graph.  The pass is located in 'omp-low.cc' and is
      described by 'pass_lower_omp'.
 
    * OpenMP expansion
 
      If OpenMP generation ('-fopenmp') is enabled, this pass expands
      parallel regions into their own functions to be invoked by the
-     thread library.  The pass is located in 'omp-low.c' and is
+     thread library.  The pass is located in 'omp-low.cc' and is
      described by 'pass_expand_omp'.
 
    * Lower control flow
@@ -8020,8 +8022,8 @@ run after gimplification and what source files they are located in.
      statements will have exactly two 'goto' statements in its 'then'
      and 'else' arms.  Lexical binding information for each statement
      will be found in 'TREE_BLOCK' rather than being inferred from its
-     position under a 'BIND_EXPR'.  This pass is found in 'gimple-low.c'
-     and is described by 'pass_lower_cf'.
+     position under a 'BIND_EXPR'.  This pass is found in
+     'gimple-low.cc' and is described by 'pass_lower_cf'.
 
    * Lower exception handling control flow
 
@@ -8033,13 +8035,13 @@ run after gimplification and what source files they are located in.
      'tree_can_throw_internal' or 'tree_can_throw_external' for exact
      semantics.  Exact control flow may be extracted from
      'foreach_reachable_handler'.  The EH region nesting tree is defined
-     in 'except.h' and built in 'except.c'.  The lowering pass itself is
-     in 'tree-eh.c' and is described by 'pass_lower_eh'.
+     in 'except.h' and built in 'except.cc'.  The lowering pass itself
+     is in 'tree-eh.cc' and is described by 'pass_lower_eh'.
 
    * Build the control flow graph
 
      This pass decomposes a function into basic blocks and creates all
-     of the edges that connect them.  It is located in 'tree-cfg.c' and
+     of the edges that connect them.  It is located in 'tree-cfg.cc' and
      is described by 'pass_build_cfg'.
 
    * Find all referenced variables
@@ -8048,7 +8050,7 @@ run after gimplification and what source files they are located in.
      variables referenced in the function, 'referenced_vars'.  The index
      at which a variable is found in the array is used as a UID for the
      variable within this function.  This data is needed by the SSA
-     rewriting routines.  The pass is located in 'tree-dfa.c' and is
+     rewriting routines.  The pass is located in 'tree-dfa.cc' and is
      described by 'pass_referenced_vars'.
 
    * Enter static single assignment form
@@ -8058,7 +8060,7 @@ run after gimplification and what source files they are located in.
      'SSA_NAME', and all occurrences of other variables will be
      annotated with 'VDEFS' and 'VUSES'; PHI nodes will have been
      inserted as necessary for each basic block.  This pass is located
-     in 'tree-ssa.c' and is described by 'pass_build_ssa'.
+     in 'tree-ssa.cc' and is described by 'pass_build_ssa'.
 
    * Warn for uninitialized variables
 
@@ -8068,7 +8070,7 @@ run after gimplification and what source files they are located in.
      optimization (if turned on).  In the first pass we only warn for
      uses that are positively uninitialized; in the second pass we warn
      for uses that are possibly uninitialized.  The pass is located in
-     'tree-ssa.c' and is defined by 'pass_early_warn_uninitialized' and
+     'tree-ssa.cc' and is defined by 'pass_early_warn_uninitialized' and
      'pass_late_warn_uninitialized'.
 
    * Dead code elimination
@@ -8077,21 +8079,21 @@ run after gimplification and what source files they are located in.
      whose result is unused.  It does not do memory life analysis, so
      any value that is stored in memory is considered used.  The pass is
      run multiple times throughout the optimization process.  It is
-     located in 'tree-ssa-dce.c' and is described by 'pass_dce'.
+     located in 'tree-ssa-dce.cc' and is described by 'pass_dce'.
 
    * Dominator optimizations
 
      This pass performs trivial dominator-based copy and constant
      propagation, expression simplification, and jump threading.  It is
      run multiple times throughout the optimization process.  It is
-     located in 'tree-ssa-dom.c' and is described by 'pass_dominator'.
+     located in 'tree-ssa-dom.cc' and is described by 'pass_dominator'.
 
    * Forward propagation of single-use variables
 
      This pass attempts to remove redundant computation by substituting
      variables that are used once into the expression that uses them and
      seeing if the result can be simplified.  It is located in
-     'tree-ssa-forwprop.c' and is described by 'pass_forwprop'.
+     'tree-ssa-forwprop.cc' and is described by 'pass_forwprop'.
 
    * Copy Renaming
 
@@ -8106,7 +8108,7 @@ run after gimplification and what source files they are located in.
 
      This pass recognizes forms of PHI inputs that can be represented as
      conditional expressions and rewrites them into straight line code.
-     It is located in 'tree-ssa-phiopt.c' and is described by
+     It is located in 'tree-ssa-phiopt.cc' and is described by
      'pass_phiopt'.
 
    * May-alias optimization
@@ -8117,10 +8119,10 @@ run after gimplification and what source files they are located in.
      objects to non-aliased variables that can be renamed into SSA form.
      We also update the 'VDEF'/'VUSE' memory tags for non-renameable
      aggregates so that we get fewer false kills.  The pass is located
-     in 'tree-ssa-alias.c' and is described by 'pass_may_alias'.
+     in 'tree-ssa-alias.cc' and is described by 'pass_may_alias'.
 
      Interprocedural points-to information is located in
-     'tree-ssa-structalias.c' and described by 'pass_ipa_pta'.
+     'tree-ssa-structalias.cc' and described by 'pass_ipa_pta'.
 
    * Profiling
 
@@ -8128,21 +8130,21 @@ run after gimplification and what source files they are located in.
      block and value profiling data.  Such data may be fed back into the
      compiler on a subsequent run so as to allow optimization based on
      expected execution frequencies.  The pass is located in
-     'tree-profile.c' and is described by 'pass_ipa_tree_profile'.
+     'tree-profile.cc' and is described by 'pass_ipa_tree_profile'.
 
    * Static profile estimation
 
      This pass implements series of heuristics to guess propababilities
      of branches.  The resulting predictions are turned into edge
      profile by propagating branches across the control flow graphs.
-     The pass is located in 'tree-profile.c' and is described by
+     The pass is located in 'tree-profile.cc' and is described by
      'pass_profile'.
 
    * Lower complex arithmetic
 
      This pass rewrites complex arithmetic operations into their
      component scalar arithmetic operations.  The pass is located in
-     'tree-complex.c' and is described by 'pass_lower_complex'.
+     'tree-complex.cc' and is described by 'pass_lower_complex'.
 
    * Scalar replacement of aggregates
 
@@ -8150,45 +8152,46 @@ run after gimplification and what source files they are located in.
      into a set of scalar variables.  The resulting scalar variables are
      rewritten into SSA form, which allows subsequent optimization
      passes to do a significantly better job with them.  The pass is
-     located in 'tree-sra.c' and is described by 'pass_sra'.
+     located in 'tree-sra.cc' and is described by 'pass_sra'.
 
    * Dead store elimination
 
      This pass eliminates stores to memory that are subsequently
      overwritten by another store, without any intervening loads.  The
-     pass is located in 'tree-ssa-dse.c' and is described by 'pass_dse'.
+     pass is located in 'tree-ssa-dse.cc' and is described by
+     'pass_dse'.
 
    * Tail recursion elimination
 
      This pass transforms tail recursion into a loop.  It is located in
-     'tree-tailcall.c' and is described by 'pass_tail_recursion'.
+     'tree-tailcall.cc' and is described by 'pass_tail_recursion'.
 
    * Forward store motion
 
      This pass sinks stores and assignments down the flowgraph closer to
-     their use point.  The pass is located in 'tree-ssa-sink.c' and is
+     their use point.  The pass is located in 'tree-ssa-sink.cc' and is
      described by 'pass_sink_code'.
 
    * Partial redundancy elimination
 
      This pass eliminates partially redundant computations, as well as
-     performing load motion.  The pass is located in 'tree-ssa-pre.c'
+     performing load motion.  The pass is located in 'tree-ssa-pre.cc'
      and is described by 'pass_pre'.
 
      Just before partial redundancy elimination, if
      '-funsafe-math-optimizations' is on, GCC tries to convert divisions
      to multiplications by the reciprocal.  The pass is located in
-     'tree-ssa-math-opts.c' and is described by 'pass_cse_reciprocal'.
+     'tree-ssa-math-opts.cc' and is described by 'pass_cse_reciprocal'.
 
    * Full redundancy elimination
 
      This is a simpler form of PRE that only eliminates redundancies
-     that occur on all paths.  It is located in 'tree-ssa-pre.c' and
+     that occur on all paths.  It is located in 'tree-ssa-pre.cc' and
      described by 'pass_fre'.
 
    * Loop optimization
 
-     The main driver of the pass is placed in 'tree-ssa-loop.c' and
+     The main driver of the pass is placed in 'tree-ssa-loop.cc' and
      described by 'pass_loop'.
 
      The optimizations performed by this pass are:
@@ -8199,34 +8202,34 @@ run after gimplification and what source files they are located in.
      it also moves operands of conditions that are invariant out of the
      loop, so that we can use just trivial invariantness analysis in
      loop unswitching.  The pass also includes store motion.  The pass
-     is implemented in 'tree-ssa-loop-im.c'.
+     is implemented in 'tree-ssa-loop-im.cc'.
 
      Canonical induction variable creation.  This pass creates a simple
      counter for number of iterations of the loop and replaces the exit
      condition of the loop using it, in case when a complicated analysis
      is necessary to determine the number of iterations.  Later
      optimizations then may determine the number easily.  The pass is
-     implemented in 'tree-ssa-loop-ivcanon.c'.
+     implemented in 'tree-ssa-loop-ivcanon.cc'.
 
      Induction variable optimizations.  This pass performs standard
      induction variable optimizations, including strength reduction,
      induction variable merging and induction variable elimination.  The
-     pass is implemented in 'tree-ssa-loop-ivopts.c'.
+     pass is implemented in 'tree-ssa-loop-ivopts.cc'.
 
      Loop unswitching.  This pass moves the conditional jumps that are
      invariant out of the loops.  To achieve this, a duplicate of the
      loop is created for each possible outcome of conditional jump(s).
-     The pass is implemented in 'tree-ssa-loop-unswitch.c'.
+     The pass is implemented in 'tree-ssa-loop-unswitch.cc'.
 
      Loop splitting.  If a loop contains a conditional statement that is
      always true for one part of the iteration space and false for the
      other this pass splits the loop into two, one dealing with one side
      the other only with the other, thereby removing one inner-loop
-     conditional.  The pass is implemented in 'tree-ssa-loop-split.c'.
+     conditional.  The pass is implemented in 'tree-ssa-loop-split.cc'.
 
      The optimizations also use various utility functions contained in
-     'tree-ssa-loop-manip.c', 'cfgloop.c', 'cfgloopanal.c' and
-     'cfgloopmanip.c'.
+     'tree-ssa-loop-manip.cc', 'cfgloop.cc', 'cfgloopanal.cc' and
+     'cfgloopmanip.cc'.
 
      Vectorization.  This pass transforms loops to operate on vector
      types instead of scalar types.  Data parallelism across loop
@@ -8239,21 +8242,21 @@ run after gimplification and what source files they are located in.
      operation.  Additional loop transformations such as peeling and
      versioning may take place to align the number of iterations, and to
      align the memory accesses in the loop.  The pass is implemented in
-     'tree-vectorizer.c' (the main driver), 'tree-vect-loop.c' and
-     'tree-vect-loop-manip.c' (loop specific parts and general loop
+     'tree-vectorizer.cc' (the main driver), 'tree-vect-loop.cc' and
+     'tree-vect-loop-manip.cc' (loop specific parts and general loop
      utilities), 'tree-vect-slp' (loop-aware SLP functionality),
-     'tree-vect-stmts.c', 'tree-vect-data-refs.c' and
-     'tree-vect-slp-patterns.c' containing the SLP pattern matcher.
-     Analysis of data references is in 'tree-data-ref.c'.
+     'tree-vect-stmts.cc', 'tree-vect-data-refs.cc' and
+     'tree-vect-slp-patterns.cc' containing the SLP pattern matcher.
+     Analysis of data references is in 'tree-data-ref.cc'.
 
      SLP Vectorization.  This pass performs vectorization of
-     straight-line code.  The pass is implemented in 'tree-vectorizer.c'
-     (the main driver), 'tree-vect-slp.c', 'tree-vect-stmts.c' and
-     'tree-vect-data-refs.c'.
+     straight-line code.  The pass is implemented in
+     'tree-vectorizer.cc' (the main driver), 'tree-vect-slp.cc',
+     'tree-vect-stmts.cc' and 'tree-vect-data-refs.cc'.
 
      Autoparallelization.  This pass splits the loop iteration space to
      run into several threads.  The pass is implemented in
-     'tree-parloops.c'.
+     'tree-parloops.cc'.
 
      Graphite is a loop transformation framework based on the polyhedral
      model.  Graphite stands for Gimple Represented as Polyhedra.  The
@@ -8268,28 +8271,28 @@ run after gimplification and what source files they are located in.
      basic blocks in one big block.  The idea is to present loop in such
      form so that vectorizer can have one to one mapping between
      statements and available vector operations.  This pass is located
-     in 'tree-if-conv.c' and is described by 'pass_if_conversion'.
+     in 'tree-if-conv.cc' and is described by 'pass_if_conversion'.
 
    * Conditional constant propagation
 
      This pass relaxes a lattice of values in order to identify those
      that must be constant even in the presence of conditional branches.
-     The pass is located in 'tree-ssa-ccp.c' and is described by
+     The pass is located in 'tree-ssa-ccp.cc' and is described by
      'pass_ccp'.
 
      A related pass that works on memory loads and stores, and not just
-     register values, is located in 'tree-ssa-ccp.c' and described by
+     register values, is located in 'tree-ssa-ccp.cc' and described by
      'pass_store_ccp'.
 
    * Conditional copy propagation
 
      This is similar to constant propagation but the lattice of values
      is the "copy-of" relation.  It eliminates redundant copies from the
-     code.  The pass is located in 'tree-ssa-copy.c' and described by
+     code.  The pass is located in 'tree-ssa-copy.cc' and described by
      'pass_copy_prop'.
 
      A related pass that works on memory copies, and not just register
-     copies, is located in 'tree-ssa-copy.c' and described by
+     copies, is located in 'tree-ssa-copy.cc' and described by
      'pass_store_copy_prop'.
 
    * Value range propagation
@@ -8303,25 +8306,26 @@ run after gimplification and what source files they are located in.
      branch probabilities nor it uses more than a single range per SSA
      name.  This means that the current implementation cannot be used
      for branch prediction (though adapting it would not be difficult).
-     The pass is located in 'tree-vrp.c' and is described by 'pass_vrp'.
+     The pass is located in 'tree-vrp.cc' and is described by
+     'pass_vrp'.
 
    * Folding built-in functions
 
      This pass simplifies built-in functions, as applicable, with
      constant arguments or with inferable string lengths.  It is located
-     in 'tree-ssa-ccp.c' and is described by 'pass_fold_builtins'.
+     in 'tree-ssa-ccp.cc' and is described by 'pass_fold_builtins'.
 
    * Split critical edges
 
      This pass identifies critical edges and inserts empty basic blocks
      such that the edge is no longer critical.  The pass is located in
-     'tree-cfg.c' and is described by 'pass_split_crit_edges'.
+     'tree-cfg.cc' and is described by 'pass_split_crit_edges'.
 
    * Control dependence dead code elimination
 
      This pass is a stronger form of dead code elimination that can
      eliminate unnecessary control flow statements.  It is located in
-     'tree-ssa-dce.c' and is described by 'pass_cd_dce'.
+     'tree-ssa-dce.cc' and is described by 'pass_cd_dce'.
 
    * Tail call elimination
 
@@ -8330,9 +8334,9 @@ run after gimplification and what source files they are located in.
      data and control flow problem is solved.  The code transformation
      requires target support, and so is delayed until RTL.  In the
      meantime 'CALL_EXPR_TAILCALL' is set indicating the possibility.
-     The pass is located in 'tree-tailcall.c' and is described by
+     The pass is located in 'tree-tailcall.cc' and is described by
      'pass_tail_calls'.  The RTL transformation is handled by
-     'fixup_tail_calls' in 'calls.c'.
+     'fixup_tail_calls' in 'calls.cc'.
 
    * Warn for function return without value
 
@@ -8340,22 +8344,22 @@ run after gimplification and what source files they are located in.
      not specify a value and issues a warning.  Such a statement may
      have been injected by falling off the end of the function.  This
      pass is run last so that we have as much time as possible to prove
-     that the statement is not reachable.  It is located in 'tree-cfg.c'
-     and is described by 'pass_warn_function_return'.
+     that the statement is not reachable.  It is located in
+     'tree-cfg.cc' and is described by 'pass_warn_function_return'.
 
    * Leave static single assignment form
 
      This pass rewrites the function such that it is in normal form.  At
      the same time, we eliminate as many single-use temporaries as
      possible, so the intermediate language is no longer GIMPLE, but
-     GENERIC.  The pass is located in 'tree-outof-ssa.c' and is
+     GENERIC.  The pass is located in 'tree-outof-ssa.cc' and is
      described by 'pass_del_ssa'.
 
    * Merge PHI nodes that feed into one another
 
      This is part of the CFG cleanup passes.  It attempts to join PHI
      nodes from a forwarder CFG block into another block with PHI nodes.
-     The pass is located in 'tree-cfgcleanup.c' and is described by
+     The pass is located in 'tree-cfgcleanup.cc' and is described by
      'pass_merge_phi'.
 
    * Return value optimization
@@ -8365,14 +8369,14 @@ run after gimplification and what source files they are located in.
      with the return value for the function (i.e., the function's
      DECL_RESULT). This is equivalent to the C++ named return value
      optimization applied to GIMPLE.  The pass is located in
-     'tree-nrv.c' and is described by 'pass_nrv'.
+     'tree-nrv.cc' and is described by 'pass_nrv'.
 
    * Return slot optimization
 
      If a function returns a memory object and is called as 'var =
      foo()', this pass tries to change the call so that the address of
      'var' is sent to the caller to avoid an extra memory copy.  This
-     pass is located in 'tree-nrv.c' and is described by
+     pass is located in 'tree-nrv.cc' and is described by
      'pass_return_slot'.
 
    * Optimize calls to '__builtin_object_size'
@@ -8380,12 +8384,12 @@ run after gimplification and what source files they are located in.
      This is a propagation pass similar to CCP that tries to remove
      calls to '__builtin_object_size' when the size of the object can be
      computed at compile-time.  This pass is located in
-     'tree-object-size.c' and is described by 'pass_object_sizes'.
+     'tree-object-size.cc' and is described by 'pass_object_sizes'.
 
    * Loop invariant motion
 
      This pass removes expensive loop-invariant computations out of
-     loops.  The pass is located in 'tree-ssa-loop.c' and described by
+     loops.  The pass is located in 'tree-ssa-loop.cc' and described by
      'pass_lim'.
 
    * Loop nest optimizations
@@ -8401,12 +8405,12 @@ run after gimplification and what source files they are located in.
    * Removal of empty loops
 
      This pass removes loops with no code in them.  The pass is located
-     in 'tree-ssa-loop-ivcanon.c' and described by 'pass_empty_loop'.
+     in 'tree-ssa-loop-ivcanon.cc' and described by 'pass_empty_loop'.
 
    * Unrolling of small loops
 
      This pass completely unrolls loops with few iterations.  The pass
-     is located in 'tree-ssa-loop-ivcanon.c' and described by
+     is located in 'tree-ssa-loop-ivcanon.cc' and described by
      'pass_complete_unroll'.
 
    * Predictive commoning
@@ -8418,19 +8422,19 @@ run after gimplification and what source files they are located in.
      the need for this rotation, the loop is then unrolled and the
      copies of the loop body are rewritten to use the appropriate
      version of the temporary variable.  This pass is located in
-     'tree-predcom.c' and described by 'pass_predcom'.
+     'tree-predcom.cc' and described by 'pass_predcom'.
 
    * Array prefetching
 
      This pass issues prefetch instructions for array references inside
-     loops.  The pass is located in 'tree-ssa-loop-prefetch.c' and
+     loops.  The pass is located in 'tree-ssa-loop-prefetch.cc' and
      described by 'pass_loop_prefetch'.
 
    * Reassociation
 
      This pass rewrites arithmetic expressions to enable optimizations
      that operate on them, like redundancy elimination and
-     vectorization.  The pass is located in 'tree-ssa-reassoc.c' and
+     vectorization.  The pass is located in 'tree-ssa-reassoc.cc' and
      described by 'pass_reassoc'.
 
    * Optimization of 'stdarg' functions
@@ -8442,7 +8446,7 @@ run after gimplification and what source files they are located in.
      the function, it is only necessary to save registers that will be
      used in 'va_arg' macros.  For instance, if 'va_arg' is only used
      with integral types in the function, floating point registers don't
-     need to be saved.  This pass is located in 'tree-stdarg.c' and
+     need to be saved.  This pass is located in 'tree-stdarg.cc' and
      described by 'pass_stdarg'.
 
 
@@ -8456,9 +8460,9 @@ passes that are run after the Tree optimization passes.
 
    * RTL generation
 
-     The source files for RTL generation include 'stmt.c', 'calls.c',
-     'expr.c', 'explow.c', 'expmed.c', 'function.c', 'optabs.c' and
-     'emit-rtl.c'.  Also, the file 'insn-emit.c', generated from the
+     The source files for RTL generation include 'stmt.cc', 'calls.cc',
+     'expr.cc', 'explow.cc', 'expmed.cc', 'function.cc', 'optabs.cc' and
+     'emit-rtl.cc'.  Also, the file 'insn-emit.cc', generated from the
      machine description by the program 'genemit', is used in this pass.
      The header file 'expr.h' is used for communication within this
      pass.
@@ -8474,7 +8478,7 @@ passes that are run after the Tree optimization passes.
      exception handling library routines and the exception handlers
      within the function.  Entry points in the function that are invoked
      by the exception handling library are called "landing pads".  The
-     code for this pass is located in 'except.c'.
+     code for this pass is located in 'except.cc'.
 
    * Control flow graph cleanup
 
@@ -8482,8 +8486,8 @@ passes that are run after the Tree optimization passes.
      to jump, jumps across jumps, etc.  The pass is run multiple times.
      For historical reasons, it is occasionally referred to as the "jump
      optimization pass".  The bulk of the code for this pass is in
-     'cfgcleanup.c', and there are support routines in 'cfgrtl.c' and
-     'jump.c'.
+     'cfgcleanup.cc', and there are support routines in 'cfgrtl.cc' and
+     'jump.cc'.
 
    * Forward propagation of single-def values
 
@@ -8492,13 +8496,13 @@ passes that are run after the Tree optimization passes.
      result can be simplified.  It performs copy propagation and
      addressing mode selection.  The pass is run twice, with values
      being propagated into loops only on the second run.  The code is
-     located in 'fwprop.c'.
+     located in 'fwprop.cc'.
 
    * Common subexpression elimination
 
      This pass removes redundant computation within basic blocks, and
      optimizes addressing modes based on cost.  The pass is run twice.
-     The code for this pass is located in 'cse.c'.
+     The code for this pass is located in 'cse.cc'.
 
    * Global common subexpression elimination
 
@@ -8516,25 +8520,25 @@ passes that are run after the Tree optimization passes.
      perform load and store motion when optimizing for speed.
      Regardless of which type of GCSE is used, the GCSE pass also
      performs global constant and copy propagation.  The source file for
-     this pass is 'gcse.c', and the LCM routines are in 'lcm.c'.
+     this pass is 'gcse.cc', and the LCM routines are in 'lcm.cc'.
 
    * Loop optimization
 
      This pass performs several loop related optimizations.  The source
-     files 'cfgloopanal.c' and 'cfgloopmanip.c' contain generic loop
+     files 'cfgloopanal.cc' and 'cfgloopmanip.cc' contain generic loop
      analysis and manipulation code.  Initialization and finalization of
-     loop structures is handled by 'loop-init.c'.  A loop invariant
-     motion pass is implemented in 'loop-invariant.c'.  Basic block
+     loop structures is handled by 'loop-init.cc'.  A loop invariant
+     motion pass is implemented in 'loop-invariant.cc'.  Basic block
      level optimizations--unrolling, and peeling loops-- are implemented
-     in 'loop-unroll.c'.  Replacing of the exit condition of loops by
+     in 'loop-unroll.cc'.  Replacing of the exit condition of loops by
      special machine-dependent instructions is handled by
-     'loop-doloop.c'.
+     'loop-doloop.cc'.
 
    * Jump bypassing
 
      This pass is an aggressive form of GCSE that transforms the control
      flow graph of a function by propagating constants into conditional
-     branch instructions.  The source file for this pass is 'gcse.c'.
+     branch instructions.  The source file for this pass is 'gcse.cc'.
 
    * If conversion
 
@@ -8543,13 +8547,14 @@ passes that are run after the Tree optimization passes.
      instructions, and conditional move instructions.  In the very last
      invocation after reload/LRA, it will generate predicated
      instructions when supported by the target.  The code is located in
-     'ifcvt.c'.
+     'ifcvt.cc'.
 
    * Web construction
 
      This pass splits independent uses of each pseudo-register.  This
      can improve effect of the other transformation, such as CSE or
-     register allocation.  The code for this pass is located in 'web.c'.
+     register allocation.  The code for this pass is located in
+     'web.cc'.
 
    * Instruction combination
 
@@ -8558,7 +8563,7 @@ passes that are run after the Tree optimization passes.
      combines the RTL expressions for the instructions by substitution,
      simplifies the result using algebra, and then attempts to match the
      result against the machine description.  The code is located in
-     'combine.c'.
+     'combine.cc'.
 
    * Mode switching optimization
 
@@ -8566,14 +8571,14 @@ passes that are run after the Tree optimization passes.
      in a specific "mode" and minimizes the number of mode changes
      required to satisfy all users.  What these modes are, and what they
      apply to are completely target-specific.  The code for this pass is
-     located in 'mode-switching.c'.
+     located in 'mode-switching.cc'.
 
    * Modulo scheduling
 
      This pass looks at innermost loops and reorders their instructions
      by overlapping different iterations.  Modulo scheduling is
      performed immediately before instruction scheduling.  The code for
-     this pass is located in 'modulo-sched.c'.
+     this pass is located in 'modulo-sched.cc'.
 
    * Instruction scheduling
 
@@ -8584,8 +8589,8 @@ passes that are run after the Tree optimization passes.
      try to separate the definition and use of items that otherwise
      would cause pipeline stalls.  This pass is performed twice, before
      and after register allocation.  The code for this pass is located
-     in 'haifa-sched.c', 'sched-deps.c', 'sched-ebb.c', 'sched-rgn.c'
-     and 'sched-vis.c'.
+     in 'haifa-sched.cc', 'sched-deps.cc', 'sched-ebb.cc',
+     'sched-rgn.cc' and 'sched-vis.c'.
 
    * Register allocation
 
@@ -8609,11 +8614,11 @@ passes that are run after the Tree optimization passes.
           regions using register pressure but the user can force it to
           use one region or regions corresponding to all loops.
 
-          Source files of the allocator are 'ira.c', 'ira-build.c',
-          'ira-costs.c', 'ira-conflicts.c', 'ira-color.c', 'ira-emit.c',
-          'ira-lives', plus header files 'ira.h' and 'ira-int.h' used
-          for the communication between the allocator and the rest of
-          the compiler and between the IRA files.
+          Source files of the allocator are 'ira.cc', 'ira-build.cc',
+          'ira-costs.cc', 'ira-conflicts.cc', 'ira-color.cc',
+          'ira-emit.cc', 'ira-lives', plus header files 'ira.h' and
+          'ira-int.h' used for the communication between the allocator
+          and the rest of the compiler and between the IRA files.
 
         * Reloading.  This pass renumbers pseudo registers with the
           hardware registers numbers they were allocated.  Pseudo
@@ -8629,15 +8634,15 @@ passes that are run after the Tree optimization passes.
           and inserts instructions to save and restore call-clobbered
           registers around calls.
 
-          Source files are 'reload.c' and 'reload1.c', plus the header
+          Source files are 'reload.cc' and 'reload1.cc', plus the header
           'reload.h' used for communication between them.
 
         * This pass is a modern replacement of the reload pass.  Source
-          files are 'lra.c', 'lra-assign.c', 'lra-coalesce.c',
-          'lra-constraints.c', 'lra-eliminations.c', 'lra-lives.c',
-          'lra-remat.c', 'lra-spills.c', the header 'lra-int.h' used for
-          communication between them, and the header 'lra.h' used for
-          communication between LRA and the rest of compiler.
+          files are 'lra.cc', 'lra-assign.c', 'lra-coalesce.cc',
+          'lra-constraints.cc', 'lra-eliminations.cc', 'lra-lives.cc',
+          'lra-remat.cc', 'lra-spills.cc', the header 'lra-int.h' used
+          for communication between them, and the header 'lra.h' used
+          for communication between LRA and the rest of compiler.
 
           Unlike the reload pass, intermediate LRA decisions are
           reflected in RTL as much as possible.  This reduces the number
@@ -8652,8 +8657,8 @@ passes that are run after the Tree optimization passes.
      information is not available, various types of static analysis are
      performed to make the predictions normally coming from the profile
      feedback (IE execution frequency, branch probability, etc).  It is
-     implemented in the file 'bb-reorder.c', and the various prediction
-     routines are in 'predict.c'.
+     implemented in the file 'bb-reorder.cc', and the various prediction
+     routines are in 'predict.cc'.
 
    * Variable tracking
 
@@ -8661,13 +8666,13 @@ passes that are run after the Tree optimization passes.
      in code and generates notes describing the variable locations to
      RTL code.  The location lists are then generated according to these
      notes to debug information if the debugging information format
-     supports location lists.  The code is located in 'var-tracking.c'.
+     supports location lists.  The code is located in 'var-tracking.cc'.
 
    * Delayed branch scheduling
 
      This optional pass attempts to find instructions that can go into
      the delay slots of other instructions, usually jumps and calls.
-     The code for this pass is located in 'reorg.c'.
+     The code for this pass is located in 'reorg.cc'.
 
    * Branch shortening
 
@@ -8677,19 +8682,19 @@ passes that are run after the Tree optimization passes.
      instruction will be from each other instruction, and therefore
      whether the usual instructions, or the longer sequences, must be
      used for each branch.  The code for this pass is located in
-     'final.c'.
+     'final.cc'.
 
    * Register-to-stack conversion
 
      Conversion from usage of some hard registers to usage of a register
      stack may be done at this point.  Currently, this is supported only
      for the floating-point registers of the Intel 80387 coprocessor.
-     The code for this pass is located in 'reg-stack.c'.
+     The code for this pass is located in 'reg-stack.cc'.
 
    * Final
 
      This pass outputs the assembler code for the function.  The source
-     files are 'final.c' plus 'insn-output.c'; the latter is generated
+     files are 'final.cc' plus 'insn-output.cc'; the latter is generated
      automatically from the machine description by the tool 'genoutput'.
      The header file 'conditions.h' is used for communication between
      these files.
@@ -8698,10 +8703,10 @@ passes that are run after the Tree optimization passes.
 
      This is run after final because it must output the stack slot
      offsets for pseudo registers that did not get hard registers.
-     Source files are 'dbxout.c' for DBX symbol table format,
-     'dwarfout.c' for DWARF symbol table format, files 'dwarf2out.c' and
-     'dwarf2asm.c' for DWARF2 symbol table format, and 'vmsdbgout.c' for
-     VMS debug symbol table format.
+     Source files are 'dbxout.cc' for DBX symbol table format,
+     'dwarfout.c' for DWARF symbol table format, files 'dwarf2out.cc'
+     and 'dwarf2asm.cc' for DWARF2 symbol table format, and
+     'vmsdbgout.cc' for VMS debug symbol table format.
 
 
 File: gccint.info,  Node: Optimization info,  Prev: RTL passes,  Up: Passes
@@ -8731,7 +8736,7 @@ File: gccint.info,  Node: Dump setup,  Next: Optimization groups,  Up: Optimizat
 
 A dump_manager class is defined in 'dumpfile.h'.  Various passes
 register dumping pass-specific information via 'dump_register' in
-'passes.c'.  During the registration, an optimization pass can select
+'passes.cc'.  During the registration, an optimization pass can select
 its optimization group (*note Optimization groups::).  After that
 optimization information corresponding to the entire group (presumably
 from multiple passes) can be output via command-line switches.  Note
@@ -8858,7 +8863,7 @@ File: gccint.info,  Node: Dump types,  Next: Dump examples,  Prev: Dump output v
      information is relevant, and under what conditions.  This
      determines the associated flags.
 
-     Consider the following example from 'loop-unroll.c' where an
+     Consider the following example from 'loop-unroll.cc' where an
      informative message about a loop (along with its location) is
      printed when any of the following flags is enabled
 
@@ -10687,7 +10692,7 @@ Update dynamic checking info
           tree_contains_struct[FOO_DECL][TS_DECL_MINIMAL] = 1;
 
      For 'DECL' nodes that are part of the middle-end, the setup code
-     goes into 'tree.c'.
+     goes into 'tree.cc'.
 
 Add macros to access any new fields and flags
 
@@ -10704,7 +10709,7 @@ Add macros to access any new fields and flags
              (BASE_STRUCT_CHECK(NODE)->base_struct.fieldname
 
      Reading them from the generated 'all-tree.def' file (which in turn
-     includes all the 'tree.def' files), 'gencheck.c' is used during
+     includes all the 'tree.def' files), 'gencheck.cc' is used during
      GCC's build to generate the '*_CHECK' macros for all tree codes.
 
 
@@ -11977,8 +11982,8 @@ used by the OpenMP API <https://www.openmp.org>.
 
      This does not represent any OpenMP directive, it is an artificial
      marker to indicate the end of the body of an OpenMP.  It is used by
-     the flow graph ('tree-cfg.c') and OpenMP region building code
-     ('omp-low.c').
+     the flow graph ('tree-cfg.cc') and OpenMP region building code
+     ('omp-low.cc').
 
 'OMP_CONTINUE'
 
@@ -15440,20 +15445,20 @@ file 'gimple.def', which contains all the GIMPLE codes.  Then you must
 add a corresponding gimple subclass located in 'gimple.h'.  This in
 turn, will require you to add a corresponding 'GTY' tag in
 'gsstruct.def', and code to handle this tag in 'gss_for_code' which is
-located in 'gimple.c'.
+located in 'gimple.cc'.
 
  In order for the garbage collector to know the size of the structure
 you created in 'gimple.h', you need to add a case to handle your new
-GIMPLE statement in 'gimple_size' which is located in 'gimple.c'.
+GIMPLE statement in 'gimple_size' which is located in 'gimple.cc'.
 
  You will probably want to create a function to build the new gimple
-statement in 'gimple.c'.  The function should be called
+statement in 'gimple.cc'.  The function should be called
 'gimple_build_NEW-TUPLE-NAME', and should return the new tuple as a
 pointer to the appropriate gimple subclass.
 
  If your new statement requires accessors for any members or operands it
 may have, put simple inline accessors in 'gimple.h' and any non-trivial
-accessors in 'gimple.c' with a corresponding prototype in 'gimple.h'.
+accessors in 'gimple.cc' with a corresponding prototype in 'gimple.h'.
 
  You should add the new statement subclass to the class hierarchy
 diagram in 'gimple.texi'.
@@ -15680,9 +15685,9 @@ when complete.  Calling one of the 'bsi_insert' routines or
 13.2.1 Operand Iterators And Access Routines
 --------------------------------------------
 
-Operands are collected by 'tree-ssa-operands.c'.  They are stored inside
-each statement's annotation and can be accessed through either the
-operand iterators or an access routine.
+Operands are collected by 'tree-ssa-operands.cc'.  They are stored
+inside each statement's annotation and can be accessed through either
+the operand iterators or an access routine.
 
  The following access routines are available for examining operands:
 
@@ -15928,7 +15933,7 @@ are renamed so that their version number matches that of the most recent
 assignment.
 
  We represent variable versions using 'SSA_NAME' nodes.  The renaming
-process in 'tree-ssa.c' wraps every real and virtual operand with an
+process in 'tree-ssa.cc' wraps every real and virtual operand with an
 'SSA_NAME' node which contains the version number and the statement that
 created the 'SSA_NAME'.  Only definitions and virtual definitions may
 create new 'SSA_NAME' nodes.
@@ -16190,7 +16195,7 @@ disambiguate explicit and implicit memory references.
   3. Type-based alias analysis
 
      Type-based alias analysis is frontend dependent though generic
-     support is provided by the middle-end in 'alias.c'.  TBAA code is
+     support is provided by the middle-end in 'alias.cc'.  TBAA code is
      used by both tree optimizers and RTL optimizers.
 
      Every language that wishes to perform language-specific alias
@@ -18047,7 +18052,7 @@ registers and to main memory.
           floating point values as if they had the same endianness as
           integer values.  This works because they handle them solely as
           a collection of integer values, with no particular numerical
-          value.  Only real.c and the runtime libraries care about
+          value.  Only real.cc and the runtime libraries care about
           'FLOAT_WORDS_BIG_ENDIAN'.
 
           Thus,
@@ -19396,7 +19401,7 @@ use these expressions to find the containing 'sequence' expression.
      == LABEL_NORMAL'.  The only place that cares about the distinction
      between static, global, and weak alternate entry points, besides
      the front-end code that creates them, is the function
-     'output_alternate_entry_point', in 'final.c'.
+     'output_alternate_entry_point', in 'final.cc'.
 
      To set the kind of a label, use the 'SET_LABEL_KIND' macro.
 
@@ -20351,7 +20356,7 @@ true on success or false if no suitable location exists.
 
  The pass should also tentatively change the pattern of the instruction
 to whatever form the pass wants the instruction to have.  This should
-use the facilities provided by 'recog.c'.  For example:
+use the facilities provided by 'recog.cc'.  For example:
 
      rtl_insn *rtl = insn->rtl ();
      insn_change_watermark watermark;
@@ -20590,7 +20595,7 @@ common to two functions.
    * During initial RTL generation, shared structure is freely
      introduced.  After all the RTL for a function has been generated,
      all shared structure is copied by 'unshare_all_rtl' in
-     'emit-rtl.c', after which the above rules are guaranteed to be
+     'emit-rtl.cc', after which the above rules are guaranteed to be
      followed.
 
    * During the combiner pass, shared structure within an insn can exist
@@ -20606,9 +20611,9 @@ File: gccint.info,  Node: Reading RTL,  Prev: Sharing,  Up: RTL
 
 To read an RTL object from a file, call 'read_rtx'.  It takes one
 argument, a stdio stream, and returns a single RTL object.  This routine
-is defined in 'read-rtl.c'.  It is not available in the compiler itself,
-only the various programs that generate the compiler back end from the
-machine description.
+is defined in 'read-rtl.cc'.  It is not available in the compiler
+itself, only the various programs that generate the compiler back end
+from the machine description.
 
  People frequently have the idea of using RTL stored as text in a file
 as an interface between a language front end and the bulk of GCC.  This
@@ -21201,8 +21206,8 @@ reached on some path from 'P' to the end of the function.
 'DF_[LR,UR,LIVE]_[IN,OUT]' can be used to access this information.  The
 macros take a basic block number and return a bitmap that is indexed by
 the register number.  This information is only guaranteed to be up to
-date after calls are made to 'df_analyze'.  See the file 'df-core.c' for
-details on using the dataflow.
+date after calls are made to 'df_analyze'.  See the file 'df-core.cc'
+for details on using the dataflow.
 
  The liveness information is stored partly in the RTL instruction stream
 and partly in the flow graph.  Local information is stored in the
@@ -21692,9 +21697,9 @@ File: gccint.info,  Node: Dependency analysis,  Prev: Number of iterations,  Up:
 =============================
 
 The code for the data dependence analysis can be found in
-'tree-data-ref.c' and its interface and data structures are described in
-'tree-data-ref.h'.  The function that computes the data dependences for
-all the array and pointer references for a given loop is
+'tree-data-ref.cc' and its interface and data structures are described
+in 'tree-data-ref.h'.  The function that computes the data dependences
+for all the array and pointer references for a given loop is
 'compute_data_dependences_for_loop'.  This function is currently used by
 the linear loop transform and the vectorization passes.  Before calling
 this function, one has to allocate two vectors: a first vector will
@@ -22515,7 +22520,7 @@ File: gccint.info,  Node: Machine-Independent Predicates,  Next: Defining Predic
 -------------------------------------
 
 These are the generic predicates available to all back ends.  They are
-defined in 'recog.c'.  The first category of predicates allow only
+defined in 'recog.cc'.  The first category of predicates allow only
 constant, or "immediate", operands.
 
  -- Function: immediate_operand
@@ -24161,7 +24166,7 @@ _Intel IA-64--'config/ia64/ia64.h'_
           is now roughly the same as 'm' when not used together with '<'
           or '>'.
 
-_M32C--'config/m32c/m32c.c'_
+_M32C--'config/m32c/m32c.cc'_
      'Rsp'
      'Rfb'
      'Rsb'
@@ -29046,6 +29051,14 @@ pattern to accomplish a certain task.
      If this pattern is not defined, a call to the library function
      '__clear_cache' is used.
 
+'spaceshipM3'
+     Initialize output operand 0 with mode of integer type to -1, 0, 1
+     or 2 if operand 1 with mode M compares less than operand 2, equal
+     to operand 2, greater than operand 2 or is unordered with operand
+     2.  M should be a scalar floating point mode.
+
+     This pattern is not allowed to 'FAIL'.
+
 
 File: gccint.info,  Node: Pattern Ordering,  Next: Dependent Patterns,  Prev: Standard Names,  Up: Machine Desc
 
@@ -29379,7 +29392,7 @@ are performed:
      precision to prevent overflow.
 
  Further canonicalization rules are defined in the function
-'commutative_operand_precedence' in 'gcc/rtlanal.c'.
+'commutative_operand_precedence' in 'gcc/rtlanal.cc'.
 
 
 File: gccint.info,  Node: Expander Definitions,  Next: Insn Splitting,  Prev: Insn Canonicalizations,  Up: Machine Desc
@@ -32454,7 +32467,7 @@ You can control the compilation driver.
      the command given to the linker.
 
      If this macro is not defined, a default is provided that loads the
-     standard C library from the usual place.  See 'gcc.c'.
+     standard C library from the usual place.  See 'gcc.cc'.
 
  -- Macro: LIBGCC_SPEC
      Another C string constant that tells the GCC driver program how and
@@ -32494,7 +32507,7 @@ You can control the compilation driver.
      very beginning of the command given to the linker.
 
      If this macro is not defined, a default is provided that loads the
-     standard C startup file from the usual place.  See 'gcc.c'.
+     standard C startup file from the usual place.  See 'gcc.cc'.
 
  -- Macro: ENDFILE_SPEC
      Another C string constant used much like 'LINK_SPEC'.  The
@@ -32585,7 +32598,7 @@ You can control the compilation driver.
      A C string constant giving the complete command line need to
      execute the linker.  When you do this, you will need to update your
      port each time a change is made to the link command line within
-     'gcc.c'.  Therefore, define this macro only if you need to
+     'gcc.cc'.  Therefore, define this macro only if you need to
      completely redefine the command line for invoking the linker and
      there is no other way to accomplish the effect you need.
      Overriding this macro may be avoidable by overriding
@@ -33593,7 +33606,7 @@ applied.
      where NAME is the name used for the type qualifier in source code,
      N is the length of NAME as above, and CODE is the code used to
      represent the unqualified version of this type.  (See
-     'write_builtin_type' in 'cp/mangle.c' for the list of codes.)  In
+     'write_builtin_type' in 'cp/mangle.cc' for the list of codes.)  In
      both cases the spaces are for clarity; do not include any spaces in
      your string.
 
@@ -33746,7 +33759,7 @@ languages, rather than to fundamental aspects of storage layout.
      with spaces, and write first any length keyword, then 'unsigned' if
      appropriate, and finally 'int'.  The string must exactly match one
      of the data type names defined in the function
-     'c_common_nodes_and_builtins' in the file 'c-family/c-common.c'.
+     'c_common_nodes_and_builtins' in the file 'c-family/c-common.cc'.
      You may not omit 'int' or change the order--that would cause the
      compiler to crash on startup.
 
@@ -34377,7 +34390,7 @@ stack.
 they must be consecutively numbered.  Furthermore, the existing support
 for stack-like registers is specific to the 80387 floating point
 coprocessor.  If you have a new architecture that uses stack-like
-registers, you will need to do substantial work on 'reg-stack.c' and
+registers, you will need to do substantial work on 'reg-stack.cc' and
 write your machine description to cooperate with it, as well as defining
 these macros.
 
@@ -34880,7 +34893,7 @@ return.
      registers differently than in integer registers.  On those
      machines, the default widening will not work correctly and you must
      define this hook to suppress that widening in some cases.  See the
-     file 'alpha.c' for details.
+     file 'alpha.cc' for details.
 
      With LRA, the default is to use MODE unmodified.
 
@@ -35164,7 +35177,7 @@ Here is the basic stack layout.
 
      The default value for this macro is 'STACK_POINTER_OFFSET' plus the
      length of the outgoing arguments.  The default is correct for most
-     machines.  See 'function.c' for details.
+     machines.  See 'function.cc' for details.
 
  -- Macro: INITIAL_FRAME_ADDRESS_RTX
      A C expression whose value is RTL representing the address of the
@@ -36293,7 +36306,7 @@ the stack.
           TYPE, gimple_seq *PRE_P, gimple_seq *POST_P)
      This hook performs target-specific gimplification of 'VA_ARG_EXPR'.
      The first two parameters correspond to the arguments to 'va_arg';
-     the latter two are as in 'gimplify.c:gimplify_expr'.
+     the latter two are as in 'gimplify.cc:gimplify_expr'.
 
  -- Target Hook: bool TARGET_VALID_POINTER_MODE (scalar_int_mode MODE)
      Define this to return nonzero if the port can handle pointers with
@@ -36325,7 +36338,7 @@ the stack.
      The default version of this hook returns true for any mode required
      to handle the basic C types (as defined by the port).  Included
      here are the double-word arithmetic supported by the code in
-     'optabs.c'.
+     'optabs.cc'.
 
  -- Target Hook: bool TARGET_VECTOR_MODE_SUPPORTED_P (machine_mode MODE)
      Define this to return nonzero if the port is prepared to handle
@@ -37512,8 +37525,8 @@ Here is an explanation of implicit calls to library routines.
  -- Target Hook: void TARGET_INIT_LIBFUNCS (void)
      This hook should declare additional library routines or rename
      existing ones, using the functions 'set_optab_libfunc' and
-     'init_one_libfunc' defined in 'optabs.c'.  'init_optabs' calls this
-     macro after initializing all the normal library routines.
+     'init_one_libfunc' defined in 'optabs.cc'.  'init_optabs' calls
+     this macro after initializing all the normal library routines.
 
      The default is to do nothing.  Most ports don't need to define this
      hook.
@@ -37718,9 +37731,9 @@ This is about addressing modes.
 
  -- Macro: FIND_BASE_TERM (X)
      A C expression to determine the base term of address X, or to
-     provide a simplified version of X from which 'alias.c' can easily
+     provide a simplified version of X from which 'alias.cc' can easily
      find the base term.  This macro is used in only two places:
-     'find_base_value' and 'find_base_term' in 'alias.c'.
+     'find_base_value' and 'find_base_term' in 'alias.cc'.
 
      It is always safe for this macro to not be defined.  It exists so
      that alias analysis can understand machine-dependent addresses.
@@ -39379,11 +39392,11 @@ section", which holds initialized writable data; and the "bss section",
 which holds uninitialized data.  Some systems have other kinds of
 sections.
 
- 'varasm.c' provides several well-known sections, such as
+ 'varasm.cc' provides several well-known sections, such as
 'text_section', 'data_section' and 'bss_section'.  The normal way of
 controlling a 'FOO_section' variable is to define the associated
 'FOO_SECTION_ASM_OP' macro, as described below.  The macros are only
-read once, when 'varasm.c' initializes itself, so their values must be
+read once, when 'varasm.cc' initializes itself, so their values must be
 run-time constants.  They may however depend on command-line flags.
 
  _Note:_ Some run-time files, such 'crtstuff.c', also make use of the
@@ -39400,7 +39413,7 @@ should define the 'TARGET_ASM_INIT_SECTIONS' hook and use
 'DATA_SECTION_ASM_OP'.  If you do not create a distinct
 'readonly_data_section', the default is to reuse 'text_section'.
 
- All the other 'varasm.c' sections are optional, and are null if the
+ All the other 'varasm.cc' sections are optional, and are null if the
 target does not provide them.
 
  -- Macro: TEXT_SECTION_ASM_OP
@@ -39532,8 +39545,8 @@ target does not provide them.
 
  -- Target Hook: void TARGET_ASM_INIT_SECTIONS (void)
      Define this hook if you need to do something special to set up the
-     'varasm.c' sections, or if your target has some special sections of
-     its own that you need to create.
+     'varasm.cc' sections, or if your target has some special sections
+     of its own that you need to create.
 
      GCC calls this hook after processing the command line, but before
      writing any assembly code, and before calling any of the
@@ -39664,7 +39677,7 @@ target does not provide them.
      discouraged; use 'SYMBOL_REF_FLAGS'.
 
      The default definition of this hook, 'default_encode_section_info'
-     in 'varasm.c', sets a number of commonly-useful bits in
+     in 'varasm.cc', sets a number of commonly-useful bits in
      'SYMBOL_REF_FLAGS'.  Check whether the default does what you need
      before overriding it.
 
@@ -40177,10 +40190,10 @@ outputting a single uninitialized variable.
      specified as the number of bits.
 
      Try to use function 'asm_output_aligned_bss' defined in file
-     'varasm.c' when defining this macro.  If unable, use the expression
-     'assemble_name (STREAM, NAME)' to output the name itself; before
-     and after that, output the additional assembler syntax for defining
-     the name, and a newline.
+     'varasm.cc' when defining this macro.  If unable, use the
+     expression 'assemble_name (STREAM, NAME)' to output the name
+     itself; before and after that, output the additional assembler
+     syntax for defining the name, and a newline.
 
      There are two ways of handling global BSS.  One is to define this
      macro.  The other is to have 'TARGET_ASM_SELECT_SECTION' return a
@@ -40517,7 +40530,7 @@ This is about outputting labels.
      A C expression which evaluates to true if the target supports
      one-only semantics.
 
-     If you don't define this macro, 'varasm.c' provides a default
+     If you don't define this macro, 'varasm.cc' provides a default
      definition.  If 'MAKE_DECL_ONE_ONLY' is defined, the default
      definition is '1'; otherwise, it is '0'.  Define this macro if you
      want to control one-only symbol support with a compiler flag, or if
@@ -40580,7 +40593,7 @@ This is about outputting labels.
      macro is used in 'assemble_name'.
 
  -- Target Hook: tree TARGET_MANGLE_ASSEMBLER_NAME (const char *NAME)
-     Given a symbol NAME, perform same mangling as 'varasm.c''s
+     Given a symbol NAME, perform same mangling as 'varasm.cc''s
      'assemble_name', but in memory rather than to a file stream,
      returning result as an 'IDENTIFIER_NODE'.  Required for correct LTO
      symtabs.  The default implementation calls the
@@ -41150,8 +41163,8 @@ otherwise it contains the 'sequence' rtx being output.
  -- Macro: USER_LABEL_PREFIX
  -- Macro: IMMEDIATE_PREFIX
      If defined, C string expressions to be used for the '%R', '%L',
-     '%U', and '%I' options of 'asm_fprintf' (see 'final.c').  These are
-     useful when a single 'md' file must support multiple assembler
+     '%U', and '%I' options of 'asm_fprintf' (see 'final.cc').  These
+     are useful when a single 'md' file must support multiple assembler
      formats.  In that case, the various 'tm.h' files can define these
      macros differently.
 
@@ -42202,8 +42215,8 @@ be documented in 'extend.texi'.
      'TARGET_MERGE_DECL_ATTRIBUTES'.  You can also add
      'handle_dll_attribute' in the attribute table for your port to
      perform initial processing of the 'dllimport' and 'dllexport'
-     attributes.  This is done in 'i386/cygwin.h' and 'i386/i386.c', for
-     example.
+     attributes.  This is done in 'i386/cygwin.h' and 'i386/i386.cc',
+     for example.
 
  -- Target Hook: bool TARGET_VALID_DLLIMPORT_ATTRIBUTE_P (const_tree
           DECL)
@@ -45018,7 +45031,7 @@ helpful when you have a complicated expression.
 
      The 'special' option is used to mark types that have to be dealt
      with by special case machinery.  The parameter is the name of the
-     special case.  See 'gengtype.c' for further details.  Avoid adding
+     special case.  See 'gengtype.cc' for further details.  Avoid adding
      new special cases unless there is no other alternative.
 
 'user'
@@ -45239,15 +45252,15 @@ three things you need to do:
      For a back-end header file, this should be done automatically.  For
      a front-end header file, it needs to be included by the same file
      that includes 'gtype-LANG.h'.  For other header files, it needs to
-     be included in 'gtype-desc.c', which is a generated file, so add it
-     to 'ifiles' in 'open_base_file' in 'gengtype.c'.
+     be included in 'gtype-desc.cc', which is a generated file, so add
+     it to 'ifiles' in 'open_base_file' in 'gengtype.cc'.
 
      For source files that aren't header files, the machinery will
      generate a header file that should be included in the source file
      you just changed.  The file will be called 'gt-PATH.h' where PATH
      is the pathname relative to the 'gcc' directory with slashes
      replaced by -, so for example the header file to be included in
-     'cp/parser.c' is called 'gt-cp-parser.h'.  The generated header
+     'cp/parser.cc' is called 'gt-cp-parser.h'.  The generated header
      file should be included after everything else in the source file.
 
  For language frontends, there is another file that needs to be included
@@ -45810,8 +45823,8 @@ so a plugin could ensure it is built for GCC 4.7 with
         $(HOST_GCC) -shared $(CXXFLAGS) $^ -o $@
 
  A single source file plugin may be built with 'g++ -I`gcc
--print-file-name=plugin`/include -fPIC -shared -fno-rtti -O2 plugin.c -o
-plugin.so', using backquote shell syntax to query the 'plugin'
+-print-file-name=plugin`/include -fPIC -shared -fno-rtti -O2 plugin.cc
+-o plugin.so', using backquote shell syntax to query the 'plugin'
 directory.
 
  Plugin support on Windows/MinGW has a number of limitations and
@@ -45849,7 +45862,7 @@ following command line shows how to build the single source file plugin
 on Windows to be used with the C++ compiler:
 
      g++ -I`gcc -print-file-name=plugin`/include -shared -Wl,--export-all-symbols \
-     -o plugin.dll plugin.c `gcc -print-file-name=plugin`/cc1plus.exe.a
+     -o plugin.dll plugin.cc `gcc -print-file-name=plugin`/cc1plus.exe.a
 
  When a plugin needs to use 'gengtype', be sure that both 'gengtype' and
 'gtype.state' have the same version as the GCC for which the plugin is
@@ -45918,22 +45931,22 @@ manager executes all the passes in 'all_lto_gen_passes'.  Currently,
 this phase is composed of two IPA passes:
 
    * 'pass_ipa_lto_gimple_out' This pass executes the function
-     'lto_output' in 'lto-streamer-out.c', which traverses the call
+     'lto_output' in 'lto-streamer-out.cc', which traverses the call
      graph encoding every reachable declaration, type and function.
      This generates a memory representation of all the file sections
      described below.
 
    * 'pass_ipa_lto_finish_out' This pass executes the function
-     'produce_asm_for_decls' in 'lto-streamer-out.c', which takes the
+     'produce_asm_for_decls' in 'lto-streamer-out.cc', which takes the
      memory image built in the previous pass and encodes it in the
      corresponding ELF file sections.
 
  The second half of LTO support is the "reader".  This is implemented as
-the GCC front end 'lto1' in 'lto/lto.c'.  When 'collect2' detects a link
-set of '.o'/'.a' files with LTO information and the '-flto' is enabled,
-it invokes 'lto1' which reads the set of files and aggregates them into
-a single translation unit for optimization.  The main entry point for
-the reader is 'lto/lto.c':'lto_main'.
+the GCC front end 'lto1' in 'lto/lto.cc'.  When 'collect2' detects a
+link set of '.o'/'.a' files with LTO information and the '-flto' is
+enabled, it invokes 'lto1' which reads the set of files and aggregates
+them into a single translation unit for optimization.  The main entry
+point for the reader is 'lto/lto.cc':'lto_main'.
 
 25.1.1 LTO modes of operation
 -----------------------------
@@ -46001,8 +46014,8 @@ LTO information is stored in several ELF sections inside object files.
 Data structures and enum codes for sections are defined in
 'lto-streamer.h'.
 
- These sections are emitted from 'lto-streamer-out.c' and mapped in all
-at once from 'lto/lto.c':'lto_file_read'.  The individual functions
+ These sections are emitted from 'lto-streamer-out.cc' and mapped in all
+at once from 'lto/lto.cc':'lto_file_read'.  The individual functions
 dealing with the reading/writing of each section are described below.
 
    * Command line options ('.gnu.lto_.opts')
@@ -46018,7 +46031,7 @@ dealing with the reading/writing of each section are described below.
      the options saved on all the files in a link-time set are applied
      globally.  No attempt is made at validating the combination of
      flags (other than the usual validation done by option processing).
-     This is implemented in 'lto/lto.c':'lto_read_all_file_options'.
+     This is implemented in 'lto/lto.cc':'lto_read_all_file_options'.
 
    * Symbol table ('.gnu.lto_.symtab')
 
@@ -46037,7 +46050,7 @@ dealing with the reading/writing of each section are described below.
      symbol table was used.
 
      The symbol table is emitted in
-     'lto-streamer-out.c':'produce_symtab'.
+     'lto-streamer-out.cc':'produce_symtab'.
 
    * Global declarations and types ('.gnu.lto_.decls')
 
@@ -46046,10 +46059,10 @@ dealing with the reading/writing of each section are described below.
      variables and top-level debug info.
 
      The contents of this section are emitted in
-     'lto-streamer-out.c':'produce_asm_for_decls'.  Types and symbols
+     'lto-streamer-out.cc':'produce_asm_for_decls'.  Types and symbols
      are emitted in a topological order that preserves the sharing of
      pointers when the file is read back in
-     ('lto.c':'read_cgraph_and_symbols').
+     ('lto.cc':'read_cgraph_and_symbols').
 
    * The callgraph ('.gnu.lto_.cgraph')
 
@@ -46059,14 +46072,14 @@ dealing with the reading/writing of each section are described below.
      sites as well as the variables, aliases and top-level 'asm'
      statements.
 
-     This section is emitted in 'lto-streamer-out.c':'output_cgraph' and
-     read in 'lto-cgraph.c':'input_cgraph'.
+     This section is emitted in 'lto-streamer-out.cc':'output_cgraph'
+     and read in 'lto-cgraph.cc':'input_cgraph'.
 
    * IPA references ('.gnu.lto_.refs')
 
      This section contains references between function and static
-     variables.  It is emitted by 'lto-cgraph.c':'output_refs' and read
-     by 'lto-cgraph.c':'input_refs'.
+     variables.  It is emitted by 'lto-cgraph.cc':'output_refs' and read
+     by 'lto-cgraph.cc':'input_refs'.
 
    * Function bodies ('.gnu.lto_.function_body.<name>')
 
@@ -46075,14 +46088,14 @@ dealing with the reading/writing of each section are described below.
      allow copying of the section independently to different object
      files or reading the function on demand.
 
-     Functions are emitted in 'lto-streamer-out.c':'output_function' and
-     read in 'lto-streamer-in.c':'input_function'.
+     Functions are emitted in 'lto-streamer-out.cc':'output_function'
+     and read in 'lto-streamer-in.cc':'input_function'.
 
    * Static variable initializers ('.gnu.lto_.vars')
 
      This section contains all the symbols in the global variable pool.
-     It is emitted by 'lto-cgraph.c':'output_varpool' and read in
-     'lto-cgraph.c':'input_cgraph'.
+     It is emitted by 'lto-cgraph.cc':'output_varpool' and read in
+     'lto-cgraph.cc':'input_cgraph'.
 
    * Summaries and optimization summaries used by IPA passes
      ('.gnu.lto_.<xxx>', where '<xxx>' is one of 'jmpfuncs', 'pureconst'
@@ -46263,8 +46276,9 @@ variable 'A', the _IPA reference_ is a list of all locations where the
 address of 'A' is taken and, when 'A' is a variable, a list of all
 direct stores and reads to/from 'A'.  References represent an oriented
 multi-graph on the union of nodes of the callgraph and the varpool.  See
-'ipa-reference.c':'ipa_reference_write_optimization_summary' and
-'ipa-reference.c':'ipa_reference_read_optimization_summary' for details.
+'ipa-reference.cc':'ipa_reference_write_optimization_summary' and
+'ipa-reference.cc':'ipa_reference_read_optimization_summary' for
+details.
 
 25.3.3 Jump functions
 ---------------------
@@ -46400,7 +46414,8 @@ The GIMPLE and GENERIC pattern matching project match-and-simplify tries
 to address several issues.
 
   1. unify expression simplifications currently spread and duplicated
-     over separate files like fold-const.c, gimple-fold.c and builtins.c
+     over separate files like fold-const.cc, gimple-fold.cc and
+     builtins.cc
   2. allow for a cheap way to implement building and simplifying
      non-trivial GIMPLE expressions, avoiding the need to go through
      building and simplifying GENERIC via fold_buildN and then
@@ -49595,7 +49610,7 @@ alphabetical order.
      entire Debian archive.
 
    * David Miller for his direction via the steering committee, lots of
-     SPARC work, improvements in jump.c and interfacing with the Linux
+     SPARC work, improvements in jump.cc and interfacing with the Linux
      kernel developers.
 
    * Gary Miller ported GCC to Charles River Data Systems machines.
@@ -55793,7 +55808,7 @@ Concept Index
 * load address instruction:              Simple Constraints. (line  162)
 * LOAD_EXTEND_OP:                        Misc.               (line   80)
 * load_multiple instruction pattern:     Standard Names.     (line  136)
-* Local Register Allocator (LRA):        RTL passes.         (line  187)
+* Local Register Allocator (LRA):        RTL passes.         (line  188)
 * LOCAL_ALIGNMENT:                       Storage Layout.     (line  293)
 * LOCAL_CLASS_P:                         Classes.            (line   70)
 * LOCAL_DECL_ALIGNMENT:                  Storage Layout.     (line  330)
@@ -55990,7 +56005,7 @@ Concept Index
 * MODIFY_EXPR:                           Unary and Binary Expressions.
                                                              (line    6)
 * modM3 instruction pattern:             Standard Names.     (line  486)
-* modulo scheduling:                     RTL passes.         (line  123)
+* modulo scheduling:                     RTL passes.         (line  124)
 * MOVE_MAX:                              Misc.               (line  122)
 * MOVE_MAX_PIECES:                       Costs.              (line  217)
 * MOVE_RATIO:                            Costs.              (line  149)
@@ -56526,7 +56541,7 @@ Concept Index
 * REG_WORDS_BIG_ENDIAN:                  Storage Layout.     (line   35)
 * relative costs:                        Costs.              (line    6)
 * RELATIVE_PREFIX_NOT_LINKDIR:           Driver.             (line  266)
-* reloading:                             RTL passes.         (line  170)
+* reloading:                             RTL passes.         (line  171)
 * reload_completed:                      Standard Names.     (line 2091)
 * reload_in instruction pattern:         Standard Names.     (line   98)
 * reload_in_progress:                    Standard Names.     (line   57)
@@ -56755,7 +56770,7 @@ Concept Index
 * small IPA passes:                      Small IPA passes.   (line    6)
 * smax:                                  Arithmetic.         (line  147)
 * smin:                                  Arithmetic.         (line  147)
-* sms, swing, software pipelining:       RTL passes.         (line  123)
+* sms, swing, software pipelining:       RTL passes.         (line  124)
 * smulhrsM3 instruction pattern:         Standard Names.     (line  690)
 * smulhsM3 instruction pattern:          Standard Names.     (line  680)
 * smulM3_highpart instruction pattern:   Standard Names.     (line  872)
@@ -56764,6 +56779,7 @@ Concept Index
                                                              (line    6)
 * source code, location information:     Guidelines for Diagnostics.
                                                              (line  183)
+* spaceshipM3 instruction pattern:       Standard Names.     (line 2873)
 * special:                               GTY Options.        (line  246)
 * special predicates:                    Predicates.         (line   31)
 * SPECS:                                 Target Fragment.    (line  194)
@@ -58169,429 +58185,429 @@ Node: Texinfo Manuals179058
 Node: Man Page Generation181387
 Node: Miscellaneous Docs183300
 Node: Front End184687
-Node: Front End Directory188366
-Node: Front End Config189682
-Node: Front End Makefile192518
-Node: Back End196286
-Node: Testsuites201172
-Node: Test Idioms202161
-Node: Test Directives205559
-Node: Directives206086
-Node: Selectors218688
-Node: Effective-Target Keywords222016
-Ref: arm_fp_ok237214
-Ref: arm_fp_dp_ok237381
-Ref: arm_neon_ok238414
-Ref: arm_neon_ok_no_float_abi238583
-Ref: arm_neonv2_ok238750
-Ref: arm_fp16_ok238917
-Ref: arm_neon_fp16_ok239259
-Ref: arm_vfp3_ok240191
-Ref: arm_arch_v8a_hard_ok240334
-Ref: arm_v8_1a_neon_ok241084
-Ref: arm_v8_2a_fp16_scalar_ok241512
-Ref: arm_v8_2a_fp16_neon_ok241963
-Ref: arm_v8_2a_dotprod_neon_ok242438
-Ref: arm_fp16fml_neon_ok243083
-Ref: arm_coproc1_ok245653
-Ref: arm_coproc2_ok245779
-Ref: arm_coproc3_ok246007
-Ref: arm_simd32_ok246374
-Ref: arm_sat_ok246551
-Ref: arm_dsp_ok246732
-Ref: arm_softfp_ok246909
-Ref: arm_hard_ok246982
-Ref: arm_v8_1_lob_ok247057
-Ref: stack_size_et261353
-Node: Add Options263943
-Ref: arm_fp16_ieee265181
-Ref: arm_fp16_alternative265436
-Ref: stack_size_ao268000
-Node: Require Support268362
-Node: Final Actions271264
-Node: Ada Tests281233
-Node: C Tests282396
-Node: LTO Testing286768
-Node: gcov Testing288411
-Node: profopt Testing291381
-Node: compat Testing293096
-Node: Torture Tests297336
-Node: GIMPLE Tests298970
-Node: RTL Tests300212
-Node: Options301518
-Node: Option file format301959
-Node: Option properties308948
-Node: Passes325016
-Node: Parsing pass325889
-Node: Gimplification pass329417
-Node: Pass manager331250
-Node: IPA passes333091
-Node: Small IPA passes333984
-Node: Regular IPA passes337421
-Node: Late IPA passes342199
-Node: Tree SSA passes343158
-Node: RTL passes364766
-Node: Optimization info377030
-Node: Dump setup377849
-Node: Optimization groups378978
-Node: Dump files and streams379957
-Node: Dump output verbosity381155
-Node: Dump types382211
-Node: Dump examples384553
-Node: poly_int386034
-Node: Overview of poly_int387514
-Node: Consequences of using poly_int390118
-Node: Comparisons involving poly_int391753
-Node: Comparison functions for poly_int393391
-Node: Properties of the poly_int comparisons394598
-Node: Comparing potentially-unordered poly_ints397040
-Node: Comparing ordered poly_ints397951
-Node: Checking for a poly_int marker value399975
-Node: Range checks on poly_ints400824
-Node: Sorting poly_ints403478
-Node: Arithmetic on poly_ints404251
-Node: Using poly_int with C++ arithmetic operators405052
-Node: wi arithmetic on poly_ints406583
-Node: Division of poly_ints407435
-Node: Other poly_int arithmetic408942
-Node: Alignment of poly_ints410348
-Node: Computing bounds on poly_ints413625
-Node: Converting poly_ints415014
-Node: Miscellaneous poly_int routines418561
-Node: Guidelines for using poly_int419201
-Node: GENERIC424133
-Node: Deficiencies425955
-Node: Tree overview426196
-Node: Macros and Functions430320
-Node: Identifiers431145
-Node: Containers432754
-Node: Types433911
-Node: Declarations446322
-Node: Working with declarations446817
-Node: Internal structure452421
-Node: Current structure hierarchy452805
-Node: Adding new DECL node types454898
-Node: Attributes459182
-Node: Expression trees460426
-Node: Constant expressions462180
-Node: Storage References468272
-Node: Unary and Binary Expressions472113
-Node: Vectors493015
-Node: Statements501505
-Node: Basic Statements502037
-Node: Blocks506812
-Node: Statement Sequences508513
-Node: Empty Statements508846
-Node: Jumps509420
-Node: Cleanups510073
-Node: OpenMP512114
-Node: OpenACC517959
-Node: Functions519076
-Node: Function Basics519547
-Node: Function Properties523231
-Node: Language-dependent trees526012
-Node: C and C++ Trees526899
-Node: Types for C++529784
-Node: Namespaces534754
-Node: Classes537860
-Node: Functions for C++542768
-Node: Statements for C and C++549025
-Node: C++ Expressions557532
-Node: GIMPLE559043
-Node: Tuple representation562708
-Node: Class hierarchy of GIMPLE statements569668
-Node: GIMPLE instruction set574656
-Node: GIMPLE Exception Handling576288
-Node: Temporaries578200
-Ref: Temporaries-Footnote-1579518
-Node: Operands579583
-Node: Compound Expressions580344
-Node: Compound Lvalues580578
-Node: Conditional Expressions581340
-Node: Logical Operators581999
-Node: Manipulating GIMPLE statements589361
-Node: Tuple specific accessors594943
-Node: GIMPLE_ASM595722
-Node: GIMPLE_ASSIGN598105
-Node: GIMPLE_BIND602809
-Node: GIMPLE_CALL604623
-Node: GIMPLE_CATCH608766
-Node: GIMPLE_COND609916
-Node: GIMPLE_DEBUG612711
-Node: GIMPLE_EH_FILTER617309
-Node: GIMPLE_LABEL618872
-Node: GIMPLE_GOTO619485
-Node: GIMPLE_NOP620008
-Node: GIMPLE_OMP_ATOMIC_LOAD620370
-Node: GIMPLE_OMP_ATOMIC_STORE621366
-Node: GIMPLE_OMP_CONTINUE622065
-Node: GIMPLE_OMP_CRITICAL623544
-Node: GIMPLE_OMP_FOR624538
-Node: GIMPLE_OMP_MASTER627954
-Node: GIMPLE_OMP_ORDERED628332
-Node: GIMPLE_OMP_PARALLEL628726
-Node: GIMPLE_OMP_RETURN631495
-Node: GIMPLE_OMP_SECTION632140
-Node: GIMPLE_OMP_SECTIONS632800
-Node: GIMPLE_OMP_SINGLE634410
-Node: GIMPLE_PHI635356
-Node: GIMPLE_RESX636635
-Node: GIMPLE_RETURN637354
-Node: GIMPLE_SWITCH637928
-Node: GIMPLE_TRY639803
-Node: GIMPLE_WITH_CLEANUP_EXPR641575
-Node: GIMPLE sequences642454
-Node: Sequence iterators645660
-Node: Adding a new GIMPLE statement code654117
-Node: Statement and operand traversals655462
-Node: Tree SSA658054
-Node: Annotations659842
-Node: SSA Operands660247
-Node: SSA674050
-Node: Alias analysis683756
-Node: Memory model687530
-Node: RTL688889
-Node: RTL Objects691131
-Node: RTL Classes695015
-Node: Accessors700313
-Node: Special Accessors702486
-Node: Flags708273
-Node: Machine Modes723536
-Node: Constants741103
-Node: Regs and Memory752902
-Node: Arithmetic770172
-Node: Comparisons780551
-Node: Bit-Fields784253
-Node: Vector Operations785804
-Node: Conversions787908
-Node: RTL Declarations792406
-Node: Side Effects793250
-Node: Incdec809738
-Node: Assembler813074
-Node: Debug Information814619
-Node: Insns816546
-Node: Calls842434
-Node: RTL SSA845027
-Node: Using RTL SSA846418
-Node: RTL SSA Instructions848335
-Ref: RTL SSA Instructions-Footnote-1849721
-Node: RTL SSA Basic Blocks849855
-Ref: real RTL SSA insns850323
-Ref: RTL SSA Basic Blocks-Footnote-1852545
-Node: RTL SSA Resources852679
-Node: RTL SSA Accesses853796
-Ref: RTL SSA Accesses-Footnote-1855497
-Node: RTL SSA Phi Nodes855640
-Node: RTL SSA Access Lists857644
-Node: Changing RTL Instructions861925
-Node: Changing One RTL SSA Instruction862534
-Node: Changing Multiple RTL SSA Instructions867469
-Node: Sharing871712
-Node: Reading RTL874867
-Node: Control Flow875858
-Node: Basic Blocks877626
-Node: Edges883080
-Node: Profile information891699
-Node: Maintaining the CFG896383
-Node: Liveness information902151
-Node: Loop Analysis and Representation904277
-Node: Loop representation905313
-Node: Loop querying912757
-Node: Loop manipulation915578
-Node: LCSSA917924
-Node: Scalar evolutions919993
-Node: loop-iv923237
-Node: Number of iterations925159
-Node: Dependency analysis929240
-Node: Machine Desc935591
-Node: Overview938154
-Node: Patterns940194
-Node: Example945161
-Node: RTL Template946622
-Node: Output Template957278
-Node: Output Statement961459
-Node: Predicates965798
-Node: Machine-Independent Predicates968716
-Node: Defining Predicates973660
-Node: Constraints979623
-Node: Simple Constraints981092
-Node: Multi-Alternative993932
-Node: Class Preferences997141
-Node: Modifiers998033
-Node: Machine Constraints1002767
-Node: Disable Insn Alternatives1065472
-Node: Define Constraints1068964
-Node: C Constraint Interface1077553
-Node: Standard Names1080680
-Ref: shift patterns1122303
-Ref: prologue instruction pattern1183128
-Ref: window_save instruction pattern1183621
-Ref: epilogue instruction pattern1183898
-Node: Pattern Ordering1206799
-Node: Dependent Patterns1208035
-Node: Jump Patterns1209655
-Node: Looping Patterns1211332
-Node: Insn Canonicalizations1216971
-Node: Expander Definitions1222167
-Node: Insn Splitting1230380
-Node: Including Patterns1245410
-Node: Peephole Definitions1247194
-Node: define_peephole1248447
-Node: define_peephole21254777
-Node: Insn Attributes1258866
-Node: Defining Attributes1259963
-Ref: define_enum_attr1263455
-Node: Expressions1264491
-Node: Tagging Insns1271241
-Node: Attr Example1275594
-Node: Insn Lengths1277967
-Node: Constant Attributes1281379
-Node: Mnemonic Attribute1282555
-Node: Delay Slots1284074
-Node: Processor pipeline description1287297
-Ref: Processor pipeline description-Footnote-11306109
-Node: Conditional Execution1306433
-Node: Define Subst1309916
-Node: Define Subst Example1311951
-Node: Define Subst Pattern Matching1314946
-Node: Define Subst Output Template1316172
-Node: Constant Definitions1318495
-Ref: define_enum1322354
-Node: Iterators1322842
-Node: Mode Iterators1323487
-Node: Defining Mode Iterators1324465
-Node: Substitutions1325959
-Node: Examples1328201
-Node: Code Iterators1329649
-Node: Int Iterators1332779
-Node: Subst Iterators1335243
-Node: Parameterized Names1336963
-Node: Target Macros1340981
-Node: Target Structure1344044
-Node: Driver1346536
-Node: Run-time Target1365506
-Node: Per-Function Data1375039
-Node: Storage Layout1377803
-Node: Type Layout1405699
-Node: Registers1419040
-Node: Register Basics1420014
-Node: Allocation Order1427576
-Node: Values in Registers1430060
-Node: Leaf Functions1437536
-Node: Stack Registers1440395
-Node: Register Classes1441667
-Node: Stack and Calling1476454
-Node: Frame Layout1477060
-Node: Exception Handling1488895
-Node: Stack Checking1495105
-Node: Frame Registers1500731
-Node: Elimination1509282
-Node: Stack Arguments1513138
-Node: Register Arguments1520591
-Node: Scalar Return1545149
-Node: Aggregate Return1551605
-Node: Caller Saves1556159
-Node: Function Entry1556901
-Node: Profiling1568453
-Node: Tail Calls1570563
-Node: Shrink-wrapping separate components1572473
-Node: Stack Smashing Protection1575514
-Node: Miscellaneous Register Hooks1578003
-Node: Varargs1578868
-Node: Trampolines1586754
-Node: Library Calls1596447
-Node: Addressing Modes1601533
-Node: Anchored Addresses1632150
-Node: Condition Code1634793
-Node: MODE_CC Condition Codes1636638
-Node: Costs1643401
-Node: Scheduling1665721
-Node: Sections1689643
-Node: PIC1706008
-Node: Assembler Format1708067
-Node: File Framework1709205
-Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1716804
-Node: Data Output1718479
-Node: Uninitialized Data1726767
-Node: Label Output1731781
-Node: Initialization1756392
-Node: Macros for Initialization1762353
-Node: Instruction Output1769504
-Node: Dispatch Tables1780133
-Node: Exception Region Output1785884
-Node: Alignment Output1792966
-Node: Debugging Info1796653
-Node: All Debuggers1797411
-Node: DBX Options1800183
-Node: DBX Hooks1805621
-Node: File Names and DBX1806930
-Node: DWARF1809034
-Node: VMS Debug1814849
-Node: CTF Debug1815446
-Node: BTF Debug1815807
-Node: Floating Point1816150
-Node: Mode Switching1818905
-Node: Target Attributes1823342
-Node: Emulated TLS1834744
-Node: MIPS Coprocessors1838134
-Node: PCH Target1839293
-Node: C++ ABI1841135
-Node: D Language and ABI1845927
-Node: Named Address Spaces1848870
-Node: Misc1854797
-Ref: TARGET_SHIFT_TRUNCATION_MASK1862668
-Node: Host Config1923377
-Node: Host Common1924446
-Node: Filesystem1926820
-Node: Host Misc1930935
-Node: Fragments1933384
-Node: Target Fragment1934579
-Node: Host Fragment1945391
-Node: Collect21945631
-Node: Header Dirs1948267
-Node: Type Information1949690
-Node: GTY Options1953221
-Node: Inheritance and GTY1964833
-Ref: Inheritance and GTY-Footnote-11966398
-Node: User GC1966668
-Node: GGC Roots1970419
-Node: Files1971132
-Node: Invoking the garbage collector1973760
-Node: Troubleshooting1975402
-Node: Plugins1976477
-Node: Plugins loading1977606
-Node: Plugin API1978705
-Node: Plugins pass1986572
-Node: Plugins GC1988543
-Node: Plugins description1990260
-Node: Plugins attr1990796
-Node: Plugins recording1993076
-Node: Plugins gate1993926
-Node: Plugins tracking1994517
-Node: Plugins building1995105
-Node: LTO1998606
-Node: LTO Overview1999478
-Node: LTO object file layout2005230
-Node: IPA2009860
-Node: WHOPR2018910
-Node: Internal flags2023470
-Node: Match and Simplify2024881
-Node: GIMPLE API2025843
-Node: The Language2028638
-Node: Static Analyzer2041137
-Node: Analyzer Internals2041402
-Node: Debugging the Analyzer2057289
-Node: User Experience Guidelines2060857
-Node: Guidelines for Diagnostics2061793
-Ref: input_location_example2069968
-Node: Guidelines for Options2079653
-Node: Funding2079830
-Node: GNU Project2082337
-Node: Copying2082988
-Node: GNU Free Documentation License2120502
-Node: Contributors2145625
-Node: Option Index2186601
-Node: Concept Index2187478
+Node: Front End Directory188367
+Node: Front End Config189684
+Node: Front End Makefile192521
+Node: Back End196289
+Node: Testsuites201175
+Node: Test Idioms202164
+Node: Test Directives205562
+Node: Directives206089
+Node: Selectors218691
+Node: Effective-Target Keywords222019
+Ref: arm_fp_ok237217
+Ref: arm_fp_dp_ok237384
+Ref: arm_neon_ok238417
+Ref: arm_neon_ok_no_float_abi238586
+Ref: arm_neonv2_ok238753
+Ref: arm_fp16_ok238920
+Ref: arm_neon_fp16_ok239262
+Ref: arm_vfp3_ok240194
+Ref: arm_arch_v8a_hard_ok240337
+Ref: arm_v8_1a_neon_ok241087
+Ref: arm_v8_2a_fp16_scalar_ok241515
+Ref: arm_v8_2a_fp16_neon_ok241966
+Ref: arm_v8_2a_dotprod_neon_ok242441
+Ref: arm_fp16fml_neon_ok243086
+Ref: arm_coproc1_ok245656
+Ref: arm_coproc2_ok245782
+Ref: arm_coproc3_ok246010
+Ref: arm_simd32_ok246377
+Ref: arm_sat_ok246554
+Ref: arm_dsp_ok246735
+Ref: arm_softfp_ok246912
+Ref: arm_hard_ok246985
+Ref: arm_v8_1_lob_ok247060
+Ref: stack_size_et261356
+Node: Add Options263946
+Ref: arm_fp16_ieee265184
+Ref: arm_fp16_alternative265439
+Ref: stack_size_ao268003
+Node: Require Support268365
+Node: Final Actions271267
+Node: Ada Tests281236
+Node: C Tests282399
+Node: LTO Testing286771
+Node: gcov Testing288414
+Node: profopt Testing291384
+Node: compat Testing293099
+Node: Torture Tests297339
+Node: GIMPLE Tests298973
+Node: RTL Tests300215
+Node: Options301521
+Node: Option file format301962
+Node: Option properties308953
+Node: Passes325021
+Node: Parsing pass325894
+Node: Gimplification pass329422
+Node: Pass manager331256
+Node: IPA passes333098
+Node: Small IPA passes333991
+Node: Regular IPA passes337441
+Node: Late IPA passes342243
+Node: Tree SSA passes343204
+Node: RTL passes364894
+Node: Optimization info377223
+Node: Dump setup378042
+Node: Optimization groups379172
+Node: Dump files and streams380151
+Node: Dump output verbosity381349
+Node: Dump types382405
+Node: Dump examples384748
+Node: poly_int386229
+Node: Overview of poly_int387709
+Node: Consequences of using poly_int390313
+Node: Comparisons involving poly_int391948
+Node: Comparison functions for poly_int393586
+Node: Properties of the poly_int comparisons394793
+Node: Comparing potentially-unordered poly_ints397235
+Node: Comparing ordered poly_ints398146
+Node: Checking for a poly_int marker value400170
+Node: Range checks on poly_ints401019
+Node: Sorting poly_ints403673
+Node: Arithmetic on poly_ints404446
+Node: Using poly_int with C++ arithmetic operators405247
+Node: wi arithmetic on poly_ints406778
+Node: Division of poly_ints407630
+Node: Other poly_int arithmetic409137
+Node: Alignment of poly_ints410543
+Node: Computing bounds on poly_ints413820
+Node: Converting poly_ints415209
+Node: Miscellaneous poly_int routines418756
+Node: Guidelines for using poly_int419396
+Node: GENERIC424328
+Node: Deficiencies426150
+Node: Tree overview426391
+Node: Macros and Functions430515
+Node: Identifiers431340
+Node: Containers432949
+Node: Types434106
+Node: Declarations446517
+Node: Working with declarations447012
+Node: Internal structure452616
+Node: Current structure hierarchy453000
+Node: Adding new DECL node types455093
+Node: Attributes459379
+Node: Expression trees460623
+Node: Constant expressions462377
+Node: Storage References468469
+Node: Unary and Binary Expressions472310
+Node: Vectors493212
+Node: Statements501702
+Node: Basic Statements502234
+Node: Blocks507009
+Node: Statement Sequences508710
+Node: Empty Statements509043
+Node: Jumps509617
+Node: Cleanups510270
+Node: OpenMP512311
+Node: OpenACC518158
+Node: Functions519275
+Node: Function Basics519746
+Node: Function Properties523430
+Node: Language-dependent trees526211
+Node: C and C++ Trees527098
+Node: Types for C++529983
+Node: Namespaces534953
+Node: Classes538059
+Node: Functions for C++542967
+Node: Statements for C and C++549224
+Node: C++ Expressions557731
+Node: GIMPLE559242
+Node: Tuple representation562907
+Node: Class hierarchy of GIMPLE statements569867
+Node: GIMPLE instruction set574855
+Node: GIMPLE Exception Handling576487
+Node: Temporaries578399
+Ref: Temporaries-Footnote-1579717
+Node: Operands579782
+Node: Compound Expressions580543
+Node: Compound Lvalues580777
+Node: Conditional Expressions581539
+Node: Logical Operators582198
+Node: Manipulating GIMPLE statements589560
+Node: Tuple specific accessors595142
+Node: GIMPLE_ASM595921
+Node: GIMPLE_ASSIGN598304
+Node: GIMPLE_BIND603008
+Node: GIMPLE_CALL604822
+Node: GIMPLE_CATCH608965
+Node: GIMPLE_COND610115
+Node: GIMPLE_DEBUG612910
+Node: GIMPLE_EH_FILTER617508
+Node: GIMPLE_LABEL619071
+Node: GIMPLE_GOTO619684
+Node: GIMPLE_NOP620207
+Node: GIMPLE_OMP_ATOMIC_LOAD620569
+Node: GIMPLE_OMP_ATOMIC_STORE621565
+Node: GIMPLE_OMP_CONTINUE622264
+Node: GIMPLE_OMP_CRITICAL623743
+Node: GIMPLE_OMP_FOR624737
+Node: GIMPLE_OMP_MASTER628153
+Node: GIMPLE_OMP_ORDERED628531
+Node: GIMPLE_OMP_PARALLEL628925
+Node: GIMPLE_OMP_RETURN631694
+Node: GIMPLE_OMP_SECTION632339
+Node: GIMPLE_OMP_SECTIONS632999
+Node: GIMPLE_OMP_SINGLE634609
+Node: GIMPLE_PHI635555
+Node: GIMPLE_RESX636834
+Node: GIMPLE_RETURN637553
+Node: GIMPLE_SWITCH638127
+Node: GIMPLE_TRY640002
+Node: GIMPLE_WITH_CLEANUP_EXPR641774
+Node: GIMPLE sequences642653
+Node: Sequence iterators645859
+Node: Adding a new GIMPLE statement code654316
+Node: Statement and operand traversals655665
+Node: Tree SSA658257
+Node: Annotations660045
+Node: SSA Operands660450
+Node: SSA674254
+Node: Alias analysis683961
+Node: Memory model687736
+Node: RTL689095
+Node: RTL Objects691337
+Node: RTL Classes695221
+Node: Accessors700519
+Node: Special Accessors702692
+Node: Flags708479
+Node: Machine Modes723742
+Node: Constants741309
+Node: Regs and Memory753108
+Node: Arithmetic770379
+Node: Comparisons780758
+Node: Bit-Fields784460
+Node: Vector Operations786011
+Node: Conversions788115
+Node: RTL Declarations792613
+Node: Side Effects793457
+Node: Incdec809945
+Node: Assembler813281
+Node: Debug Information814826
+Node: Insns816753
+Node: Calls842642
+Node: RTL SSA845235
+Node: Using RTL SSA846626
+Node: RTL SSA Instructions848543
+Ref: RTL SSA Instructions-Footnote-1849929
+Node: RTL SSA Basic Blocks850063
+Ref: real RTL SSA insns850531
+Ref: RTL SSA Basic Blocks-Footnote-1852753
+Node: RTL SSA Resources852887
+Node: RTL SSA Accesses854004
+Ref: RTL SSA Accesses-Footnote-1855705
+Node: RTL SSA Phi Nodes855848
+Node: RTL SSA Access Lists857852
+Node: Changing RTL Instructions862133
+Node: Changing One RTL SSA Instruction862742
+Node: Changing Multiple RTL SSA Instructions867678
+Node: Sharing871921
+Node: Reading RTL875077
+Node: Control Flow876069
+Node: Basic Blocks877837
+Node: Edges883291
+Node: Profile information891910
+Node: Maintaining the CFG896594
+Node: Liveness information902362
+Node: Loop Analysis and Representation904489
+Node: Loop representation905525
+Node: Loop querying912969
+Node: Loop manipulation915790
+Node: LCSSA918136
+Node: Scalar evolutions920205
+Node: loop-iv923449
+Node: Number of iterations925371
+Node: Dependency analysis929452
+Node: Machine Desc935804
+Node: Overview938367
+Node: Patterns940407
+Node: Example945374
+Node: RTL Template946835
+Node: Output Template957491
+Node: Output Statement961672
+Node: Predicates966011
+Node: Machine-Independent Predicates968929
+Node: Defining Predicates973874
+Node: Constraints979837
+Node: Simple Constraints981306
+Node: Multi-Alternative994146
+Node: Class Preferences997355
+Node: Modifiers998247
+Node: Machine Constraints1002981
+Node: Disable Insn Alternatives1065687
+Node: Define Constraints1069179
+Node: C Constraint Interface1077768
+Node: Standard Names1080895
+Ref: shift patterns1122518
+Ref: prologue instruction pattern1183343
+Ref: window_save instruction pattern1183836
+Ref: epilogue instruction pattern1184113
+Node: Pattern Ordering1207338
+Node: Dependent Patterns1208574
+Node: Jump Patterns1210194
+Node: Looping Patterns1211871
+Node: Insn Canonicalizations1217510
+Node: Expander Definitions1222707
+Node: Insn Splitting1230920
+Node: Including Patterns1245950
+Node: Peephole Definitions1247734
+Node: define_peephole1248987
+Node: define_peephole21255317
+Node: Insn Attributes1259406
+Node: Defining Attributes1260503
+Ref: define_enum_attr1263995
+Node: Expressions1265031
+Node: Tagging Insns1271781
+Node: Attr Example1276134
+Node: Insn Lengths1278507
+Node: Constant Attributes1281919
+Node: Mnemonic Attribute1283095
+Node: Delay Slots1284614
+Node: Processor pipeline description1287837
+Ref: Processor pipeline description-Footnote-11306649
+Node: Conditional Execution1306973
+Node: Define Subst1310456
+Node: Define Subst Example1312491
+Node: Define Subst Pattern Matching1315486
+Node: Define Subst Output Template1316712
+Node: Constant Definitions1319035
+Ref: define_enum1322894
+Node: Iterators1323382
+Node: Mode Iterators1324027
+Node: Defining Mode Iterators1325005
+Node: Substitutions1326499
+Node: Examples1328741
+Node: Code Iterators1330189
+Node: Int Iterators1333319
+Node: Subst Iterators1335783
+Node: Parameterized Names1337503
+Node: Target Macros1341521
+Node: Target Structure1344584
+Node: Driver1347076
+Node: Run-time Target1366049
+Node: Per-Function Data1375582
+Node: Storage Layout1378346
+Node: Type Layout1406243
+Node: Registers1419585
+Node: Register Basics1420559
+Node: Allocation Order1428121
+Node: Values in Registers1430605
+Node: Leaf Functions1438081
+Node: Stack Registers1440940
+Node: Register Classes1442213
+Node: Stack and Calling1477001
+Node: Frame Layout1477607
+Node: Exception Handling1489443
+Node: Stack Checking1495653
+Node: Frame Registers1501279
+Node: Elimination1509830
+Node: Stack Arguments1513686
+Node: Register Arguments1521139
+Node: Scalar Return1545699
+Node: Aggregate Return1552155
+Node: Caller Saves1556709
+Node: Function Entry1557451
+Node: Profiling1569003
+Node: Tail Calls1571113
+Node: Shrink-wrapping separate components1573023
+Node: Stack Smashing Protection1576064
+Node: Miscellaneous Register Hooks1578553
+Node: Varargs1579418
+Node: Trampolines1587304
+Node: Library Calls1596997
+Node: Addressing Modes1602084
+Node: Anchored Addresses1632703
+Node: Condition Code1635346
+Node: MODE_CC Condition Codes1637191
+Node: Costs1643954
+Node: Scheduling1666274
+Node: Sections1690196
+Node: PIC1706566
+Node: Assembler Format1708625
+Node: File Framework1709763
+Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1717362
+Node: Data Output1719037
+Node: Uninitialized Data1727325
+Node: Label Output1732340
+Node: Initialization1756953
+Node: Macros for Initialization1762914
+Node: Instruction Output1770065
+Node: Dispatch Tables1780695
+Node: Exception Region Output1786446
+Node: Alignment Output1793528
+Node: Debugging Info1797215
+Node: All Debuggers1797973
+Node: DBX Options1800745
+Node: DBX Hooks1806183
+Node: File Names and DBX1807492
+Node: DWARF1809596
+Node: VMS Debug1815411
+Node: CTF Debug1816008
+Node: BTF Debug1816369
+Node: Floating Point1816712
+Node: Mode Switching1819467
+Node: Target Attributes1823904
+Node: Emulated TLS1835307
+Node: MIPS Coprocessors1838697
+Node: PCH Target1839856
+Node: C++ ABI1841698
+Node: D Language and ABI1846490
+Node: Named Address Spaces1849433
+Node: Misc1855360
+Ref: TARGET_SHIFT_TRUNCATION_MASK1863231
+Node: Host Config1923940
+Node: Host Common1925009
+Node: Filesystem1927383
+Node: Host Misc1931498
+Node: Fragments1933947
+Node: Target Fragment1935142
+Node: Host Fragment1945954
+Node: Collect21946194
+Node: Header Dirs1948830
+Node: Type Information1950253
+Node: GTY Options1953784
+Node: Inheritance and GTY1965397
+Ref: Inheritance and GTY-Footnote-11966962
+Node: User GC1967232
+Node: GGC Roots1970983
+Node: Files1971696
+Node: Invoking the garbage collector1974327
+Node: Troubleshooting1975969
+Node: Plugins1977044
+Node: Plugins loading1978173
+Node: Plugin API1979272
+Node: Plugins pass1987139
+Node: Plugins GC1989110
+Node: Plugins description1990827
+Node: Plugins attr1991363
+Node: Plugins recording1993643
+Node: Plugins gate1994493
+Node: Plugins tracking1995084
+Node: Plugins building1995672
+Node: LTO1999175
+Node: LTO Overview2000047
+Node: LTO object file layout2005803
+Node: IPA2010447
+Node: WHOPR2019499
+Node: Internal flags2024059
+Node: Match and Simplify2025470
+Node: GIMPLE API2026440
+Node: The Language2029235
+Node: Static Analyzer2041734
+Node: Analyzer Internals2041999
+Node: Debugging the Analyzer2057886
+Node: User Experience Guidelines2061454
+Node: Guidelines for Diagnostics2062390
+Ref: input_location_example2070565
+Node: Guidelines for Options2080250
+Node: Funding2080427
+Node: GNU Project2082934
+Node: Copying2083585
+Node: GNU Free Documentation License2121099
+Node: Contributors2146222
+Node: Option Index2187199
+Node: Concept Index2188076
 
 End Tag Table
 

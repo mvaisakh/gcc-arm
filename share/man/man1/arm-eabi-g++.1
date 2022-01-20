@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-01-16" "gcc-12.0.0" "GNU"
+.TH GCC 1 "2022-01-20" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -12478,7 +12478,7 @@ and the same optimization options for both compilations.
 With \fB\-fbranch\-probabilities\fR, \s-1GCC\s0 puts a
 \&\fB\s-1REG_BR_PROB\s0\fR note on each \fB\s-1JUMP_INSN\s0\fR and \fB\s-1CALL_INSN\s0\fR.
 These can be used to improve optimization.  Currently, they are only
-used in one place: in \fIreorg.c\fR, instead of guessing which path a
+used in one place: in \fIreorg.cc\fR, instead of guessing which path a
 branch is most likely to take, the \fB\s-1REG_BR_PROB\s0\fR values are used to
 exactly determine which path is taken more often.
 .Sp
@@ -13769,7 +13769,7 @@ Algorithm 2 was designed to be a compromise between the relatively
 conservative approach taken by algorithm 1 and the rather aggressive
 approach taken by the default scheduler.  It relies more heavily on
 having a regular register file and accurate register pressure classes.
-See \fIhaifa\-sched.c\fR in the \s-1GCC\s0 sources for more details.
+See \fIhaifa\-sched.cc\fR in the \s-1GCC\s0 sources for more details.
 .Sp
 The default choice depends on the target.
 .IP "\fBmax-slsr-cand-scan\fR" 4
@@ -14115,6 +14115,9 @@ per supernode, before terminating analysis.
 .IX Item "ranger-logical-depth"
 Maximum depth of logical expression evaluation ranger will look through
 when evaluating outgoing edge ranges.
+.IP "\fBrelation-block-limit\fR" 4
+.IX Item "relation-block-limit"
+Maximum number of relations the oracle will register in a basic block.
 .IP "\fBopenacc-kernels\fR" 4
 .IX Item "openacc-kernels"
 Specify mode of OpenACC `kernels' constructs handling.
