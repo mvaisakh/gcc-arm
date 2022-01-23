@@ -63,6 +63,7 @@ enum isa_feature {
   isa_bit_armv5te,
   isa_bit_fpv5,
   isa_bit_iwmmxt2,
+  isa_bit_quirk_aes_1742098,
   isa_bit_notm,
   isa_bit_cdecp0,
   isa_bit_cdecp1,
@@ -169,7 +170,8 @@ enum isa_feature {
   isa_bit_xscale, \
   isa_bit_quirk_cm3_ldrd, \
   isa_bit_quirk_no_volatile_ce, \
-  isa_bit_quirk_armv6kz
+  isa_bit_quirk_armv6kz, \
+  isa_bit_quirk_aes_1742098
 
 #define ISA_CRYPTO \
   isa_bit_neon, \
