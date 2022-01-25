@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "12.0.1 20220123 (Bleeding Edge)")
+(!version  "12.0.1 20220125 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 10 ada c cp d fortran go jit lto objc objcp)
 (!fileslist 227 0
@@ -334,7 +334,7 @@
    (!type already_seen 12)
   )
   gc_used "cpp_hashnode"
-  (!srcfileloc  "../libcpp/include/cpplib.h" 968)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 969)
   (!fields 8 
    (!pair  "ident"
     (!type struct 15 
@@ -362,50 +362,50 @@
        nil )
      )
      nil 1023 nil nil )
-    (!srcfileloc  "../libcpp/include/cpplib.h" 950)
+    (!srcfileloc  "../libcpp/include/cpplib.h" 951)
     nil )
    (!pair  "is_directive"
     (!type already_seen 2)
-    (!srcfileloc  "../libcpp/include/cpplib.h" 951)
+    (!srcfileloc  "../libcpp/include/cpplib.h" 952)
     nil )
    (!pair  "directive_index"
     (!type already_seen 2)
-    (!srcfileloc  "../libcpp/include/cpplib.h" 952)
+    (!srcfileloc  "../libcpp/include/cpplib.h" 953)
     nil )
    (!pair  "rid_code"
     (!type already_seen 2)
-    (!srcfileloc  "../libcpp/include/cpplib.h" 955)
+    (!srcfileloc  "../libcpp/include/cpplib.h" 956)
     nil )
    (!pair  "flags"
     (!type already_seen 2)
-    (!srcfileloc  "../libcpp/include/cpplib.h" 956)
+    (!srcfileloc  "../libcpp/include/cpplib.h" 957)
     nil )
    (!pair  "type"
     (!type already_seen 2)
-    (!srcfileloc  "../libcpp/include/cpplib.h" 957)
+    (!srcfileloc  "../libcpp/include/cpplib.h" 958)
     nil )
    (!pair  "deferred"
     (!type already_seen 2)
-    (!srcfileloc  "../libcpp/include/cpplib.h" 965)
+    (!srcfileloc  "../libcpp/include/cpplib.h" 966)
     nil )
    (!pair  "value"
     (!type union 18 nil  gc_used "_cpp_hashnode_value"
-     (!srcfileloc  "../libcpp/include/cpplib.h" 947)
+     (!srcfileloc  "../libcpp/include/cpplib.h" 948)
      (!fields 4 
       (!pair  "answers"
        (!type pointer 19 nil  gc_used
         (!type struct 20 
          (!type already_seen 19)
          gc_pointed_to "cpp_macro"
-         (!srcfileloc  "../libcpp/include/cpplib.h" 877)
+         (!srcfileloc  "../libcpp/include/cpplib.h" 878)
          (!fields 13 
           (!pair  "parm"
            (!type union 21 nil  gc_used "cpp_parm_u"
-            (!srcfileloc  "../libcpp/include/cpplib.h" 827)
+            (!srcfileloc  "../libcpp/include/cpplib.h" 828)
             (!fields 2 
              (!pair  "params"
               (!type already_seen 14)
-              (!srcfileloc  "../libcpp/include/cpplib.h" 823)
+              (!srcfileloc  "../libcpp/include/cpplib.h" 824)
               (!options 
                (!option length string  "%1.paramc")
                (!option nested_ptr nested 
@@ -15123,65 +15123,65 @@
              )
              (!pair  "next"
               (!type already_seen 19)
-              (!srcfileloc  "../libcpp/include/cpplib.h" 826)
+              (!srcfileloc  "../libcpp/include/cpplib.h" 827)
               (!options 
                (!option tag string  "true")
               )
              )
             )
             nil 1023 nil )
-           (!srcfileloc  "../libcpp/include/cpplib.h" 827)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 828)
            (!options 
             (!option desc string  "%1.kind == cmk_assert")
            )
           )
           (!pair  "line"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 830)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 831)
            nil )
           (!pair  "count"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 834)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 835)
            nil )
           (!pair  "paramc"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 837)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 838)
            nil )
           (!pair  "lazy"
            (!type already_seen 8)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 840)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 841)
            nil )
           (!pair  "kind"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 843)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 844)
            nil )
           (!pair  "fun_like"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 846)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 847)
            nil )
           (!pair  "variadic"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 849)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 850)
            nil )
           (!pair  "syshdr"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 852)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 853)
            nil )
           (!pair  "used"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 855)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 856)
            nil )
           (!pair  "extra_tokens"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 860)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 861)
            nil )
           (!pair  "imported_p"
            (!type already_seen 2)
-           (!srcfileloc  "../libcpp/include/cpplib.h" 863)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 864)
            nil )
           (!pair  "exp"
            (!type union 676 nil  gc_used "cpp_exp_u"
-            (!srcfileloc  "../libcpp/include/cpplib.h" 876)
+            (!srcfileloc  "../libcpp/include/cpplib.h" 877)
             (!fields 2 
              (!pair  "tokens"
               (!type array 677 nil  gc_used "1" 
@@ -15311,7 +15311,7 @@
                 )
                 nil 1023 nil nil )
               )
-              (!srcfileloc  "../libcpp/include/cpplib.h" 870)
+              (!srcfileloc  "../libcpp/include/cpplib.h" 871)
               (!options 
                (!option length string  "%1.count")
                (!option tag string  "false")
@@ -15319,14 +15319,14 @@
              )
              (!pair  "text"
               (!type already_seen 11)
-              (!srcfileloc  "../libcpp/include/cpplib.h" 875)
+              (!srcfileloc  "../libcpp/include/cpplib.h" 876)
               (!options 
                (!option tag string  "true")
               )
              )
             )
             nil 1023 nil )
-           (!srcfileloc  "../libcpp/include/cpplib.h" 876)
+           (!srcfileloc  "../libcpp/include/cpplib.h" 877)
            (!options 
             (!option desc string  "%1.kind == cmk_traditional")
            )
@@ -15334,35 +15334,35 @@
          )
          nil 1023 nil nil )
        )
-       (!srcfileloc  "../libcpp/include/cpplib.h" 940)
+       (!srcfileloc  "../libcpp/include/cpplib.h" 941)
        (!options 
         (!option tag string  "NT_VOID")
        )
       )
       (!pair  "macro"
        (!type already_seen 19)
-       (!srcfileloc  "../libcpp/include/cpplib.h" 942)
+       (!srcfileloc  "../libcpp/include/cpplib.h" 943)
        (!options 
         (!option tag string  "NT_USER_MACRO")
        )
       )
       (!pair  "builtin"
        (!type already_seen 2)
-       (!srcfileloc  "../libcpp/include/cpplib.h" 944)
+       (!srcfileloc  "../libcpp/include/cpplib.h" 945)
        (!options 
         (!option tag string  "NT_BUILTIN_MACRO")
        )
       )
       (!pair  "arg_index"
        (!type already_seen 2)
-       (!srcfileloc  "../libcpp/include/cpplib.h" 946)
+       (!srcfileloc  "../libcpp/include/cpplib.h" 947)
        (!options 
         (!option tag string  "NT_MACRO_ARG")
        )
       )
      )
      nil 1023 nil )
-    (!srcfileloc  "../libcpp/include/cpplib.h" 967)
+    (!srcfileloc  "../libcpp/include/cpplib.h" 968)
     (!options 
      (!option desc string  "%1.type")
     )
@@ -15676,11 +15676,11 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 711 nil  gc_unused "anonymous:../../gcc/gcc/../libcpp/include/cpplib.h:1357"nil 
+ (!type struct 711 nil  gc_unused "anonymous:../../gcc/gcc/../libcpp/include/cpplib.h:1358"nil 
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 712 nil  gc_unused "anonymous:../../gcc/gcc/../libcpp/include/cpplib.h:1368"nil 
+ (!type struct 712 nil  gc_unused "anonymous:../../gcc/gcc/../libcpp/include/cpplib.h:1369"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -29673,15 +29673,15 @@
    (!type already_seen 2192)
   )
   gc_pointed_to "hash_map<tree,tree_pair_p>"
-  (!srcfileloc  "cp/pt.cc" 29580)
+  (!srcfileloc  "cp/pt.cc" 29581)
   (!fields 2 
    (!pair  "tree_pair_p"
     (!type already_seen 533)
-    (!srcfileloc  "cp/pt.cc" 29580)
+    (!srcfileloc  "cp/pt.cc" 29581)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/pt.cc" 29580)
+    (!srcfileloc  "cp/pt.cc" 29581)
     nil )
   )
  )
@@ -30826,7 +30826,7 @@
   nil )
  (!pair  "hash_map<tree,tree_pair_p>"
   (!type already_seen 2192)
-  (!srcfileloc  "cp/pt.cc" 29580)
+  (!srcfileloc  "cp/pt.cc" 29581)
   nil )
  (!pair  "pending_template"
   (!type already_seen 2179)
@@ -34112,27 +34112,27 @@
   nil )
  (!pair  "cpp_cb"
   (!type already_seen 2)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 1390)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 1391)
   nil )
  (!pair  "cpp_comment_table"
   (!type already_seen 712)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 1377)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 1378)
   nil )
  (!pair  "cpp_comment"
   (!type already_seen 711)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 1363)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 1364)
   nil )
  (!pair  "cpp_num"
   (!type already_seen 710)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 1200)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 1201)
   nil )
  (!pair  "cpp_num_part"
   (!type already_seen 2)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 1199)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 1200)
   nil )
  (!pair  "missing_header_cb"
   (!type already_seen 2)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 667)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 668)
   nil )
  (!pair  "cppchar_signed_t"
   (!type already_seen 2)
@@ -35339,7 +35339,7 @@
   nil )
  (!pair  "dguide_cache"
   (!type already_seen 2193)
-  (!srcfileloc  "cp/pt.cc" 29580)
+  (!srcfileloc  "cp/pt.cc" 29581)
   (!options 
    (!option deletable string  "")
   )
@@ -35612,11 +35612,11 @@
   nil )
  (!pair  "start_cleanup_cnt"
   (!type already_seen 2)
-  (!srcfileloc  "cp/decl.cc" 9174)
+  (!srcfileloc  "cp/decl.cc" 9177)
   nil )
  (!pair  "decomp_type_table"
   (!type already_seen 929)
-  (!srcfileloc  "cp/decl.cc" 8627)
+  (!srcfileloc  "cp/decl.cc" 8630)
   (!options 
    (!option cache string  "")
   )

@@ -251,12 +251,6 @@ extern unsigned int flag_sanitize;
 #define flag_sanitize global_options.x_flag_sanitize
 #endif
 #ifdef GENERATOR_FILE
-extern unsigned int flag_sanitize_coverage;
-#else
-  unsigned int x_flag_sanitize_coverage;
-#define flag_sanitize_coverage global_options.x_flag_sanitize_coverage
-#endif
-#ifdef GENERATOR_FILE
 extern unsigned int flag_sanitize_recover;
 #else
   unsigned int x_flag_sanitize_recover;
@@ -6519,6 +6513,12 @@ extern int flag_sanitize_address_use_after_scope;
 #else
   int x_flag_sanitize_address_use_after_scope;
 #define flag_sanitize_address_use_after_scope global_options.x_flag_sanitize_address_use_after_scope
+#endif
+#ifdef GENERATOR_FILE
+extern int flag_sanitize_coverage;
+#else
+  int x_flag_sanitize_coverage;
+#define flag_sanitize_coverage global_options.x_flag_sanitize_coverage
 #endif
 #ifdef GENERATOR_FILE
 extern int flag_sanitize_undefined_trap_on_error;

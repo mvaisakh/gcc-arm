@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-01-23" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-01-25" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -352,7 +352,7 @@ in the following sections.
 \&\-Warray\-bounds  \-Warray\-bounds=\fR\fIn\fR  \fB\-Warray\-compare 
 \&\-Wno\-attributes  \-Wattribute\-alias=\fR\fIn\fR \fB\-Wno\-attribute\-alias 
 \&\-Wno\-attribute\-warning  
-\&\-Wbidi\-chars=\fR[\fBnone\fR|\fBunpaired\fR|\fBany\fR] 
+\&\-Wbidi\-chars=\fR[\fBnone\fR|\fBunpaired\fR|\fBany\fR|\fBucn\fR] 
 \&\fB\-Wbool\-compare  \-Wbool\-operation 
 \&\-Wno\-builtin\-declaration\-mismatch 
 \&\-Wno\-builtin\-macro\-redefined  \-Wc90\-c99\-compat  \-Wc99\-c11\-compat 
@@ -7375,8 +7375,8 @@ Attributes considered include \f(CW\*(C`alloc_align\*(C'\fR, \f(CW\*(C`alloc_siz
 This is the default.  You can disable these warnings with either
 \&\fB\-Wno\-attribute\-alias\fR or \fB\-Wattribute\-alias=0\fR.
 .RE
-.IP "\fB\-Wbidi\-chars=\fR[\fBnone\fR|\fBunpaired\fR|\fBany\fR]" 4
-.IX Item "-Wbidi-chars=[none|unpaired|any]"
+.IP "\fB\-Wbidi\-chars=\fR[\fBnone\fR|\fBunpaired\fR|\fBany\fR|\fBucn\fR]" 4
+.IX Item "-Wbidi-chars=[none|unpaired|any|ucn]"
 Warn about possibly misleading \s-1UTF\-8\s0 bidirectional control characters in
 comments, string literals, character constants, and identifiers.  Such
 characters can change left-to-right writing direction into right-to-left
@@ -7389,6 +7389,10 @@ There are three levels of warning supported by \s-1GCC.\s0  The default is
 bidi contexts.  \fB\-Wbidi\-chars=none\fR turns the warning off.
 \&\fB\-Wbidi\-chars=any\fR warns about any use of bidirectional control
 characters.
+.Sp
+By default, this warning does not warn about UCNs.  It is, however, possible
+to turn on such checking by using \fB\-Wbidi\-chars=unpaired,ucn\fR or
+\&\fB\-Wbidi\-chars=any,ucn\fR.
 .IP "\fB\-Wbool\-compare\fR" 4
 .IX Item "-Wbool-compare"
 Warn about boolean expression compared with an integer value different from
