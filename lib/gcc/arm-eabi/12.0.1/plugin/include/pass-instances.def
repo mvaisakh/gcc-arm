@@ -62,10 +62,10 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS (pass_warn_printf, 1);
       NEXT_PASS (pass_warn_nonnull_compare, 1);
       NEXT_PASS (pass_early_warn_uninitialized, 1);
+      NEXT_PASS_WITH_ARG (pass_warn_access, 1, /*early=*/true);
       NEXT_PASS (pass_ubsan, 1);
       NEXT_PASS (pass_nothrow, 1);
       NEXT_PASS (pass_rebuild_cgraph_edges, 1);
-      NEXT_PASS_WITH_ARG (pass_warn_access, 1, /*early=*/true);
   POP_INSERT_PASSES ()
 
   NEXT_PASS (pass_local_optimization_passes, 1);
@@ -430,9 +430,9 @@ along with GCC; see the file COPYING3.  If not see
   NEXT_PASS (pass_gimple_isel, 1);
   NEXT_PASS (pass_harden_conditional_branches, 1);
   NEXT_PASS (pass_harden_compares, 1);
+  NEXT_PASS_WITH_ARG (pass_warn_access, 3, /*early=*/false);
   NEXT_PASS (pass_cleanup_cfg_post_optimizing, 1);
   NEXT_PASS (pass_warn_function_noreturn, 1);
-  NEXT_PASS_WITH_ARG (pass_warn_access, 3, /*early=*/false);
 
   NEXT_PASS (pass_expand, 1);
 

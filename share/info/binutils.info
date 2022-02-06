@@ -60,7 +60,7 @@ the section entitled "GNU Free Documentation License".
 * strip::                       Discard symbols
 * c++filt::			Filter to demangle encoded C++ symbols
 * cxxfilt: c++filt.             MS-DOS name for c++filt
-* addr2line::			Convert addresses to file and line
+* addr2line::			Convert addresses or symbol+offset to file and line
 * windmc::			Generator for Windows message resources
 * windres::			Manipulate Windows resources
 * dlltool::			Create files needed to build and use DLLs
@@ -3563,10 +3563,11 @@ File: binutils.info,  Node: addr2line,  Next: windmc,  Prev: c++filt,  Up: Top
                [-H|--help] [-V|--version]
                [addr addr ...]
 
-   'addr2line' translates addresses into file names and line numbers.
-Given an address in an executable or an offset in a section of a
-relocatable object, it uses the debugging information to figure out
-which file name and line number are associated with it.
+   'addr2line' translates addresses or symbol+offset into file names and
+line numbers.  Given an address or symbol+offset in an executable or an
+offset in a section of a relocatable object, it uses the debugging
+information to figure out which file name and line number are associated
+with it.
 
    The executable or relocatable object to use is specified with the
 '-e' option.  The default is the file 'a.out'.  The section in the
@@ -3574,14 +3575,14 @@ relocatable object to use is specified with the '-j' option.
 
    'addr2line' has two modes of operation.
 
-   In the first, hexadecimal addresses are specified on the command
-line, and 'addr2line' displays the file name and line number for each
-address.
+   In the first, hexadecimal addresses or symbol+offset are specified on
+the command line, and 'addr2line' displays the file name and line number
+for each address.
 
-   In the second, 'addr2line' reads hexadecimal addresses from standard
-input, and prints the file name and line number for each address on
-standard output.  In this mode, 'addr2line' may be used in a pipe to
-convert dynamically chosen addresses.
+   In the second, 'addr2line' reads hexadecimal addresses or
+symbol+offset from standard input, and prints the file name and line
+number for each address on standard output.  In this mode, 'addr2line'
+may be used in a pipe to convert dynamically chosen addresses.
 
    The format of the output is 'FILENAME:LINENO'.  By default each input
 address generates one line of output.
@@ -3613,6 +3614,10 @@ by)'.
    If the file name or function name can not be determined, 'addr2line'
 will print two question marks in their place.  If the line number can
 not be determined, 'addr2line' will print 0.
+
+   When symbol+offset is used, +offset is optional, except when the
+symbol is ambigious with a hex number.  The resolved symbols can be
+mangled or unmangled, except unmangled symbols with + are not allowed.
 
    The long and short forms of options, shown here as alternatives, are
 equivalent.
@@ -5882,7 +5887,7 @@ Binutils Index
 * demangling in nm:                      nm.                  (line 196)
 * demangling in nm <1>:                  readelf.             (line 137)
 * demangling in objdump:                 objdump.             (line 107)
-* demangling in objdump <1>:             addr2line.           (line  86)
+* demangling in objdump <1>:             addr2line.           (line  91)
 * deterministic archives:                ar cmdline.          (line 150)
 * deterministic archives <1>:            ar cmdline.          (line 238)
 * deterministic archives <2>:            objcopy.             (line 359)
@@ -5949,7 +5954,7 @@ Binutils Index
 * object code format <1>:                objdump.             (line  93)
 * object code format <2>:                size.                (line 103)
 * object code format <3>:                strings.             (line 120)
-* object code format <4>:                addr2line.           (line  81)
+* object code format <4>:                addr2line.           (line  86)
 * object file header:                    objdump.             (line 202)
 * object file information:               objdump.             (line   6)
 * object file offsets:                   objdump.             (line 207)
@@ -6020,35 +6025,35 @@ Binutils Index
 
 Tag Table:
 Node: Top1834
-Node: ar3554
-Node: ar cmdline6888
-Node: ar scripts20204
-Node: nm25890
-Node: objcopy41263
-Node: objdump82111
-Node: ranlib117399
-Node: size118998
-Node: strings122967
-Node: strip128824
-Node: c++filt138666
-Ref: c++filt-Footnote-1144527
-Node: addr2line144633
-Node: windmc150311
-Node: windres153970
-Node: dlltool160540
-Node: def file format173537
-Node: readelf176067
-Node: elfedit194356
-Node: Common Options197782
-Node: Selecting the Target System198816
-Node: Target Selection199744
-Node: Architecture Selection201725
-Node: debuginfod202553
-Node: Reporting Bugs203312
-Node: Bug Criteria204074
-Node: Bug Reporting204627
-Node: GNU Free Documentation License211494
-Node: Binutils Index236654
+Node: ar3571
+Node: ar cmdline6905
+Node: ar scripts20221
+Node: nm25907
+Node: objcopy41280
+Node: objdump82128
+Node: ranlib117416
+Node: size119015
+Node: strings122984
+Node: strip128841
+Node: c++filt138683
+Ref: c++filt-Footnote-1144544
+Node: addr2line144650
+Node: windmc150605
+Node: windres154264
+Node: dlltool160834
+Node: def file format173831
+Node: readelf176361
+Node: elfedit194650
+Node: Common Options198076
+Node: Selecting the Target System199110
+Node: Target Selection200038
+Node: Architecture Selection202019
+Node: debuginfod202847
+Node: Reporting Bugs203606
+Node: Bug Criteria204368
+Node: Bug Reporting204921
+Node: GNU Free Documentation License211788
+Node: Binutils Index236948
 
 End Tag Table
 

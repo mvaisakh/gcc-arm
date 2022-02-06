@@ -50,7 +50,6 @@ Software development
 * Binutils: (binutils).         The GNU binary utilities.
 * CTF: (ctf-spec).              The CTF file format.
 * Cpp: (cpp).                   The GNU C preprocessor.
-* Cpplib: (cppinternals).       Cpplib internals.
 * Gas: (as).                    The GNU assembler.
 * Ld: (ld).                     The GNU linker.
 * g++: (gcc).                   The GNU C++ compiler.
