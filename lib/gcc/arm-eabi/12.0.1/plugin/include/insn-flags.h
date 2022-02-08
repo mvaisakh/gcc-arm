@@ -1393,20 +1393,28 @@
 #define HAVE_neon_vcmlaq_lane90v4sf (TARGET_COMPLEX)
 #define HAVE_neon_vcmlaq_lane180v4sf (TARGET_COMPLEX)
 #define HAVE_neon_vcmlaq_lane270v4sf (TARGET_COMPLEX)
-#define HAVE_neon_sdotv8qi (TARGET_DOTPROD)
-#define HAVE_neon_udotv8qi (TARGET_DOTPROD)
-#define HAVE_neon_sdotv16qi (TARGET_DOTPROD)
-#define HAVE_neon_udotv16qi (TARGET_DOTPROD)
+#define HAVE_sdot_prodv8qi (TARGET_DOTPROD)
+#define HAVE_udot_prodv8qi (TARGET_DOTPROD)
+#define HAVE_sdot_prodv16qi (TARGET_DOTPROD)
+#define HAVE_udot_prodv16qi (TARGET_DOTPROD)
 #define HAVE_neon_usdotv8qi (TARGET_I8MM)
 #define HAVE_neon_usdotv16qi (TARGET_I8MM)
 #define HAVE_neon_sdot_lanev8qi (TARGET_DOTPROD)
 #define HAVE_neon_udot_lanev8qi (TARGET_DOTPROD)
 #define HAVE_neon_sdot_lanev16qi (TARGET_DOTPROD)
 #define HAVE_neon_udot_lanev16qi (TARGET_DOTPROD)
+#define HAVE_neon_sdot_laneqv8qi (TARGET_DOTPROD)
+#define HAVE_neon_udot_laneqv8qi (TARGET_DOTPROD)
+#define HAVE_neon_sdot_laneqv16qi (TARGET_DOTPROD)
+#define HAVE_neon_udot_laneqv16qi (TARGET_DOTPROD)
 #define HAVE_neon_usdot_lanev8qi (TARGET_I8MM)
 #define HAVE_neon_sudot_lanev8qi (TARGET_I8MM)
 #define HAVE_neon_usdot_lanev16qi (TARGET_I8MM)
 #define HAVE_neon_sudot_lanev16qi (TARGET_I8MM)
+#define HAVE_neon_usdot_laneqv8qi (TARGET_I8MM)
+#define HAVE_neon_sudot_laneqv8qi (TARGET_I8MM)
+#define HAVE_neon_usdot_laneqv16qi (TARGET_I8MM)
+#define HAVE_neon_sudot_laneqv16qi (TARGET_I8MM)
 #define HAVE_neon_vqnegv8qi (TARGET_NEON)
 #define HAVE_neon_vqnegv16qi (TARGET_NEON)
 #define HAVE_neon_vqnegv4hi (TARGET_NEON)
@@ -5380,10 +5388,10 @@
 #define HAVE_cmul_conjv2sf3 (TARGET_COMPLEX && !BYTES_BIG_ENDIAN)
 #define HAVE_cmulv4hf3 (TARGET_COMPLEX && !BYTES_BIG_ENDIAN)
 #define HAVE_cmul_conjv4hf3 (TARGET_COMPLEX && !BYTES_BIG_ENDIAN)
-#define HAVE_sdot_prodv8qi (TARGET_DOTPROD)
-#define HAVE_udot_prodv8qi (TARGET_DOTPROD)
-#define HAVE_sdot_prodv16qi (TARGET_DOTPROD)
-#define HAVE_udot_prodv16qi (TARGET_DOTPROD)
+#define HAVE_neon_sdotv8qi (TARGET_DOTPROD)
+#define HAVE_neon_udotv8qi (TARGET_DOTPROD)
+#define HAVE_neon_sdotv16qi (TARGET_DOTPROD)
+#define HAVE_neon_udotv16qi (TARGET_DOTPROD)
 #define HAVE_usdot_prodv8qi (TARGET_I8MM)
 #define HAVE_usdot_prodv16qi (TARGET_I8MM)
 #define HAVE_neon_copysignfv2sf (TARGET_NEON)
@@ -7255,20 +7263,28 @@ extern rtx        gen_neon_vcmlaq_lane0v4sf                          (rtx, rtx, 
 extern rtx        gen_neon_vcmlaq_lane90v4sf                         (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_vcmlaq_lane180v4sf                        (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_vcmlaq_lane270v4sf                        (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_neon_sdotv8qi                                  (rtx, rtx, rtx, rtx);
-extern rtx        gen_neon_udotv8qi                                  (rtx, rtx, rtx, rtx);
-extern rtx        gen_neon_sdotv16qi                                 (rtx, rtx, rtx, rtx);
-extern rtx        gen_neon_udotv16qi                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_sdot_prodv8qi                                  (rtx, rtx, rtx, rtx);
+extern rtx        gen_udot_prodv8qi                                  (rtx, rtx, rtx, rtx);
+extern rtx        gen_sdot_prodv16qi                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_udot_prodv16qi                                 (rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_usdotv8qi                                 (rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_usdotv16qi                                (rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_sdot_lanev8qi                             (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_udot_lanev8qi                             (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_sdot_lanev16qi                            (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_udot_lanev16qi                            (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_sdot_laneqv8qi                            (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_udot_laneqv8qi                            (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_sdot_laneqv16qi                           (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_udot_laneqv16qi                           (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_usdot_lanev8qi                            (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_sudot_lanev8qi                            (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_usdot_lanev16qi                           (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_sudot_lanev16qi                           (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_usdot_laneqv8qi                           (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_sudot_laneqv8qi                           (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_usdot_laneqv16qi                          (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_sudot_laneqv16qi                          (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_vqnegv8qi                                 (rtx, rtx);
 extern rtx        gen_neon_vqnegv16qi                                (rtx, rtx);
 extern rtx        gen_neon_vqnegv4hi                                 (rtx, rtx);
@@ -10933,10 +10949,10 @@ extern rtx        gen_cmulv2sf3                                      (rtx, rtx, 
 extern rtx        gen_cmul_conjv2sf3                                 (rtx, rtx, rtx);
 extern rtx        gen_cmulv4hf3                                      (rtx, rtx, rtx);
 extern rtx        gen_cmul_conjv4hf3                                 (rtx, rtx, rtx);
-extern rtx        gen_sdot_prodv8qi                                  (rtx, rtx, rtx, rtx);
-extern rtx        gen_udot_prodv8qi                                  (rtx, rtx, rtx, rtx);
-extern rtx        gen_sdot_prodv16qi                                 (rtx, rtx, rtx, rtx);
-extern rtx        gen_udot_prodv16qi                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_sdotv8qi                                  (rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_udotv8qi                                  (rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_sdotv16qi                                 (rtx, rtx, rtx, rtx);
+extern rtx        gen_neon_udotv16qi                                 (rtx, rtx, rtx, rtx);
 extern rtx        gen_usdot_prodv8qi                                 (rtx, rtx, rtx, rtx);
 extern rtx        gen_usdot_prodv16qi                                (rtx, rtx, rtx, rtx);
 extern rtx        gen_neon_copysignfv2sf                             (rtx, rtx, rtx);
