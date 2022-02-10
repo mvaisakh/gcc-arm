@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-02-08" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-02-10" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1192,7 +1192,8 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-mabi=\fR\fIABI-string\fR 
 \&\fB\-mfdiv  \-mno\-fdiv 
 \&\-mdiv  \-mno\-div 
-\&\-march=\fR\fIISA-string\fR 
+\&\-misa\-spec=\fR\fIISA-spec-string\fR 
+\&\fB\-march=\fR\fIISA-string\fR 
 \&\fB\-mtune=\fR\fIprocessor-string\fR 
 \&\fB\-mpreferred\-stack\-boundary=\fR\fInum\fR 
 \&\fB\-msmall\-data\-limit=\fR\fIN\-bytes\fR 
@@ -1444,7 +1445,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\fB\-mgeneral\-regs\-only  \-mcall\-ms2sysv\-xlogues \-mrelax\-cmpxchg\-loop 
 \&\-mindirect\-branch=\fR\fIchoice\fR  \fB\-mfunction\-return=\fR\fIchoice\fR 
 \&\fB\-mindirect\-branch\-register \-mharden\-sls=\fR\fIchoice\fR 
-\&\fB\-mindirect\-branch\-cs\-prefix \-mneeded\fR
+\&\fB\-mindirect\-branch\-cs\-prefix \-mneeded \-mno\-direct\-extern\-access\fR
 .Sp
 \&\fIx86 Windows Options\fR
 \&\fB\-mconsole  \-mcygwin  \-mno\-cygwin  \-mdll 
@@ -26602,6 +26603,30 @@ is to use them if the specified architecture has these instructions.
 Do or don't use hardware instructions for integer division.  This requires the
 M extension.  The default is to use them if the specified architecture has
 these instructions.
+.IP "\fB\-misa\-spec=\fR\fIISA-spec-string\fR" 4
+.IX Item "-misa-spec=ISA-spec-string"
+Specify the version of the RISC-V Unprivileged (formerly User-Level)
+\&\s-1ISA\s0 specification to produce code conforming to.  The possibilities
+for \fIISA-spec-string\fR are:
+.RS 4
+.ie n .IP "2.2" 4
+.el .IP "\f(CW2.2\fR" 4
+.IX Item "2.2"
+Produce code conforming to version 2.2.
+.ie n .IP "20190608" 4
+.el .IP "\f(CW20190608\fR" 4
+.IX Item "20190608"
+Produce code conforming to version 20190608.
+.ie n .IP "20191213" 4
+.el .IP "\f(CW20191213\fR" 4
+.IX Item "20191213"
+Produce code conforming to version 20191213.
+.RE
+.RS 4
+.Sp
+The default is \fB\-misa\-spec=20191213\fR unless \s-1GCC\s0 has been configured
+with \fB\-\-with\-isa\-spec=\fR specifying a different default version.
+.RE
 .IP "\fB\-march=\fR\fIISA-string\fR" 4
 .IX Item "-march=ISA-string"
 Generate code for given RISC-V \s-1ISA\s0 (e.g. \fBrv64im\fR).  \s-1ISA\s0 strings must be
@@ -31593,6 +31618,17 @@ x32 environments.
 .PD
 Emit \s-1GNU_PROPERTY_X86_ISA_1_NEEDED GNU\s0 property for Linux target to
 indicate the micro-architecture \s-1ISA\s0 level required to execute the binary.
+.IP "\fB\-mno\-direct\-extern\-access\fR" 4
+.IX Item "-mno-direct-extern-access"
+Without \fB\-fpic\fR nor \fB\-fPIC\fR, always use the \s-1GOT\s0 pointer
+to access external symbols.  With \fB\-fpic\fR or \fB\-fPIC\fR,
+treat access to protected symbols as local symbols.  The default is
+\&\fB\-mdirect\-extern\-access\fR.
+.Sp
+\&\fBWarning:\fR shared libraries compiled with
+\&\fB\-mno\-direct\-extern\-access\fR and executable compiled with
+\&\fB\-mdirect\-extern\-access\fR may not be binary compatible if
+protected symbols are used in shared libraries and executable.
 .PP
 \fIx86 Windows Options\fR
 .IX Subsection "x86 Windows Options"
