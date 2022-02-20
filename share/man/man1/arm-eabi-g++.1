@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-02-13" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-02-20" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -5388,8 +5388,10 @@ warns that an unrecognized option is present.
 .PP
 The effectiveness of some warnings depends on optimizations also being
 enabled. For example \fB\-Wsuggest\-final\-types\fR is more effective
-with link-time optimization and \fB\-Wmaybe\-uninitialized\fR does not
-warn at all unless optimization is enabled.
+with link-time optimization and some instances of other warnings may
+not be issued at all unless optimization is enabled.  While optimization
+in general improves the efficacy of control and data flow sensitive
+warnings, in some cases it may also cause false positives.
 .IP "\fB\-Wpedantic\fR" 4
 .IX Item "-Wpedantic"
 .PD 0
@@ -7261,20 +7263,22 @@ values.  This affects warnings from \fB\-Wconversion\fR,
 .IP "\fB\-Warray\-bounds=\fR\fIn\fR" 4
 .IX Item "-Warray-bounds=n"
 .PD
-This option is only active when \fB\-ftree\-vrp\fR is active
-(default for \fB\-O2\fR and above). It warns about subscripts to arrays
-that are always out of bounds. This warning is enabled by \fB\-Wall\fR.
+Warn about out of bounds subscripts or offsets into arrays.  This warning
+is enabled by \fB\-Wall\fR.  It is more effective when \fB\-ftree\-vrp\fR
+is active (the default for \fB\-O2\fR and above) but a subset of instances
+are issued even without optimization.
 .RS 4
 .IP "\fB\-Warray\-bounds=1\fR" 4
 .IX Item "-Warray-bounds=1"
-This is the warning level of \fB\-Warray\-bounds\fR and is enabled
+This is the default warning level of \fB\-Warray\-bounds\fR and is enabled
 by \fB\-Wall\fR; higher levels are not, and must be explicitly requested.
 .IP "\fB\-Warray\-bounds=2\fR" 4
 .IX Item "-Warray-bounds=2"
-This warning level also warns about out of bounds access for
-arrays at the end of a struct and for arrays accessed through
-pointers. This warning level may give a larger number of
-false positives and is deactivated by default.
+This warning level also warns about out of bounds accesses to trailing
+struct members of one-element array types and about
+the intermediate results of pointer arithmetic that may yield out of bounds
+values.  This warning level may give a larger number of false positives and
+is deactivated by default.
 .RE
 .RS 4
 .RE
