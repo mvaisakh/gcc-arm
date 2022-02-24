@@ -6,7 +6,7 @@
 #define GCCPLUGIN_VERSION  (GCCPLUGIN_VERSION_MAJOR*1000 + GCCPLUGIN_VERSION_MINOR)
 
 static char basever[] = "12.0.1";
-static char datestamp[] = "20220220";
+static char datestamp[] = "20220224";
 static char devphase[] = "Bleeding Edge";
 static char revision[] = "";
 
