@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-02-27" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-03-03" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -423,7 +423,7 @@ in the following sections.
 \&\fB\-Wswitch  \-Wno\-switch\-bool  \-Wswitch\-default  \-Wswitch\-enum 
 \&\-Wno\-switch\-outside\-range  \-Wno\-switch\-unreachable  \-Wsync\-nand 
 \&\-Wsystem\-headers  \-Wtautological\-compare  \-Wtrampolines  \-Wtrigraphs 
-\&\-Wtsan \-Wtype\-limits  \-Wundef 
+\&\-Wtrivial\-auto\-var\-init \-Wtsan \-Wtype\-limits  \-Wundef 
 \&\-Wuninitialized  \-Wunknown\-pragmas 
 \&\-Wunsuffixed\-float\-constants  \-Wunused 
 \&\-Wunused\-but\-set\-parameter  \-Wunused\-but\-set\-variable 
@@ -6592,6 +6592,12 @@ This warning is enabled by default for C and \*(C+ programs.
 .IX Item "-Wsync-nand (C and only)"
 Warn when \f(CW\*(C`_\|_sync_fetch_and_nand\*(C'\fR and \f(CW\*(C`_\|_sync_nand_and_fetch\*(C'\fR
 built-in functions are used.  These functions changed semantics in \s-1GCC 4.4.\s0
+.IP "\fB\-Wtrivial\-auto\-var\-init\fR" 4
+.IX Item "-Wtrivial-auto-var-init"
+Warn when \f(CW\*(C`\-ftrivial\-auto\-var\-init\*(C'\fR cannot initialize the automatic
+variable.  A common situation is an automatic variable that is declared
+between the controlling expression and the first case label of a \f(CW\*(C`switch\*(C'\fR
+statement.
 .IP "\fB\-Wunused\-but\-set\-parameter\fR" 4
 .IX Item "-Wunused-but-set-parameter"
 Warn whenever a function parameter is assigned to, but otherwise unused
@@ -11386,6 +11392,10 @@ initializer as uninitialized, \fB\-Wuninitialized\fR and
 warning messages on such automatic variables.
 With this option, \s-1GCC\s0 will also initialize any padding of automatic variables
 that have structure or union types to zeroes.
+However, the current implementation cannot initialize automatic variables that
+are declared between the controlling expression and the first case of a
+\&\f(CW\*(C`switch\*(C'\fR statement.  Using \fB\-Wtrivial\-auto\-var\-init\fR to report all
+such cases.
 .Sp
 The three values of \fIchoice\fR are:
 .RS 4
@@ -12489,6 +12499,7 @@ counts to a file called \fI\fIsourcename\fI.gcda\fR for each source
 file.  The information in this data file is very dependent on the
 structure of the generated code, so you must use the same source code
 and the same optimization options for both compilations.
+See details about the file naming in \fB\-fprofile\-arcs\fR.
 .Sp
 With \fB\-fbranch\-probabilities\fR, \s-1GCC\s0 puts a
 \&\fB\s-1REG_BR_PROB\s0\fR note on each \fB\s-1JUMP_INSN\s0\fR and \fB\s-1CALL_INSN\s0\fR.
@@ -14258,6 +14269,11 @@ explicitly specified and it is not the final executable, otherwise it is
 the basename of the source file.  In both cases any suffix is removed
 (e.g. \fIfoo.gcda\fR for input file \fIdir/foo.c\fR, or
 \&\fIdir/foo.gcda\fR for output file specified as \fB\-o dir/foo.o\fR).
+.Sp
+Note that if a command line directly links source files, the corresponding
+\&\fI.gcda\fR files will be prefixed with the unsuffixed name of the output file.
+E.g. \f(CW\*(C`gcc a.c b.c \-o binary\*(C'\fR would generate \fIbinary\-a.gcda\fR and
+\&\fIbinary\-b.gcda\fR files.
 .IP "\fB\-\-coverage\fR" 4
 .IX Item "--coverage"
 This option is used to compile and link code instrumented for coverage
@@ -14334,7 +14350,8 @@ profile data file appears in the same directory as the object file.
 In order to prevent the file name clashing, if the object file name is
 not an absolute path, we mangle the absolute path of the
 \&\fI\fIsourcename\fI.gcda\fR file and use it as the file name of a
-\&\fI.gcda\fR file.  See similar option \fB\-fprofile\-note\fR.
+\&\fI.gcda\fR file.  See details about the file naming in \fB\-fprofile\-arcs\fR.
+See similar option \fB\-fprofile\-note\fR.
 .Sp
 When an executable is run in a massive parallel environment, it is recommended
 to save profile to different folders.  That can be done with variables
