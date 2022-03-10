@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-03-06" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-03-10" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -5548,7 +5548,7 @@ name is still supported, but the newer name is more descriptive.)
 \&\-Wredundant\-move\fR (only for \*(C+)  
 \&\fB\-Wtype\-limits  
 \&\-Wuninitialized  
-\&\-Wshift\-negative\-value\fR (in \*(C+03 and in C99 and newer)  
+\&\-Wshift\-negative\-value\fR (in \*(C+11 to \*(C+17 and in C99 and newer)  
 \&\fB\-Wunused\-parameter\fR (only with\fB \fR\fB\-Wunused\fR\fB \fRor\fB \fR\fB\-Wall\fR) 
 \&\fB\-Wunused\-but\-set\-parameter\fR (only with\fB \fR\fB\-Wunused\fR\fB \fRor\fB \fR\fB\-Wall\fR)
 .Sp
@@ -6490,7 +6490,7 @@ of the type.  This warning is enabled by default.
 .IP "\fB\-Wshift\-negative\-value\fR" 4
 .IX Item "-Wshift-negative-value"
 Warn if left shifting a negative value.  This warning is enabled by
-\&\fB\-Wextra\fR in C99 and \*(C+11 modes (and newer).
+\&\fB\-Wextra\fR in C99 (and newer) and \*(C+11 to \*(C+17 modes.
 .IP "\fB\-Wno\-shift\-overflow\fR" 4
 .IX Item "-Wno-shift-overflow"
 .PD 0
@@ -14014,6 +14014,9 @@ The maximum factor which the loop vectorizer applies to the cost of statements
 in an inner loop relative to the loop being vectorized.  The factor applied
 is the maximum of the estimated number of iterations of the inner loop and
 this parameter.  The default value of this parameter is 50.
+.IP "\fBvect-induction-float\fR" 4
+.IX Item "vect-induction-float"
+Enable loop vectorization of floating point inductions.
 .IP "\fBavoid-fma-max-bits\fR" 4
 .IX Item "avoid-fma-max-bits"
 Maximum number of bits for which we avoid creating FMAs.
