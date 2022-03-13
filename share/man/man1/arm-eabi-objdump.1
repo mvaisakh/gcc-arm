@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJDUMP 1"
-.TH OBJDUMP 1 "2022-03-10" "binutils-2.38.50" "GNU Development Tools"
+.TH OBJDUMP 1 "2022-03-13" "binutils-2.38.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -171,6 +171,8 @@ objdump [\fB\-a\fR|\fB\-\-archive\-headers\fR]
          \fB\-\-dwarf\fR[=rawline,=decodedline,=info,=abbrev,=pubnames,=aranges,=macro,=frames,=frames\-interp,=str,=str\-offsets,=loc,=Ranges,=pubtypes,=trace_info,=trace_abbrev,=trace_aranges,=gdb_index,=addr,=cu_index,=links]]
         [\fB\-WK\fR|\fB\-\-dwarf=follow\-links\fR]
         [\fB\-WN\fR|\fB\-\-dwarf=no\-follow\-links\fR]
+        [\fB\-wD\fR|\fB\-\-dwarf=use\-debuginfod\fR]
+        [\fB\-wE\fR|\fB\-\-dwarf=do\-not\-use\-debuginfod\fR]
         [\fB\-L\fR|\fB\-\-process\-links\fR]
         [\fB\-\-ctf=\fR\fIsection\fR]
         [\fB\-G\fR|\fB\-\-stabs\fR]
@@ -962,6 +964,13 @@ chosen when configuring the binutils via the
 \&\fB\-\-enable\-follow\-debug\-links=yes\fR or
 \&\fB\-\-enable\-follow\-debug\-links=no\fR options.  If these are not
 used then the default is to enable the following of debug links.
+.Sp
+Note \- if support for the debuginfod protocol was enabled when the
+binutils were built then this option will also include an attempt to
+contact any debuginfod servers mentioned in the \fI\s-1DEBUGINFOD_URLS\s0\fR
+environment variable.  This could take some time to resolve.  This
+behaviour can be disabled via the \fB=do\-not\-use\-debuginfod\fR debug
+option.
 .ie n .IP """N""" 4
 .el .IP "\f(CWN\fR" 4
 .IX Item "N"
@@ -971,6 +980,26 @@ used then the default is to enable the following of debug links.
 .IX Item "=no-follow-links"
 .PD
 Disables the following of links to separate debug info files.
+.ie n .IP """D""" 4
+.el .IP "\f(CWD\fR" 4
+.IX Item "D"
+.PD 0
+.ie n .IP """=use\-debuginfod""" 4
+.el .IP "\f(CW=use\-debuginfod\fR" 4
+.IX Item "=use-debuginfod"
+.PD
+Enables contacting debuginfod servers if there is a need to follow
+debug links.  This is the default behaviour.
+.ie n .IP """E""" 4
+.el .IP "\f(CWE\fR" 4
+.IX Item "E"
+.PD 0
+.ie n .IP """=do\-not\-use\-debuginfod""" 4
+.el .IP "\f(CW=do\-not\-use\-debuginfod\fR" 4
+.IX Item "=do-not-use-debuginfod"
+.PD
+Disables contacting debuginfod servers when there is a need to follow
+debug links.
 .ie n .IP """l""" 4
 .el .IP "\f(CWl\fR" 4
 .IX Item "l"
