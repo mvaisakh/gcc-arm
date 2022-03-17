@@ -351,10 +351,10 @@ along with GCC; see the file COPYING3.  If not see
       /* After late CD DCE we rewrite no longer addressed locals into SSA
 	 form if possible.  */
       NEXT_PASS (pass_forwprop, 4);
+      NEXT_PASS (pass_sink_code, 2);
       NEXT_PASS_WITH_ARG (pass_phiopt, 4, false /* early_p */);
       NEXT_PASS (pass_fold_builtins, 1);
       NEXT_PASS (pass_optimize_widening_mul, 1);
-      NEXT_PASS (pass_sink_code, 2);
       NEXT_PASS (pass_store_merging, 1);
       NEXT_PASS (pass_tail_calls, 1);
       /* If DCE is not run before checking for uninitialized uses,

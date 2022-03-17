@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-03-14" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-03-17" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -3117,6 +3117,17 @@ another \s-1TU\s0), they can avoid this overhead with the
 On targets that support symbol aliases, the default is
 \&\fB\-fextern\-tls\-init\fR.  On targets that do not support symbol
 aliases, the default is \fB\-fno\-extern\-tls\-init\fR.
+.IP "\fB\-ffold\-simple\-inlines\fR" 4
+.IX Item "-ffold-simple-inlines"
+.PD 0
+.IP "\fB\-fno\-fold\-simple\-inlines\fR" 4
+.IX Item "-fno-fold-simple-inlines"
+.PD
+Permit the \*(C+ frontend to fold calls to \f(CW\*(C`std::move\*(C'\fR, \f(CW\*(C`std::forward\*(C'\fR,
+\&\f(CW\*(C`std::addressof\*(C'\fR and \f(CW\*(C`std::as_const\*(C'\fR.  In contrast to inlining, this
+means no debug information will be generated for such calls.  Since these
+functions are rarely interesting to debug, this flag is enabled by default
+unless \fB\-fno\-inline\fR is active.
 .IP "\fB\-fno\-gnu\-keywords\fR" 4
 .IX Item "-fno-gnu-keywords"
 Do not recognize \f(CW\*(C`typeof\*(C'\fR as a keyword, so that code can use this
