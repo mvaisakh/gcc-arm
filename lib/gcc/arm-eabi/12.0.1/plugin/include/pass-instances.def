@@ -261,7 +261,7 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS (pass_lim, 2);
       NEXT_PASS_WITH_ARG (pass_walloca, 2, false);
       NEXT_PASS (pass_pre, 1);
-      NEXT_PASS (pass_sink_code, 1);
+      NEXT_PASS_WITH_ARG (pass_sink_code, 1, false /* unsplit edges */);
       NEXT_PASS (pass_sancov, 1);
       NEXT_PASS (pass_asan, 1);
       NEXT_PASS (pass_tsan, 1);
@@ -351,7 +351,7 @@ along with GCC; see the file COPYING3.  If not see
       /* After late CD DCE we rewrite no longer addressed locals into SSA
 	 form if possible.  */
       NEXT_PASS (pass_forwprop, 4);
-      NEXT_PASS (pass_sink_code, 2);
+      NEXT_PASS_WITH_ARG (pass_sink_code, 2, true /* unsplit edges */);
       NEXT_PASS_WITH_ARG (pass_phiopt, 4, false /* early_p */);
       NEXT_PASS (pass_fold_builtins, 1);
       NEXT_PASS (pass_optimize_widening_mul, 1);
