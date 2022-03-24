@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "12.0.1 20220320 (Bleeding Edge)")
+(!version  "12.0.1 20220324 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 10 ada c cp d fortran go jit lto objc objcp)
 (!fileslist 227 0
@@ -35249,11 +35249,11 @@
   nil )
  (!pair  "global_declarations"
   (!type already_seen 84)
-  (!srcfileloc  "d/d-lang.cc" 95)
+  (!srcfileloc  "d/d-lang.cc" 94)
   nil )
  (!pair  "global_context"
   (!type already_seen 23)
-  (!srcfileloc  "d/d-lang.cc" 92)
+  (!srcfileloc  "d/d-lang.cc" 91)
   nil )
  (!pair  "builtin_types"
   (!type array 2331 nil  gc_used "(int) BT_LAST + 1" 
@@ -35459,7 +35459,7 @@
  )
  (!pair  "free_saved_scope"
   (!type already_seen 1951)
-  (!srcfileloc  "cp/name-lookup.cc" 8301)
+  (!srcfileloc  "cp/name-lookup.cc" 8316)
   (!options 
    (!option deletable string  "")
   )
@@ -35628,11 +35628,11 @@
   nil )
  (!pair  "start_cleanup_cnt"
   (!type already_seen 2)
-  (!srcfileloc  "cp/decl.cc" 9263)
+  (!srcfileloc  "cp/decl.cc" 9315)
   nil )
  (!pair  "decomp_type_table"
   (!type already_seen 930)
-  (!srcfileloc  "cp/decl.cc" 8716)
+  (!srcfileloc  "cp/decl.cc" 8768)
   (!options 
    (!option cache string  "")
   )
