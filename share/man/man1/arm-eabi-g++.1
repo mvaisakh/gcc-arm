@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-03-24" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-03-25" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -444,14 +444,13 @@ in the following sections.
 \&\-fanalyzer\-checker=\fR\fIname\fR 
 \&\fB\-fno\-analyzer\-feasibility 
 \&\-fanalyzer\-fine\-grained 
-\&\-fanalyzer\-state\-merge 
-\&\-fanalyzer\-state\-purge 
+\&\-fno\-analyzer\-state\-merge 
+\&\-fno\-analyzer\-state\-purge 
 \&\-fanalyzer\-transitivity 
 \&\-fanalyzer\-verbose\-edges 
 \&\-fanalyzer\-verbose\-state\-changes 
 \&\-fanalyzer\-verbosity=\fR\fIlevel\fR 
 \&\fB\-fdump\-analyzer 
-\&\-fdump\-analyzer\-stderr 
 \&\-fdump\-analyzer\-callgraph 
 \&\-fdump\-analyzer\-exploded\-graph 
 \&\-fdump\-analyzer\-exploded\-nodes 
@@ -461,7 +460,9 @@ in the following sections.
 \&\-fdump\-analyzer\-feasibility 
 \&\-fdump\-analyzer\-json 
 \&\-fdump\-analyzer\-state\-purge 
+\&\-fdump\-analyzer\-stderr 
 \&\-fdump\-analyzer\-supergraph 
+\&\-fdump\-analyzer\-untracked 
 \&\-Wno\-analyzer\-double\-fclose 
 \&\-Wno\-analyzer\-double\-free 
 \&\-Wno\-analyzer\-exposure\-through\-output\-file 
@@ -9006,22 +9007,17 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-free\-of\-non\-heap 
 \&\-Wanalyzer\-malloc\-leak 
 \&\-Wanalyzer\-mismatching\-deallocation 
-\&\-Wanalyzer\-possible\-null\-argument 
-\&\-Wanalyzer\-possible\-null\-dereference 
 \&\-Wanalyzer\-null\-argument 
 \&\-Wanalyzer\-null\-dereference 
+\&\-Wanalyzer\-possible\-null\-argument 
+\&\-Wanalyzer\-possible\-null\-dereference 
 \&\-Wanalyzer\-shift\-count\-negative 
 \&\-Wanalyzer\-shift\-count\-overflow 
 \&\-Wanalyzer\-stale\-setjmp\-buffer 
-\&\-Wanalyzer\-tainted\-allocation\-size 
-\&\-Wanalyzer\-tainted\-array\-index 
-\&\-Wanalyzer\-tainted\-divisor 
-\&\-Wanalyzer\-tainted\-offset 
-\&\-Wanalyzer\-tainted\-size 
 \&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler 
 \&\-Wanalyzer\-use\-after\-free 
-\&\-Wanalyzer\-use\-of\-uninitialized\-value 
 \&\-Wanalyzer\-use\-of\-pointer\-in\-stale\-stack\-frame 
+\&\-Wanalyzer\-use\-of\-uninitialized\-value 
 \&\-Wanalyzer\-write\-to\-const 
 \&\-Wanalyzer\-write\-to\-string\-literal\fR
 .Sp
@@ -9301,6 +9297,23 @@ Some checkers are disabled by default (even with \fB\-fanalyzer\fR),
 such as the \f(CW\*(C`taint\*(C'\fR checker that implements
 \&\fB\-Wanalyzer\-tainted\-array\-index\fR, and this option is required
 to enable them.
+.Sp
+\&\fINote:\fR currently, \fB\-fanalyzer\-checker=taint\fR disables the
+following warnings from \fB\-fanalyzer\fR:
+.Sp
+\&\fB\-Wanalyzer\-double\-fclose 
+\&\-Wanalyzer\-double\-free 
+\&\-Wanalyzer\-exposure\-through\-output\-file 
+\&\-Wanalyzer\-file\-leak 
+\&\-Wanalyzer\-free\-of\-non\-heap 
+\&\-Wanalyzer\-malloc\-leak 
+\&\-Wanalyzer\-mismatching\-deallocation 
+\&\-Wanalyzer\-null\-argument 
+\&\-Wanalyzer\-null\-dereference 
+\&\-Wanalyzer\-possible\-null\-argument 
+\&\-Wanalyzer\-possible\-null\-dereference 
+\&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler 
+\&\-Wanalyzer\-use\-after\-free\fR
 .IP "\fB\-fno\-analyzer\-feasibility\fR" 4
 .IX Item "-fno-analyzer-feasibility"
 This option is intended for analyzer developers.
@@ -9454,6 +9467,9 @@ GraphViz to \fI\fIfile\fI.supergraph.dot\fR and to
 control flow graphs in the program, with interprocedural edges for
 calls and returns.  The second dump contains annotations showing nodes
 in the \*(L"exploded graph\*(R" and diagnostics associated with them.
+.IP "\fB\-fdump\-analyzer\-untracked\fR" 4
+.IX Item "-fdump-analyzer-untracked"
+Emit custom warnings with internal details intended for analyzer developers.
 .SS "Options for Debugging Your Program"
 .IX Subsection "Options for Debugging Your Program"
 To tell \s-1GCC\s0 to emit extra information for use by a debugger, in almost 
