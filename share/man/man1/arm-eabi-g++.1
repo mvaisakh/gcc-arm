@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-03-27" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-03-31" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1003,6 +1003,16 @@ in the following sections.
 \&\fI\s-1LM32\s0 Options\fR
 \&\fB\-mbarrel\-shift\-enabled  \-mdivide\-enabled  \-mmultiply\-enabled 
 \&\-msign\-extend\-enabled  \-muser\-enabled\fR
+.Sp
+\&\fILoongArch Options\fR
+\&\fB\-march=\fR\fIcpu-type\fR  \fB\-mtune=\fR\fIcpu-type\fR \fB\-mabi=\fR\fIbase-abi-type\fR 
+\&\fB\-mfpu=\fR\fIfpu-type\fR \fB\-msoft\-float \-msingle\-float \-mdouble\-float 
+\&\-mbranch\-cost=\fR\fIn\fR  \fB\-mcheck\-zero\-division \-mno\-check\-zero\-division 
+\&\-mcond\-move\-int  \-mno\-cond\-move\-int 
+\&\-mcond\-move\-float  \-mno\-cond\-move\-float 
+\&\-memcpy  \-mno\-memcpy \-mstrict\-align \-mno\-strict\-align 
+\&\-mmax\-inline\-memcpy\-size=\fR\fIn\fR 
+\&\fB\-mcmodel=\fR\fIcode-model\fR
 .Sp
 \&\fIM32R/D Options\fR
 \&\fB\-m32r2  \-m32rx  \-m32r 
@@ -23529,6 +23539,233 @@ Enable sign extend instructions.
 .IX Item "-muser-enabled"
 Enable user-defined instructions.
 .PP
+\fILoongArch Options\fR
+.IX Subsection "LoongArch Options"
+.PP
+These command-line options are defined for LoongArch targets:
+.IP "\fB\-march=\fR\fIcpu-type\fR" 4
+.IX Item "-march=cpu-type"
+Generate instructions for the machine type \fIcpu-type\fR.  In contrast to
+\&\fB\-mtune=\fR\fIcpu-type\fR, which merely tunes the generated code
+for the specified \fIcpu-type\fR, \fB\-march=\fR\fIcpu-type\fR allows \s-1GCC\s0
+to generate code that may not run at all on processors other than the one
+indicated.  Specifying \fB\-march=\fR\fIcpu-type\fR implies
+\&\fB\-mtune=\fR\fIcpu-type\fR, except where noted otherwise.
+.Sp
+The choices for \fIcpu-type\fR are:
+.RS 4
+.IP "\fBnative\fR" 4
+.IX Item "native"
+This selects the \s-1CPU\s0 to generate code for at compilation time by determining
+the processor type of the compiling machine.  Using \fB\-march=native\fR
+enables all instruction subsets supported by the local machine (hence
+the result might not run on different machines).  Using \fB\-mtune=native\fR
+produces code optimized for the local machine under the constraints
+of the selected instruction set.
+.IP "\fBloongarch64\fR" 4
+.IX Item "loongarch64"
+A generic \s-1CPU\s0 with 64\-bit extensions.
+.IP "\fBla464\fR" 4
+.IX Item "la464"
+LoongArch \s-1LA464 CPU\s0 with \s-1LBT, LSX, LASX, LVZ.\s0
+.RE
+.RS 4
+.RE
+.IP "\fB\-mtune=\fR\fIcpu-type\fR" 4
+.IX Item "-mtune=cpu-type"
+Optimize the output for the given processor, specified by microarchitecture
+name.
+.IP "\fB\-mabi=\fR\fIbase-abi-type\fR" 4
+.IX Item "-mabi=base-abi-type"
+Generate code for the specified calling convention.
+\&\fIbase-abi-type\fR can be one of:
+.RS 4
+.IP "\fBlp64d\fR" 4
+.IX Item "lp64d"
+Uses 64\-bit general purpose registers and 32/64\-bit floating-point
+registers for parameter passing.  Data model is \s-1LP64,\s0 where \fBint\fR
+is 32 bits, while \fBlong int\fR and pointers are 64 bits.
+.IP "\fBlp64f\fR" 4
+.IX Item "lp64f"
+Uses 64\-bit general purpose registers and 32\-bit floating-point
+registers for parameter passing.  Data model is \s-1LP64,\s0 where \fBint\fR
+is 32 bits, while \fBlong int\fR and pointers are 64 bits.
+.IP "\fBlp64s\fR" 4
+.IX Item "lp64s"
+Uses 64\-bit general purpose registers and no floating-point
+registers for parameter passing.  Data model is \s-1LP64,\s0 where \fBint\fR
+is 32 bits, while \fBlong int\fR and pointers are 64 bits.
+.RE
+.RS 4
+.RE
+.IP "\fB\-mfpu=\fR\fIfpu-type\fR" 4
+.IX Item "-mfpu=fpu-type"
+Generate code for the specified \s-1FPU\s0 type, which can be one of:
+.RS 4
+.IP "\fB64\fR" 4
+.IX Item "64"
+Allow the use of hardware floating-point instructions for 32\-bit
+and 64\-bit operations.
+.IP "\fB32\fR" 4
+.IX Item "32"
+Allow the use of hardware floating-point instructions for 32\-bit
+operations.
+.IP "\fBnone\fR" 4
+.IX Item "none"
+.PD 0
+.IP "\fB0\fR" 4
+.IX Item "0"
+.PD
+Prevent the use of hardware floating-point instructions.
+.RE
+.RS 4
+.RE
+.IP "\fB\-msoft\-float\fR" 4
+.IX Item "-msoft-float"
+Force \fB\-mfpu=none\fR and prevents the use of floating-point
+registers for parameter passing.  This option may change the target
+\&\s-1ABI.\s0
+.IP "\fB\-msingle\-float\fR" 4
+.IX Item "-msingle-float"
+Force \fB\-mfpu=32\fR and allow the use of 32\-bit floating-point
+registers for parameter passing.  This option may change the target
+\&\s-1ABI.\s0
+.IP "\fB\-mdouble\-float\fR" 4
+.IX Item "-mdouble-float"
+Force \fB\-mfpu=64\fR and allow the use of 32/64\-bit floating-point
+registers for parameter passing.  This option may change the target
+\&\s-1ABI.\s0
+.IP "\fB\-mbranch\-cost=\fR\fIn\fR" 4
+.IX Item "-mbranch-cost=n"
+Set the cost of branches to roughly \fIn\fR instructions.
+.IP "\fB\-mcheck\-zero\-division\fR" 4
+.IX Item "-mcheck-zero-division"
+.PD 0
+.IP "\fB\-mno\-check\-zero\-divison\fR" 4
+.IX Item "-mno-check-zero-divison"
+.PD
+Trap (do not trap) on integer division by zero.  The default is
+\&\fB\-mcheck\-zero\-division\fR.
+.IP "\fB\-mcond\-move\-int\fR" 4
+.IX Item "-mcond-move-int"
+.PD 0
+.IP "\fB\-mno\-cond\-move\-int\fR" 4
+.IX Item "-mno-cond-move-int"
+.PD
+Conditional moves for integral data in general-purpose registers
+are enabled (disabled).  The default is \fB\-mcond\-move\-int\fR.
+.IP "\fB\-mcond\-move\-float\fR" 4
+.IX Item "-mcond-move-float"
+.PD 0
+.IP "\fB\-mno\-cond\-move\-float\fR" 4
+.IX Item "-mno-cond-move-float"
+.PD
+Conditional moves for floating-point registers are enabled (disabled).
+The default is \fB\-mcond\-move\-float\fR.
+.IP "\fB\-mmemcpy\fR" 4
+.IX Item "-mmemcpy"
+.PD 0
+.IP "\fB\-mno\-memcpy\fR" 4
+.IX Item "-mno-memcpy"
+.PD
+Force (do not force) the use of \f(CW\*(C`memcpy\*(C'\fR for non-trivial block moves.
+The default is \fB\-mno\-memcpy\fR, which allows \s-1GCC\s0 to inline most
+constant-sized copies.  Setting optimization level to \fB\-Os\fR also
+forces the use of \f(CW\*(C`memcpy\*(C'\fR, but \fB\-mno\-memcpy\fR may override this
+behavior if explicitly specified, regardless of the order these options on
+the command line.
+.IP "\fB\-mstrict\-align\fR" 4
+.IX Item "-mstrict-align"
+.PD 0
+.IP "\fB\-mno\-strict\-align\fR" 4
+.IX Item "-mno-strict-align"
+.PD
+Avoid or allow generating memory accesses that may not be aligned on a natural
+object boundary as described in the architecture specification. The default is
+\&\fB\-mno\-strict\-align\fR.
+.IP "\fB\-msmall\-data\-limit=\fR\fInumber\fR" 4
+.IX Item "-msmall-data-limit=number"
+Put global and static data smaller than \fInumber\fR bytes into a special
+section (on some targets).  The default value is 0.
+.IP "\fB\-mmax\-inline\-memcpy\-size=\fR\fIn\fR" 4
+.IX Item "-mmax-inline-memcpy-size=n"
+Inline all block moves (such as calls to \f(CW\*(C`memcpy\*(C'\fR or structure copies)
+less than or equal to \fIn\fR bytes.  The default value of \fIn\fR is 1024.
+.IP "\fB\-mcmodel=\fR\fIcode-model\fR" 4
+.IX Item "-mcmodel=code-model"
+Set the code model to one of:
+.RS 4
+.IP "\fBtiny-static\fR" 4
+.IX Item "tiny-static"
+.RS 4
+.PD 0
+.IP "*" 4
+.PD
+local symbol and global strong symbol: The data section must be within +/\-2MiB addressing space.
+The text section must be within +/\-128MiB addressing space.
+.IP "*" 4
+global weak symbol: The got table must be within +/\-2GiB addressing space.
+.RE
+.RS 4
+.RE
+.IP "\fBtiny\fR" 4
+.IX Item "tiny"
+.RS 4
+.PD 0
+.IP "*" 4
+.PD
+local symbol: The data section must be within +/\-2MiB addressing space.
+The text section must be within +/\-128MiB
+addressing space.
+.IP "*" 4
+global symbol: The got table must be within +/\-2GiB addressing space.
+.RE
+.RS 4
+.RE
+.IP "\fBnormal\fR" 4
+.IX Item "normal"
+.RS 4
+.PD 0
+.IP "*" 4
+.PD
+local symbol: The data section must be within +/\-2GiB addressing space.
+The text section must be within +/\-128MiB addressing space.
+.IP "*" 4
+global symbol: The got table must be within +/\-2GiB addressing space.
+.RE
+.RS 4
+.RE
+.IP "\fBlarge\fR" 4
+.IX Item "large"
+.RS 4
+.PD 0
+.IP "*" 4
+.PD
+local symbol: The data section must be within +/\-2GiB addressing space.
+The text section must be within +/\-128GiB addressing space.
+.IP "*" 4
+global symbol: The got table must be within +/\-2GiB addressing space.
+.RE
+.RS 4
+.RE
+.IP "\fBextreme(Not implemented yet)\fR" 4
+.IX Item "extreme(Not implemented yet)"
+.RS 4
+.PD 0
+.IP "*" 4
+.PD
+local symbol: The data and text section must be within +/\-8EiB addressing space.
+.IP "*" 4
+global symbol: The data got table must be within +/\-8EiB addressing space.
+.RE
+.RS 4
+.RE
+.RE
+.RS 4
+.Sp
+The default code model is \f(CW\*(C`normal\*(C'\fR.
+.RE
+.PP
 \fIM32C Options\fR
 .IX Subsection "M32C Options"
 .IP "\fB\-mcpu=\fR\fIname\fR" 4
@@ -26346,17 +26583,37 @@ These options are defined for Nvidia \s-1PTX:\s0
 .IX Item "-m64"
 Ignored, but preserved for backward compatibility.  Only 64\-bit \s-1ABI\s0 is
 supported.
-.IP "\fB\-misa=\fR\fIISA-string\fR" 4
-.IX Item "-misa=ISA-string"
-Generate code for given the specified \s-1PTX ISA\s0 (e.g. \fBsm_35\fR).  \s-1ISA\s0
-strings must be lower-case.  Valid \s-1ISA\s0 strings include \fBsm_30\fR and
-\&\fBsm_35\fR.  The default \s-1ISA\s0 is sm_35.
+.IP "\fB\-march=\fR\fIarchitecture-string\fR" 4
+.IX Item "-march=architecture-string"
+Generate code for the specified \s-1PTX ISA\s0 target architecture
+(e.g. \fBsm_35\fR).  Valid architecture strings are \fBsm_30\fR,
+\&\fBsm_35\fR, \fBsm_53\fR, \fBsm_70\fR, \fBsm_75\fR and
+\&\fBsm_80\fR.  The default target architecture is sm_30.
+.Sp
+This option sets the value of the preprocessor macro
+\&\f(CW\*(C`_\|_PTX_SM_\|_\*(C'\fR; for instance, for \fBsm_35\fR, it has the value
+\&\fB350\fR.
+.IP "\fB\-misa=\fR\fIarchitecture-string\fR" 4
+.IX Item "-misa=architecture-string"
+Alias of \fB\-march=\fR.
+.IP "\fB\-march\-map=\fR\fIarchitecture-string\fR" 4
+.IX Item "-march-map=architecture-string"
+Select the closest available \fB\-march=\fR value that is not more
+capable.  For instance, for \fB\-march\-map=sm_50\fR select
+\&\fB\-march=sm_35\fR, and for \fB\-march\-map=sm_53\fR select
+\&\fB\-march=sm_53\fR.
 .IP "\fB\-mptx=\fR\fIversion-string\fR" 4
 .IX Item "-mptx=version-string"
-Generate code for given the specified \s-1PTX\s0 version (e.g. \fB7.0\fR).
+Generate code for the specified \s-1PTX ISA\s0 version (e.g. \fB7.0\fR).
 Valid version strings include \fB3.1\fR, \fB6.0\fR, \fB6.3\fR, and
-\&\fB7.0\fR.  The default \s-1PTX\s0 version is 6.0, unless a higher minimal
-version is required for specified \s-1PTX ISA\s0 via option \fB\-misa=\fR.
+\&\fB7.0\fR.  The default \s-1PTX ISA\s0 version is 6.0, unless a higher
+version is required for specified \s-1PTX ISA\s0 target architecture via
+option \fB\-march=\fR.
+.Sp
+This option sets the values of the preprocessor macros
+\&\f(CW\*(C`_\|_PTX_ISA_VERSION_MAJOR_\|_\*(C'\fR and \f(CW\*(C`_\|_PTX_ISA_VERSION_MINOR_\|_\*(C'\fR;
+for instance, for \fB3.1\fR the macros have the values \fB3\fR and
+\&\fB1\fR, respectively.
 .IP "\fB\-mmainkernel\fR" 4
 .IX Item "-mmainkernel"
 Link in code for a _\|_main kernel.  This is for stand-alone instead of
