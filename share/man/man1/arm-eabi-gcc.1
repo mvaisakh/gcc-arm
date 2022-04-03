@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-03-31" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-04-01" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -14262,6 +14262,12 @@ using \s-1SVE,\s0 vectorized using Advanced \s-1SIMD,\s0 or not vectorized at al
 If this parameter is set to \fIn\fR, \s-1GCC\s0 will not use this heuristic
 for loops that are known to execute in fewer than \fIn\fR Advanced
 \&\s-1SIMD\s0 iterations.
+.IP "\fBaarch64\-vect\-unroll\-limit\fR" 4
+.IX Item "aarch64-vect-unroll-limit"
+The vectorizer will use available tuning information to determine whether it
+would be beneficial to unroll the main vectorized loop and by how much.  This
+parameter set's the upper bound of how much the vectorizer will unroll the main
+loop.  The default value is four.
 .RE
 .RS 4
 .RE

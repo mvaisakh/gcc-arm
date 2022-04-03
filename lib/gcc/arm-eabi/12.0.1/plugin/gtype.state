@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "12.0.1 20220331 (Bleeding Edge)")
+(!version  "12.0.1 20220401 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 10 ada c cp d fortran go jit lto objc objcp)
 (!fileslist 227 0
@@ -20316,46 +20316,46 @@
   nil 0 nil nil )
  
  (!type struct 1116 nil  gc_used "ipa_jump_func"
-  (!srcfileloc  "ipa-prop.h" 948)
+  (!srcfileloc  "ipa-prop.h" 961)
   (!fields 5 
    (!pair  "agg"
     (!type struct 1117 nil  gc_used "ipa_agg_jump_function"
-     (!srcfileloc  "ipa-prop.h" 183)
+     (!srcfileloc  "ipa-prop.h" 185)
      (!fields 2 
       (!pair  "items"
        (!type pointer 1118 nil  gc_used
         (!type user_struct 1119 
          (!type already_seen 1118)
          gc_pointed_to "vec<ipa_agg_jf_item,va_gc>"
-         (!srcfileloc  "ipa-prop.h" 180)
+         (!srcfileloc  "ipa-prop.h" 182)
          (!fields 2 
           (!pair  "va_gc"
            (!type already_seen 79)
-           (!srcfileloc  "ipa-prop.h" 180)
+           (!srcfileloc  "ipa-prop.h" 182)
            nil )
           (!pair  "ipa_agg_jf_item"
            (!type struct 1120 nil  gc_used "ipa_agg_jf_item"
-            (!srcfileloc  "ipa-prop.h" 180)
+            (!srcfileloc  "ipa-prop.h" 182)
             (!fields 4 
              (!pair  "offset"
               (!type already_seen 2)
-              (!srcfileloc  "ipa-prop.h" 155)
+              (!srcfileloc  "ipa-prop.h" 157)
               nil )
              (!pair  "type"
               (!type already_seen 23)
-              (!srcfileloc  "ipa-prop.h" 158)
+              (!srcfileloc  "ipa-prop.h" 160)
               nil )
              (!pair  "jftype"
               (!type already_seen 2)
-              (!srcfileloc  "ipa-prop.h" 161)
+              (!srcfileloc  "ipa-prop.h" 163)
               nil )
              (!pair  "value"
               (!type union 1121 nil  gc_used "jump_func_agg_value"
-               (!srcfileloc  "ipa-prop.h" 172)
+               (!srcfileloc  "ipa-prop.h" 174)
                (!fields 3 
                 (!pair  "constant"
                  (!type already_seen 23)
-                 (!srcfileloc  "ipa-prop.h" 169)
+                 (!srcfileloc  "ipa-prop.h" 171)
                  (!options 
                   (!option tag string  "IPA_JF_CONST")
                  )
@@ -20382,7 +20382,7 @@
                     nil )
                   )
                   nil 1023 nil nil )
-                 (!srcfileloc  "ipa-prop.h" 170)
+                 (!srcfileloc  "ipa-prop.h" 172)
                  (!options 
                   (!option tag string  "IPA_JF_PASS_THROUGH")
                  )
@@ -20409,54 +20409,54 @@
                     nil )
                   )
                   nil 1023 nil nil )
-                 (!srcfileloc  "ipa-prop.h" 171)
+                 (!srcfileloc  "ipa-prop.h" 173)
                  (!options 
                   (!option tag string  "IPA_JF_LOAD_AGG")
                  )
                 )
                )
                nil 1023 nil )
-              (!srcfileloc  "ipa-prop.h" 172)
+              (!srcfileloc  "ipa-prop.h" 174)
               (!options 
                (!option desc string  "%1.jftype")
               )
              )
             )
             nil 1023 nil nil )
-           (!srcfileloc  "ipa-prop.h" 180)
+           (!srcfileloc  "ipa-prop.h" 182)
            nil )
          )
         )
        )
-       (!srcfileloc  "ipa-prop.h" 180)
+       (!srcfileloc  "ipa-prop.h" 182)
        nil )
       (!pair  "by_ref"
        (!type already_seen 2)
-       (!srcfileloc  "ipa-prop.h" 182)
+       (!srcfileloc  "ipa-prop.h" 184)
        nil )
      )
      nil 1023 nil nil )
-    (!srcfileloc  "ipa-prop.h" 316)
+    (!srcfileloc  "ipa-prop.h" 318)
     nil )
    (!pair  "bits"
     (!type pointer 1124 nil  gc_used
      (!type struct 1125 
       (!type already_seen 1124)
       gc_pointed_to "ipa_bits"
-      (!srcfileloc  "ipa-prop.h" 294)
+      (!srcfileloc  "ipa-prop.h" 296)
       (!fields 2 
        (!pair  "value"
         (!type already_seen 2)
-        (!srcfileloc  "ipa-prop.h" 289)
+        (!srcfileloc  "ipa-prop.h" 291)
         nil )
        (!pair  "mask"
         (!type already_seen 2)
-        (!srcfileloc  "ipa-prop.h" 293)
+        (!srcfileloc  "ipa-prop.h" 295)
         nil )
       )
       nil 1023 nil nil )
     )
-    (!srcfileloc  "ipa-prop.h" 321)
+    (!srcfileloc  "ipa-prop.h" 323)
     nil )
    (!pair  "m_vr"
     (!type pointer 1126 nil  gc_used
@@ -20474,15 +20474,15 @@
       )
      )
     )
-    (!srcfileloc  "ipa-prop.h" 326)
+    (!srcfileloc  "ipa-prop.h" 328)
     nil )
    (!pair  "type"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 328)
+    (!srcfileloc  "ipa-prop.h" 330)
     nil )
    (!pair  "value"
     (!type union 1129 nil  gc_used "jump_func_value"
-     (!srcfileloc  "ipa-prop.h" 337)
+     (!srcfileloc  "ipa-prop.h" 339)
      (!fields 3 
       (!pair  "constant"
        (!type struct 1130 nil  gc_used "ipa_constant_data"
@@ -20501,22 +20501,22 @@
          )
         )
         nil 1023 nil nil )
-       (!srcfileloc  "ipa-prop.h" 334)
+       (!srcfileloc  "ipa-prop.h" 336)
        (!options 
         (!option tag string  "IPA_JF_CONST")
        )
       )
       (!pair  "pass_through"
        (!type already_seen 1122)
-       (!srcfileloc  "ipa-prop.h" 335)
+       (!srcfileloc  "ipa-prop.h" 337)
        (!options 
         (!option tag string  "IPA_JF_PASS_THROUGH")
        )
       )
       (!pair  "ancestor"
        (!type struct 1131 nil  gc_used "ipa_ancestor_jf_data"
-        (!srcfileloc  "ipa-prop.h" 146)
-        (!fields 3 
+        (!srcfileloc  "ipa-prop.h" 148)
+        (!fields 4 
          (!pair  "offset"
           (!type already_seen 2)
           (!srcfileloc  "ipa-prop.h" 141)
@@ -20529,16 +20529,20 @@
           (!type already_seen 2)
           (!srcfileloc  "ipa-prop.h" 145)
           nil )
+         (!pair  "keep_null"
+          (!type already_seen 2)
+          (!srcfileloc  "ipa-prop.h" 147)
+          nil )
         )
         nil 1023 nil nil )
-       (!srcfileloc  "ipa-prop.h" 336)
+       (!srcfileloc  "ipa-prop.h" 338)
        (!options 
         (!option tag string  "IPA_JF_ANCESTOR")
        )
       )
      )
      nil 1023 nil )
-    (!srcfileloc  "ipa-prop.h" 337)
+    (!srcfileloc  "ipa-prop.h" 339)
     (!options 
      (!option desc string  "%1.type")
     )
@@ -20561,63 +20565,63 @@
   nil 0 nil nil )
  
  (!type struct 1135 nil  gc_pointed_to "ipa_node_params"
-  (!srcfileloc  "ipa-prop.h" 619)
+  (!srcfileloc  "ipa-prop.h" 632)
   (!fields 14 
    (!pair  "descriptors"
     (!type pointer 1136 nil  gc_used
      (!type user_struct 1137 
       (!type already_seen 1136)
       gc_pointed_to "vec<ipa_param_descriptor,va_gc>"
-      (!srcfileloc  "ipa-prop.h" 585)
+      (!srcfileloc  "ipa-prop.h" 598)
       (!fields 2 
        (!pair  "va_gc"
         (!type already_seen 79)
-        (!srcfileloc  "ipa-prop.h" 585)
+        (!srcfileloc  "ipa-prop.h" 598)
         nil )
        (!pair  "ipa_param_descriptor"
         (!type struct 1138 nil  gc_used "ipa_param_descriptor"
-         (!srcfileloc  "ipa-prop.h" 585)
+         (!srcfileloc  "ipa-prop.h" 598)
          (!fields 8 
           (!pair  "decl_or_type"
            (!type already_seen 23)
-           (!srcfileloc  "ipa-prop.h" 550)
+           (!srcfileloc  "ipa-prop.h" 563)
            nil )
           (!pair  "controlled_uses"
            (!type already_seen 2)
-           (!srcfileloc  "ipa-prop.h" 555)
+           (!srcfileloc  "ipa-prop.h" 568)
            nil )
           (!pair  "move_cost"
            (!type already_seen 2)
-           (!srcfileloc  "ipa-prop.h" 556)
+           (!srcfileloc  "ipa-prop.h" 569)
            nil )
           (!pair  "used"
            (!type already_seen 2)
-           (!srcfileloc  "ipa-prop.h" 558)
+           (!srcfileloc  "ipa-prop.h" 571)
            nil )
           (!pair  "used_by_ipa_predicates"
            (!type already_seen 2)
-           (!srcfileloc  "ipa-prop.h" 559)
+           (!srcfileloc  "ipa-prop.h" 572)
            nil )
           (!pair  "used_by_indirect_call"
            (!type already_seen 2)
-           (!srcfileloc  "ipa-prop.h" 560)
+           (!srcfileloc  "ipa-prop.h" 573)
            nil )
           (!pair  "used_by_polymorphic_call"
            (!type already_seen 2)
-           (!srcfileloc  "ipa-prop.h" 561)
+           (!srcfileloc  "ipa-prop.h" 574)
            nil )
           (!pair  "load_dereferenced"
            (!type already_seen 2)
-           (!srcfileloc  "ipa-prop.h" 567)
+           (!srcfileloc  "ipa-prop.h" 580)
            nil )
          )
          nil 1023 nil nil )
-        (!srcfileloc  "ipa-prop.h" 585)
+        (!srcfileloc  "ipa-prop.h" 598)
         nil )
       )
      )
     )
-    (!srcfileloc  "ipa-prop.h" 585)
+    (!srcfileloc  "ipa-prop.h" 598)
     nil )
    (!pair  "lattices"
     (!type pointer 1139 nil  gc_unused
@@ -20627,83 +20631,83 @@
       (!fields 0 )
       nil 0 nil nil )
     )
-    (!srcfileloc  "ipa-prop.h" 588)
+    (!srcfileloc  "ipa-prop.h" 601)
     (!options 
      (!option skip string  "")
     )
    )
    (!pair  "ipcp_orig_node"
     (!type already_seen 807)
-    (!srcfileloc  "ipa-prop.h" 591)
+    (!srcfileloc  "ipa-prop.h" 604)
     (!options 
      (!option skip string  "")
     )
    )
    (!pair  "known_csts"
     (!type user_struct 1141 nil  gc_unused "vec<tree>"
-     (!srcfileloc  "ipa-prop.h" 594)
+     (!srcfileloc  "ipa-prop.h" 607)
      (!fields 1 
       (!pair  "tree"
        (!type already_seen 23)
-       (!srcfileloc  "ipa-prop.h" 594)
+       (!srcfileloc  "ipa-prop.h" 607)
        nil )
      )
     )
-    (!srcfileloc  "ipa-prop.h" 594)
+    (!srcfileloc  "ipa-prop.h" 607)
     (!options 
      (!option skip string  "")
     )
    )
    (!pair  "known_contexts"
     (!type user_struct 1142 nil  gc_unused "vec<ipa_polymorphic_call_context>"
-     (!srcfileloc  "ipa-prop.h" 597)
+     (!srcfileloc  "ipa-prop.h" 610)
      (!fields 1 
       (!pair  "ipa_polymorphic_call_context"
        (!type already_seen 812)
-       (!srcfileloc  "ipa-prop.h" 597)
+       (!srcfileloc  "ipa-prop.h" 610)
        nil )
      )
     )
-    (!srcfileloc  "ipa-prop.h" 597)
+    (!srcfileloc  "ipa-prop.h" 610)
     (!options 
      (!option skip string  "")
     )
    )
    (!pair  "analysis_done"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 600)
+    (!srcfileloc  "ipa-prop.h" 613)
     nil )
    (!pair  "node_enqueued"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 602)
+    (!srcfileloc  "ipa-prop.h" 615)
     nil )
    (!pair  "do_clone_for_all_contexts"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 605)
+    (!srcfileloc  "ipa-prop.h" 618)
     nil )
    (!pair  "is_all_contexts_clone"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 607)
+    (!srcfileloc  "ipa-prop.h" 620)
     nil )
    (!pair  "node_dead"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 610)
+    (!srcfileloc  "ipa-prop.h" 623)
     nil )
    (!pair  "node_within_scc"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 612)
+    (!srcfileloc  "ipa-prop.h" 625)
     nil )
    (!pair  "node_is_self_scc"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 614)
+    (!srcfileloc  "ipa-prop.h" 627)
     nil )
    (!pair  "node_calling_single_call"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 616)
+    (!srcfileloc  "ipa-prop.h" 629)
     nil )
    (!pair  "versionable"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 618)
+    (!srcfileloc  "ipa-prop.h" 631)
     nil )
   )
   (!options 
@@ -20730,47 +20734,47 @@
   nil 0 nil nil )
  
  (!type struct 1147 nil  gc_pointed_to "ipa_edge_args"
-  (!srcfileloc  "ipa-prop.h" 950)
+  (!srcfileloc  "ipa-prop.h" 963)
   (!fields 2 
    (!pair  "jump_functions"
     (!type pointer 1148 nil  gc_used
      (!type user_struct 1149 
       (!type already_seen 1148)
       gc_pointed_to "vec<ipa_jump_func,va_gc>"
-      (!srcfileloc  "ipa-prop.h" 948)
+      (!srcfileloc  "ipa-prop.h" 961)
       (!fields 2 
        (!pair  "va_gc"
         (!type already_seen 79)
-        (!srcfileloc  "ipa-prop.h" 948)
+        (!srcfileloc  "ipa-prop.h" 961)
         nil )
        (!pair  "ipa_jump_func"
         (!type already_seen 1116)
-        (!srcfileloc  "ipa-prop.h" 948)
+        (!srcfileloc  "ipa-prop.h" 961)
         nil )
       )
      )
     )
-    (!srcfileloc  "ipa-prop.h" 948)
+    (!srcfileloc  "ipa-prop.h" 961)
     nil )
    (!pair  "polymorphic_call_contexts"
     (!type pointer 1150 nil  gc_used
      (!type user_struct 1151 
       (!type already_seen 1150)
       gc_pointed_to "vec<ipa_polymorphic_call_context,va_gc>"
-      (!srcfileloc  "ipa-prop.h" 949)
+      (!srcfileloc  "ipa-prop.h" 962)
       (!fields 2 
        (!pair  "va_gc"
         (!type already_seen 79)
-        (!srcfileloc  "ipa-prop.h" 949)
+        (!srcfileloc  "ipa-prop.h" 962)
         nil )
        (!pair  "ipa_polymorphic_call_context"
         (!type already_seen 812)
-        (!srcfileloc  "ipa-prop.h" 949)
+        (!srcfileloc  "ipa-prop.h" 962)
         nil )
       )
      )
     )
-    (!srcfileloc  "ipa-prop.h" 949)
+    (!srcfileloc  "ipa-prop.h" 962)
     nil )
   )
   (!options 
@@ -20783,27 +20787,27 @@
    (!type already_seen 1152)
   )
   gc_pointed_to "ipa_agg_replacement_value"
-  (!srcfileloc  "ipa-prop.h" 893)
+  (!srcfileloc  "ipa-prop.h" 906)
   (!fields 5 
    (!pair  "next"
     (!type already_seen 1153)
-    (!srcfileloc  "ipa-prop.h" 877)
+    (!srcfileloc  "ipa-prop.h" 890)
     nil )
    (!pair  "offset"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 879)
+    (!srcfileloc  "ipa-prop.h" 892)
     nil )
    (!pair  "value"
     (!type already_seen 23)
-    (!srcfileloc  "ipa-prop.h" 881)
+    (!srcfileloc  "ipa-prop.h" 894)
     nil )
    (!pair  "index"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 883)
+    (!srcfileloc  "ipa-prop.h" 896)
     nil )
    (!pair  "by_ref"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 885)
+    (!srcfileloc  "ipa-prop.h" 898)
     nil )
   )
   nil 1023 nil nil )
@@ -25492,23 +25496,23 @@
  (!type already_seen 1125)
  
  (!type struct 1697 nil  gc_used "ipa_vr"
-  (!srcfileloc  "ipa-prop.h" 897)
+  (!srcfileloc  "ipa-prop.h" 910)
   (!fields 4 
    (!pair  "known"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 302)
+    (!srcfileloc  "ipa-prop.h" 304)
     nil )
    (!pair  "type"
     (!type already_seen 2)
-    (!srcfileloc  "ipa-prop.h" 303)
+    (!srcfileloc  "ipa-prop.h" 305)
     nil )
    (!pair  "min"
     (!type already_seen 492)
-    (!srcfileloc  "ipa-prop.h" 304)
+    (!srcfileloc  "ipa-prop.h" 306)
     nil )
    (!pair  "max"
     (!type already_seen 492)
-    (!srcfileloc  "ipa-prop.h" 305)
+    (!srcfileloc  "ipa-prop.h" 307)
     nil )
   )
   nil 1023 nil nil )
@@ -25536,15 +25540,15 @@
    (!type already_seen 1700)
   )
   gc_pointed_to "vec<ipa_bits*,va_gc>"
-  (!srcfileloc  "ipa-prop.h" 895)
+  (!srcfileloc  "ipa-prop.h" 908)
   (!fields 2 
    (!pair  "va_gc"
     (!type already_seen 79)
-    (!srcfileloc  "ipa-prop.h" 895)
+    (!srcfileloc  "ipa-prop.h" 908)
     nil )
    (!pair  "ipa_bits"
     (!type already_seen 1124)
-    (!srcfileloc  "ipa-prop.h" 895)
+    (!srcfileloc  "ipa-prop.h" 908)
     nil )
   )
  )
@@ -25554,15 +25558,15 @@
    (!type already_seen 1702)
   )
   gc_pointed_to "vec<ipa_vr,va_gc>"
-  (!srcfileloc  "ipa-prop.h" 897)
+  (!srcfileloc  "ipa-prop.h" 910)
   (!fields 2 
    (!pair  "va_gc"
     (!type already_seen 79)
-    (!srcfileloc  "ipa-prop.h" 897)
+    (!srcfileloc  "ipa-prop.h" 910)
     nil )
    (!pair  "ipa_vr"
     (!type already_seen 1697)
-    (!srcfileloc  "ipa-prop.h" 897)
+    (!srcfileloc  "ipa-prop.h" 910)
     nil )
   )
  )
@@ -25572,19 +25576,19 @@
    (!type already_seen 1704)
   )
   gc_pointed_to "ipcp_transformation"
-  (!srcfileloc  "ipa-prop.h" 917)
+  (!srcfileloc  "ipa-prop.h" 930)
   (!fields 3 
    (!pair  "agg_values"
     (!type already_seen 1153)
-    (!srcfileloc  "ipa-prop.h" 893)
+    (!srcfileloc  "ipa-prop.h" 906)
     nil )
    (!pair  "bits"
     (!type already_seen 1701)
-    (!srcfileloc  "ipa-prop.h" 895)
+    (!srcfileloc  "ipa-prop.h" 908)
     nil )
    (!pair  "m_vr"
     (!type already_seen 1703)
-    (!srcfileloc  "ipa-prop.h" 897)
+    (!srcfileloc  "ipa-prop.h" 910)
     nil )
   )
   nil 1023 nil nil )
@@ -25598,7 +25602,7 @@
    (!type already_seen 1706)
   )
   gc_pointed_to "ipa_node_params_t"
-  (!srcfileloc  "ipa-prop.h" 998)
+  (!srcfileloc  "ipa-prop.h" 1011)
   (!fields 0 )
  )
  
@@ -25607,7 +25611,7 @@
    (!type already_seen 1708)
   )
   gc_pointed_to "ipa_edge_args_sum_t"
-  (!srcfileloc  "ipa-prop.h" 1020)
+  (!srcfileloc  "ipa-prop.h" 1033)
   (!fields 0 )
  )
  
@@ -25620,11 +25624,11 @@
    (!type already_seen 1711)
   )
   gc_pointed_to "function_summary<ipcp_transformation*>"
-  (!srcfileloc  "ipa-prop.h" 1052)
+  (!srcfileloc  "ipa-prop.h" 1065)
   (!fields 1 
    (!pair  "ipcp_transformation"
     (!type already_seen 1705)
-    (!srcfileloc  "ipa-prop.h" 1052)
+    (!srcfileloc  "ipa-prop.h" 1065)
     nil )
   )
  )
@@ -28039,19 +28043,19 @@
   (!fields 4 
    (!pair  "decl"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8391)
+    (!srcfileloc  "cp/cp-tree.h" 8390)
     nil )
    (!pair  "body"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8392)
+    (!srcfileloc  "cp/cp-tree.h" 8391)
     nil )
    (!pair  "parms"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8393)
+    (!srcfileloc  "cp/cp-tree.h" 8392)
     nil )
    (!pair  "result"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8394)
+    (!srcfileloc  "cp/cp-tree.h" 8393)
     nil )
   )
   (!options 
@@ -29689,15 +29693,15 @@
    (!type already_seen 2193)
   )
   gc_pointed_to "hash_map<tree,tree_pair_p>"
-  (!srcfileloc  "cp/pt.cc" 29781)
+  (!srcfileloc  "cp/pt.cc" 29782)
   (!fields 2 
    (!pair  "tree_pair_p"
     (!type already_seen 533)
-    (!srcfileloc  "cp/pt.cc" 29781)
+    (!srcfileloc  "cp/pt.cc" 29782)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/pt.cc" 29781)
+    (!srcfileloc  "cp/pt.cc" 29782)
     nil )
   )
  )
@@ -30842,7 +30846,7 @@
   nil )
  (!pair  "hash_map<tree,tree_pair_p>"
   (!type already_seen 2193)
-  (!srcfileloc  "cp/pt.cc" 29781)
+  (!srcfileloc  "cp/pt.cc" 29782)
   nil )
  (!pair  "pending_template"
   (!type already_seen 2180)
@@ -31826,79 +31830,79 @@
   nil )
  (!pair  "function_summary<ipcp_transformation*>"
   (!type already_seen 1711)
-  (!srcfileloc  "ipa-prop.h" 1052)
+  (!srcfileloc  "ipa-prop.h" 1065)
   nil )
  (!pair  "ipa_edge_args_sum_t"
   (!type already_seen 1708)
-  (!srcfileloc  "ipa-prop.h" 1020)
+  (!srcfileloc  "ipa-prop.h" 1033)
   nil )
  (!pair  "ipa_node_params_t"
   (!type already_seen 1706)
-  (!srcfileloc  "ipa-prop.h" 998)
+  (!srcfileloc  "ipa-prop.h" 1011)
   nil )
  (!pair  "vec<ipa_polymorphic_call_context,va_gc>"
   (!type already_seen 1151)
-  (!srcfileloc  "ipa-prop.h" 949)
+  (!srcfileloc  "ipa-prop.h" 962)
   nil )
  (!pair  "ipa_jump_func"
   (!type already_seen 1116)
-  (!srcfileloc  "ipa-prop.h" 948)
+  (!srcfileloc  "ipa-prop.h" 961)
   nil )
  (!pair  "vec<ipa_jump_func,va_gc>"
   (!type already_seen 1149)
-  (!srcfileloc  "ipa-prop.h" 948)
+  (!srcfileloc  "ipa-prop.h" 961)
   nil )
  (!pair  "ipa_edge_args"
   (!type already_seen 1147)
-  (!srcfileloc  "ipa-prop.h" 932)
+  (!srcfileloc  "ipa-prop.h" 945)
   nil )
  (!pair  "ipcp_transformation"
   (!type already_seen 1704)
-  (!srcfileloc  "ipa-prop.h" 900)
+  (!srcfileloc  "ipa-prop.h" 913)
   nil )
  (!pair  "ipa_vr"
   (!type already_seen 1697)
-  (!srcfileloc  "ipa-prop.h" 897)
+  (!srcfileloc  "ipa-prop.h" 910)
   nil )
  (!pair  "vec<ipa_vr,va_gc>"
   (!type already_seen 1702)
-  (!srcfileloc  "ipa-prop.h" 897)
+  (!srcfileloc  "ipa-prop.h" 910)
   nil )
  (!pair  "vec<ipa_bits*,va_gc>"
   (!type already_seen 1700)
-  (!srcfileloc  "ipa-prop.h" 895)
+  (!srcfileloc  "ipa-prop.h" 908)
   nil )
  (!pair  "ipa_agg_replacement_value"
   (!type already_seen 1152)
-  (!srcfileloc  "ipa-prop.h" 893)
+  (!srcfileloc  "ipa-prop.h" 906)
   nil )
  (!pair  "vec<ipa_polymorphic_call_context>"
   (!type already_seen 1142)
-  (!srcfileloc  "ipa-prop.h" 597)
+  (!srcfileloc  "ipa-prop.h" 610)
   nil )
  (!pair  "vec<tree>"
   (!type already_seen 1141)
-  (!srcfileloc  "ipa-prop.h" 594)
+  (!srcfileloc  "ipa-prop.h" 607)
   nil )
  (!pair  "ipa_param_descriptor"
   (!type already_seen 1138)
-  (!srcfileloc  "ipa-prop.h" 585)
+  (!srcfileloc  "ipa-prop.h" 598)
   nil )
  (!pair  "vec<ipa_param_descriptor,va_gc>"
   (!type already_seen 1137)
-  (!srcfileloc  "ipa-prop.h" 585)
+  (!srcfileloc  "ipa-prop.h" 598)
   nil )
  (!pair  "ipa_node_params"
   (!type already_seen 1135)
-  (!srcfileloc  "ipa-prop.h" 578)
+  (!srcfileloc  "ipa-prop.h" 591)
   nil )
  (!pair  "ipa_agg_jf_item"
   (!type already_seen 1120)
-  (!srcfileloc  "ipa-prop.h" 180)
+  (!srcfileloc  "ipa-prop.h" 182)
   nil )
  (!pair  "vec<ipa_agg_jf_item,va_gc>"
   (!type already_seen 1119)
-  (!srcfileloc  "ipa-prop.h" 180)
+  (!srcfileloc  "ipa-prop.h" 182)
   nil )
  (!pair  "int_range_max"
   (!type already_seen 1694)
@@ -35259,37 +35263,37 @@
   (!type array 2331 nil  gc_used "(int) BT_LAST + 1" 
    (!type already_seen 23)
   )
-  (!srcfileloc  "d/d-builtins.cc" 1018)
+  (!srcfileloc  "d/d-builtins.cc" 1027)
   nil )
  (!pair  "built_in_attributes"
   (!type array 2332 nil  gc_used "(int) ATTR_LAST" 
    (!type already_seen 23)
   )
-  (!srcfileloc  "d/d-builtins.cc" 922)
+  (!srcfileloc  "d/d-builtins.cc" 931)
   nil )
  (!pair  "signed_size_type_node"
   (!type already_seen 23)
-  (!srcfileloc  "d/d-builtins.cc" 770)
+  (!srcfileloc  "d/d-builtins.cc" 779)
   nil )
  (!pair  "uintmax_type_node"
   (!type already_seen 23)
-  (!srcfileloc  "d/d-builtins.cc" 769)
+  (!srcfileloc  "d/d-builtins.cc" 778)
   nil )
  (!pair  "intmax_type_node"
   (!type already_seen 23)
-  (!srcfileloc  "d/d-builtins.cc" 768)
+  (!srcfileloc  "d/d-builtins.cc" 777)
   nil )
  (!pair  "wint_type_node"
   (!type already_seen 23)
-  (!srcfileloc  "d/d-builtins.cc" 767)
+  (!srcfileloc  "d/d-builtins.cc" 776)
   nil )
  (!pair  "const_string_type_node"
   (!type already_seen 23)
-  (!srcfileloc  "d/d-builtins.cc" 766)
+  (!srcfileloc  "d/d-builtins.cc" 775)
   nil )
  (!pair  "string_type_node"
   (!type already_seen 23)
-  (!srcfileloc  "d/d-builtins.cc" 765)
+  (!srcfileloc  "d/d-builtins.cc" 774)
   nil )
  (!pair  "gcc_builtins_types"
   (!type already_seen 84)
@@ -35355,7 +35359,7 @@
   nil )
  (!pair  "dguide_cache"
   (!type already_seen 2194)
-  (!srcfileloc  "cp/pt.cc" 29781)
+  (!srcfileloc  "cp/pt.cc" 29782)
   (!options 
    (!option deletable string  "")
   )
@@ -35865,11 +35869,11 @@
   nil )
  (!pair  "dvirt_fn"
   (!type already_seen 23)
-  (!srcfileloc  "cp/class.cc" 9854)
+  (!srcfileloc  "cp/class.cc" 9837)
   nil )
  (!pair  "abort_fndecl_addr"
   (!type already_seen 23)
-  (!srcfileloc  "cp/class.cc" 9853)
+  (!srcfileloc  "cp/class.cc" 9836)
   nil )
  (!pair  "enum_to_min_precision"
   (!type already_seen 2031)
@@ -35888,7 +35892,7 @@
   nil )
  (!pair  "unemitted_tinfo_decls"
   (!type already_seen 84)
-  (!srcfileloc  "cp/cp-tree.h" 7459)
+  (!srcfileloc  "cp/cp-tree.h" 7458)
   nil )
  (!pair  "ovl_op_alternate"
   (!type array 2336 nil  gc_used "OVL_OP_MAX" 
@@ -36373,15 +36377,15 @@
  )
  (!pair  "ipcp_transformation_sum"
   (!type already_seen 1712)
-  (!srcfileloc  "ipa-prop.h" 1052)
+  (!srcfileloc  "ipa-prop.h" 1065)
   nil )
  (!pair  "ipa_edge_args_sum"
   (!type already_seen 1709)
-  (!srcfileloc  "ipa-prop.h" 1025)
+  (!srcfileloc  "ipa-prop.h" 1038)
   nil )
  (!pair  "ipa_node_params_sum"
   (!type already_seen 1707)
-  (!srcfileloc  "ipa-prop.h" 1023)
+  (!srcfileloc  "ipa-prop.h" 1036)
   nil )
  (!pair  "ipa_escaped_pt"
   (!type already_seen 385)
