@@ -46528,7 +46528,7 @@ to address several issues.
      building and simplifying GENERIC via fold_buildN and then
      gimplifying via force_gimple_operand
 
- To address these the project introduces a simple domain specific
+ To address these the project introduces a simple domain-specific
 language to write expression simplifications from which code targeting
 GIMPLE and GENERIC is auto-generated.  The GENERIC variant follows the
 fold_buildN API while for the GIMPLE variant and to address 2) new APIs
@@ -46558,7 +46558,8 @@ File: gccint.info,  Node: GIMPLE API,  Next: The Language,  Up: Match and Simpli
  -- GIMPLE function: tree gimple_simplify (enum built_in_function, tree,
           tree, tree, tree, gimple_seq *, tree (*)(tree))
      The main GIMPLE API entry to the expression simplifications
-     mimicing that of the GENERIC fold_{unary,binary,ternary} functions.
+     mimicking that of the GENERIC fold_{unary,binary,ternary}
+     functions.
 
  thus providing n-ary overloads for operation or function.  The
 additional arguments are a gimple_seq where built statements are
@@ -46571,7 +46572,7 @@ hook:
 
  -- bool: fold_stmt (gimple_stmt_iterator *, tree (*)(tree));
 
- Ontop of these a 'fold_buildN'-like API for GIMPLE is introduced:
+ On top of these a 'fold_buildN'-like API for GIMPLE is introduced:
 
  -- GIMPLE function: tree gimple_build (gimple_seq *, location_t, enum
           tree_code, tree, tree, tree (*valueize) (tree) = NULL);
@@ -46603,9 +46604,9 @@ File: gccint.info,  Node: The Language,  Prev: GIMPLE API,  Up: Match and Simpli
 26.2 The Language
 =================
 
-The language to write expression simplifications in resembles other
-domain-specific languages GCC uses.  Thus it is lispy.  Lets start with
-an example from the match.pd file:
+The language in which to write expression simplifications resembles
+other domain-specific languages GCC uses.  Thus it is lispy.  Let's
+start with an example from the match.pd file:
 
      (simplify
        (bit_and @0 integer_all_onesp)
@@ -46623,7 +46624,7 @@ function code names in all-caps, like 'BUILT_IN_SQRT'.
 
  '@n' denotes a so-called capture.  It captures the operand and lets you
 refer to it in other places of the match-and-simplify.  In the above
-example it is refered to in the replacement expression.  Captures are
+example it is referred to in the replacement expression.  Captures are
 '@' followed by a number or an identifier.
 
      (simplify
@@ -46631,11 +46632,11 @@ example it is refered to in the replacement expression.  Captures are
        { build_zero_cst (type); })
 
  In this example '@0' is mentioned twice which constrains the matched
-expression to have two equal operands.  Usually matches are constraint
+expression to have two equal operands.  Usually matches are constrained
 to equal types.  If operands may be constants and conversions are
-involved matching by value might be preferred in which case use '@@0' to
-denote a by value match and the specific operand you want to refer to in
-the result part.  This example also introduces operands written in C
+involved, matching by value might be preferred in which case use '@@0'
+to denote a by-value match and the specific operand you want to refer to
+in the result part.  This example also introduces operands written in C
 code.  These can be used in the expression replacements and are supposed
 to evaluate to a tree node which has to be a valid GIMPLE operand (so
 you cannot generate expressions in C code).
@@ -46648,7 +46649,7 @@ you cannot generate expressions in C code).
  Here '@0' captures the first operand of the trunc_mod expression which
 is also predicated with 'integer_zerop'.  Expression operands may be
 either expressions, predicates or captures.  Captures can be
-unconstrained or capture expresions or predicates.
+unconstrained or capture expressions or predicates.
 
  This example introduces an optional operand of simplify, the
 if-expression.  This condition is evaluated after the expression matched
@@ -46729,8 +46730,8 @@ should be enabled by default if no other condition evaluated to true.
      #endif
 
  In the above example, '@2' captures the result of the expression '(addr
-@0)'.  For outermost expression only its type can be captured, and the
-keyword 'type' is reserved for this purpose.  The above example also
+@0)'.  For the outermost expression only its type can be captured, and
+the keyword 'type' is reserved for this purpose.  The above example also
 gives a way to conditionalize patterns to only apply to 'GIMPLE' or
 'GENERIC' by means of using the pre-defined preprocessor macros 'GIMPLE'
 and 'GENERIC' and using preprocessor directives.
@@ -46803,9 +46804,9 @@ plus'; 'minus, plus, minus'.
 
  So this example iterates over 'plus', 'minus', 'mult' and 'trunc_div'.
 
- Using operator lists can also remove the need to explicitely write a
+ Using operator lists can also remove the need to explicitly write a
 'for'.  All operator list uses that appear in a 'simplify' or 'match'
-pattern in operator positions will implicitely be added to a new 'for'.
+pattern in operator positions will implicitly be added to a new 'for'.
 For example
 
      (define_operator_list SQRT BUILT_IN_SQRTF BUILT_IN_SQRT BUILT_IN_SQRTL)
@@ -46841,7 +46842,7 @@ a generated expression with the ':type' syntax where 'type' needs to be
 an identifier that refers to the desired type.  Usually the types of the
 generated result expressions are determined from the context, but
 sometimes like in the above case it is required that you specify them
-explicitely.
+explicitly.
 
  Another modifier for generated expressions is '!' which tells the
 machinery to only consider the simplification in case the marked
@@ -46876,7 +46877,7 @@ access to two additional conditional converts as in '(eq (convert1? @1)
 predicates you declare yourself with 'match'.
 
  Predicates available from the GCC middle-end need to be made available
-explicitely via 'define_predicates':
+explicitly via 'define_predicates':
 
      (define_predicates
       integer_onep integer_zerop integer_all_onesp)
@@ -50551,7 +50552,7 @@ Concept Index
 * % in GTY option:                       GTY Options.        (line   18)
 * % in template:                         Output Template.    (line    6)
 * & in constraint:                       Modifiers.          (line   25)
-* (gimple_stmt_iterator:                 GIMPLE API.         (line   30)
+* (gimple_stmt_iterator:                 GIMPLE API.         (line   31)
 * (nil):                                 RTL Objects.        (line   73)
 * * in constraint:                       Modifiers.          (line   83)
 * * in template:                         Output Statement.   (line   29)
@@ -55188,12 +55189,12 @@ Concept Index
 * gimple_bind_vars:                      GIMPLE_BIND.        (line   11)
 * gimple_block:                          Manipulating GIMPLE statements.
                                                              (line   20)
-* gimple_build:                          GIMPLE API.         (line   34)
-* gimple_build <1>:                      GIMPLE API.         (line   36)
-* gimple_build <2>:                      GIMPLE API.         (line   38)
-* gimple_build <3>:                      GIMPLE API.         (line   41)
-* gimple_build <4>:                      GIMPLE API.         (line   44)
-* gimple_build <5>:                      GIMPLE API.         (line   47)
+* gimple_build:                          GIMPLE API.         (line   35)
+* gimple_build <1>:                      GIMPLE API.         (line   37)
+* gimple_build <2>:                      GIMPLE API.         (line   39)
+* gimple_build <3>:                      GIMPLE API.         (line   42)
+* gimple_build <4>:                      GIMPLE API.         (line   45)
+* gimple_build <5>:                      GIMPLE API.         (line   48)
 * gimple_build_debug_begin_stmt:         GIMPLE_DEBUG.       (line   72)
 * gimple_build_debug_inline_entry:       GIMPLE_DEBUG.       (line   82)
 * gimple_build_nop:                      GIMPLE_NOP.         (line    6)
@@ -55245,7 +55246,7 @@ Concept Index
 * gimple_cond_set_rhs:                   GIMPLE_COND.        (line   41)
 * gimple_cond_set_true_label:            GIMPLE_COND.        (line   49)
 * gimple_cond_true_label:                GIMPLE_COND.        (line   45)
-* gimple_convert:                        GIMPLE API.         (line   50)
+* gimple_convert:                        GIMPLE API.         (line   51)
 * gimple_copy:                           Manipulating GIMPLE statements.
                                                              (line  139)
 * GIMPLE_DEBUG:                          GIMPLE_DEBUG.       (line    6)
@@ -58708,21 +58709,21 @@ Node: WHOPR2024701
 Node: Internal flags2029261
 Node: Match and Simplify2030672
 Node: GIMPLE API2031642
-Node: The Language2034437
-Node: Static Analyzer2047053
-Node: Analyzer Internals2047318
-Node: Debugging the Analyzer2063205
-Node: User Experience Guidelines2066773
-Node: Guidelines for Diagnostics2067709
-Ref: input_location_example2075884
-Node: Guidelines for Options2085569
-Node: Funding2085746
-Node: GNU Project2088253
-Node: Copying2088904
-Node: GNU Free Documentation License2126418
-Node: Contributors2151541
-Node: Option Index2192518
-Node: Concept Index2193395
+Node: The Language2034444
+Node: Static Analyzer2047071
+Node: Analyzer Internals2047336
+Node: Debugging the Analyzer2063223
+Node: User Experience Guidelines2066791
+Node: Guidelines for Diagnostics2067727
+Ref: input_location_example2075902
+Node: Guidelines for Options2085587
+Node: Funding2085764
+Node: GNU Project2088271
+Node: Copying2088922
+Node: GNU Free Documentation License2126436
+Node: Contributors2151559
+Node: Option Index2192536
+Node: Concept Index2193413
 
 End Tag Table
 

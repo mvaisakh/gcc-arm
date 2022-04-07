@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJDUMP 1"
-.TH OBJDUMP 1 "2022-04-03" "binutils-2.38.50" "GNU Development Tools"
+.TH OBJDUMP 1 "2022-04-07" "binutils-2.38.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -195,6 +195,7 @@ objdump [\fB\-a\fR|\fB\-\-archive\-headers\fR]
         [\fB\-\-prefix\-strip=\fR\fIlevel\fR]
         [\fB\-\-insn\-width=\fR\fIwidth\fR]
         [\fB\-\-visualize\-jumps[=color|=extended\-color|=off]\fR
+        [\fB\-\-disassembler\-color=[color|extended\-color|off]\fR
         [\fB\-U\fR \fImethod\fR] [\fB\-\-unicode=\fR\fImethod\fR]
         [\fB\-V\fR|\fB\-\-version\fR]
         [\fB\-H\fR|\fB\-\-help\fR]
@@ -848,6 +849,16 @@ colors, but these might not work on all terminals.
 If it is necessary to disable the \fBvisualize-jumps\fR option
 after it has previously been enabled then use
 \&\fBvisualize\-jumps=off\fR.
+.IP "\fB\-\-disassembler\-color=[color|extended\-color|off]\fR" 4
+.IX Item "--disassembler-color=[color|extended-color|off]"
+Apply syntax highlighting to the disassembler output.  The
+\&\fBcolor\fR argument adds color using simple terminal colors.
+Alternatively the \fBextended-color\fR argument will use 8bit
+colors, but these might not work on all terminals.
+.Sp
+If it is necessary to disable the \fB\-\-disassembler\-color\fR option
+after it has previously been enabled then use
+\&\fB\-\-disassembler\-color=off\fR.
 .IP "\fB\-W[lLiaprmfFsoORtUuTgAckK]\fR" 4
 .IX Item "-W[lLiaprmfFsoORtUuTgAckK]"
 .PD 0
