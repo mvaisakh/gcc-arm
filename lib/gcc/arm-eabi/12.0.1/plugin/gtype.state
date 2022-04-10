@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "12.0.1 20220407 (Bleeding Edge)")
+(!version  "12.0.1 20220410 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 10 ada c cp d fortran go jit lto objc objcp)
 (!fileslist 227 0
@@ -27728,7 +27728,7 @@
    (!type already_seen 1970)
   )
   gc_pointed_to "tinst_level"
-  (!srcfileloc  "cp/pt.cc" 9573)
+  (!srcfileloc  "cp/pt.cc" 9575)
   (!fields 8 
    (!pair  "next"
     (!type already_seen 1971)
@@ -29032,15 +29032,15 @@
   nil 0 nil nil )
  
  (!type struct 2098 nil  gc_used "tree_int"
-  (!srcfileloc  "cp/lambda.cc" 1374)
+  (!srcfileloc  "cp/lambda.cc" 1380)
   (!fields 2 
    (!pair  "t"
     (!type already_seen 23)
-    (!srcfileloc  "cp/lambda.cc" 1371)
+    (!srcfileloc  "cp/lambda.cc" 1377)
     nil )
    (!pair  "i"
     (!type already_seen 2)
-    (!srcfileloc  "cp/lambda.cc" 1372)
+    (!srcfileloc  "cp/lambda.cc" 1378)
     nil )
   )
   nil 516 nil nil )
@@ -29050,15 +29050,15 @@
    (!type already_seen 2099)
   )
   gc_pointed_to "vec<tree_int,va_gc>"
-  (!srcfileloc  "cp/lambda.cc" 1374)
+  (!srcfileloc  "cp/lambda.cc" 1380)
   (!fields 2 
    (!pair  "va_gc"
     (!type already_seen 79)
-    (!srcfileloc  "cp/lambda.cc" 1374)
+    (!srcfileloc  "cp/lambda.cc" 1380)
     nil )
    (!pair  "tree_int"
     (!type already_seen 2098)
-    (!srcfileloc  "cp/lambda.cc" 1374)
+    (!srcfileloc  "cp/lambda.cc" 1380)
     nil )
   )
  )
@@ -29625,7 +29625,7 @@
    (!type already_seen 2180)
   )
   gc_pointed_to "pending_template"
-  (!srcfileloc  "cp/pt.cc" 9582)
+  (!srcfileloc  "cp/pt.cc" 9584)
   (!fields 2 
    (!pair  "next"
     (!type already_seen 2181)
@@ -29697,15 +29697,15 @@
    (!type already_seen 2193)
   )
   gc_pointed_to "hash_map<tree,tree_pair_p>"
-  (!srcfileloc  "cp/pt.cc" 29795)
+  (!srcfileloc  "cp/pt.cc" 29797)
   (!fields 2 
    (!pair  "tree_pair_p"
     (!type already_seen 533)
-    (!srcfileloc  "cp/pt.cc" 29795)
+    (!srcfileloc  "cp/pt.cc" 29797)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/pt.cc" 29795)
+    (!srcfileloc  "cp/pt.cc" 29797)
     nil )
   )
  )
@@ -29791,7 +29791,7 @@
   nil 0 nil nil )
  
  (!type struct 2204 nil  gc_used "cplus_array_hasher"
-  (!srcfileloc  "cp/tree.cc" 1017)
+  (!srcfileloc  "cp/tree.cc" 1034)
   (!fields 0 )
   nil 516 nil nil )
  
@@ -29800,11 +29800,11 @@
    (!type already_seen 2205)
   )
   gc_pointed_to "hash_table<cplus_array_hasher>"
-  (!srcfileloc  "cp/tree.cc" 1017)
+  (!srcfileloc  "cp/tree.cc" 1034)
   (!fields 1 
    (!pair  "cplus_array_hasher"
     (!type already_seen 2204)
-    (!srcfileloc  "cp/tree.cc" 1017)
+    (!srcfileloc  "cp/tree.cc" 1034)
     nil )
   )
  )
@@ -29814,7 +29814,7 @@
   nil 0 nil nil )
  
  (!type struct 2208 nil  gc_used "list_hasher"
-  (!srcfileloc  "cp/tree.cc" 2148)
+  (!srcfileloc  "cp/tree.cc" 2165)
   (!fields 0 )
   nil 516 nil nil )
  
@@ -29823,11 +29823,11 @@
    (!type already_seen 2209)
   )
   gc_pointed_to "hash_table<list_hasher>"
-  (!srcfileloc  "cp/tree.cc" 2148)
+  (!srcfileloc  "cp/tree.cc" 2165)
   (!fields 1 
    (!pair  "list_hasher"
     (!type already_seen 2208)
-    (!srcfileloc  "cp/tree.cc" 2148)
+    (!srcfileloc  "cp/tree.cc" 2165)
     nil )
   )
  )
@@ -30818,19 +30818,19 @@
   nil )
  (!pair  "list_hasher"
   (!type already_seen 2208)
-  (!srcfileloc  "cp/tree.cc" 2148)
+  (!srcfileloc  "cp/tree.cc" 2165)
   nil )
  (!pair  "hash_table<list_hasher>"
   (!type already_seen 2209)
-  (!srcfileloc  "cp/tree.cc" 2148)
+  (!srcfileloc  "cp/tree.cc" 2165)
   nil )
  (!pair  "cplus_array_hasher"
   (!type already_seen 2204)
-  (!srcfileloc  "cp/tree.cc" 1017)
+  (!srcfileloc  "cp/tree.cc" 1034)
   nil )
  (!pair  "hash_table<cplus_array_hasher>"
   (!type already_seen 2205)
-  (!srcfileloc  "cp/tree.cc" 1017)
+  (!srcfileloc  "cp/tree.cc" 1034)
   nil )
  (!pair  "deferred_access"
   (!type already_seen 2198)
@@ -30850,15 +30850,15 @@
   nil )
  (!pair  "hash_map<tree,tree_pair_p>"
   (!type already_seen 2193)
-  (!srcfileloc  "cp/pt.cc" 29795)
+  (!srcfileloc  "cp/pt.cc" 29797)
   nil )
  (!pair  "pending_template"
   (!type already_seen 2180)
-  (!srcfileloc  "cp/pt.cc" 9582)
+  (!srcfileloc  "cp/pt.cc" 9584)
   nil )
  (!pair  "tinst_level"
   (!type already_seen 1970)
-  (!srcfileloc  "cp/pt.cc" 9573)
+  (!srcfileloc  "cp/pt.cc" 9575)
   nil )
  (!pair  "spec_hash_table"
   (!type already_seen 2183)
@@ -31094,11 +31094,11 @@
   nil )
  (!pair  "tree_int"
   (!type already_seen 2098)
-  (!srcfileloc  "cp/lambda.cc" 1374)
+  (!srcfileloc  "cp/lambda.cc" 1380)
   nil )
  (!pair  "vec<tree_int,va_gc>"
   (!type already_seen 2099)
-  (!srcfileloc  "cp/lambda.cc" 1374)
+  (!srcfileloc  "cp/lambda.cc" 1380)
   nil )
  (!pair  "pending_noexcept"
   (!type already_seen 2094)
@@ -35339,15 +35339,15 @@
   nil )
  (!pair  "deleted_copy_types"
   (!type already_seen 463)
-  (!srcfileloc  "cp/tree.cc" 4382)
+  (!srcfileloc  "cp/tree.cc" 4399)
   nil )
  (!pair  "list_hash_table"
   (!type already_seen 2210)
-  (!srcfileloc  "cp/tree.cc" 2148)
+  (!srcfileloc  "cp/tree.cc" 2165)
   nil )
  (!pair  "cplus_array_htab"
   (!type already_seen 2206)
-  (!srcfileloc  "cp/tree.cc" 1017)
+  (!srcfileloc  "cp/tree.cc" 1034)
   nil )
  (!pair  "deferred_access_no_check"
   (!type already_seen 2)
@@ -35363,60 +35363,60 @@
   nil )
  (!pair  "dguide_cache"
   (!type already_seen 2194)
-  (!srcfileloc  "cp/pt.cc" 29795)
+  (!srcfileloc  "cp/pt.cc" 29797)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "explicit_specifier_map"
   (!type already_seen 930)
-  (!srcfileloc  "cp/pt.cc" 13892)
+  (!srcfileloc  "cp/pt.cc" 13894)
   (!options 
    (!option cache string  "")
   )
  )
  (!pair  "defarg_inst"
   (!type already_seen 1549)
-  (!srcfileloc  "cp/pt.cc" 13755)
+  (!srcfileloc  "cp/pt.cc" 13757)
   (!options 
    (!option cache string  "")
   )
  )
  (!pair  "last_error_tinst_level"
   (!type already_seen 1971)
-  (!srcfileloc  "cp/pt.cc" 11037)
+  (!srcfileloc  "cp/pt.cc" 11039)
   nil )
  (!pair  "pending_template_freelist_head"
   (!type already_seen 2181)
-  (!srcfileloc  "cp/pt.cc" 9582)
+  (!srcfileloc  "cp/pt.cc" 9584)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "tinst_level_freelist_head"
   (!type already_seen 1971)
-  (!srcfileloc  "cp/pt.cc" 9573)
+  (!srcfileloc  "cp/pt.cc" 9575)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "tree_list_freelist_head"
   (!type already_seen 23)
-  (!srcfileloc  "cp/pt.cc" 9564)
+  (!srcfileloc  "cp/pt.cc" 9566)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "defaulted_ttp_cache"
   (!type already_seen 393)
-  (!srcfileloc  "cp/pt.cc" 7847)
+  (!srcfileloc  "cp/pt.cc" 7849)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "tparm_obj_values"
   (!type already_seen 393)
-  (!srcfileloc  "cp/pt.cc" 7188)
+  (!srcfileloc  "cp/pt.cc" 7190)
   nil )
  (!pair  "canonical_template_parms"
   (!type already_seen 84)
@@ -35467,25 +35467,25 @@
  )
  (!pair  "free_saved_scope"
   (!type already_seen 1951)
-  (!srcfileloc  "cp/name-lookup.cc" 8323)
+  (!srcfileloc  "cp/name-lookup.cc" 8320)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "free_binding_level"
   (!type already_seen 82)
-  (!srcfileloc  "cp/name-lookup.cc" 4251)
+  (!srcfileloc  "cp/name-lookup.cc" 4233)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "extern_c_decls"
   (!type already_seen 91)
-  (!srcfileloc  "cp/name-lookup.cc" 3004)
+  (!srcfileloc  "cp/name-lookup.cc" 2986)
   nil )
  (!pair  "free_bindings"
   (!type already_seen 89)
-  (!srcfileloc  "cp/name-lookup.cc" 2394)
+  (!srcfileloc  "cp/name-lookup.cc" 2376)
   (!options 
    (!option deletable string  "")
   )
@@ -35561,15 +35561,15 @@
   nil )
  (!pair  "lambda_scope_stack"
   (!type already_seen 2100)
-  (!srcfileloc  "cp/lambda.cc" 1374)
+  (!srcfileloc  "cp/lambda.cc" 1380)
   nil )
  (!pair  "lambda_count"
   (!type already_seen 2)
-  (!srcfileloc  "cp/lambda.cc" 1368)
+  (!srcfileloc  "cp/lambda.cc" 1374)
   nil )
  (!pair  "lambda_scope"
   (!type already_seen 23)
-  (!srcfileloc  "cp/lambda.cc" 1367)
+  (!srcfileloc  "cp/lambda.cc" 1373)
   nil )
  (!pair  "max_id"
   (!type already_seen 23)
@@ -35600,19 +35600,19 @@
   nil )
  (!pair  "ssdf_decls"
   (!type already_seen 84)
-  (!srcfileloc  "cp/decl2.cc" 3922)
+  (!srcfileloc  "cp/decl2.cc" 3943)
   nil )
  (!pair  "ssdf_decl"
   (!type already_seen 23)
-  (!srcfileloc  "cp/decl2.cc" 3918)
+  (!srcfileloc  "cp/decl2.cc" 3939)
   nil )
  (!pair  "priority_decl"
   (!type already_seen 23)
-  (!srcfileloc  "cp/decl2.cc" 3915)
+  (!srcfileloc  "cp/decl2.cc" 3936)
   nil )
  (!pair  "initialize_p_decl"
   (!type already_seen 23)
-  (!srcfileloc  "cp/decl2.cc" 3912)
+  (!srcfileloc  "cp/decl2.cc" 3933)
   nil )
  (!pair  "mangled_decls"
   (!type already_seen 2093)
@@ -35854,7 +35854,7 @@
  )
  (!pair  "cv_cache"
   (!type already_seen 393)
-  (!srcfileloc  "cp/constexpr.cc" 8061)
+  (!srcfileloc  "cp/constexpr.cc" 8062)
   (!options 
    (!option deletable string  "")
   )
@@ -36612,11 +36612,11 @@
   nil )
  (!pair  "gcc_eh_personality_decl"
   (!type already_seen 23)
-  (!srcfileloc  "tree.cc" 11862)
+  (!srcfileloc  "tree.cc" 11917)
   nil )
  (!pair  "anon_cnt"
   (!type already_seen 2)
-  (!srcfileloc  "tree.cc" 8580)
+  (!srcfileloc  "tree.cc" 8635)
   nil )
  (!pair  "nonstandard_boolean_type_cache"
   (!type array 2359 nil  gc_used "MAX_BOOL_CACHED_PREC + 1" 
