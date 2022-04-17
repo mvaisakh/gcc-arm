@@ -4252,8 +4252,8 @@ Intel 64-bit versions
 ---------------------
 
 GCC contains support for x86-64 using the mingw-w64 runtime library,
-available from <https://mingw-w64.org/doku.php>.  This library should be
-used with the target triple x86_64-pc-mingw32.
+available from <https://www.mingw-w64.org/downloads/>.  This library
+should be used with the target triple x86_64-pc-mingw32.
 
 Windows CE
 ----------
@@ -4966,12 +4966,12 @@ Ref: x86-64-x-solaris2181035
 Ref: xtensa-x-elf181685
 Ref: xtensa-x-linux182356
 Ref: windows182697
-Ref: x-x-cygwin184487
-Ref: x-x-mingw32185040
-Ref: older185422
-Ref: elf187539
-Node: GNU Free Documentation License187797
-Node: Concept Index212932
+Ref: x-x-cygwin184493
+Ref: x-x-mingw32185046
+Ref: older185428
+Ref: elf187545
+Node: GNU Free Documentation License187803
+Node: Concept Index212938
 
 End Tag Table
 
