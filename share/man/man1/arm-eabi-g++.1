@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-04-17" "gcc-12.0.1" "GNU"
+.TH GCC 1 "2022-04-21" "gcc-12.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -862,12 +862,12 @@ in the following sections.
 \&\fB\-msim  \-msdata=\fR\fIsdata-type\fR
 .Sp
 \&\fI\s-1CRIS\s0 Options\fR
-\&\fB\-mcpu=\fR\fIcpu\fR  \fB\-march=\fR\fIcpu\fR  \fB\-mtune=\fR\fIcpu\fR 
-\&\fB\-mmax\-stack\-frame=\fR\fIn\fR  \fB\-melinux\-stacksize=\fR\fIn\fR 
+\&\fB\-mcpu=\fR\fIcpu\fR  \fB\-march=\fR\fIcpu\fR
+\&\fB\-mtune=\fR\fIcpu\fR \fB\-mmax\-stack\-frame=\fR\fIn\fR 
 \&\fB\-metrax4  \-metrax100  \-mpdebug  \-mcc\-init  \-mno\-side\-effects 
 \&\-mstack\-align  \-mdata\-align  \-mconst\-align 
-\&\-m32\-bit  \-m16\-bit  \-m8\-bit  \-mno\-prologue\-epilogue  \-mno\-gotplt 
-\&\-melf  \-maout  \-melinux  \-mlinux  \-sim  \-sim2 
+\&\-m32\-bit  \-m16\-bit  \-m8\-bit  \-mno\-prologue\-epilogue 
+\&\-melf  \-maout  \-sim  \-sim2 
 \&\-mmul\-bug\-workaround  \-mno\-mul\-bug\-workaround\fR
 .Sp
 \&\fI\s-1CR16\s0 Options\fR
@@ -21654,8 +21654,7 @@ These options are defined specifically for the \s-1CRIS\s0 ports.
 Generate code for the specified architecture.  The choices for
 \&\fIarchitecture-type\fR are \fBv3\fR, \fBv8\fR and \fBv10\fR for
 respectively \s-1ETRAX\s0\ 4, \s-1ETRAX\s0\ 100, and \s-1ETRAX\s0\ 100\ \s-1LX.\s0
-Default is \fBv0\fR except for cris-axis-linux-gnu, where the default is
-\&\fBv10\fR.
+Default is \fBv0\fR.
 .IP "\fB\-mtune=\fR\fIarchitecture-type\fR" 4
 .IX Item "-mtune=architecture-type"
 Tune to \fIarchitecture-type\fR everything applicable about the generated
@@ -21737,26 +21736,12 @@ instructions or return sequences are generated in the code.  Use this
 option only together with visual inspection of the compiled code: no
 warnings or errors are generated when call-saved registers must be saved,
 or storage for local variables needs to be allocated.
-.IP "\fB\-mno\-gotplt\fR" 4
-.IX Item "-mno-gotplt"
-.PD 0
-.IP "\fB\-mgotplt\fR" 4
-.IX Item "-mgotplt"
-.PD
-With \fB\-fpic\fR and \fB\-fPIC\fR, don't generate (do generate)
-instruction sequences that load addresses for functions from the \s-1PLT\s0 part
-of the \s-1GOT\s0 rather than (traditional on other architectures) calls to the
-\&\s-1PLT.\s0  The default is \fB\-mgotplt\fR.
 .IP "\fB\-melf\fR" 4
 .IX Item "-melf"
-Legacy no-op option only recognized with the cris-axis-elf and
-cris-axis-linux-gnu targets.
-.IP "\fB\-mlinux\fR" 4
-.IX Item "-mlinux"
-Legacy no-op option only recognized with the cris-axis-linux-gnu target.
+Legacy no-op option.
 .IP "\fB\-sim\fR" 4
 .IX Item "-sim"
-This option, recognized for the cris-axis-elf, arranges
+This option arranges
 to link with input-output functions from a simulator library.  Code,
 initialized data and zero-initialized data are allocated consecutively.
 .IP "\fB\-sim2\fR" 4

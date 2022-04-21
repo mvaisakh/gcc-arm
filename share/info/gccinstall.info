@@ -3216,24 +3216,14 @@ configure GCC for building a CR16 uclinux cross-compiler.
 CRIS
 ====
 
-CRIS is the CPU architecture in Axis Communications ETRAX
-system-on-a-chip series.  These are used in embedded applications.
+CRIS is a CPU architecture in Axis Communications systems-on-a-chip, for
+example the ETRAX series.  These are used in embedded applications.
 
    *Note CRIS Options: (gcc)CRIS Options, for a list of CRIS-specific
 options.
 
-   There are a few different CRIS targets:
-'cris-axis-elf'
-     Mainly for monolithic embedded systems.  Includes a multilib for
-     the 'v10' core used in 'ETRAX 100 LX'.
-'cris-axis-linux-gnu'
-     A GNU/Linux port for the CRIS architecture, currently targeting
-     'ETRAX 100 LX' by default.
-
-   Pre-packaged tools can be obtained from
-<ftp://ftp.axis.com/pub/axis/tools/cris/compiler-kit/>.  More
-information about this platform is available at
-<http://developer.axis.com/>.
+   Use 'configure --target=cris-elf' to configure GCC for building a
+cross-compiler for CRIS.
 
 DOS
 ===
@@ -4898,80 +4888,80 @@ Ref: avr141633
 Ref: bfin142214
 Ref: cr16142477
 Ref: cris142893
-Ref: dos143591
-Ref: epiphany-x-elf143914
-Ref: x-x-freebsd144019
-Ref: ft32-x-elf145667
-Ref: h8300-hms145765
-Ref: hppa-hp-hpux146117
-Ref: hppa-hp-hpux10148489
-Ref: hppa-hp-hpux11148902
-Ref: x-x-linux-gnu154304
-Ref: ix86-x-linux154627
-Ref: ix86-x-solaris2154940
-Ref: ia64-x-linux156016
-Ref: ia64-x-hpux156263
-Ref: x-ibm-aix156818
-Ref: TransferAixShobj160480
-Ref: iq2000-x-elf164290
-Ref: lm32-x-elf164430
-Ref: lm32-x-uclinux164534
-Ref: loongarch164662
-Ref: m32c-x-elf165356
-Ref: m32r-x-elf165458
-Ref: m68k-x-x165560
-Ref: m68k-x-uclinux166598
-Ref: microblaze-x-elf166843
-Ref: mips-x-x166962
-Ref: moxie-x-elf168872
-Ref: msp430-x-elf168919
-Ref: nds32le-x-elf169476
-Ref: nds32be-x-elf169548
-Ref: nvptx-x-none169617
-Ref: or1k-x-elf170180
-Ref: or1k-x-linux170311
-Ref: powerpc-x-x170392
-Ref: powerpc-x-darwin170583
-Ref: powerpc-x-elf171078
-Ref: powerpc-x-linux-gnu171163
-Ref: powerpc-x-netbsd171258
-Ref: powerpc-x-eabisim171346
-Ref: powerpc-x-eabi171472
-Ref: powerpcle-x-elf171548
-Ref: powerpcle-x-eabisim171640
-Ref: powerpcle-x-eabi171773
-Ref: rl78-x-elf171856
-Ref: riscv32-x-elf171962
-Ref: riscv32-x-linux172151
-Ref: riscv64-x-elf172308
-Ref: riscv64-x-linux172497
-Ref: rx-x-elf172654
-Ref: s390-x-linux172700
-Ref: s390x-x-linux172772
-Ref: s390x-ibm-tpf172859
-Ref: x-x-solaris2172990
-Ref: sparc-x-x176097
-Ref: sparc-sun-solaris2176599
-Ref: sparc-x-linux177742
-Ref: sparc64-x-solaris2177773
-Ref: sparcv9-x-solaris2178491
-Ref: c6x-x-x178578
-Ref: tilegx-*-linux178670
-Ref: tilegxbe-*-linux178812
-Ref: tilepro-*-linux178955
-Ref: visium-x-elf179076
-Ref: x-x-vxworks179184
-Ref: x86-64-x-x180707
-Ref: x86-64-x-solaris2181035
-Ref: xtensa-x-elf181685
-Ref: xtensa-x-linux182356
-Ref: windows182697
-Ref: x-x-cygwin184493
-Ref: x-x-mingw32185046
-Ref: older185428
-Ref: elf187545
-Node: GNU Free Documentation License187803
-Node: Concept Index212938
+Ref: dos143219
+Ref: epiphany-x-elf143544
+Ref: x-x-freebsd143649
+Ref: ft32-x-elf145297
+Ref: h8300-hms145395
+Ref: hppa-hp-hpux145747
+Ref: hppa-hp-hpux10148119
+Ref: hppa-hp-hpux11148532
+Ref: x-x-linux-gnu153934
+Ref: ix86-x-linux154257
+Ref: ix86-x-solaris2154570
+Ref: ia64-x-linux155646
+Ref: ia64-x-hpux155893
+Ref: x-ibm-aix156448
+Ref: TransferAixShobj160110
+Ref: iq2000-x-elf163920
+Ref: lm32-x-elf164060
+Ref: lm32-x-uclinux164164
+Ref: loongarch164292
+Ref: m32c-x-elf164986
+Ref: m32r-x-elf165088
+Ref: m68k-x-x165190
+Ref: m68k-x-uclinux166228
+Ref: microblaze-x-elf166473
+Ref: mips-x-x166592
+Ref: moxie-x-elf168502
+Ref: msp430-x-elf168549
+Ref: nds32le-x-elf169106
+Ref: nds32be-x-elf169178
+Ref: nvptx-x-none169247
+Ref: or1k-x-elf169810
+Ref: or1k-x-linux169941
+Ref: powerpc-x-x170022
+Ref: powerpc-x-darwin170213
+Ref: powerpc-x-elf170708
+Ref: powerpc-x-linux-gnu170793
+Ref: powerpc-x-netbsd170888
+Ref: powerpc-x-eabisim170976
+Ref: powerpc-x-eabi171102
+Ref: powerpcle-x-elf171178
+Ref: powerpcle-x-eabisim171270
+Ref: powerpcle-x-eabi171403
+Ref: rl78-x-elf171486
+Ref: riscv32-x-elf171592
+Ref: riscv32-x-linux171781
+Ref: riscv64-x-elf171938
+Ref: riscv64-x-linux172127
+Ref: rx-x-elf172284
+Ref: s390-x-linux172330
+Ref: s390x-x-linux172402
+Ref: s390x-ibm-tpf172489
+Ref: x-x-solaris2172620
+Ref: sparc-x-x175727
+Ref: sparc-sun-solaris2176229
+Ref: sparc-x-linux177372
+Ref: sparc64-x-solaris2177403
+Ref: sparcv9-x-solaris2178121
+Ref: c6x-x-x178208
+Ref: tilegx-*-linux178300
+Ref: tilegxbe-*-linux178442
+Ref: tilepro-*-linux178585
+Ref: visium-x-elf178706
+Ref: x-x-vxworks178814
+Ref: x86-64-x-x180337
+Ref: x86-64-x-solaris2180665
+Ref: xtensa-x-elf181315
+Ref: xtensa-x-linux181986
+Ref: windows182327
+Ref: x-x-cygwin184123
+Ref: x-x-mingw32184676
+Ref: older185058
+Ref: elf187175
+Node: GNU Free Documentation License187433
+Node: Concept Index212568
 
 End Tag Table
 

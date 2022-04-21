@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2022-04-17" "binutils-2.38.50" "GNU Development Tools"
+.TH LD 1 "2022-04-21" "binutils-2.38.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2464,6 +2464,33 @@ encountered in a different order.
 Warn if any global constructors are used.  This is only useful for a few
 object file formats.  For formats like \s-1COFF\s0 or \s-1ELF,\s0 the linker can not
 detect the use of global constructors.
+.IP "\fB\-\-warn\-execstack\fR" 4
+.IX Item "--warn-execstack"
+.PD 0
+.IP "\fB\-\-no\-warn\-execstack\fR" 4
+.IX Item "--no-warn-execstack"
+.PD
+On \s-1ELF\s0 platforms this option controls how the linker generates warning
+messages when it creates an output file with an executable stack.  By
+default the linker will not warn if the \fB\-z execstack\fR command
+line option has been used, but this behaviour can be overridden by the
+\&\fB\-\-warn\-execstack\fR option.
+.Sp
+On the other hand the linker will normally warn if the stack is made
+executable because one or more of the input files need an execuable
+stack and neither of the \fB\-z execstack\fR or \fB\-z
+noexecstack\fR comman line options have been specified.  This warning
+can be disabled via the \fB\-\-no\-warn\-execstack\fR option.
+.Sp
+Note: \s-1ELF\s0 format input files specify that they need an executable
+stack by having a \fI.note.GNU\-stack\fR section with the executable
+bit set in its section flags.  They can specify that they do not need
+an executable stack by having that section, but without the executable
+flag bit set.  If an input file does not have a \fI.note.GNU\-stack\fR
+section present then the default behaviour is target specific.  For
+some targets, then absence of such a section implies that an
+executable stack \fIis\fR required.  This is often a problem for hand
+crafted assembler files.
 .IP "\fB\-\-warn\-multiple\-gp\fR" 4
 .IX Item "--warn-multiple-gp"
 Warn if multiple global pointer values are required in the output file.
