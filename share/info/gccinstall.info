@@ -178,8 +178,8 @@ GNAT
 GDC
 
      In order to build GDC, the D compiler, you need a working GDC
-     compiler (GCC version 9.1 or later), as the D front end is written
-     in D.
+     compiler (GCC version 9.1 or later) and D runtime library,
+     'libphobos', as the D front end is written in D.
 
      Versions of GDC prior to 12 can be built with an ISO C++11
      compiler, which can then be installed and used to bootstrap newer
@@ -196,6 +196,10 @@ GDC
      GDC-specific extensions, or novel features of the D language, if
      too old a GDC version is installed and '--enable-languages=d' is
      used, the build will fail.
+
+     On some targets, 'libphobos' isn't enabled by default, but compiles
+     and works if '--enable-libphobos' is used.  Specifics are
+     documented for affected targets.
 
 A "working" POSIX compatible shell, or GNU bash
 
@@ -1871,17 +1875,6 @@ option.
      Until all of the libraries are converted to use IEEE 128-bit
      floating point, it is not recommended to use
      '--with-long-double-format=ieee'.
-
-     On little endian PowerPC Linux systems, if you explicitly set the
-     'long double' type, it will build multilibs to allow you to select
-     either 'long double' format, unless you disable multilibs with the
-     '--disable-multilib' option.  At present, 'long double' multilibs
-     are not built on big endian PowerPC Linux systems.  If you are
-     building multilibs, you will need to configure the compiler using
-     the '--with-system-zlib' option.
-
-     If you do not set the 'long double' type explicitly, no multilibs
-     will be generated.
 
 '--enable-fdpic'
      On SH Linux systems, generate ELF FDPIC code.
@@ -4031,6 +4024,12 @@ binutils.  'libstdc++' symbol versioning will be disabled if no
 appropriate version is found.  Solaris 'c++filt' from the Solaris Studio
 compilers does _not_ work.
 
+   In order to build the GNU D compiler, GDC, a working 'libphobos' is
+needed.  That library wasn't built by default in GCC 9-11 on SPARC, or
+on x86 when the Solaris assembler is used, but can be enabled by
+configuring with '--enable-libphobos'.  Also, GDC 9.4.0 is required on
+x86, while GDC 9.3.0 is known to work on SPARC.
+
    The versions of the GNU Multiple Precision Library (GMP), the MPFR
 library and the MPC library bundled with Solaris 11.3 and later are
 usually recent enough to match GCC's requirements.  There are two
@@ -4834,7 +4833,7 @@ Concept Index
 * Menu:
 
 * Binaries:                              Binaries.           (line    6)
-* build_configargs:                      Configuration.      (line 1828)
+* build_configargs:                      Configuration.      (line 1817)
 * Configuration:                         Configuration.      (line    6)
 * Downloading GCC:                       Downloading the source.
                                                              (line    6)
@@ -4843,7 +4842,7 @@ Concept Index
 * FDL, GNU Free Documentation License:   GNU Free Documentation License.
                                                              (line    6)
 * Host specific installation:            Specific.           (line    6)
-* host_configargs:                       Configuration.      (line 1832)
+* host_configargs:                       Configuration.      (line 1821)
 * Installing GCC: Binaries:              Binaries.           (line    6)
 * Installing GCC: Building:              Building.           (line    6)
 * Installing GCC: Configuration:         Configuration.      (line    6)
@@ -4853,7 +4852,7 @@ Concept Index
 * Specific installation notes:           Specific.           (line    6)
 * Target specific installation:          Specific.           (line    6)
 * Target specific installation notes:    Specific.           (line    6)
-* target_configargs:                     Configuration.      (line 1836)
+* target_configargs:                     Configuration.      (line 1825)
 * Testing:                               Testing.            (line    6)
 * Testsuite:                             Testing.            (line    6)
 
@@ -4865,103 +4864,103 @@ Node: Installing GCC2201
 Node: Prerequisites3837
 Ref: GNAT-prerequisite5680
 Ref: GDC-prerequisite7077
-Node: Downloading the source16429
-Node: Configuration18100
-Ref: with-gnu-as36400
-Ref: with-as37295
-Ref: with-gnu-ld38704
-Ref: WithAixSoname64415
-Ref: AixLdCommand65076
-Node: Building107241
-Node: Testing123448
-Node: Final install131279
-Node: Binaries136580
-Node: Specific137687
-Ref: aarch64-x-x138221
-Ref: alpha-x-x140241
-Ref: amd64-x-solaris2140455
-Ref: amdgcn-x-amdhsa140537
-Ref: arc-x-elf32141063
-Ref: arc-linux-uclibc141239
-Ref: arm-x-eabi141380
-Ref: avr141633
-Ref: bfin142214
-Ref: cr16142477
-Ref: cris142893
-Ref: dos143219
-Ref: epiphany-x-elf143544
-Ref: x-x-freebsd143649
-Ref: ft32-x-elf145297
-Ref: h8300-hms145395
-Ref: hppa-hp-hpux145747
-Ref: hppa-hp-hpux10148119
-Ref: hppa-hp-hpux11148532
-Ref: x-x-linux-gnu153934
-Ref: ix86-x-linux154257
-Ref: ix86-x-solaris2154570
-Ref: ia64-x-linux155646
-Ref: ia64-x-hpux155893
-Ref: x-ibm-aix156448
-Ref: TransferAixShobj160110
-Ref: iq2000-x-elf163920
-Ref: lm32-x-elf164060
-Ref: lm32-x-uclinux164164
-Ref: loongarch164292
-Ref: m32c-x-elf164986
-Ref: m32r-x-elf165088
-Ref: m68k-x-x165190
-Ref: m68k-x-uclinux166228
-Ref: microblaze-x-elf166473
-Ref: mips-x-x166592
-Ref: moxie-x-elf168502
-Ref: msp430-x-elf168549
-Ref: nds32le-x-elf169106
-Ref: nds32be-x-elf169178
-Ref: nvptx-x-none169247
-Ref: or1k-x-elf169810
-Ref: or1k-x-linux169941
-Ref: powerpc-x-x170022
-Ref: powerpc-x-darwin170213
-Ref: powerpc-x-elf170708
-Ref: powerpc-x-linux-gnu170793
-Ref: powerpc-x-netbsd170888
-Ref: powerpc-x-eabisim170976
-Ref: powerpc-x-eabi171102
-Ref: powerpcle-x-elf171178
-Ref: powerpcle-x-eabisim171270
-Ref: powerpcle-x-eabi171403
-Ref: rl78-x-elf171486
-Ref: riscv32-x-elf171592
-Ref: riscv32-x-linux171781
-Ref: riscv64-x-elf171938
-Ref: riscv64-x-linux172127
-Ref: rx-x-elf172284
-Ref: s390-x-linux172330
-Ref: s390x-x-linux172402
-Ref: s390x-ibm-tpf172489
-Ref: x-x-solaris2172620
-Ref: sparc-x-x175727
-Ref: sparc-sun-solaris2176229
-Ref: sparc-x-linux177372
-Ref: sparc64-x-solaris2177403
-Ref: sparcv9-x-solaris2178121
-Ref: c6x-x-x178208
-Ref: tilegx-*-linux178300
-Ref: tilegxbe-*-linux178442
-Ref: tilepro-*-linux178585
-Ref: visium-x-elf178706
-Ref: x-x-vxworks178814
-Ref: x86-64-x-x180337
-Ref: x86-64-x-solaris2180665
-Ref: xtensa-x-elf181315
-Ref: xtensa-x-linux181986
-Ref: windows182327
-Ref: x-x-cygwin184123
-Ref: x-x-mingw32184676
-Ref: older185058
-Ref: elf187175
-Node: GNU Free Documentation License187433
-Node: Concept Index212568
+Node: Downloading the source16639
+Node: Configuration18310
+Ref: with-gnu-as36610
+Ref: with-as37505
+Ref: with-gnu-ld38914
+Ref: WithAixSoname64625
+Ref: AixLdCommand65286
+Node: Building106891
+Node: Testing123098
+Node: Final install130929
+Node: Binaries136230
+Node: Specific137337
+Ref: aarch64-x-x137871
+Ref: alpha-x-x139891
+Ref: amd64-x-solaris2140105
+Ref: amdgcn-x-amdhsa140187
+Ref: arc-x-elf32140713
+Ref: arc-linux-uclibc140889
+Ref: arm-x-eabi141030
+Ref: avr141283
+Ref: bfin141864
+Ref: cr16142127
+Ref: cris142543
+Ref: dos142869
+Ref: epiphany-x-elf143194
+Ref: x-x-freebsd143299
+Ref: ft32-x-elf144947
+Ref: h8300-hms145045
+Ref: hppa-hp-hpux145397
+Ref: hppa-hp-hpux10147769
+Ref: hppa-hp-hpux11148182
+Ref: x-x-linux-gnu153584
+Ref: ix86-x-linux153907
+Ref: ix86-x-solaris2154220
+Ref: ia64-x-linux155296
+Ref: ia64-x-hpux155543
+Ref: x-ibm-aix156098
+Ref: TransferAixShobj159760
+Ref: iq2000-x-elf163570
+Ref: lm32-x-elf163710
+Ref: lm32-x-uclinux163814
+Ref: loongarch163942
+Ref: m32c-x-elf164636
+Ref: m32r-x-elf164738
+Ref: m68k-x-x164840
+Ref: m68k-x-uclinux165878
+Ref: microblaze-x-elf166123
+Ref: mips-x-x166242
+Ref: moxie-x-elf168152
+Ref: msp430-x-elf168199
+Ref: nds32le-x-elf168756
+Ref: nds32be-x-elf168828
+Ref: nvptx-x-none168897
+Ref: or1k-x-elf169460
+Ref: or1k-x-linux169591
+Ref: powerpc-x-x169672
+Ref: powerpc-x-darwin169863
+Ref: powerpc-x-elf170358
+Ref: powerpc-x-linux-gnu170443
+Ref: powerpc-x-netbsd170538
+Ref: powerpc-x-eabisim170626
+Ref: powerpc-x-eabi170752
+Ref: powerpcle-x-elf170828
+Ref: powerpcle-x-eabisim170920
+Ref: powerpcle-x-eabi171053
+Ref: rl78-x-elf171136
+Ref: riscv32-x-elf171242
+Ref: riscv32-x-linux171431
+Ref: riscv64-x-elf171588
+Ref: riscv64-x-linux171777
+Ref: rx-x-elf171934
+Ref: s390-x-linux171980
+Ref: s390x-x-linux172052
+Ref: s390x-ibm-tpf172139
+Ref: x-x-solaris2172270
+Ref: sparc-x-x175704
+Ref: sparc-sun-solaris2176206
+Ref: sparc-x-linux177349
+Ref: sparc64-x-solaris2177380
+Ref: sparcv9-x-solaris2178098
+Ref: c6x-x-x178185
+Ref: tilegx-*-linux178277
+Ref: tilegxbe-*-linux178419
+Ref: tilepro-*-linux178562
+Ref: visium-x-elf178683
+Ref: x-x-vxworks178791
+Ref: x86-64-x-x180314
+Ref: x86-64-x-solaris2180642
+Ref: xtensa-x-elf181292
+Ref: xtensa-x-linux181963
+Ref: windows182304
+Ref: x-x-cygwin184100
+Ref: x-x-mingw32184653
+Ref: older185035
+Ref: elf187152
+Node: GNU Free Documentation License187410
+Node: Concept Index212545
 
 End Tag Table
 
