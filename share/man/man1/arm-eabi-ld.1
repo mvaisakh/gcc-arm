@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2022-05-01" "binutils-2.38.50" "GNU Development Tools"
+.TH LD 1 "2022-05-05" "binutils-2.38.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2508,6 +2508,22 @@ option causes a warning to be issued whenever this case occurs.
 .IX Item "--warn-once"
 Only warn once for each undefined symbol, rather than once per module
 which refers to it.
+.IP "\fB\-\-warn\-rwx\-segments\fR" 4
+.IX Item "--warn-rwx-segments"
+.PD 0
+.IP "\fB\-\-no\-warn\-rwx\-segments\fR" 4
+.IX Item "--no-warn-rwx-segments"
+.PD
+Warn if the linker creates a loadable, non-zero sized segment that has
+all three of the read, write and execute permission flags set.  Such a
+segment represents a potential security vulnerability.  In addition
+warnings will be generated if a thread local storage segment is
+created with the execute permission flag set, regardless of whether or
+not it has the read and/or write flags set.
+.Sp
+These warnings are enabled by default.  They can be disabled via the
+\&\fB\-\-no\-warn\-rwx\-segments\fR option and re-enabled via the
+\&\fB\-\-warn\-rwx\-segments\fR option.
 .IP "\fB\-\-warn\-section\-align\fR" 4
 .IX Item "--warn-section-align"
 Warn if the address of an output section is changed because of
