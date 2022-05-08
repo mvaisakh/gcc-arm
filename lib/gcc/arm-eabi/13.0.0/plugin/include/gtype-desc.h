@@ -125,10 +125,6 @@ extern void gt_ggc_mx_object_block (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_rtx_va_gc_ (X);\
   } while (0)
 extern void gt_ggc_mx_vec_rtx_va_gc_ (void *);
-#define gt_ggc_m_10real_value(X) do { \
-  if ((intptr_t)(X) != 0) gt_ggc_mx_real_value (X);\
-  } while (0)
-extern void gt_ggc_mx_real_value (void *);
 #define gt_ggc_m_11fixed_value(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_fixed_value (X);\
   } while (0)
@@ -1570,10 +1566,6 @@ extern void gt_pch_nx_object_block (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_rtx_va_gc_ (X);\
   } while (0)
 extern void gt_pch_nx_vec_rtx_va_gc_ (void *);
-#define gt_pch_n_10real_value(X) do { \
-  if ((intptr_t)(X) != 0) gt_pch_nx_real_value (X);\
-  } while (0)
-extern void gt_pch_nx_real_value (void *);
 #define gt_pch_n_11fixed_value(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_fixed_value (X);\
   } while (0)
@@ -3050,8 +3042,6 @@ extern void gt_pch_p_9reg_attrs
 extern void gt_pch_p_12object_block
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_14vec_rtx_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_10real_value
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11fixed_value
     (void *, void *, gt_pointer_operator, void *);

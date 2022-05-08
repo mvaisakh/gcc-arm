@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-05-05" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-05-08" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -4649,7 +4649,7 @@ The default \fB\s-1GCC_COLORS\s0\fR is
 \&        error=01;31:warning=01;35:note=01;36:range1=32:range2=34:locus=01:\e
 \&        quote=01:path=01;36:fixit\-insert=32:fixit\-delete=31:\e
 \&        diff\-filename=01:diff\-hunk=32:diff\-delete=31:diff\-insert=32:\e
-\&        type\-diff=01;32
+\&        type\-diff=01;32:fnname=01;32:targs=35
 .Ve
 .Sp
 where \fB01;31\fR is bold red, \fB01;35\fR is bold magenta,
@@ -4693,6 +4693,14 @@ individual events and lines indicating interprocedural calls and returns.
 .el .IP "\f(CWquote=\fR" 4
 .IX Item "quote="
 \&\s-1SGR\s0 substring for information printed within quotes.
+.ie n .IP """fnname=""" 4
+.el .IP "\f(CWfnname=\fR" 4
+.IX Item "fnname="
+\&\s-1SGR\s0 substring for names of \*(C+ functions.
+.ie n .IP """targs=""" 4
+.el .IP "\f(CWtargs=\fR" 4
+.IX Item "targs="
+\&\s-1SGR\s0 substring for \*(C+ function template parameter bindings.
 .ie n .IP """fixit\-insert=""" 4
 .el .IP "\f(CWfixit\-insert=\fR" 4
 .IX Item "fixit-insert="
