@@ -14,7 +14,7 @@ library_names='liblto_plugin.so liblto_plugin.so liblto_plugin.so'
 old_library=''
 
 # Linker flags that can not go in dependency_libs.
-inherited_linker_flags=''
+inherited_linker_flags=' -pthread'
 
 # Libraries that this one depends upon.
 dependency_libs=''
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/runner/work/gcc-build/gcc-build/../gcc-arm/libexec/gcc/arm-eabi/13.0.0'
+libdir='/__w/gcc-build/gcc-build/../gcc-arm/libexec/gcc/arm-eabi/13.0.0'

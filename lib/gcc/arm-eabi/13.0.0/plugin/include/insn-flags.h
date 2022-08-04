@@ -5033,6 +5033,30 @@
    && flag_reciprocal_math)
 #define HAVE_divv4sf3 (TARGET_NEON && !optimize_size \
    && flag_reciprocal_math)
+#define HAVE_ceilv2sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_btruncv2sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_floorv2sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_rintv2sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_roundv2sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_roundevenv2sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_ceilv4sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_btruncv4sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_floorv4sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_rintv4sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_roundv4sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_roundevenv4sf2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lceilv2sfv2si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lfloorv2sfv2si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lroundv2sfv2si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lceiluv2sfv2si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lflooruv2sfv2si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lrounduv2sfv2si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lceilv4sfv4si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lfloorv4sfv4si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lroundv4sfv4si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lceiluv4sfv4si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lflooruv4sfv4si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
+#define HAVE_lrounduv4sfv4si2 (TARGET_NEON && TARGET_VFP5 && flag_unsafe_math_optimizations)
 #define HAVE_neon_vabsv8hf (TARGET_NEON_FP16INST)
 #define HAVE_neon_vnegv8hf (TARGET_NEON_FP16INST)
 #define HAVE_neon_vabsv4hf (TARGET_NEON_FP16INST)
@@ -5298,8 +5322,8 @@
 #define HAVE_neon_udotv16qi (TARGET_DOTPROD)
 #define HAVE_usdot_prodv8qi (TARGET_I8MM)
 #define HAVE_usdot_prodv16qi (TARGET_I8MM)
-#define HAVE_neon_copysignfv2sf (TARGET_NEON)
-#define HAVE_neon_copysignfv4sf (TARGET_NEON)
+#define HAVE_copysignv2sf3 (TARGET_NEON)
+#define HAVE_copysignv4sf3 (TARGET_NEON)
 #define HAVE_neon_vcntv8qi (TARGET_NEON)
 #define HAVE_neon_vcntv16qi (TARGET_NEON)
 #define HAVE_neon_vmvnv8qi (TARGET_NEON)
@@ -10622,6 +10646,30 @@ extern rtx        gen_movv4bf                                        (rtx, rtx);
 extern rtx        gen_movv8bf                                        (rtx, rtx);
 extern rtx        gen_divv2sf3                                       (rtx, rtx, rtx);
 extern rtx        gen_divv4sf3                                       (rtx, rtx, rtx);
+extern rtx        gen_ceilv2sf2                                      (rtx, rtx);
+extern rtx        gen_btruncv2sf2                                    (rtx, rtx);
+extern rtx        gen_floorv2sf2                                     (rtx, rtx);
+extern rtx        gen_rintv2sf2                                      (rtx, rtx);
+extern rtx        gen_roundv2sf2                                     (rtx, rtx);
+extern rtx        gen_roundevenv2sf2                                 (rtx, rtx);
+extern rtx        gen_ceilv4sf2                                      (rtx, rtx);
+extern rtx        gen_btruncv4sf2                                    (rtx, rtx);
+extern rtx        gen_floorv4sf2                                     (rtx, rtx);
+extern rtx        gen_rintv4sf2                                      (rtx, rtx);
+extern rtx        gen_roundv4sf2                                     (rtx, rtx);
+extern rtx        gen_roundevenv4sf2                                 (rtx, rtx);
+extern rtx        gen_lceilv2sfv2si2                                 (rtx, rtx);
+extern rtx        gen_lfloorv2sfv2si2                                (rtx, rtx);
+extern rtx        gen_lroundv2sfv2si2                                (rtx, rtx);
+extern rtx        gen_lceiluv2sfv2si2                                (rtx, rtx);
+extern rtx        gen_lflooruv2sfv2si2                               (rtx, rtx);
+extern rtx        gen_lrounduv2sfv2si2                               (rtx, rtx);
+extern rtx        gen_lceilv4sfv4si2                                 (rtx, rtx);
+extern rtx        gen_lfloorv4sfv4si2                                (rtx, rtx);
+extern rtx        gen_lroundv4sfv4si2                                (rtx, rtx);
+extern rtx        gen_lceiluv4sfv4si2                                (rtx, rtx);
+extern rtx        gen_lflooruv4sfv4si2                               (rtx, rtx);
+extern rtx        gen_lrounduv4sfv4si2                               (rtx, rtx);
 extern rtx        gen_neon_vabsv8hf                                  (rtx, rtx);
 extern rtx        gen_neon_vnegv8hf                                  (rtx, rtx);
 extern rtx        gen_neon_vabsv4hf                                  (rtx, rtx);
@@ -10867,8 +10915,8 @@ extern rtx        gen_neon_sdotv16qi                                 (rtx, rtx, 
 extern rtx        gen_neon_udotv16qi                                 (rtx, rtx, rtx, rtx);
 extern rtx        gen_usdot_prodv8qi                                 (rtx, rtx, rtx, rtx);
 extern rtx        gen_usdot_prodv16qi                                (rtx, rtx, rtx, rtx);
-extern rtx        gen_neon_copysignfv2sf                             (rtx, rtx, rtx);
-extern rtx        gen_neon_copysignfv4sf                             (rtx, rtx, rtx);
+extern rtx        gen_copysignv2sf3                                  (rtx, rtx, rtx);
+extern rtx        gen_copysignv4sf3                                  (rtx, rtx, rtx);
 extern rtx        gen_neon_vcntv8qi                                  (rtx, rtx);
 extern rtx        gen_neon_vcntv16qi                                 (rtx, rtx);
 extern rtx        gen_neon_vmvnv8qi                                  (rtx, rtx);

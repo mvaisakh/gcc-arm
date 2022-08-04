@@ -753,6 +753,10 @@ extern int vsnprintf (char *, size_t, const char *, va_list);
 #endif
 #endif
 
+#ifdef INCLUDE_PTHREAD_H
+#include <pthread.h>
+#endif
+
 #ifdef INCLUDE_ISL
 #ifdef HAVE_isl
 #include <isl/options.h>
@@ -774,8 +778,10 @@ extern int vsnprintf (char *, size_t, const char *, va_list);
 #endif
 #endif
 
-/* Redefine abort to report an internal error w/o coredump, and
-   reporting the location of the error in the source file.  */
+/* Redefine 'abort' to report an internal error w/o coredump, and
+   reporting the location of the error in the source file.
+   Instead of directly calling 'abort' or 'fancy_abort', GCC code
+   should normally call 'internal_error' with a specific message.  */
 extern void fancy_abort (const char *, int, const char *)
 					 ATTRIBUTE_NORETURN ATTRIBUTE_COLD;
 #define abort() fancy_abort (__FILE__, __LINE__, __FUNCTION__)

@@ -1,4 +1,4 @@
-This is ctf-spec.info, produced by makeinfo version 6.7 from
+This is ctf-spec.info, produced by makeinfo version 6.8 from
 ctf-spec.texi.
 
 Copyright (C) 2021-2022 Free Software Foundation, Inc.
@@ -15,7 +15,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: ctf-spec.info,  Node: Top,  Up: (dir)
+File: ctf-spec.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 The CTF file format
 *******************
@@ -32,7 +32,7 @@ consume at runtime.
 * Index::
 
 
-File: ctf-spec.info,  Node: Overview,  Next: CTF archive,  Up: Top
+File: ctf-spec.info,  Node: Overview,  Next: CTF archive,  Prev: Top,  Up: Top
 
 Overview
 ********
@@ -408,7 +408,7 @@ Offset   Name                            Description
                                          
 0x28     'uint32_t cth_typeoff'          The offset of the type section, the core of CTF,
                                          which describes types using variable-length array
-                                         elements. *Note The type section::.
+                                         elements.  *Note The type section::.
                                          
 0x2c     'uint32_t cth_stroff'           The offset of the string section.
                                          *Note The string section::.
@@ -494,7 +494,7 @@ Offset               Name                     Description
                                               variable-size refer to other types, so 'ctt_size'
                                               and 'ctt_type' overlap.  All type kinds that use
                                               'ctt_type' are described by 'ctf_stype_t', not
-                                              'ctf_type_t'. *Note Type indexes and type IDs::.
+                                              'ctf_type_t'.  *Note Type indexes and type IDs::.
                                               
 0x0c ('ctf_type_t'   'uint32_t ctt_lsizehi'   The high 32 bits of the size of a very large type.
 only)                                         The 'CTF_TYPE_LSIZE' macro can be used to get a
@@ -669,25 +669,25 @@ Kind   Macro              Purpose
                           that you can have _multiple_, distinct types of kind
                           'CTF_K_UNKNOWN'.
                           
-1      'CTF_K_INTEGER'    An integer type. *Note Integer types::.
+1      'CTF_K_INTEGER'    An integer type.  *Note Integer types::.
                           
-2      'CTF_K_FLOAT'      A floating-point type. *Note Floating-point types::.
+2      'CTF_K_FLOAT'      A floating-point type.  *Note Floating-point types::.
                           
-3      'CTF_K_POINTER'    A pointer. *Note Pointers typedefs and cvr-quals::.
+3      'CTF_K_POINTER'    A pointer.  *Note Pointers typedefs and cvr-quals::.
                           
-4      'CTF_K_ARRAY'      An array. *Note Arrays::.
+4      'CTF_K_ARRAY'      An array.  *Note Arrays::.
                           
-5      'CTF_K_FUNCTION'   A function pointer. *Note Function pointers::.
+5      'CTF_K_FUNCTION'   A function pointer.  *Note Function pointers::.
                           
-6      'CTF_K_STRUCT'     A structure. *Note Structs and unions::.
+6      'CTF_K_STRUCT'     A structure.  *Note Structs and unions::.
                           
-7      'CTF_K_UNION'      A union. *Note Structs and unions::.
+7      'CTF_K_UNION'      A union.  *Note Structs and unions::.
                           
-8      'CTF_K_ENUM'       An enumerated type. *Note Enums::.
+8      'CTF_K_ENUM'       An enumerated type.  *Note Enums::.
                           
-9      'CTF_K_FORWARD'    A forward. *Note Forward declarations::.
+9      'CTF_K_FORWARD'    A forward.  *Note Forward declarations::.
                           
-10     'CTF_K_TYPEDEF'    A typedef. *Note Pointers typedefs and cvr-quals::.
+10     'CTF_K_TYPEDEF'    A typedef.  *Note Pointers typedefs and cvr-quals::.
                           
 11     'CTF_K_VOLATILE'   A volatile-qualified type.
                           *Note Pointers typedefs and cvr-quals::.
@@ -699,7 +699,7 @@ Kind   Macro              Purpose
                           *Note Pointers typedefs and cvr-quals::.
                           
 14     'CTF_K_SLICE'      A slice, a change of the bit-width or offset of some other
-                          type. *Note Slices::.
+                          type.  *Note Slices::.
 
    Now we cover all type kinds in turn.  Some are more complicated than
 others.
@@ -1429,7 +1429,7 @@ Index
 * CTF_INT_DATA:                          Integer types.        (line 34)
 * CTF_INT_DATA <1>:                      Floating-point types. (line 36)
 * CTF_INT_ENCODING:                      Integer types.        (line 20)
-* CTF_INT_OFFSET:                        Integer types.        (line 26)
+* CTF_INT_OFFSET:                        Integer types.        (line 25)
 * CTF_INT_SIGNED:                        Integer types.        (line 49)
 * CTF_K_CONST:                           Pointers typedefs and cvr-quals.
                                                                (line  6)
@@ -1720,32 +1720,32 @@ Index
 
 Tag Table:
 Node: Top548
-Node: Overview861
-Node: CTF archive4136
-Node: CTF dictionaries8762
-Node: CTF Preamble9179
-Node: CTF file-wide flags11789
-Node: CTF header13247
-Node: The type section19170
-Node: The info word23834
-Node: Type indexes and type IDs26364
-Node: Type kinds29732
-Node: Integer types33014
-Node: Floating-point types36562
-Node: Slices40587
-Node: Pointers typedefs and cvr-quals44091
-Node: Arrays45262
-Node: Function pointers46993
-Node: Enums47658
-Node: Structs and unions48940
-Node: Forward declarations52797
-Node: The symtypetab sections54376
-Node: The variable section57454
-Node: The label section58592
-Node: The string section59567
-Node: Data models60829
-Node: Limits of CTF61498
-Node: Index62543
+Node: Overview878
+Node: CTF archive4165
+Node: CTF dictionaries8791
+Node: CTF Preamble9208
+Node: CTF file-wide flags11818
+Node: CTF header13276
+Node: The type section19200
+Node: The info word23865
+Node: Type indexes and type IDs26395
+Node: Type kinds29763
+Node: Integer types33056
+Node: Floating-point types36604
+Node: Slices40629
+Node: Pointers typedefs and cvr-quals44133
+Node: Arrays45304
+Node: Function pointers47035
+Node: Enums47700
+Node: Structs and unions48982
+Node: Forward declarations52839
+Node: The symtypetab sections54418
+Node: The variable section57496
+Node: The label section58634
+Node: The string section59609
+Node: Data models60871
+Node: Limits of CTF61540
+Node: Index62585
 
 End Tag Table
 

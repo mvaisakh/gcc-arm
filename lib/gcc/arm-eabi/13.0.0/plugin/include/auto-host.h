@@ -405,13 +405,19 @@
 #endif
 
 
+/* Define if your assembler supports eh_frame pcrel encoding. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_AS_EH_FRAME_PCREL_ENCODING_SUPPORT */
+#endif
+
+
 /* Define if your assembler supports the R_PPC64_ENTRY relocation. */
 #ifndef USED_FOR_TARGET
 /* #undef HAVE_AS_ENTRY_MARKERS */
 #endif
 
 
-/* Define if your assembler supports explicit relocations. */
+/* Define if your assembler supports explicit relocation. */
 #ifndef USED_FOR_TARGET
 /* #undef HAVE_AS_EXPLICIT_RELOCS */
 #endif
@@ -1060,7 +1066,7 @@
 /* Define to 1 if we found a declaration for 'mallinfo2', otherwise define to
    0. */
 #ifndef USED_FOR_TARGET
-#define HAVE_DECL_MALLINFO2 0
+#define HAVE_DECL_MALLINFO2 1
 #endif
 
 
@@ -1458,72 +1464,6 @@
 #endif
 
 
-/* Define if your assembler has fixed global_load functions. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_ASM_GLOBAL_LOAD_FIXED */
-#endif
-
-
-/* Define if your assembler expects amdgcn_target gfx908+xnack syntax. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_ASM_V3_SYNTAX */
-#endif
-
-
-/* Define if your assembler expects amdgcn_target gfx908:xnack+ syntax. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_ASM_V4_SYNTAX */
-#endif
-
-
-/* Define if your assembler allows -mattr=+sramecc for fiji. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_SRAM_ECC_FIJI */
-#endif
-
-
-/* Define if your assembler allows -mattr=+sramecc for gfx900. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_SRAM_ECC_GFX900 */
-#endif
-
-
-/* Define if your assembler allows -mattr=+sramecc for gfx906. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_SRAM_ECC_GFX906 */
-#endif
-
-
-/* Define if your assembler allows -mattr=+sramecc for gfx908. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_SRAM_ECC_GFX908 */
-#endif
-
-
-/* Define if your assembler allows -mattr=+xnack for fiji. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_XNACK_FIJI */
-#endif
-
-
-/* Define if your assembler allows -mattr=+xnack for gfx900. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_XNACK_GFX900 */
-#endif
-
-
-/* Define if your assembler allows -mattr=+xnack for gfx906. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_XNACK_GFX906 */
-#endif
-
-
-/* Define if your assembler allows -mattr=+xnack for gfx908. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_GCN_XNACK_GFX908 */
-#endif
-
-
 /* Define to 1 if you have the `getchar_unlocked' function. */
 #ifndef USED_FOR_TARGET
 #define HAVE_GETCHAR_UNLOCKED 1
@@ -1845,7 +1785,7 @@
 
 /* Define to 1 if you have the `mallinfo2' function. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_MALLINFO2 */
+#define HAVE_MALLINFO2 1
 #endif
 
 
@@ -2181,7 +2121,7 @@
 
 /* Define if you have a working <zstd.h> header file. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_ZSTD_H */
+#define HAVE_ZSTD_H 1
 #endif
 
 
@@ -2206,6 +2146,12 @@
 /* Define if O_CLOEXEC supported by fcntl. */
 #ifndef USED_FOR_TARGET
 #define HOST_HAS_O_CLOEXEC 1
+#endif
+
+
+/* Define which stat syscall is able to handle 64bit indodes. */
+#ifndef USED_FOR_TARGET
+/* #undef HOST_STAT_FOR_64BIT_INODES */
 #endif
 
 

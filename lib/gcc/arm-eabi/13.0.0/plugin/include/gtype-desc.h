@@ -161,10 +161,10 @@ extern void gt_ggc_mx_hash_map_tree_tree_decl_tree_traits_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_ptr_info_def (X);\
   } while (0)
 extern void gt_ggc_mx_ptr_info_def (void *);
-#define gt_ggc_m_14range_info_def(X) do { \
-  if ((intptr_t)(X) != 0) gt_ggc_mx_range_info_def (X);\
+#define gt_ggc_m_19irange_storage_slot(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_irange_storage_slot (X);\
   } while (0)
-extern void gt_ggc_mx_range_info_def (void *);
+extern void gt_ggc_mx_irange_storage_slot (void *);
 #define gt_ggc_m_10die_struct(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_die_struct (X);\
   } while (0)
@@ -173,6 +173,10 @@ extern void gt_ggc_mx_die_struct (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_constructor_elt_va_gc_ (X);\
   } while (0)
 extern void gt_ggc_mx_vec_constructor_elt_va_gc_ (void *);
+#define gt_ggc_m_19frange_storage_slot(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_frange_storage_slot (X);\
+  } while (0)
+extern void gt_ggc_mx_frange_storage_slot (void *);
 #define gt_ggc_m_15vec_tree_va_gc_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_tree_va_gc_ (X);\
   } while (0)
@@ -1321,6 +1325,10 @@ extern void gt_ggc_mx_hash_table_typename_hasher_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_mangled_decl_hash_ (X);\
   } while (0)
 extern void gt_ggc_mx_hash_table_mangled_decl_hash_ (void *);
+#define gt_ggc_m_43hash_map_unsigned_tree_priority_map_traits_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_map_unsigned_tree_priority_map_traits_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_map_unsigned_tree_priority_map_traits_ (void *);
 #define gt_ggc_m_27vec_pending_noexcept_va_gc_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_pending_noexcept_va_gc_ (X);\
   } while (0)
@@ -1369,6 +1377,10 @@ extern void gt_ggc_mx_pending_template (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_spec_hasher_ (X);\
   } while (0)
 extern void gt_ggc_mx_hash_table_spec_hasher_ (void *);
+#define gt_ggc_m_22hash_table_ctp_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_ctp_hasher_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_ctp_hasher_ (void *);
 #define gt_ggc_m_26hash_map_tree_tree_pair_p_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_map_tree_tree_pair_p_ (X);\
   } while (0)
@@ -1602,10 +1614,10 @@ extern void gt_pch_nx_hash_map_tree_tree_decl_tree_traits_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_ptr_info_def (X);\
   } while (0)
 extern void gt_pch_nx_ptr_info_def (void *);
-#define gt_pch_n_14range_info_def(X) do { \
-  if ((intptr_t)(X) != 0) gt_pch_nx_range_info_def (X);\
+#define gt_pch_n_19irange_storage_slot(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_irange_storage_slot (X);\
   } while (0)
-extern void gt_pch_nx_range_info_def (void *);
+extern void gt_pch_nx_irange_storage_slot (void *);
 #define gt_pch_n_10die_struct(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_die_struct (X);\
   } while (0)
@@ -1614,6 +1626,10 @@ extern void gt_pch_nx_die_struct (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_constructor_elt_va_gc_ (X);\
   } while (0)
 extern void gt_pch_nx_vec_constructor_elt_va_gc_ (void *);
+#define gt_pch_n_19frange_storage_slot(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_frange_storage_slot (X);\
+  } while (0)
+extern void gt_pch_nx_frange_storage_slot (void *);
 #define gt_pch_n_15vec_tree_va_gc_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_tree_va_gc_ (X);\
   } while (0)
@@ -2762,6 +2778,10 @@ extern void gt_pch_nx_hash_table_typename_hasher_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_mangled_decl_hash_ (X);\
   } while (0)
 extern void gt_pch_nx_hash_table_mangled_decl_hash_ (void *);
+#define gt_pch_n_43hash_map_unsigned_tree_priority_map_traits_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_map_unsigned_tree_priority_map_traits_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_map_unsigned_tree_priority_map_traits_ (void *);
 #define gt_pch_n_27vec_pending_noexcept_va_gc_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_pending_noexcept_va_gc_ (X);\
   } while (0)
@@ -2810,6 +2830,10 @@ extern void gt_pch_nx_pending_template (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_spec_hasher_ (X);\
   } while (0)
 extern void gt_pch_nx_hash_table_spec_hasher_ (void *);
+#define gt_pch_n_22hash_table_ctp_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_ctp_hasher_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_ctp_hasher_ (void *);
 #define gt_pch_n_26hash_map_tree_tree_pair_p_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_map_tree_tree_pair_p_ (X);\
   } while (0)
@@ -3061,11 +3085,13 @@ extern void gt_pch_p_36hash_map_tree_tree_decl_tree_traits_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12ptr_info_def
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_14range_info_def
+extern void gt_pch_p_19irange_storage_slot
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10die_struct
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_constructor_elt_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_19frange_storage_slot
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15vec_tree_va_gc_
     (void *, void *, gt_pointer_operator, void *);
@@ -3671,6 +3697,8 @@ extern void gt_pch_p_27hash_table_typename_hasher_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_29hash_table_mangled_decl_hash_
     (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_43hash_map_unsigned_tree_priority_map_traits_
+    (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_pending_noexcept_va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_19vec_tree_int_va_gc_
@@ -3694,6 +3722,8 @@ extern void gt_pch_p_23vec_macro_export_va_gc_
 extern void gt_pch_p_16pending_template
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23hash_table_spec_hasher_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_22hash_table_ctp_hasher_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26hash_map_tree_tree_pair_p_
     (void *, void *, gt_pointer_operator, void *);
