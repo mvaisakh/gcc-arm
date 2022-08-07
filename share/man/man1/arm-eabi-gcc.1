@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-08-04" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-08-07" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -476,6 +476,7 @@ in the following sections.
 \&\-Wno\-analyzer\-fd\-use\-without\-check 
 \&\-Wno\-analyzer\-file\-leak 
 \&\-Wno\-analyzer\-free\-of\-non\-heap 
+\&\-Wno\-analyzer\-jump\-through\-null 
 \&\-Wno\-analyzer\-malloc\-leak 
 \&\-Wno\-analyzer\-mismatching\-deallocation 
 \&\-Wno\-analyzer\-null\-argument 
@@ -9102,6 +9103,7 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-fd\-use\-without\-check 
 \&\-Wanalyzer\-file\-leak 
 \&\-Wanalyzer\-free\-of\-non\-heap 
+\&\-Wanalyzer\-jump\-through\-null 
 \&\-Wanalyzer\-malloc\-leak 
 \&\-Wanalyzer\-mismatching\-deallocation 
 \&\-Wanalyzer\-null\-argument 
@@ -9255,6 +9257,14 @@ This diagnostic warns for paths through the code in which \f(CW\*(C`free\*(C'\fR
 is called on a non-heap pointer (e.g. an on-stack buffer, or a global).
 .Sp
 See  \s-1CWE\-590:\s0 Free of Memory not on the Heap (\f(CW\*(C`https://cwe.mitre.org/data/definitions/590.html\*(C'\fR).
+.IP "\fB\-Wno\-analyzer\-jump\-through\-null\fR" 4
+.IX Item "-Wno-analyzer-jump-through-null"
+This warning requires \fB\-fanalyzer\fR, which enables it; use
+\&\fB\-Wno\-analyzer\-jump\-through\-null\fR
+to disable it.
+.Sp
+This diagnostic warns for paths through the code in which a \f(CW\*(C`NULL\*(C'\fR
+function pointer is called.
 .IP "\fB\-Wno\-analyzer\-malloc\-leak\fR" 4
 .IX Item "-Wno-analyzer-malloc-leak"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
