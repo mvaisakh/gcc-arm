@@ -40,10 +40,10 @@ extern "C" {
 # include <sys/mount.h>
 #endif
 
-#define LIBMOUNT_VERSION   "2.38.0"
+#define LIBMOUNT_VERSION   "2.38.1"
 #define LIBMOUNT_MAJOR_VERSION   2
 #define LIBMOUNT_MINOR_VERSION   38
-#define LIBMOUNT_PATCH_VERSION   0
+#define LIBMOUNT_PATCH_VERSION   1
 
 /**
  * libmnt_cache:
