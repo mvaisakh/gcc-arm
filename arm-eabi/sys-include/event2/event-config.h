@@ -48,10 +48,10 @@
 #define EVENT__HAVE_ACCEPT4 1
 
 /* Define to 1 if you have the `arc4random' function. */
-/* #undef EVENT__HAVE_ARC4RANDOM */
+#define EVENT__HAVE_ARC4RANDOM 1
 
 /* Define to 1 if you have the `arc4random_buf' function. */
-/* #undef EVENT__HAVE_ARC4RANDOM_BUF */
+#define EVENT__HAVE_ARC4RANDOM_BUF 1
 
 /* Define to 1 if you have the `arc4random_addrandom' function. */
 /* #undef EVENT__HAVE_ARC4RANDOM_ADDRANDOM */
@@ -70,7 +70,7 @@
 #define EVENT__HAVE_CLOCK_GETTIME 1
 
 /* Define to 1 if you have the declaration of `CTL_KERN'. */
-#define EVENT__HAVE_DECL_CTL_KERN 1
+#define EVENT__HAVE_DECL_CTL_KERN 0
 
 /* Define to 1 if you have the declaration of `KERN_ARND'. */
 #define EVENT__HAVE_DECL_KERN_ARND 0
@@ -481,6 +481,9 @@
 
 /* The size of 'void *', as computer by sizeof */
 #define EVENT__SIZEOF_VOID_P 8
+
+/* The size of 'time_t', as computer by sizeof */
+#define EVENT__SIZEOF_TIME_T 8
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */

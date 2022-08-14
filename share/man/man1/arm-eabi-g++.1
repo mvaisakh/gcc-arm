@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-08-11" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-08-14" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -481,6 +481,7 @@ in the following sections.
 \&\-Wno\-analyzer\-mismatching\-deallocation 
 \&\-Wno\-analyzer\-null\-argument 
 \&\-Wno\-analyzer\-null\-dereference 
+\&\-Wno\-analyzer\-out\-of\-bounds 
 \&\-Wno\-analyzer\-possible\-null\-argument 
 \&\-Wno\-analyzer\-possible\-null\-dereference 
 \&\-Wno\-analyzer\-putenv\-of\-auto\-var 
@@ -9108,6 +9109,7 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-mismatching\-deallocation 
 \&\-Wanalyzer\-null\-argument 
 \&\-Wanalyzer\-null\-dereference 
+\&\-Wanalyzer\-out\-of\-bounds 
 \&\-Wanalyzer\-possible\-null\-argument 
 \&\-Wanalyzer\-possible\-null\-dereference 
 \&\-Wanalyzer\-putenv\-of\-auto\-var 
@@ -9290,6 +9292,17 @@ and vector \f(CW\*(C`delete[]\*(C'\fR, and those marked as allocator/deallocator
 pairs using attribute \f(CW\*(C`malloc\*(C'\fR.
 .Sp
 See  \s-1CWE\-762:\s0 Mismatched Memory Management Routines (\f(CW\*(C`https://cwe.mitre.org/data/definitions/762.html\*(C'\fR).
+.IP "\fB\-Wno\-analyzer\-out\-of\-bounds\fR" 4
+.IX Item "-Wno-analyzer-out-of-bounds"
+This warning requires \fB\-fanalyzer\fR to enable it; use
+\&\fB\-Wno\-analyzer\-out\-of\-bounds\fR to disable it.
+.Sp
+This diagnostic warns for path through the code in which a buffer is
+definitely read or written out-of-bounds.  The diagnostic only applies
+for cases where the analyzer is able to determine a constant offset and
+for accesses past the end of a buffer, also a constant capacity.
+.Sp
+See  \s-1CWE\-119:\s0 Improper Restriction of Operations within the Bounds of a Memory Buffer (\f(CW\*(C`https://cwe.mitre.org/data/definitions/119.html\*(C'\fR).
 .IP "\fB\-Wno\-analyzer\-possible\-null\-argument\fR" 4
 .IX Item "-Wno-analyzer-possible-null-argument"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
@@ -20900,14 +20913,25 @@ The following extension options are common to the listed CPUs:
 .RS 4
 .IP "\fB+nodsp\fR" 4
 .IX Item "+nodsp"
-Disable the \s-1DSP\s0 instructions on \fBcortex\-m33\fR, \fBcortex\-m35p\fR.
+Disable the \s-1DSP\s0 instructions on \fBcortex\-m33\fR, \fBcortex\-m35p\fR
+and \fBcortex\-m55\fR. Also disable the M\-Profile Vector Extension (\s-1MVE\s0)
+integer and single precision floating-point instructions on \fBcortex\-m55\fR.
+.IP "\fB+nomve\fR" 4
+.IX Item "+nomve"
+Disable the M\-Profile Vector Extension (\s-1MVE\s0) integer and single precision
+floating-point instructions on \fBcortex\-m55\fR.
+.IP "\fB+nomve.fp\fR" 4
+.IX Item "+nomve.fp"
+Disable the M\-Profile Vector Extension (\s-1MVE\s0) single precision floating-point
+instructions on \fBcortex\-m55\fR.
 .IP "\fB+nofp\fR" 4
 .IX Item "+nofp"
 Disables the floating-point instructions on \fBarm9e\fR,
 \&\fBarm946e\-s\fR, \fBarm966e\-s\fR, \fBarm968e\-s\fR, \fBarm10e\fR,
 \&\fBarm1020e\fR, \fBarm1022e\fR, \fBarm926ej\-s\fR,
 \&\fBarm1026ej\-s\fR, \fBcortex\-r5\fR, \fBcortex\-r7\fR, \fBcortex\-r8\fR,
-\&\fBcortex\-m4\fR, \fBcortex\-m7\fR, \fBcortex\-m33\fR and \fBcortex\-m35p\fR.
+\&\fBcortex\-m4\fR, \fBcortex\-m7\fR, \fBcortex\-m33\fR, \fBcortex\-m35p\fR
+and \fBcortex\-m55\fR.
 Disables the floating-point and \s-1SIMD\s0 instructions on
 \&\fBgeneric\-armv7\-a\fR, \fBcortex\-a5\fR, \fBcortex\-a7\fR,
 \&\fBcortex\-a8\fR, \fBcortex\-a9\fR, \fBcortex\-a12\fR,
