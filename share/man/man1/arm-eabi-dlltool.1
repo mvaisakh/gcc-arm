@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "DLLTOOL 1"
-.TH DLLTOOL 1 "2022-08-14" "binutils-2.39.50" "GNU Development Tools"
+.TH DLLTOOL 1 "2022-08-25" "binutils-2.39.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -165,6 +165,7 @@ dlltool [\fB\-d\fR|\fB\-\-input\-def\fR \fIdef-file-name\fR]
         [\fB\-v\fR|\fB\-\-verbose\fR]
         [\fB\-h\fR|\fB\-\-help\fR] [\fB\-V\fR|\fB\-\-version\fR]
         [\fB\-\-no\-leading\-underscore\fR] [\fB\-\-leading\-underscore\fR]
+        [\fB\-\-deterministic\-libraries\fR] [\fB\-\-non\-deterministic\-libraries\fR]
         [object\-file ...]
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -290,6 +291,17 @@ Specifies the name of the library file to be created by dlltool.
 .IX Item "--output-delaylib filename"
 .PD
 Specifies the name of the delay-import library file to be created by dlltool.
+.IP "\fB\-\-deterministic\-libraries\fR" 4
+.IX Item "--deterministic-libraries"
+.PD 0
+.IP "\fB\-\-non\-deterministic\-libraries\fR" 4
+.IX Item "--non-deterministic-libraries"
+.PD
+When creating output libraries in response to either the
+\&\fB\-\-output\-lib\fR or \fB\-\-output\-delaylib\fR options either use
+the value of zero for any timestamps, user ids and group ids created
+(\fB\-\-deterministic\-libraries\fR) or the actual timestamps, user
+ids and group ids (\fB\-\-non\-deterministic\-libraries\fR).
 .IP "\fB\-\-export\-all\-symbols\fR" 4
 .IX Item "--export-all-symbols"
 Treat all global and weak defined symbols found in the input object

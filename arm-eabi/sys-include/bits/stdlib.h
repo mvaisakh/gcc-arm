@@ -1,5 +1,5 @@
 /* Checking macros for stdlib functions.
-   Copyright (C) 2005-2022 Free Software Foundation, Inc.
+   Copyright (C) 2005-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -96,11 +96,6 @@ extern size_t __mbstowcs_chk (wchar_t *__restrict __dst,
 			      const char *__restrict __src,
 			      size_t __len, size_t __dstlen) __THROW
     __attr_access ((__write_only__, 1, 3)) __attr_access ((__read_only__, 2));
-extern size_t __REDIRECT_NTH (__mbstowcs_nulldst,
-			      (wchar_t *__restrict __dst,
-			       const char *__restrict __src,
-			       size_t __len), mbstowcs)
-    __attr_access ((__read_only__, 2));
 extern size_t __REDIRECT_NTH (__mbstowcs_alias,
 			      (wchar_t *__restrict __dst,
 			       const char *__restrict __src,
@@ -117,12 +112,11 @@ __fortify_function size_t
 __NTH (mbstowcs (wchar_t *__restrict __dst, const char *__restrict __src,
 		 size_t __len))
 {
-  if (__builtin_constant_p (__dst == NULL) && __dst == NULL)
-    return __mbstowcs_nulldst (__dst, __src, __len);
-  else
-    return __glibc_fortify_n (mbstowcs, __len, sizeof (wchar_t),
-			      __glibc_objsize (__dst), __dst, __src, __len);
+  return __glibc_fortify_n (mbstowcs, __len, sizeof (wchar_t),
+			    __glibc_objsize (__dst),
+			    __dst, __src, __len);
 }
+
 
 extern size_t __wcstombs_chk (char *__restrict __dst,
 			      const wchar_t *__restrict __src,

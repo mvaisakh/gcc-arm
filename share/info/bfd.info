@@ -3356,7 +3356,7 @@ This is the structure of a relocation entry:
        /* Unsupported relocation size requested.  */
        bfd_reloc_notsupported,
 
-       /* Unused.  */
+       /* Target specific meaning.  */
        bfd_reloc_other,
 
        /* The symbol to relocate against was undefined.  */
@@ -14752,43 +14752,43 @@ Node: Archives114056
 Node: Formats118186
 Node: Relocations121116
 Node: typedef arelent121843
-Node: howto manager136552
-Node: Core Files273204
-Node: Targets275228
-Node: bfd_target277203
-Node: Architectures303956
-Node: Opening and Closing335815
-Node: Internal353983
-Node: File Caching354087
-Node: Linker Functions355984
-Node: Creating a Linker Hash Table357658
-Node: Adding Symbols to the Hash Table359397
-Node: Differing file formats360297
-Node: Adding symbols from an object file362022
-Node: Adding symbols from an archive364172
-Node: Performing the Final Link366518
-Node: Information provided by the linker367759
-Node: Relocating the section contents368913
-Node: Writing the symbol table370665
-Node: Hash Tables377756
-Node: Creating and Freeing a Hash Table378954
-Node: Looking Up or Entering a String380204
-Node: Traversing a Hash Table381457
-Node: Deriving a New Hash Table Type382246
-Node: Define the Derived Structures383312
-Node: Write the Derived Creation Routine384393
-Node: Write Other Derived Routines387018
-Node: BFD back ends388333
-Node: What to Put Where388603
-Node: aout388783
-Node: coff395037
-Node: elf423177
-Node: mmo423578
-Node: File layout424448
-Node: Symbol-table430361
-Node: mmo section mapping434124
-Node: GNU Free Documentation License437778
-Node: BFD Index462842
+Node: howto manager136569
+Node: Core Files273221
+Node: Targets275245
+Node: bfd_target277220
+Node: Architectures303973
+Node: Opening and Closing335832
+Node: Internal354000
+Node: File Caching354104
+Node: Linker Functions356001
+Node: Creating a Linker Hash Table357675
+Node: Adding Symbols to the Hash Table359414
+Node: Differing file formats360314
+Node: Adding symbols from an object file362039
+Node: Adding symbols from an archive364189
+Node: Performing the Final Link366535
+Node: Information provided by the linker367776
+Node: Relocating the section contents368930
+Node: Writing the symbol table370682
+Node: Hash Tables377773
+Node: Creating and Freeing a Hash Table378971
+Node: Looking Up or Entering a String380221
+Node: Traversing a Hash Table381474
+Node: Deriving a New Hash Table Type382263
+Node: Define the Derived Structures383329
+Node: Write the Derived Creation Routine384410
+Node: Write Other Derived Routines387035
+Node: BFD back ends388350
+Node: What to Put Where388620
+Node: aout388800
+Node: coff395054
+Node: elf423194
+Node: mmo423595
+Node: File layout424465
+Node: Symbol-table430378
+Node: mmo section mapping434141
+Node: GNU Free Documentation License437795
+Node: BFD Index462859
 
 End Tag Table
 

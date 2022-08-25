@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-08-14" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-08-25" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -476,6 +476,7 @@ in the following sections.
 \&\-Wno\-analyzer\-fd\-use\-without\-check 
 \&\-Wno\-analyzer\-file\-leak 
 \&\-Wno\-analyzer\-free\-of\-non\-heap 
+\&\-Wno\-analyzer\-imprecise\-fp\-arithmetic 
 \&\-Wno\-analyzer\-jump\-through\-null 
 \&\-Wno\-analyzer\-malloc\-leak 
 \&\-Wno\-analyzer\-mismatching\-deallocation 
@@ -1028,7 +1029,8 @@ in the following sections.
 \&\-mcond\-move\-float  \-mno\-cond\-move\-float 
 \&\-memcpy  \-mno\-memcpy \-mstrict\-align \-mno\-strict\-align 
 \&\-mmax\-inline\-memcpy\-size=\fR\fIn\fR 
-\&\fB\-mcmodel=\fR\fIcode-model\fR
+\&\fB\-mexplicit\-relocs \-mno\-explicit\-relocs 
+\&\-mcmodel=\fR\fIcode-model\fR
 .Sp
 \&\fIM32R/D Options\fR
 \&\fB\-m32r2  \-m32rx  \-m32r 
@@ -9104,6 +9106,7 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-fd\-use\-without\-check 
 \&\-Wanalyzer\-file\-leak 
 \&\-Wanalyzer\-free\-of\-non\-heap 
+\&\-Wanalyzer\-imprecise\-fp\-arithmetic 
 \&\-Wanalyzer\-jump\-through\-null 
 \&\-Wanalyzer\-malloc\-leak 
 \&\-Wanalyzer\-mismatching\-deallocation 
@@ -9259,6 +9262,16 @@ This diagnostic warns for paths through the code in which \f(CW\*(C`free\*(C'\fR
 is called on a non-heap pointer (e.g. an on-stack buffer, or a global).
 .Sp
 See  \s-1CWE\-590:\s0 Free of Memory not on the Heap (\f(CW\*(C`https://cwe.mitre.org/data/definitions/590.html\*(C'\fR).
+.IP "\fB\-Wno\-analyzer\-imprecise\-fp\-arithmetic\fR" 4
+.IX Item "-Wno-analyzer-imprecise-fp-arithmetic"
+This warning requires \fB\-fanalyzer\fR, which enables it; use
+\&\fB\-Wno\-analyzer\-imprecise\-fp\-arithmetic\fR
+to disable it.
+.Sp
+This diagnostic warns for paths through the code in which floating-point
+arithmetic is used in locations where precise computation is needed.  This
+diagnostic only warns on use of floating-point operands inside the
+calculation of an allocation size at the moment.
 .IP "\fB\-Wno\-analyzer\-jump\-through\-null\fR" 4
 .IX Item "-Wno-analyzer-jump-through-null"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
@@ -13912,9 +13925,9 @@ duplicated when threading jumps.
 .IP "\fBmax-jump-thread-paths\fR" 4
 .IX Item "max-jump-thread-paths"
 The maximum number of paths to consider when searching for jump threading
-opportunities.  When arriving at a block incoming edges are only considered
-if the number of paths to be searched sofar multiplied by the incoming
-edge degree does not exhaust the specified maximum number of paths to
+opportunities.  When arriving at a block, incoming edges are only considered
+if the number of paths to be searched so far multiplied by the number of
+incoming edges does not exhaust the specified maximum number of paths to
 consider.
 .IP "\fBmax-fields-for-field-sensitive\fR" 4
 .IX Item "max-fields-for-field-sensitive"
@@ -24246,71 +24259,28 @@ less than or equal to \fIn\fR bytes.  The default value of \fIn\fR is 1024.
 .IX Item "-mcmodel=code-model"
 Set the code model to one of:
 .RS 4
-.IP "\fBtiny-static\fR" 4
-.IX Item "tiny-static"
-.RS 4
+.IP "\fBtiny-static (Not implemented yet)\fR" 4
+.IX Item "tiny-static (Not implemented yet)"
 .PD 0
-.IP "*" 4
-.PD
-local symbol and global strong symbol: The data section must be within +/\-2MiB addressing space.
-The text section must be within +/\-128MiB addressing space.
-.IP "*" 4
-global weak symbol: The got table must be within +/\-2GiB addressing space.
-.RE
-.RS 4
-.RE
-.IP "\fBtiny\fR" 4
-.IX Item "tiny"
-.RS 4
-.PD 0
-.IP "*" 4
-.PD
-local symbol: The data section must be within +/\-2MiB addressing space.
-The text section must be within +/\-128MiB
-addressing space.
-.IP "*" 4
-global symbol: The got table must be within +/\-2GiB addressing space.
-.RE
-.RS 4
-.RE
+.IP "\fBtiny (Not implemented yet)\fR" 4
+.IX Item "tiny (Not implemented yet)"
 .IP "\fBnormal\fR" 4
 .IX Item "normal"
-.RS 4
-.PD 0
-.IP "*" 4
 .PD
-local symbol: The data section must be within +/\-2GiB addressing space.
-The text section must be within +/\-128MiB addressing space.
-.IP "*" 4
-global symbol: The got table must be within +/\-2GiB addressing space.
-.RE
-.RS 4
-.RE
-.IP "\fBlarge\fR" 4
-.IX Item "large"
-.RS 4
+The text segment must be within 128MB addressing space.  The data segment must
+be within 2GB addressing space.
+.IP "\fBmedium\fR" 4
+.IX Item "medium"
+The text segment and data segment must be within 2GB addressing space.
+.IP "\fBlarge (Not implemented yet)\fR" 4
+.IX Item "large (Not implemented yet)"
 .PD 0
-.IP "*" 4
+.IP "\fBextreme\fR" 4
+.IX Item "extreme"
 .PD
-local symbol: The data section must be within +/\-2GiB addressing space.
-The text section must be within +/\-128GiB addressing space.
-.IP "*" 4
-global symbol: The got table must be within +/\-2GiB addressing space.
-.RE
-.RS 4
-.RE
-.IP "\fBextreme(Not implemented yet)\fR" 4
-.IX Item "extreme(Not implemented yet)"
-.RS 4
-.PD 0
-.IP "*" 4
-.PD
-local symbol: The data and text section must be within +/\-8EiB addressing space.
-.IP "*" 4
-global symbol: The data got table must be within +/\-8EiB addressing space.
-.RE
-.RS 4
-.RE
+This mode does not limit the size of the code segment and data segment.
+The \fB\-mcmodel=extreme\fR option is incompatible with \fB\-fplt\fR and
+\&\fB\-mno\-explicit\-relocs\fR.
 .RE
 .RS 4
 .Sp

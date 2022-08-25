@@ -1,5 +1,5 @@
 /* This file defines standard ELF types, structures, and macros.
-   Copyright (C) 1995-2022 Free Software Foundation, Inc.
+   Copyright (C) 1995-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -358,9 +358,8 @@ typedef struct
 
 #define EM_BPF		247	/* Linux BPF -- in-kernel virtual machine */
 #define EM_CSKY		252     /* C-SKY */
-#define EM_LOONGARCH	258	/* LoongArch */
 
-#define EM_NUM		259
+#define EM_NUM		253
 
 /* Old spellings/synonyms.  */
 
@@ -444,8 +443,7 @@ typedef struct
 #define SHT_PREINIT_ARRAY 16		/* Array of pre-constructors */
 #define SHT_GROUP	  17		/* Section group */
 #define SHT_SYMTAB_SHNDX  18		/* Extended section indices */
-#define SHT_RELR	  19            /* RELR relative relocations */
-#define	SHT_NUM		  20		/* Number of defined types.  */
+#define	SHT_NUM		  19		/* Number of defined types.  */
 #define SHT_LOOS	  0x60000000	/* Start OS-specific.  */
 #define SHT_GNU_ATTRIBUTES 0x6ffffff5	/* Object attributes.  */
 #define SHT_GNU_HASH	  0x6ffffff6	/* GNU-style hash table.  */
@@ -663,11 +661,6 @@ typedef struct
   Elf64_Xword	r_info;			/* Relocation type and symbol index */
   Elf64_Sxword	r_addend;		/* Addend */
 } Elf64_Rela;
-
-/* RELR relocation table entry */
-
-typedef Elf32_Word	Elf32_Relr;
-typedef Elf64_Xword	Elf64_Relr;
 
 /* How to extract and insert information held in the r_info field.  */
 
@@ -894,10 +887,7 @@ typedef struct
 #define DT_PREINIT_ARRAY 32		/* Array with addresses of preinit fct*/
 #define DT_PREINIT_ARRAYSZ 33		/* size in bytes of DT_PREINIT_ARRAY */
 #define DT_SYMTAB_SHNDX	34		/* Address of SYMTAB_SHNDX section */
-#define DT_RELRSZ	35		/* Total size of RELR relative relocations */
-#define DT_RELR		36		/* Address of RELR relative relocations */
-#define DT_RELRENT	37		/* Size of one RELR relative relocaction */
-#define	DT_NUM		38		/* Number used */
+#define	DT_NUM		35		/* Number used */
 #define DT_LOOS		0x6000000d	/* Start of OS-specific */
 #define DT_HIOS		0x6ffff000	/* End of OS-specific */
 #define DT_LOPROC	0x70000000	/* Start of processor-specific */
@@ -1241,7 +1231,8 @@ typedef struct
 #define AT_L3_CACHESIZE		46
 #define AT_L3_CACHEGEOMETRY	47
 
-#define AT_MINSIGSTKSZ		51 /* Stack needed for signal delivery  */
+#define AT_MINSIGSTKSZ		51 /* Stack needed for signal delivery
+				      (AArch64).  */
 
 /* Note section contents.  Each entry in the note section begins with
    a header of a fixed form.  */
@@ -1268,8 +1259,6 @@ typedef struct
 /* Note entries for GNU systems have this name.  */
 #define ELF_NOTE_GNU		"GNU"
 
-/* Note entries for freedesktop.org have this name.  */
-#define ELF_NOTE_FDO		"FDO"
 
 /* Defined types of notes for Solaris.  */
 
@@ -1313,10 +1302,6 @@ typedef struct
 /* Program property.  */
 #define NT_GNU_PROPERTY_TYPE_0 5
 
-/* Packaging metadata as defined on
-   https://systemd.io/COREDUMP_PACKAGE_METADATA/ */
-#define NT_FDO_PACKAGING_METADATA 0xcafe1a7e
-
 /* Note section name of program property.   */
 #define NOTE_GNU_PROPERTY_SECTION_NAME ".note.gnu.property"
 
@@ -1326,23 +1311,6 @@ typedef struct
 #define GNU_PROPERTY_STACK_SIZE			1
 /* No copy relocation on protected data symbol.  */
 #define GNU_PROPERTY_NO_COPY_ON_PROTECTED	2
-
-/* A 4-byte unsigned integer property: A bit is set if it is set in all
-   relocatable inputs.  */
-#define GNU_PROPERTY_UINT32_AND_LO	0xb0000000
-#define GNU_PROPERTY_UINT32_AND_HI	0xb0007fff
-
-/* A 4-byte unsigned integer property: A bit is set if it is set in any
-   relocatable inputs.  */
-#define GNU_PROPERTY_UINT32_OR_LO	0xb0008000
-#define GNU_PROPERTY_UINT32_OR_HI	0xb000ffff
-
-/* The needed properties by the object file.  */
-#define GNU_PROPERTY_1_NEEDED		GNU_PROPERTY_UINT32_OR_LO
-
-/* Set if the object file requires canonical function pointers and
-   cannot be used with copy relocation.  */
-#define GNU_PROPERTY_1_NEEDED_INDIRECT_EXTERN_ACCESS (1U << 0)
 
 /* Processor-specific semantics, lo */
 #define GNU_PROPERTY_LOPROC			0xc0000000
@@ -2903,9 +2871,6 @@ enum
 #define R_AARCH64_TLSDESC      1031	/* TLS Descriptor.  */
 #define R_AARCH64_IRELATIVE	1032	/* STT_GNU_IFUNC relocation.  */
 
-/* MTE memory tag segment type.  */
-#define PT_AARCH64_MEMTAG_MTE	(PT_LOPROC + 2)
-
 /* AArch64 specific values for the Dyn d_tag field.  */
 #define DT_AARCH64_BTI_PLT	(DT_LOPROC + 1)
 #define DT_AARCH64_PAC_PLT	(DT_LOPROC + 3)
@@ -3931,8 +3896,6 @@ enum
 #define EF_RISCV_FLOAT_ABI_SINGLE 	0x0002
 #define EF_RISCV_FLOAT_ABI_DOUBLE 	0x0004
 #define EF_RISCV_FLOAT_ABI_QUAD 	0x0006
-#define EF_RISCV_RVE			0x0008
-#define EF_RISCV_TSO			0x0010
 
 /* RISC-V relocations.  */
 #define R_RISCV_NONE		 0
@@ -3992,19 +3955,6 @@ enum
 #define R_RISCV_IRELATIVE	58
 
 #define R_RISCV_NUM		59
-
-/* RISC-V specific values for the st_other field.  */
-#define STO_RISCV_VARIANT_CC	0x80	/* Function uses variant calling
-					   convention */
-
-/* RISC-V specific values for the sh_type field.  */
-#define SHT_RISCV_ATTRIBUTES	(SHT_LOPROC + 3)
-
-/* RISC-V specific values for the p_type field.  */
-#define PT_RISCV_ATTRIBUTES	(PT_LOPROC + 3)
-
-/* RISC-V specific values for the d_tag field.  */
-#define DT_RISCV_VARIANT_CC	(DT_LOPROC + 1)
 
 /* BPF specific declarations.  */
 
@@ -4084,71 +4034,6 @@ enum
 #define R_NDS32_TLS_TPOFF	102
 #define R_NDS32_TLS_DESC	119
 
-/* LoongArch ELF Flags */
-#define EF_LARCH_ABI    	0x07
-#define EF_LARCH_ABI_LP64D	0x03
-
-/* LoongArch specific dynamic relocations */
-#define R_LARCH_NONE		0
-#define R_LARCH_32		1
-#define R_LARCH_64		2
-#define R_LARCH_RELATIVE	3
-#define R_LARCH_COPY		4
-#define R_LARCH_JUMP_SLOT	5
-#define R_LARCH_TLS_DTPMOD32	6
-#define R_LARCH_TLS_DTPMOD64	7
-#define R_LARCH_TLS_DTPREL32	8
-#define R_LARCH_TLS_DTPREL64	9
-#define R_LARCH_TLS_TPREL32	10
-#define R_LARCH_TLS_TPREL64	11
-#define R_LARCH_IRELATIVE	12
-
-/* Reserved for future relocs that the dynamic linker must understand.  */
-
-/* used by the static linker for relocating .text.  */
-#define R_LARCH_MARK_LA  20
-#define R_LARCH_MARK_PCREL  21
-#define R_LARCH_SOP_PUSH_PCREL  22
-#define R_LARCH_SOP_PUSH_ABSOLUTE  23
-#define R_LARCH_SOP_PUSH_DUP  24
-#define R_LARCH_SOP_PUSH_GPREL  25
-#define R_LARCH_SOP_PUSH_TLS_TPREL  26
-#define R_LARCH_SOP_PUSH_TLS_GOT  27
-#define R_LARCH_SOP_PUSH_TLS_GD  28
-#define R_LARCH_SOP_PUSH_PLT_PCREL  29
-#define R_LARCH_SOP_ASSERT  30
-#define R_LARCH_SOP_NOT  31
-#define R_LARCH_SOP_SUB  32
-#define R_LARCH_SOP_SL  33
-#define R_LARCH_SOP_SR  34
-#define R_LARCH_SOP_ADD  35
-#define R_LARCH_SOP_AND  36
-#define R_LARCH_SOP_IF_ELSE  37
-#define R_LARCH_SOP_POP_32_S_10_5  38
-#define R_LARCH_SOP_POP_32_U_10_12  39
-#define R_LARCH_SOP_POP_32_S_10_12  40
-#define R_LARCH_SOP_POP_32_S_10_16  41
-#define R_LARCH_SOP_POP_32_S_10_16_S2  42
-#define R_LARCH_SOP_POP_32_S_5_20  43
-#define R_LARCH_SOP_POP_32_S_0_5_10_16_S2  44
-#define R_LARCH_SOP_POP_32_S_0_10_10_16_S2  45
-#define R_LARCH_SOP_POP_32_U  46
-
-/* used by the static linker for relocating non .text.  */
-#define R_LARCH_ADD8  47
-#define R_LARCH_ADD16  48
-#define R_LARCH_ADD24  49
-#define R_LARCH_ADD32  50
-#define R_LARCH_ADD64  51
-#define R_LARCH_SUB8  52
-#define R_LARCH_SUB16  53
-#define R_LARCH_SUB24  54
-#define R_LARCH_SUB32  55
-#define R_LARCH_SUB64  56
-#define R_LARCH_GNU_VTINHERIT  57
-#define R_LARCH_GNU_VTENTRY  58
-
-
 /* ARCompact/ARCv2 specific relocs.  */
 #define R_ARC_NONE		0x0
 #define R_ARC_8			0x1
@@ -4216,42 +4101,5 @@ enum
 #define R_ARC_TLS_DTPOFF_S9	0x4a
 #define R_ARC_TLS_LE_S9		0x4a
 #define R_ARC_TLS_LE_32		0x4b
-
-/* OpenRISC 1000 specific relocs.  */
-#define R_OR1K_NONE		0
-#define R_OR1K_32		1
-#define R_OR1K_16		2
-#define R_OR1K_8		3
-#define R_OR1K_LO_16_IN_INSN	4
-#define R_OR1K_HI_16_IN_INSN	5
-#define R_OR1K_INSN_REL_26	6
-#define R_OR1K_GNU_VTENTRY	7
-#define R_OR1K_GNU_VTINHERIT	8
-#define R_OR1K_32_PCREL		9
-#define R_OR1K_16_PCREL		10
-#define R_OR1K_8_PCREL		11
-#define R_OR1K_GOTPC_HI16	12
-#define R_OR1K_GOTPC_LO16	13
-#define R_OR1K_GOT16		14
-#define R_OR1K_PLT26		15
-#define R_OR1K_GOTOFF_HI16	16
-#define R_OR1K_GOTOFF_LO16	17
-#define R_OR1K_COPY		18
-#define R_OR1K_GLOB_DAT		19
-#define R_OR1K_JMP_SLOT		20
-#define R_OR1K_RELATIVE		21
-#define R_OR1K_TLS_GD_HI16	22
-#define R_OR1K_TLS_GD_LO16	23
-#define R_OR1K_TLS_LDM_HI16	24
-#define R_OR1K_TLS_LDM_LO16	25
-#define R_OR1K_TLS_LDO_HI16	26
-#define R_OR1K_TLS_LDO_LO16	27
-#define R_OR1K_TLS_IE_HI16	28
-#define R_OR1K_TLS_IE_LO16	29
-#define R_OR1K_TLS_LE_HI16	30
-#define R_OR1K_TLS_LE_LO16	31
-#define R_OR1K_TLS_TPOFF	32
-#define R_OR1K_TLS_DTPOFF	33
-#define R_OR1K_TLS_DTPMOD	34
 
 #endif	/* elf.h */

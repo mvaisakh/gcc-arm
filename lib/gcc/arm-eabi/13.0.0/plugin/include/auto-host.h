@@ -2149,6 +2149,12 @@
 #endif
 
 
+/* Define if O_NONBLOCK supported by fcntl. */
+#ifndef USED_FOR_TARGET
+#define HOST_HAS_O_NONBLOCK 1
+#endif
+
+
 /* Define which stat syscall is able to handle 64bit indodes. */
 #ifndef USED_FOR_TARGET
 /* #undef HOST_STAT_FOR_64BIT_INODES */

@@ -42,7 +42,7 @@ Introduction
 ************
 
 This brief manual contains documentation for the GNU binary utilities
-(Eva BinUtils) version 2.39.50:
+(Eva Binutils) version 2.39.50:
 
    This document is distributed under the terms of the GNU Free
 Documentation License version 1.3.  A copy of the license is included in
@@ -4096,6 +4096,7 @@ export information.
              [-v|--verbose]
              [-h|--help] [-V|--version]
              [--no-leading-underscore] [--leading-underscore]
+             [--deterministic-libraries] [--non-deterministic-libraries]
              [object-file ...]
 
    'dlltool' reads its inputs, which can come from the '-d' and '-b'
@@ -4196,6 +4197,14 @@ description of the '-I' or '--identify' option.
 '--output-delaylib FILENAME'
      Specifies the name of the delay-import library file to be created
      by dlltool.
+
+'--deterministic-libraries'
+'--non-deterministic-libraries'
+     When creating output libraries in response to either the
+     '--output-lib' or '--output-delaylib' options either use the value
+     of zero for any timestamps, user ids and group ids created
+     ('--deterministic-libraries') or the actual timestamps, user ids
+     and group ids ('--non-deterministic-libraries').
 
 '--export-all-symbols'
      Treat all global and weak defined symbols found in the input object
@@ -5924,7 +5933,7 @@ Binutils Index
 * Archive file symbol index information: readelf.             (line 272)
 * archive headers:                       objdump.             (line  82)
 * archives:                              ar.                  (line   6)
-* base files:                            dlltool.             (line 124)
+* base files:                            dlltool.             (line 125)
 * bug criteria:                          Bug Criteria.        (line   6)
 * bug reports:                           Bug Reporting.       (line   6)
 * bugs:                                  Reporting Bugs.      (line   6)
@@ -5998,7 +6007,7 @@ Binutils Index
 * fatal signal:                          Bug Criteria.        (line   9)
 * file name:                             nm.                  (line 183)
 * header information, all:               objdump.             (line 898)
-* input .def file:                       dlltool.             (line 120)
+* input .def file:                       dlltool.             (line 121)
 * input file name:                       nm.                  (line 183)
 * Instruction width:                     objdump.             (line 536)
 * libraries:                             ar.                  (line  25)
@@ -6108,19 +6117,19 @@ Node: addr2line146402
 Node: windmc152357
 Node: windres156016
 Node: dlltool162586
-Node: def file format175583
-Node: readelf178113
-Node: elfedit197212
-Node: Common Options200638
-Node: Selecting the Target System201672
-Node: Target Selection202600
-Node: Architecture Selection204581
-Node: debuginfod205409
-Node: Reporting Bugs206411
-Node: Bug Criteria207173
-Node: Bug Reporting207726
-Node: GNU Free Documentation License214593
-Node: Binutils Index239753
+Node: def file format176039
+Node: readelf178569
+Node: elfedit197668
+Node: Common Options201094
+Node: Selecting the Target System202128
+Node: Target Selection203056
+Node: Architecture Selection205037
+Node: debuginfod205865
+Node: Reporting Bugs206867
+Node: Bug Criteria207629
+Node: Bug Reporting208182
+Node: GNU Free Documentation License215049
+Node: Binutils Index240209
 
 End Tag Table
 

@@ -1131,10 +1131,6 @@
 # define SYS_openat2 __NR_openat2
 #endif
 
-#ifdef __NR_or1k_atomic
-# define SYS_or1k_atomic __NR_or1k_atomic
-#endif
-
 #ifdef __NR_osf_adjtime
 # define SYS_osf_adjtime __NR_osf_adjtime
 #endif

@@ -1,4 +1,4 @@
-/* Copyright (C) 1997-2022 Free Software Foundation, Inc.
+/* Copyright (C) 1997-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -53,25 +53,13 @@
       || (__HAVE_FLOAT128 && !__HAVE_FLOAT64X))
 #  error "Unsupported combination of types for <tgmath.h>."
 # endif
-# define __TGMATH_1_NARROW_D(F, X)		\
-  (F ## l (X))
 # define __TGMATH_2_NARROW_D(F, X, Y)		\
   (F ## l (X, Y))
-# define __TGMATH_3_NARROW_D(F, X, Y, Z)	\
-  (F ## l (X, Y, Z))
-# define __TGMATH_1_NARROW_F64X(F, X)		\
-  (F ## f128 (X))
 # define __TGMATH_2_NARROW_F64X(F, X, Y)	\
   (F ## f128 (X, Y))
-# define __TGMATH_3_NARROW_F64X(F, X, Y, Z)	\
-  (F ## f128 (X, Y, Z))
 # if !__HAVE_FLOAT128
-#  define __TGMATH_1_NARROW_F32X(F, X)		\
-  (F ## f64 (X))
 #  define __TGMATH_2_NARROW_F32X(F, X, Y)	\
   (F ## f64 (X, Y))
-#  define __TGMATH_3_NARROW_F32X(F, X, Y, Z)	\
-  (F ## f64 (X, Y, Z))
 # endif
 
 # if __HAVE_BUILTIN_TGMATH
@@ -139,37 +127,17 @@
     __TG_F64X_ARG (X) __TG_F128X_ARG (X)	\
     __TG_F64_ARG (X) __TG_F128_ARG (X)
 
-#  define __TGMATH_1_NARROW_F(F, X)				\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F (F) (X))
 #  define __TGMATH_2_NARROW_F(F, X, Y)				\
   __builtin_tgmath (__TGMATH_NARROW_FUNCS_F (F) (X), (Y))
-#  define __TGMATH_3_NARROW_F(F, X, Y, Z)			\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F (F) (X), (Y), (Z))
-#  define __TGMATH_1_NARROW_F16(F, X)				\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F16 (F) (X))
 #  define __TGMATH_2_NARROW_F16(F, X, Y)			\
   __builtin_tgmath (__TGMATH_NARROW_FUNCS_F16 (F) (X), (Y))
-#  define __TGMATH_3_NARROW_F16(F, X, Y, Z)				\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F16 (F) (X), (Y), (Z))
-#  define __TGMATH_1_NARROW_F32(F, X)				\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F32 (F) (X))
 #  define __TGMATH_2_NARROW_F32(F, X, Y)			\
   __builtin_tgmath (__TGMATH_NARROW_FUNCS_F32 (F) (X), (Y))
-#  define __TGMATH_3_NARROW_F32(F, X, Y, Z)				\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F32 (F) (X), (Y), (Z))
-#  define __TGMATH_1_NARROW_F64(F, X)				\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F64 (F) (X))
 #  define __TGMATH_2_NARROW_F64(F, X, Y)			\
   __builtin_tgmath (__TGMATH_NARROW_FUNCS_F64 (F) (X), (Y))
-#  define __TGMATH_3_NARROW_F64(F, X, Y, Z)				\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F64 (F) (X), (Y), (Z))
 #  if __HAVE_FLOAT128
-#   define __TGMATH_1_NARROW_F32X(F, X)				\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F32X (F) (X))
 #   define __TGMATH_2_NARROW_F32X(F, X, Y)			\
   __builtin_tgmath (__TGMATH_NARROW_FUNCS_F32X (F) (X), (Y))
-#   define __TGMATH_3_NARROW_F32X(F, X, Y, Z)				\
-  __builtin_tgmath (__TGMATH_NARROW_FUNCS_F32X (F) (X), (Y), (Z))
 #  endif
 
 # else /* !__HAVE_BUILTIN_TGMATH.  */
@@ -572,21 +540,11 @@
 				   + (__tgmath_complex_type (Val2)) 0))	      \
 			  Cfct##f (Val1, Val2))))
 
-#  define __TGMATH_1_NARROW_F(F, X)					\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0) > sizeof (double) \
-		  ? F ## l (X)						\
-		  : F (X)))
 #  define __TGMATH_2_NARROW_F(F, X, Y)					\
   (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
 			  + (__tgmath_real_type (Y)) 0) > sizeof (double) \
 		  ? F ## l (X, Y)					\
 		  : F (X, Y)))
-#  define __TGMATH_3_NARROW_F(F, X, Y, Z)				\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
-			  + (__tgmath_real_type (Y)) 0			\
-			  + (__tgmath_real_type (Z)) 0) > sizeof (double) \
-		  ? F ## l (X, Y, Z)					\
-		  : F (X, Y, Z)))
 /* In most cases, these narrowing macro definitions based on sizeof
    ensure that the function called has the right argument format, as
    for other <tgmath.h> macros for compilers before GCC 8, but may not
@@ -605,104 +563,40 @@
    have type _Float64, so the *f64 functions are preferred for f32x*
    macros when no argument has a wider floating-point type.  */
 #  if __HAVE_FLOAT64X_LONG_DOUBLE && __HAVE_DISTINCT_FLOAT128
-#   define __TGMATH_1_NARROW_F32(F, X)					\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0) > sizeof (_Float64) \
-		  ? __TGMATH_F128 ((X), F, (X))				\
-		  F ## f64x (X)						\
-		  : F ## f64 (X)))
 #   define __TGMATH_2_NARROW_F32(F, X, Y)				\
   (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
 			  + (__tgmath_real_type (Y)) 0) > sizeof (_Float64) \
 		  ? __TGMATH_F128 ((X) + (Y), F, (X, Y))		\
 		  F ## f64x (X, Y)					\
 		  : F ## f64 (X, Y)))
-#   define __TGMATH_3_NARROW_F32(F, X, Y, Z)				\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
-			  + (__tgmath_real_type (Y)) 0			\
-			  + (__tgmath_real_type (Z)) 0) > sizeof (_Float64) \
-		  ? __TGMATH_F128 ((X) + (Y) + (Z), F, (X, Y, Z))	\
-		  F ## f64x (X, Y, Z)					\
-		  : F ## f64 (X, Y, Z)))
-#   define __TGMATH_1_NARROW_F64(F, X)					\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0) > sizeof (_Float64) \
-		  ? __TGMATH_F128 ((X), F, (X))				\
-		  F ## f64x (X)						\
-		  : F ## f128 (X)))
 #   define __TGMATH_2_NARROW_F64(F, X, Y)				\
   (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
 			  + (__tgmath_real_type (Y)) 0) > sizeof (_Float64) \
 		  ? __TGMATH_F128 ((X) + (Y), F, (X, Y))		\
 		  F ## f64x (X, Y)					\
 		  : F ## f128 (X, Y)))
-#   define __TGMATH_3_NARROW_F64(F, X, Y, Z)				\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
-			  + (__tgmath_real_type (Y)) 0			\
-			  + (__tgmath_real_type (Z)) 0) > sizeof (_Float64) \
-		  ? __TGMATH_F128 ((X) + (Y) + (Z), F, (X, Y, Z))	\
-		  F ## f64x (X, Y, Z)					\
-		  : F ## f128 (X, Y, Z)))
-#   define __TGMATH_1_NARROW_F32X(F, X)					\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0) > sizeof (_Float64) \
-		  ? __TGMATH_F128 ((X), F, (X))				\
-		  F ## f64x (X)						\
-		  : F ## f64 (X)))
 #   define __TGMATH_2_NARROW_F32X(F, X, Y)				\
   (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
 			  + (__tgmath_real_type (Y)) 0) > sizeof (_Float64) \
 		  ? __TGMATH_F128 ((X) + (Y), F, (X, Y))		\
 		  F ## f64x (X, Y)					\
 		  : F ## f64 (X, Y)))
-#   define __TGMATH_3_NARROW_F32X(F, X, Y, Z)				\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
-			  + (__tgmath_real_type (Y)) 0			\
-			  + (__tgmath_real_type (Z)) 0) > sizeof (_Float64) \
-		  ? __TGMATH_F128 ((X) + (Y) + (Z), F, (X, Y, Z))	\
-		  F ## f64x (X, Y, Z)					\
-		  : F ## f64 (X, Y, Z)))
 #  elif __HAVE_FLOAT128
-#   define __TGMATH_1_NARROW_F32(F, X)					\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0) > sizeof (_Float64) \
-		  ? F ## f128 (X)					\
-		  : F ## f64 (X)))
 #   define __TGMATH_2_NARROW_F32(F, X, Y)				\
   (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
 			  + (__tgmath_real_type (Y)) 0) > sizeof (_Float64) \
 		  ? F ## f128 (X, Y)					\
 		  : F ## f64 (X, Y)))
-#   define __TGMATH_3_NARROW_F32(F, X, Y, Z)				\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
-			  + (__tgmath_real_type (Y)) 0			\
-			  + (__tgmath_real_type (Z)) 0) > sizeof (_Float64) \
-		  ? F ## f128 (X, Y, Z)					\
-		  : F ## f64 (X, Y, Z)))
-#   define __TGMATH_1_NARROW_F64(F, X)		\
-  (F ## f128 (X))
 #   define __TGMATH_2_NARROW_F64(F, X, Y)	\
   (F ## f128 (X, Y))
-#   define __TGMATH_3_NARROW_F64(F, X, Y, Z)	\
-  (F ## f128 (X, Y, Z))
-#   define __TGMATH_1_NARROW_F32X(F, X)					\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0) > sizeof (_Float32x) \
-		  ? F ## f64x (X)					\
-		  : F ## f64 (X)))
 #   define __TGMATH_2_NARROW_F32X(F, X, Y)				\
   (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
 			  + (__tgmath_real_type (Y)) 0) > sizeof (_Float32x) \
 		  ? F ## f64x (X, Y)					\
 		  : F ## f64 (X, Y)))
-#   define __TGMATH_3_NARROW_F32X(F, X, Y, Z)				\
-  (__extension__ (sizeof ((__tgmath_real_type (X)) 0			\
-			  + (__tgmath_real_type (Y)) 0			\
-			  + (__tgmath_real_type (Z)) 0) > sizeof (_Float32x) \
-		  ? F ## f64x (X, Y, Z)					\
-		  : F ## f64 (X, Y, Z)))
 #  else
-#   define __TGMATH_1_NARROW_F32(F, X)		\
-  (F ## f64 (X))
 #   define __TGMATH_2_NARROW_F32(F, X, Y)	\
   (F ## f64 (X, Y))
-#   define __TGMATH_3_NARROW_F32(F, X, Y, Z)	\
-  (F ## f64 (X, Y, Z))
 #  endif
 # endif /* !__HAVE_BUILTIN_TGMATH.  */
 #else
@@ -784,11 +678,6 @@
 
 /* Compute base-2 logarithm of X.  */
 #define log2(Val) __TGMATH_UNARY_REAL_ONLY (Val, log2)
-
-#if __GLIBC_USE (IEC_60559_FUNCS_EXT_C2X)
-/* Compute exponent to base ten.  */
-#define exp10(Val) __TGMATH_UNARY_REAL_ONLY (Val, exp10)
-#endif
 
 
 /* Power functions.  */
@@ -897,19 +786,11 @@
 /* Return positive difference between X and Y.  */
 #define fdim(Val1, Val2) __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fdim)
 
-#if __GLIBC_USE (ISOC2X) && !defined __USE_GNU
 /* Return maximum numeric value from X and Y.  */
-# define fmax(Val1, Val2) __TGMATH_BINARY_REAL_STD_ONLY (Val1, Val2, fmax)
+#define fmax(Val1, Val2) __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fmax)
 
 /* Return minimum numeric value from X and Y.  */
-# define fmin(Val1, Val2) __TGMATH_BINARY_REAL_STD_ONLY (Val1, Val2, fmin)
-#else
-/* Return maximum numeric value from X and Y.  */
-# define fmax(Val1, Val2) __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fmax)
-
-/* Return minimum numeric value from X and Y.  */
-# define fmin(Val1, Val2) __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fmin)
-#endif
+#define fmin(Val1, Val2) __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fmin)
 
 
 /* Multiply-add function computed as a ternary operation.  */
@@ -934,46 +815,12 @@
 
 /* Like ilogb, but returning long int.  */
 # define llogb(Val) __TGMATH_UNARY_REAL_RET_ONLY (Val, llogb)
-#endif
 
-#if __GLIBC_USE (IEC_60559_BFP_EXT)
 /* Return value with maximum magnitude.  */
 # define fmaxmag(Val1, Val2) __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fmaxmag)
 
 /* Return value with minimum magnitude.  */
 # define fminmag(Val1, Val2) __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fminmag)
-#endif
-
-#if __GLIBC_USE (ISOC2X)
-/* Return maximum value from X and Y.  */
-# define fmaximum(Val1, Val2) __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fmaximum)
-
-/* Return minimum value from X and Y.  */
-# define fminimum(Val1, Val2) __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fminimum)
-
-/* Return maximum numeric value from X and Y.  */
-# define fmaximum_num(Val1, Val2)			\
-  __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fmaximum_num)
-
-/* Return minimum numeric value from X and Y.  */
-# define fminimum_num(Val1, Val2)			\
-  __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fminimum_num)
-
-/* Return value with maximum magnitude.  */
-# define fmaximum_mag(Val1, Val2)			\
-  __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fmaximum_mag)
-
-/* Return value with minimum magnitude.  */
-# define fminimum_mag(Val1, Val2)			\
-  __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fminimum_mag)
-
-/* Return numeric value with maximum magnitude.  */
-# define fmaximum_mag_num(Val1, Val2)				\
-  __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fmaximum_mag_num)
-
-/* Return numeric value with minimum magnitude.  */
-# define fminimum_mag_num(Val1, Val2)				\
-  __TGMATH_BINARY_REAL_ONLY (Val1, Val2, fminimum_mag_num)
 #endif
 
 
@@ -1018,14 +865,6 @@
 # define fsub(Val1, Val2) __TGMATH_2_NARROW_F (fsub, Val1, Val2)
 # define dsub(Val1, Val2) __TGMATH_2_NARROW_D (dsub, Val1, Val2)
 
-/* Square root.  */
-# define fsqrt(Val) __TGMATH_1_NARROW_F (fsqrt, Val)
-# define dsqrt(Val) __TGMATH_1_NARROW_D (dsqrt, Val)
-
-/* Fused multiply-add.  */
-# define ffma(Val1, Val2, Val3) __TGMATH_3_NARROW_F (ffma, Val1, Val2, Val3)
-# define dfma(Val1, Val2, Val3) __TGMATH_3_NARROW_D (dfma, Val1, Val2, Val3)
-
 #endif
 
 #if __GLIBC_USE (IEC_60559_TYPES_EXT)
@@ -1035,9 +874,6 @@
 #  define f16div(Val1, Val2) __TGMATH_2_NARROW_F16 (f16div, Val1, Val2)
 #  define f16mul(Val1, Val2) __TGMATH_2_NARROW_F16 (f16mul, Val1, Val2)
 #  define f16sub(Val1, Val2) __TGMATH_2_NARROW_F16 (f16sub, Val1, Val2)
-#  define f16sqrt(Val) __TGMATH_1_NARROW_F16 (f16sqrt, Val)
-#  define f16fma(Val1, Val2, Val3)			\
-  __TGMATH_3_NARROW_F16 (f16fma, Val1, Val2, Val3)
 # endif
 
 # if __HAVE_FLOAT32
@@ -1045,9 +881,6 @@
 #  define f32div(Val1, Val2) __TGMATH_2_NARROW_F32 (f32div, Val1, Val2)
 #  define f32mul(Val1, Val2) __TGMATH_2_NARROW_F32 (f32mul, Val1, Val2)
 #  define f32sub(Val1, Val2) __TGMATH_2_NARROW_F32 (f32sub, Val1, Val2)
-#  define f32sqrt(Val) __TGMATH_1_NARROW_F32 (f32sqrt, Val)
-#  define f32fma(Val1, Val2, Val3)			\
-  __TGMATH_3_NARROW_F32 (f32fma, Val1, Val2, Val3)
 # endif
 
 # if __HAVE_FLOAT64 && (__HAVE_FLOAT64X || __HAVE_FLOAT128)
@@ -1055,9 +888,6 @@
 #  define f64div(Val1, Val2) __TGMATH_2_NARROW_F64 (f64div, Val1, Val2)
 #  define f64mul(Val1, Val2) __TGMATH_2_NARROW_F64 (f64mul, Val1, Val2)
 #  define f64sub(Val1, Val2) __TGMATH_2_NARROW_F64 (f64sub, Val1, Val2)
-#  define f64sqrt(Val) __TGMATH_1_NARROW_F64 (f64sqrt, Val)
-#  define f64fma(Val1, Val2, Val3)			\
-  __TGMATH_3_NARROW_F64 (f64fma, Val1, Val2, Val3)
 # endif
 
 # if __HAVE_FLOAT32X
@@ -1065,9 +895,6 @@
 #  define f32xdiv(Val1, Val2) __TGMATH_2_NARROW_F32X (f32xdiv, Val1, Val2)
 #  define f32xmul(Val1, Val2) __TGMATH_2_NARROW_F32X (f32xmul, Val1, Val2)
 #  define f32xsub(Val1, Val2) __TGMATH_2_NARROW_F32X (f32xsub, Val1, Val2)
-#  define f32xsqrt(Val) __TGMATH_1_NARROW_F32X (f32xsqrt, Val)
-#  define f32xfma(Val1, Val2, Val3)			\
-  __TGMATH_3_NARROW_F32X (f32xfma, Val1, Val2, Val3)
 # endif
 
 # if __HAVE_FLOAT64X && (__HAVE_FLOAT128X || __HAVE_FLOAT128)
@@ -1075,9 +902,6 @@
 #  define f64xdiv(Val1, Val2) __TGMATH_2_NARROW_F64X (f64xdiv, Val1, Val2)
 #  define f64xmul(Val1, Val2) __TGMATH_2_NARROW_F64X (f64xmul, Val1, Val2)
 #  define f64xsub(Val1, Val2) __TGMATH_2_NARROW_F64X (f64xsub, Val1, Val2)
-#  define f64xsqrt(Val) __TGMATH_1_NARROW_F64X (f64xsqrt, Val)
-#  define f64xfma(Val1, Val2, Val3)			\
-  __TGMATH_3_NARROW_F64X (f64xfma, Val1, Val2, Val3)
 # endif
 
 #endif

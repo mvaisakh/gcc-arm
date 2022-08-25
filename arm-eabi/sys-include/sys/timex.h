@@ -1,4 +1,4 @@
-/* Copyright (C) 1995-2022 Free Software Foundation, Inc.
+/* Copyright (C) 1995-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -55,26 +55,26 @@ struct ntptimeval
 __BEGIN_DECLS
 
 #ifndef __USE_TIME_BITS64
-extern int adjtimex (struct timex *__ntx) __THROW __nonnull ((1));
-extern int ntp_gettimex (struct ntptimeval *__ntv) __THROW __nonnull ((1));
+extern int adjtimex (struct timex *__ntx) __THROW;
+extern int ntp_gettimex (struct ntptimeval *__ntv) __THROW;
 
 # ifdef __REDIRECT_NTH
 extern int __REDIRECT_NTH (ntp_gettime, (struct ntptimeval *__ntv),
-                           ntp_gettimex) __nonnull ((1));
+                           ntp_gettimex);
 # else
 #  define ntp_gettime ntp_gettimex
 # endif
-extern int ntp_adjtime (struct timex *__tntx) __THROW __nonnull ((1));
+extern int ntp_adjtime (struct timex *__tntx) __THROW;
 #else
 # ifdef __REDIRECT_NTH
 extern int __REDIRECT_NTH (adjtimex, (struct timex *__ntx),
-                           ___adjtimex64) __nonnull ((1));
+                           ___adjtimex64);
 extern int __REDIRECT_NTH (ntp_gettime, (struct ntptimeval *__ntv),
-                           __ntp_gettime64) __nonnull ((1));
+                           __ntp_gettime64);
 extern int __REDIRECT_NTH (ntp_gettimex, (struct ntptimeval *__ntv),
-                           __ntp_gettimex64) __nonnull ((1));
+                           __ntp_gettimex64);
 extern int __REDIRECT_NTH (ntp_adjtime, (struct timex *__ntx),
-                           ___adjtimex64) __nonnull ((1));
+                           ___adjtimex64);
 # else
 #  define adjtimex ___adjtimex64
 #  define ntp_adjtime ___adjtimex64
