@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-08-25" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-08-28" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -292,7 +292,7 @@ in the following sections.
 \&\-Wreorder  \-Wregister 
 \&\-Wstrict\-null\-sentinel  \-Wno\-subobject\-linkage  \-Wtemplates 
 \&\-Wno\-non\-template\-friend  \-Wold\-style\-cast 
-\&\-Woverloaded\-virtual  \-Wno\-pmf\-conversions \-Wsign\-promo 
+\&\-Woverloaded\-virtual  \-Wno\-pmf\-conversions \-Wself\-move \-Wsign\-promo 
 \&\-Wsized\-deallocation  \-Wsuggest\-final\-methods 
 \&\-Wsuggest\-final\-types  \-Wsuggest\-override  
 \&\-Wno\-terminate  \-Wuseless\-cast  \-Wno\-vexing\-parse  
@@ -886,12 +886,6 @@ in the following sections.
 \&\-m32\-bit  \-m16\-bit  \-m8\-bit  \-mno\-prologue\-epilogue 
 \&\-melf  \-maout  \-sim  \-sim2 
 \&\-mmul\-bug\-workaround  \-mno\-mul\-bug\-workaround\fR
-.Sp
-\&\fI\s-1CR16\s0 Options\fR
-\&\fB\-mmac 
-\&\-mcr16cplus  \-mcr16c 
-\&\-msim  \-mint32  \-mbit\-ops
-\&\-mdata\-model=\fR\fImodel\fR
 .Sp
 \&\fIC\-SKY Options\fR
 \&\fB\-march=\fR\fIarch\fR  \fB\-mcpu=\fR\fIcpu\fR 
@@ -5588,7 +5582,8 @@ Options\fR and \fBObjective-C and Objective\-\*(C+ Dialect Options\fR.
 \&\fB\-Wreorder   
 \&\-Wrestrict   
 \&\-Wreturn\-type  
-\&\-Wsequence\-point  
+\&\-Wself\-move\fR (only for \*(C+)  
+\&\fB\-Wsequence\-point  
 \&\-Wsign\-compare\fR (only in \*(C+)  
 \&\fB\-Wsizeof\-array\-div 
 \&\-Wsizeof\-pointer\-div 
@@ -6489,6 +6484,24 @@ of a declaration:
 \&          // Declares a local variable called mymutex.
 \&          std::unique_lock<std::mutex> (mymutex);
 \&          // User meant std::unique_lock<std::mutex> lock (mymutex);
+\&        }
+.Ve
+.Sp
+This warning is enabled by \fB\-Wall\fR.
+.IP "\fB\-Wno\-self\-move\fR (\*(C+ and Objective\-\*(C+ only)" 4
+.IX Item "-Wno-self-move ( and Objective- only)"
+This warning warns when a value is moved to itself with \f(CW\*(C`std::move\*(C'\fR.
+Such a \f(CW\*(C`std::move\*(C'\fR typically has no effect.
+.Sp
+.Vb 9
+\&        struct T {
+\&        ...
+\&        };
+\&        void fn()
+\&        {
+\&          T t;
+\&          ...
+\&          t = std::move (t);
 \&        }
 .Ve
 .Sp
@@ -11058,7 +11071,7 @@ Use \fB\-fno\-delete\-null\-pointer\-checks\fR to disable this optimization
 for programs that depend on that behavior.
 .Sp
 This option is enabled by default on most targets.  On Nios \s-1II ELF,\s0 it
-defaults to off.  On \s-1AVR, CR16,\s0 and \s-1MSP430,\s0 this option is completely disabled.
+defaults to off.  On \s-1AVR\s0 and \s-1MSP430,\s0 this option is completely disabled.
 .Sp
 Passes that use the dataflow information
 are enabled independently at different optimization levels.
@@ -22313,38 +22326,6 @@ initialized data and zero-initialized data are allocated consecutively.
 .IX Item "-sim2"
 Like \fB\-sim\fR, but pass linker options to locate initialized data at
 0x40000000 and zero-initialized data at 0x80000000.
-.PP
-\fI\s-1CR16\s0 Options\fR
-.IX Subsection "CR16 Options"
-.PP
-These options are defined specifically for the \s-1CR16\s0 ports.
-.IP "\fB\-mmac\fR" 4
-.IX Item "-mmac"
-Enable the use of multiply-accumulate instructions. Disabled by default.
-.IP "\fB\-mcr16cplus\fR" 4
-.IX Item "-mcr16cplus"
-.PD 0
-.IP "\fB\-mcr16c\fR" 4
-.IX Item "-mcr16c"
-.PD
-Generate code for \s-1CR16C\s0 or \s-1CR16C+\s0 architecture. \s-1CR16C+\s0 architecture 
-is default.
-.IP "\fB\-msim\fR" 4
-.IX Item "-msim"
-Links the library libsim.a which is in compatible with simulator. Applicable
-to \s-1ELF\s0 compiler only.
-.IP "\fB\-mint32\fR" 4
-.IX Item "-mint32"
-Choose integer type as 32\-bit wide.
-.IP "\fB\-mbit\-ops\fR" 4
-.IX Item "-mbit-ops"
-Generates \f(CW\*(C`sbit\*(C'\fR/\f(CW\*(C`cbit\*(C'\fR instructions for bit manipulations.
-.IP "\fB\-mdata\-model=\fR\fImodel\fR" 4
-.IX Item "-mdata-model=model"
-Choose a data model. The choices for \fImodel\fR are \fBnear\fR,
-\&\fBfar\fR or \fBmedium\fR. \fBmedium\fR is default.
-However, \fBfar\fR is not valid with \fB\-mcr16c\fR, as the
-\&\s-1CR16C\s0 architecture does not support the far data model.
 .PP
 \fIC\-SKY Options\fR
 .IX Subsection "C-SKY Options"
