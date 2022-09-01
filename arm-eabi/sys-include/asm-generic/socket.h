@@ -130,6 +130,8 @@
 
 #define SO_TXREHASH		74
 
+#define SO_RCVMARK		75
+
 
 #if __BITS_PER_LONG == 64 || (defined(__x86_64__) && defined(__ILP32__))
 /* on 64-bit and x32, avoid the ?: operator */

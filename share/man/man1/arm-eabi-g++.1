@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-08-28" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-09-01" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -13676,6 +13676,10 @@ Complex expressions slow the analyzer.
 .IX Item "max-tree-if-conversion-phi-args"
 Maximum number of arguments in a \s-1PHI\s0 supported by \s-1TREE\s0 if conversion
 unless the loop is marked with simd pragma.
+.IP "\fBvect-max-layout-candidates\fR" 4
+.IX Item "vect-max-layout-candidates"
+The maximum number of possible vector layouts (such as permutations)
+to consider when optimizing to-be-vectorized code.
 .IP "\fBvect-max-version-for-alignment-checks\fR" 4
 .IX Item "vect-max-version-for-alignment-checks"
 The maximum number of run-time checks that can be performed when
