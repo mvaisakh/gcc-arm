@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-09-01" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-09-04" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -389,9 +389,9 @@ in the following sections.
 \&\-Winfinite\-recursion 
 \&\-Winit\-self  \-Winline  \-Wno\-int\-conversion  \-Wint\-in\-bool\-context 
 \&\-Wno\-int\-to\-pointer\-cast  \-Wno\-invalid\-memory\-model 
-\&\-Winvalid\-pch  \-Wjump\-misses\-init  \-Wlarger\-than=\fR\fIbyte-size\fR 
-\&\fB\-Wlogical\-not\-parentheses  \-Wlogical\-op  \-Wlong\-long 
-\&\-Wno\-lto\-type\-mismatch \-Wmain  \-Wmaybe\-uninitialized 
+\&\-Winvalid\-pch  \-Winvalid\-utf8 \-Wjump\-misses\-init  
+\&\-Wlarger\-than=\fR\fIbyte-size\fR  \fB\-Wlogical\-not\-parentheses  \-Wlogical\-op  
+\&\-Wlong\-long  \-Wno\-lto\-type\-mismatch \-Wmain  \-Wmaybe\-uninitialized 
 \&\-Wmemset\-elt\-size  \-Wmemset\-transposed\-args 
 \&\-Wmisleading\-indentation  \-Wmissing\-attributes  \-Wmissing\-braces 
 \&\-Wmissing\-field\-initializers  \-Wmissing\-format\-attribute 
@@ -438,6 +438,7 @@ in the following sections.
 \&\-Wvector\-operation\-performance 
 \&\-Wvla  \-Wvla\-larger\-than=\fR\fIbyte-size\fR  \fB\-Wno\-vla\-larger\-than 
 \&\-Wvolatile\-register\-var  \-Wwrite\-strings 
+\&\-Wxor\-used\-as\-pow 
 \&\-Wzero\-length\-bounds\fR
 .IP "\fIStatic Analyzer Options\fR" 4
 .IX Item "Static Analyzer Options"
@@ -517,7 +518,7 @@ in the following sections.
 \&\fB\-g  \-g\fR\fIlevel\fR  \fB\-gdwarf  \-gdwarf\-\fR\fIversion\fR 
 \&\fB\-gbtf \-gctf  \-gctf\fR\fIlevel\fR 
 \&\fB\-ggdb  \-grecord\-gcc\-switches  \-gno\-record\-gcc\-switches 
-\&\-gstabs  \-gstabs+  \-gstrict\-dwarf  \-gno\-strict\-dwarf 
+\&\-gstrict\-dwarf  \-gno\-strict\-dwarf 
 \&\-gas\-loc\-support  \-gno\-as\-loc\-support 
 \&\-gas\-locview\-support  \-gno\-as\-locview\-support 
 \&\-gcolumn\-info  \-gno\-column\-info  \-gdwarf32  \-gdwarf64 
@@ -525,7 +526,7 @@ in the following sections.
 \&\-gvariable\-location\-views  \-gno\-variable\-location\-views 
 \&\-ginternal\-reset\-location\-views  \-gno\-internal\-reset\-location\-views 
 \&\-ginline\-points  \-gno\-inline\-points 
-\&\-gvms  \-gxcoff  \-gxcoff+  \-gz\fR[\fB=\fR\fItype\fR] 
+\&\-gvms \-gz\fR[\fB=\fR\fItype\fR] 
 \&\fB\-gsplit\-dwarf  \-gdescribe\-dies  \-gno\-describe\-dies 
 \&\-fdebug\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR  \fB\-fdebug\-types\-section 
 \&\-fno\-eliminate\-unused\-debug\-types 
@@ -8953,6 +8954,11 @@ different size.
 .IX Item "-Winvalid-pch"
 Warn if a precompiled header is found in
 the search path but cannot be used.
+.IP "\fB\-Winvalid\-utf8\fR" 4
+.IX Item "-Winvalid-utf8"
+Warn if an invalid \s-1UTF\-8\s0 character is found.
+This warning is on by default for \*(C+23 if \fB\-finput\-charset=UTF\-8\fR
+is used and turned into error with \fB\-pedantic\-errors\fR.
 .IP "\fB\-Wlong\-long\fR" 4
 .IX Item "-Wlong-long"
 Warn if \f(CW\*(C`long long\*(C'\fR type is used.  This is enabled by either
@@ -9046,6 +9052,18 @@ Warn if a register variable is declared volatile.  The volatile
 modifier does not inhibit all optimizations that may eliminate reads
 and/or writes to register variables.  This warning is enabled by
 \&\fB\-Wall\fR.
+.IP "\fB\-Wxor\-used\-as\-pow\fR (C, \*(C+, Objective-C and Objective\-\*(C+ only)" 4
+.IX Item "-Wxor-used-as-pow (C, , Objective-C and Objective- only)"
+Warn about uses of \f(CW\*(C`^\*(C'\fR, the exclusive or operator, where it appears
+the user meant exponentiation.  Specifically, the warning occurs when the
+left-hand side is the decimal constant 2 or 10 and the right-hand side
+is also a decimal constant.
+.Sp
+In C and \*(C+, \f(CW\*(C`^\*(C'\fR means exclusive or, whereas in some other languages
+(e.g. TeX and some versions of \s-1BASIC\s0) it means exponentiation.
+.Sp
+This warning is enabled by default.  It can be silenced by converting one
+of the operands to hexadecimal.
 .IP "\fB\-Wdisabled\-optimization\fR" 4
 .IX Item "-Wdisabled-optimization"
 Warn if a requested optimization pass is disabled.  This warning does
@@ -9992,10 +10010,8 @@ information.
 On most systems that use stabs format, \fB\-g\fR enables use of extra
 debugging information that only \s-1GDB\s0 can use; this extra information
 makes debugging work better in \s-1GDB\s0 but probably makes other debuggers
-crash or
-refuse to read the program.  If you want to control for certain whether
-to generate the extra information, use \fB\-gstabs+\fR, \fB\-gstabs\fR,
-\&\fB\-gxcoff+\fR, \fB\-gxcoff\fR, or \fB\-gvms\fR (see below).
+crash or refuse to read the program.  If you want to control for certain whether
+to generate the extra information, use \fB\-gvms\fR (see below).
 .IP "\fB\-ggdb\fR" 4
 .IX Item "-ggdb"
 Produce debugging information for use by \s-1GDB.\s0  This means to use the
@@ -10053,30 +10069,6 @@ information, but does not include type information.
 .Sp
 Level 2 produces type information for entities (functions, data objects etc.)
 at file-scope or global-scope only.
-.IP "\fB\-gstabs\fR" 4
-.IX Item "-gstabs"
-Produce debugging information in stabs format (if that is supported),
-without \s-1GDB\s0 extensions.  This is the format used by \s-1DBX\s0 on most \s-1BSD\s0
-systems.  On \s-1MIPS,\s0 Alpha and System V Release 4 systems this option
-produces stabs debugging output that is not understood by \s-1DBX.\s0
-On System V Release 4 systems this option requires the \s-1GNU\s0 assembler.
-.IP "\fB\-gstabs+\fR" 4
-.IX Item "-gstabs+"
-Produce debugging information in stabs format (if that is supported),
-using \s-1GNU\s0 extensions understood only by the \s-1GNU\s0 debugger (\s-1GDB\s0).  The
-use of these extensions is likely to make other debuggers crash or
-refuse to read the program.
-.IP "\fB\-gxcoff\fR" 4
-.IX Item "-gxcoff"
-Produce debugging information in \s-1XCOFF\s0 format (if that is supported).
-This is the format used by the \s-1DBX\s0 debugger on \s-1IBM RS/6000\s0 systems.
-.IP "\fB\-gxcoff+\fR" 4
-.IX Item "-gxcoff+"
-Produce debugging information in \s-1XCOFF\s0 format (if that is supported),
-using \s-1GNU\s0 extensions understood only by the \s-1GNU\s0 debugger (\s-1GDB\s0).  The
-use of these extensions is likely to make other debuggers crash or
-refuse to read the program, and may cause assemblers other than the \s-1GNU\s0
-assembler (\s-1GAS\s0) to fail with an error.
 .IP "\fB\-gvms\fR" 4
 .IX Item "-gvms"
 Produce debugging information in Alpha/VMS debug format (if that is
@@ -10086,10 +10078,6 @@ supported).  This is the format used by \s-1DEBUG\s0 on Alpha/VMS systems.
 .PD 0
 .IP "\fB\-ggdb\fR\fIlevel\fR" 4
 .IX Item "-ggdblevel"
-.IP "\fB\-gstabs\fR\fIlevel\fR" 4
-.IX Item "-gstabslevel"
-.IP "\fB\-gxcoff\fR\fIlevel\fR" 4
-.IX Item "-gxcofflevel"
 .IP "\fB\-gvms\fR\fIlevel\fR" 4
 .IX Item "-gvmslevel"
 .PD
@@ -32934,7 +32922,7 @@ is innocuous.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
 \&\fBgpl\fR\|(7), \fBgfdl\fR\|(7), \fBfsf\-funding\fR\|(7),
-\&\fBcpp\fR\|(1), \fBgcov\fR\|(1), \fBas\fR\|(1), \fBld\fR\|(1), \fBgdb\fR\|(1), \fBdbx\fR\|(1)
+\&\fBcpp\fR\|(1), \fBgcov\fR\|(1), \fBas\fR\|(1), \fBld\fR\|(1), \fBgdb\fR\|(1)
 and the Info entries for \fIgcc\fR, \fIcpp\fR, \fIas\fR,
 \&\fIld\fR, \fIbinutils\fR and \fIgdb\fR.
 .SH "AUTHOR"

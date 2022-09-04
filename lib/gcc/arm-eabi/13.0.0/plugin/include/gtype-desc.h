@@ -501,10 +501,6 @@ extern void gt_ggc_mx_vec_isra_param_desc_va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_ipa_sra_function_summaries (X);\
   } while (0)
 extern void gt_ggc_mx_ipa_sra_function_summaries (void *);
-#define gt_ggc_m_8typeinfo(X) do { \
-  if ((intptr_t)(X) != 0) gt_ggc_mx_typeinfo (X);\
-  } while (0)
-extern void gt_ggc_mx_typeinfo (void *);
 #define gt_ggc_m_27modref_tree_alias_set_type_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_modref_tree_alias_set_type_ (X);\
   } while (0)
@@ -1954,10 +1950,6 @@ extern void gt_pch_nx_vec_isra_param_desc_va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_ipa_sra_function_summaries (X);\
   } while (0)
 extern void gt_pch_nx_ipa_sra_function_summaries (void *);
-#define gt_pch_n_8typeinfo(X) do { \
-  if ((intptr_t)(X) != 0) gt_pch_nx_typeinfo (X);\
-  } while (0)
-extern void gt_pch_nx_typeinfo (void *);
 #define gt_pch_n_27modref_tree_alias_set_type_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_modref_tree_alias_set_type_ (X);\
   } while (0)
@@ -3254,8 +3246,6 @@ extern void gt_pch_p_17isra_func_summary
 extern void gt_pch_p_26vec_isra_param_desc_va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26ipa_sra_function_summaries
-    (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_8typeinfo
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27modref_tree_alias_set_type_
     (void *, void *, gt_pointer_operator, void *);

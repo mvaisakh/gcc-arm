@@ -17,7 +17,6 @@
 # include "options.h"
 # include "insn-constants.h"
 # include "config/vxworks-dummy.h"
-# include "config/dbxelf.h"
 # include "config/elfos.h"
 # include "config/arm/unknown-elf.h"
 # include "config/arm/elf.h"

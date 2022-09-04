@@ -453,12 +453,6 @@
 #endif
 
 
-/* Define if your assembler supports the --gstabs option. */
-#ifndef USED_FOR_TARGET
-#define HAVE_AS_GSTABS_DEBUG_FLAG 1
-#endif
-
-
 /* Define if your assembler supports the Sun syntax for cmov. */
 #ifndef USED_FOR_TARGET
 /* #undef HAVE_AS_IX86_CMOV_SUN_SYNTAX */
@@ -744,12 +738,6 @@
    against hidden symbols. */
 #ifndef USED_FOR_TARGET
 /* #undef HAVE_AS_SPARC_UA_PCREL_HIDDEN */
-#endif
-
-
-/* Define if your assembler supports .stabs. */
-#ifndef USED_FOR_TARGET
-#define HAVE_AS_STABS_DIRECTIVE 1
 #endif
 
 
@@ -2109,13 +2097,6 @@
 /* Define to 1 if `vfork' works. */
 #ifndef USED_FOR_TARGET
 #define HAVE_WORKING_VFORK 1
-#endif
-
-
-/* Define if your assembler supports AIX debug frame section label reference.
-   */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_XCOFF_DWARF_EXTRAS */
 #endif
 
 

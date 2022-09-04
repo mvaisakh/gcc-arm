@@ -54,13 +54,23 @@ class cp_expr
 {
 public:
   cp_expr () :
-    m_value (NULL), m_loc (UNKNOWN_LOCATION) {}
+    m_value (NULL), m_loc (UNKNOWN_LOCATION),
+    m_decimal (false)
+  {}
 
   cp_expr (tree value) :
-    m_value (value), m_loc (cp_expr_location (m_value)) {}
+    m_value (value), m_loc (cp_expr_location (m_value)),
+    m_decimal (false)
+  {}
 
   cp_expr (tree value, location_t loc):
-    m_value (value), m_loc (loc)
+    m_value (value), m_loc (loc), m_decimal (false)
+  {
+    protected_set_expr_location (value, loc);
+  }
+
+  cp_expr (tree value, location_t loc, bool decimal):
+    m_value (value), m_loc (loc), m_decimal (decimal)
   {
     protected_set_expr_location (value, loc);
   }
@@ -102,9 +112,12 @@ public:
     return *this;
   }
 
+  bool decimal_p () const { return m_decimal; }
+
  private:
   tree m_value;
   location_t m_loc;
+  bool m_decimal : 1;
 };
 
 inline bool
@@ -7598,7 +7611,6 @@ extern tree force_paren_expr			(tree, bool = false);
 inline tree force_paren_expr_uneval 		(tree t)
 { return force_paren_expr (t, true); }
 extern tree maybe_undo_parenthesized_ref	(tree);
-extern tree maybe_strip_ref_conversion		(tree);
 extern tree finish_non_static_data_member       (tree, tree, tree,
 						 tsubst_flags_t = tf_warning_or_error);
 extern tree begin_stmt_expr			(void);
