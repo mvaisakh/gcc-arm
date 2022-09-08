@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-09-04" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-09-08" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -389,7 +389,7 @@ in the following sections.
 \&\-Winfinite\-recursion 
 \&\-Winit\-self  \-Winline  \-Wno\-int\-conversion  \-Wint\-in\-bool\-context 
 \&\-Wno\-int\-to\-pointer\-cast  \-Wno\-invalid\-memory\-model 
-\&\-Winvalid\-pch  \-Winvalid\-utf8 \-Wjump\-misses\-init  
+\&\-Winvalid\-pch  \-Winvalid\-utf8  \-Wno\-unicode  \-Wjump\-misses\-init  
 \&\-Wlarger\-than=\fR\fIbyte-size\fR  \fB\-Wlogical\-not\-parentheses  \-Wlogical\-op  
 \&\-Wlong\-long  \-Wno\-lto\-type\-mismatch \-Wmain  \-Wmaybe\-uninitialized 
 \&\-Wmemset\-elt\-size  \-Wmemset\-transposed\-args 
@@ -1025,6 +1025,7 @@ in the following sections.
 \&\-memcpy  \-mno\-memcpy \-mstrict\-align \-mno\-strict\-align 
 \&\-mmax\-inline\-memcpy\-size=\fR\fIn\fR 
 \&\fB\-mexplicit\-relocs \-mno\-explicit\-relocs 
+\&\-mdirect\-extern\-access \-mno\-direct\-extern\-access 
 \&\-mcmodel=\fR\fIcode-model\fR
 .Sp
 \&\fIM32R/D Options\fR
@@ -8959,6 +8960,10 @@ the search path but cannot be used.
 Warn if an invalid \s-1UTF\-8\s0 character is found.
 This warning is on by default for \*(C+23 if \fB\-finput\-charset=UTF\-8\fR
 is used and turned into error with \fB\-pedantic\-errors\fR.
+.IP "\fB\-Wno\-unicode\fR" 4
+.IX Item "-Wno-unicode"
+Don't diagnose invalid forms of delimited or named escape sequences which are
+treated as separate tokens.  \fBWunicode\fR is enabled by default.
 .IP "\fB\-Wlong\-long\fR" 4
 .IX Item "-Wlong-long"
 Warn if \f(CW\*(C`long long\*(C'\fR type is used.  This is enabled by either
@@ -24273,6 +24278,22 @@ limit optimization.  The default value for the option is determined during
 \&\f(CW\*(C`\-mno\-explicit\-relocs\*(C'\fR otherwise.  This option is mostly useful for
 debugging, or interoperation with assemblers different from the build-time
 one.
+.IP "\fB\-mdirect\-extern\-access\fR" 4
+.IX Item "-mdirect-extern-access"
+.PD 0
+.IP "\fB\-mno\-direct\-extern\-access\fR" 4
+.IX Item "-mno-direct-extern-access"
+.PD
+Do not use or use \s-1GOT\s0 to access external symbols.  The default is
+\&\fB\-mno\-direct\-extern\-access\fR: \s-1GOT\s0 is used for external symbols with
+default visibility, but not used for other external symbols.
+.Sp
+With \fB\-mdirect\-extern\-access\fR, \s-1GOT\s0 is not used and all external
+symbols are PC-relatively addressed.  It is \fBonly\fR suitable for
+environments where no dynamic link is performed, like firmwares, \s-1OS\s0
+kernels, executables linked with \fB\-static\fR or \fB\-static\-pie\fR.
+\&\fB\-mdirect\-extern\-access\fR is not compatible with \fB\-fPIC\fR or
+\&\fB\-fpic\fR.
 .PP
 \fIM32C Options\fR
 .IX Subsection "M32C Options"

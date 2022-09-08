@@ -35732,7 +35732,7 @@ This discusses registers that address the stack frame.
      registers used in .eh_frame or .debug_frame is different from that
      used in other debug info sections.  Given a GCC hard register
      number, this macro should return the .eh_frame register number.
-     The default is 'DBX_REGISTER_NUMBER (REGNO)'.
+     The default is 'DEBUGGER_REGNO (REGNO)'.
 
  -- Macro: DWARF2_FRAME_REG_OUT (REGNO, FOR_EH)
 
@@ -41592,31 +41592,31 @@ File: gccint.info,  Node: All Debuggers,  Next: DWARF,  Up: Debugging Info
 
 These macros affect all debugging formats.
 
- -- Macro: DBX_REGISTER_NUMBER (REGNO)
-     A C expression that returns the DBX register number for the
+ -- Macro: DEBUGGER_REGNO (REGNO)
+     A C expression that returns the debugger register number for the
      compiler register number REGNO.  In the default macro provided, the
      value of this expression will be REGNO itself.  But sometimes there
-     are some registers that the compiler knows about and DBX does not,
-     or vice versa.  In such cases, some register may need to have one
-     number in the compiler and another for DBX.
+     are some registers that the compiler knows about and debugger does
+     not, or vice versa.  In such cases, some register may need to have
+     one number in the compiler and another for debugger.
 
      If two registers have consecutive numbers inside GCC, and they can
      be used as a pair to hold a multiword value, then they _must_ have
-     consecutive numbers after renumbering with 'DBX_REGISTER_NUMBER'.
+     consecutive numbers after renumbering with 'DEBUGGER_REGNO'.
      Otherwise, debuggers will be unable to access such a pair, because
      they expect register pairs to be consecutive in their own numbering
      scheme.
 
-     If you find yourself defining 'DBX_REGISTER_NUMBER' in way that
-     does not preserve register pairs, then what you must do instead is
-     redefine the actual register numbering scheme.
+     If you find yourself defining 'DEBUGGER_REGNO' in way that does not
+     preserve register pairs, then what you must do instead is redefine
+     the actual register numbering scheme.
 
  -- Macro: DEBUGGER_AUTO_OFFSET (X)
      A C expression that returns the integer offset value for an
      automatic variable having address X (an RTL expression).  The
      default computation assumes that X is based on the frame-pointer
      and gives the offset from the frame-pointer.  This is required for
-     targets that produce debugging output for DBX and allow the
+     targets that produce debugging output for debugger and allow the
      frame-pointer to be eliminated when the '-g' option is used.
 
  -- Macro: DEBUGGER_ARG_OFFSET (OFFSET, X)
@@ -41642,8 +41642,7 @@ These macros affect all debugging formats.
 
  -- Macro: DEFAULT_GDB_EXTENSIONS
      Define this macro to control whether GCC should by default generate
-     GDB's extended version of DBX debugging information (assuming
-     DBX-format debugging information is enabled at all).  If you don't
+     GDB's extended version of debugging information.  If you don't
      define the macro, the default is 1: always generate the extended
      information if there is any occasion to.
 
@@ -54256,7 +54255,6 @@ Concept Index
 * DATA_SECTION_ASM_OP:                   Sections.           (line   52)
 * DBR_OUTPUT_SEQEND:                     Instruction Output. (line  133)
 * dbr_sequence_length:                   Instruction Output. (line  133)
-* DBX_REGISTER_NUMBER:                   All Debuggers.      (line    8)
 * DCmode:                                Machine Modes.      (line  198)
 * DDmode:                                Machine Modes.      (line   93)
 * De Morgan's law:                       Insn Canonicalizations.
@@ -54264,6 +54262,7 @@ Concept Index
 * dead_or_set_p:                         define_peephole.    (line   65)
 * DEBUGGER_ARG_OFFSET:                   All Debuggers.      (line   35)
 * DEBUGGER_AUTO_OFFSET:                  All Debuggers.      (line   27)
+* DEBUGGER_REGNO:                        All Debuggers.      (line    8)
 * debug_expr:                            Debug Information.  (line   22)
 * DEBUG_EXPR_DECL:                       Declarations.       (line    6)
 * debug_implicit_ptr:                    Debug Information.  (line   27)
@@ -58305,110 +58304,110 @@ Node: Frame Layout1480988
 Node: Exception Handling1492824
 Node: Stack Checking1499034
 Node: Frame Registers1504660
-Node: Elimination1513211
-Node: Stack Arguments1517067
-Node: Register Arguments1524520
-Node: Scalar Return1549080
-Node: Aggregate Return1555536
-Node: Caller Saves1560090
-Node: Function Entry1560832
-Node: Profiling1572384
-Node: Tail Calls1574494
-Node: Shrink-wrapping separate components1576404
-Node: Stack Smashing Protection1579445
-Node: Miscellaneous Register Hooks1581934
-Node: Varargs1582799
-Node: Trampolines1590685
-Node: Library Calls1600378
-Node: Addressing Modes1605465
-Node: Anchored Addresses1636482
-Node: Condition Code1639125
-Node: MODE_CC Condition Codes1640970
-Node: Costs1647733
-Node: Scheduling1670053
-Node: Sections1693975
-Node: PIC1710345
-Node: Assembler Format1712404
-Node: File Framework1713542
-Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1721141
-Node: Data Output1722816
-Node: Uninitialized Data1731104
-Node: Label Output1736119
-Node: Initialization1760732
-Node: Macros for Initialization1766693
-Node: Instruction Output1773844
-Node: Dispatch Tables1784474
-Node: Exception Region Output1790225
-Node: Alignment Output1797307
-Node: Debugging Info1800994
-Node: All Debuggers1801544
-Node: DWARF1804543
-Node: VMS Debug1810318
-Node: CTF Debug1810915
-Node: BTF Debug1811276
-Node: Floating Point1811619
-Node: Mode Switching1814374
-Node: Target Attributes1818811
-Node: Emulated TLS1830214
-Node: MIPS Coprocessors1833604
-Node: PCH Target1834763
-Node: C++ ABI1836605
-Node: D Language and ABI1841397
-Node: Named Address Spaces1844340
-Node: Misc1850267
-Ref: TARGET_SHIFT_TRUNCATION_MASK1858138
-Node: Host Config1919414
-Node: Host Common1920483
-Node: Filesystem1922857
-Node: Host Misc1926972
-Node: Fragments1929421
-Node: Target Fragment1930616
-Node: Host Fragment1941428
-Node: Collect21941668
-Node: Header Dirs1944304
-Node: Type Information1945727
-Node: GTY Options1949258
-Node: Inheritance and GTY1960871
-Ref: Inheritance and GTY-Footnote-11962436
-Node: User GC1962706
-Node: GGC Roots1966457
-Node: Files1967170
-Node: Invoking the garbage collector1969801
-Node: Troubleshooting1971443
-Node: Plugins1972518
-Node: Plugins loading1973647
-Node: Plugin API1974746
-Node: Plugins pass1982613
-Node: Plugins GC1984584
-Node: Plugins description1986301
-Node: Plugins attr1986837
-Node: Plugins recording1989117
-Node: Plugins gate1989967
-Node: Plugins tracking1990558
-Node: Plugins building1991146
-Node: LTO1994649
-Node: LTO Overview1995521
-Node: LTO object file layout2001277
-Node: IPA2005921
-Node: WHOPR2014973
-Node: Internal flags2019533
-Node: Match and Simplify2020944
-Node: GIMPLE API2021914
-Node: The Language2024716
-Node: Static Analyzer2037343
-Node: Analyzer Internals2037608
-Node: Debugging the Analyzer2053495
-Node: User Experience Guidelines2057063
-Node: Guidelines for Diagnostics2057999
-Ref: input_location_example2066174
-Node: Guidelines for Options2075859
-Node: Funding2076036
-Node: GNU Project2078543
-Node: Copying2079194
-Node: GNU Free Documentation License2116708
-Node: Contributors2141831
-Node: Option Index2182808
-Node: Concept Index2183685
+Node: Elimination1513206
+Node: Stack Arguments1517062
+Node: Register Arguments1524515
+Node: Scalar Return1549075
+Node: Aggregate Return1555531
+Node: Caller Saves1560085
+Node: Function Entry1560827
+Node: Profiling1572379
+Node: Tail Calls1574489
+Node: Shrink-wrapping separate components1576399
+Node: Stack Smashing Protection1579440
+Node: Miscellaneous Register Hooks1581929
+Node: Varargs1582794
+Node: Trampolines1590680
+Node: Library Calls1600373
+Node: Addressing Modes1605460
+Node: Anchored Addresses1636477
+Node: Condition Code1639120
+Node: MODE_CC Condition Codes1640965
+Node: Costs1647728
+Node: Scheduling1670048
+Node: Sections1693970
+Node: PIC1710340
+Node: Assembler Format1712399
+Node: File Framework1713537
+Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1721136
+Node: Data Output1722811
+Node: Uninitialized Data1731099
+Node: Label Output1736114
+Node: Initialization1760727
+Node: Macros for Initialization1766688
+Node: Instruction Output1773839
+Node: Dispatch Tables1784469
+Node: Exception Region Output1790220
+Node: Alignment Output1797302
+Node: Debugging Info1800989
+Node: All Debuggers1801539
+Node: DWARF1804472
+Node: VMS Debug1810247
+Node: CTF Debug1810844
+Node: BTF Debug1811205
+Node: Floating Point1811548
+Node: Mode Switching1814303
+Node: Target Attributes1818740
+Node: Emulated TLS1830143
+Node: MIPS Coprocessors1833533
+Node: PCH Target1834692
+Node: C++ ABI1836534
+Node: D Language and ABI1841326
+Node: Named Address Spaces1844269
+Node: Misc1850196
+Ref: TARGET_SHIFT_TRUNCATION_MASK1858067
+Node: Host Config1919343
+Node: Host Common1920412
+Node: Filesystem1922786
+Node: Host Misc1926901
+Node: Fragments1929350
+Node: Target Fragment1930545
+Node: Host Fragment1941357
+Node: Collect21941597
+Node: Header Dirs1944233
+Node: Type Information1945656
+Node: GTY Options1949187
+Node: Inheritance and GTY1960800
+Ref: Inheritance and GTY-Footnote-11962365
+Node: User GC1962635
+Node: GGC Roots1966386
+Node: Files1967099
+Node: Invoking the garbage collector1969730
+Node: Troubleshooting1971372
+Node: Plugins1972447
+Node: Plugins loading1973576
+Node: Plugin API1974675
+Node: Plugins pass1982542
+Node: Plugins GC1984513
+Node: Plugins description1986230
+Node: Plugins attr1986766
+Node: Plugins recording1989046
+Node: Plugins gate1989896
+Node: Plugins tracking1990487
+Node: Plugins building1991075
+Node: LTO1994578
+Node: LTO Overview1995450
+Node: LTO object file layout2001206
+Node: IPA2005850
+Node: WHOPR2014902
+Node: Internal flags2019462
+Node: Match and Simplify2020873
+Node: GIMPLE API2021843
+Node: The Language2024645
+Node: Static Analyzer2037272
+Node: Analyzer Internals2037537
+Node: Debugging the Analyzer2053424
+Node: User Experience Guidelines2056992
+Node: Guidelines for Diagnostics2057928
+Ref: input_location_example2066103
+Node: Guidelines for Options2075788
+Node: Funding2075965
+Node: GNU Project2078472
+Node: Copying2079123
+Node: GNU Free Documentation License2116637
+Node: Contributors2141760
+Node: Option Index2182737
+Node: Concept Index2183614
 
 End Tag Table
 

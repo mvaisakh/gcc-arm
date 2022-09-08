@@ -2100,6 +2100,13 @@
 #endif
 
 
+/* Define if your assembler supports AIX debug frame section label reference.
+   */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_XCOFF_DWARF_EXTRAS */
+#endif
+
+
 /* Define if you have a working <zstd.h> header file. */
 #ifndef USED_FOR_TARGET
 #define HAVE_ZSTD_H 1
