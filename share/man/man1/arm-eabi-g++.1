@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-09-08" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-09-11" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -470,6 +470,7 @@ in the following sections.
 \&\-Wno\-analyzer\-double\-fclose 
 \&\-Wno\-analyzer\-double\-free 
 \&\-Wno\-analyzer\-exposure\-through\-output\-file 
+\&\-Wno\-analyzer\-exposure\-through\-uninit\-copy 
 \&\-Wno\-analyzer\-fd\-access\-mode\-mismatch 
 \&\-Wno\-analyzer\-fd\-double\-close 
 \&\-Wno\-analyzer\-fd\-leak 
@@ -9135,6 +9136,7 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-double\-fclose 
 \&\-Wanalyzer\-double\-free 
 \&\-Wanalyzer\-exposure\-through\-output\-file 
+\&\-Wanalyzer\-exposure\-through\-uninit\-copy 
 \&\-Wanalyzer\-fd\-access\-mode\-mismatch 
 \&\-Wanalyzer\-fd\-double\-close 
 \&\-Wanalyzer\-fd\-leak 
@@ -9218,6 +9220,18 @@ security-sensitive value is written to an output file
 (such as writing a password to a log file).
 .Sp
 See  \s-1CWE\-532:\s0 Information Exposure Through Log Files (\f(CW\*(C`https://cwe.mitre.org/data/definitions/532.html\*(C'\fR).
+.IP "\fBWanalyzer-exposure-through-uninit-copy\fR" 4
+.IX Item "Wanalyzer-exposure-through-uninit-copy"
+This warning requires both \fB\-fanalyzer\fR and the use of a plugin
+to specify a function that copies across a \*(L"trust boundary\*(R".  Use
+\&\fB\-Wno\-analyzer\-exposure\-through\-uninit\-copy\fR to disable it.
+.Sp
+This diagnostic warns for \*(L"infoleaks\*(R" \- paths through the code in which
+uninitialized values are copied across a security boundary
+(such as code within an \s-1OS\s0 kernel that copies a partially-initialized
+struct on the stack to user space).
+.Sp
+See  \s-1CWE\-200:\s0 Exposure of Sensitive Information to an Unauthorized Actor (\f(CW\*(C`https://cwe.mitre.org/data/definitions/200.html\*(C'\fR).
 .IP "\fB\-Wno\-analyzer\-fd\-access\-mode\-mismatch\fR" 4
 .IX Item "-Wno-analyzer-fd-access-mode-mismatch"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
@@ -9347,9 +9361,11 @@ This warning requires \fB\-fanalyzer\fR to enable it; use
 \&\fB\-Wno\-analyzer\-out\-of\-bounds\fR to disable it.
 .Sp
 This diagnostic warns for path through the code in which a buffer is
-definitely read or written out-of-bounds.  The diagnostic only applies
-for cases where the analyzer is able to determine a constant offset and
-for accesses past the end of a buffer, also a constant capacity.
+definitely read or written out-of-bounds.  The diagnostic applies for
+cases where the analyzer is able to determine a constant offset and for
+accesses past the end of a buffer, also a constant capacity.  Further,
+the diagnostic does limited checking for accesses past the end when the
+offset as well as the capacity is symbolic.
 .Sp
 See  \s-1CWE\-119:\s0 Improper Restriction of Operations within the Bounds of a Memory Buffer (\f(CW\*(C`https://cwe.mitre.org/data/definitions/119.html\*(C'\fR).
 .IP "\fB\-Wno\-analyzer\-possible\-null\-argument\fR" 4
