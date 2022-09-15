@@ -2325,16 +2325,16 @@ given.
      'power4', 'power5', 'power6', 'power7', 'power8', 'power9',
      'power10', 'ppc', 'ppc32', 'ppc64', 'ppc64bridge', 'ppcps', 'pwr',
      'pwr2', 'pwr4', 'pwr5', 'pwr5x', 'pwr6', 'pwr7', 'pwr8', 'pwr9',
-     'pwr10', 'pwrx', 'titan', and 'vle'.  '32' and '64' modify the
-     default or a prior CPU selection, disabling and enabling 64-bit
-     insns respectively.  In addition, 'altivec', 'any', 'htm', 'vsx',
-     and 'spe' add capabilities to a previous _or later_ CPU selection.
-     'any' will disassemble any opcode known to binutils, but in cases
-     where an opcode has two different meanings or different arguments,
-     you may not see the disassembly you expect.  If you disassemble
-     without giving a CPU selection, a default will be chosen from
-     information gleaned by BFD from the object files headers, but the
-     result again may not be as you expect.
+     'pwr10', 'pwrx', 'titan', 'vle', and 'future'.  '32' and '64'
+     modify the default or a prior CPU selection, disabling and enabling
+     64-bit insns respectively.  In addition, 'altivec', 'any', 'htm',
+     'vsx', and 'spe' add capabilities to a previous _or later_ CPU
+     selection.  'any' will disassemble any opcode known to binutils,
+     but in cases where an opcode has two different meanings or
+     different arguments, you may not see the disassembly you expect.
+     If you disassemble without giving a CPU selection, a default will
+     be chosen from information gleaned by BFD from the object files
+     headers, but the result again may not be as you expect.
 
      For MIPS, this option controls the printing of instruction mnemonic
      names and register names in disassembled instructions.  Multiple
@@ -6107,29 +6107,29 @@ Node: ar scripts20221
 Node: nm25907
 Node: objcopy41584
 Node: objdump82432
-Node: ranlib119168
-Node: size120767
-Node: strings124736
-Node: strip130593
-Node: c++filt140435
-Ref: c++filt-Footnote-1146296
-Node: addr2line146402
-Node: windmc152357
-Node: windres156016
-Node: dlltool162586
-Node: def file format176039
-Node: readelf178569
-Node: elfedit197668
-Node: Common Options201094
-Node: Selecting the Target System202128
-Node: Target Selection203056
-Node: Architecture Selection205037
-Node: debuginfod205865
-Node: Reporting Bugs206867
-Node: Bug Criteria207629
-Node: Bug Reporting208182
-Node: GNU Free Documentation License215049
-Node: Binutils Index240209
+Node: ranlib119178
+Node: size120777
+Node: strings124746
+Node: strip130603
+Node: c++filt140445
+Ref: c++filt-Footnote-1146306
+Node: addr2line146412
+Node: windmc152367
+Node: windres156026
+Node: dlltool162596
+Node: def file format176049
+Node: readelf178579
+Node: elfedit197678
+Node: Common Options201104
+Node: Selecting the Target System202138
+Node: Target Selection203066
+Node: Architecture Selection205047
+Node: debuginfod205875
+Node: Reporting Bugs206877
+Node: Bug Criteria207639
+Node: Bug Reporting208192
+Node: GNU Free Documentation License215059
+Node: Binutils Index240219
 
 End Tag Table
 
