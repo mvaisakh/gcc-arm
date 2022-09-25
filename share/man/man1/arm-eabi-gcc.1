@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-09-22" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-09-25" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -10352,12 +10352,11 @@ location views are enabled.
 Produce compressed debug sections in \s-1DWARF\s0 format, if that is supported.
 If \fItype\fR is not given, the default type depends on the capabilities
 of the assembler and linker used.  \fItype\fR may be one of
-\&\fBnone\fR (don't compress debug sections), \fBzlib\fR (use zlib
-compression in \s-1ELF\s0 gABI format), or \fBzlib-gnu\fR (use zlib
-compression in traditional \s-1GNU\s0 format).  If the linker doesn't support
-writing compressed debug sections, the option is rejected.  Otherwise,
-if the assembler does not support them, \fB\-gz\fR is silently ignored
-when producing object files.
+\&\fBnone\fR (don't compress debug sections), or \fBzlib\fR (use zlib
+compression in \s-1ELF\s0 gABI format).  If the linker doesn't support writing
+compressed debug sections, the option is rejected.  Otherwise, if the
+assembler does not support them, \fB\-gz\fR is silently ignored when
+producing object files.
 .IP "\fB\-femit\-struct\-debug\-baseonly\fR" 4
 .IX Item "-femit-struct-debug-baseonly"
 Emit debug information for struct-like types
@@ -18999,7 +18998,7 @@ performance of the code.  Permissible values for this option are:
 \&\fBcortex\-a78\fR, \fBcortex\-a78ae\fR, \fBcortex\-a78c\fR,
 \&\fBares\fR, \fBexynos\-m1\fR, \fBemag\fR, \fBfalkor\fR,
 \&\fBneoverse\-512tvb\fR, \fBneoverse\-e1\fR, \fBneoverse\-n1\fR,
-\&\fBneoverse\-n2\fR, \fBneoverse\-v1\fR, \fBqdf24xx\fR,
+\&\fBneoverse\-n2\fR, \fBneoverse\-v1\fR, \fBneoverse\-v2\fR, \fBqdf24xx\fR,
 \&\fBsaphira\fR, \fBphecda\fR, \fBxgene1\fR, \fBvulcan\fR,
 \&\fBocteontx\fR, \fBocteontx81\fR,  \fBocteontx83\fR,
 \&\fBocteontx2\fR, \fBocteontx2t98\fR, \fBocteontx2t96\fR
