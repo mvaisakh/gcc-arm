@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2022-09-25" "binutils-2.39.50" "GNU Development Tools"
+.TH LD 1 "2022-09-29" "binutils-2.39.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2664,6 +2664,8 @@ but for most Linux based systems it will be \f(CW\*(C`both\*(C'\fR.
 .IX Item "--compress-debug-sections=zlib-gnu"
 .IP "\fB\-\-compress\-debug\-sections=zlib\-gabi\fR" 4
 .IX Item "--compress-debug-sections=zlib-gabi"
+.IP "\fB\-\-compress\-debug\-sections=zstd\fR" 4
+.IX Item "--compress-debug-sections=zstd"
 .PD
 On \s-1ELF\s0 platforms, these options control how \s-1DWARF\s0 debug sections are
 compressed using zlib.
@@ -2677,6 +2679,9 @@ sets the \s-1SHF_COMPRESSED\s0 flag in the sections' headers.
 .Sp
 The \fB\-\-compress\-debug\-sections=zlib\fR option is an alias for
 \&\fB\-\-compress\-debug\-sections=zlib\-gabi\fR.
+.Sp
+\&\fB\-\-compress\-debug\-sections=zstd\fR compresses \s-1DWARF\s0 debug sections using
+zstd.
 .Sp
 Note that this option overrides any compression in input debug
 sections, so if a binary is linked with \fB\-\-compress\-debug\-sections=none\fR

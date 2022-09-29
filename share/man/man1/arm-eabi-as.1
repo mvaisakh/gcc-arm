@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "AS 1"
-.TH AS 1 "2022-09-25" "binutils-2.39.50" "GNU Development Tools"
+.TH AS 1 "2022-09-29" "binutils-2.39.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -142,27 +142,41 @@
 AS \- the portable GNU assembler.
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-as [\fB\-a\fR[\fBcdghlns\fR][=\fIfile\fR]] [\fB\-\-alternate\fR] [\fB\-D\fR]
- [\fB\-\-compress\-debug\-sections\fR]  [\fB\-\-nocompress\-debug\-sections\fR]
+as [\fB\-a\fR[\fBcdghlns\fR][=\fIfile\fR]]
+ [\fB\-\-alternate\fR]
+ [\fB\-\-compress\-debug\-sections\fR] [\fB\-\-nocompress\-debug\-sections\fR]
+ [\fB\-D\fR]
+ [\fB\-\-dump\-config\fR]
  [\fB\-\-debug\-prefix\-map\fR \fIold\fR=\fInew\fR]
- [\fB\-\-defsym\fR \fIsym\fR=\fIval\fR] [\fB\-f\fR] [\fB\-g\fR] [\fB\-\-gstabs\fR]
- [\fB\-\-gstabs+\fR] [\fB\-\-gdwarf\-<N>\fR] [\fB\-\-gdwarf\-sections\fR]
+ [\fB\-\-defsym\fR \fIsym\fR=\fIval\fR]
+ [\fB\-\-elf\-stt\-common=[no|yes]\fR]
+ [\fB\-\-emulation\fR=\fIname\fR]
+ [\fB\-f\fR]
+ [\fB\-g\fR] [\fB\-\-gstabs\fR] [\fB\-\-gstabs+\fR]
+ [\fB\-\-gdwarf\-<N>\fR] [\fB\-\-gdwarf\-sections\fR]
  [\fB\-\-gdwarf\-cie\-version\fR=\fI\s-1VERSION\s0\fR]
- [\fB\-\-help\fR] [\fB\-I\fR \fIdir\fR] [\fB\-J\fR]
- [\fB\-K\fR] [\fB\-L\fR] [\fB\-\-listing\-lhs\-width\fR=\fI\s-1NUM\s0\fR]
- [\fB\-\-listing\-lhs\-width2\fR=\fI\s-1NUM\s0\fR] [\fB\-\-listing\-rhs\-width\fR=\fI\s-1NUM\s0\fR]
- [\fB\-\-listing\-cont\-lines\fR=\fI\s-1NUM\s0\fR] [\fB\-\-keep\-locals\fR]
+ [\fB\-\-generate\-missing\-build\-notes=[no|yes]\fR]
+ [\fB\-\-hash\-size\fR=\fIN\fR]
+ [\fB\-\-help\fR] [\fB\-\-target\-help\fR]
+ [\fB\-I\fR \fIdir\fR]
+ [\fB\-J\fR]
+ [\fB\-K\fR]
+ [\fB\-\-keep\-locals\fR]
+ [\fB\-L\fR]
+ [\fB\-\-listing\-lhs\-width\fR=\fI\s-1NUM\s0\fR]
+ [\fB\-\-listing\-lhs\-width2\fR=\fI\s-1NUM\s0\fR]
+ [\fB\-\-listing\-rhs\-width\fR=\fI\s-1NUM\s0\fR]
+ [\fB\-\-listing\-cont\-lines\fR=\fI\s-1NUM\s0\fR]
+ [\fB\-\-multibyte\-handling=[allow|warn|warn\-sym\-only]\fR]
  [\fB\-\-no\-pad\-sections\fR]
  [\fB\-o\fR \fIobjfile\fR] [\fB\-R\fR]
+ [\fB\-\-sectname\-subst\fR]
+ [\fB\-\-size\-check=[error|warning]\fR]
  [\fB\-\-statistics\fR]
  [\fB\-v\fR] [\fB\-version\fR] [\fB\-\-version\fR]
  [\fB\-W\fR] [\fB\-\-warn\fR] [\fB\-\-fatal\-warnings\fR] [\fB\-w\fR] [\fB\-x\fR]
  [\fB\-Z\fR] [\fB@\fR\fI\s-1FILE\s0\fR]
- [\fB\-\-sectname\-subst\fR] [\fB\-\-size\-check=[error|warning]\fR]
- [\fB\-\-elf\-stt\-common=[no|yes]\fR]
- [\fB\-\-generate\-missing\-build\-notes=[no|yes]\fR]
- [\fB\-\-multibyte\-handling=[allow|warn|warn\-sym\-only]\fR]
- [\fB\-\-target\-help\fR] [\fItarget-options\fR]
+ [\fItarget-options\fR]
  [\fB\-\-\fR|\fIfiles\fR ...]
 .SH "TARGET"
 .IX Header "TARGET"
@@ -587,6 +601,8 @@ given section \fIlarger\fR then it is not compressed.
 .IX Item "--compress-debug-sections=zlib-gnu"
 .IP "\fB\-\-compress\-debug\-sections=zlib\-gabi\fR" 4
 .IX Item "--compress-debug-sections=zlib-gabi"
+.IP "\fB\-\-compress\-debug\-sections=zstd\fR" 4
+.IX Item "--compress-debug-sections=zstd"
 .PD
 These options control how \s-1DWARF\s0 debug sections are compressed.
 \&\fB\-\-compress\-debug\-sections=none\fR is equivalent to
@@ -594,10 +610,12 @@ These options control how \s-1DWARF\s0 debug sections are compressed.
 \&\fB\-\-compress\-debug\-sections=zlib\fR and
 \&\fB\-\-compress\-debug\-sections=zlib\-gabi\fR are equivalent to
 \&\fB\-\-compress\-debug\-sections\fR.
-\&\fB\-\-compress\-debug\-sections=zlib\-gnu\fR compresses \s-1DWARF\s0 debug
-sections using zlib.  The debug sections are renamed to begin with
-\&\fB.zdebug\fR.  Note if compression would make a given section
-\&\fIlarger\fR then it is not compressed nor renamed.
+\&\fB\-\-compress\-debug\-sections=zlib\-gnu\fR compresses \s-1DWARF\s0 debug sections
+using the obsoleted zlib-gnu format.  The debug sections are renamed to begin
+with \fB.zdebug\fR.
+\&\fB\-\-compress\-debug\-sections=zstd\fR compresses \s-1DWARF\s0 debug
+sections using zstd.  Note \- if compression would actually make a section
+\&\fIlarger\fR, then it is not compressed nor renamed.
 .IP "\fB\-\-nocompress\-debug\-sections\fR" 4
 .IX Item "--nocompress-debug-sections"
 Do not compress \s-1DWARF\s0 debug sections.  This is usually the default for all
@@ -605,7 +623,8 @@ targets except the x86/x86_64, but a configure time option can be used to
 override this.
 .IP "\fB\-D\fR" 4
 .IX Item "-D"
-Ignored.  This option is accepted for script compatibility with calls to
+Enable denugging in target specific backends, if supported.  Otherwise ignored.
+Even if ignored, this option is accepted for script compatibility with calls to
 other assemblers.
 .IP "\fB\-\-debug\-prefix\-map\fR \fIold\fR\fB=\fR\fInew\fR" 4
 .IX Item "--debug-prefix-map old=new"
@@ -618,6 +637,22 @@ Define the symbol \fIsym\fR to be \fIvalue\fR before assembling the input file.
 indicates a hexadecimal value, and a leading \fB0\fR indicates an octal
 value.  The value of the symbol can be overridden inside a source file via the
 use of a \f(CW\*(C`.set\*(C'\fR pseudo-op.
+.IP "\fB\-\-dump\-config\fR" 4
+.IX Item "--dump-config"
+Displays how the assembler is configured and then exits.
+.IP "\fB\-\-elf\-stt\-common=no\fR" 4
+.IX Item "--elf-stt-common=no"
+.PD 0
+.IP "\fB\-\-elf\-stt\-common=yes\fR" 4
+.IX Item "--elf-stt-common=yes"
+.PD
+These options control whether the \s-1ELF\s0 assembler should generate common
+symbols with the \f(CW\*(C`STT_COMMON\*(C'\fR type.  The default can be controlled
+by a configure option \fB\-\-enable\-elf\-stt\-common\fR.
+.IP "\fB\-\-emulation=\fR\fIname\fR" 4
+.IX Item "--emulation=name"
+If the assembler is configured to support multiple different target
+configurations then this option can be used to select the desired form.
 .IP "\fB\-f\fR" 4
 .IX Item "-f"
 \&\*(L"fast\*(R"\-\-\-skip whitespace and comment preprocessing (assume source is
@@ -684,22 +719,6 @@ suffix.
 Control which version of \s-1DWARF\s0 Common Information Entries (CIEs) are produced.
 When this flag is not specificed the default is version 1, though some targets
 can modify this default.  Other possible values for \fIversion\fR are 3 or 4.
-.IP "\fB\-\-size\-check=error\fR" 4
-.IX Item "--size-check=error"
-.PD 0
-.IP "\fB\-\-size\-check=warning\fR" 4
-.IX Item "--size-check=warning"
-.PD
-Issue an error or warning for invalid \s-1ELF\s0 .size directive.
-.IP "\fB\-\-elf\-stt\-common=no\fR" 4
-.IX Item "--elf-stt-common=no"
-.PD 0
-.IP "\fB\-\-elf\-stt\-common=yes\fR" 4
-.IX Item "--elf-stt-common=yes"
-.PD
-These options control whether the \s-1ELF\s0 assembler should generate common
-symbols with the \f(CW\*(C`STT_COMMON\*(C'\fR type.  The default can be controlled
-by a configure option \fB\-\-enable\-elf\-stt\-common\fR.
 .IP "\fB\-\-generate\-missing\-build\-notes=yes\fR" 4
 .IX Item "--generate-missing-build-notes=yes"
 .PD 0
@@ -710,6 +729,9 @@ These options control whether the \s-1ELF\s0 assembler should generate \s-1GNU\s
 attribute notes if none are present in the input sources.
 The default can be controlled by the \fB\-\-enable\-generate\-build\-notes\fR
 configure option.
+.IP "\fB\-\-hash\-size\fR \fIN\fR" 4
+.IX Item "--hash-size N"
+Ignored.  Supported for command line compatibility with other assemblers.
 .IP "\fB\-\-help\fR" 4
 .IX Item "--help"
 Print a summary of the command-line options and exit.
@@ -757,6 +779,8 @@ to \fInumber\fR + 1.
 .IX Item "--multibyte-handling=warn"
 .IP "\fB\-\-multibyte\-handling=warn\-sym\-only\fR" 4
 .IX Item "--multibyte-handling=warn-sym-only"
+.IP "\fB\-\-multibyte\-handling=warn_sym_only\fR" 4
+.IX Item "--multibyte-handling=warn_sym_only"
 .PD
 Controls how the assembler handles multibyte characters in the input.  The
 default (which can be restored by using the \fBallow\fR argument) is to
@@ -777,9 +801,20 @@ Name the object-file output from \fBas\fR \fIobjfile\fR.
 .IP "\fB\-R\fR" 4
 .IX Item "-R"
 Fold the data section into the text section.
+.IP "\fB\-\-reduce\-memory\-overheads\fR" 4
+.IX Item "--reduce-memory-overheads"
+Ignored.  Supported for compatibility with tools that apss the same option to
+both the assembler and the linker.
 .IP "\fB\-\-sectname\-subst\fR" 4
 .IX Item "--sectname-subst"
 Honor substitution sequences in section names.
+.IP "\fB\-\-size\-check=error\fR" 4
+.IX Item "--size-check=error"
+.PD 0
+.IP "\fB\-\-size\-check=warning\fR" 4
+.IX Item "--size-check=warning"
+.PD
+Issue an error or warning for invalid \s-1ELF\s0 .size directive.
 .IP "\fB\-\-statistics\fR" 4
 .IX Item "--statistics"
 Print the maximum space (in bytes) and total time (in seconds) used by

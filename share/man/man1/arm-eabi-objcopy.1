@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJCOPY 1"
-.TH OBJCOPY 1 "2022-09-25" "binutils-2.39.50" "GNU Development Tools"
+.TH OBJCOPY 1 "2022-09-29" "binutils-2.39.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1158,6 +1158,8 @@ Compress \s-1DWARF\s0 debug sections using zlib with \s-1SHF_COMPRESSED\s0 from 
 .IX Item "--compress-debug-sections=zlib-gnu"
 .IP "\fB\-\-compress\-debug\-sections=zlib\-gabi\fR" 4
 .IX Item "--compress-debug-sections=zlib-gabi"
+.IP "\fB\-\-compress\-debug\-sections=zstd\fR" 4
+.IX Item "--compress-debug-sections=zstd"
 .PD
 For \s-1ELF\s0 files, these options control how \s-1DWARF\s0 debug sections are
 compressed.  \fB\-\-compress\-debug\-sections=none\fR is equivalent
@@ -1165,15 +1167,16 @@ to \fB\-\-decompress\-debug\-sections\fR.
 \&\fB\-\-compress\-debug\-sections=zlib\fR and
 \&\fB\-\-compress\-debug\-sections=zlib\-gabi\fR are equivalent to
 \&\fB\-\-compress\-debug\-sections\fR.
-\&\fB\-\-compress\-debug\-sections=zlib\-gnu\fR compresses \s-1DWARF\s0 debug
-sections using zlib.  The debug sections are renamed to begin with
-\&\fB.zdebug\fR instead of \fB.debug\fR.  Note \- if compression would
-actually make a section \fIlarger\fR, then it is not compressed nor
-renamed.
+\&\fB\-\-compress\-debug\-sections=zlib\-gnu\fR compresses \s-1DWARF\s0 debug sections
+using the obsoleted zlib-gnu format.  The debug sections are renamed to begin
+with \fB.zdebug\fR.
+\&\fB\-\-compress\-debug\-sections=zstd\fR compresses \s-1DWARF\s0 debug
+sections using zstd.  Note \- if compression would actually make a section
+\&\fIlarger\fR, then it is not compressed nor renamed.
 .IP "\fB\-\-decompress\-debug\-sections\fR" 4
 .IX Item "--decompress-debug-sections"
-Decompress \s-1DWARF\s0 debug sections using zlib.  The original section
-names of the compressed sections are restored.
+Decompress \s-1DWARF\s0 debug sections.  For a \fB.zdebug\fR section, the original
+name is restored.
 .IP "\fB\-\-elf\-stt\-common=yes\fR" 4
 .IX Item "--elf-stt-common=yes"
 .PD 0

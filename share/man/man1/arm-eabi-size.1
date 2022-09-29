@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "SIZE 1"
-.TH SIZE 1 "2022-09-25" "binutils-2.39.50" "GNU Development Tools"
+.TH SIZE 1 "2022-09-29" "binutils-2.39.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -148,6 +148,7 @@ size [\fB\-A\fR|\fB\-B\fR|\fB\-G\fR|\fB\-\-format=\fR\fIcompatibility\fR]
      [\fB\-\-common\fR]
      [\fB\-t\fR|\fB\-\-totals\fR]
      [\fB\-\-target=\fR\fIbfdname\fR] [\fB\-V\fR|\fB\-\-version\fR]
+     [\fB\-f\fR]
      [\fIobjfile\fR...]
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -228,6 +229,14 @@ This is the same data, but displayed closer to System V conventions:
 .Ve
 .IP "\fB\-\-help\fR" 4
 .IX Item "--help"
+.PD 0
+.IP "\fB\-h\fR" 4
+.IX Item "-h"
+.IP "\fB\-H\fR" 4
+.IX Item "-H"
+.IP "\fB\-?\fR" 4
+.IX Item "-?"
+.PD
 Show a summary of acceptable arguments and options.
 .IP "\fB\-d\fR" 4
 .IX Item "-d"
@@ -262,13 +271,19 @@ Show totals of all objects listed (Berkeley or \s-1GNU\s0 format mode only).
 Specify that the object-code format for \fIobjfile\fR is
 \&\fIbfdname\fR.  This option may not be necessary; \fBsize\fR can
 automatically recognize many formats.
+.IP "\fB\-v\fR" 4
+.IX Item "-v"
+.PD 0
 .IP "\fB\-V\fR" 4
 .IX Item "-V"
-.PD 0
 .IP "\fB\-\-version\fR" 4
 .IX Item "--version"
 .PD
 Display the version number of \fBsize\fR.
+.IP "\fB\-f\fR" 4
+.IX Item "-f"
+Ignored.  This option is used by other versions of the \fBsize\fR
+program, but it is not supported by the \s-1GNU\s0 Binutils version.
 .IP "\fB@\fR\fIfile\fR" 4
 .IX Item "@file"
 Read command-line options from \fIfile\fR.  The options read are

@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-09-25" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-09-29" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2936,9 +2936,16 @@ change in version 12.
 Version 14, which first appeared in G++ 10, corrects the mangling of
 the nullptr expression.
 .Sp
-Version 15, which first appeared in G++ 11, changes the mangling of
+Version 15, which first appeared in G++ 10.3, corrects G++ 10 \s-1ABI\s0
+tag regression.
+.Sp
+Version 16, which first appeared in G++ 11, changes the mangling of
 \&\f(CW\*(C`_\|_alignof_\|_\*(C'\fR to be distinct from that of \f(CW\*(C`alignof\*(C'\fR, and
 dependent operator names.
+.Sp
+Version 17, which first appeared in G++ 12, fixes layout of classes
+that inherit from aggregate classes with default member initializers
+in \*(C+14 and up.
 .Sp
 See also \fB\-Wabi\fR.
 .IP "\fB\-fabi\-compat\-version=\fR\fIn\fR" 4
@@ -2948,7 +2955,7 @@ works around mangling changes by creating an alias with the correct
 mangled name when defining a symbol with an incorrect mangled name.
 This switch specifies which \s-1ABI\s0 version to use for the alias.
 .Sp
-With \fB\-fabi\-version=0\fR (the default), this defaults to 11 (\s-1GCC 7\s0
+With \fB\-fabi\-version=0\fR (the default), this defaults to 13 (\s-1GCC 8.2\s0
 compatibility).  If another \s-1ABI\s0 version is explicitly selected, this
 defaults to 0.  For compatibility with \s-1GCC\s0 versions 3.2 through 4.9,
 use \fB\-fabi\-compat\-version=2\fR.
@@ -9220,8 +9227,8 @@ security-sensitive value is written to an output file
 (such as writing a password to a log file).
 .Sp
 See  \s-1CWE\-532:\s0 Information Exposure Through Log Files (\f(CW\*(C`https://cwe.mitre.org/data/definitions/532.html\*(C'\fR).
-.IP "\fBWanalyzer-exposure-through-uninit-copy\fR" 4
-.IX Item "Wanalyzer-exposure-through-uninit-copy"
+.IP "\fB\-Wanalyzer\-exposure\-through\-uninit\-copy\fR" 4
+.IX Item "-Wanalyzer-exposure-through-uninit-copy"
 This warning requires both \fB\-fanalyzer\fR and the use of a plugin
 to specify a function that copies across a \*(L"trust boundary\*(R".  Use
 \&\fB\-Wno\-analyzer\-exposure\-through\-uninit\-copy\fR to disable it.
@@ -18965,6 +18972,12 @@ and the features that they enable by default:
 .IX Item "armv8.8-a : Armv8.8-a : armv8.7-a, +mops"
 .IP "\fBarmv9\-a\fR : Armv9\-A : \fBarmv8.5\-a\fR, \fB+sve\fR, \fB+sve2\fR" 4
 .IX Item "armv9-a : Armv9-A : armv8.5-a, +sve, +sve2"
+.IP "\fBarmv9.1\-a\fR : Armv9.1\-A : \fBarmv9\-a\fR, \fB+bf16\fR, \fB+i8mm\fR" 4
+.IX Item "armv9.1-a : Armv9.1-A : armv9-a, +bf16, +i8mm"
+.IP "\fBarmv9.2\-a\fR : Armv9.2\-A : \fBarmv9.1\-a\fR, \fB+ls64\fR" 4
+.IX Item "armv9.2-a : Armv9.2-A : armv9.1-a, +ls64"
+.IP "\fBarmv9.3\-a\fR : Armv9.3\-A : \fBarmv9.2\-a\fR, \fB+mops\fR" 4
+.IX Item "armv9.3-a : Armv9.3-A : armv9.2-a, +mops"
 .IP "\fBarmv8\-r\fR : Armv8\-R : \fBarmv8\-r\fR" 4
 .IX Item "armv8-r : Armv8-R : armv8-r"
 .RE
@@ -27132,7 +27145,9 @@ supported.
 Generate code for the specified \s-1PTX ISA\s0 target architecture
 (e.g. \fBsm_35\fR).  Valid architecture strings are \fBsm_30\fR,
 \&\fBsm_35\fR, \fBsm_53\fR, \fBsm_70\fR, \fBsm_75\fR and
-\&\fBsm_80\fR.  The default target architecture is sm_30.
+\&\fBsm_80\fR.
+The default depends on how the compiler has been configured, see
+\&\fB\-\-with\-arch\fR.
 .Sp
 This option sets the value of the preprocessor macro
 \&\f(CW\*(C`_\|_PTX_SM_\|_\*(C'\fR; for instance, for \fBsm_35\fR, it has the value
