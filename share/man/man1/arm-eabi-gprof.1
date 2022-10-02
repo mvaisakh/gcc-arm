@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GPROF 1"
-.TH GPROF 1 "2022-09-29" "binutils-2.39.50" "GNU"
+.TH GPROF 1 "2022-10-02" "binutils-2.39.50" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -142,7 +142,7 @@
 gprof \- display call graph profile data
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-gprof [ \-[abcDhilLrsTvwxyz] ] [ \-[ACeEfFJnNOpPqQRStZ][\fIname\fR] ]
+gprof [ \-[abcDhilLrsTvwxyz] ] [ \-[ABCeEfFJnNOpPqQRStZ][\fIname\fR] ]
  [ \-I \fIdirs\fR ] [ \-d[\fInum\fR] ] [ \-k \fIfrom/to\fR ]
  [ \-m \fImin-count\fR ] [ \-R \fImap_file\fR ] [ \-t \fItable-length\fR ]
  [ \-\-[no\-]annotated\-source[=\fIname\fR] ]
@@ -230,6 +230,10 @@ If the \fB\-b\fR option is given, \f(CW\*(C`gprof\*(C'\fR doesn't print the
 verbose blurbs that try to explain the meaning of all of the fields in
 the tables.  This is useful if you intend to print out the output, or
 are tired of seeing the blurbs.
+.ie n .IP """\-B""" 4
+.el .IP "\f(CW\-B\fR" 4
+.IX Item "-B"
+The \fB\-B\fR option causes \f(CW\*(C`gprof\*(C'\fR to print the call graph analysis.
 .ie n .IP """\-C[\fIsymspec\fP]""" 4
 .el .IP "\f(CW\-C[\f(CIsymspec\f(CW]\fR" 4
 .IX Item "-C[symspec]"

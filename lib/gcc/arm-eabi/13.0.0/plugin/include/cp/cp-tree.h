@@ -1374,45 +1374,10 @@ struct GTY (()) tree_argument_pack_select {
 
 enum cp_trait_kind
 {
-  CPTK_BASES,
-  CPTK_DIRECT_BASES,
-  CPTK_HAS_NOTHROW_ASSIGN,
-  CPTK_HAS_NOTHROW_CONSTRUCTOR,
-  CPTK_HAS_NOTHROW_COPY,
-  CPTK_HAS_TRIVIAL_ASSIGN,
-  CPTK_HAS_TRIVIAL_CONSTRUCTOR,
-  CPTK_HAS_TRIVIAL_COPY,
-  CPTK_HAS_TRIVIAL_DESTRUCTOR,
-  CPTK_HAS_UNIQUE_OBJ_REPRESENTATIONS,
-  CPTK_HAS_VIRTUAL_DESTRUCTOR,
-  CPTK_IS_ABSTRACT,
-  CPTK_IS_AGGREGATE,
-  CPTK_IS_BASE_OF,
-  CPTK_IS_CLASS,
-  CPTK_IS_EMPTY,
-  CPTK_IS_ENUM,
-  CPTK_IS_FINAL,
-  CPTK_IS_LAYOUT_COMPATIBLE,
-  CPTK_IS_LITERAL_TYPE,
-  CPTK_IS_POINTER_INTERCONVERTIBLE_BASE_OF,
-  CPTK_IS_POD,
-  CPTK_IS_POLYMORPHIC,
-  CPTK_IS_SAME_AS,
-  CPTK_IS_STD_LAYOUT,
-  CPTK_IS_TRIVIAL,
-  CPTK_IS_TRIVIALLY_ASSIGNABLE,
-  CPTK_IS_TRIVIALLY_CONSTRUCTIBLE,
-  CPTK_IS_TRIVIALLY_COPYABLE,
-  CPTK_IS_UNION,
-  CPTK_UNDERLYING_TYPE,
-  CPTK_IS_ASSIGNABLE,
-  CPTK_IS_CONSTRUCTIBLE,
-  CPTK_IS_NOTHROW_ASSIGNABLE,
-  CPTK_IS_NOTHROW_CONSTRUCTIBLE,
-  CPTK_IS_CONVERTIBLE,
-  CPTK_IS_NOTHROW_CONVERTIBLE,
-  CPTK_REF_CONSTRUCTS_FROM_TEMPORARY,
-  CPTK_REF_CONVERTS_FROM_TEMPORARY
+#define DEFTRAIT(TCC, CODE, NAME, ARITY) \
+  CPTK_##CODE,
+#include "cp-trait.def"
+#undef DEFTRAIT
 };
 
 /* The types that we are processing.  */
@@ -1436,6 +1401,22 @@ struct GTY (()) tree_trait_expr {
   location_t locus;
   enum cp_trait_kind kind;
 };
+
+/* An INTEGER_CST containing the kind of the trait type NODE.  */
+#define TRAIT_TYPE_KIND_RAW(NODE) \
+  TYPE_VALUES_RAW (TRAIT_TYPE_CHECK (NODE))
+
+/* The kind of the trait type NODE.  */
+#define TRAIT_TYPE_KIND(NODE) \
+  ((enum cp_trait_kind) TREE_INT_CST_LOW (TRAIT_TYPE_KIND_RAW (NODE)))
+
+/* The first argument of the trait type NODE.  */
+#define TRAIT_TYPE_TYPE1(NODE) \
+  TYPE_MIN_VALUE_RAW (TRAIT_TYPE_CHECK (NODE))
+
+/* The rest of the arguments of the trait type NODE.  */
+#define TRAIT_TYPE_TYPE2(NODE) \
+  TYPE_MAX_VALUE_RAW (TRAIT_TYPE_CHECK (NODE))
 
 /* Identifiers used for lambda types are almost anonymous.  Use this
    spare flag to distinguish them (they also have the anonymous flag).  */
@@ -2226,6 +2207,7 @@ enum languages { lang_c, lang_cplusplus };
    || TREE_CODE (T) == TYPEOF_TYPE			\
    || TREE_CODE (T) == BOUND_TEMPLATE_TEMPLATE_PARM	\
    || TREE_CODE (T) == DECLTYPE_TYPE			\
+   || TREE_CODE (T) == TRAIT_TYPE			\
    || TREE_CODE (T) == DEPENDENT_OPERATOR_TYPE)
 
 /* Nonzero if T is a class (or struct or union) type.  Also nonzero
@@ -5406,7 +5388,8 @@ target_expr_needs_replace (tree t)
     return false;
   while (TREE_CODE (init) == COMPOUND_EXPR)
     init = TREE_OPERAND (init, 1);
-  return TREE_CODE (init) != AGGR_INIT_EXPR;
+  return (TREE_CODE (init) != AGGR_INIT_EXPR
+	  && TREE_CODE (init) != VEC_INIT_EXPR);
 }
 
 /* True if EXPR expresses direct-initialization of a TYPE.  */
@@ -7736,6 +7719,7 @@ extern tree finish_decltype_type                (tree, bool, tsubst_flags_t);
 extern tree fold_builtin_is_corresponding_member (location_t, int, tree *);
 extern tree fold_builtin_is_pointer_inverconvertible_with_class (location_t, int, tree *);
 extern tree finish_trait_expr			(location_t, enum cp_trait_kind, tree, tree);
+extern tree finish_trait_type			(enum cp_trait_kind, tree, tree);
 extern tree build_lambda_expr                   (void);
 extern tree build_lambda_object			(tree);
 extern tree begin_lambda_type                   (tree);

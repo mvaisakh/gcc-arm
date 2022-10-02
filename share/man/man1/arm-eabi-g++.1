@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-09-29" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-10-02" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1234,6 +1234,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\fB\-mbig\-endian  \-mlittle\-endian 
 \&\-mstack\-protector\-guard=\fR\fIguard\fR  \fB\-mstack\-protector\-guard\-reg=\fR\fIreg\fR 
 \&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR
+\&\-mcsr\-check \-mno\-csr\-check
 .Sp
 \&\fI\s-1RL78\s0 Options\fR
 \&\fB\-msim  \-mmul=none  \-mmul=g13  \-mmul=g14  \-mallregs 
@@ -15833,9 +15834,13 @@ the area size or to remove it completely on a single function.
 If \f(CW\*(C`N=0\*(C'\fR, no pad location is recorded.
 .Sp
 The \s-1NOP\s0 instructions are inserted at\-\-\-and maybe before, depending on
-\&\fIM\fR\-\-\-the function entry address, even before the prologue.
+\&\fIM\fR\-\-\-the function entry address, even before the prologue.  On
+PowerPC with the ELFv2 \s-1ABI,\s0 for a function with dual entry points,
+the local entry point is this function entry address.
 .Sp
-The maximum value of \fIN\fR and \fIM\fR is 65535.
+The maximum value of \fIN\fR and \fIM\fR is 65535.  On PowerPC with the
+ELFv2 \s-1ABI,\s0 for a function with dual entry points, the supported values
+for \fIM\fR are 0, 2, 6 and 14.
 .SS "Options Controlling the Preprocessor"
 .IX Subsection "Options Controlling the Preprocessor"
 These options control the C preprocessor, which is run on each C source
@@ -27643,6 +27648,13 @@ linker relaxations.
 .PD
 Emit (do not emit) RISC-V attribute to record extra information into \s-1ELF\s0
 objects.  This feature requires at least binutils 2.32.
+.IP "\fB\-mcsr\-check\fR" 4
+.IX Item "-mcsr-check"
+.PD 0
+.IP "\fB\-mno\-csr\-check\fR" 4
+.IX Item "-mno-csr-check"
+.PD
+Enables or disables the \s-1CSR\s0 checking.
 .IP "\fB\-malign\-data=\fR\fItype\fR" 4
 .IX Item "-malign-data=type"
 Control how \s-1GCC\s0 aligns variables and constants of array, structure, or union
