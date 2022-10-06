@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-10-02" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-10-06" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2766,7 +2766,8 @@ not explicitly specify.  The \fIgeom\fR value is a triple of
 can be omitted, to use a target-specific default value.
 .IP "\fB\-fopenmp\fR" 4
 .IX Item "-fopenmp"
-Enable handling of OpenMP directives \f(CW\*(C`#pragma omp\*(C'\fR in C/\*(C+ and
+Enable handling of OpenMP directives \f(CW\*(C`#pragma omp\*(C'\fR in C/\*(C+,
+\&\f(CW\*(C`[[omp::directive(...)]]\*(C'\fR and \f(CW\*(C`[[omp::sequence(...)]]\*(C'\fR in \*(C+ and
 \&\f(CW\*(C`!$omp\*(C'\fR in Fortran.  When \fB\-fopenmp\fR is specified, the
 compiler generates parallel code according to the OpenMP Application
 Program Interface v4.5 <\fBhttps://www.openmp.org\fR>.  This option
@@ -2775,9 +2776,12 @@ have support for \fB\-pthread\fR. \fB\-fopenmp\fR implies
 \&\fB\-fopenmp\-simd\fR.
 .IP "\fB\-fopenmp\-simd\fR" 4
 .IX Item "-fopenmp-simd"
-Enable handling of OpenMP's \s-1SIMD\s0 directives with \f(CW\*(C`#pragma omp\*(C'\fR
-in C/\*(C+ and \f(CW\*(C`!$omp\*(C'\fR in Fortran. Other OpenMP directives
-are ignored.
+Enable handling of OpenMP's \f(CW\*(C`simd\*(C'\fR, \f(CW\*(C`declare simd\*(C'\fR,
+\&\f(CW\*(C`declare reduction\*(C'\fR, \f(CW\*(C`assume\*(C'\fR, \f(CW\*(C`ordered\*(C'\fR, \f(CW\*(C`scan\*(C'\fR,
+\&\f(CW\*(C`loop\*(C'\fR directives and combined or composite directives with
+\&\f(CW\*(C`simd\*(C'\fR as constituent with \f(CW\*(C`#pragma omp\*(C'\fR in C/\*(C+,
+\&\f(CW\*(C`[[omp::directive(...)]]\*(C'\fR and \f(CW\*(C`[[omp::sequence(...)]]\*(C'\fR in \*(C+
+and \f(CW\*(C`!$omp\*(C'\fR in Fortran.  Other OpenMP directives are ignored.
 .IP "\fB\-fpermitted\-flt\-eval\-methods=\fR\fIstyle\fR" 4
 .IX Item "-fpermitted-flt-eval-methods=style"
 \&\s-1ISO/IEC TS 18661\-3\s0 defines new permissible values for

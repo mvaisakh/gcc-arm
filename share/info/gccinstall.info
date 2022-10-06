@@ -3130,13 +3130,13 @@ amdgcn-*-amdhsa
 
 AMD GCN GPU target.
 
-   Instead of GNU Binutils, you will need to install LLVM 6, or later,
-and copy 'bin/llvm-mc' to 'amdgcn-amdhsa/bin/as', 'bin/lld' to
+   Instead of GNU Binutils, you will need to install LLVM 13.0.1, or
+later, and copy 'bin/llvm-mc' to 'amdgcn-amdhsa/bin/as', 'bin/lld' to
 'amdgcn-amdhsa/bin/ld', 'bin/llvm-nm' to 'amdgcn-amdhsa/bin/nm', and
 'bin/llvm-ar' to both 'bin/amdgcn-amdhsa-ar' and
 'bin/amdgcn-amdhsa-ranlib'.
 
-   Use Newlib (2019-01-16, or newer).
+   Use Newlib (3.2.0, or newer).
 
    To run the binaries, install the HSA Runtime from the ROCm Platform,
 and use 'libexec/gcc/amdhsa-amdhsa/VERSION/gcn-run' to launch them on
@@ -3820,11 +3820,9 @@ Nvidia PTX target.
 GCC where to find it:
 '--with-build-time-tools=[install-nvptx-tools]/nvptx-none/bin'.
 
-   You will need newlib 3.0 git revision
-cd31fbb2aea25f94d7ecedc9db16dfc87ab0c316 or later.  It can be
-automatically built together with GCC.  For this, add a symbolic link to
-nvptx-newlib's 'newlib' directory to the directory containing the GCC
-sources.
+   You will need newlib 3.1.0 or later.  It can be automatically built
+together with GCC.  For this, add a symbolic link to nvptx-newlib's
+'newlib' directory to the directory containing the GCC sources.
 
    Use the '--disable-sjlj-exceptions' and
 '--enable-newlib-io-long-long' options when configuring.
@@ -4893,47 +4891,47 @@ Ref: msp430-x-elf167785
 Ref: nds32le-x-elf168342
 Ref: nds32be-x-elf168414
 Ref: nvptx-x-none168483
-Ref: or1k-x-elf169398
-Ref: or1k-x-linux169529
-Ref: powerpc-x-x169610
-Ref: powerpc-x-darwin169801
-Ref: powerpc-x-elf170296
-Ref: powerpc-x-linux-gnu170381
-Ref: powerpc-x-netbsd170476
-Ref: powerpc-x-eabisim170564
-Ref: powerpc-x-eabi170690
-Ref: powerpcle-x-elf170766
-Ref: powerpcle-x-eabisim170858
-Ref: powerpcle-x-eabi170991
-Ref: rl78-x-elf171074
-Ref: riscv32-x-elf171180
-Ref: riscv32-x-linux171369
-Ref: riscv64-x-elf171526
-Ref: riscv64-x-linux171715
-Ref: rx-x-elf171872
-Ref: s390-x-linux171918
-Ref: s390x-x-linux171990
-Ref: s390x-ibm-tpf172077
-Ref: x-x-solaris2172208
-Ref: sparc-x-x175642
-Ref: sparc-sun-solaris2176144
-Ref: sparc-x-linux177287
-Ref: sparc64-x-solaris2177318
-Ref: sparcv9-x-solaris2178036
-Ref: c6x-x-x178123
-Ref: visium-x-elf178215
-Ref: x-x-vxworks178323
-Ref: x86-64-x-x179846
-Ref: x86-64-x-solaris2180174
-Ref: xtensa-x-elf180824
-Ref: xtensa-x-linux181495
-Ref: windows181836
-Ref: x-x-cygwin183632
-Ref: x-x-mingw32184185
-Ref: older184567
-Ref: elf186684
-Node: GNU Free Documentation License186942
-Node: Concept Index212077
+Ref: or1k-x-elf169346
+Ref: or1k-x-linux169477
+Ref: powerpc-x-x169558
+Ref: powerpc-x-darwin169749
+Ref: powerpc-x-elf170244
+Ref: powerpc-x-linux-gnu170329
+Ref: powerpc-x-netbsd170424
+Ref: powerpc-x-eabisim170512
+Ref: powerpc-x-eabi170638
+Ref: powerpcle-x-elf170714
+Ref: powerpcle-x-eabisim170806
+Ref: powerpcle-x-eabi170939
+Ref: rl78-x-elf171022
+Ref: riscv32-x-elf171128
+Ref: riscv32-x-linux171317
+Ref: riscv64-x-elf171474
+Ref: riscv64-x-linux171663
+Ref: rx-x-elf171820
+Ref: s390-x-linux171866
+Ref: s390x-x-linux171938
+Ref: s390x-ibm-tpf172025
+Ref: x-x-solaris2172156
+Ref: sparc-x-x175590
+Ref: sparc-sun-solaris2176092
+Ref: sparc-x-linux177235
+Ref: sparc64-x-solaris2177266
+Ref: sparcv9-x-solaris2177984
+Ref: c6x-x-x178071
+Ref: visium-x-elf178163
+Ref: x-x-vxworks178271
+Ref: x86-64-x-x179794
+Ref: x86-64-x-solaris2180122
+Ref: xtensa-x-elf180772
+Ref: xtensa-x-linux181443
+Ref: windows181784
+Ref: x-x-cygwin183580
+Ref: x-x-mingw32184133
+Ref: older184515
+Ref: elf186632
+Node: GNU Free Documentation License186890
+Node: Concept Index212025
 
 End Tag Table
 
