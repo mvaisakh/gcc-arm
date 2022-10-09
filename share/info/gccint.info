@@ -35274,6 +35274,12 @@ Here is the basic stack layout.
      register number to terminate the stack backtrace.  New ports should
      avoid this.
 
+ -- Macro: DWARF_VERSION_DEFAULT
+     A C expression whose value is the default dwarf standard version
+     we'll honor and advertise when generating dwarf debug information,
+     in absence of an explicit '-gdwarf-VERSION' option on the command
+     line.
+
  -- Target Hook: void TARGET_DWARF_HANDLE_FRAME_UNSPEC (const char
           *LABEL, rtx PATTERN, int INDEX)
      This target hook allows the backend to emit frame-related insns
@@ -53672,7 +53678,7 @@ Concept Index
 * argument passing:                      Interface.          (line   36)
 * arguments in registers:                Register Arguments. (line    6)
 * arguments on stack:                    Stack Arguments.    (line    6)
-* ARG_POINTER_CFA_OFFSET:                Frame Layout.       (line  207)
+* ARG_POINTER_CFA_OFFSET:                Frame Layout.       (line  213)
 * ARG_POINTER_REGNUM:                    Frame Registers.    (line   40)
 * ARG_POINTER_REGNUM and virtual registers: Regs and Memory. (line   65)
 * arg_pointer_rtx:                       Frame Registers.    (line  104)
@@ -54000,7 +54006,7 @@ Concept Index
                                                              (line    6)
 * CEIL_MOD_EXPR:                         Unary and Binary Expressions.
                                                              (line    6)
-* CFA_FRAME_BASE_OFFSET:                 Frame Layout.       (line  239)
+* CFA_FRAME_BASE_OFFSET:                 Frame Layout.       (line  245)
 * CFG verification:                      Maintaining the CFG.
                                                              (line  116)
 * CFG, Control Flow Graph:               Control Flow.       (line    6)
@@ -54353,7 +54359,7 @@ Concept Index
 * default:                               GTY Options.        (line   98)
 * default_file_start:                    File Framework.     (line    8)
 * DEFAULT_GDB_EXTENSIONS:                All Debuggers.      (line   56)
-* DEFAULT_INCOMING_FRAME_SP_OFFSET:      Frame Layout.       (line  199)
+* DEFAULT_INCOMING_FRAME_SP_OFFSET:      Frame Layout.       (line  205)
 * DEFAULT_PCC_STRUCT_RETURN:             Aggregate Return.   (line   34)
 * DEFAULT_SIGNED_CHAR:                   Type Layout.        (line  117)
 * define_address_constraint:             Define Constraints. (line  137)
@@ -54516,6 +54522,7 @@ Concept Index
 * DWARF_FRAME_REGNUM:                    Frame Registers.    (line  141)
 * DWARF_LAZY_REGISTER_VALUE:             Frame Registers.    (line  170)
 * DWARF_REG_TO_UNWIND_COLUMN:            Frame Registers.    (line  134)
+* DWARF_VERSION_DEFAULT:                 Frame Layout.       (line  165)
 * DWARF_ZERO_REG:                        Frame Layout.       (line  157)
 * DYNAMIC_CHAIN_ADDRESS:                 Frame Layout.       (line   84)
 * E in constraint:                       Simple Constraints. (line   87)
@@ -54736,7 +54743,7 @@ Concept Index
 * FRAME_GROWS_DOWNWARD:                  Frame Layout.       (line   26)
 * FRAME_GROWS_DOWNWARD and virtual registers: Regs and Memory.
                                                              (line   69)
-* FRAME_POINTER_CFA_OFFSET:              Frame Layout.       (line  225)
+* FRAME_POINTER_CFA_OFFSET:              Frame Layout.       (line  231)
 * frame_pointer_needed:                  Function Entry.     (line   42)
 * FRAME_POINTER_REGNUM:                  Frame Registers.    (line   13)
 * FRAME_POINTER_REGNUM and virtual registers: Regs and Memory.
@@ -55394,7 +55401,7 @@ Concept Index
 * include:                               Including Patterns. (line    6)
 * INCLUDE_DEFAULTS:                      Driver.             (line  331)
 * inclusive-or, bitwise:                 Arithmetic.         (line  169)
-* INCOMING_FRAME_SP_OFFSET:              Frame Layout.       (line  188)
+* INCOMING_FRAME_SP_OFFSET:              Frame Layout.       (line  194)
 * INCOMING_REGNO:                        Register Basics.    (line  129)
 * INCOMING_REG_PARM_STACK_SPACE:         Stack Arguments.    (line   76)
 * INCOMING_RETURN_ADDR_RTX:              Frame Layout.       (line  133)
@@ -57007,8 +57014,8 @@ Concept Index
 * TARGET_DWARF_CALLING_CONVENTION:       DWARF.              (line   18)
 * TARGET_DWARF_FRAME_REG_MODE:           Exception Region Output.
                                                              (line  113)
-* TARGET_DWARF_HANDLE_FRAME_UNSPEC:      Frame Layout.       (line  165)
-* TARGET_DWARF_POLY_INDETERMINATE_VALUE: Frame Layout.       (line  177)
+* TARGET_DWARF_HANDLE_FRAME_UNSPEC:      Frame Layout.       (line  171)
+* TARGET_DWARF_POLY_INDETERMINATE_VALUE: Frame Layout.       (line  183)
 * TARGET_DWARF_REGISTER_SPAN:            Exception Region Output.
                                                              (line  104)
 * TARGET_D_CPU_VERSIONS:                 D Language and ABI. (line    6)
@@ -58313,113 +58320,113 @@ Node: Stack Registers1444708
 Node: Register Classes1445981
 Node: Stack and Calling1480758
 Node: Frame Layout1481364
-Node: Exception Handling1493200
-Node: Stack Checking1499410
-Node: Frame Registers1505036
-Node: Elimination1513582
-Node: Stack Arguments1517438
-Node: Register Arguments1524891
-Node: Scalar Return1549451
-Node: Aggregate Return1555907
-Node: Caller Saves1560461
-Node: Function Entry1561203
-Node: Profiling1572755
-Node: Tail Calls1574865
-Node: Shrink-wrapping separate components1576775
-Node: Stack Smashing Protection1579816
-Node: Miscellaneous Register Hooks1582305
-Node: Varargs1583170
-Node: Trampolines1591056
-Node: Library Calls1600749
-Node: Addressing Modes1605836
-Node: Anchored Addresses1636853
-Node: Condition Code1639496
-Node: MODE_CC Condition Codes1641341
-Node: Costs1648104
-Node: Scheduling1670424
-Node: Sections1694346
-Node: PIC1710716
-Node: Assembler Format1712775
-Node: File Framework1713913
-Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1721512
-Node: Data Output1723187
-Node: Uninitialized Data1731475
-Node: Label Output1736490
-Node: Initialization1761103
-Node: Macros for Initialization1767064
-Node: Instruction Output1774215
-Node: Dispatch Tables1784845
-Node: Exception Region Output1790596
-Node: Alignment Output1797678
-Node: Debugging Info1801365
-Node: All Debuggers1801915
-Node: DWARF1804848
-Node: VMS Debug1810623
-Node: CTF Debug1811220
-Node: BTF Debug1811581
-Node: Floating Point1811924
-Node: Mode Switching1814679
-Node: Target Attributes1819116
-Node: Emulated TLS1830519
-Node: MIPS Coprocessors1833909
-Node: PCH Target1835068
-Node: C++ ABI1836910
-Node: D Language and ABI1841702
-Node: Named Address Spaces1844645
-Node: Misc1850572
-Ref: TARGET_SHIFT_TRUNCATION_MASK1858443
-Node: Host Config1919771
-Node: Host Common1920840
-Node: Filesystem1923214
-Node: Host Misc1927329
-Node: Fragments1929778
-Node: Target Fragment1930973
-Node: Host Fragment1941785
-Node: Collect21942025
-Node: Header Dirs1944661
-Node: Type Information1946084
-Node: GTY Options1949615
-Node: Inheritance and GTY1961228
-Ref: Inheritance and GTY-Footnote-11962793
-Node: User GC1963063
-Node: GGC Roots1966814
-Node: Files1967527
-Node: Invoking the garbage collector1970158
-Node: Troubleshooting1971800
-Node: Plugins1972875
-Node: Plugins loading1974004
-Node: Plugin API1975103
-Node: Plugins pass1982970
-Node: Plugins GC1984941
-Node: Plugins description1986658
-Node: Plugins attr1987194
-Node: Plugins recording1989474
-Node: Plugins gate1990324
-Node: Plugins tracking1990915
-Node: Plugins building1991503
-Node: LTO1995006
-Node: LTO Overview1995878
-Node: LTO object file layout2001634
-Node: IPA2006278
-Node: WHOPR2015330
-Node: Internal flags2019890
-Node: Match and Simplify2021301
-Node: GIMPLE API2022271
-Node: The Language2025073
-Node: Static Analyzer2037700
-Node: Analyzer Internals2037965
-Node: Debugging the Analyzer2053852
-Node: User Experience Guidelines2057491
-Node: Guidelines for Diagnostics2058427
-Ref: input_location_example2066602
-Node: Guidelines for Options2076287
-Node: Funding2076464
-Node: GNU Project2078971
-Node: Copying2079622
-Node: GNU Free Documentation License2117136
-Node: Contributors2142259
-Node: Option Index2183236
-Node: Concept Index2184113
+Node: Exception Handling1493458
+Node: Stack Checking1499668
+Node: Frame Registers1505294
+Node: Elimination1513840
+Node: Stack Arguments1517696
+Node: Register Arguments1525149
+Node: Scalar Return1549709
+Node: Aggregate Return1556165
+Node: Caller Saves1560719
+Node: Function Entry1561461
+Node: Profiling1573013
+Node: Tail Calls1575123
+Node: Shrink-wrapping separate components1577033
+Node: Stack Smashing Protection1580074
+Node: Miscellaneous Register Hooks1582563
+Node: Varargs1583428
+Node: Trampolines1591314
+Node: Library Calls1601007
+Node: Addressing Modes1606094
+Node: Anchored Addresses1637111
+Node: Condition Code1639754
+Node: MODE_CC Condition Codes1641599
+Node: Costs1648362
+Node: Scheduling1670682
+Node: Sections1694604
+Node: PIC1710974
+Node: Assembler Format1713033
+Node: File Framework1714171
+Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1721770
+Node: Data Output1723445
+Node: Uninitialized Data1731733
+Node: Label Output1736748
+Node: Initialization1761361
+Node: Macros for Initialization1767322
+Node: Instruction Output1774473
+Node: Dispatch Tables1785103
+Node: Exception Region Output1790854
+Node: Alignment Output1797936
+Node: Debugging Info1801623
+Node: All Debuggers1802173
+Node: DWARF1805106
+Node: VMS Debug1810881
+Node: CTF Debug1811478
+Node: BTF Debug1811839
+Node: Floating Point1812182
+Node: Mode Switching1814937
+Node: Target Attributes1819374
+Node: Emulated TLS1830777
+Node: MIPS Coprocessors1834167
+Node: PCH Target1835326
+Node: C++ ABI1837168
+Node: D Language and ABI1841960
+Node: Named Address Spaces1844903
+Node: Misc1850830
+Ref: TARGET_SHIFT_TRUNCATION_MASK1858701
+Node: Host Config1920029
+Node: Host Common1921098
+Node: Filesystem1923472
+Node: Host Misc1927587
+Node: Fragments1930036
+Node: Target Fragment1931231
+Node: Host Fragment1942043
+Node: Collect21942283
+Node: Header Dirs1944919
+Node: Type Information1946342
+Node: GTY Options1949873
+Node: Inheritance and GTY1961486
+Ref: Inheritance and GTY-Footnote-11963051
+Node: User GC1963321
+Node: GGC Roots1967072
+Node: Files1967785
+Node: Invoking the garbage collector1970416
+Node: Troubleshooting1972058
+Node: Plugins1973133
+Node: Plugins loading1974262
+Node: Plugin API1975361
+Node: Plugins pass1983228
+Node: Plugins GC1985199
+Node: Plugins description1986916
+Node: Plugins attr1987452
+Node: Plugins recording1989732
+Node: Plugins gate1990582
+Node: Plugins tracking1991173
+Node: Plugins building1991761
+Node: LTO1995264
+Node: LTO Overview1996136
+Node: LTO object file layout2001892
+Node: IPA2006536
+Node: WHOPR2015588
+Node: Internal flags2020148
+Node: Match and Simplify2021559
+Node: GIMPLE API2022529
+Node: The Language2025331
+Node: Static Analyzer2037958
+Node: Analyzer Internals2038223
+Node: Debugging the Analyzer2054110
+Node: User Experience Guidelines2057749
+Node: Guidelines for Diagnostics2058685
+Ref: input_location_example2066860
+Node: Guidelines for Options2076545
+Node: Funding2076722
+Node: GNU Project2079229
+Node: Copying2079880
+Node: GNU Free Documentation License2117394
+Node: Contributors2142517
+Node: Option Index2183494
+Node: Concept Index2184371
 
 End Tag Table
 
