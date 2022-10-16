@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "AS 1"
-.TH AS 1 "2022-10-13" "binutils-2.39.50" "GNU Development Tools"
+.TH AS 1 "2022-10-16" "binutils-2.39.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2604,6 +2604,12 @@ Generate code for PowerPC 821/850/860.
 .IP "\fB\-mppc64, \-m620\fR" 4
 .IX Item "-mppc64, -m620"
 Generate code for PowerPC 620/625/630.
+.IP "\fB\-me200z2, \-me200z4\fR" 4
+.IX Item "-me200z2, -me200z4"
+Generate code for e200 variants, e200z2 with \s-1LSP,\s0 e200z4 with \s-1SPE.\s0
+.IP "\fB\-me300\fR" 4
+.IX Item "-me300"
+Generate code for PowerPC e300 family.
 .IP "\fB\-me500, \-me500x2\fR" 4
 .IX Item "-me500, -me500x2"
 Generate code for Motorola e500 core complex.
@@ -2619,12 +2625,15 @@ Generate code for Freescale e5500 core complex.
 .IP "\fB\-me6500\fR" 4
 .IX Item "-me6500"
 Generate code for Freescale e6500 core complex.
+.IP "\fB\-mlsp\fR" 4
+.IX Item "-mlsp"
+Enable \s-1LSP\s0 instructions.  (Disables \s-1SPE\s0 and \s-1SPE2.\s0)
 .IP "\fB\-mspe\fR" 4
 .IX Item "-mspe"
-Generate code for Motorola \s-1SPE\s0 instructions.
+Generate code for Motorola \s-1SPE\s0 instructions.  (Disables \s-1LSP.\s0)
 .IP "\fB\-mspe2\fR" 4
 .IX Item "-mspe2"
-Generate code for Freescale \s-1SPE2\s0 instructions.
+Generate code for Freescale \s-1SPE2\s0 instructions.  (Disables \s-1LSP.\s0)
 .IP "\fB\-mtitan\fR" 4
 .IX Item "-mtitan"
 Generate code for AppliedMicro Titan core complex.
@@ -2637,9 +2646,6 @@ Generate code for 32\-bit BookE.
 .IP "\fB\-ma2\fR" 4
 .IX Item "-ma2"
 Generate code for A2 architecture.
-.IP "\fB\-me300\fR" 4
-.IX Item "-me300"
-Generate code for PowerPC e300 family.
 .IP "\fB\-maltivec\fR" 4
 .IX Item "-maltivec"
 Generate code for processors with AltiVec instructions.

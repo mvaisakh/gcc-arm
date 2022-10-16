@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJDUMP 1"
-.TH OBJDUMP 1 "2022-10-13" "binutils-2.39.50" "GNU Development Tools"
+.TH OBJDUMP 1 "2022-10-16" "binutils-2.39.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -616,7 +616,7 @@ rather than \f(CW\*(C`li\*(C'\fR.  All of the \fB\-m\fR arguments for
 \&\fB601\fR, \fB603\fR, \fB604\fR, \fB620\fR, \fB7400\fR,
 \&\fB7410\fR, \fB7450\fR, \fB7455\fR, \fB750cl\fR,
 \&\fB821\fR, \fB850\fR, \fB860\fR, \fBa2\fR, \fBbooke\fR,
-\&\fBbooke32\fR, \fBcell\fR, \fBcom\fR, \fBe200z4\fR,
+\&\fBbooke32\fR, \fBcell\fR, \fBcom\fR, \fBe200z2\fR, \fBe200z4\fR,
 \&\fBe300\fR, \fBe500\fR, \fBe500mc\fR, \fBe500mc64\fR,
 \&\fBe500x2\fR, \fBe5500\fR, \fBe6500\fR, \fBefs\fR,
 \&\fBpower4\fR, \fBpower5\fR, \fBpower6\fR, \fBpower7\fR,
@@ -627,9 +627,10 @@ rather than \f(CW\*(C`li\*(C'\fR.  All of the \fB\-m\fR arguments for
 \&\fBpwrx\fR, \fBtitan\fR, \fBvle\fR, and \fBfuture\fR.
 \&\fB32\fR and \fB64\fR modify the default or a prior \s-1CPU\s0
 selection, disabling and enabling 64\-bit insns respectively.  In
-addition, \fBaltivec\fR, \fBany\fR, \fBhtm\fR, \fBvsx\fR,
-and \fBspe\fR add capabilities to a previous \fIor later\fR \s-1CPU\s0
-selection.  \fBany\fR will disassemble any opcode known to
+addition, \fBaltivec\fR, \fBany\fR, \fBlsp\fR, \fBhtm\fR,
+\&\fBvsx\fR, \fBspe\fR and  \fBspe2\fR add capabilities to a
+previous \fIor later\fR \s-1CPU\s0 selection.
+\&\fBany\fR will disassemble any opcode known to
 binutils, but in cases where an opcode has two different meanings or
 different arguments, you may not see the disassembly you expect.
 If you disassemble without giving a \s-1CPU\s0 selection, a default will be

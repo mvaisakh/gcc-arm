@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-10-13" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-10-16" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -12866,17 +12866,17 @@ default, \fB\-fexcess\-precision=fast\fR is in effect; this means that
 operations may be carried out in a wider precision than the types specified
 in the source if that would result in faster code, and it is unpredictable
 when rounding to the types specified in the source code takes place.
-When compiling C, if \fB\-fexcess\-precision=standard\fR is specified then
-excess precision follows the rules specified in \s-1ISO C99\s0; in particular,
+When compiling C or \*(C+, if \fB\-fexcess\-precision=standard\fR is specified
+then excess precision follows the rules specified in \s-1ISO C99\s0 or \*(C+; in particular,
 both casts and assignments cause values to be rounded to their
 semantic types (whereas \fB\-ffloat\-store\fR only affects
-assignments).  This option is enabled by default for C if a strict
-conformance option such as \fB\-std=c99\fR is used.
+assignments).  This option is enabled by default for C or \*(C+ if a strict
+conformance option such as \fB\-std=c99\fR or \fB\-std=c++17\fR is used.
 \&\fB\-ffast\-math\fR enables \fB\-fexcess\-precision=fast\fR by default
 regardless of whether a strict conformance option is used.
 .Sp
 \&\fB\-fexcess\-precision=standard\fR is not implemented for languages
-other than C.  On the x86, it has no effect if \fB\-mfpmath=sse\fR
+other than C or \*(C+.  On the x86, it has no effect if \fB\-mfpmath=sse\fR
 or \fB\-mfpmath=sse+387\fR is specified; in the former case, \s-1IEEE\s0
 semantics apply without excess precision, and in the latter, rounding
 is unpredictable.

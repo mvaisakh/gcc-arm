@@ -2322,18 +2322,18 @@ given.
      the '-m' arguments for 'gas' that select a CPU are supported.
      These are: '403', '405', '440', '464', '476', '601', '603', '604',
      '620', '7400', '7410', '7450', '7455', '750cl', '821', '850',
-     '860', 'a2', 'booke', 'booke32', 'cell', 'com', 'e200z4', 'e300',
-     'e500', 'e500mc', 'e500mc64', 'e500x2', 'e5500', 'e6500', 'efs',
-     'power4', 'power5', 'power6', 'power7', 'power8', 'power9',
+     '860', 'a2', 'booke', 'booke32', 'cell', 'com', 'e200z2', 'e200z4',
+     'e300', 'e500', 'e500mc', 'e500mc64', 'e500x2', 'e5500', 'e6500',
+     'efs', 'power4', 'power5', 'power6', 'power7', 'power8', 'power9',
      'power10', 'ppc', 'ppc32', 'ppc64', 'ppc64bridge', 'ppcps', 'pwr',
      'pwr2', 'pwr4', 'pwr5', 'pwr5x', 'pwr6', 'pwr7', 'pwr8', 'pwr9',
      'pwr10', 'pwrx', 'titan', 'vle', and 'future'.  '32' and '64'
      modify the default or a prior CPU selection, disabling and enabling
-     64-bit insns respectively.  In addition, 'altivec', 'any', 'htm',
-     'vsx', and 'spe' add capabilities to a previous _or later_ CPU
-     selection.  'any' will disassemble any opcode known to binutils,
-     but in cases where an opcode has two different meanings or
-     different arguments, you may not see the disassembly you expect.
+     64-bit insns respectively.  In addition, 'altivec', 'any', 'lsp',
+     'htm', 'vsx', 'spe' and 'spe2' add capabilities to a previous _or
+     later_ CPU selection.  'any' will disassemble any opcode known to
+     binutils, but in cases where an opcode has two different meanings
+     or different arguments, you may not see the disassembly you expect.
      If you disassemble without giving a CPU selection, a default will
      be chosen from information gleaned by BFD from the object files
      headers, but the result again may not be as you expect.
@@ -6118,29 +6118,29 @@ Node: ar scripts20221
 Node: nm25907
 Node: objcopy41584
 Node: objdump82529
-Node: ranlib119275
-Node: size120874
-Node: strings125018
-Node: strip130875
-Node: c++filt140717
-Ref: c++filt-Footnote-1146578
-Node: addr2line146684
-Node: windmc152639
-Node: windres156298
-Node: dlltool162868
-Node: def file format176321
-Node: readelf178851
-Node: elfedit197950
-Node: Common Options201376
-Node: Selecting the Target System202410
-Node: Target Selection203338
-Node: Architecture Selection205319
-Node: debuginfod206147
-Node: Reporting Bugs207149
-Node: Bug Criteria207911
-Node: Bug Reporting208464
-Node: GNU Free Documentation License215331
-Node: Binutils Index240491
+Node: ranlib119299
+Node: size120898
+Node: strings125042
+Node: strip130899
+Node: c++filt140741
+Ref: c++filt-Footnote-1146602
+Node: addr2line146708
+Node: windmc152663
+Node: windres156322
+Node: dlltool162892
+Node: def file format176345
+Node: readelf178875
+Node: elfedit197974
+Node: Common Options201400
+Node: Selecting the Target System202434
+Node: Target Selection203362
+Node: Architecture Selection205343
+Node: debuginfod206171
+Node: Reporting Bugs207173
+Node: Bug Criteria207935
+Node: Bug Reporting208488
+Node: GNU Free Documentation License215355
+Node: Binutils Index240515
 
 End Tag Table
 
