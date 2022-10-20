@@ -44689,7 +44689,24 @@ helpful when you have a complicated expression.
      Note that the 'length' option is only meant for use with arrays of
      non-atomic objects, that is, objects that contain pointers pointing
      to other GTY-managed objects.  For other GC-allocated arrays and
-     strings you should use 'atomic'.
+     strings you should use 'atomic' or 'string_length'.
+
+'string_length ("EXPRESSION")'
+
+     In order to simplify production of PCH, a structure member that is
+     a plain array of bytes (an optionally 'const' and/or 'unsigned'
+     'char *') is treated specially by the infrastructure.  Even if such
+     an array has not been allocated in GC-controlled memory, it will
+     still be written properly into a PCH. The machinery responsible for
+     this needs to know the length of the data; by default, the length
+     is determined by calling 'strlen' on the pointer.  The
+     'string_length' option specifies an alternate way to determine the
+     length, such as by inspecting another struct member:
+
+          struct GTY(()) non_terminated_string {
+            size_t sz;
+            const char * GTY((string_length ("%h.sz"))) data;
+          };
 
 'skip'
 
@@ -53783,7 +53800,7 @@ Concept Index
 * AS_NEEDS_DASH_FOR_PIPED_INPUT:         Driver.             (line   88)
 * atan2M3 instruction pattern:           Standard Names.     (line 1204)
 * atanM2 instruction pattern:            Standard Names.     (line 1102)
-* atomic:                                GTY Options.        (line  204)
+* atomic:                                GTY Options.        (line  221)
 * atomic_addMODE instruction pattern:    Standard Names.     (line 2712)
 * atomic_add_fetchMODE instruction pattern: Standard Names.  (line 2741)
 * atomic_add_fetch_cmp_0MODE instruction pattern: Standard Names.
@@ -53935,7 +53952,7 @@ Concept Index
 * BYTES_BIG_ENDIAN, effect on subreg:    Regs and Memory.    (line  229)
 * byte_mode:                             Machine Modes.      (line  462)
 * C statements for assembler output:     Output Statement.   (line    6)
-* cache:                                 GTY Options.        (line  135)
+* cache:                                 GTY Options.        (line  152)
 * cadd270M3 instruction pattern:         Standard Names.     (line 1326)
 * cadd90M3 instruction pattern:          Standard Names.     (line 1304)
 * call:                                  Flags.              (line  230)
@@ -53956,7 +53973,7 @@ Concept Index
 * call-used register <1>:                Register Basics.    (line   50)
 * call-used register <2>:                Register Basics.    (line   58)
 * call-used register <3>:                Register Basics.    (line   76)
-* callback:                              GTY Options.        (line   82)
+* callback:                              GTY Options.        (line   99)
 * calling conventions:                   Stack and Calling.  (line    6)
 * calling functions in RTL:              Calls.              (line    6)
 * CALL_EXPR:                             Unary and Binary Expressions.
@@ -54013,9 +54030,9 @@ Concept Index
 * cfghooks.h:                            Maintaining the CFG.
                                                              (line    6)
 * cgraph_finalize_function:              Parsing pass.       (line   51)
-* chain_circular:                        GTY Options.        (line  168)
-* chain_next:                            GTY Options.        (line  168)
-* chain_prev:                            GTY Options.        (line  168)
+* chain_circular:                        GTY Options.        (line  185)
+* chain_next:                            GTY Options.        (line  185)
+* chain_prev:                            GTY Options.        (line  185)
 * change_address:                        Standard Names.     (line   47)
 * CHAR_TYPE_SIZE:                        Type Layout.        (line   38)
 * check_raw_ptrsM instruction pattern:   Standard Names.     (line  338)
@@ -54356,7 +54373,7 @@ Concept Index
 * DECL_VIRTUAL_P:                        Function Properties.
                                                              (line   44)
 * DECL_VOLATILE_MEMFUNC_P:               Functions for C++.  (line   74)
-* default:                               GTY Options.        (line   98)
+* default:                               GTY Options.        (line  115)
 * default_file_start:                    File Framework.     (line    8)
 * DEFAULT_GDB_EXTENSIONS:                All Debuggers.      (line   56)
 * DEFAULT_INCOMING_FRAME_SP_OFFSET:      Frame Layout.       (line  205)
@@ -54441,10 +54458,10 @@ Concept Index
 * degenerate phi node, RTL SSA:          RTL SSA Access Lists.
                                                              (line   25)
 * delay slots, defining:                 Delay Slots.        (line    6)
-* deletable:                             GTY Options.        (line  142)
+* deletable:                             GTY Options.        (line  159)
 * DELETE_IF_ORDINARY:                    Filesystem.         (line   79)
 * Dependent Patterns:                    Dependent Patterns. (line    6)
-* desc:                                  GTY Options.        (line   98)
+* desc:                                  GTY Options.        (line  115)
 * descriptors for nested functions:      Trampolines.        (line    6)
 * destructors, output of:                Initialization.     (line    6)
 * deterministic finite state automaton:  Processor pipeline description.
@@ -54731,7 +54748,7 @@ Concept Index
                                                              (line    6)
 * FOR_STMT:                              Statements for C and C++.
                                                              (line    6)
-* for_user:                              GTY Options.        (line   90)
+* for_user:                              GTY Options.        (line  107)
 * fractional types:                      Fixed-point fractional library routines.
                                                              (line    6)
 * fractMN2 instruction pattern:          Standard Names.     (line 1774)
@@ -55745,7 +55762,7 @@ Concept Index
 * MAX_OFILE_ALIGNMENT:                   Storage Layout.     (line  233)
 * MAX_REGS_PER_ADDRESS:                  Addressing Modes.   (line   42)
 * MAX_STACK_ALIGNMENT:                   Storage Layout.     (line  227)
-* maybe_undef:                           GTY Options.        (line  149)
+* maybe_undef:                           GTY Options.        (line  166)
 * may_trap_p, tree_could_trap_p:         Edges.              (line  114)
 * mcount:                                Profiling.          (line   12)
 * MD_EXEC_PREFIX:                        Driver.             (line  271)
@@ -55894,7 +55911,7 @@ Concept Index
 * negMODEcc instruction pattern:         Standard Names.     (line 1973)
 * negvM3 instruction pattern:            Standard Names.     (line 1005)
 * nested functions, support for:         Trampolines.        (line    6)
-* nested_ptr:                            GTY Options.        (line  157)
+* nested_ptr:                            GTY Options.        (line  174)
 * next_bb, prev_bb, FOR_EACH_BB, FOR_ALL_BB: Basic Blocks.   (line   25)
 * NEXT_INSN:                             Insns.              (line   30)
 * NEXT_OBJC_RUNTIME:                     Library Calls.      (line   89)
@@ -56365,7 +56382,7 @@ Concept Index
 * reload_out instruction pattern:        Standard Names.     (line   98)
 * remainder:                             Arithmetic.         (line  142)
 * remainderM3 instruction pattern:       Standard Names.     (line 1038)
-* reorder:                               GTY Options.        (line  183)
+* reorder:                               GTY Options.        (line  200)
 * representation of RTL:                 RTL.                (line    6)
 * reservation delays:                    Processor pipeline description.
                                                              (line    6)
@@ -56582,7 +56599,7 @@ Concept Index
 * SIZETYPE:                              Type Layout.        (line  147)
 * SIZE_ASM_OP:                           Label Output.       (line   33)
 * SIZE_TYPE:                             Type Layout.        (line  131)
-* skip:                                  GTY Options.        (line   76)
+* skip:                                  GTY Options.        (line   93)
 * SLOW_BYTE_ACCESS:                      Costs.              (line  117)
 * small IPA passes:                      Small IPA passes.   (line    6)
 * smax:                                  Arithmetic.         (line  147)
@@ -56597,7 +56614,7 @@ Concept Index
 * source code, location information:     Guidelines for Diagnostics.
                                                              (line  183)
 * spaceshipM3 instruction pattern:       Standard Names.     (line 2902)
-* special:                               GTY Options.        (line  245)
+* special:                               GTY Options.        (line  262)
 * special predicates:                    Predicates.         (line   31)
 * SPECS:                                 Target Fragment.    (line  194)
 * speculation_barrier instruction pattern: Standard Names.   (line 2510)
@@ -56708,6 +56725,7 @@ Concept Index
 * strict_memory_address_p:               Addressing Modes.   (line  186)
 * STRING_CST:                            Constant expressions.
                                                              (line    6)
+* string_length:                         GTY Options.        (line   76)
 * STRING_POOL_ADDRESS_P:                 Flags.              (line  179)
 * strlenM instruction pattern:           Standard Names.     (line 1711)
 * structure value address:               Aggregate Return.   (line    6)
@@ -56803,7 +56821,7 @@ Concept Index
 * t-TARGET:                              Target Fragment.    (line    6)
 * table jump:                            Basic Blocks.       (line   67)
 * tablejump instruction pattern:         Standard Names.     (line 2182)
-* tag:                                   GTY Options.        (line   98)
+* tag:                                   GTY Options.        (line  115)
 * tagging insns:                         Tagging Insns.      (line    6)
 * tail calls:                            Tail Calls.         (line    6)
 * TAmode:                                Machine Modes.      (line  158)
@@ -57722,7 +57740,7 @@ Concept Index
 * use:                                   Side Effects.       (line  161)
 * used:                                  Flags.              (line  325)
 * used, in symbol_ref:                   Flags.              (line  211)
-* user:                                  GTY Options.        (line  252)
+* user:                                  GTY Options.        (line  269)
 * user experience guidelines:            User Experience Guidelines.
                                                              (line    6)
 * user gc:                               User GC.            (line    6)
@@ -58386,47 +58404,47 @@ Node: Collect21942283
 Node: Header Dirs1944919
 Node: Type Information1946342
 Node: GTY Options1949873
-Node: Inheritance and GTY1961486
-Ref: Inheritance and GTY-Footnote-11963051
-Node: User GC1963321
-Node: GGC Roots1967072
-Node: Files1967785
-Node: Invoking the garbage collector1970416
-Node: Troubleshooting1972058
-Node: Plugins1973133
-Node: Plugins loading1974262
-Node: Plugin API1975361
-Node: Plugins pass1983228
-Node: Plugins GC1985199
-Node: Plugins description1986916
-Node: Plugins attr1987452
-Node: Plugins recording1989732
-Node: Plugins gate1990582
-Node: Plugins tracking1991173
-Node: Plugins building1991761
-Node: LTO1995264
-Node: LTO Overview1996136
-Node: LTO object file layout2001892
-Node: IPA2006536
-Node: WHOPR2015588
-Node: Internal flags2020148
-Node: Match and Simplify2021559
-Node: GIMPLE API2022529
-Node: The Language2025331
-Node: Static Analyzer2037958
-Node: Analyzer Internals2038223
-Node: Debugging the Analyzer2054110
-Node: User Experience Guidelines2057749
-Node: Guidelines for Diagnostics2058685
-Ref: input_location_example2066860
-Node: Guidelines for Options2076545
-Node: Funding2076722
-Node: GNU Project2079229
-Node: Copying2079880
-Node: GNU Free Documentation License2117394
-Node: Contributors2142517
-Node: Option Index2183494
-Node: Concept Index2184371
+Node: Inheritance and GTY1962304
+Ref: Inheritance and GTY-Footnote-11963869
+Node: User GC1964139
+Node: GGC Roots1967890
+Node: Files1968603
+Node: Invoking the garbage collector1971234
+Node: Troubleshooting1972876
+Node: Plugins1973951
+Node: Plugins loading1975080
+Node: Plugin API1976179
+Node: Plugins pass1984046
+Node: Plugins GC1986017
+Node: Plugins description1987734
+Node: Plugins attr1988270
+Node: Plugins recording1990550
+Node: Plugins gate1991400
+Node: Plugins tracking1991991
+Node: Plugins building1992579
+Node: LTO1996082
+Node: LTO Overview1996954
+Node: LTO object file layout2002710
+Node: IPA2007354
+Node: WHOPR2016406
+Node: Internal flags2020966
+Node: Match and Simplify2022377
+Node: GIMPLE API2023347
+Node: The Language2026149
+Node: Static Analyzer2038776
+Node: Analyzer Internals2039041
+Node: Debugging the Analyzer2054928
+Node: User Experience Guidelines2058567
+Node: Guidelines for Diagnostics2059503
+Ref: input_location_example2067678
+Node: Guidelines for Options2077363
+Node: Funding2077540
+Node: GNU Project2080047
+Node: Copying2080698
+Node: GNU Free Documentation License2118212
+Node: Contributors2143335
+Node: Option Index2184312
+Node: Concept Index2185189
 
 End Tag Table
 

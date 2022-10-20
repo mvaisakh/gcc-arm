@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-10-16" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-10-20" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -4407,7 +4407,18 @@ pointers after reallocation.
 .RE
 .IP "\fB\-Wuseless\-cast\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wuseless-cast ( and Objective- only)"
-Warn when an expression is casted to its own type.
+Warn when an expression is cast to its own type.  This warning does not
+occur when a class object is converted to a non-reference type as that
+is a way to create a temporary:
+.Sp
+.Vb 6
+\&        struct S { };
+\&        void g (S&&);
+\&        void f (S&& arg)
+\&        {
+\&          g (S(arg)); // make arg prvalue so that it can bind to S&&
+\&        }
+.Ve
 .IP "\fB\-Wno\-conversion\-null\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wno-conversion-null ( and Objective- only)"
 Do not warn for conversions between \f(CW\*(C`NULL\*(C'\fR and non-pointer

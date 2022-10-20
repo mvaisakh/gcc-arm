@@ -409,6 +409,7 @@ along with GCC; see the file COPYING3.  If not see
 	 and thus it should be run last.  */
       NEXT_PASS (pass_uncprop, 2);
   POP_INSERT_PASSES ()
+  NEXT_PASS (pass_assumptions, 1);
   NEXT_PASS (pass_tm_init, 1);
   PUSH_INSERT_PASSES_WITHIN (pass_tm_init)
       NEXT_PASS (pass_tm_mark, 1);
