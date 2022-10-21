@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "13.0.0 20221020 (Bleeding Edge)")
+(!version  "13.0.0 20221021 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 10 ada c cp d fortran go jit lto objc objcp)
 (!fileslist 227 0
@@ -29716,7 +29716,7 @@
   nil 0 nil nil )
  
  (!type struct 2178 nil  gc_used "note_def_cache_hasher"
-  (!srcfileloc  "cp/module.cc" 4598)
+  (!srcfileloc  "cp/module.cc" 4599)
   (!fields 0 )
   nil 516 nil nil )
  
@@ -29725,11 +29725,11 @@
    (!type already_seen 2179)
   )
   gc_pointed_to "hash_table<note_def_cache_hasher>"
-  (!srcfileloc  "cp/module.cc" 4598)
+  (!srcfileloc  "cp/module.cc" 4599)
   (!fields 1 
    (!pair  "note_def_cache_hasher"
     (!type already_seen 2178)
-    (!srcfileloc  "cp/module.cc" 4598)
+    (!srcfileloc  "cp/module.cc" 4599)
     nil )
   )
  )
@@ -29743,15 +29743,15 @@
   nil 0 nil nil )
  
  (!type struct 2183 nil  gc_used "macro_export"
-  (!srcfileloc  "cp/module.cc" 16730)
+  (!srcfileloc  "cp/module.cc" 16731)
   (!fields 2 
    (!pair  "def"
     (!type already_seen 19)
-    (!srcfileloc  "cp/module.cc" 16723)
+    (!srcfileloc  "cp/module.cc" 16724)
     nil )
    (!pair  "undef_loc"
     (!type already_seen 2)
-    (!srcfileloc  "cp/module.cc" 16724)
+    (!srcfileloc  "cp/module.cc" 16725)
     nil )
   )
   nil 516 nil nil )
@@ -29765,15 +29765,15 @@
    (!type already_seen 2185)
   )
   gc_pointed_to "vec<macro_export,va_gc>"
-  (!srcfileloc  "cp/module.cc" 16887)
+  (!srcfileloc  "cp/module.cc" 16888)
   (!fields 2 
    (!pair  "va_gc"
     (!type already_seen 78)
-    (!srcfileloc  "cp/module.cc" 16887)
+    (!srcfileloc  "cp/module.cc" 16888)
     nil )
    (!pair  "macro_export"
     (!type already_seen 2183)
-    (!srcfileloc  "cp/module.cc" 16887)
+    (!srcfileloc  "cp/module.cc" 16888)
     nil )
   )
  )
@@ -29946,15 +29946,15 @@
    (!type already_seen 2221)
   )
   gc_pointed_to "hash_map<tree,tree_pair_p>"
-  (!srcfileloc  "cp/pt.cc" 30089)
+  (!srcfileloc  "cp/pt.cc" 30091)
   (!fields 2 
    (!pair  "tree_pair_p"
     (!type already_seen 532)
-    (!srcfileloc  "cp/pt.cc" 30089)
+    (!srcfileloc  "cp/pt.cc" 30091)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/pt.cc" 30089)
+    (!srcfileloc  "cp/pt.cc" 30091)
     nil )
   )
  )
@@ -31099,7 +31099,7 @@
   nil )
  (!pair  "hash_map<tree,tree_pair_p>"
   (!type already_seen 2221)
-  (!srcfileloc  "cp/pt.cc" 30089)
+  (!srcfileloc  "cp/pt.cc" 30091)
   nil )
  (!pair  "pending_template"
   (!type already_seen 2205)
@@ -31157,23 +31157,23 @@
   nil )
  (!pair  "vec<macro_export,va_gc>"
   (!type already_seen 2185)
-  (!srcfileloc  "cp/module.cc" 16887)
+  (!srcfileloc  "cp/module.cc" 16888)
   nil )
  (!pair  "macro_export"
   (!type already_seen 2183)
-  (!srcfileloc  "cp/module.cc" 16726)
+  (!srcfileloc  "cp/module.cc" 16727)
   nil )
  (!pair  "note_defs_table_t"
   (!type already_seen 2179)
-  (!srcfileloc  "cp/module.cc" 4598)
+  (!srcfileloc  "cp/module.cc" 4599)
   nil )
  (!pair  "note_def_cache_hasher"
   (!type already_seen 2178)
-  (!srcfileloc  "cp/module.cc" 4598)
+  (!srcfileloc  "cp/module.cc" 4599)
   nil )
  (!pair  "hash_table<note_def_cache_hasher>"
   (!type already_seen 2179)
-  (!srcfileloc  "cp/module.cc" 4598)
+  (!srcfileloc  "cp/module.cc" 4599)
   nil )
  (!pair  "entity_map_t"
   (!type already_seen 2173)
@@ -35658,28 +35658,28 @@
   nil )
  (!pair  "dguide_cache"
   (!type already_seen 2222)
-  (!srcfileloc  "cp/pt.cc" 30089)
+  (!srcfileloc  "cp/pt.cc" 30091)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "explicit_specifier_map"
   (!type already_seen 934)
-  (!srcfileloc  "cp/pt.cc" 14004)
+  (!srcfileloc  "cp/pt.cc" 14005)
   (!options 
    (!option cache string  "")
   )
  )
  (!pair  "defarg_inst"
   (!type already_seen 1548)
-  (!srcfileloc  "cp/pt.cc" 13864)
+  (!srcfileloc  "cp/pt.cc" 13865)
   (!options 
    (!option cache string  "")
   )
  )
  (!pair  "last_error_tinst_level"
   (!type already_seen 1990)
-  (!srcfileloc  "cp/pt.cc" 11052)
+  (!srcfileloc  "cp/pt.cc" 11053)
   nil )
  (!pair  "pending_template_freelist_head"
   (!type already_seen 2206)
@@ -35791,15 +35791,15 @@
  )
  (!pair  "headers"
   (!type already_seen 385)
-  (!srcfileloc  "cp/module.cc" 16891)
+  (!srcfileloc  "cp/module.cc" 16892)
   nil )
  (!pair  "macro_exports"
   (!type already_seen 2186)
-  (!srcfileloc  "cp/module.cc" 16887)
+  (!srcfileloc  "cp/module.cc" 16888)
   nil )
  (!pair  "note_defs"
   (!type already_seen 2180)
-  (!srcfileloc  "cp/module.cc" 4599)
+  (!srcfileloc  "cp/module.cc" 4600)
   (!options 
    (!option cache string  "")
   )
@@ -36838,11 +36838,11 @@
   nil )
  (!pair  "elf_fini_array_section"
   (!type already_seen 212)
-  (!srcfileloc  "varasm.cc" 8362)
+  (!srcfileloc  "varasm.cc" 8392)
   nil )
  (!pair  "elf_init_array_section"
   (!type already_seen 212)
-  (!srcfileloc  "varasm.cc" 8361)
+  (!srcfileloc  "varasm.cc" 8391)
   nil )
  (!pair  "tm_clone_hash"
   (!type already_seen 1565)
