@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-10-23" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-10-27" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -277,7 +277,8 @@ in the following sections.
 \&\fB\-Wno\-class\-conversion  \-Wclass\-memaccess 
 \&\-Wcomma\-subscript  \-Wconditionally\-supported 
 \&\-Wno\-conversion\-null  \-Wctad\-maybe\-unsupported 
-\&\-Wctor\-dtor\-privacy  \-Wno\-delete\-incomplete 
+\&\-Wctor\-dtor\-privacy  \-Wdangling\-reference 
+\&\-Wno\-delete\-incomplete 
 \&\-Wdelete\-non\-virtual\-dtor  \-Wno\-deprecated\-array\-compare 
 \&\-Wdeprecated\-copy \-Wdeprecated\-copy\-dtor 
 \&\-Wno\-deprecated\-enum\-enum\-conversion \-Wno\-deprecated\-enum\-float\-conversion 
@@ -3575,6 +3576,52 @@ destructors in that class are private, and it has neither friends nor
 public static member functions.  Also warn if there are no non-private
 methods, and there's at least one private member function that isn't
 a constructor or destructor.
+.IP "\fB\-Wdangling\-reference\fR (\*(C+ and Objective\-\*(C+ only)" 4
+.IX Item "-Wdangling-reference ( and Objective- only)"
+Warn when a reference is bound to a temporary whose lifetime has ended.
+For example:
+.Sp
+.Vb 2
+\&        int n = 1;
+\&        const int& r = std::max(n \- 1, n + 1); // r is dangling
+.Ve
+.Sp
+In the example above, two temporaries are created, one for each
+argument, and a reference to one of the temporaries is returned.
+However, both temporaries are destroyed at the end of the full
+expression, so the reference \f(CW\*(C`r\*(C'\fR is dangling.  This warning
+also detects dangling references in member initializer lists:
+.Sp
+.Vb 5
+\&        const int& f(const int& i) { return i; }
+\&        struct S {
+\&          const int &r; // r is dangling
+\&          S() : r(f(10)) { }
+\&        };
+.Ve
+.Sp
+Member functions are checked as well, but only their object argument:
+.Sp
+.Vb 4
+\&        struct S {
+\&           const S& self () { return *this; }
+\&        };
+\&        const S& s = S().self(); // s is dangling
+.Ve
+.Sp
+Certain functions are safe in this respect, for example \f(CW\*(C`std::use_facet\*(C'\fR:
+they take and return a reference, but they don't return one of its arguments,
+which can fool the warning.  Such functions can be excluded from the warning
+by wrapping them in a \f(CW\*(C`#pragma\*(C'\fR:
+.Sp
+.Vb 4
+\&        #pragma GCC diagnostic push
+\&        #pragma GCC diagnostic ignored "\-Wdangling\-reference"
+\&        const T& foo (const T&) { ... }
+\&        #pragma GCC diagnostic pop
+.Ve
+.Sp
+This warning is enabled by \fB\-Wall\fR.
 .IP "\fB\-Wdelete\-non\-virtual\-dtor\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wdelete-non-virtual-dtor ( and Objective- only)"
 Warn when \f(CW\*(C`delete\*(C'\fR is used to destroy an instance of a class that
@@ -9735,6 +9782,9 @@ of the following functions for working with file descriptors:
 .ie n .IP "*<""dup"", ""dup2"" and ""dup3"">" 4
 .el .IP "*<\f(CWdup\fR, \f(CWdup2\fR and \f(CWdup3\fR>" 4
 .IX Item "*<dup, dup2 and dup3>"
+.ie n .IP "*<""pipe"", and ""pipe2"">" 4
+.el .IP "*<\f(CWpipe\fR, and \f(CWpipe2\fR>" 4
+.IX Item "*<pipe, and pipe2>"
 .ie n .IP "*<""read"">" 4
 .el .IP "*<\f(CWread\fR>" 4
 .IX Item "*<read>"
@@ -26224,11 +26274,13 @@ The \fB\-mcompact\-branches=never\fR option ensures that compact branch
 instructions will never be generated.
 .Sp
 The \fB\-mcompact\-branches=always\fR option ensures that a compact
-branch instruction will be generated if available.  If a compact branch
-instruction is not available, a delay slot form of the branch will be
-used instead.
+branch instruction will be generated if available for \s-1MIPS\s0 Release 6 onwards.
+If a compact branch instruction is not available (or pre\-R6),
+a delay slot form of the branch will be used instead.
 .Sp
-This option is supported from \s-1MIPS\s0 Release 6 onwards.
+If it is used for MIPS16/microMIPS targets, it will be just ignored now.
+The behaviour for MIPS16/microMIPS may change in future,
+since they do have some compact branch instructions.
 .Sp
 The \fB\-mcompact\-branches=optimal\fR option will cause a delay slot
 branch to be used if one is available in the current \s-1ISA\s0 and the delay

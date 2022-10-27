@@ -1308,6 +1308,26 @@ option.
      'breaks'
           Division by zero checks use the break instruction.
 
+'--with-compact-branches=POLICY'
+     Specify how the compiler should generate branch instructions.  This
+     option is only supported on the MIPS target.  The possibilities for
+     TYPE are:
+     'optimal'
+          Cause a delay slot branch to be used if one is available in
+          the current ISA and the delay slot is successfully filled.  If
+          the delay slot is not filled, a compact branch will be chosen
+          if one is available.
+     'never'
+          Ensures that compact branch instructions will never be
+          generated.
+     'always'
+          Ensures that a compact branch instruction will be generated if
+          available.  If a compact branch instruction is not available,
+          a delay slot form of the branch will be used instead.  This
+          option is supported from MIPS Release 6 onwards.  For
+          pre-R6/microMIPS/MIPS16, this option is just same as
+          never/optimal.
+
 '--with-llsc'
      On MIPS targets, make '-mllsc' the default when no '-mno-llsc'
      option is passed.  This is the default for Linux-based targets, as
@@ -4808,7 +4828,7 @@ Concept Index
 * Menu:
 
 * Binaries:                              Binaries.           (line    6)
-* build_configargs:                      Configuration.      (line 1820)
+* build_configargs:                      Configuration.      (line 1840)
 * Configuration:                         Configuration.      (line    6)
 * Downloading GCC:                       Downloading the source.
                                                              (line    6)
@@ -4817,7 +4837,7 @@ Concept Index
 * FDL, GNU Free Documentation License:   GNU Free Documentation License.
                                                              (line    6)
 * Host specific installation:            Specific.           (line    6)
-* host_configargs:                       Configuration.      (line 1824)
+* host_configargs:                       Configuration.      (line 1844)
 * Installing GCC: Binaries:              Binaries.           (line    6)
 * Installing GCC: Building:              Building.           (line    6)
 * Installing GCC: Configuration:         Configuration.      (line    6)
@@ -4827,7 +4847,7 @@ Concept Index
 * Specific installation notes:           Specific.           (line    6)
 * Target specific installation:          Specific.           (line    6)
 * Target specific installation notes:    Specific.           (line    6)
-* target_configargs:                     Configuration.      (line 1828)
+* target_configargs:                     Configuration.      (line 1848)
 * Testing:                               Testing.            (line    6)
 * Testsuite:                             Testing.            (line    6)
 
@@ -4844,94 +4864,94 @@ Node: Configuration18310
 Ref: with-gnu-as36577
 Ref: with-as37472
 Ref: with-gnu-ld38881
-Ref: WithAixSoname64592
-Ref: AixLdCommand65253
-Node: Building107049
-Node: Testing123256
-Node: Final install131087
-Node: Binaries136388
-Node: Specific137423
-Ref: aarch64-x-x137957
-Ref: alpha-x-x139977
-Ref: amd64-x-solaris2140191
-Ref: amdgcn-x-amdhsa140273
-Ref: arc-x-elf32140799
-Ref: arc-linux-uclibc140975
-Ref: arm-x-eabi141116
-Ref: avr141369
-Ref: bfin141950
-Ref: cris142213
-Ref: dos142539
-Ref: epiphany-x-elf142864
-Ref: x-x-freebsd142969
-Ref: ft32-x-elf144533
-Ref: h8300-hms144631
-Ref: hppa-hp-hpux144983
-Ref: hppa-hp-hpux10147355
-Ref: hppa-hp-hpux11147768
-Ref: x-x-linux-gnu153170
-Ref: ix86-x-linux153493
-Ref: ix86-x-solaris2153806
-Ref: ia64-x-linux154882
-Ref: ia64-x-hpux155129
-Ref: x-ibm-aix155684
-Ref: TransferAixShobj159346
-Ref: iq2000-x-elf163156
-Ref: lm32-x-elf163296
-Ref: lm32-x-uclinux163400
-Ref: loongarch163528
-Ref: m32c-x-elf164222
-Ref: m32r-x-elf164324
-Ref: m68k-x-x164426
-Ref: m68k-x-uclinux165464
-Ref: microblaze-x-elf165709
-Ref: mips-x-x165828
-Ref: moxie-x-elf167738
-Ref: msp430-x-elf167785
-Ref: nds32le-x-elf168342
-Ref: nds32be-x-elf168414
-Ref: nvptx-x-none168483
-Ref: or1k-x-elf169346
-Ref: or1k-x-linux169477
-Ref: powerpc-x-x169558
-Ref: powerpc-x-darwin169749
-Ref: powerpc-x-elf170244
-Ref: powerpc-x-linux-gnu170329
-Ref: powerpc-x-netbsd170424
-Ref: powerpc-x-eabisim170512
-Ref: powerpc-x-eabi170638
-Ref: powerpcle-x-elf170714
-Ref: powerpcle-x-eabisim170806
-Ref: powerpcle-x-eabi170939
-Ref: rl78-x-elf171022
-Ref: riscv32-x-elf171128
-Ref: riscv32-x-linux171317
-Ref: riscv64-x-elf171474
-Ref: riscv64-x-linux171663
-Ref: rx-x-elf171820
-Ref: s390-x-linux171866
-Ref: s390x-x-linux171938
-Ref: s390x-ibm-tpf172025
-Ref: x-x-solaris2172156
-Ref: sparc-x-x175590
-Ref: sparc-sun-solaris2176092
-Ref: sparc-x-linux177235
-Ref: sparc64-x-solaris2177266
-Ref: sparcv9-x-solaris2177984
-Ref: c6x-x-x178071
-Ref: visium-x-elf178163
-Ref: x-x-vxworks178271
-Ref: x86-64-x-x179794
-Ref: x86-64-x-solaris2180122
-Ref: xtensa-x-elf180772
-Ref: xtensa-x-linux181443
-Ref: windows181784
-Ref: x-x-cygwin183580
-Ref: x-x-mingw32184133
-Ref: older184515
-Ref: elf186632
-Node: GNU Free Documentation License186890
-Node: Concept Index212025
+Ref: WithAixSoname65528
+Ref: AixLdCommand66189
+Node: Building107985
+Node: Testing124192
+Node: Final install132023
+Node: Binaries137324
+Node: Specific138359
+Ref: aarch64-x-x138893
+Ref: alpha-x-x140913
+Ref: amd64-x-solaris2141127
+Ref: amdgcn-x-amdhsa141209
+Ref: arc-x-elf32141735
+Ref: arc-linux-uclibc141911
+Ref: arm-x-eabi142052
+Ref: avr142305
+Ref: bfin142886
+Ref: cris143149
+Ref: dos143475
+Ref: epiphany-x-elf143800
+Ref: x-x-freebsd143905
+Ref: ft32-x-elf145469
+Ref: h8300-hms145567
+Ref: hppa-hp-hpux145919
+Ref: hppa-hp-hpux10148291
+Ref: hppa-hp-hpux11148704
+Ref: x-x-linux-gnu154106
+Ref: ix86-x-linux154429
+Ref: ix86-x-solaris2154742
+Ref: ia64-x-linux155818
+Ref: ia64-x-hpux156065
+Ref: x-ibm-aix156620
+Ref: TransferAixShobj160282
+Ref: iq2000-x-elf164092
+Ref: lm32-x-elf164232
+Ref: lm32-x-uclinux164336
+Ref: loongarch164464
+Ref: m32c-x-elf165158
+Ref: m32r-x-elf165260
+Ref: m68k-x-x165362
+Ref: m68k-x-uclinux166400
+Ref: microblaze-x-elf166645
+Ref: mips-x-x166764
+Ref: moxie-x-elf168674
+Ref: msp430-x-elf168721
+Ref: nds32le-x-elf169278
+Ref: nds32be-x-elf169350
+Ref: nvptx-x-none169419
+Ref: or1k-x-elf170282
+Ref: or1k-x-linux170413
+Ref: powerpc-x-x170494
+Ref: powerpc-x-darwin170685
+Ref: powerpc-x-elf171180
+Ref: powerpc-x-linux-gnu171265
+Ref: powerpc-x-netbsd171360
+Ref: powerpc-x-eabisim171448
+Ref: powerpc-x-eabi171574
+Ref: powerpcle-x-elf171650
+Ref: powerpcle-x-eabisim171742
+Ref: powerpcle-x-eabi171875
+Ref: rl78-x-elf171958
+Ref: riscv32-x-elf172064
+Ref: riscv32-x-linux172253
+Ref: riscv64-x-elf172410
+Ref: riscv64-x-linux172599
+Ref: rx-x-elf172756
+Ref: s390-x-linux172802
+Ref: s390x-x-linux172874
+Ref: s390x-ibm-tpf172961
+Ref: x-x-solaris2173092
+Ref: sparc-x-x176526
+Ref: sparc-sun-solaris2177028
+Ref: sparc-x-linux178171
+Ref: sparc64-x-solaris2178202
+Ref: sparcv9-x-solaris2178920
+Ref: c6x-x-x179007
+Ref: visium-x-elf179099
+Ref: x-x-vxworks179207
+Ref: x86-64-x-x180730
+Ref: x86-64-x-solaris2181058
+Ref: xtensa-x-elf181708
+Ref: xtensa-x-linux182379
+Ref: windows182720
+Ref: x-x-cygwin184516
+Ref: x-x-mingw32185069
+Ref: older185451
+Ref: elf187568
+Node: GNU Free Documentation License187826
+Node: Concept Index212961
 
 End Tag Table
 

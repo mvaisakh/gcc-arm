@@ -459,7 +459,6 @@ extern GTY(()) tree cp_global_trees[CPTI_MAX];
       TI_PENDING_TEMPLATE_FLAG.
       TEMPLATE_PARMS_FOR_INLINE.
       DELETE_EXPR_USE_VEC (in DELETE_EXPR).
-      (TREE_CALLS_NEW) (in _EXPR or _REF) (commented-out).
       ICS_ELLIPSIS_FLAG (in _CONV)
       DECL_INITIALIZED_P (in VAR_DECL)
       TYPENAME_IS_CLASS_P (in TYPENAME_TYPE)
@@ -772,11 +771,20 @@ typedef struct ptrmem_cst * ptrmem_cst_t;
 
 /* Returns nonzero iff NODE is a declaration for the global function
    `main'.  */
-#define DECL_MAIN_P(NODE)				\
+#define DECL_MAIN_ANY_P(NODE)				\
    (DECL_EXTERN_C_FUNCTION_P (NODE)			\
     && DECL_NAME (NODE) != NULL_TREE			\
-    && MAIN_NAME_P (DECL_NAME (NODE))			\
-    && flag_hosted)
+    && MAIN_NAME_P (DECL_NAME (NODE)))
+
+/* Nonzero iff NODE is a declaration for `int main', or we are hosted. */
+#define DECL_MAIN_FREESTANDING_P(NODE)				\
+  (DECL_MAIN_ANY_P(NODE)					\
+   && (flag_hosted						\
+       || TYPE_MAIN_VARIANT (TREE_TYPE (TREE_TYPE (NODE)))	\
+	  == integer_type_node))
+
+/* Nonzero iff NODE is a declaration for `main', and we are hosted. */
+#define DECL_MAIN_P(NODE) (DECL_MAIN_ANY_P(NODE) && flag_hosted)
 
 /* Lookup walker marking.  */
 #define LOOKUP_SEEN_P(NODE) TREE_VISITED (NODE)
@@ -4558,6 +4566,9 @@ get_vec_init_expr (tree t)
    When appearing in a CONSTRUCTOR, the expression is an unconverted
    compound literal.
 
+   When appearing in a CALL_EXPR, it means that it is a call to
+   a constructor.
+
    When appearing in a FIELD_DECL, it means that this field
    has been duly initialized in its constructor.  */
 #define TREE_HAS_CONSTRUCTOR(NODE) (TREE_LANG_FLAG_4 (NODE))
@@ -7459,8 +7470,8 @@ extern tree get_function_template_decl		(const_tree);
 extern tree resolve_nondeduced_context		(tree, tsubst_flags_t);
 extern tree resolve_nondeduced_context_or_error	(tree, tsubst_flags_t);
 extern hashval_t iterative_hash_template_arg	(tree arg, hashval_t val);
-extern tree coerce_template_parms               (tree, tree, tree);
-extern tree coerce_template_parms               (tree, tree, tree, tsubst_flags_t);
+extern tree coerce_template_parms		(tree, tree, tree, tsubst_flags_t,
+						 bool = true);
 extern tree canonicalize_type_argument		(tree, tsubst_flags_t);
 extern void register_local_specialization       (tree, tree);
 extern tree retrieve_local_specialization       (tree);
@@ -7749,7 +7760,6 @@ extern tree build_transaction_expr		(location_t, tree, int, tree);
 extern bool cxx_omp_create_clause_info		(tree, tree, bool, bool,
 						 bool, bool);
 extern tree baselink_for_fns                    (tree);
-extern void diagnose_failing_condition		(tree, location_t, bool);
 extern void finish_static_assert                (tree, tree, location_t,
 						 bool, bool);
 extern tree finish_decltype_type                (tree, bool, tsubst_flags_t);
@@ -8488,7 +8498,9 @@ extern void clear_cv_and_fold_caches		(void);
 extern tree unshare_constructor			(tree CXX_MEM_STAT_INFO);
 extern bool decl_implicit_constexpr_p		(tree);
 struct constexpr_ctx;
-extern tree find_failing_clause			(constexpr_ctx *ctx, tree);
+extern tree find_failing_clause			(const constexpr_ctx *ctx, tree);
+extern void diagnose_failing_condition		(tree, location_t, bool,
+						 const constexpr_ctx * = nullptr);
 extern bool replace_decl			(tree *, tree, tree);
 
 /* An RAII sentinel used to restrict constexpr evaluation so that it

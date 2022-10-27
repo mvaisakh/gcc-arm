@@ -2325,6 +2325,12 @@
 #endif
 
 
+/* Specify if mutliarch is enabled. */
+#ifndef USED_FOR_TARGET
+/* #undef ENABLE_MULTIARCH */
+#endif
+
+
 /* The size of `dev_t', as computed by sizeof. */
 #ifndef USED_FOR_TARGET
 #define SIZEOF_DEV_T 8
