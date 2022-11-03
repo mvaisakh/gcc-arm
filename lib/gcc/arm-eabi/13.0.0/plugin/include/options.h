@@ -4415,12 +4415,6 @@ extern int flag_allow_leading_underscore;
 #define flag_allow_leading_underscore global_options.x_flag_allow_leading_underscore
 #endif
 #ifdef GENERATOR_FILE
-extern int flag_allow_parameterless_variadic_functions;
-#else
-  int x_flag_allow_parameterless_variadic_functions;
-#define flag_allow_parameterless_variadic_functions global_options.x_flag_allow_parameterless_variadic_functions
-#endif
-#ifdef GENERATOR_FILE
 extern int flag_store_data_races;
 #else
   int x_flag_store_data_races;
@@ -9866,7 +9860,7 @@ enum opt_code
   OPT_fallow_argument_mismatch = 913,        /* -fallow-argument-mismatch */
   OPT_fallow_invalid_boz = 914,              /* -fallow-invalid-boz */
   OPT_fallow_leading_underscore = 915,       /* -fallow-leading-underscore */
-  OPT_fallow_parameterless_variadic_functions = 916,/* -fallow-parameterless-variadic-functions */
+  /* OPT_fallow_parameterless_variadic_functions = 916, *//* -fallow-parameterless-variadic-functions */
   OPT_fallow_store_data_races = 917,         /* -fallow-store-data-races */
   OPT_falt_external_templates = 918,         /* -falt-external-templates */
   OPT_fanalyzer = 919,                       /* -fanalyzer */
@@ -10394,7 +10388,7 @@ enum opt_code
   OPT_fpreview_inclusiveincontracts = 1441,  /* -fpreview=inclusiveincontracts */
   OPT_fpreview_nosharedaccess = 1442,        /* -fpreview=nosharedaccess */
   OPT_fpreview_rvaluerefparam = 1443,        /* -fpreview=rvaluerefparam */
-  OPT_fpreview_shortenedmethods = 1444,      /* -fpreview=shortenedmethods */
+  OPT_fpreview_systemvariables = 1444,       /* -fpreview=systemvariables */
   OPT_fprintf_return_value = 1445,           /* -fprintf-return-value */
   OPT_fprofile = 1446,                       /* -fprofile */
   OPT_fprofile_abs_path = 1447,              /* -fprofile-abs-path */

@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-10-27" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-11-03" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -227,7 +227,7 @@ in the following sections.
 .IP "\fIC Language Options\fR" 4
 .IX Item "C Language Options"
 \&\fB\-ansi  \-std=\fR\fIstandard\fR  \fB\-aux\-info\fR \fIfilename\fR 
-\&\fB\-fallow\-parameterless\-variadic\-functions  \-fno\-asm  
+\&\fB\-fno\-asm  
 \&\-fno\-builtin  \-fno\-builtin\-\fR\fIfunction\fR  \fB\-fcond\-mismatch 
 \&\-ffreestanding  \-fgimple  \-fgnu\-tm  \-fgnu89\-inline  \-fhosted 
 \&\-flax\-vector\-conversions  \-fms\-extensions 
@@ -1445,7 +1445,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-mavx5124fmaps  \-mavx512vnni  \-mavx5124vnniw  \-mprfchw  \-mrdpid 
 \&\-mrdseed  \-msgx \-mavx512vp2intersect \-mserialize \-mtsxldtrk
 \&\-mamx\-tile  \-mamx\-int8  \-mamx\-bf16 \-muintr \-mhreset \-mavxvnni
-\&\-mavx512fp16 \-mavxifma \-mavxvnniint8 
+\&\-mavx512fp16 \-mavxifma \-mavxvnniint8 \-mavxneconvert 
 \&\-mcldemote  \-mms\-bitfields  \-mno\-align\-stringops  \-minline\-all\-stringops 
 \&\-minline\-stringops\-dynamically  \-mstringop\-strategy=\fR\fIalg\fR 
 \&\fB\-mkl \-mwidekl 
@@ -2579,13 +2579,6 @@ definition (\fBC\fR or \fBF\fR, respectively, in the following
 character).  In the case of function definitions, a K&R\-style list of
 arguments followed by their declarations is also provided, inside
 comments, after the declaration.
-.IP "\fB\-fallow\-parameterless\-variadic\-functions\fR" 4
-.IX Item "-fallow-parameterless-variadic-functions"
-Accept variadic functions without named parameters.
-.Sp
-Although it is possible to define such a function, this is not very
-useful as it is not possible to read the arguments.  This is only
-supported for C as this construct is allowed by \*(C+.
 .IP "\fB\-fno\-asm\fR" 4
 .IX Item "-fno-asm"
 Do not recognize \f(CW\*(C`asm\*(C'\fR, \f(CW\*(C`inline\*(C'\fR or \f(CW\*(C`typeof\*(C'\fR as a
@@ -15484,6 +15477,10 @@ or \f(CW\*(C`_\|_builtin_clz\*(C'\fR invokes undefined behavior and is diagnosed
 by this option.
 .RE
 .RS 4
+.Sp
+Note the enabled sanitizer options tend to increase a false-positive rate
+of selected warnings, most notably \fB\-Wmaybe\-uninitialized\fR.
+And thus we recommend to disable \fB\-Werror\fR.
 .Sp
 While \fB\-ftrapv\fR causes traps for signed overflows to be emitted,
 \&\fB\-fsanitize=undefined\fR gives a diagnostic message.
@@ -31863,6 +31860,8 @@ preferred alignment to \fB\-mpreferred\-stack\-boundary=2\fR.
 .IX Item "-mavxifma"
 .IP "\fB\-mavxvnniint8\fR" 4
 .IX Item "-mavxvnniint8"
+.IP "\fB\-mavxneconvert\fR" 4
+.IX Item "-mavxneconvert"
 .PD
 These switches enable the use of instructions in the \s-1MMX, SSE,
 SSE2, SSE3, SSSE3, SSE4, SSE4A, SSE4.1, SSE4.2, AVX, AVX2, AVX512F, AVX512PF,
@@ -31874,8 +31873,8 @@ XSAVEOPT, XSAVEC, XSAVES, RTM, HLE, TBM, MWAITX, CLZERO, PKU, AVX512VBMI2,
 GFNI, VAES, WAITPKG, VPCLMULQDQ, AVX512BITALG, MOVDIRI, MOVDIR64B, AVX512BF16,
 ENQCMD, AVX512VPOPCNTDQ, AVX5124FMAPS, AVX512VNNI, AVX5124VNNIW, SERIALIZE,
 UINTR, HRESET, AMXTILE, AMXINT8, AMXBF16, KL, WIDEKL, AVXVNNI, AVX512FP16,
-AVXIFMA, AVXVNNIINT8\s0 or \s-1CLDEMOTE\s0 extended instruction sets. Each has a
-corresponding \fB\-mno\-\fR option to disable use of these instructions.
+AVXIFMA, AVXVNNIINT8, AVXNECONVERT\s0 or \s-1CLDEMOTE\s0 extended instruction sets. Each
+has a corresponding \fB\-mno\-\fR option to disable use of these instructions.
 .Sp
 These extensions are also available as built-in functions: see
 \&\fBx86 Built-in Functions\fR, for details of the functions enabled and

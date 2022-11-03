@@ -1337,10 +1337,14 @@ extern void gt_ggc_mx_hash_map_unsigned_tree_priority_map_traits_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_pending_noexcept_va_gc_ (X);\
   } while (0)
 extern void gt_ggc_mx_vec_pending_noexcept_va_gc_ (void *);
-#define gt_ggc_m_19vec_tree_int_va_gc_(X) do { \
-  if ((intptr_t)(X) != 0) gt_ggc_mx_vec_tree_int_va_gc_ (X);\
+#define gt_ggc_m_27vec_lambda_sig_count_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_vec_lambda_sig_count_va_gc_ (X);\
   } while (0)
-extern void gt_ggc_mx_vec_tree_int_va_gc_ (void *);
+extern void gt_ggc_mx_vec_lambda_sig_count_va_gc_ (void *);
+#define gt_ggc_m_31vec_lambda_discriminator_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_vec_lambda_discriminator_va_gc_ (X);\
+  } while (0)
+extern void gt_ggc_mx_vec_lambda_discriminator_va_gc_ (void *);
 #define gt_ggc_m_28hash_table_conv_type_hasher_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_conv_type_hasher_ (X);\
   } while (0)
@@ -2794,10 +2798,14 @@ extern void gt_pch_nx_hash_map_unsigned_tree_priority_map_traits_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_pending_noexcept_va_gc_ (X);\
   } while (0)
 extern void gt_pch_nx_vec_pending_noexcept_va_gc_ (void *);
-#define gt_pch_n_19vec_tree_int_va_gc_(X) do { \
-  if ((intptr_t)(X) != 0) gt_pch_nx_vec_tree_int_va_gc_ (X);\
+#define gt_pch_n_27vec_lambda_sig_count_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_vec_lambda_sig_count_va_gc_ (X);\
   } while (0)
-extern void gt_pch_nx_vec_tree_int_va_gc_ (void *);
+extern void gt_pch_nx_vec_lambda_sig_count_va_gc_ (void *);
+#define gt_pch_n_31vec_lambda_discriminator_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_vec_lambda_discriminator_va_gc_ (X);\
+  } while (0)
+extern void gt_pch_nx_vec_lambda_discriminator_va_gc_ (void *);
 #define gt_pch_n_28hash_table_conv_type_hasher_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_conv_type_hasher_ (X);\
   } while (0)
@@ -3713,7 +3721,9 @@ extern void gt_pch_p_43hash_map_unsigned_tree_priority_map_traits_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_27vec_pending_noexcept_va_gc_
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_19vec_tree_int_va_gc_
+extern void gt_pch_p_27vec_lambda_sig_count_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_31vec_lambda_discriminator_va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_conv_type_hasher_
     (void *, void *, gt_pointer_operator, void *);
