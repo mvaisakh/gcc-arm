@@ -27330,7 +27330,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1948 nil  gc_unused "anonymous:../../gcc/gcc/c/c-parser.cc:8106"nil 
+ (!type struct 1948 nil  gc_unused "anonymous:../../gcc/gcc/c/c-parser.cc:8155"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -31863,7 +31863,7 @@
   nil )
  (!pair  "c_expr_t"
   (!type already_seen 1875)
-  (!srcfileloc  "c/c-tree.h" 187)
+  (!srcfileloc  "c/c-tree.h" 191)
   nil )
  (!pair  "builtin_type"
   (!type already_seen 2)
@@ -36415,13 +36415,13 @@
   nil )
  (!pair  "ext_block"
   (!type already_seen 23)
-  (!srcfileloc  "c/c-decl.cc" 12618)
+  (!srcfileloc  "c/c-decl.cc" 12755)
   nil )
  (!pair  "last_structptr_types"
   (!type array 2377 nil  gc_used "builtin_structptr_type_count" 
    (!type already_seen 23)
   )
-  (!srcfileloc  "c/c-decl.cc" 1667)
+  (!srcfileloc  "c/c-decl.cc" 1728)
   nil )
  (!pair  "c_inline_statics"
   (!type already_seen 1885)
