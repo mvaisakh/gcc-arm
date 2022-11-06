@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-11-03" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-11-04" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -751,7 +751,7 @@ in the following sections.
 \&\fB\-flto\-report  \-flto\-report\-wpa  \-fmem\-report\-wpa 
 \&\-fmem\-report  \-fpre\-ipa\-mem\-report  \-fpost\-ipa\-mem\-report 
 \&\-fopt\-info  \-fopt\-info\-\fR\fIoptions\fR[\fB=\fR\fIfile\fR] 
-\&\fB\-fprofile\-report 
+\&\fB\-fmultiflags  \-fprofile\-report 
 \&\-frandom\-seed=\fR\fIstring\fR  \fB\-fsched\-verbose=\fR\fIn\fR 
 \&\fB\-fsel\-sched\-verbose  \-fsel\-sched\-dump\-cfg  \-fsel\-sched\-pipelining\-verbose 
 \&\-fstats  \-fstack\-usage  \-ftime\-report  \-ftime\-report\-details 
@@ -1445,7 +1445,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-mavx5124fmaps  \-mavx512vnni  \-mavx5124vnniw  \-mprfchw  \-mrdpid 
 \&\-mrdseed  \-msgx \-mavx512vp2intersect \-mserialize \-mtsxldtrk
 \&\-mamx\-tile  \-mamx\-int8  \-mamx\-bf16 \-muintr \-mhreset \-mavxvnni
-\&\-mavx512fp16 \-mavxifma \-mavxvnniint8 \-mavxneconvert 
+\&\-mavx512fp16 \-mavxifma \-mavxvnniint8 \-mavxneconvert \-mcmpccxadd \-mamx\-fp16 
 \&\-mcldemote  \-mms\-bitfields  \-mno\-align\-stringops  \-minline\-all\-stringops 
 \&\-minline\-stringops\-dynamically  \-mstringop\-strategy=\fR\fIalg\fR 
 \&\fB\-mkl \-mwidekl 
@@ -3075,14 +3075,14 @@ exhaustion is signalled by throwing \f(CW\*(C`std::bad_alloc\*(C'\fR.  See also
 .IP "\fB\-fconcepts\-ts\fR" 4
 .IX Item "-fconcepts-ts"
 .PD
-Below \fB\-std=c++20\fR, \fB\-fconcepts\fR enables support for the
-\&\*(C+ Extensions for Concepts Technical Specification, \s-1ISO 19217\s0 (2015).
+Enable support for the \*(C+ Concepts feature for constraining template
+arguments.  With \fB\-std=c++20\fR and above, Concepts are part of
+the language standard, so \fB\-fconcepts\fR defaults to on.
 .Sp
-With \fB\-std=c++20\fR and above, Concepts are part of the language
-standard, so \fB\-fconcepts\fR defaults to on.  But the standard
-specification of Concepts differs significantly from the \s-1TS,\s0 so some
-constructs that were allowed in the \s-1TS\s0 but didn't make it into the
-standard can still be enabled by \fB\-fconcepts\-ts\fR.
+Some constructs that were allowed by the earlier \*(C+ Extensions for
+Concepts Technical Specification, \s-1ISO 19217\s0 (2015), but didn't make it
+into the standard, can additionally be enabled by
+\&\fB\-fconcepts\-ts\fR.
 .IP "\fB\-fconstexpr\-depth=\fR\fIn\fR" 4
 .IX Item "-fconstexpr-depth=n"
 Set the maximum nested evaluation depth for \*(C+11 constexpr functions
@@ -16214,9 +16214,10 @@ supported by the system's \f(CW\*(C`iconv\*(C'\fR library routine.
 .IP "\fB\-fwide\-exec\-charset=\fR\fIcharset\fR" 4
 .IX Item "-fwide-exec-charset=charset"
 Set the wide execution character set, used for wide string and
-character constants.  The default is \s-1UTF\-32\s0 or \s-1UTF\-16,\s0 whichever
-corresponds to the width of \f(CW\*(C`wchar_t\*(C'\fR.  As with
-\&\fB\-fexec\-charset\fR, \fIcharset\fR can be any encoding supported
+character constants.  The default is one of \s-1UTF\-32BE, UTF\-32LE, UTF\-16BE,\s0
+or \s-1UTF\-16LE,\s0 whichever corresponds to the width of \f(CW\*(C`wchar_t\*(C'\fR and the
+big-endian or little-endian byte order being used for code generation.  As
+with \fB\-fexec\-charset\fR, \fIcharset\fR can be any encoding supported
 by the system's \f(CW\*(C`iconv\*(C'\fR library routine; however, you will have
 problems with encodings that do not fit exactly in \f(CW\*(C`wchar_t\*(C'\fR.
 .IP "\fB\-finput\-charset=\fR\fIcharset\fR" 4
@@ -18709,6 +18710,31 @@ allocation for the \s-1WPA\s0 phase only.
 .PD
 Makes the compiler print some statistics about permanent memory
 allocation before or after interprocedural optimization.
+.IP "\fB\-fmultiflags\fR" 4
+.IX Item "-fmultiflags"
+This option enables multilib-aware \f(CW\*(C`TFLAGS\*(C'\fR to be used to build
+target libraries with options different from those the compiler is
+configured to use by default, through the use of specs
+.Sp
+Like \f(CW\*(C`TFLAGS\*(C'\fR, this allows the target libraries to be built for
+portable baseline environments, while the compiler defaults to more
+demanding ones.  That's useful because users can easily override the
+defaults the compiler is configured to use to build their own programs,
+if the defaults are not ideal for their target environment, whereas
+rebuilding the runtime libraries is usually not as easy or desirable.
+.Sp
+Unlike \f(CW\*(C`TFLAGS\*(C'\fR, the use of specs enables different flags to be
+selected for different multilibs.  The way to accomplish that is to
+build with \fBmake TFLAGS=\-fmultiflags\fR, after configuring
+\&\fB\-\-with\-specs=%{fmultiflags:...}\fR.
+.Sp
+This option is discarded by the driver once it's done processing driver
+self spec.
+.Sp
+It is also useful to check that \f(CW\*(C`TFLAGS\*(C'\fR are being used to build
+all target libraries, by configuring a non-bootstrap compiler
+\&\fB\-\-with\-specs='%{!fmultiflags:%emissing \s-1TFLAGS\s0}'\fR and building
+the compiler and target libraries.
 .IP "\fB\-fprofile\-report\fR" 4
 .IX Item "-fprofile-report"
 Makes the compiler print some statistics about consistency of the
@@ -31002,6 +31028,14 @@ SSE4.1, SSE4.2, POPCNT, CX16, SAHF, FXSR, PCLMUL, PREFETCHW, RDRND, AES, SHA,
 RDSEED, XSAVE, XSAVEC, XSAVES, XSAVEOPT, CLFLUSHOPT, FSGSBASE, PTWRITE, RDPID,
 SGX, CLWB,\s0 GFNI-SSE, \s-1MOVDIRI, MOVDIR64B, CLDEMOTE\s0 and \s-1WAITPKG\s0 instruction set
 support.
+.IP "\fBsierraforest\fR" 4
+.IX Item "sierraforest"
+Intel Sierra Forest \s-1CPU\s0 with 64\-bit extensions, \s-1MOVBE, MMX, SSE, SSE2, SSE3,
+SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE, XSAVEC,
+XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX,\s0 GFNI-SSE, \s-1CLWB, MOVDIRI,
+MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
+PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL,\s0 AVX-VNNI,
+\&\s-1AVXIFMA, AVXVNNIINT8, AVXNECONVERT\s0 and \s-1CMPCCXADD\s0 instruction set support.
 .IP "\fBknl\fR" 4
 .IX Item "knl"
 Intel Knight's Landing \s-1CPU\s0 with 64\-bit extensions, \s-1MOVBE, MMX, SSE, SSE2, SSE3,
@@ -31862,6 +31896,10 @@ preferred alignment to \fB\-mpreferred\-stack\-boundary=2\fR.
 .IX Item "-mavxvnniint8"
 .IP "\fB\-mavxneconvert\fR" 4
 .IX Item "-mavxneconvert"
+.IP "\fB\-mcmpccxadd\fR" 4
+.IX Item "-mcmpccxadd"
+.IP "\fB\-mamx\-fp16\fR" 4
+.IX Item "-mamx-fp16"
 .PD
 These switches enable the use of instructions in the \s-1MMX, SSE,
 SSE2, SSE3, SSSE3, SSE4, SSE4A, SSE4.1, SSE4.2, AVX, AVX2, AVX512F, AVX512PF,
@@ -31873,8 +31911,9 @@ XSAVEOPT, XSAVEC, XSAVES, RTM, HLE, TBM, MWAITX, CLZERO, PKU, AVX512VBMI2,
 GFNI, VAES, WAITPKG, VPCLMULQDQ, AVX512BITALG, MOVDIRI, MOVDIR64B, AVX512BF16,
 ENQCMD, AVX512VPOPCNTDQ, AVX5124FMAPS, AVX512VNNI, AVX5124VNNIW, SERIALIZE,
 UINTR, HRESET, AMXTILE, AMXINT8, AMXBF16, KL, WIDEKL, AVXVNNI, AVX512FP16,
-AVXIFMA, AVXVNNIINT8, AVXNECONVERT\s0 or \s-1CLDEMOTE\s0 extended instruction sets. Each
-has a corresponding \fB\-mno\-\fR option to disable use of these instructions.
+AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AMX\-FP16\s0 or \s-1CLDEMOTE\s0 extended
+instruction sets. Each has a corresponding \fB\-mno\-\fR option to disable
+use of these instructions.
 .Sp
 These extensions are also available as built-in functions: see
 \&\fBx86 Built-in Functions\fR, for details of the functions enabled and

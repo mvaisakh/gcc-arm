@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "CPP 1"
-.TH CPP 1 "2022-11-03" "gcc-13.0.0" "GNU"
+.TH CPP 1 "2022-11-04" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -493,9 +493,10 @@ supported by the system's \f(CW\*(C`iconv\*(C'\fR library routine.
 .IP "\fB\-fwide\-exec\-charset=\fR\fIcharset\fR" 4
 .IX Item "-fwide-exec-charset=charset"
 Set the wide execution character set, used for wide string and
-character constants.  The default is \s-1UTF\-32\s0 or \s-1UTF\-16,\s0 whichever
-corresponds to the width of \f(CW\*(C`wchar_t\*(C'\fR.  As with
-\&\fB\-fexec\-charset\fR, \fIcharset\fR can be any encoding supported
+character constants.  The default is one of \s-1UTF\-32BE, UTF\-32LE, UTF\-16BE,\s0
+or \s-1UTF\-16LE,\s0 whichever corresponds to the width of \f(CW\*(C`wchar_t\*(C'\fR and the
+big-endian or little-endian byte order being used for code generation.  As
+with \fB\-fexec\-charset\fR, \fIcharset\fR can be any encoding supported
 by the system's \f(CW\*(C`iconv\*(C'\fR library routine; however, you will have
 problems with encodings that do not fit exactly in \f(CW\*(C`wchar_t\*(C'\fR.
 .IP "\fB\-finput\-charset=\fR\fIcharset\fR" 4
