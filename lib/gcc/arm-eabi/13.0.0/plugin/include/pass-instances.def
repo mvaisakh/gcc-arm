@@ -348,8 +348,8 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS_WITH_ARG (pass_ccp, 4, true /* nonzero_p */);
       NEXT_PASS (pass_warn_restrict, 1);
       NEXT_PASS (pass_dse, 5);
-      NEXT_PASS_WITH_ARG (pass_cd_dce, 3, true /* update_address_taken_p */);
-      /* After late CD DCE we rewrite no longer addressed locals into SSA
+      NEXT_PASS_WITH_ARG (pass_dce, 7, true /* update_address_taken_p */);
+      /* After late DCE we rewrite no longer addressed locals into SSA
 	 form if possible.  */
       NEXT_PASS (pass_forwprop, 4);
       NEXT_PASS_WITH_ARG (pass_sink_code, 2, true /* unsplit edges */);
@@ -357,12 +357,12 @@ along with GCC; see the file COPYING3.  If not see
       NEXT_PASS (pass_fold_builtins, 1);
       NEXT_PASS (pass_optimize_widening_mul, 1);
       NEXT_PASS (pass_store_merging, 1);
-      NEXT_PASS (pass_tail_calls, 1);
       /* If DCE is not run before checking for uninitialized uses,
 	 we may get false warnings (e.g., testsuite/gcc.dg/uninit-5.c).
 	 However, this also causes us to misdiagnose cases that should be
 	 real warnings (e.g., testsuite/gcc.dg/pr18501.c).  */
-      NEXT_PASS (pass_dce, 7);
+      NEXT_PASS_WITH_ARG (pass_cd_dce, 3, false /* update_address_taken_p */);
+      NEXT_PASS (pass_tail_calls, 1);
       /* Split critical edges before late uninit warning to reduce the
          number of false positives from it.  */
       NEXT_PASS (pass_split_crit_edges, 1);
