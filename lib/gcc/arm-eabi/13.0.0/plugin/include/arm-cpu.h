@@ -99,6 +99,7 @@ enum processor_type
   TARGET_CPU_cortexa78c,
   TARGET_CPU_cortexa710,
   TARGET_CPU_cortexx1,
+  TARGET_CPU_cortexx1c,
   TARGET_CPU_neoversen1,
   TARGET_CPU_cortexa75cortexa55,
   TARGET_CPU_cortexa76cortexa55,

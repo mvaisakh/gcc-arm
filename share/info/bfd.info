@@ -2010,6 +2010,7 @@ Here is the section structure:
      #define SEC_INFO_TYPE_JUST_SYMS 4
      #define SEC_INFO_TYPE_TARGET    5
      #define SEC_INFO_TYPE_EH_FRAME_ENTRY 6
+     #define SEC_INFO_TYPE_SFRAME  7
 
        /* Nonzero if this section uses RELA relocations, rather than REL.  */
        unsigned int use_rela_p:1;
@@ -14778,54 +14779,54 @@ Node: Sections58196
 Node: Section Input58679
 Node: Section Output59873
 Node: typedef asection62360
-Node: section prototypes86941
-Node: Symbols97951
-Node: Reading Symbols99554
-Node: Writing Symbols100662
-Node: Mini Symbols102406
-Node: typedef asymbol103380
-Node: symbol handling functions109587
-Node: Archives114920
-Node: Formats119050
-Node: Relocations121980
-Node: typedef arelent122707
-Node: howto manager137433
-Node: Core Files274085
-Node: Targets276109
-Node: bfd_target278084
-Node: Architectures305496
-Node: Opening and Closing337394
-Node: Internal355562
-Node: File Caching355666
-Node: Linker Functions357563
-Node: Creating a Linker Hash Table359237
-Node: Adding Symbols to the Hash Table360976
-Node: Differing file formats361876
-Node: Adding symbols from an object file363601
-Node: Adding symbols from an archive365751
-Node: Performing the Final Link368097
-Node: Information provided by the linker369338
-Node: Relocating the section contents370492
-Node: Writing the symbol table372244
-Node: Hash Tables379335
-Node: Creating and Freeing a Hash Table380533
-Node: Looking Up or Entering a String381783
-Node: Traversing a Hash Table383036
-Node: Deriving a New Hash Table Type383825
-Node: Define the Derived Structures384891
-Node: Write the Derived Creation Routine385972
-Node: Write Other Derived Routines388597
-Node: BFD back ends389912
-Node: What to Put Where390182
-Node: aout390362
-Node: coff396604
-Node: elf424744
-Node: mmo425145
-Node: File layout426015
-Node: Symbol-table431928
-Node: mmo section mapping435691
-Node: GNU Free Documentation License439345
-Node: BFD Index464409
+Node: section prototypes86978
+Node: Symbols97988
+Node: Reading Symbols99591
+Node: Writing Symbols100699
+Node: Mini Symbols102443
+Node: typedef asymbol103417
+Node: symbol handling functions109624
+Node: Archives114957
+Node: Formats119087
+Node: Relocations122017
+Node: typedef arelent122744
+Node: howto manager137470
+Node: Core Files274122
+Node: Targets276146
+Node: bfd_target278121
+Node: Architectures305533
+Node: Opening and Closing337431
+Node: Internal355599
+Node: File Caching355703
+Node: Linker Functions357600
+Node: Creating a Linker Hash Table359274
+Node: Adding Symbols to the Hash Table361013
+Node: Differing file formats361913
+Node: Adding symbols from an object file363638
+Node: Adding symbols from an archive365788
+Node: Performing the Final Link368134
+Node: Information provided by the linker369375
+Node: Relocating the section contents370529
+Node: Writing the symbol table372281
+Node: Hash Tables379372
+Node: Creating and Freeing a Hash Table380570
+Node: Looking Up or Entering a String381820
+Node: Traversing a Hash Table383073
+Node: Deriving a New Hash Table Type383862
+Node: Define the Derived Structures384928
+Node: Write the Derived Creation Routine386009
+Node: Write Other Derived Routines388634
+Node: BFD back ends389949
+Node: What to Put Where390219
+Node: aout390399
+Node: coff396641
+Node: elf424781
+Node: mmo425182
+Node: File layout426052
+Node: Symbol-table431965
+Node: mmo section mapping435728
+Node: GNU Free Documentation License439382
+Node: BFD Index464446
 
 End Tag Table
 

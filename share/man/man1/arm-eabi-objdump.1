@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJDUMP 1"
-.TH OBJDUMP 1 "2022-11-13" "binutils-2.39.50" "GNU Development Tools"
+.TH OBJDUMP 1 "2022-11-17" "binutils-2.39.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -175,6 +175,7 @@ objdump [\fB\-a\fR|\fB\-\-archive\-headers\fR]
         [\fB\-wE\fR|\fB\-\-dwarf=do\-not\-use\-debuginfod\fR]
         [\fB\-L\fR|\fB\-\-process\-links\fR]
         [\fB\-\-ctf=\fR\fIsection\fR]
+        [\fB\-\-sframe=\fR\fIsection\fR]
         [\fB\-G\fR|\fB\-\-stabs\fR]
         [\fB\-t\fR|\fB\-\-syms\fR]
         [\fB\-T\fR|\fB\-\-dynamic\-syms\fR]
@@ -1199,6 +1200,12 @@ function at link time.  When looking at \s-1CTF\s0 archives that have been
 created by a linker that uses the name changer to rename the parent
 archive member, \fB\-\-ctf\-parent\fR can be used to specify the name
 used for the parent.
+.IP "\fB\-\-sframe[=\fR\fIsection\fR\fB]\fR" 4
+.IX Item "--sframe[=section]"
+Display the contents of the specified SFrame section.
+.Sp
+By default, display the name of the section named \fI.sframe\fR, which is the
+name emitted by \fBld\fR.
 .IP "\fB\-G\fR" 4
 .IX Item "-G"
 .PD 0

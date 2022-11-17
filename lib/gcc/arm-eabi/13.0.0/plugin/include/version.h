@@ -9,7 +9,7 @@
 BASEVER, DATESTAMP, DEVPHASE, and REVISION are defined by the
 Makefile.  */
 
-#define version_string "13.0.0 20221113 (Bleeding Edge)"
+#define version_string "13.0.0 20221117 (Bleeding Edge)"
 #define pkgversion_string "(Eva GCC) "
 
 /* This is the location of the online document giving instructions for
@@ -19,7 +19,7 @@ instructions for reporting bugs to you, not us.  (You are of course
 welcome to forward us bugs reported to you, if you determine that
 they are not bugs in your modifications.)  */
 
-#define bug_report_url "https://gcc.gnu.org/bugs/"
+#define bug_report_url "<https://gcc.gnu.org/bugs/>"
 
 #define GCOV_VERSION ((gcov_unsigned_t)0x42333020)  /* B30  */
 

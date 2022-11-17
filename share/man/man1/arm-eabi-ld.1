@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2022-11-13" "binutils-2.39.50" "GNU Development Tools"
+.TH LD 1 "2022-11-17" "binutils-2.39.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2636,7 +2636,9 @@ section and \s-1ELF\s0 \f(CW\*(C`PT_GNU_EH_FRAME\*(C'\fR segment header.
 .IX Item "--no-ld-generated-unwind-info"
 Request creation of \f(CW\*(C`.eh_frame\*(C'\fR unwind info for linker
 generated code sections like \s-1PLT.\s0  This option is on by default
-if linker generated unwind info is supported.
+if linker generated unwind info is supported.  This option also
+controls the generation of \f(CW\*(C`.sframe\*(C'\fR unwind info for linker
+generated code sections like \s-1PLT.\s0
 .IP "\fB\-\-enable\-new\-dtags\fR" 4
 .IX Item "--enable-new-dtags"
 .PD 0
