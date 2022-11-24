@@ -1285,6 +1285,14 @@ extern void gt_ggc_mx_constexpr_call (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_constexpr_call_hasher_ (X);\
   } while (0)
 extern void gt_ggc_mx_hash_table_constexpr_call_hasher_ (void *);
+#define gt_ggc_m_10norm_entry(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_norm_entry (X);\
+  } while (0)
+extern void gt_ggc_mx_norm_entry (void *);
+#define gt_ggc_m_23hash_table_norm_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_norm_hasher_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_norm_hasher_ (void *);
 #define gt_ggc_m_23hash_table_atom_hasher_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_atom_hasher_ (X);\
   } while (0)
@@ -2746,6 +2754,14 @@ extern void gt_pch_nx_constexpr_call (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_constexpr_call_hasher_ (X);\
   } while (0)
 extern void gt_pch_nx_hash_table_constexpr_call_hasher_ (void *);
+#define gt_pch_n_10norm_entry(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_norm_entry (X);\
+  } while (0)
+extern void gt_pch_nx_norm_entry (void *);
+#define gt_pch_n_23hash_table_norm_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_norm_hasher_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_norm_hasher_ (void *);
 #define gt_pch_n_23hash_table_atom_hasher_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_atom_hasher_ (X);\
   } while (0)
@@ -3694,6 +3710,10 @@ extern void gt_pch_p_35hash_table_constexpr_fundef_hasher_
 extern void gt_pch_p_14constexpr_call
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_33hash_table_constexpr_call_hasher_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_10norm_entry
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_23hash_table_norm_hasher_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23hash_table_atom_hasher_
     (void *, void *, gt_pointer_operator, void *);
