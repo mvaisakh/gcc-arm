@@ -355,8 +355,8 @@ Offset   Name                                 Description
 
 File: sframe-spec.info,  Node: The SFrame FDE info word,  Next: The SFrame FDE types,  Up: SFrame Function Descriptor Entries
 
-1.3.1 The SFrame FDE info word, sfde_func_info
-----------------------------------------------
+1.3.1 The SFrame FDE info word
+------------------------------
 
 The info word is a bitfield split into three parts.  From MSB to LSB:
 
@@ -505,8 +505,8 @@ of the SFrame FRE, from the start address of the function.
 
 File: sframe-spec.info,  Node: The SFrame FRE info word,  Up: SFrame Frame Row Entries
 
-1.4.1 The SFrame FRE info word, sfre_info
------------------------------------------
+1.4.1 The SFrame FRE info word
+------------------------------
 
 The SFrame FRE info word is a bitfield split into four parts.  From MSB
 to LSB:
@@ -603,11 +603,11 @@ Node: SFrame Header5641
 Node: SFrame ABI/arch identifier10812
 Node: SFrame Function Descriptor Entries11778
 Node: The SFrame FDE info word14571
-Node: The SFrame FDE types15328
-Node: The SFrame FRE types16896
-Node: SFrame Frame Row Entries18452
-Node: The SFrame FRE info word20849
-Node: Index22665
+Node: The SFrame FDE types15296
+Node: The SFrame FRE types16864
+Node: SFrame Frame Row Entries18420
+Node: The SFrame FRE info word20817
+Node: Index22611
 
 End Tag Table
 

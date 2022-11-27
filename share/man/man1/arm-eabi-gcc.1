@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-11-24" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-11-27" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -233,8 +233,8 @@ in the following sections.
 \&\-flax\-vector\-conversions  \-fms\-extensions 
 \&\-foffload=\fR\fIarg\fR  \fB\-foffload\-options=\fR\fIarg\fR 
 \&\fB\-fopenacc  \-fopenacc\-dim=\fR\fIgeom\fR 
-\&\fB\-fopenmp  \-fopenmp\-simd 
-\&\-fpermitted\-flt\-eval\-methods=\fR\fIstandard\fR 
+\&\fB\-fopenmp  \-fopenmp\-simd  \-fopenmp\-target\-simd\-clone\fR[\fB=\fR\fIdevice-type\fR] 
+\&\fB\-fpermitted\-flt\-eval\-methods=\fR\fIstandard\fR 
 \&\fB\-fplan9\-extensions  \-fsigned\-bitfields  \-funsigned\-bitfields 
 \&\-fsigned\-char  \-funsigned\-char \-fstrict\-flex\-arrays[=\fR\fIn\fR\fB] 
 \&\-fsso\-struct=\fR\fIendianness\fR
@@ -2769,6 +2769,28 @@ Enable handling of OpenMP's \f(CW\*(C`simd\*(C'\fR, \f(CW\*(C`declare simd\*(C'\
 \&\f(CW\*(C`simd\*(C'\fR as constituent with \f(CW\*(C`#pragma omp\*(C'\fR in C/\*(C+,
 \&\f(CW\*(C`[[omp::directive(...)]]\*(C'\fR and \f(CW\*(C`[[omp::sequence(...)]]\*(C'\fR in \*(C+
 and \f(CW\*(C`!$omp\*(C'\fR in Fortran.  Other OpenMP directives are ignored.
+.IP "\fB\-fopenmp\-target\-simd\-clone\fR" 4
+.IX Item "-fopenmp-target-simd-clone"
+.PD 0
+.IP "\fB\-fopenmp\-target\-simd\-clone=\fR\fIdevice-type\fR" 4
+.IX Item "-fopenmp-target-simd-clone=device-type"
+.PD
+In addition to generating \s-1SIMD\s0 clones for functions marked with the
+\&\f(CW\*(C`declare simd\*(C'\fR directive, \s-1GCC\s0 also generates clones
+for functions marked with the OpenMP \f(CW\*(C`declare target\*(C'\fR directive
+that are suitable for vectorization when this option is in effect.  The
+\&\fIdevice-type\fR may be one of \f(CW\*(C`none\*(C'\fR, \f(CW\*(C`host\*(C'\fR, \f(CW\*(C`nohost\*(C'\fR,
+and \f(CW\*(C`any\*(C'\fR, which correspond to keywords for the \f(CW\*(C`device_type\*(C'\fR
+clause of the \f(CW\*(C`declare target\*(C'\fR directive; clones are generated for
+the intersection of devices specified.
+\&\fB\-fopenmp\-target\-simd\-clone\fR is equivalent to
+\&\fB\-fopenmp\-target\-simd\-clone=any\fR and
+\&\fB\-fno\-openmp\-target\-simd\-clone\fR is equivalent to
+\&\fB\-fopenmp\-target\-simd\-clone=none\fR.
+.Sp
+At \fB\-O2\fR and higher (but not \fB\-Os\fR or \fB\-Og\fR) this
+optimization defaults to \fB\-fopenmp\-target\-simd\-clone=nohost\fR; otherwise
+it is disabled by default.
 .IP "\fB\-fpermitted\-flt\-eval\-methods=\fR\fIstyle\fR" 4
 .IX Item "-fpermitted-flt-eval-methods=style"
 \&\s-1ISO/IEC TS 18661\-3\s0 defines new permissible values for
@@ -14833,19 +14855,9 @@ use-def chain.
 The maximum number of may-defs we analyze when looking for a must-def
 specifying the dynamic type of an object that invokes a virtual call
 we may be able to devirtualize speculatively.
-.IP "\fBmax-vrp-switch-assertions\fR" 4
-.IX Item "max-vrp-switch-assertions"
-The maximum number of assertions to add along the default edge of a switch
-statement during \s-1VRP.\s0
 .IP "\fBevrp-sparse-threshold\fR" 4
 .IX Item "evrp-sparse-threshold"
 Maximum number of basic blocks before \s-1EVRP\s0 uses a sparse cache.
-.IP "\fBvrp1\-mode\fR" 4
-.IX Item "vrp1-mode"
-Specifies the mode \s-1VRP\s0 pass 1 should operate in.
-.IP "\fBvrp2\-mode\fR" 4
-.IX Item "vrp2-mode"
-Specifies the mode \s-1VRP\s0 pass 2 should operate in.
 .IP "\fBranger-debug\fR" 4
 .IX Item "ranger-debug"
 Specifies the type of debug output to be issued for ranges.
