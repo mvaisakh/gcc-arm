@@ -3137,11 +3137,11 @@ files.
 '--encoding=ENCODING'
      Select the character encoding of the strings that are to be found.
      Possible values for ENCODING are: 's' = single-7-bit-byte
-     characters (ASCII, ISO 8859, etc., default), 'S' =
-     single-8-bit-byte characters, 'b' = 16-bit bigendian, 'l' = 16-bit
-     littleendian, 'B' = 32-bit bigendian, 'L' = 32-bit littleendian.
-     Useful for finding wide character strings.  ('l' and 'b' apply to,
-     for example, Unicode UTF-16/UCS-2 encodings).
+     characters (default), 'S' = single-8-bit-byte characters, 'b' =
+     16-bit bigendian, 'l' = 16-bit littleendian, 'B' = 32-bit
+     bigendian, 'L' = 32-bit littleendian.  Useful for finding wide
+     character strings.  ('l' and 'b' apply to, for example, Unicode
+     UTF-16/UCS-2 encodings).
 
 '-U [D|I|L|E|X|H]'
 '--unicode=[DEFAULT|INVALID|LOCALE|ESCAPE|HEX|HIGHLIGHT]'
@@ -6144,26 +6144,26 @@ Node: objdump82529
 Node: ranlib120079
 Node: size121678
 Node: strings125822
-Node: strip131679
-Node: c++filt141521
-Ref: c++filt-Footnote-1147382
-Node: addr2line147488
-Node: windmc153443
-Node: windres157102
-Node: dlltool163672
-Node: def file format177125
-Node: readelf179655
-Node: elfedit198786
-Node: Common Options202212
-Node: Selecting the Target System203246
-Node: Target Selection204174
-Node: Architecture Selection206155
-Node: debuginfod206983
-Node: Reporting Bugs207985
-Node: Bug Criteria208747
-Node: Bug Reporting209300
-Node: GNU Free Documentation License216167
-Node: Binutils Index241327
+Node: strip131657
+Node: c++filt141499
+Ref: c++filt-Footnote-1147360
+Node: addr2line147466
+Node: windmc153421
+Node: windres157080
+Node: dlltool163650
+Node: def file format177103
+Node: readelf179633
+Node: elfedit198764
+Node: Common Options202190
+Node: Selecting the Target System203224
+Node: Target Selection204152
+Node: Architecture Selection206133
+Node: debuginfod206961
+Node: Reporting Bugs207963
+Node: Bug Criteria208725
+Node: Bug Reporting209278
+Node: GNU Free Documentation License216145
+Node: Binutils Index241305
 
 End Tag Table
 

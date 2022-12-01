@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-11-27" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-12-01" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -10045,6 +10045,9 @@ of the following functions for working with file descriptors:
 .ie n .IP "*<""dup"", ""dup2"" and ""dup3"">" 4
 .el .IP "*<\f(CWdup\fR, \f(CWdup2\fR and \f(CWdup3\fR>" 4
 .IX Item "*<dup, dup2 and dup3>"
+.ie n .IP "*<""isatty"">" 4
+.el .IP "*<\f(CWisatty\fR>" 4
+.IX Item "*<isatty>"
 .ie n .IP "*<""pipe"", and ""pipe2"">" 4
 .el .IP "*<\f(CWpipe\fR, and \f(CWpipe2\fR>" 4
 .IX Item "*<pipe, and pipe2>"
@@ -10079,15 +10082,24 @@ of the following functions for working with \f(CW\*(C`<stdio.h>\*(C'\fR streams:
 .ie n .IP "*<""fclose"">" 4
 .el .IP "*<\f(CWfclose\fR>" 4
 .IX Item "*<fclose>"
+.ie n .IP "*<""ferror"">" 4
+.el .IP "*<\f(CWferror\fR>" 4
+.IX Item "*<ferror>"
 .ie n .IP "*<""fgets"">" 4
 .el .IP "*<\f(CWfgets\fR>" 4
 .IX Item "*<fgets>"
 .ie n .IP "*<""fgets_unlocked"">" 4
 .el .IP "*<\f(CWfgets_unlocked\fR>" 4
 .IX Item "*<fgets_unlocked>"
+.ie n .IP "*<""fileno"">" 4
+.el .IP "*<\f(CWfileno\fR>" 4
+.IX Item "*<fileno>"
 .ie n .IP "*<""fread"">" 4
 .el .IP "*<\f(CWfread\fR>" 4
 .IX Item "*<fread>"
+.ie n .IP "*<""getc"">" 4
+.el .IP "*<\f(CWgetc\fR>" 4
+.IX Item "*<getc>"
 .ie n .IP "*<""getchar"">" 4
 .el .IP "*<\f(CWgetchar\fR>" 4
 .IX Item "*<getchar>"
