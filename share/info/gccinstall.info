@@ -1657,8 +1657,9 @@ option.
      should not be built.
 
 '--with-dwarf2'
-     Specify that the compiler should use DWARF 2 debugging information
-     as the default.
+     Specify that the compiler should use DWARF debugging information as
+     the default; the exact DWARF version that is the default is
+     target-specific.
 
 '--with-advance-toolchain=AT'
      On 64-bit PowerPC Linux systems, configure the compiler to use the
@@ -4827,7 +4828,7 @@ Concept Index
 * Menu:
 
 * Binaries:                              Binaries.           (line    6)
-* build_configargs:                      Configuration.      (line 1840)
+* build_configargs:                      Configuration.      (line 1841)
 * Configuration:                         Configuration.      (line    6)
 * Downloading GCC:                       Downloading the source.
                                                              (line    6)
@@ -4836,7 +4837,7 @@ Concept Index
 * FDL, GNU Free Documentation License:   GNU Free Documentation License.
                                                              (line    6)
 * Host specific installation:            Specific.           (line    6)
-* host_configargs:                       Configuration.      (line 1844)
+* host_configargs:                       Configuration.      (line 1845)
 * Installing GCC: Binaries:              Binaries.           (line    6)
 * Installing GCC: Building:              Building.           (line    6)
 * Installing GCC: Configuration:         Configuration.      (line    6)
@@ -4846,7 +4847,7 @@ Concept Index
 * Specific installation notes:           Specific.           (line    6)
 * Target specific installation:          Specific.           (line    6)
 * Target specific installation notes:    Specific.           (line    6)
-* target_configargs:                     Configuration.      (line 1848)
+* target_configargs:                     Configuration.      (line 1849)
 * Testing:                               Testing.            (line    6)
 * Testsuite:                             Testing.            (line    6)
 
@@ -4865,92 +4866,92 @@ Ref: with-as37472
 Ref: with-gnu-ld38881
 Ref: WithAixSoname65528
 Ref: AixLdCommand66189
-Node: Building107944
-Node: Testing124151
-Node: Final install131875
-Node: Binaries137176
-Node: Specific138211
-Ref: aarch64-x-x138745
-Ref: alpha-x-x140765
-Ref: amd64-x-solaris2140979
-Ref: amdgcn-x-amdhsa141061
-Ref: arc-x-elf32141587
-Ref: arc-linux-uclibc141763
-Ref: arm-x-eabi141904
-Ref: avr142157
-Ref: bfin142738
-Ref: cris143001
-Ref: dos143327
-Ref: epiphany-x-elf143652
-Ref: x-x-freebsd143757
-Ref: ft32-x-elf145321
-Ref: h8300-hms145419
-Ref: hppa-hp-hpux145771
-Ref: hppa-hp-hpux10148143
-Ref: hppa-hp-hpux11148556
-Ref: x-x-linux-gnu153958
-Ref: ix86-x-linux154281
-Ref: ix86-x-solaris2154594
-Ref: ia64-x-linux155670
-Ref: ia64-x-hpux155917
-Ref: x-ibm-aix156472
-Ref: TransferAixShobj160134
-Ref: iq2000-x-elf163944
-Ref: lm32-x-elf164084
-Ref: lm32-x-uclinux164188
-Ref: loongarch164316
-Ref: m32c-x-elf165010
-Ref: m32r-x-elf165112
-Ref: m68k-x-x165214
-Ref: m68k-x-uclinux166252
-Ref: microblaze-x-elf166497
-Ref: mips-x-x166616
-Ref: moxie-x-elf168526
-Ref: msp430-x-elf168573
-Ref: nds32le-x-elf169130
-Ref: nds32be-x-elf169202
-Ref: nvptx-x-none169271
-Ref: or1k-x-elf170134
-Ref: or1k-x-linux170265
-Ref: powerpc-x-x170346
-Ref: powerpc-x-darwin170537
-Ref: powerpc-x-elf171032
-Ref: powerpc-x-linux-gnu171117
-Ref: powerpc-x-netbsd171212
-Ref: powerpc-x-eabisim171300
-Ref: powerpc-x-eabi171426
-Ref: powerpcle-x-elf171502
-Ref: powerpcle-x-eabisim171594
-Ref: powerpcle-x-eabi171727
-Ref: rl78-x-elf171810
-Ref: riscv32-x-elf171916
-Ref: riscv32-x-linux172105
-Ref: riscv64-x-elf172262
-Ref: riscv64-x-linux172451
-Ref: rx-x-elf172608
-Ref: s390-x-linux172654
-Ref: s390x-x-linux172726
-Ref: s390x-ibm-tpf172813
-Ref: x-x-solaris2172944
-Ref: sparc-x-x176378
-Ref: sparc-sun-solaris2176880
-Ref: sparc-x-linux178023
-Ref: sparc64-x-solaris2178054
-Ref: sparcv9-x-solaris2178772
-Ref: c6x-x-x178859
-Ref: visium-x-elf178951
-Ref: x-x-vxworks179059
-Ref: x86-64-x-x180582
-Ref: x86-64-x-solaris2180910
-Ref: xtensa-x-elf181560
-Ref: xtensa-x-linux182231
-Ref: windows182572
-Ref: x-x-cygwin184368
-Ref: x-x-mingw32184921
-Ref: older185303
-Ref: elf187420
-Node: GNU Free Documentation License187678
-Node: Concept Index212813
+Node: Building108011
+Node: Testing124218
+Node: Final install131942
+Node: Binaries137243
+Node: Specific138278
+Ref: aarch64-x-x138812
+Ref: alpha-x-x140832
+Ref: amd64-x-solaris2141046
+Ref: amdgcn-x-amdhsa141128
+Ref: arc-x-elf32141654
+Ref: arc-linux-uclibc141830
+Ref: arm-x-eabi141971
+Ref: avr142224
+Ref: bfin142805
+Ref: cris143068
+Ref: dos143394
+Ref: epiphany-x-elf143719
+Ref: x-x-freebsd143824
+Ref: ft32-x-elf145388
+Ref: h8300-hms145486
+Ref: hppa-hp-hpux145838
+Ref: hppa-hp-hpux10148210
+Ref: hppa-hp-hpux11148623
+Ref: x-x-linux-gnu154025
+Ref: ix86-x-linux154348
+Ref: ix86-x-solaris2154661
+Ref: ia64-x-linux155737
+Ref: ia64-x-hpux155984
+Ref: x-ibm-aix156539
+Ref: TransferAixShobj160201
+Ref: iq2000-x-elf164011
+Ref: lm32-x-elf164151
+Ref: lm32-x-uclinux164255
+Ref: loongarch164383
+Ref: m32c-x-elf165077
+Ref: m32r-x-elf165179
+Ref: m68k-x-x165281
+Ref: m68k-x-uclinux166319
+Ref: microblaze-x-elf166564
+Ref: mips-x-x166683
+Ref: moxie-x-elf168593
+Ref: msp430-x-elf168640
+Ref: nds32le-x-elf169197
+Ref: nds32be-x-elf169269
+Ref: nvptx-x-none169338
+Ref: or1k-x-elf170201
+Ref: or1k-x-linux170332
+Ref: powerpc-x-x170413
+Ref: powerpc-x-darwin170604
+Ref: powerpc-x-elf171099
+Ref: powerpc-x-linux-gnu171184
+Ref: powerpc-x-netbsd171279
+Ref: powerpc-x-eabisim171367
+Ref: powerpc-x-eabi171493
+Ref: powerpcle-x-elf171569
+Ref: powerpcle-x-eabisim171661
+Ref: powerpcle-x-eabi171794
+Ref: rl78-x-elf171877
+Ref: riscv32-x-elf171983
+Ref: riscv32-x-linux172172
+Ref: riscv64-x-elf172329
+Ref: riscv64-x-linux172518
+Ref: rx-x-elf172675
+Ref: s390-x-linux172721
+Ref: s390x-x-linux172793
+Ref: s390x-ibm-tpf172880
+Ref: x-x-solaris2173011
+Ref: sparc-x-x176445
+Ref: sparc-sun-solaris2176947
+Ref: sparc-x-linux178090
+Ref: sparc64-x-solaris2178121
+Ref: sparcv9-x-solaris2178839
+Ref: c6x-x-x178926
+Ref: visium-x-elf179018
+Ref: x-x-vxworks179126
+Ref: x86-64-x-x180649
+Ref: x86-64-x-solaris2180977
+Ref: xtensa-x-elf181627
+Ref: xtensa-x-linux182298
+Ref: windows182639
+Ref: x-x-cygwin184435
+Ref: x-x-mingw32184988
+Ref: older185370
+Ref: elf187487
+Node: GNU Free Documentation License187745
+Node: Concept Index212880
 
 End Tag Table
 
