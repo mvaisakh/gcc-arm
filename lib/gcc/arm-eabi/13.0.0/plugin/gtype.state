@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "13.0.0 20221204 (Bleeding Edge)")
+(!version  "13.0.0 20221206 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 10 ada c cp d fortran go jit lto objc objcp)
 (!fileslist 229 0
@@ -30052,15 +30052,15 @@
    (!type already_seen 2230)
   )
   gc_pointed_to "hash_map<tree,tree_pair_p>"
-  (!srcfileloc  "cp/pt.cc" 30039)
+  (!srcfileloc  "cp/pt.cc" 30024)
   (!fields 2 
    (!pair  "tree_pair_p"
     (!type already_seen 532)
-    (!srcfileloc  "cp/pt.cc" 30039)
+    (!srcfileloc  "cp/pt.cc" 30024)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/pt.cc" 30039)
+    (!srcfileloc  "cp/pt.cc" 30024)
     nil )
   )
  )
@@ -31205,7 +31205,7 @@
   nil )
  (!pair  "hash_map<tree,tree_pair_p>"
   (!type already_seen 2230)
-  (!srcfileloc  "cp/pt.cc" 30039)
+  (!srcfileloc  "cp/pt.cc" 30024)
   nil )
  (!pair  "pending_template"
   (!type already_seen 2214)
@@ -35780,28 +35780,28 @@
   nil )
  (!pair  "dguide_cache"
   (!type already_seen 2231)
-  (!srcfileloc  "cp/pt.cc" 30039)
+  (!srcfileloc  "cp/pt.cc" 30024)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "explicit_specifier_map"
   (!type already_seen 934)
-  (!srcfileloc  "cp/pt.cc" 14040)
+  (!srcfileloc  "cp/pt.cc" 14025)
   (!options 
    (!option cache string  "")
   )
  )
  (!pair  "defarg_inst"
   (!type already_seen 1548)
-  (!srcfileloc  "cp/pt.cc" 13902)
+  (!srcfileloc  "cp/pt.cc" 13887)
   (!options 
    (!option cache string  "")
   )
  )
  (!pair  "last_error_tinst_level"
   (!type already_seen 1991)
-  (!srcfileloc  "cp/pt.cc" 10985)
+  (!srcfileloc  "cp/pt.cc" 10970)
   nil )
  (!pair  "pending_template_freelist_head"
   (!type already_seen 2215)
@@ -36628,7 +36628,7 @@
  )
  (!pair  "thunk_labelno"
   (!type already_seen 2)
-  (!srcfileloc  "ada/gcc-interface/trans.cc" 10881)
+  (!srcfileloc  "ada/gcc-interface/trans.cc" 10883)
   nil )
  (!pair  "gnu_loop_stack"
   (!type already_seen 1860)
