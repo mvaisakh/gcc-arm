@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-12-06" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-12-08" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -7610,6 +7610,25 @@ Warn about out of bounds subscripts or offsets into arrays.  This warning
 is enabled by \fB\-Wall\fR.  It is more effective when \fB\-ftree\-vrp\fR
 is active (the default for \fB\-O2\fR and above) but a subset of instances
 are issued even without optimization.
+.Sp
+By default, the trailing array of a structure will be treated as a flexible
+array member by \fB\-Warray\-bounds\fR or \fB\-Warray\-bounds=\fR\fIn\fR
+if it is declared as either a flexible array member per C99 standard onwards
+(\fB[]\fR), a \s-1GCC\s0 zero-length array extension (\fB[0]\fR), or an one-element
+array (\fB[1]\fR). As a result, out of bounds subscripts or offsets into
+zero-length arrays or one-element arrays are not warned by default.
+.Sp
+You can add the option \fB\-fstrict\-flex\-arrays\fR or
+\&\fB\-fstrict\-flex\-arrays=\fR\fIlevel\fR to control how this
+option treat trailing array of a structure as a flexible array member:
+.Sp
+when \fIlevel\fR<=1, no change to the default behavior.
+.Sp
+when \fIlevel\fR=2, additional warnings will be issued for out of bounds
+subscripts or offsets into one-element arrays;
+.Sp
+when \fIlevel\fR=3, in addition to \fIlevel\fR=2, additional warnings will be
+issued for out of bounds subscripts or offsets into zero-length arrays.
 .RS 4
 .IP "\fB\-Warray\-bounds=1\fR" 4
 .IX Item "-Warray-bounds=1"
@@ -7617,11 +7636,9 @@ This is the default warning level of \fB\-Warray\-bounds\fR and is enabled
 by \fB\-Wall\fR; higher levels are not, and must be explicitly requested.
 .IP "\fB\-Warray\-bounds=2\fR" 4
 .IX Item "-Warray-bounds=2"
-This warning level also warns about out of bounds accesses to trailing
-struct members of one-element array types and about
-the intermediate results of pointer arithmetic that may yield out of bounds
-values.  This warning level may give a larger number of false positives and
-is deactivated by default.
+This warning level also warns about the intermediate results of pointer
+arithmetic that may yield out of bounds values. This warning level may
+give a larger number of false positives and is deactivated by default.
 .RE
 .RS 4
 .RE
