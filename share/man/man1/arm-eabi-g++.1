@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-12-08" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-12-11" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1456,7 +1456,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-mindirect\-branch=\fR\fIchoice\fR  \fB\-mfunction\-return=\fR\fIchoice\fR 
 \&\fB\-mindirect\-branch\-register \-mharden\-sls=\fR\fIchoice\fR 
 \&\fB\-mindirect\-branch\-cs\-prefix \-mneeded \-mno\-direct\-extern\-access 
-\&\-munroll\-only\-small\-loops\fR
+\&\-munroll\-only\-small\-loops \-mlam=\fR\fIchoice\fR
 .Sp
 \&\fIx86 Windows Options\fR
 \&\fB\-mconsole  \-mcygwin  \-mno\-cygwin  \-mdll 
@@ -15531,6 +15531,16 @@ for a list of supported options.
 The option cannot be combined with \fB\-fsanitize=thread\fR or
 \&\fB\-fsanitize=hwaddress\fR.  Note that the only target
 \&\fB\-fsanitize=hwaddress\fR is currently supported on is AArch64.
+.Sp
+To get more accurate stack traces, it is possible to use options such as
+\&\fB\-O0\fR, \fB\-O1\fR, or \fB\-Og\fR (which, for instance, prevent
+most function inlining), \fB\-fno\-optimize\-sibling\-calls\fR (which prevents
+optimizing sibling and tail recursive calls; this option is implicit for
+\&\fB\-O0\fR, \fB\-O1\fR, or \fB\-Og\fR), or \fB\-fno\-ipa\-icf\fR (which
+disables Identical Code Folding for functions).  Since multiple runs of the
+program may yield backtraces with different addresses due to \s-1ASLR\s0 (Address
+Space Layout Randomization), it may be desirable to turn \s-1ASLR\s0 off.  On Linux,
+this can be achieved with \fBsetarch `uname \-m` \-R ./prog\fR.
 .IP "\fB\-fsanitize=kernel\-address\fR" 4
 .IX Item "-fsanitize=kernel-address"
 Enable AddressSanitizer for Linux kernel.
@@ -32805,6 +32815,12 @@ Controls conservative small loop unrolling. It is default enabled by
 O2, and unrolls loop with less than 4 insns by 1 time. Explicit
 \&\-f[no\-]unroll\-[all\-]loops would disable this flag to avoid any
 unintended unrolling behavior that user does not want.
+.IP "\fB\-mlam=\fR\fIchoice\fR" 4
+.IX Item "-mlam=choice"
+\&\s-1LAM\s0(linear\-address masking) allows special bits in the pointer to be used
+for metadata. The default is \fBnone\fR. With \fBu48\fR, pointer bits in
+positions 62:48 can be used for metadata; With \fBu57\fR, pointer bits in
+positions 62:57 can be used for metadata.
 .PP
 \fIx86 Windows Options\fR
 .IX Subsection "x86 Windows Options"
