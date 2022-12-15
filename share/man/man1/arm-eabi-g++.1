@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-12-11" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-12-15" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -12312,7 +12312,8 @@ disclosure and use.
 \&\s-1GCC\s0 still considers an automatic variable that doesn't have an explicit
 initializer as uninitialized, \fB\-Wuninitialized\fR and
 \&\fB\-Wanalyzer\-use\-of\-uninitialized\-value\fR will still report
-warning messages on such automatic variables.
+warning messages on such automatic variables and the compiler will
+perform optimization as if the variable were uninitialized.
 With this option, \s-1GCC\s0 will also initialize any padding of automatic variables
 that have structure or union types to zeroes.
 However, the current implementation cannot initialize automatic variables that
@@ -14563,12 +14564,23 @@ Use uids starting at this parameter for nondebug insns.  The range below
 the parameter is reserved exclusively for debug insns created by
 \&\fB\-fvar\-tracking\-assignments\fR, but debug insns may get
 (non-overlapping) uids above it if the reserved range is exhausted.
+.IP "\fBipa-sra-deref-prob-threshold\fR" 4
+.IX Item "ipa-sra-deref-prob-threshold"
+IPA-SRA replaces a pointer which is known not be \s-1NULL\s0 with one or more
+new parameters only when the probability (in percent, relative to
+function entry) of it being dereferenced is higher than this parameter.
 .IP "\fBipa-sra-ptr-growth-factor\fR" 4
 .IX Item "ipa-sra-ptr-growth-factor"
 IPA-SRA replaces a pointer to an aggregate with one or more new
 parameters only when their cumulative size is less or equal to
 \&\fBipa-sra-ptr-growth-factor\fR times the size of the original
 pointer parameter.
+.IP "\fBipa-sra-ptrwrap-growth-factor\fR" 4
+.IX Item "ipa-sra-ptrwrap-growth-factor"
+Additional maximum allowed growth of total size of new parameters
+that ipa-sra replaces a pointer to an aggregate with,
+if it points to a local variable that the caller only writes to and
+passes it as an argument to other functions.
 .IP "\fBipa-sra-max-replacements\fR" 4
 .IX Item "ipa-sra-max-replacements"
 Maximum pieces of an aggregate that IPA-SRA tracks.  As a

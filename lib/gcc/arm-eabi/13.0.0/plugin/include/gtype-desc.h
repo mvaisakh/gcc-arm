@@ -1445,6 +1445,22 @@ extern void gt_ggc_mx_module_htab_entry (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_module_decl_hasher_ (X);\
   } while (0)
 extern void gt_ggc_mx_hash_table_module_decl_hasher_ (void *);
+#define gt_ggc_m_7rtenode(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_rtenode (X);\
+  } while (0)
+extern void gt_ggc_mx_rtenode (void *);
+#define gt_ggc_m_19vec_rtenode__va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_vec_rtenode__va_gc_ (X);\
+  } while (0)
+extern void gt_ggc_mx_vec_rtenode__va_gc_ (void *);
+#define gt_ggc_m_18struct_constructor(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_struct_constructor (X);\
+  } while (0)
+extern void gt_ggc_mx_struct_constructor (void *);
+#define gt_ggc_m_10array_desc(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_array_desc (X);\
+  } while (0)
+extern void gt_ggc_mx_array_desc (void *);
 #define gt_ggc_m_16objc_map_private(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_objc_map_private (X);\
   } while (0)
@@ -2914,6 +2930,22 @@ extern void gt_pch_nx_module_htab_entry (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_module_decl_hasher_ (X);\
   } while (0)
 extern void gt_pch_nx_hash_table_module_decl_hasher_ (void *);
+#define gt_pch_n_7rtenode(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_rtenode (X);\
+  } while (0)
+extern void gt_pch_nx_rtenode (void *);
+#define gt_pch_n_19vec_rtenode__va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_vec_rtenode__va_gc_ (X);\
+  } while (0)
+extern void gt_pch_nx_vec_rtenode__va_gc_ (void *);
+#define gt_pch_n_18struct_constructor(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_struct_constructor (X);\
+  } while (0)
+extern void gt_pch_nx_struct_constructor (void *);
+#define gt_pch_n_10array_desc(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_array_desc (X);\
+  } while (0)
+extern void gt_pch_nx_array_desc (void *);
 #define gt_pch_n_16objc_map_private(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_objc_map_private (X);\
   } while (0)
@@ -3790,6 +3822,14 @@ extern void gt_pch_p_25hash_table_module_hasher_
 extern void gt_pch_p_17module_htab_entry
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30hash_table_module_decl_hasher_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_7rtenode
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_19vec_rtenode__va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_18struct_constructor
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_10array_desc
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16objc_map_private
     (void *, void *, gt_pointer_operator, void *);

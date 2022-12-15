@@ -212,6 +212,12 @@
 #endif
 
 
+/* If --with-multiarch option is used */
+#ifndef USED_FOR_TARGET
+/* #undef ENABLE_MULTIARCH */
+#endif
+
+
 /* Define to 1 if translation of program messages to the user's native
    language is requested. */
 #ifndef USED_FOR_TARGET
@@ -2322,12 +2328,6 @@
 /* Define to PREFIX/include if cpp should also search that directory. */
 #ifndef USED_FOR_TARGET
 /* #undef PREFIX_INCLUDE_DIR */
-#endif
-
-
-/* Specify if mutliarch is enabled. */
-#ifndef USED_FOR_TARGET
-/* #undef ENABLE_MULTIARCH */
 #endif
 
 
