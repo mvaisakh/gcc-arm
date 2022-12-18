@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-12-15" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-12-18" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -422,7 +422,7 @@ in the following sections.
 \&\-Wstrict\-aliasing=n  \-Wstrict\-overflow  \-Wstrict\-overflow=\fR\fIn\fR 
 \&\fB\-Wstring\-compare 
 \&\-Wno\-stringop\-overflow \-Wno\-stringop\-overread 
-\&\-Wno\-stringop\-truncation 
+\&\-Wno\-stringop\-truncation \-Wstrict\-flex\-arrays 
 \&\-Wsuggest\-attribute=\fR[\fBpure\fR|\fBconst\fR|\fBnoreturn\fR|\fBformat\fR|\fBmalloc\fR] 
 \&\fB\-Wswitch  \-Wno\-switch\-bool  \-Wswitch\-default  \-Wswitch\-enum 
 \&\-Wno\-switch\-outside\-range  \-Wno\-switch\-unreachable  \-Wsync\-nand 
@@ -7431,6 +7431,28 @@ however, are not suitable arguments to functions that expect
 \&\f(CW\*(C`NUL\*(C'\fR\-terminated strings.  To help detect accidental misuses of
 such arrays \s-1GCC\s0 issues warnings unless it can prove that the use is
 safe.
+.IP "\fB\-Wstrict\-flex\-arrays\fR" 4
+.IX Item "-Wstrict-flex-arrays"
+Warn about inproper usages of flexible array members
+according to the \fIlevel\fR of the \f(CW\*(C`strict_flex_array (\f(CIlevel\f(CW)\*(C'\fR
+attribute attached to the trailing array field of a structure if it's
+available, otherwise according to the \fIlevel\fR of the option
+\&\fB\-fstrict\-flex\-arrays=\fR\fIlevel\fR.
+.Sp
+This option is effective only when \fIlevel\fR is bigger than 0.  Otherwise,
+it will be ignored with a warning.
+.Sp
+when \fIlevel\fR=1, warnings will be issued for a trailing array reference
+of a structure that have 2 or more elements if the trailing array is referenced
+as a flexible array member.
+.Sp
+when \fIlevel\fR=2, in addition to \fIlevel\fR=1, additional warnings will be
+issued for a trailing one-element array reference of a structure
+if the array is referenced as a flexible array member.
+.Sp
+when \fIlevel\fR=3, in addition to \fIlevel\fR=2, additional warnings will be
+issued for a trailing zero-length array reference of a structure
+if the array is referenced as a flexible array member.
 .IP "\fB\-Wsuggest\-attribute=\fR[\fBpure\fR|\fBconst\fR|\fBnoreturn\fR|\fBformat\fR|\fBcold\fR|\fBmalloc\fR]" 4
 .IX Item "-Wsuggest-attribute=[pure|const|noreturn|format|cold|malloc]"
 Warn for cases where adding an attribute may be beneficial. The
@@ -15743,8 +15765,8 @@ or when a method or constructor is invoked on insufficiently aligned object.
 .IP "\fB\-fsanitize=object\-size\fR" 4
 .IX Item "-fsanitize=object-size"
 This option enables instrumentation of memory references using the
-\&\f(CW\*(C`_\|_builtin_object_size\*(C'\fR function.  Various out of bounds pointer
-accesses are detected.
+\&\f(CW\*(C`_\|_builtin_dynamic_object_size\*(C'\fR function.  Various out of bounds
+pointer accesses are detected.
 .IP "\fB\-fsanitize=float\-divide\-by\-zero\fR" 4
 .IX Item "-fsanitize=float-divide-by-zero"
 Detect floating-point division by zero.  Unlike other similar options,

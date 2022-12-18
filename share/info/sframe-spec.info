@@ -513,7 +513,9 @@ to LSB:
 
 Bit offset   Name                    Description
 -------------------------------------------------------------------------------------
-7            'unused'                Unused bit.
+7            'fre_mangled_ra_p'      Indicate whether the return address is
+                                     mangled with any authorization bits (signed
+                                     RA).
                                      
 5-6          'fre_offset_size'       Size of stack offsets in bytes.  Valid values
                                      are SFRAME_FRE_OFFSET_1B,
@@ -572,11 +574,11 @@ Index
 * SFRAME_FDE_TYPE_PCINC:                 The SFrame FDE types. (line  6)
 * SFRAME_FDE_TYPE_PCMASK:                The SFrame FDE types. (line  6)
 * SFRAME_FRE_OFFSET_1B:                  The SFrame FRE info word.
-                                                               (line 27)
+                                                               (line 29)
 * SFRAME_FRE_OFFSET_2B:                  The SFrame FRE info word.
-                                                               (line 31)
+                                                               (line 33)
 * SFRAME_FRE_OFFSET_4B:                  The SFrame FRE info word.
-                                                               (line 34)
+                                                               (line 36)
 * SFRAME_FRE_TYPE_ADDR1:                 The SFrame FRE types. (line 17)
 * SFRAME_FRE_TYPE_ADDR2:                 The SFrame FRE types. (line 22)
 * SFRAME_FRE_TYPE_ADDR4:                 The SFrame FRE types. (line 26)
@@ -607,7 +609,7 @@ Node: The SFrame FDE types15296
 Node: The SFrame FRE types16864
 Node: SFrame Frame Row Entries18420
 Node: The SFrame FRE info word20817
-Node: Index22611
+Node: Index22761
 
 End Tag Table
 
