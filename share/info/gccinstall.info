@@ -178,7 +178,7 @@ GNAT
 GDC
 
      In order to build GDC, the D compiler, you need a working GDC
-     compiler (GCC version 9.1 or later) and D runtime library,
+     compiler (GCC version 9.4 or later) and D runtime library,
      'libphobos', as the D front end is written in D.
 
      Versions of GDC prior to 12 can be built with an ISO C++11
@@ -4022,9 +4022,11 @@ cross-compilation target only.
 *-*-solaris2*
 =============
 
-Support for Solaris 10 has been removed in GCC 10.  Support for Solaris
-9 has been removed in GCC 5.  Support for Solaris 8 has been removed in
-GCC 4.8.  Support for Solaris 7 has been removed in GCC 4.6.
+Support for Solaris 11.3 and earlier has been obsoleted in GCC 13, but
+can still be enabled by configuring with '--enable-obsolete'.  Support
+for Solaris 10 has been removed in GCC 10.  Support for Solaris 9 has
+been removed in GCC 5.  Support for Solaris 8 has been removed in GCC
+4.8.  Support for Solaris 7 has been removed in GCC 4.6.
 
    Solaris 11.3 provides GCC 4.5.2, 4.7.3, and 4.8.2 as
 '/usr/gcc/4.5/bin/gcc' or similar.  Newer Solaris versions provide one
@@ -4970,25 +4972,25 @@ Ref: s390-x-linux173796
 Ref: s390x-x-linux173868
 Ref: s390x-ibm-tpf173955
 Ref: x-x-solaris2174086
-Ref: sparc-x-x177520
-Ref: sparc-sun-solaris2178022
-Ref: sparc-x-linux179165
-Ref: sparc64-x-solaris2179196
-Ref: sparcv9-x-solaris2179914
-Ref: c6x-x-x180001
-Ref: visium-x-elf180093
-Ref: x-x-vxworks180201
-Ref: x86-64-x-x181724
-Ref: x86-64-x-solaris2182052
-Ref: xtensa-x-elf182702
-Ref: xtensa-x-linux183373
-Ref: windows183714
-Ref: x-x-cygwin185510
-Ref: x-x-mingw32186063
-Ref: older186445
-Ref: elf188562
-Node: GNU Free Documentation License188820
-Node: Concept Index213955
+Ref: sparc-x-x177654
+Ref: sparc-sun-solaris2178156
+Ref: sparc-x-linux179299
+Ref: sparc64-x-solaris2179330
+Ref: sparcv9-x-solaris2180048
+Ref: c6x-x-x180135
+Ref: visium-x-elf180227
+Ref: x-x-vxworks180335
+Ref: x86-64-x-x181858
+Ref: x86-64-x-solaris2182186
+Ref: xtensa-x-elf182836
+Ref: xtensa-x-linux183507
+Ref: windows183848
+Ref: x-x-cygwin185644
+Ref: x-x-mingw32186197
+Ref: older186579
+Ref: elf188696
+Node: GNU Free Documentation License188954
+Node: Concept Index214089
 
 End Tag Table
 

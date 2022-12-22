@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-12-18" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-12-22" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -12814,9 +12814,12 @@ compiled.  All public functions and variables with the exception of \f(CW\*(C`ma
 and those merged by attribute \f(CW\*(C`externally_visible\*(C'\fR become static functions
 and in effect are optimized more aggressively by interprocedural optimizers.
 .Sp
-This option should not be used in combination with \fB\-flto\fR.
-Instead relying on a linker plugin should provide safer and more precise
-information.
+With \fB\-flto\fR this option has a limited use.  In most cases the
+precise list of symbols used or exported from the binary is known the
+resolution info passed to the link-time optimizer by the linker plugin.  It is
+still useful if no linker plugin is used or during incremental link step when
+final code is produced (with \fB\-flto\fR
+\&\fB\-flinker\-output=nolto\-rel\fR).
 .IP "\fB\-flto[=\fR\fIn\fR\fB]\fR" 4
 .IX Item "-flto[=n]"
 This option runs the standard link-time optimizer.  When invoked
@@ -33311,7 +33314,8 @@ needs to build supplementary stub code for constructors to work.  On
 multi-libbed systems, \fBgcc \-shared\fR must select the correct support
 libraries to link against.  Failing to supply the correct flags may lead
 to subtle defects.  Supplying them in cases where they are not necessary
-is innocuous.
+is innocuous. For x86, crtfastmath.o will not be added when
+\&\fB\-shared\fR is specified.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
 \&\fBgpl\fR\|(7), \fBgfdl\fR\|(7), \fBfsf\-funding\fR\|(7),
