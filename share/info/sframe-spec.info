@@ -362,7 +362,11 @@ The info word is a bitfield split into three parts.  From MSB to LSB:
 
 Bit offset   Name       Description
 ------------------------------------------------------------------------------------------
-7-5          'unused'   Unused bits.
+7-6          'unused'   Unused bits.
+                        
+5            'pauth_key'Specify which key is used for signing the return addresses in
+                        the SFrame FDE. Two possible values: SFRAME_AARCH64_PAUTH_KEY_A
+                        (0) or SFRAME_AARCH64_PAUTH_KEY_B (1).
                         
 4            'fdetype'  SFRAME_FDE_TYPE_PCMASK (1) or SFRAME_FDE_TYPE_PCINC (0).
                         *Note The SFrame FDE types::.
@@ -605,11 +609,11 @@ Node: SFrame Header5641
 Node: SFrame ABI/arch identifier10812
 Node: SFrame Function Descriptor Entries11778
 Node: The SFrame FDE info word14571
-Node: The SFrame FDE types15296
-Node: The SFrame FRE types16864
-Node: SFrame Frame Row Entries18420
-Node: The SFrame FRE info word20817
-Node: Index22761
+Node: The SFrame FDE types15558
+Node: The SFrame FRE types17126
+Node: SFrame Frame Row Entries18682
+Node: The SFrame FRE info word21079
+Node: Index23023
 
 End Tag Table
 
