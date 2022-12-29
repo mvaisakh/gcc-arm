@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2022-12-25" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2022-12-29" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1441,7 +1441,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-m96bit\-long\-double  \-mlong\-double\-64  \-mlong\-double\-80  \-mlong\-double\-128 
 \&\-mregparm=\fR\fInum\fR  \fB\-msseregparm 
 \&\-mveclibabi=\fR\fItype\fR  \fB\-mvect8\-ret\-in\-mem 
-\&\-mpc32  \-mpc64  \-mpc80  \-mstackrealign 
+\&\-mpc32  \-mpc64  \-mpc80  \-mdaz\-ftz \-mstackrealign 
 \&\-momit\-leaf\-frame\-pointer  \-mno\-red\-zone  \-mno\-tls\-direct\-seg\-refs 
 \&\-mcmodel=\fR\fIcode-model\fR  \fB\-mabi=\fR\fIname\fR  \fB\-maddress\-mode=\fR\fImode\fR 
 \&\fB\-m32  \-m64  \-mx32  \-m16  \-miamcu  \-mlarge\-data\-threshold=\fR\fInum\fR 
@@ -31833,6 +31833,14 @@ libraries assume that extended-precision (80\-bit) floating-point operations
 are enabled by default; routines in such libraries could suffer significant
 loss of accuracy, typically through so-called \*(L"catastrophic cancellation\*(R",
 when this option is used to set the precision to less than extended precision.
+.IP "\fB\-mdaz\-ftz\fR" 4
+.IX Item "-mdaz-ftz"
+The flush-to-zero (\s-1FTZ\s0) and denormals-are-zero (\s-1DAZ\s0) flags in the \s-1MXCSR\s0 register
+are used to control floating-point calculations.SSE and \s-1AVX\s0 instructions
+including scalar and vector instructions could benefit from enabling the \s-1FTZ\s0
+and \s-1DAZ\s0 flags when \fB\-mdaz\-ftz\fR is specified. Don't set \s-1FTZ/DAZ\s0 flags
+when \fB\-mno\-daz\-ftz\fR or \fB\-shared\fR is specified, \fB\-mdaz\-ftz\fR
+will set \s-1FTZ/DAZ\s0 flags even with \fB\-shared\fR.
 .IP "\fB\-mstackrealign\fR" 4
 .IX Item "-mstackrealign"
 Realign the stack at entry.  On the x86, the \fB\-mstackrealign\fR
