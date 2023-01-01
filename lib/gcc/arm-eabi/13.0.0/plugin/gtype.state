@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "13.0.0 20221229 (Bleeding Edge)")
+(!version  "13.0.0 20230101 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 240 0
@@ -14188,7 +14188,7 @@
                        (!type struct 627 
                         (!type already_seen 626)
                         gc_pointed_to "cl_target_option"
-                        (!srcfileloc  "config/arm/arm.cc" 28350)
+                        (!srcfileloc  "config/arm/arm.cc" 28368)
                         (!fields 12 
                          (!pair  "x_arm_stack_protector_guard_offset"
                           (!type already_seen 2)
@@ -28463,7 +28463,7 @@
   nil 0 nil nil )
  
  (!type struct 2021 nil  gc_used "atom_hasher"
-  (!srcfileloc  "cp/constraint.cc" 812)
+  (!srcfileloc  "cp/constraint.cc" 814)
   (!fields 0 )
   nil 1028 nil nil )
  
@@ -29123,49 +29123,49 @@
    (!type already_seen 2084)
   )
   gc_pointed_to "hash_table<atom_hasher>"
-  (!srcfileloc  "cp/constraint.cc" 812)
+  (!srcfileloc  "cp/constraint.cc" 814)
   (!fields 1 
    (!pair  "atom_hasher"
     (!type already_seen 2021)
-    (!srcfileloc  "cp/constraint.cc" 812)
+    (!srcfileloc  "cp/constraint.cc" 814)
     nil )
   )
  )
  
  (!type struct 2086 nil  gc_pointed_to "sat_entry"
-  (!srcfileloc  "cp/constraint.cc" 2534)
+  (!srcfileloc  "cp/constraint.cc" 2536)
   (!fields 8 
    (!pair  "atom"
     (!type already_seen 23)
-    (!srcfileloc  "cp/constraint.cc" 2504)
+    (!srcfileloc  "cp/constraint.cc" 2506)
     nil )
    (!pair  "args"
     (!type already_seen 23)
-    (!srcfileloc  "cp/constraint.cc" 2507)
+    (!srcfileloc  "cp/constraint.cc" 2509)
     nil )
    (!pair  "result"
     (!type already_seen 23)
-    (!srcfileloc  "cp/constraint.cc" 2514)
+    (!srcfileloc  "cp/constraint.cc" 2516)
     nil )
    (!pair  "location"
     (!type already_seen 2)
-    (!srcfileloc  "cp/constraint.cc" 2518)
+    (!srcfileloc  "cp/constraint.cc" 2520)
     nil )
    (!pair  "ftc_begin"
     (!type already_seen 2)
-    (!srcfileloc  "cp/constraint.cc" 2523)
+    (!srcfileloc  "cp/constraint.cc" 2525)
     nil )
    (!pair  "ftc_end"
     (!type already_seen 2)
-    (!srcfileloc  "cp/constraint.cc" 2523)
+    (!srcfileloc  "cp/constraint.cc" 2525)
     nil )
    (!pair  "diagnose_instability"
     (!type already_seen 2)
-    (!srcfileloc  "cp/constraint.cc" 2528)
+    (!srcfileloc  "cp/constraint.cc" 2530)
     nil )
    (!pair  "evaluating"
     (!type already_seen 2)
-    (!srcfileloc  "cp/constraint.cc" 2533)
+    (!srcfileloc  "cp/constraint.cc" 2535)
     nil )
   )
   (!options 
@@ -29174,7 +29174,7 @@
   1028 nil nil )
  
  (!type struct 2087 nil  gc_used "sat_hasher"
-  (!srcfileloc  "cp/constraint.cc" 2612)
+  (!srcfileloc  "cp/constraint.cc" 2614)
   (!fields 0 )
   nil 1028 nil nil )
  
@@ -29183,11 +29183,11 @@
    (!type already_seen 2088)
   )
   gc_pointed_to "hash_table<sat_hasher>"
-  (!srcfileloc  "cp/constraint.cc" 2612)
+  (!srcfileloc  "cp/constraint.cc" 2614)
   (!fields 1 
    (!pair  "sat_hasher"
     (!type already_seen 2087)
-    (!srcfileloc  "cp/constraint.cc" 2612)
+    (!srcfileloc  "cp/constraint.cc" 2614)
     nil )
   )
  )
@@ -31948,19 +31948,19 @@
   nil )
  (!pair  "sat_hasher"
   (!type already_seen 2087)
-  (!srcfileloc  "cp/constraint.cc" 2612)
+  (!srcfileloc  "cp/constraint.cc" 2614)
   nil )
  (!pair  "hash_table<sat_hasher>"
   (!type already_seen 2088)
-  (!srcfileloc  "cp/constraint.cc" 2612)
+  (!srcfileloc  "cp/constraint.cc" 2614)
   nil )
  (!pair  "atom_hasher"
   (!type already_seen 2021)
-  (!srcfileloc  "cp/constraint.cc" 812)
+  (!srcfileloc  "cp/constraint.cc" 814)
   nil )
  (!pair  "hash_table<atom_hasher>"
   (!type already_seen 2084)
-  (!srcfileloc  "cp/constraint.cc" 812)
+  (!srcfileloc  "cp/constraint.cc" 814)
   nil )
  (!pair  "norm_hasher"
   (!type already_seen 2081)
@@ -32792,7 +32792,7 @@
   nil )
  (!pair  "cl_target_option"
   (!type already_seen 627)
-  (!srcfileloc  "config/arm/arm.cc" 28350)
+  (!srcfileloc  "config/arm/arm.cc" 28368)
   nil )
  (!pair  "arm_pragma_enum"
   (!type already_seen 2)
@@ -37002,42 +37002,42 @@
   nil )
  (!pair  "decl_satisfied_cache"
   (!type already_seen 394)
-  (!srcfileloc  "cp/constraint.cc" 2615)
+  (!srcfileloc  "cp/constraint.cc" 2617)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "sat_cache"
   (!type already_seen 2089)
-  (!srcfileloc  "cp/constraint.cc" 2612)
+  (!srcfileloc  "cp/constraint.cc" 2614)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "failed_type_completions"
   (!type already_seen 85)
-  (!srcfileloc  "cp/constraint.cc" 2464)
+  (!srcfileloc  "cp/constraint.cc" 2466)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "decl_constraints"
   (!type already_seen 945)
-  (!srcfileloc  "cp/constraint.cc" 1287)
+  (!srcfileloc  "cp/constraint.cc" 1289)
   (!options 
    (!option cache string  "")
   )
  )
  (!pair  "normalized_map"
   (!type already_seen 394)
-  (!srcfileloc  "cp/constraint.cc" 901)
+  (!srcfileloc  "cp/constraint.cc" 903)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "atom_cache"
   (!type already_seen 2085)
-  (!srcfileloc  "cp/constraint.cc" 812)
+  (!srcfileloc  "cp/constraint.cc" 814)
   (!options 
    (!option deletable string  "")
   )
@@ -37059,7 +37059,7 @@
   nil )
  (!pair  "cv_cache"
   (!type already_seen 394)
-  (!srcfileloc  "cp/constexpr.cc" 8481)
+  (!srcfileloc  "cp/constexpr.cc" 8483)
   (!options 
    (!option deletable string  "")
   )
@@ -37623,11 +37623,11 @@
   nil )
  (!pair  "arm_previous_fndecl"
   (!type already_seen 23)
-  (!srcfileloc  "config/arm/arm.cc" 33107)
+  (!srcfileloc  "config/arm/arm.cc" 33125)
   nil )
  (!pair  "last_asm_targ_options"
   (!type already_seen 626)
-  (!srcfileloc  "config/arm/arm.cc" 28350)
+  (!srcfileloc  "config/arm/arm.cc" 28368)
   nil )
  (!pair  "tls_get_addr_libfunc"
   (!type already_seen 100)

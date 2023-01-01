@@ -154,6 +154,7 @@ extern bool vect_par_constant_low (rtx, machine_mode);
 extern bool const_double_vcvt_power_of_two_reciprocal (rtx, machine_mode);
 extern bool const_double_vcvt_power_of_two (rtx, machine_mode);
 extern bool neon_struct_operand (rtx, machine_mode);
+extern bool mve_struct_operand (rtx, machine_mode);
 extern bool neon_permissive_struct_operand (rtx, machine_mode);
 extern bool neon_perm_struct_or_reg_operand (rtx, machine_mode);
 extern bool add_operator (rtx, machine_mode);
@@ -213,6 +214,7 @@ enum constraint_num
   CONSTRAINT_Uh,
   CONSTRAINT_Ut,
   CONSTRAINT_Uv,
+  CONSTRAINT_Ug,
   CONSTRAINT_Uj,
   CONSTRAINT_Uy,
   CONSTRAINT_Un,
