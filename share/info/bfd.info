@@ -10553,9 +10553,10 @@ backend data structure.  The flag controls the generation of long
 section names in output BFDs at runtime; if it is false, as it will be
 by default when generating an executable image, long section names are
 truncated; if true, the long section names extension is employed.  The
-hook points to a function that allows the value of the flag to be
-altered at runtime, on formats that support long section names at all;
-on other formats it points to a stub that returns an error indication.
+hook points to a function that allows the value of a copy of the flag in
+coff object tdata to be altered at runtime, on formats that support long
+section names at all; on other formats it points to a stub that returns
+an error indication.
 
    With input BFDs, the flag is set according to whether any long
 section names are detected while reading the section headers.  For a
@@ -10913,7 +10914,7 @@ The hidden information for an 'asymbol' is described in a
      } bfd_coff_backend_data;
 
      #define coff_backend_info(abfd) \
-       ((bfd_coff_backend_data *) (abfd)->xvec->backend_data)
+       ((const bfd_coff_backend_data *) (abfd)->xvec->backend_data)
 
      #define bfd_coff_swap_aux_in(a,e,t,c,ind,num,i) \
        ((coff_backend_info (a)->_bfd_coff_swap_aux_in) (a,e,t,c,ind,num,i))
@@ -10956,7 +10957,7 @@ The hidden information for an 'asymbol' is described in a
      #define bfd_coff_long_filenames(abfd) \
        (coff_backend_info (abfd)->_bfd_coff_long_filenames)
      #define bfd_coff_long_section_names(abfd) \
-       (coff_backend_info (abfd)->_bfd_coff_long_section_names)
+       (coff_data (abfd)->long_section_names)
      #define bfd_coff_set_long_section_names(abfd, enable) \
        ((coff_backend_info (abfd)->_bfd_coff_set_long_section_names) (abfd, enable))
      #define bfd_coff_default_section_alignment_power(abfd) \
@@ -12043,7 +12044,7 @@ BFD Index
                                                              (line  170)
 * bfd_close_all_done:                    Opening and Closing.
                                                              (line  188)
-* bfd_coff_backend_data:                 coff.               (line  300)
+* bfd_coff_backend_data:                 coff.               (line  301)
 * bfd_copy_private_bfd_data:             Miscellaneous.      (line  168)
 * bfd_copy_private_header_data:          Miscellaneous.      (line  151)
 * bfd_copy_private_section_data:         section prototypes. (line  279)
@@ -14696,7 +14697,7 @@ BFD Index
                                                              (line  257)
 * check_build_id_file:                   Opening and Closing.
                                                              (line  482)
-* coff_symbol_type:                      coff.               (line  233)
+* coff_symbol_type:                      coff.               (line  234)
 * core_file_matches_executable_p:        Core Files.         (line   38)
 * find_separate_debug_file:              Opening and Closing.
                                                              (line  356)
@@ -14784,13 +14785,13 @@ Node: BFD back ends388967
 Node: What to Put Where389237
 Node: aout389417
 Node: coff395659
-Node: elf423799
-Node: mmo424200
-Node: File layout425070
-Node: Symbol-table430983
-Node: mmo section mapping434746
-Node: GNU Free Documentation License438400
-Node: BFD Index463464
+Node: elf423818
+Node: mmo424219
+Node: File layout425089
+Node: Symbol-table431002
+Node: mmo section mapping434765
+Node: GNU Free Documentation License438419
+Node: BFD Index463483
 
 End Tag Table
 

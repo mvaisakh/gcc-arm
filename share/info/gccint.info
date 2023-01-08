@@ -7454,19 +7454,6 @@ demarcate it, e.g.:
      a macro for 'global_options.x_VAR').  The way that the state is
      stored depends on the type of option:
 
-'WarnRemoved'
-     The option is removed and every usage of such option will result in
-     a warning.  We use it option backward compatibility.
-
-'Var(VAR, SET)'
-     The option controls an integer variable VAR and is active when VAR
-     equals SET.  The option parser will set VAR to SET when the
-     positive form of the option is used and '!SET' when the "no-" form
-     is used.
-
-     VAR is declared in the same way as for the single-argument form
-     described above.
-
         * If the option uses the 'Mask' or 'InverseMask' properties, VAR
           is the integer variable that contains the mask.
 
@@ -7498,10 +7485,23 @@ demarcate it, e.g.:
      The option-processing script will usually zero-initialize VAR.  You
      can modify this behavior using 'Init'.
 
+'Var(VAR, SET)'
+     The option controls an integer variable VAR and is active when VAR
+     equals SET.  The option parser will set VAR to SET when the
+     positive form of the option is used and '!SET' when the "no-" form
+     is used.
+
+     VAR is declared in the same way as for the single-argument form
+     described above.
+
 'Init(VALUE)'
      The variable specified by the 'Var' property should be statically
      initialized to VALUE.  If more than one option using the same
      variable specifies 'Init', all must specify the same initializer.
+
+'WarnRemoved'
+     The option is removed and every usage of such option will result in
+     a warning.  We use it option backward compatibility.
 
 'Mask(NAME)'
      The option is associated with a bit in the 'target_flags' variable

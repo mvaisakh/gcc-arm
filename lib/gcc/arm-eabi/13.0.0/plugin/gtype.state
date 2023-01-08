@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "13.0.0 20230105 (Bleeding Edge)")
+(!version  "13.0.0 20230108 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 240 0
@@ -30191,7 +30191,7 @@
   nil 0 nil nil )
  
  (!type undefined 2225 nil  gc_unused "class_to_loc_map_t::iterator"
-  (!srcfileloc  "cp/parser.cc" 34540)
+  (!srcfileloc  "cp/parser.cc" 34551)
  )
  
  (!type struct 2226 
@@ -31648,11 +31648,11 @@
   nil )
  (!pair  "iter_t"
   (!type already_seen 2225)
-  (!srcfileloc  "cp/parser.cc" 34540)
+  (!srcfileloc  "cp/parser.cc" 34551)
   nil )
  (!pair  "class_to_loc_map_t::iterator"
   (!type already_seen 2225)
-  (!srcfileloc  "cp/parser.cc" 34540)
+  (!srcfileloc  "cp/parser.cc" 34551)
   nil )
  (!pair  "cp_parser_expression_stack"
   (!type array 2364 nil  gc_unused "NUM_PREC_VALUES" 
@@ -35619,95 +35619,95 @@
   nil )
  (!pair  "builtin_ftype_int_var"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 418)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 406)
   nil )
  (!pair  "floatptr_type_node"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 417)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 405)
   nil )
  (!pair  "doubleptr_type_node"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 416)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 404)
   nil )
  (!pair  "long_doubleptr_type_node"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 415)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 403)
   nil )
  (!pair  "gm2_huge_vall_node"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 414)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 402)
   nil )
  (!pair  "gm2_huge_val_node"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 413)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 401)
   nil )
  (!pair  "gm2_huge_valf_node"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 412)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 400)
   nil )
  (!pair  "gm2_isfinite_node"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 411)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 399)
   nil )
  (!pair  "gm2_memcpy_node"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 410)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 398)
   nil )
  (!pair  "gm2_alloca_node"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 409)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 397)
   nil )
  (!pair  "ldouble_ftype_ldouble"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 408)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 396)
   nil )
  (!pair  "double_ftype_double"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 407)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 395)
   nil )
  (!pair  "float_ftype_float"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 406)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 394)
   nil )
  (!pair  "ldouble_ftype_void"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 405)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 393)
   nil )
  (!pair  "float_ftype_void"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 404)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 392)
   nil )
  (!pair  "double_ftype_void"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 403)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 391)
   nil )
  (!pair  "const_ptr_endlink"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 402)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 390)
   nil )
  (!pair  "ptr_endlink"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 401)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 389)
   nil )
  (!pair  "int_endlink"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 400)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 388)
   nil )
  (!pair  "math_endlink"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 399)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 387)
   nil )
  (!pair  "endlink"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 398)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 386)
   nil )
  (!pair  "unsigned_endlink"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 397)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 385)
   nil )
  (!pair  "sizetype_endlink"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 396)
+  (!srcfileloc  "m2/gm2-gcc/m2builtins.cc" 384)
   nil )
  (!pair  "head_binding_level"
   (!type already_seen 433)
@@ -36656,7 +36656,7 @@
   nil )
  (!pair  "generic_parm_count"
   (!type already_seen 2)
-  (!srcfileloc  "cp/parser.cc" 49400)
+  (!srcfileloc  "cp/parser.cc" 49411)
   nil )
  (!pair  "cp_parser_decl_specs_attrs"
   (!type already_seen 85)
