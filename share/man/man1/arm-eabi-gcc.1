@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-01-08" "gcc-13.0.0" "GNU"
+.TH GCC 1 "2023-01-12" "gcc-13.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -15037,15 +15037,12 @@ Max. size of loc list for which reverse ops should be added.
 .IP "\fBfsm-scale-path-stmts\fR" 4
 .IX Item "fsm-scale-path-stmts"
 Scale factor to apply to the number of statements in a threading path
-when comparing to the number of (scaled) blocks.
+crossing a loop backedge when comparing to
+\&\fB\-\-param=max\-jump\-thread\-duplication\-stmts\fR.
 .IP "\fBuninit-control-dep-attempts\fR" 4
 .IX Item "uninit-control-dep-attempts"
 Maximum number of nested calls to search for control dependencies
 during uninitialized variable analysis.
-.IP "\fBfsm-scale-path-blocks\fR" 4
-.IX Item "fsm-scale-path-blocks"
-Scale factor to apply to the number of blocks in a threading path
-when comparing to the number of (scaled) statements.
 .IP "\fBsched-autopref-queue-depth\fR" 4
 .IX Item "sched-autopref-queue-depth"
 Hardware autoprefetcher scheduler model control flag.
