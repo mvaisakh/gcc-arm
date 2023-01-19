@@ -11103,6 +11103,13 @@ Coff relocations are easily transformed into the internal BFD form
      back end specific way.  For instance, the 386 uses the 'r_type' to
      directly produce an index into a howto table vector.
 
+   * Note that 'arelent.addend' for COFF is often not what most people
+     understand as a relocation addend, but rather an adjustment to the
+     relocation addend stored in section contents of relocatable object
+     files.  The value found in section contents may also be confusing,
+     depending on both symbol value and addend somewhat similar to the
+     field value for a final-linked object.  See 'CALC_ADDEND'.
+
 
 File: bfd.info,  Node: elf,  Next: mmo,  Prev: coff,  Up: BFD back ends
 
@@ -14776,13 +14783,13 @@ Node: BFD back ends388763
 Node: What to Put Where389033
 Node: aout389213
 Node: coff395455
-Node: elf423614
-Node: mmo424015
-Node: File layout424885
-Node: Symbol-table430798
-Node: mmo section mapping434561
-Node: GNU Free Documentation License438215
-Node: BFD Index463279
+Node: elf424037
+Node: mmo424438
+Node: File layout425308
+Node: Symbol-table431221
+Node: mmo section mapping434984
+Node: GNU Free Documentation License438638
+Node: BFD Index463702
 
 End Tag Table
 
