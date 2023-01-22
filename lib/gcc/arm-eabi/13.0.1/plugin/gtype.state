@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "13.0.1 20230119 (Bleeding Edge)")
+(!version  "13.0.1 20230122 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 240 0
@@ -28476,19 +28476,19 @@
   (!fields 4 
    (!pair  "decl"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8452)
+    (!srcfileloc  "cp/cp-tree.h" 8453)
     nil )
    (!pair  "body"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8453)
+    (!srcfileloc  "cp/cp-tree.h" 8454)
     nil )
    (!pair  "parms"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8454)
+    (!srcfileloc  "cp/cp-tree.h" 8455)
     nil )
    (!pair  "result"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8455)
+    (!srcfileloc  "cp/cp-tree.h" 8456)
     nil )
   )
   (!options 
@@ -29337,19 +29337,19 @@
   nil 0 nil nil )
  
  (!type struct 2111 nil  gc_pointed_to "source_location_table_entry"
-  (!srcfileloc  "cp/cp-gimplify.cc" 3258)
+  (!srcfileloc  "cp/cp-gimplify.cc" 3268)
   (!fields 3 
    (!pair  "loc"
     (!type already_seen 2)
-    (!srcfileloc  "cp/cp-gimplify.cc" 3255)
+    (!srcfileloc  "cp/cp-gimplify.cc" 3265)
     nil )
    (!pair  "uid"
     (!type already_seen 2)
-    (!srcfileloc  "cp/cp-gimplify.cc" 3256)
+    (!srcfileloc  "cp/cp-gimplify.cc" 3266)
     nil )
    (!pair  "var"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-gimplify.cc" 3257)
+    (!srcfileloc  "cp/cp-gimplify.cc" 3267)
     nil )
   )
   (!options 
@@ -29358,7 +29358,7 @@
   1028 nil nil )
  
  (!type struct 2112 nil  gc_used "source_location_table_entry_hash"
-  (!srcfileloc  "cp/cp-gimplify.cc" 3334)
+  (!srcfileloc  "cp/cp-gimplify.cc" 3344)
   (!fields 0 )
   nil 1028 nil nil )
  
@@ -29367,11 +29367,11 @@
    (!type already_seen 2113)
   )
   gc_pointed_to "hash_table<source_location_table_entry_hash>"
-  (!srcfileloc  "cp/cp-gimplify.cc" 3334)
+  (!srcfileloc  "cp/cp-gimplify.cc" 3344)
   (!fields 1 
    (!pair  "source_location_table_entry_hash"
     (!type already_seen 2112)
-    (!srcfileloc  "cp/cp-gimplify.cc" 3334)
+    (!srcfileloc  "cp/cp-gimplify.cc" 3344)
     nil )
   )
  )
@@ -31932,11 +31932,11 @@
   nil )
  (!pair  "source_location_table_entry_hash"
   (!type already_seen 2112)
-  (!srcfileloc  "cp/cp-gimplify.cc" 3334)
+  (!srcfileloc  "cp/cp-gimplify.cc" 3344)
   nil )
  (!pair  "hash_table<source_location_table_entry_hash>"
   (!type already_seen 2113)
-  (!srcfileloc  "cp/cp-gimplify.cc" 3334)
+  (!srcfileloc  "cp/cp-gimplify.cc" 3344)
   nil )
  (!pair  "coroutine_info_hasher"
   (!type already_seen 2092)
@@ -36539,7 +36539,7 @@
   nil )
  (!pair  "deleted_copy_types"
   (!type already_seen 467)
-  (!srcfileloc  "cp/tree.cc" 4492)
+  (!srcfileloc  "cp/tree.cc" 4508)
   nil )
  (!pair  "list_hash_table"
   (!type already_seen 2259)
@@ -36863,15 +36863,15 @@
   nil )
  (!pair  "source_location_id"
   (!type already_seen 2)
-  (!srcfileloc  "cp/cp-gimplify.cc" 3336)
+  (!srcfileloc  "cp/cp-gimplify.cc" 3346)
   nil )
  (!pair  "source_location_table"
   (!type already_seen 2114)
-  (!srcfileloc  "cp/cp-gimplify.cc" 3335)
+  (!srcfileloc  "cp/cp-gimplify.cc" 3345)
   nil )
  (!pair  "fold_cache"
   (!type already_seen 394)
-  (!srcfileloc  "cp/cp-gimplify.cc" 2425)
+  (!srcfileloc  "cp/cp-gimplify.cc" 2435)
   (!options 
    (!option deletable string  "")
   )
@@ -37101,7 +37101,7 @@
   nil )
  (!pair  "unemitted_tinfo_decls"
   (!type already_seen 85)
-  (!srcfileloc  "cp/cp-tree.h" 7502)
+  (!srcfileloc  "cp/cp-tree.h" 7503)
   nil )
  (!pair  "ovl_op_alternate"
   (!type array 2395 nil  gc_used "OVL_OP_MAX" 
