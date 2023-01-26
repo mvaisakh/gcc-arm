@@ -223,7 +223,7 @@ present.
    Tieing it all together:
 
 Offset   Name                               Description
-----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 0x00     'sframe_preamble sfh_preamble'     The SFrame preamble.
                                             *Note SFrame Preamble::.
                                             
@@ -234,34 +234,31 @@ Offset   Name                               Description
                                             
 0x06     'int8_t sfh_cfa_fixed_ra_offset'   The CFA fixed RA offset, if any.
                                             
-0x07     'uint8_t sfh_auxhdr_len'           Size in bytes of the auxilliary
-                                            header that follows the
-                                            'sframe_header' structure.
+0x07     'uint8_t sfh_auxhdr_len'           Size in bytes of the auxilliary header
+                                            that follows the 'sframe_header'
+                                            structure.
                                             
-0x08     'uint32_t sfh_num_fdes'            The number of SFrame FDEs in the
-                                            section.
+0x08     'uint32_t sfh_num_fdes'            The number of SFrame FDEs in the section.
                                             
-0xc      'uint32_t sfh_num_fres'            The number of SFrame FREs in the
-                                            section.
+0xc      'uint32_t sfh_num_fres'            The number of SFrame FREs in the section.
                                             
-0x10     'uint32_t sfh_fre_len'             The length in bytes of the SFrame
-                                            FRE sub-section.
+0x10     'uint32_t sfh_fre_len'             The length in bytes of the SFrame FRE
+                                            sub-section.
                                             
-0x14     'uint32_t sfh_fdeoff'              The offset in bytes of the SFrame
-                                            FDE sub-section.  This sub-section
-                                            contains 'sfh_num_fdes' number of
-                                            fixed-length array elements.  The
-                                            array element is of type SFrame
-                                            function desciptor entry, each
-                                            providing a high-level function
+0x14     'uint32_t sfh_fdeoff'              The offset in bytes of the SFrame FDE
+                                            sub-section.  This sub-section contains
+                                            'sfh_num_fdes' number of fixed-length
+                                            array elements.  The array element is of
+                                            type SFrame function desciptor entry,
+                                            each providing a high-level function
                                             description for backtracing.
                                             *Note SFrame Function Descriptor Entries::.
                                             
-0x18     'uint32_t sfh_freoff'              The offset in bytes of the SFrame
-                                            FRE sub-section, the core of the
-                                            SFrame section, which describes the
-                                            unwind information using
-                                            variable-length array elements.
+0x18     'uint32_t sfh_freoff'              The offset in bytes of the SFrame FRE
+                                            sub-section, the core of the SFrame
+                                            section, which describes the unwind
+                                            information using variable-length array
+                                            elements.
                                             *Note SFrame Frame Row Entries::.
                                             
 
@@ -360,19 +357,22 @@ File: sframe-spec.info,  Node: The SFrame FDE info word,  Next: The SFrame FDE t
 
 The info word is a bitfield split into three parts.  From MSB to LSB:
 
-Bit offset   Name       Description
-------------------------------------------------------------------------------------------
-7-6          'unused'   Unused bits.
-                        
-5            'pauth_key'Specify which key is used for signing the return addresses in
-                        the SFrame FDE. Two possible values: SFRAME_AARCH64_PAUTH_KEY_A
-                        (0) or SFRAME_AARCH64_PAUTH_KEY_B (1).
-                        
-4            'fdetype'  SFRAME_FDE_TYPE_PCMASK (1) or SFRAME_FDE_TYPE_PCINC (0).
-                        *Note The SFrame FDE types::.
-                        
-0-3          'fretype'  Choice of three SFrame FRE types.
-                        *Note The SFrame FRE types::.
+Bit offset   Name          Description
+----------------------------------------------------------------------------------------
+7-6          'unused'      Unused bits.
+                           
+5            'pauth_key'   Specify which key is used for signing the return addresses
+                           in the SFrame FDE. Two possible values:
+                           SFRAME_AARCH64_PAUTH_KEY_A (0), or
+                           SFRAME_AARCH64_PAUTH_KEY_B (1).
+                           
+4            'fdetype'     Specify the SFrame FDE type.  Two possible values:
+                           SFRAME_FDE_TYPE_PCMASK (1), or
+                           SFRAME_FDE_TYPE_PCINC (0).
+                           *Note The SFrame FDE types::.
+                           
+0-3          'fretype'     Choice of three SFrame FRE types.
+                           *Note The SFrame FRE types::.
 
 
 File: sframe-spec.info,  Node: The SFrame FDE types,  Next: The SFrame FRE types,  Prev: The SFrame FDE info word,  Up: SFrame Function Descriptor Entries
@@ -395,17 +395,18 @@ type is useful for the cases where a small pattern of instructions in a
 program stub is used repeatedly for a specific functionality.  Typical
 usecases are pltN entries and trampolines.
 
-Name of SFrame FDE type   Value   Description
-                                  
--------------------------------------------------------------------------------
-SFRAME_FDE_TYPE_PCINC     0       Unwinders perform a (PC >= FRE_START_ADDR)
-                                  to look up a matching FRE.
-                                  
-SFRAME_FDE_TYPE_PCMASK    1       Unwinders perform a (PC &
-                                  FRE_START_ADDR_AS_MASK >=
-                                  FRE_START_ADDR_AS_MASK) to look up a
-                                  matching FRE.
-                                  
+Name of SFrame FDE       Value   Description
+type                             
+---------------------------------------------------------------------------
+SFRAME_FDE_TYPE_PCINC    0       Unwinders perform a
+                                 (PC >= FRE_START_ADDR) to look up a
+                                 matching FRE.
+                                 
+SFRAME_FDE_TYPE_PCMASK   1       Unwinders perform a
+                                 (PC & FRE_START_ADDR_AS_MASK >=
+                                 FRE_START_ADDR_AS_MASK) to look up a
+                                 matching FRE.
+                                 
 
 
 File: sframe-spec.info,  Node: The SFrame FRE types,  Prev: The SFrame FDE types,  Up: SFrame Function Descriptor Entries
@@ -522,7 +523,8 @@ Bit offset   Name                    Description
                                      RA).
                                      
 5-6          'fre_offset_size'       Size of stack offsets in bytes.  Valid values
-                                     are SFRAME_FRE_OFFSET_1B,
+                                     are:
+                                     SFRAME_FRE_OFFSET_1B,
                                      SFRAME_FRE_OFFSET_2B, and
                                      SFRAME_FRE_OFFSET_4B.
                                      
@@ -578,11 +580,11 @@ Index
 * SFRAME_FDE_TYPE_PCINC:                 The SFrame FDE types. (line  6)
 * SFRAME_FDE_TYPE_PCMASK:                The SFrame FDE types. (line  6)
 * SFRAME_FRE_OFFSET_1B:                  The SFrame FRE info word.
-                                                               (line 29)
+                                                               (line 30)
 * SFRAME_FRE_OFFSET_2B:                  The SFrame FRE info word.
-                                                               (line 33)
+                                                               (line 34)
 * SFRAME_FRE_OFFSET_4B:                  The SFrame FRE info word.
-                                                               (line 36)
+                                                               (line 37)
 * SFRAME_FRE_TYPE_ADDR1:                 The SFrame FRE types. (line 17)
 * SFRAME_FRE_TYPE_ADDR2:                 The SFrame FRE types. (line 22)
 * SFRAME_FRE_TYPE_ADDR4:                 The SFrame FRE types. (line 26)
@@ -606,14 +608,14 @@ Node: SFrame endianness3963
 Node: SFrame version4419
 Node: SFrame flags4921
 Node: SFrame Header5641
-Node: SFrame ABI/arch identifier10812
-Node: SFrame Function Descriptor Entries11778
-Node: The SFrame FDE info word14571
-Node: The SFrame FDE types15558
-Node: The SFrame FRE types17126
-Node: SFrame Frame Row Entries18682
-Node: The SFrame FRE info word21079
-Node: Index23023
+Node: SFrame ABI/arch identifier10686
+Node: SFrame Function Descriptor Entries11652
+Node: The SFrame FDE info word14445
+Node: The SFrame FDE types15600
+Node: The SFrame FRE types17187
+Node: SFrame Frame Row Entries18743
+Node: The SFrame FRE info word21140
+Node: Index23122
 
 End Tag Table
 

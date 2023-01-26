@@ -531,6 +531,7 @@ along with GCC; see the file COPYING3.  If not see
 	  NEXT_PASS (pass_delay_slots, 1);
 	  NEXT_PASS (pass_split_for_shorten_branches, 1);
 	  NEXT_PASS (pass_convert_to_eh_region_ranges, 1);
+NEXT_PASS (pass_insert_bti, 1);
 	  NEXT_PASS (pass_shorten_branches, 1);
 	  NEXT_PASS (pass_set_nothrow_function_flags, 1);
 	  NEXT_PASS (pass_dwarf2_frame, 1);
@@ -540,3 +541,23 @@ along with GCC; see the file COPYING3.  If not see
   POP_INSERT_PASSES ()
   NEXT_PASS (pass_clean_state, 1);
   TERMINATE_PASS_LIST (all_passes)
+/* Arm-specific passes declarations.
+   Copyright (C) 2022 Free Software Foundation, Inc.
+   Contributed by Arm Ltd.
+
+   This file is part of GCC.
+
+   GCC is free software; you can redistribute it and/or modify it
+   under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
+
+   GCC is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with GCC; see the file COPYING3.  If not see
+   <http://www.gnu.org/licenses/>.  */
+

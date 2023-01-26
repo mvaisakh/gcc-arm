@@ -30,6 +30,7 @@ enum isa_feature {
   isa_bit_dotprod,
   isa_bit_crc32,
   isa_bit_xscale,
+  isa_bit_pacbti,
   isa_bit_vfpv2,
   isa_bit_vfpv3,
   isa_bit_vfpv4,

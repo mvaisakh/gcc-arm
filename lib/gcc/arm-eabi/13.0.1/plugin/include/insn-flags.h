@@ -227,6 +227,10 @@
 #define HAVE_arm_mcrr2 (arm_coproc_builtin_available (VUNSPEC_MCRR2))
 #define HAVE_arm_mrrc (arm_coproc_builtin_available (VUNSPEC_MRRC))
 #define HAVE_arm_mrrc2 (arm_coproc_builtin_available (VUNSPEC_MRRC2))
+#define HAVE_pac_nop (arm_arch8m_main)
+#define HAVE_pacbti_nop (arm_arch8m_main)
+#define HAVE_aut_nop (arm_arch8m_main)
+#define HAVE_bti_nop (arm_arch8m_main)
 #define HAVE_mve_vshlq_sv8qi (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_mve_vshlq_uv8qi (ARM_HAVE_V8QI_ARITH && !TARGET_REALLY_IWMMXT)
 #define HAVE_mve_vshlq_sv16qi (ARM_HAVE_V16QI_ARITH && !TARGET_REALLY_IWMMXT)
@@ -6123,6 +6127,10 @@ extern rtx        gen_arm_mcrr                                       (rtx, rtx, 
 extern rtx        gen_arm_mcrr2                                      (rtx, rtx, rtx, rtx);
 extern rtx        gen_arm_mrrc                                       (rtx, rtx, rtx, rtx);
 extern rtx        gen_arm_mrrc2                                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_pac_nop                                        (void);
+extern rtx        gen_pacbti_nop                                     (void);
+extern rtx        gen_aut_nop                                        (void);
+extern rtx        gen_bti_nop                                        (void);
 extern rtx        gen_mve_vshlq_sv8qi                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vshlq_uv8qi                                (rtx, rtx, rtx);
 extern rtx        gen_mve_vshlq_sv16qi                               (rtx, rtx, rtx);

@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-01-22" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-01-26" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -858,7 +858,9 @@ in the following sections.
 \&\-mcmse 
 \&\-mfix\-cmse\-cve\-2021\-35465 
 \&\-mstack\-protector\-guard=\fR\fIguard\fR \fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR 
-\&\fB\-mfdpic\fR
+\&\fB\-mfdpic 
+\&\-mbranch\-protection=\fR\fInone\fR\fB|\fR\fIstandard\fR\fB|\fR\fIpac-ret\fR\fB[+\fR\fIleaf\fR\fB]
+[+\fR\fIbti\fR\fB]|\fR\fIbti\fR\fB[+\fR\fIpac-ret\fR\fB[+\fR\fIleaf\fR\fB]]\fR
 .Sp
 \&\fI\s-1AVR\s0 Options\fR
 \&\fB\-mmcu=\fR\fImcu\fR  \fB\-mabsdata  \-maccumulate\-args 
@@ -21274,6 +21276,9 @@ Disable the floating-point extension.
 .IX Item "+cdecp0, +cdecp1, ... , +cdecp7"
 Enable the Custom Datapath Extension (\s-1CDE\s0) on selected coprocessors according
 to the numbers given in the options in the range 0 to 7.
+.IP "\fB+pacbti\fR" 4
+.IX Item "+pacbti"
+Enable the Pointer Authentication and Branch Target Identification Extension.
 .RE
 .RS 4
 .RE
@@ -21363,8 +21368,8 @@ Permissible names are: \fBarm7tdmi\fR, \fBarm7tdmi\-s\fR, \fBarm710t\fR,
 \&\fBcortex\-r7\fR, \fBcortex\-r8\fR, \fBcortex\-r52\fR, \fBcortex\-r52plus\fR,
 \&\fBcortex\-m0\fR, \fBcortex\-m0plus\fR, \fBcortex\-m1\fR, \fBcortex\-m3\fR,
 \&\fBcortex\-m4\fR, \fBcortex\-m7\fR, \fBcortex\-m23\fR, \fBcortex\-m33\fR,
-\&\fBcortex\-m35p\fR, \fBcortex\-m55\fR, \fBcortex\-x1\fR, \fBcortex\-x1c\fR,
-\&\fBcortex\-m1.small\-multiply\fR, \fBcortex\-m0.small\-multiply\fR,
+\&\fBcortex\-m35p\fR, \fBcortex\-m55\fR, \fBcortex\-m85\fR, \fBcortex\-x1\fR,
+\&\fBcortex\-x1c\fR, \fBcortex\-m1.small\-multiply\fR, \fBcortex\-m0.small\-multiply\fR,
 \&\fBcortex\-m0plus.small\-multiply\fR, \fBexynos\-m1\fR, \fBmarvell\-pj4\fR,
 \&\fBneoverse\-n1\fR, \fBneoverse\-n2\fR, \fBneoverse\-v1\fR, \fBxscale\fR,
 \&\fBiwmmxt\fR, \fBiwmmxt2\fR, \fBep9312\fR, \fBfa526\fR, \fBfa626\fR,
@@ -21427,17 +21432,22 @@ The following extension options are common to the listed CPUs:
 .RS 4
 .IP "\fB+nodsp\fR" 4
 .IX Item "+nodsp"
-Disable the \s-1DSP\s0 instructions on \fBcortex\-m33\fR, \fBcortex\-m35p\fR
-and \fBcortex\-m55\fR. Also disable the M\-Profile Vector Extension (\s-1MVE\s0)
-integer and single precision floating-point instructions on \fBcortex\-m55\fR.
+Disable the \s-1DSP\s0 instructions on \fBcortex\-m33\fR, \fBcortex\-m35p\fR,
+\&\fBcortex\-m55\fR and \fBcortex\-m85\fR. Also disable the M\-Profile Vector
+Extension (\s-1MVE\s0) integer and single precision floating-point instructions on
+\&\fBcortex\-m55\fR and \fBcortex\-m85\fR.
+.IP "\fB+nopacbti\fR" 4
+.IX Item "+nopacbti"
+Disable the Pointer Authentication and Branch Target Identification Extension
+on \fBcortex\-m85\fR.
 .IP "\fB+nomve\fR" 4
 .IX Item "+nomve"
 Disable the M\-Profile Vector Extension (\s-1MVE\s0) integer and single precision
-floating-point instructions on \fBcortex\-m55\fR.
+floating-point instructions on \fBcortex\-m55\fR and \fBcortex\-m85\fR.
 .IP "\fB+nomve.fp\fR" 4
 .IX Item "+nomve.fp"
 Disable the M\-Profile Vector Extension (\s-1MVE\s0) single precision floating-point
-instructions on \fBcortex\-m55\fR.
+instructions on \fBcortex\-m55\fR and \fBcortex\-m85\fR.
 .IP "\fB+cdecp0, +cdecp1, ... , +cdecp7\fR" 4
 .IX Item "+cdecp0, +cdecp1, ... , +cdecp7"
 Enable the Custom Datapath Extension (\s-1CDE\s0) on selected coprocessors according
@@ -21449,7 +21459,8 @@ Disables the floating-point instructions on \fBarm9e\fR,
 \&\fBarm1020e\fR, \fBarm1022e\fR, \fBarm926ej\-s\fR,
 \&\fBarm1026ej\-s\fR, \fBcortex\-r5\fR, \fBcortex\-r7\fR, \fBcortex\-r8\fR,
 \&\fBcortex\-m4\fR, \fBcortex\-m7\fR, \fBcortex\-m33\fR, \fBcortex\-m35p\fR
-and \fBcortex\-m55\fR.
+\&\fBcortex\-m4\fR, \fBcortex\-m7\fR, \fBcortex\-m33\fR, \fBcortex\-m35p\fR,
+\&\fBcortex\-m55\fR and \fBcortex\-m85\fR.
 Disables the floating-point and \s-1SIMD\s0 instructions on
 \&\fBgeneric\-armv7\-a\fR, \fBcortex\-a5\fR, \fBcortex\-a7\fR,
 \&\fBcortex\-a8\fR, \fBcortex\-a9\fR, \fBcortex\-a12\fR,
@@ -21771,9 +21782,9 @@ Development Tools Engineering Specification\*(R", which can be found on
 Mitigate against a potential security issue with the \f(CW\*(C`VLLDM\*(C'\fR instruction
 in some M\-profile devices when using \s-1CMSE\s0 (\s-1CVE\-2021\-365465\s0).  This option is
 enabled by default when the option \fB\-mcpu=\fR is used with
-\&\f(CW\*(C`cortex\-m33\*(C'\fR, \f(CW\*(C`cortex\-m35p\*(C'\fR, \f(CW\*(C`cortex\-m55\*(C'\fR or \f(CW\*(C`star\-mc1\*(C'\fR.
-The option \fB\-mno\-fix\-cmse\-cve\-2021\-35465\fR can be used to disable
-the mitigation.
+\&\f(CW\*(C`cortex\-m33\*(C'\fR, \f(CW\*(C`cortex\-m35p\*(C'\fR, \f(CW\*(C`cortex\-m55\*(C'\fR, \f(CW\*(C`cortex\-m85\*(C'\fR
+or \f(CW\*(C`star\-mc1\*(C'\fR. The option \fB\-mno\-fix\-cmse\-cve\-2021\-35465\fR can be used
+to disable the mitigation.
 .IP "\fB\-mstack\-protector\-guard=\fR\fIguard\fR" 4
 .IX Item "-mstack-protector-guard=guard"
 .PD 0
@@ -21806,6 +21817,38 @@ behavior is acceptable, use \-static and \-Wl,\-dynamic\-linker options.
 The opposite \fB\-mno\-fdpic\fR option is useful (and required) to
 build the Linux kernel using the same (\f(CW\*(C`arm\-*\-uclinuxfdpiceabi\*(C'\fR)
 toolchain as the one used to build the userland programs.
+.IP "\fB\-mbranch\-protection=\fR\fInone\fR\fB|\fR\fIstandard\fR\fB|\fR\fIpac-ret\fR\fB[+\fR\fIleaf\fR\fB][+\fR\fIbti\fR\fB]|\fR\fIbti\fR\fB[+\fR\fIpac-ret\fR\fB[+\fR\fIleaf\fR\fB]]\fR" 4
+.IX Item "-mbranch-protection=none|standard|pac-ret[+leaf][+bti]|bti[+pac-ret[+leaf]]"
+Enable branch protection features (armv8.1\-m.main only).
+\&\fBnone\fR generate code without branch protection or return address
+signing.
+\&\fBstandard[+\fR\fIleaf\fR\fB]\fR generate code with all branch protection
+features enabled at their standard level.
+\&\fBpac\-ret[+\fR\fIleaf\fR\fB]\fR generate code with return address signing
+set to its standard level, which is to sign all functions that save
+the return address to memory.
+\&\fBleaf\fR When return address signing is enabled, also sign leaf
+functions even if they do not write the return address to memory.
++\fBbti\fR Add landing-pad instructions at the permitted targets of
+indirect branch instructions.
+.Sp
+If the \fB+pacbti\fR architecture extension is not enabled, then all
+branch protection and return address signing operations are
+constrained to use only the instructions defined in the
+architectural-NOP space. The generated code will remain
+backwards-compatible with earlier versions of the architecture, but
+the additional security can be enabled at run time on processors that
+support the \fB\s-1PACBTI\s0\fR extension.
+.Sp
+Branch target enforcement using \s-1BTI\s0 can only be enabled at runtime if
+all code in the application has been compiled with at least
+\&\fB\-mbranch\-protection=bti\fR.
+.Sp
+Any setting other than \fBnone\fR is supported only on armv8\-m.main
+or later.
+.Sp
+The default is to generate code without branch protection or return
+address signing.
 .PP
 \fI\s-1AVR\s0 Options\fR
 .IX Subsection "AVR Options"
