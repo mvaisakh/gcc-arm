@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-01-26" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-01-29" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -15581,7 +15581,7 @@ this can be achieved with \fBsetarch `uname \-m` \-R ./prog\fR.
 .IP "\fB\-fsanitize=kernel\-address\fR" 4
 .IX Item "-fsanitize=kernel-address"
 Enable AddressSanitizer for Linux kernel.
-See <\fBhttps://github.com/google/kasan\fR> for more details.
+See <\fBhttps://github.com/google/kernel\-sanitizers\fR> for more details.
 .IP "\fB\-fsanitize=hwaddress\fR" 4
 .IX Item "-fsanitize=hwaddress"
 Enable Hardware-assisted AddressSanitizer, which uses a hardware ability to
@@ -33399,8 +33399,9 @@ needs to build supplementary stub code for constructors to work.  On
 multi-libbed systems, \fBgcc \-shared\fR must select the correct support
 libraries to link against.  Failing to supply the correct flags may lead
 to subtle defects.  Supplying them in cases where they are not necessary
-is innocuous. For x86, crtfastmath.o will not be added when
-\&\fB\-shared\fR is specified.
+is innocuous.  \fB\-shared\fR suppresses the addition of startup code
+to alter the floating-point environment as done with \fB\-ffast\-math\fR,
+\&\fB\-Ofast\fR or \fB\-funsafe\-math\-optimizations\fR on some targets.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
 \&\fBgpl\fR\|(7), \fBgfdl\fR\|(7), \fBfsf\-funding\fR\|(7),
