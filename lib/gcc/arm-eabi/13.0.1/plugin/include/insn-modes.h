@@ -237,28 +237,28 @@ enum machine_mode
 #else
 #define TImode (scalar_int_mode ((scalar_int_mode::from_int) E_TImode))
 #endif
-  E_EImode,                /* config/arm/arm-modes.def:103 */
+  E_EImode,                /* config/arm/arm-modes.def:104 */
 #define HAVE_EImode
 #ifdef USE_ENUM_MODES
 #define EImode E_EImode
 #else
 #define EImode (scalar_int_mode ((scalar_int_mode::from_int) E_EImode))
 #endif
-  E_OImode,                /* config/arm/arm-modes.def:104 */
+  E_OImode,                /* config/arm/arm-modes.def:105 */
 #define HAVE_OImode
 #ifdef USE_ENUM_MODES
 #define OImode E_OImode
 #else
 #define OImode (scalar_int_mode ((scalar_int_mode::from_int) E_OImode))
 #endif
-  E_CImode,                /* config/arm/arm-modes.def:105 */
+  E_CImode,                /* config/arm/arm-modes.def:106 */
 #define HAVE_CImode
 #ifdef USE_ENUM_MODES
 #define CImode E_CImode
 #else
 #define CImode (scalar_int_mode ((scalar_int_mode::from_int) E_CImode))
 #endif
-  E_XImode,                /* config/arm/arm-modes.def:106 */
+  E_XImode,                /* config/arm/arm-modes.def:107 */
 #define HAVE_XImode
 #ifdef USE_ENUM_MODES
 #define XImode E_XImode
@@ -552,6 +552,13 @@ enum machine_mode
 #else
 #define V4BImode ((void) 0, E_V4BImode)
 #endif
+  E_V2QImode,              /* config/arm/arm-modes.def:94 */
+#define HAVE_V2QImode
+#ifdef USE_ENUM_MODES
+#define V2QImode E_V2QImode
+#else
+#define V2QImode ((void) 0, E_V2QImode)
+#endif
   E_V4QImode,              /* config/arm/arm-modes.def:74 */
 #define HAVE_V4QImode
 #ifdef USE_ENUM_MODES
@@ -615,42 +622,42 @@ enum machine_mode
 #else
 #define V2DImode ((void) 0, E_V2DImode)
 #endif
-  E_V4QQmode,              /* config/arm/arm-modes.def:96 */
+  E_V4QQmode,              /* config/arm/arm-modes.def:97 */
 #define HAVE_V4QQmode
 #ifdef USE_ENUM_MODES
 #define V4QQmode E_V4QQmode
 #else
 #define V4QQmode ((void) 0, E_V4QQmode)
 #endif
-  E_V2HQmode,              /* config/arm/arm-modes.def:96 */
+  E_V2HQmode,              /* config/arm/arm-modes.def:97 */
 #define HAVE_V2HQmode
 #ifdef USE_ENUM_MODES
 #define V2HQmode E_V2HQmode
 #else
 #define V2HQmode ((void) 0, E_V2HQmode)
 #endif
-  E_V4UQQmode,             /* config/arm/arm-modes.def:97 */
+  E_V4UQQmode,             /* config/arm/arm-modes.def:98 */
 #define HAVE_V4UQQmode
 #ifdef USE_ENUM_MODES
 #define V4UQQmode E_V4UQQmode
 #else
 #define V4UQQmode ((void) 0, E_V4UQQmode)
 #endif
-  E_V2UHQmode,             /* config/arm/arm-modes.def:97 */
+  E_V2UHQmode,             /* config/arm/arm-modes.def:98 */
 #define HAVE_V2UHQmode
 #ifdef USE_ENUM_MODES
 #define V2UHQmode E_V2UHQmode
 #else
 #define V2UHQmode ((void) 0, E_V2UHQmode)
 #endif
-  E_V2HAmode,              /* config/arm/arm-modes.def:98 */
+  E_V2HAmode,              /* config/arm/arm-modes.def:99 */
 #define HAVE_V2HAmode
 #ifdef USE_ENUM_MODES
 #define V2HAmode E_V2HAmode
 #else
 #define V2HAmode ((void) 0, E_V2HAmode)
 #endif
-  E_V2UHAmode,             /* config/arm/arm-modes.def:99 */
+  E_V2UHAmode,             /* config/arm/arm-modes.def:100 */
 #define HAVE_V2UHAmode
 #ifdef USE_ENUM_MODES
 #define V2UHAmode E_V2UHAmode
@@ -764,7 +771,7 @@ enum machine_mode
   MIN_MODE_VECTOR_BOOL = E_V16BImode,
   MAX_MODE_VECTOR_BOOL = E_V4BImode,
 
-  MIN_MODE_VECTOR_INT = E_V4QImode,
+  MIN_MODE_VECTOR_INT = E_V2QImode,
   MAX_MODE_VECTOR_INT = E_V2DImode,
 
   MIN_MODE_VECTOR_FRACT = E_V4QQmode,

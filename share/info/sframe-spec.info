@@ -22,14 +22,14 @@ The SFrame format
 
 This manual describes version 1 of the SFrame file format.  SFrame
 stands for Simple Frame format.  SFrame format keeps track of the
-minimal necessary information needed for stack unwinding:
+minimal necessary information needed for generating stack traces:
 
    - Canonical Frame Address (CFA).
    - Frame Pointer (FP).
    - Return Address (RA).
 
    The reason for existence of the SFrame format is to support fast,
-online backtracing using a simple unwinder.
+online generation of stack traces using simple means.
 
 * Menu:
 
@@ -43,9 +43,9 @@ File: sframe-spec.info,  Node: Overview,  Next: SFrame section,  Prev: Top,  Up:
 Overview
 ********
 
-The SFrame unwind information is provided in a loaded section, known as
-the '.sframe' section.  When available, the '.sframe' section appears in
-a new segment of its own, PT_GNU_SFRAME.
+The SFrame stack trace information is provided in a loaded section,
+known as the '.sframe' section.  When available, the '.sframe' section
+appears in a new segment of its own, PT_GNU_SFRAME.
 
    The SFrame format is currently supported only for select ABIs,
 namely, AMD64 and AAPCS64.
@@ -256,7 +256,7 @@ Offset   Name                               Description
                                             
 0x18     'uint32_t sfh_freoff'              The offset in bytes of the SFrame FRE
                                             sub-section, the core of the SFrame
-                                            section, which describes the unwind
+                                            section, which describes the stack trace
                                             information using variable-length array
                                             elements.
                                             *Note SFrame Frame Row Entries::.
@@ -273,8 +273,9 @@ File: sframe-spec.info,  Node: SFrame ABI/arch identifier,  Up: SFrame Header
 --------------------------------
 
 SFrame header identifies the ABI/arch of the target system for which the
-executable and it's unwind information is intended.  There are currently
-three identifiable ABI/arch values in the format.
+executable and hence, the stack trace information contained in the
+SFrame section, is intended.  There are currently three identifiable
+ABI/arch values in the format.
 
 ABI/arch Identifier                Value   Description
                                            
@@ -287,7 +288,7 @@ ABI/arch Identifier                Value   Description
                                            
 
    The presence of an explicit identification of ABI/arch in SFrame may
-allow unwinders to make certain ABI-specific decisions.
+allow stack trace generators to make certain ABI-specific decisions.
 
 
 File: sframe-spec.info,  Node: SFrame Function Descriptor Entries,  Next: SFrame Frame Row Entries,  Prev: SFrame Header,  Up: SFrame section
@@ -298,7 +299,7 @@ File: sframe-spec.info,  Node: SFrame Function Descriptor Entries,  Next: SFrame
 The SFrame Function Descriptor Entry sub-section is a sorted array of
 fixed-length SFrame function descriptor entries (SFrame FDEs).  Each
 SFrame FDE is a packed structure which contains information to describe
-a function's unwind information at a high-level.
+a function's stack trace information at a high-level.
 
      typedef struct sframe_func_desc_entry
      {
@@ -416,7 +417,7 @@ File: sframe-spec.info,  Node: The SFrame FRE types,  Prev: The SFrame FDE types
 
 A real world application can have functions of size big and small.
 SFrame format defines three types of SFrame FRE entries to represent the
-unwind information for such a variety of function sizes.  These
+stack trace information for such a variety of function sizes.  These
 representations vary in the number of bits needed to encode the start
 address offset in the SFrame FRE.
 
@@ -438,9 +439,9 @@ Name                    Value     Description
                                   of the SFrame FRE is an unsigned
                                   32-bit value.
 
-   A single function must use the same type of FRE throughout.  The
-choice of which SFrame FRE is used to encode the unwind information of a
-function, is stored in the *Note The SFrame FDE info word::.
+   A single function must use the same type of SFrame FRE throughout.
+An identifier to reflect the chosen SFrame FRE type is stored in the
+*Note The SFrame FDE info word::.
 
 
 File: sframe-spec.info,  Node: SFrame Frame Row Entries,  Prev: SFrame Function Descriptor Entries,  Up: SFrame section
@@ -448,13 +449,13 @@ File: sframe-spec.info,  Node: SFrame Frame Row Entries,  Prev: SFrame Function 
 1.4 SFrame FRE
 ==============
 
-The SFrame Frame Row Entry sub-section contains the core of the unwind
-information.
+The SFrame Frame Row Entry sub-section contains the core of the stack
+trace information.
 
    An SFrame Frame Row Entry is a self-sufficient record containing
-SFrame unwind info for a range of contiguous addresses, starting at the
-specified offset from the start of the function.  Each SFrame Frame Row
-Entry is followed by S*N bytes, where:
+SFrame stack trace information for a range of contiguous addresses,
+starting at the specified offset from the start of the function.  Each
+SFrame Frame Row Entry is followed by S*N bytes, where:
 
    - 'S' is the size of the stack frame offset for the FRE, and
    - 'N' is the number of stack frame offsets in the FRE
@@ -572,11 +573,11 @@ Index
 * SFrame section:                        SFrame section.       (line  6)
 * SFrame versions:                       SFrame version.       (line  9)
 * SFRAME_ABI_AARCH64_ENDIAN_BIG:         SFrame ABI/arch identifier.
-                                                               (line 12)
+                                                               (line 13)
 * SFRAME_ABI_AARCH64_ENDIAN_LITTLE:      SFrame ABI/arch identifier.
-                                                               (line 15)
+                                                               (line 16)
 * SFRAME_ABI_AMD64_ENDIAN_LITTLE:        SFrame ABI/arch identifier.
-                                                               (line 17)
+                                                               (line 18)
 * SFRAME_FDE_TYPE_PCINC:                 The SFrame FDE types. (line  6)
 * SFRAME_FDE_TYPE_PCMASK:                The SFrame FDE types. (line  6)
 * SFRAME_FRE_OFFSET_1B:                  The SFrame FRE info word.
@@ -601,21 +602,21 @@ Index
 
 Tag Table:
 Node: Top564
-Node: Overview1114
-Node: SFrame section2135
-Node: SFrame Preamble2607
-Node: SFrame endianness3963
-Node: SFrame version4419
-Node: SFrame flags4921
-Node: SFrame Header5641
-Node: SFrame ABI/arch identifier10686
-Node: SFrame Function Descriptor Entries11652
-Node: The SFrame FDE info word14445
-Node: The SFrame FDE types15600
-Node: The SFrame FRE types17187
-Node: SFrame Frame Row Entries18743
-Node: The SFrame FRE info word21140
-Node: Index23122
+Node: Overview1132
+Node: SFrame section2158
+Node: SFrame Preamble2630
+Node: SFrame endianness3986
+Node: SFrame version4442
+Node: SFrame flags4944
+Node: SFrame Header5664
+Node: SFrame ABI/arch identifier10714
+Node: SFrame Function Descriptor Entries11737
+Node: The SFrame FDE info word14535
+Node: The SFrame FDE types15690
+Node: The SFrame FRE types17277
+Node: SFrame Frame Row Entries18809
+Node: The SFrame FRE info word21223
+Node: Index23205
 
 End Tag Table
 
