@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "13.0.1 20230205 (Bleeding Edge)")
+(!version  "13.0.1 20230207 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 241 0
@@ -28497,19 +28497,19 @@
   (!fields 4 
    (!pair  "decl"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8452)
+    (!srcfileloc  "cp/cp-tree.h" 8453)
     nil )
    (!pair  "body"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8453)
+    (!srcfileloc  "cp/cp-tree.h" 8454)
     nil )
    (!pair  "parms"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8454)
+    (!srcfileloc  "cp/cp-tree.h" 8455)
     nil )
    (!pair  "result"
     (!type already_seen 23)
-    (!srcfileloc  "cp/cp-tree.h" 8455)
+    (!srcfileloc  "cp/cp-tree.h" 8456)
     nil )
   )
   (!options 
@@ -35760,7 +35760,7 @@
   nil )
  (!pair  "gm2_eh_personality_decl"
   (!type already_seen 23)
-  (!srcfileloc  "m2/gm2-lang.cc" 951)
+  (!srcfileloc  "m2/gm2-lang.cc" 950)
   nil )
  (!pair  "real_file_decl_data"
   (!type already_seen 323)
@@ -36560,7 +36560,7 @@
   nil )
  (!pair  "deleted_copy_types"
   (!type already_seen 467)
-  (!srcfileloc  "cp/tree.cc" 4508)
+  (!srcfileloc  "cp/tree.cc" 4522)
   nil )
  (!pair  "list_hash_table"
   (!type already_seen 2260)

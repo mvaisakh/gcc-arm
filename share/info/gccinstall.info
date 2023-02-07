@@ -4296,10 +4296,6 @@ support the Interix subsystem.  See above.
    Old target names including *-*-winnt and *-*-windowsnt are no longer
 used.
 
-   PW32 (i386-pc-pw32) support was never completed, and the project
-seems to be inactive.  See <http://pw32.sourceforge.net/> for more
-information.
-
    UWIN support has been removed due to a lack of maintenance.
 
 *-*-cygwin
@@ -4987,12 +4983,12 @@ Ref: x86-64-x-solaris2182330
 Ref: xtensa-x-elf182980
 Ref: xtensa-x-linux183651
 Ref: windows183992
-Ref: x-x-cygwin185788
-Ref: x-x-mingw32186341
-Ref: older186723
-Ref: elf188840
-Node: GNU Free Documentation License189098
-Node: Concept Index214236
+Ref: x-x-cygwin185639
+Ref: x-x-mingw32186192
+Ref: older186574
+Ref: elf188691
+Node: GNU Free Documentation License188949
+Node: Concept Index214087
 
 End Tag Table
 
