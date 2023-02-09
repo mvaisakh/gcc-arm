@@ -24,6 +24,12 @@ extern enum aarch_function_type aarch_ra_sign_scope;
 #define aarch_ra_sign_scope global_options.x_aarch_ra_sign_scope
 #endif
 #ifdef GENERATOR_FILE
+extern enum aarch_key_type aarch_ra_sign_key;
+#else
+  enum aarch_key_type x_aarch_ra_sign_key;
+#define aarch_ra_sign_key global_options.x_aarch_ra_sign_key
+#endif
+#ifdef GENERATOR_FILE
 extern long arm_stack_protector_guard_offset;
 #else
   long x_arm_stack_protector_guard_offset;
@@ -8761,11 +8767,12 @@ struct GTY(()) cl_target_option
   /* - */ int x_target_flags;
   const char *x_arm_tune_string;
   enum aarch_function_type x_aarch_ra_sign_scope;
+  enum aarch_key_type x_aarch_ra_sign_key;
   signed char x_inline_asm_unified;
   signed char x_fix_aes_erratum_1742098;
   signed char x_arm_restrict_it;
   signed char x_unaligned_access;
-  /* 12 members */
+  /* 13 members */
   unsigned HOST_WIDE_INT explicit_mask[1];
   /* - */ int explicit_mask_target_flags;
 };

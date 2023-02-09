@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-02-07" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-02-09" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -3057,9 +3057,7 @@ incompatibilities with \s-1ISO \*(C+11\s0 and later standards.  For example, the
 following code is well-formed under \s-1ISO \*(C+11,\s0 but is ill-formed when
 \&\fB\-fchar8_t\fR is specified.
 .Sp
-.Vb 10
-\&        char ca[] = u8"xx";     // error: char\-array initialized from wide
-\&                                //        string
+.Vb 11
 \&        const char *cp = u8"xx";// error: invalid conversion from
 \&                                //        \`const char8_t*\*(Aq to \`const char*\*(Aq
 \&        int f(const char*);
