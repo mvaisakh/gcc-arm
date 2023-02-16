@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-02-12" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-02-16" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -14565,6 +14565,9 @@ appropriate register class.  Otherwise, it means \s-1IRA\s0 will check all
 available alternatives for preferred register class even if it has
 found some choice with an appropriate register class and respect the
 found qualified matching constraint.
+.IP "\fBira-simple-lra-insn-threshold\fR" 4
+.IX Item "ira-simple-lra-insn-threshold"
+Approximate function insn number in 1K units triggering simple local \s-1RA.\s0
 .IP "\fBlra-inheritance-ebb-probability-cutoff\fR" 4
 .IX Item "lra-inheritance-ebb-probability-cutoff"
 \&\s-1LRA\s0 tries to reuse values reloaded in registers in subsequent insns.
@@ -14863,6 +14866,10 @@ If number of memory accesses in function being instrumented
 is greater or equal to this number, use callbacks instead of inline checks.
 E.g. to disable inline code use
 \&\fB\-\-param asan\-instrumentation\-with\-call\-threshold=0\fR.
+.IP "\fBasan-kernel-mem-intrinsic-prefix\fR" 4
+.IX Item "asan-kernel-mem-intrinsic-prefix"
+Prefix calls to memcpy, memset and memmove with _\|_asan_ or _\|_hwasan_
+for \-fsanitize=kernel\-address or \-fsanitize=kernel\-hwaddress.
 .IP "\fBhwasan-instrument-stack\fR" 4
 .IX Item "hwasan-instrument-stack"
 Enable hwasan instrumentation of statically sized stack-allocated variables.
