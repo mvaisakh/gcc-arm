@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-02-16" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-02-19" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -4178,6 +4178,10 @@ like:
 .Sp
 fails to compile.
 .Sp
+In cases where the different signatures are not an accident, the
+simplest solution is to add a using-declaration to the derived class
+to un-hide the base function, e.g. add \f(CW\*(C`using A::f;\*(C'\fR to \f(CW\*(C`B\*(C'\fR.
+.Sp
 The optional level suffix controls the behavior when all the
 declarations in the derived class override virtual functions in the
 base class, even if not all of the base functions are overridden:
@@ -5830,7 +5834,7 @@ Options\fR and \fBObjective-C and Objective\-\*(C+ Dialect Options\fR.
 \&\-Wunused\-label     
 \&\-Wunused\-value     
 \&\-Wunused\-variable  
-\&\-Wuse\-after\-free=3  
+\&\-Wuse\-after\-free=2  
 \&\-Wvla\-parameter\fR (C and Objective-C only) 
 \&\fB\-Wvolatile\-register\-var  
 \&\-Wzero\-length\-bounds\fR
@@ -13716,8 +13720,8 @@ The names of specific parameters, and the meaning of the values, are
 tied to the internals of the compiler, and are subject to change
 without notice in future releases.
 .Sp
-In order to get minimal, maximal and default value of a parameter,
-one can use \fB\-\-help=param \-Q\fR options.
+In order to get the minimal, maximal and default values of a parameter,
+use the \fB\-\-help=param \-Q\fR options.
 .Sp
 In each case, the \fIvalue\fR is an integer.  The following choices
 of \fIname\fR are recognized for all targets:
@@ -22188,7 +22192,7 @@ points to.
 The startup code from libgcc never sets \f(CW\*(C`EIND\*(C'\fR.
 Notice that startup code is a blend of code from libgcc and AVR-LibC.
 For the impact of AVR-LibC on \f(CW\*(C`EIND\*(C'\fR, see the
-AVR-LibC\ user\ manual (\f(CW\*(C`http://nongnu.org/avr\-libc/user\-manual/\*(C'\fR).
+AVR-LibC\ user\ manual (\f(CW\*(C`https://www.nongnu.org/avr\-libc/user\-manual/\*(C'\fR).
 .IP "*" 4
 It is legitimate for user-specific startup code to set up \f(CW\*(C`EIND\*(C'\fR
 early, for example by means of initialization code located in
