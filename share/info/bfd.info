@@ -1115,12 +1115,12 @@ File: bfd.info,  Node: Miscellaneous,  Next: Memory Usage,  Prev: Initialization
 2.3.1.2 'bfd_canonicalize_reloc'
 ................................
 
- -- Function: long bfd_canonicalize_reloc
-     (bfd *abfd, asection *sec, arelent **loc, asymbol **syms); Call the
-     back end associated with the open BFD ABFD and translate the
-     external form of the relocation information attached to SEC into
-     the internal canonical form.  Place the table into memory at LOC,
-     which has been preallocated, usually by a call to
+ -- Function: long bfd_canonicalize_reloc (bfd *abfd, asection *sec,
+          arelent **loc, asymbol **syms);
+     Call the back end associated with the open BFD ABFD and translate
+     the external form of the relocation information attached to SEC
+     into the internal canonical form.  Place the table into memory at
+     LOC, which has been preallocated, usually by a call to
      'bfd_get_reloc_upper_bound'.  Returns the number of relocs, or -1
      on error.
 
@@ -1129,10 +1129,10 @@ File: bfd.info,  Node: Miscellaneous,  Next: Memory Usage,  Prev: Initialization
 2.3.1.3 'bfd_set_reloc'
 .......................
 
- -- Function: void bfd_set_reloc
-     (bfd *abfd, asection *sec, arelent **rel, unsigned int count); Set
-     the relocation pointer and count within section SEC to the values
-     REL and COUNT.  The argument ABFD is ignored.
+ -- Function: void bfd_set_reloc (bfd *abfd, asection *sec, arelent
+          **rel, unsigned int count);
+     Set the relocation pointer and count within section SEC to the
+     values REL and COUNT.  The argument ABFD is ignored.
           #define bfd_set_reloc(abfd, asect, location, count) \
                  BFD_SEND (abfd, _bfd_set_reloc, (abfd, asect, location, count))
 
@@ -1495,11 +1495,11 @@ is assumed that the instance implements all methods listed below).
 ...................
 
  -- Function: void *bfd_mmap (bfd *abfd, void *addr, bfd_size_type len,
-     int prot, int flags, file_ptr offset, void **map_addr,
-     bfd_size_type *map_len); Return mmap()ed region of the file, if
-     possible and implemented.  LEN and OFFSET do not need to be page
-     aligned.  The page aligned address and length are written to
-     MAP_ADDR and MAP_LEN.
+          int prot, int flags, file_ptr offset, void **map_addr,
+          bfd_size_type *map_len);
+     Return mmap()ed region of the file, if possible and implemented.
+     LEN and OFFSET do not need to be page aligned.  The page aligned
+     address and length are written to MAP_ADDR and MAP_LEN.
 
 
 File: bfd.info,  Node: Memory Usage,  Next: Sections,  Prev: Miscellaneous,  Up: BFD front end
@@ -2281,11 +2281,12 @@ These are the functions exported by the section handling part of BFD.
 2.5.5.5 'bfd_get_section_by_name_if'
 ....................................
 
- -- Function: asection *bfd_get_section_by_name_if
-     (bfd *abfd, const char *name, bool (*func) (bfd *abfd, asection
-     *sect, void *obj), void *obj); Call the provided function FUNC for
-     each section attached to the BFD ABFD whose name matches NAME,
-     passing OBJ as an argument.  The function will be called as if by
+ -- Function: asection *bfd_get_section_by_name_if (bfd *abfd, const
+          char *name, bool (*func) (bfd *abfd, asection *sect, void
+          *obj), void *obj);
+     Call the provided function FUNC for each section attached to the
+     BFD ABFD whose name matches NAME, passing OBJ as an argument.  The
+     function will be called as if by
 
                  func (abfd, the_section, obj);
 
@@ -2295,12 +2296,13 @@ These are the functions exported by the section handling part of BFD.
 2.5.5.6 'bfd_get_unique_section_name'
 .....................................
 
- -- Function: char *bfd_get_unique_section_name
-     (bfd *abfd, const char *templat, int *count); Invent a section name
-     that is unique in ABFD by tacking a dot and a digit suffix onto the
-     original TEMPLAT.  If COUNT is non-NULL, then it specifies the
-     first number tried as a suffix to generate a unique name.  The
-     value pointed to by COUNT will be incremented in this case.
+ -- Function: char *bfd_get_unique_section_name (bfd *abfd, const char
+          *templat, int *count);
+     Invent a section name that is unique in ABFD by tacking a dot and a
+     digit suffix onto the original TEMPLAT.  If COUNT is non-NULL, then
+     it specifies the first number tried as a suffix to generate a
+     unique name.  The value pointed to by COUNT will be incremented in
+     this case.
 
 2.5.5.7 'bfd_make_section_old_way'
 ..................................
@@ -2324,12 +2326,12 @@ These are the functions exported by the section handling part of BFD.
 2.5.5.8 'bfd_make_section_anyway_with_flags'
 ............................................
 
- -- Function: asection *bfd_make_section_anyway_with_flags
-     (bfd *abfd, const char *name, flagword flags); Create a new empty
-     section called NAME and attach it to the end of the chain of
-     sections for ABFD.  Create a new section even if there is already a
-     section with that name.  Also set the attributes of the new section
-     to the value FLAGS.
+ -- Function: asection *bfd_make_section_anyway_with_flags (bfd *abfd,
+          const char *name, flagword flags);
+     Create a new empty section called NAME and attach it to the end of
+     the chain of sections for ABFD.  Create a new section even if there
+     is already a section with that name.  Also set the attributes of
+     the new section to the value FLAGS.
 
      Return 'NULL' and set 'bfd_error' on error; possible errors are:
 
@@ -2355,9 +2357,9 @@ These are the functions exported by the section handling part of BFD.
 2.5.5.10 'bfd_make_section_with_flags'
 ......................................
 
- -- Function: asection *bfd_make_section_with_flags
-     (bfd *, const char *name, flagword flags); Like
-     'bfd_make_section_anyway', but return 'NULL' (without calling
+ -- Function: asection *bfd_make_section_with_flags (bfd *, const char
+          *name, flagword flags);
+     Like 'bfd_make_section_anyway', but return 'NULL' (without calling
      bfd_set_error ()) without changing the section chain if there is
      already a section named NAME.  Also set the attributes of the new
      section to the value FLAGS.  If there is an error, return 'NULL'
@@ -2387,18 +2389,18 @@ These are the functions exported by the section handling part of BFD.
 2.5.5.13 'bfd_rename_section'
 .............................
 
- -- Function: void bfd_rename_section
-     (asection *sec, const char *newname); Rename section SEC to
-     NEWNAME.
+ -- Function: void bfd_rename_section (asection *sec, const char
+          *newname);
+     Rename section SEC to NEWNAME.
 
 2.5.5.14 'bfd_map_over_sections'
 ................................
 
- -- Function: void bfd_map_over_sections
-     (bfd *abfd, void (*func) (bfd *abfd, asection *sect, void *obj),
-     void *obj); Call the provided function FUNC for each section
-     attached to the BFD ABFD, passing OBJ as an argument.  The function
-     will be called as if by
+ -- Function: void bfd_map_over_sections (bfd *abfd, void (*func) (bfd
+          *abfd, asection *sect, void *obj), void *obj);
+     Call the provided function FUNC for each section attached to the
+     BFD ABFD, passing OBJ as an argument.  The function will be called
+     as if by
 
                  func (abfd, the_section, obj);
 
@@ -2412,11 +2414,12 @@ These are the functions exported by the section handling part of BFD.
 2.5.5.15 'bfd_sections_find_if'
 ...............................
 
- -- Function: asection *bfd_sections_find_if
-     (bfd *abfd, bool (*operation) (bfd *abfd, asection *sect, void
-     *obj), void *obj); Call the provided function OPERATION for each
-     section attached to the BFD ABFD, passing OBJ as an argument.  The
-     function will be called as if by
+ -- Function: asection *bfd_sections_find_if (bfd *abfd, bool
+          (*operation) (bfd *abfd, asection *sect, void *obj), void
+          *obj);
+     Call the provided function OPERATION for each section attached to
+     the BFD ABFD, passing OBJ as an argument.  The function will be
+     called as if by
 
                  operation (abfd, the_section, obj);
 
@@ -2438,12 +2441,12 @@ These are the functions exported by the section handling part of BFD.
 2.5.5.17 'bfd_set_section_contents'
 ...................................
 
- -- Function: bool bfd_set_section_contents
-     (bfd *abfd, asection *section, const void *data, file_ptr offset,
-     bfd_size_type count); Sets the contents of the section SECTION in
-     BFD ABFD to the data starting in memory at LOCATION.  The data is
-     written to the output section starting at offset OFFSET for COUNT
-     octets.
+ -- Function: bool bfd_set_section_contents (bfd *abfd, asection
+          *section, const void *data, file_ptr offset, bfd_size_type
+          count);
+     Sets the contents of the section SECTION in BFD ABFD to the data
+     starting in memory at LOCATION.  The data is written to the output
+     section starting at offset OFFSET for COUNT octets.
 
      Normally 'TRUE' is returned, but 'FALSE' is returned if there was
      an error.  Possible error returns are:
@@ -2460,12 +2463,12 @@ These are the functions exported by the section handling part of BFD.
 2.5.5.18 'bfd_get_section_contents'
 ...................................
 
- -- Function: bool bfd_get_section_contents
-     (bfd *abfd, asection *section, void *location, file_ptr offset,
-     bfd_size_type count); Read data from SECTION in BFD ABFD into
-     memory starting at LOCATION.  The data is read at an offset of
-     OFFSET from the start of the input section, and is read for COUNT
-     bytes.
+ -- Function: bool bfd_get_section_contents (bfd *abfd, asection
+          *section, void *location, file_ptr offset, bfd_size_type
+          count);
+     Read data from SECTION in BFD ABFD into memory starting at
+     LOCATION.  The data is read at an offset of OFFSET from the start
+     of the input section, and is read for COUNT bytes.
 
      If the contents of a constructor with the 'SEC_CONSTRUCTOR' flag
      set are requested or if the section does not have the
@@ -2475,16 +2478,17 @@ These are the functions exported by the section handling part of BFD.
 2.5.5.19 'bfd_malloc_and_get_section'
 .....................................
 
- -- Function: bool bfd_malloc_and_get_section
-     (bfd *abfd, asection *section, bfd_byte **buf); Read all data from
-     SECTION in BFD ABFD into a buffer, *BUF, malloc'd by this function.
+ -- Function: bool bfd_malloc_and_get_section (bfd *abfd, asection
+          *section, bfd_byte **buf);
+     Read all data from SECTION in BFD ABFD into a buffer, *BUF,
+     malloc'd by this function.
 
 2.5.5.20 'bfd_copy_private_section_data'
 ........................................
 
- -- Function: bool bfd_copy_private_section_data
-     (bfd *ibfd, asection *isec, bfd *obfd, asection *osec); Copy
-     private section information from ISEC in the BFD IBFD to the
+ -- Function: bool bfd_copy_private_section_data (bfd *ibfd, asection
+          *isec, bfd *obfd, asection *osec);
+     Copy private section information from ISEC in the BFD IBFD to the
      section OSEC in the BFD OBFD.  Return 'TRUE' on success, 'FALSE' on
      error.  Possible error returns are:
 
@@ -2882,10 +2886,10 @@ number of symbol pointers, not including the NULL.
 2.6.5.6 'bfd_set_symtab'
 ........................
 
- -- Function: bool bfd_set_symtab
-     (bfd *abfd, asymbol **location, unsigned int count); Arrange that
-     when the output BFD ABFD is closed, the table LOCATION of COUNT
-     pointers to symbols will be written.
+ -- Function: bool bfd_set_symtab (bfd *abfd, asymbol **location,
+          unsigned int count);
+     Arrange that when the output BFD ABFD is closed, the table LOCATION
+     of COUNT pointers to symbols will be written.
 
 2.6.5.7 'bfd_print_symbol_vandf'
 ................................
@@ -2951,11 +2955,11 @@ debugging symbol.  Further details of its use have yet to be worked out.
 2.6.5.14 'bfd_copy_private_symbol_data'
 .......................................
 
- -- Function: bool bfd_copy_private_symbol_data
-     (bfd *ibfd, asymbol *isym, bfd *obfd, asymbol *osym); Copy private
-     symbol information from ISYM in the BFD IBFD to the symbol OSYM in
-     the BFD OBFD.  Return 'TRUE' on success, 'FALSE' on error.
-     Possible error returns are:
+ -- Function: bool bfd_copy_private_symbol_data (bfd *ibfd, asymbol
+          *isym, bfd *obfd, asymbol *osym);
+     Copy private symbol information from ISYM in the BFD IBFD to the
+     symbol OSYM in the BFD OBFD.  Return 'TRUE' on success, 'FALSE' on
+     error.  Possible error returns are:
 
         * 'bfd_error_no_memory' - Not enough memory exists to create
           private data for OSEC.
@@ -3024,11 +3028,11 @@ anyway, so this shouldn't be much of a restriction.
 2.7.1.1 'bfd_get_next_mapent'
 .............................
 
- -- Function: symindex bfd_get_next_mapent
-     (bfd *abfd, symindex previous, carsym **sym); Step through archive
-     ABFD's symbol table (if it has one).  Successively update SYM with
-     the next symbol's information, returning that symbol's (internal)
-     index into the symbol table.
+ -- Function: symindex bfd_get_next_mapent (bfd *abfd, symindex
+          previous, carsym **sym);
+     Step through archive ABFD's symbol table (if it has one).
+     Successively update SYM with the next symbol's information,
+     returning that symbol's (internal) index into the symbol table.
 
      Supply 'BFD_NO_MORE_SYMBOLS' as the PREVIOUS entry to get the first
      one; returns 'BFD_NO_MORE_SYMBOLS' when you've already got the last
@@ -3111,13 +3115,14 @@ supported by BFD are:
 2.8.1.2 'bfd_check_format_matches'
 ..................................
 
- -- Function: bool bfd_check_format_matches
-     (bfd *abfd, bfd_format format, char ***matching); Like
-     'bfd_check_format', except when it returns FALSE with 'bfd_errno'
-     set to 'bfd_error_file_ambiguously_recognized'.  In that case, if
-     MATCHING is not NULL, it will be filled in with a NULL-terminated
-     list of the names of the formats that matched, allocated with
-     'malloc'.  Then the user may choose a format and try again.
+ -- Function: bool bfd_check_format_matches (bfd *abfd, bfd_format
+          format, char ***matching);
+     Like 'bfd_check_format', except when it returns FALSE with
+     'bfd_errno' set to 'bfd_error_file_ambiguously_recognized'.  In
+     that case, if MATCHING is not NULL, it will be filled in with a
+     NULL-terminated list of the names of the formats that matched,
+     allocated with 'malloc'.  Then the user may choose a format and try
+     again.
 
      When done with the list that MATCHING points to, the caller should
      free it.
@@ -3492,31 +3497,31 @@ How relocs are tied together in an 'asection':
 2.9.1.5 'bfd_check_overflow'
 ............................
 
- -- Function: bfd_reloc_status_type bfd_check_overflow
-     (enum complain_overflow how, unsigned int bitsize, unsigned int
-     rightshift, unsigned int addrsize, bfd_vma relocation); Perform
-     overflow checking on RELOCATION which has BITSIZE significant bits
-     and will be shifted right by RIGHTSHIFT bits, on a machine with
-     addresses containing ADDRSIZE significant bits.  The result is
-     either of 'bfd_reloc_ok' or 'bfd_reloc_overflow'.
+ -- Function: bfd_reloc_status_type bfd_check_overflow (enum
+          complain_overflow how, unsigned int bitsize, unsigned int
+          rightshift, unsigned int addrsize, bfd_vma relocation);
+     Perform overflow checking on RELOCATION which has BITSIZE
+     significant bits and will be shifted right by RIGHTSHIFT bits, on a
+     machine with addresses containing ADDRSIZE significant bits.  The
+     result is either of 'bfd_reloc_ok' or 'bfd_reloc_overflow'.
 
 2.9.1.6 'bfd_reloc_offset_in_range'
 ...................................
 
- -- Function: bool bfd_reloc_offset_in_range
-     (reloc_howto_type *howto, bfd *abfd, asection *section,
-     bfd_size_type offset); Returns TRUE if the reloc described by HOWTO
-     can be applied at OFFSET octets in SECTION.
+ -- Function: bool bfd_reloc_offset_in_range (reloc_howto_type *howto,
+          bfd *abfd, asection *section, bfd_size_type offset);
+     Returns TRUE if the reloc described by HOWTO can be applied at
+     OFFSET octets in SECTION.
 
 2.9.1.7 'bfd_perform_relocation'
 ................................
 
- -- Function: bfd_reloc_status_type bfd_perform_relocation
-     (bfd *abfd, arelent *reloc_entry, void *data, asection
-     *input_section, bfd *output_bfd, char **error_message); If
-     OUTPUT_BFD is supplied to this function, the generated image will
-     be relocatable; the relocations are copied to the output file after
-     they have been changed to reflect the new state of the world.
+ -- Function: bfd_reloc_status_type bfd_perform_relocation (bfd *abfd,
+          arelent *reloc_entry, void *data, asection *input_section, bfd
+          *output_bfd, char **error_message);
+     If OUTPUT_BFD is supplied to this function, the generated image
+     will be relocatable; the relocations are copied to the output file
+     after they have been changed to reflect the new state of the world.
      There are two ways of reflecting the results of partial linkage in
      an output file: by modifying the output data in place, and by
      modifying the relocation record.  Some native formats (e.g., basic
@@ -3531,12 +3536,13 @@ How relocs are tied together in an 'asection':
 2.9.1.8 'bfd_install_relocation'
 ................................
 
- -- Function: bfd_reloc_status_type bfd_install_relocation
-     (bfd *abfd, arelent *reloc_entry, void *data, bfd_vma data_start,
-     asection *input_section, char **error_message); This looks
-     remarkably like 'bfd_perform_relocation', except it does not expect
-     that the section contents have been filled in.  I.e., it's suitable
-     for use when creating, rather than applying a relocation.
+ -- Function: bfd_reloc_status_type bfd_install_relocation (bfd *abfd,
+          arelent *reloc_entry, void *data, bfd_vma data_start, asection
+          *input_section, char **error_message);
+     This looks remarkably like 'bfd_perform_relocation', except it does
+     not expect that the section contents have been filled in.  I.e.,
+     it's suitable for use when creating, rather than applying a
+     relocation.
 
      For now, this function should be considered reserved for the
      assembler.
@@ -7077,18 +7083,18 @@ attributes.
 2.9.2.2 'bfd_reloc_type_lookup'
 ...............................
 
- -- Function: reloc_howto_type *bfd_reloc_type_lookup
-     (bfd *abfd, bfd_reloc_code_real_type code); reloc_howto_type
-     *bfd_reloc_name_lookup (bfd *abfd, const char *reloc_name); Return
-     a pointer to a howto structure which, when invoked, will perform
-     the relocation CODE on data from the architecture noted.
+ -- Function: reloc_howto_type *bfd_reloc_type_lookup (bfd *abfd,
+          bfd_reloc_code_real_type code); reloc_howto_type
+          *bfd_reloc_name_lookup (bfd *abfd, const char *reloc_name);
+     Return a pointer to a howto structure which, when invoked, will
+     perform the relocation CODE on data from the architecture noted.
 
 2.9.2.3 'bfd_default_reloc_type_lookup'
 .......................................
 
- -- Function: reloc_howto_type *bfd_default_reloc_type_lookup
-     (bfd *abfd, bfd_reloc_code_real_type code); Provides a default
-     relocation lookup routine for any architecture.
+ -- Function: reloc_howto_type *bfd_default_reloc_type_lookup (bfd
+          *abfd, bfd_reloc_code_real_type code);
+     Provides a default relocation lookup routine for any architecture.
 
 2.9.2.4 'bfd_get_reloc_code_name'
 .................................
@@ -7101,59 +7107,61 @@ attributes.
 2.9.2.5 'bfd_generic_relax_section'
 ...................................
 
- -- Function: bool bfd_generic_relax_section
-     (bfd *abfd, asection *section, struct bfd_link_info *, bool *);
+ -- Function: bool bfd_generic_relax_section (bfd *abfd, asection
+          *section, struct bfd_link_info *, bool *);
      Provides default handling for relaxing for back ends which don't do
      relaxing.
 
 2.9.2.6 'bfd_generic_gc_sections'
 .................................
 
- -- Function: bool bfd_generic_gc_sections
-     (bfd *, struct bfd_link_info *); Provides default handling for
-     relaxing for back ends which don't do section gc - i.e., does
-     nothing.
+ -- Function: bool bfd_generic_gc_sections (bfd *, struct bfd_link_info
+          *);
+     Provides default handling for relaxing for back ends which don't do
+     section gc - i.e., does nothing.
 
 2.9.2.7 'bfd_generic_lookup_section_flags'
 ..........................................
 
- -- Function: bool bfd_generic_lookup_section_flags
-     (struct bfd_link_info *, struct flag_info *, asection *); Provides
-     default handling for section flags lookup - i.e., does nothing.
-     Returns FALSE if the section should be omitted, otherwise TRUE.
+ -- Function: bool bfd_generic_lookup_section_flags (struct
+          bfd_link_info *, struct flag_info *, asection *);
+     Provides default handling for section flags lookup - i.e., does
+     nothing.  Returns FALSE if the section should be omitted, otherwise
+     TRUE.
 
 2.9.2.8 'bfd_generic_merge_sections'
 ....................................
 
- -- Function: bool bfd_generic_merge_sections
-     (bfd *, struct bfd_link_info *); Provides default handling for
-     SEC_MERGE section merging for back ends which don't have SEC_MERGE
-     support - i.e., does nothing.
+ -- Function: bool bfd_generic_merge_sections (bfd *, struct
+          bfd_link_info *);
+     Provides default handling for SEC_MERGE section merging for back
+     ends which don't have SEC_MERGE support - i.e., does nothing.
 
 2.9.2.9 'bfd_generic_get_relocated_section_contents'
 ....................................................
 
- -- Function: bfd_byte *bfd_generic_get_relocated_section_contents
-     (bfd *abfd, struct bfd_link_info *link_info, struct bfd_link_order
-     *link_order, bfd_byte *data, bool relocatable, asymbol **symbols);
+ -- Function: bfd_byte *bfd_generic_get_relocated_section_contents (bfd
+          *abfd, struct bfd_link_info *link_info, struct bfd_link_order
+          *link_order, bfd_byte *data, bool relocatable, asymbol
+          **symbols);
      Provides default handling of relocation effort for back ends which
      can't be bothered to do it efficiently.
 
 2.9.2.10 '_bfd_generic_set_reloc'
 .................................
 
- -- Function: void _bfd_generic_set_reloc
-     (bfd *abfd, sec_ptr section, arelent **relptr, unsigned int count);
+ -- Function: void _bfd_generic_set_reloc (bfd *abfd, sec_ptr section,
+          arelent **relptr, unsigned int count);
      Installs a new set of internal relocations in SECTION.
 
 2.9.2.11 '_bfd_unrecognized_reloc'
 ..................................
 
- -- Function: bool _bfd_unrecognized_reloc
-     (bfd * abfd, sec_ptr section, unsigned int r_type); Reports an
-     unrecognized reloc.  Written as a function in order to reduce code
-     duplication.  Returns FALSE so that it can be called from a return
-     statement.
+ -- Function: bool _bfd_unrecognized_reloc (bfd * abfd, sec_ptr section,
+          unsigned int r_type);
+     Reports an unrecognized reloc.  Written as a function in order to
+     reduce code duplication.  Returns FALSE so that it can be called
+     from a return statement.
 
 
 File: bfd.info,  Node: Core Files,  Next: Targets,  Prev: Relocations,  Up: BFD front end
@@ -7190,19 +7198,20 @@ These are functions pertaining to core files.
 2.10.1.4 'core_file_matches_executable_p'
 .........................................
 
- -- Function: bool core_file_matches_executable_p
-     (bfd *core_bfd, bfd *exec_bfd); Return 'TRUE' if the core file
-     attached to CORE_BFD was generated by a run of the executable file
-     attached to EXEC_BFD, 'FALSE' otherwise.
+ -- Function: bool core_file_matches_executable_p (bfd *core_bfd, bfd
+          *exec_bfd);
+     Return 'TRUE' if the core file attached to CORE_BFD was generated
+     by a run of the executable file attached to EXEC_BFD, 'FALSE'
+     otherwise.
 
 2.10.1.5 'generic_core_file_matches_executable_p'
 .................................................
 
- -- Function: bool generic_core_file_matches_executable_p
-     (bfd *core_bfd, bfd *exec_bfd); Return TRUE if the core file
-     attached to CORE_BFD was generated by a run of the executable file
-     attached to EXEC_BFD.  The match is based on executable basenames
-     only.
+ -- Function: bool generic_core_file_matches_executable_p (bfd
+          *core_bfd, bfd *exec_bfd);
+     Return TRUE if the core file attached to CORE_BFD was generated by
+     a run of the executable file attached to EXEC_BFD.  The match is
+     based on executable basenames only.
 
      Note: When not able to determine the core file failing command or
      the executable name, we still return TRUE even though we're not
@@ -7881,24 +7890,24 @@ to find an alternative output format that is suitable.
 ..............................
 
  -- Function: const bfd_target *bfd_get_target_info (const char
-          *target_name,
-     bfd *abfd, bool *is_bigendian, int *underscoring, const char
-     **def_target_arch); Return a pointer to the transfer vector for the
-     object target named TARGET_NAME.  If TARGET_NAME is 'NULL', choose
-     the one in the environment variable 'GNUTARGET'; if that is null or
-     not defined, then choose the first entry in the target list.
-     Passing in the string "default" or setting the environment variable
-     to "default" will cause the first entry in the target list to be
-     returned, and "target_defaulted" will be set in the BFD if ABFD
-     isn't 'NULL'.  This causes 'bfd_check_format' to loop over all the
-     targets to find the one that matches the file being read.  If
-     IS_BIGENDIAN is not 'NULL', then set this value to target's endian
-     mode.  True for big-endian, FALSE for little-endian or for invalid
-     target.  If UNDERSCORING is not 'NULL', then set this value to
-     target's underscoring mode.  Zero for none-underscoring, -1 for
-     invalid target, else the value of target vector's symbol
-     underscoring.  If DEF_TARGET_ARCH is not 'NULL', then set it to the
-     architecture string specified by the target_name.
+          *target_name, bfd *abfd, bool *is_bigendian, int
+          *underscoring, const char **def_target_arch);
+     Return a pointer to the transfer vector for the object target named
+     TARGET_NAME.  If TARGET_NAME is 'NULL', choose the one in the
+     environment variable 'GNUTARGET'; if that is null or not defined,
+     then choose the first entry in the target list.  Passing in the
+     string "default" or setting the environment variable to "default"
+     will cause the first entry in the target list to be returned, and
+     "target_defaulted" will be set in the BFD if ABFD isn't 'NULL'.
+     This causes 'bfd_check_format' to loop over all the targets to find
+     the one that matches the file being read.  If IS_BIGENDIAN is not
+     'NULL', then set this value to target's endian mode.  True for
+     big-endian, FALSE for little-endian or for invalid target.  If
+     UNDERSCORING is not 'NULL', then set this value to target's
+     underscoring mode.  Zero for none-underscoring, -1 for invalid
+     target, else the value of target vector's symbol underscoring.  If
+     DEF_TARGET_ARCH is not 'NULL', then set it to the architecture
+     string specified by the target_name.
 
 2.11.1.5 'bfd_target_list'
 ..........................
@@ -7910,11 +7919,12 @@ to find an alternative output format that is suitable.
 2.11.1.6 'bfd_iterate_over_targets'
 ...................................
 
- -- Function: const bfd_target *bfd_iterate_over_targets
-     (int (*func) (const bfd_target *, void *), void *data); Call FUNC
-     for each target in the list of BFD target vectors, passing DATA to
-     FUNC.  Stop iterating if FUNC returns a non-zero result, and return
-     that target vector.  Return NULL if FUNC always returns zero.
+ -- Function: const bfd_target *bfd_iterate_over_targets (int (*func)
+          (const bfd_target *, void *), void *data);
+     Call FUNC for each target in the list of BFD target vectors,
+     passing DATA to FUNC.  Stop iterating if FUNC returns a non-zero
+     result, and return that target vector.  Return NULL if FUNC always
+     returns zero.
 
 2.11.1.7 'bfd_flavour_name'
 ...........................
@@ -8528,12 +8538,12 @@ This structure contains information on architectures for use within BFD.
 2.12.2.4 'bfd_arch_get_compatible'
 ..................................
 
- -- Function: const bfd_arch_info_type *bfd_arch_get_compatible
-     (const bfd *abfd, const bfd *bbfd, bool accept_unknowns); Determine
-     whether two BFDs' architectures and machine types are compatible.
-     Calculates the lowest common denominator between the two
-     architectures and machine types implied by the BFDs and returns a
-     pointer to an 'arch_info' structure describing the compatible
+ -- Function: const bfd_arch_info_type *bfd_arch_get_compatible (const
+          bfd *abfd, const bfd *bbfd, bool accept_unknowns);
+     Determine whether two BFDs' architectures and machine types are
+     compatible.  Calculates the lowest common denominator between the
+     two architectures and machine types implied by the BFDs and returns
+     a pointer to an 'arch_info' structure describing the compatible
      machine.
 
 2.12.2.5 'bfd_default_arch_struct'
@@ -8555,9 +8565,9 @@ the real architecture of the file.
 2.12.2.7 'bfd_default_set_arch_mach'
 ....................................
 
- -- Function: bool bfd_default_set_arch_mach
-     (bfd *abfd, enum bfd_architecture arch, unsigned long mach); Set
-     the architecture and machine type in BFD ABFD to ARCH and MACH.
+ -- Function: bool bfd_default_set_arch_mach (bfd *abfd, enum
+          bfd_architecture arch, unsigned long mach);
+     Set the architecture and machine type in BFD ABFD to ARCH and MACH.
      Find the correct pointer to a structure and insert it into the
      'arch_info' pointer.
 
@@ -8591,17 +8601,17 @@ the real architecture of the file.
 2.12.2.12 'bfd_default_compatible'
 ..................................
 
- -- Function: const bfd_arch_info_type *bfd_default_compatible
-     (const bfd_arch_info_type *a, const bfd_arch_info_type *b); The
-     default function for testing for compatibility.
+ -- Function: const bfd_arch_info_type *bfd_default_compatible (const
+          bfd_arch_info_type *a, const bfd_arch_info_type *b);
+     The default function for testing for compatibility.
 
 2.12.2.13 'bfd_default_scan'
 ............................
 
- -- Function: bool bfd_default_scan
-     (const struct bfd_arch_info *info, const char *string); The default
-     function for working out whether this is an architecture hit and a
-     machine hit.
+ -- Function: bool bfd_default_scan (const struct bfd_arch_info *info,
+          const char *string);
+     The default function for working out whether this is an
+     architecture hit and a machine hit.
 
 2.12.2.14 'bfd_get_arch_info'
 .............................
@@ -8612,36 +8622,37 @@ the real architecture of the file.
 2.12.2.15 'bfd_lookup_arch'
 ...........................
 
- -- Function: const bfd_arch_info_type *bfd_lookup_arch
-     (enum bfd_architecture arch, unsigned long machine); Look for the
-     architecture info structure which matches the arguments ARCH and
-     MACHINE.  A machine of 0 matches the machine/architecture structure
-     which marks itself as the default.
+ -- Function: const bfd_arch_info_type *bfd_lookup_arch (enum
+          bfd_architecture arch, unsigned long machine);
+     Look for the architecture info structure which matches the
+     arguments ARCH and MACHINE.  A machine of 0 matches the
+     machine/architecture structure which marks itself as the default.
 
 2.12.2.16 'bfd_printable_arch_mach'
 ...................................
 
- -- Function: const char *bfd_printable_arch_mach
-     (enum bfd_architecture arch, unsigned long machine); Return a
-     printable string representing the architecture and machine type.
+ -- Function: const char *bfd_printable_arch_mach (enum bfd_architecture
+          arch, unsigned long machine);
+     Return a printable string representing the architecture and machine
+     type.
 
      This routine is depreciated.
 
 2.12.2.17 'bfd_octets_per_byte'
 ...............................
 
- -- Function: unsigned int bfd_octets_per_byte (const bfd *abfd,
-     const asection *sec); Return the number of octets (8-bit
-     quantities) per target byte (minimum addressable unit).  In most
-     cases, this will be one, but some DSP targets have 16, 32, or even
-     48 bits per byte.
+ -- Function: unsigned int bfd_octets_per_byte (const bfd *abfd, const
+          asection *sec);
+     Return the number of octets (8-bit quantities) per target byte
+     (minimum addressable unit).  In most cases, this will be one, but
+     some DSP targets have 16, 32, or even 48 bits per byte.
 
 2.12.2.18 'bfd_arch_mach_octets_per_byte'
 .........................................
 
- -- Function: unsigned int bfd_arch_mach_octets_per_byte
-     (enum bfd_architecture arch, unsigned long machine); See
-     bfd_octets_per_byte.
+ -- Function: unsigned int bfd_arch_mach_octets_per_byte (enum
+          bfd_architecture arch, unsigned long machine);
+     See bfd_octets_per_byte.
 
      This routine is provided for those cases where a bfd * is not
      available
@@ -8649,16 +8660,14 @@ the real architecture of the file.
 2.12.2.19 'bfd_arch_default_fill'
 .................................
 
- -- Function: void *bfd_arch_default_fill (bfd_size_type count,
-     bool is_bigendian, bool code); Allocate via bfd_malloc and return a
-     fill buffer of size COUNT. If IS_BIGENDIAN is TRUE, the order of
-     bytes is big endian.  If CODE is TRUE, the buffer contains code.
+ -- Function: void *bfd_arch_default_fill (bfd_size_type count, bool
+          is_bigendian, bool code);
+     Allocate via bfd_malloc and return a fill buffer of size COUNT. If
+     IS_BIGENDIAN is TRUE, the order of bytes is big endian.  If CODE is
+     TRUE, the buffer contains code.
 
 
 File: bfd.info,  Node: Opening and Closing,  Next: File Caching,  Prev: Architectures,  Up: BFD front end
-
-     /* Set to N to open the next N BFDs using an alternate id space.  */
-     extern unsigned int bfd_use_reserved_id;
 
 2.13 Opening and closing BFDs
 =============================
@@ -8666,14 +8675,18 @@ File: bfd.info,  Node: Opening and Closing,  Next: File Caching,  Prev: Architec
 2.13.1 Functions for opening and closing
 ----------------------------------------
 
+     /* Set to N to open the next N BFDs using an alternate id space.  */
+     extern unsigned int bfd_use_reserved_id;
+
 2.13.1.1 'bfd_fopen'
 ....................
 
  -- Function: bfd *bfd_fopen (const char *filename, const char *target,
-     const char *mode, int fd); Open the file FILENAME with the target
-     TARGET.  Return a pointer to the created BFD. If FD is not -1, then
-     'fdopen' is used to open the file; otherwise, 'fopen' is used.
-     MODE is passed directly to 'fopen' or 'fdopen'.
+          const char *mode, int fd);
+     Open the file FILENAME with the target TARGET.  Return a pointer to
+     the created BFD. If FD is not -1, then 'fdopen' is used to open the
+     file; otherwise, 'fopen' is used.  MODE is passed directly to
+     'fopen' or 'fdopen'.
 
      Calls 'bfd_find_target', so TARGET is interpreted as by that
      function.
@@ -8744,10 +8757,9 @@ File: bfd.info,  Node: Opening and Closing,  Next: File Caching,  Prev: Architec
 ..........................
 
  -- Function: bfd *bfd_openstreamr (const char * filename, const char *
-          target,
-     void * stream); Open a BFD for read access on an existing stdio
-     stream.  When the BFD is passed to 'bfd_close', the stream will be
-     closed.
+          target, void * stream);
+     Open a BFD for read access on an existing stdio stream.  When the
+     BFD is passed to 'bfd_close', the stream will be closed.
 
      A copy of the FILENAME argument is stored in the newly created BFD.
      It can be accessed via the bfd_get_filename() macro.
@@ -8756,15 +8768,15 @@ File: bfd.info,  Node: Opening and Closing,  Next: File Caching,  Prev: Architec
 ..........................
 
  -- Function: bfd *bfd_openr_iovec (const char *filename, const char
-          *target,
-     void *(*open_func) (struct bfd *nbfd, void *open_closure), void
-     *open_closure, file_ptr (*pread_func) (struct bfd *nbfd, void
-     *stream, void *buf, file_ptr nbytes, file_ptr offset), int
-     (*close_func) (struct bfd *nbfd, void *stream), int (*stat_func)
-     (struct bfd *abfd, void *stream, struct stat *sb)); Create and
-     return a BFD backed by a read-only STREAM.  The STREAM is created
-     using OPEN_FUNC, accessed using PREAD_FUNC and destroyed using
-     CLOSE_FUNC.
+          *target, void *(*open_func) (struct bfd *nbfd, void
+          *open_closure), void *open_closure, file_ptr (*pread_func)
+          (struct bfd *nbfd, void *stream, void *buf, file_ptr nbytes,
+          file_ptr offset), int (*close_func) (struct bfd *nbfd, void
+          *stream), int (*stat_func) (struct bfd *abfd, void *stream,
+          struct stat *sb));
+     Create and return a BFD backed by a read-only STREAM.  The STREAM
+     is created using OPEN_FUNC, accessed using PREAD_FUNC and destroyed
+     using CLOSE_FUNC.
 
      Calls 'bfd_find_target', so TARGET is interpreted as by that
      function.
@@ -8890,35 +8902,15 @@ File: bfd.info,  Node: Opening and Closing,  Next: File Caching,  Prev: Architec
 2.13.1.15 'bfd_calc_gnu_debuglink_crc32'
 ........................................
 
- -- Function: unsigned long bfd_calc_gnu_debuglink_crc32
-     (unsigned long crc, const unsigned char *buf, bfd_size_type len);
+ -- Function: unsigned long bfd_calc_gnu_debuglink_crc32 (unsigned long
+          crc, const unsigned char *buf, bfd_size_type len);
      Computes a CRC value as used in the .gnu_debuglink section.
      Advances the previously computed CRC value by computing and adding
      in the crc32 for LEN bytes of BUF.
 
      Return the updated CRC32 value.
 
-2.13.1.16 'bfd_get_debug_link_info_1'
-.....................................
-
- -- Function: char *bfd_get_debug_link_info_1 (bfd *abfd, void
-          *crc32_out);
-     Extracts the filename and CRC32 value for any separate debug
-     information file associated with ABFD.
-
-     The CRC32_OUT parameter is an untyped pointer because this routine
-     is used as a 'get_func_type' function, but it is expected to be an
-     unsigned long pointer.
-
-     Returns the filename of the associated debug information file, or
-     NULL if there is no such file.  If the filename was found then the
-     contents of CRC32_OUT are updated to hold the corresponding CRC32
-     value for the file.
-
-     The returned filename is allocated with 'malloc'; freeing it is the
-     responsibility of the caller.
-
-2.13.1.17 'bfd_get_debug_link_info'
+2.13.1.16 'bfd_get_debug_link_info'
 ...................................
 
  -- Function: char *bfd_get_debug_link_info (bfd *abfd, unsigned long
@@ -8934,57 +8926,18 @@ File: bfd.info,  Node: Opening and Closing,  Next: File Caching,  Prev: Architec
      The returned filename is allocated with 'malloc'; freeing it is the
      responsibility of the caller.
 
-2.13.1.18 'bfd_get_alt_debug_link_info'
+2.13.1.17 'bfd_get_alt_debug_link_info'
 .......................................
 
  -- Function: char *bfd_get_alt_debug_link_info (bfd * abfd,
-     bfd_size_type *buildid_len, bfd_byte **buildid_out); Fetch the
-     filename and BuildID value for any alternate debuginfo associated
-     with ABFD.  Return NULL if no such info found, otherwise return
-     filename and update BUILDID_LEN and BUILDID_OUT.  The returned
-     filename and build_id are allocated with 'malloc'; freeing them is
-     the responsibility of the caller.
+          bfd_size_type *buildid_len, bfd_byte **buildid_out);
+     Fetch the filename and BuildID value for any alternate debuginfo
+     associated with ABFD.  Return NULL if no such info found, otherwise
+     return filename and update BUILDID_LEN and BUILDID_OUT.  The
+     returned filename and build_id are allocated with 'malloc'; freeing
+     them is the responsibility of the caller.
 
-2.13.1.19 'separate_debug_file_exists'
-......................................
-
- -- Function: bool separate_debug_file_exists
-     (char *name, void *crc32_p); Checks to see if NAME is a file and if
-     its contents match CRC32, which is a pointer to an 'unsigned long'
-     containing a CRC32.
-
-     The CRC32_P parameter is an untyped pointer because this routine is
-     used as a 'check_func_type' function.
-
-2.13.1.20 'separate_alt_debug_file_exists'
-..........................................
-
- -- Function: bool separate_alt_debug_file_exists
-     (char *name, void *unused); Checks to see if NAME is a file.
-
-2.13.1.21 'find_separate_debug_file'
-....................................
-
- -- Function: char *find_separate_debug_file
-     (bfd *abfd, const char *dir, bool include_dirs, get_func_type get,
-     check_func_type check, void *data); Searches for a debug
-     information file corresponding to ABFD.
-
-     The name of the separate debug info file is returned by the GET
-     function.  This function scans various fixed locations in the
-     filesystem, including the file tree rooted at DIR.  If the
-     INCLUDE_DIRS parameter is true then the directory components of
-     ABFD's filename will be included in the searched locations.
-
-     DATA is passed unmodified to the GET and CHECK functions.  It is
-     generally used to implement build-id-like matching in the callback
-     functions.
-
-     Returns the filename of the first file to be found which receives a
-     TRUE result from the CHECK function.  Returns NULL if no valid file
-     could be found.
-
-2.13.1.22 'bfd_follow_gnu_debuglink'
+2.13.1.18 'bfd_follow_gnu_debuglink'
 ....................................
 
  -- Function: char *bfd_follow_gnu_debuglink (bfd *abfd, const char
@@ -9003,7 +8956,7 @@ File: bfd.info,  Node: Opening and Closing,  Next: File Caching,  Prev: Architec
      otherwise a pointer to a heap-allocated string containing the
      filename.  The caller is responsible for freeing this string.
 
-2.13.1.23 'bfd_follow_gnu_debugaltlink'
+2.13.1.19 'bfd_follow_gnu_debugaltlink'
 .......................................
 
  -- Function: char *bfd_follow_gnu_debugaltlink (bfd *abfd, const char
@@ -9022,69 +8975,32 @@ File: bfd.info,  Node: Opening and Closing,  Next: File Caching,  Prev: Architec
      otherwise a pointer to a heap-allocated string containing the
      filename.  The caller is responsible for freeing this string.
 
-2.13.1.24 'bfd_create_gnu_debuglink_section'
+2.13.1.20 'bfd_create_gnu_debuglink_section'
 ............................................
 
- -- Function: struct bfd_section *bfd_create_gnu_debuglink_section
-     (bfd *abfd, const char *filename); Takes a BFD and adds a
-     .gnu_debuglink section to it.  The section is sized to be big
-     enough to contain a link to the specified FILENAME.
+ -- Function: struct bfd_section *bfd_create_gnu_debuglink_section (bfd
+          *abfd, const char *filename);
+     Takes a BFD and adds a .gnu_debuglink section to it.  The section
+     is sized to be big enough to contain a link to the specified
+     FILENAME.
 
      A pointer to the new section is returned if all is ok.  Otherwise
      'NULL' is returned and bfd_error is set.
 
-2.13.1.25 'bfd_fill_in_gnu_debuglink_section'
+2.13.1.21 'bfd_fill_in_gnu_debuglink_section'
 .............................................
 
- -- Function: bool bfd_fill_in_gnu_debuglink_section
-     (bfd *abfd, struct bfd_section *sect, const char *filename); Takes
-     a BFD and containing a .gnu_debuglink section SECT and fills in the
-     contents of the section to contain a link to the specified
-     FILENAME.  The filename should be relative to the current
-     directory.
+ -- Function: bool bfd_fill_in_gnu_debuglink_section (bfd *abfd, struct
+          bfd_section *sect, const char *filename);
+     Takes a BFD and containing a .gnu_debuglink section SECT and fills
+     in the contents of the section to contain a link to the specified
+     FILENAME.  The filename should be absolute or relative to the
+     current directory.
 
      'TRUE' is returned if all is ok.  Otherwise 'FALSE' is returned and
      bfd_error is set.
 
-2.13.1.26 'get_build_id'
-........................
-
- -- Function: struct bfd_build_id * get_build_id (bfd *abfd);
-     Finds the build-id associated with ABFD.  If the build-id is
-     extracted from the note section then a build-id structure is built
-     for it, using memory allocated to ABFD, and this is then attached
-     to the ABFD.
-
-     Returns a pointer to the build-id structure if a build-id could be
-     found.  If no build-id is found NULL is returned and error code is
-     set.
-
-2.13.1.27 'get_build_id_name'
-.............................
-
- -- Function: char * get_build_id_name (bfd *abfd, void *build_id_out_p)
-     Searches ABFD for a build-id, and then constructs a pathname from
-     it.  The path is computed as .build-id/NN/NN+NN.debug where NNNN+NN
-     is the build-id value as a hexadecimal string.
-
-     Returns the constructed filename or NULL upon error.  It is the
-     caller's responsibility to free the memory used to hold the
-     filename.  If a filename is returned then the BUILD_ID_OUT_P
-     parameter (which points to a 'struct bfd_build_id' pointer) is set
-     to a pointer to the build_id structure.
-
-2.13.1.28 'check_build_id_file'
-...............................
-
- -- Function: bool check_build_id_file (char *name, void *buildid_p);
-     Checks to see if NAME is a readable file and if its build-id
-     matches BUILDID.
-
-     Returns TRUE if the file exists, is readable, and contains a
-     build-id which matches the build-id pointed at by BUILD_ID_P (which
-     is really a 'struct bfd_build_id **').
-
-2.13.1.29 'bfd_follow_build_id_debuglink'
+2.13.1.22 'bfd_follow_build_id_debuglink'
 .........................................
 
  -- Function: char *bfd_follow_build_id_debuglink (bfd *abfd, const char
@@ -9106,7 +9022,7 @@ File: bfd.info,  Node: Opening and Closing,  Next: File Caching,  Prev: Architec
      otherwise a pointer to a heap-allocated string containing the
      filename.  The caller is responsible for freeing this string.
 
-2.13.1.30 'bfd_set_filename'
+2.13.1.23 'bfd_set_filename'
 ............................
 
  -- Function: const char *bfd_set_filename (bfd *abfd, const char
@@ -9527,10 +9443,10 @@ the output file at the end of 'NAME(aout,final_link)'.
 2.15.3.5 'bfd_section_already_linked'
 .....................................
 
- -- Function: bool bfd_section_already_linked (bfd *abfd,
-     asection *sec, struct bfd_link_info *info); Check if DATA has been
-     already linked during a reloceatable or final link.  Return TRUE if
-     it has.
+ -- Function: bool bfd_section_already_linked (bfd *abfd, asection *sec,
+          struct bfd_link_info *info);
+     Check if DATA has been already linked during a reloceatable or
+     final link.  Return TRUE if it has.
           #define bfd_section_already_linked(abfd, sec, info) \
                  BFD_SEND (abfd, _section_already_linked, (abfd, sec, info))
 
@@ -9538,10 +9454,10 @@ the output file at the end of 'NAME(aout,final_link)'.
 2.15.3.6 'bfd_generic_define_common_symbol'
 ...........................................
 
- -- Function: bool bfd_generic_define_common_symbol
-     (bfd *output_bfd, struct bfd_link_info *info, struct
-     bfd_link_hash_entry *h); Convert common symbol H into a defined
-     symbol.  Return TRUE on success and FALSE on failure.
+ -- Function: bool bfd_generic_define_common_symbol (bfd *output_bfd,
+          struct bfd_link_info *info, struct bfd_link_hash_entry *h);
+     Convert common symbol H into a defined symbol.  Return TRUE on
+     success and FALSE on failure.
           #define bfd_define_common_symbol(output_bfd, info, h) \
                  BFD_SEND (output_bfd, _bfd_define_common_symbol, (output_bfd, info, h))
 
@@ -9549,10 +9465,10 @@ the output file at the end of 'NAME(aout,final_link)'.
 2.15.3.7 '_bfd_generic_link_hide_symbol'
 ........................................
 
- -- Function: void _bfd_generic_link_hide_symbol
-     (bfd *output_bfd, struct bfd_link_info *info, struct
-     bfd_link_hash_entry *h); Hide symbol H.  This is an internal
-     function.  It should not be called from outside the BFD library.
+ -- Function: void _bfd_generic_link_hide_symbol (bfd *output_bfd,
+          struct bfd_link_info *info, struct bfd_link_hash_entry *h);
+     Hide symbol H.  This is an internal function.  It should not be
+     called from outside the BFD library.
           #define bfd_link_hide_symbol(output_bfd, info, h) \
                  BFD_SEND (output_bfd, _bfd_link_hide_symbol, (output_bfd, info, h))
 
@@ -9561,7 +9477,8 @@ the output file at the end of 'NAME(aout,final_link)'.
 ........................................
 
  -- Function: struct bfd_link_hash_entry *bfd_generic_define_start_stop
-     (struct bfd_link_info *info, const char *symbol, asection *sec);
+          (struct bfd_link_info *info, const char *symbol, asection
+          *sec);
      Define a __start, __stop, .startof.  or .sizeof.  symbol.  Return
      the symbol or NULL if no such undefined symbol exists.
           #define bfd_define_start_stop(output_bfd, info, symbol, sec) \
@@ -9572,46 +9489,47 @@ the output file at the end of 'NAME(aout,final_link)'.
 ...................................
 
  -- Function: struct bfd_elf_version_tree * bfd_find_version_for_sym
-     (struct bfd_elf_version_tree *verdefs, const char *sym_name, bool
-     *hide); Search an elf version script tree for symbol versioning
-     info and export / don't-export status for a given symbol.  Return
-     non-NULL on success and NULL on failure; also sets the output
-     'hide' boolean parameter.
+          (struct bfd_elf_version_tree *verdefs, const char *sym_name,
+          bool *hide);
+     Search an elf version script tree for symbol versioning info and
+     export / don't-export status for a given symbol.  Return non-NULL
+     on success and NULL on failure; also sets the output 'hide' boolean
+     parameter.
 
 2.15.3.10 'bfd_hide_sym_by_version'
 ...................................
 
- -- Function: bool bfd_hide_sym_by_version
-     (struct bfd_elf_version_tree *verdefs, const char *sym_name);
+ -- Function: bool bfd_hide_sym_by_version (struct bfd_elf_version_tree
+          *verdefs, const char *sym_name);
      Search an elf version script tree for symbol versioning info for a
      given symbol.  Return TRUE if the symbol is hidden.
 
 2.15.3.11 'bfd_link_check_relocs'
 .................................
 
- -- Function: bool bfd_link_check_relocs
-     (bfd *abfd, struct bfd_link_info *info); Checks the relocs in ABFD
-     for validity.  Does not execute the relocs.  Return TRUE if
-     everything is OK, FALSE otherwise.  This is the external entry
-     point to this code.
+ -- Function: bool bfd_link_check_relocs (bfd *abfd, struct
+          bfd_link_info *info);
+     Checks the relocs in ABFD for validity.  Does not execute the
+     relocs.  Return TRUE if everything is OK, FALSE otherwise.  This is
+     the external entry point to this code.
 
 2.15.3.12 '_bfd_generic_link_check_relocs'
 ..........................................
 
- -- Function: bool _bfd_generic_link_check_relocs
-     (bfd *abfd, struct bfd_link_info *info); Stub function for targets
-     that do not implement reloc checking.  Return TRUE. This is an
-     internal function.  It should not be called from outside the BFD
-     library.
+ -- Function: bool _bfd_generic_link_check_relocs (bfd *abfd, struct
+          bfd_link_info *info);
+     Stub function for targets that do not implement reloc checking.
+     Return TRUE. This is an internal function.  It should not be called
+     from outside the BFD library.
 
 2.15.3.13 'bfd_merge_private_bfd_data'
 ......................................
 
- -- Function: bool bfd_merge_private_bfd_data
-     (bfd *ibfd, struct bfd_link_info *info); Merge private BFD
-     information from the BFD IBFD to the the output file BFD when
-     linking.  Return 'TRUE' on success, 'FALSE' on error.  Possible
-     error returns are:
+ -- Function: bool bfd_merge_private_bfd_data (bfd *ibfd, struct
+          bfd_link_info *info);
+     Merge private BFD information from the BFD IBFD to the the output
+     file BFD when linking.  Return 'TRUE' on success, 'FALSE' on error.
+     Possible error returns are:
 
         * 'bfd_error_no_memory' - Not enough memory exists to create
           private data for OBFD.
@@ -9622,11 +9540,11 @@ the output file at the end of 'NAME(aout,final_link)'.
 2.15.3.14 '_bfd_generic_verify_endian_match'
 ............................................
 
- -- Function: bool _bfd_generic_verify_endian_match
-     (bfd *ibfd, struct bfd_link_info *info); Can be used from / for
-     bfd_merge_private_bfd_data to check that endianness matches between
-     input and output file.  Returns TRUE for a match, otherwise returns
-     FALSE and emits an error.
+ -- Function: bool _bfd_generic_verify_endian_match (bfd *ibfd, struct
+          bfd_link_info *info);
+     Can be used from / for bfd_merge_private_bfd_data to check that
+     endianness matches between input and output file.  Returns TRUE for
+     a match, otherwise returns FALSE and emits an error.
 
 
 File: bfd.info,  Node: Hash Tables,  Prev: Linker Functions,  Up: BFD front end
@@ -9998,31 +9916,30 @@ specific files (eg sunos.c).
 3.2.2.1 'aout_SIZE_swap_exec_header_in'
 .......................................
 
- -- Function: void aout_SIZE_swap_exec_header_in,
-     (bfd *abfd, struct external_exec *bytes, struct internal_exec
-     *execp); Swap the information in an executable header RAW_BYTES
-     taken from a raw byte stream memory image into the internal exec
-     header structure EXECP.
+ -- Function: void aout_SIZE_swap_exec_header_in, (bfd *abfd, struct
+          external_exec *bytes, struct internal_exec *execp);
+     Swap the information in an executable header RAW_BYTES taken from a
+     raw byte stream memory image into the internal exec header
+     structure EXECP.
 
 3.2.2.2 'aout_SIZE_swap_exec_header_out'
 ........................................
 
- -- Function: void aout_SIZE_swap_exec_header_out
-     (bfd *abfd, struct internal_exec *execp, struct external_exec
-     *raw_bytes); Swap the information in an internal exec header
-     structure EXECP into the buffer RAW_BYTES ready for writing to
-     disk.
+ -- Function: void aout_SIZE_swap_exec_header_out (bfd *abfd, struct
+          internal_exec *execp, struct external_exec *raw_bytes);
+     Swap the information in an internal exec header structure EXECP
+     into the buffer RAW_BYTES ready for writing to disk.
 
 3.2.2.3 'aout_SIZE_some_aout_object_p'
 ......................................
 
- -- Function: bfd_cleanup aout_SIZE_some_aout_object_p
-     (bfd *abfd, struct internal_exec *execp, bfd_cleanup
-     (*callback_to_real_object_p) (bfd *)); Some a.out variant thinks
-     that the file open in ABFD checking is an a.out file.  Do some more
-     checking, and set up for access if it really is.  Call back to the
-     calling environment's "finish up" function just before returning,
-     to handle any last-minute setup.
+ -- Function: bfd_cleanup aout_SIZE_some_aout_object_p (bfd *abfd,
+          struct internal_exec *execp, bfd_cleanup
+          (*callback_to_real_object_p) (bfd *));
+     Some a.out variant thinks that the file open in ABFD checking is an
+     a.out file.  Do some more checking, and set up for access if it
+     really is.  Call back to the calling environment's "finish up"
+     function just before returning, to handle any last-minute setup.
 
 3.2.2.4 'aout_SIZE_mkobject'
 ............................
@@ -10033,8 +9950,8 @@ specific files (eg sunos.c).
 3.2.2.5 'aout_SIZE_machine_type'
 ................................
 
- -- Function: enum machine_type aout_SIZE_machine_type
-     (enum bfd_architecture arch, unsigned long machine, bool *unknown);
+ -- Function: enum machine_type aout_SIZE_machine_type (enum
+          bfd_architecture arch, unsigned long machine, bool *unknown);
      Keep track of machine architecture and machine type for a.out's.
      Return the 'machine_type' for a particular architecture and
      machine, or 'M_UNKNOWN' if that exact architecture and machine
@@ -10046,18 +9963,18 @@ specific files (eg sunos.c).
 3.2.2.6 'aout_SIZE_set_arch_mach'
 .................................
 
- -- Function: bool aout_SIZE_set_arch_mach,
-     (bfd *, enum bfd_architecture arch, unsigned long machine); Set the
-     architecture and the machine of the BFD ABFD to the values ARCH and
-     MACHINE.  Verify that ABFD's format can support the architecture
-     required.
+ -- Function: bool aout_SIZE_set_arch_mach, (bfd *, enum
+          bfd_architecture arch, unsigned long machine);
+     Set the architecture and the machine of the BFD ABFD to the values
+     ARCH and MACHINE.  Verify that ABFD's format can support the
+     architecture required.
 
 3.2.2.7 'aout_SIZE_new_section_hook'
 ....................................
 
- -- Function: bool aout_SIZE_new_section_hook,
-     (bfd *abfd, asection *newsect); Called by the BFD in response to a
-     'bfd_make_section' request.
+ -- Function: bool aout_SIZE_new_section_hook, (bfd *abfd, asection
+          *newsect);
+     Called by the BFD in response to a 'bfd_make_section' request.
 
 
 File: bfd.info,  Node: coff,  Next: elf,  Prev: aout,  Up: BFD back ends
@@ -11577,61 +11494,55 @@ BFD Index
  [index ]
 * Menu:
 
-* *:                                     Opening and Closing.
-                                                             (line  408)
 * *bfd_alloc:                            Opening and Closing.
                                                              (line  222)
-* *bfd_arch_default_fill:                Architectures.      (line  727)
+* *bfd_arch_default_fill:                Architectures.      (line  728)
 * *bfd_create:                           Opening and Closing.
                                                              (line  189)
 * *bfd_default_reloc_type_lookup:        howto manager.      (line 3545)
 * *bfd_demangle:                         Miscellaneous.      (line  307)
 * *bfd_fdopenr:                          Opening and Closing.
-                                                             (line   55)
+                                                             (line   56)
 * *bfd_fdopenw:                          Opening and Closing.
-                                                             (line   81)
+                                                             (line   82)
 * *bfd_follow_build_id_debuglink:        Opening and Closing.
-                                                             (line  433)
+                                                             (line  337)
 * *bfd_follow_gnu_debugaltlink:          Opening and Closing.
-                                                             (line  352)
+                                                             (line  293)
 * *bfd_follow_gnu_debuglink:             Opening and Closing.
-                                                             (line  333)
+                                                             (line  274)
 * *bfd_fopen:                            Opening and Closing.
                                                              (line   15)
 * *bfd_generic_get_relocated_section_contents: howto manager.
-                                                             (line 3592)
+                                                             (line 3593)
 * *bfd_get_alt_debug_link_info:          Opening and Closing.
-                                                             (line  283)
+                                                             (line  263)
 * *bfd_get_debug_link_info:              Opening and Closing.
-                                                             (line  267)
-* *bfd_get_debug_link_info_1:            Opening and Closing.
                                                              (line  247)
 * *bfd_get_linker_section:               section prototypes. (line   37)
 * *bfd_get_next_section_by_name:         section prototypes. (line   26)
 * *bfd_get_section_by_name:              section prototypes. (line   18)
 * *bfd_get_section_by_name_if:           section prototypes. (line   45)
-* *bfd_get_unique_section_name:          section prototypes. (line   59)
-* *bfd_make_section:                     section prototypes. (line  130)
-* *bfd_make_section_anyway:              section prototypes. (line  104)
-* *bfd_make_section_anyway_with_flags:   section prototypes. (line   88)
-* *bfd_make_section_old_way:             section prototypes. (line   69)
-* *bfd_make_section_with_flags:          section prototypes. (line  119)
+* *bfd_get_unique_section_name:          section prototypes. (line   60)
+* *bfd_make_section:                     section prototypes. (line  132)
+* *bfd_make_section_anyway:              section prototypes. (line  106)
+* *bfd_make_section_anyway_with_flags:   section prototypes. (line   90)
+* *bfd_make_section_old_way:             section prototypes. (line   71)
+* *bfd_make_section_with_flags:          section prototypes. (line  121)
 * *bfd_mmap:                             Miscellaneous.      (line  400)
 * *bfd_openr:                            Opening and Closing.
-                                                             (line   38)
+                                                             (line   39)
 * *bfd_openr_iovec:                      Opening and Closing.
                                                              (line  101)
 * *bfd_openr_next_archived_file:         Archives.           (line   83)
 * *bfd_openstreamr:                      Opening and Closing.
-                                                             (line   89)
+                                                             (line   90)
 * *bfd_openw:                            Opening and Closing.
                                                              (line  144)
 * *bfd_reloc_type_lookup:                howto manager.      (line 3536)
-* *bfd_sections_find_if:                 section prototypes. (line  176)
+* *bfd_sections_find_if:                 section prototypes. (line  178)
 * *bfd_zalloc:                           Opening and Closing.
                                                              (line  229)
-* *find_separate_debug_file:             Opening and Closing.
-                                                             (line  311)
 * *_bfd_generic_make_empty_symbol:       symbol handling functions.
                                                              (line   91)
 * _bfd_error_handler:                    Error reporting.    (line  103)
@@ -11643,21 +11554,21 @@ BFD Index
 * _bfd_generic_link_add_one_symbol:      Adding symbols from an object file.
                                                              (line   19)
 * _bfd_generic_link_check_relocs:        Writing the symbol table.
-                                                             (line  124)
+                                                             (line  126)
 * _bfd_generic_link_check_relocs <1>:    Writing the symbol table.
-                                                             (line  128)
+                                                             (line  130)
 * _bfd_generic_link_hide_symbol:         Writing the symbol table.
                                                              (line   75)
 * _bfd_generic_link_hide_symbol <1>:     Writing the symbol table.
                                                              (line   79)
 * _bfd_generic_make_empty_symbol:        symbol handling functions.
                                                              (line   87)
-* _bfd_generic_set_reloc:                howto manager.      (line 3597)
-* _bfd_generic_set_reloc <1>:            howto manager.      (line 3601)
+* _bfd_generic_set_reloc:                howto manager.      (line 3599)
+* _bfd_generic_set_reloc <1>:            howto manager.      (line 3603)
 * _bfd_generic_verify_endian_match:      Writing the symbol table.
-                                                             (line  148)
+                                                             (line  150)
 * _bfd_generic_verify_endian_match <1>:  Writing the symbol table.
-                                                             (line  152)
+                                                             (line  154)
 * _bfd_get_error_program_name:           Error reporting.    (line  142)
 * _bfd_link_add_symbols in target vector: Adding Symbols to the Hash Table.
                                                              (line    6)
@@ -11668,21 +11579,21 @@ BFD Index
 * _bfd_per_xvec_warn:                    bfd_target.         (line  580)
 * _bfd_relocate_contents:                Relocating the section contents.
                                                              (line   22)
-* _bfd_section_size_insane:              section prototypes. (line  278)
-* _bfd_section_size_insane <1>:          section prototypes. (line  282)
+* _bfd_section_size_insane:              section prototypes. (line  282)
+* _bfd_section_size_insane <1>:          section prototypes. (line  286)
 * _bfd_set_error_handler_caching:        Error reporting.    (line  126)
 * _bfd_set_error_handler_caching <1>:    Error reporting.    (line  130)
-* _bfd_unrecognized_reloc:               howto manager.      (line 3604)
-* _bfd_unrecognized_reloc <1>:           howto manager.      (line 3608)
-* aout_SIZE_machine_type:                aout.               (line  131)
-* aout_SIZE_mkobject:                    aout.               (line  125)
-* aout_SIZE_mkobject,:                   aout.               (line  129)
-* aout_SIZE_new_section_hook:            aout.               (line  153)
-* aout_SIZE_new_section_hook,:           aout.               (line  157)
-* aout_SIZE_set_arch_mach:               aout.               (line  144)
-* aout_SIZE_set_arch_mach,:              aout.               (line  148)
-* aout_SIZE_some_aout_object_p:          aout.               (line  114)
-* aout_SIZE_some_aout_object_p <1>:      aout.               (line  118)
+* _bfd_unrecognized_reloc:               howto manager.      (line 3606)
+* _bfd_unrecognized_reloc <1>:           howto manager.      (line 3610)
+* aout_SIZE_machine_type:                aout.               (line  130)
+* aout_SIZE_mkobject:                    aout.               (line  124)
+* aout_SIZE_mkobject,:                   aout.               (line  128)
+* aout_SIZE_new_section_hook:            aout.               (line  152)
+* aout_SIZE_new_section_hook,:           aout.               (line  156)
+* aout_SIZE_set_arch_mach:               aout.               (line  143)
+* aout_SIZE_set_arch_mach,:              aout.               (line  147)
+* aout_SIZE_some_aout_object_p:          aout.               (line  113)
+* aout_SIZE_some_aout_object_p <1>:      aout.               (line  117)
 * aout_SIZE_swap_exec_header_in:         aout.               (line   96)
 * aout_SIZE_swap_exec_header_in,:        aout.               (line  100)
 * aout_SIZE_swap_exec_header_out:        aout.               (line  105)
@@ -11697,7 +11608,7 @@ BFD Index
 * bfd_architecture:                      Architectures.      (line  642)
 * bfd_arch_bits_per_address:             Architectures.      (line  658)
 * bfd_arch_bits_per_byte:                Architectures.      (line  651)
-* bfd_arch_default_fill:                 Architectures.      (line  723)
+* bfd_arch_default_fill:                 Architectures.      (line  724)
 * bfd_arch_get_compatible:               Architectures.      (line  602)
 * bfd_arch_info_type:                    Architectures.      (line  590)
 * bfd_arch_info_type <1>:                Architectures.      (line  606)
@@ -11705,7 +11616,7 @@ BFD Index
 * bfd_arch_info_type <3>:                Architectures.      (line  684)
 * bfd_arch_info_type <4>:                Architectures.      (line  690)
 * bfd_arch_list:                         Architectures.      (line  595)
-* bfd_arch_mach_octets_per_byte:         Architectures.      (line  713)
+* bfd_arch_mach_octets_per_byte:         Architectures.      (line  714)
 * BFD_ARELOC_BFIN_ADD:                   howto manager.      (line 1158)
 * BFD_ARELOC_BFIN_ADDR:                  howto manager.      (line 1192)
 * BFD_ARELOC_BFIN_AND:                   howto manager.      (line 1172)
@@ -11726,8 +11637,6 @@ BFD Index
 * BFD_ARELOC_BFIN_RSHIFT:                howto manager.      (line 1170)
 * BFD_ARELOC_BFIN_SUB:                   howto manager.      (line 1160)
 * BFD_ARELOC_BFIN_XOR:                   howto manager.      (line 1176)
-* bfd_build_id:                          Opening and Closing.
-                                                             (line  395)
 * bfd_cache_close:                       File Caching.       (line   23)
 * bfd_cache_close <1>:                   File Caching.       (line   27)
 * bfd_cache_close_all:                   File Caching.       (line   33)
@@ -11759,8 +11668,8 @@ BFD Index
 * bfd_copy_private_bfd_data <1>:         Miscellaneous.      (line  151)
 * bfd_copy_private_header_data:          Miscellaneous.      (line  132)
 * bfd_copy_private_header_data <1>:      Miscellaneous.      (line  136)
-* bfd_copy_private_section_data:         section prototypes. (line  242)
-* bfd_copy_private_section_data <1>:     section prototypes. (line  246)
+* bfd_copy_private_section_data:         section prototypes. (line  246)
+* bfd_copy_private_section_data <1>:     section prototypes. (line  250)
 * bfd_copy_private_symbol_data:          symbol handling functions.
                                                              (line  126)
 * bfd_copy_private_symbol_data <1>:      symbol handling functions.
@@ -11773,7 +11682,7 @@ BFD Index
 * bfd_create:                            Opening and Closing.
                                                              (line  185)
 * bfd_create_gnu_debuglink_section:      Opening and Closing.
-                                                             (line  367)
+                                                             (line  308)
 * bfd_decode_symclass:                   symbol handling functions.
                                                              (line  104)
 * bfd_decode_symclass <1>:               symbol handling functions.
@@ -11787,62 +11696,60 @@ BFD Index
 * bfd_default_set_arch_mach <1>:         Architectures.      (line  633)
 * bfd_demangle:                          Miscellaneous.      (line  303)
 * bfd_elf_version_tree:                  Writing the symbol table.
-                                                             (line  101)
+                                                             (line  102)
 * bfd_emul_get_commonpagesize:           Miscellaneous.      (line  297)
 * bfd_emul_get_commonpagesize <1>:       Miscellaneous.      (line  301)
 * bfd_emul_get_maxpagesize:              Miscellaneous.      (line  290)
 * bfd_emul_get_maxpagesize <1>:          Miscellaneous.      (line  294)
 * bfd_errmsg:                            Error reporting.    (line   74)
 * bfd_fdopenr:                           Opening and Closing.
-                                                             (line   51)
+                                                             (line   52)
 * bfd_fdopenw:                           Opening and Closing.
-                                                             (line   77)
+                                                             (line   78)
 * bfd_fill_in_gnu_debuglink_section:     Opening and Closing.
-                                                             (line  378)
+                                                             (line  320)
 * bfd_fill_in_gnu_debuglink_section <1>: Opening and Closing.
-                                                             (line  382)
+                                                             (line  324)
 * bfd_find_target:                       bfd_target.         (line  603)
 * bfd_find_version_for_sym:              Writing the symbol table.
-                                                             (line   97)
-* bfd_flavour_name:                      bfd_target.         (line  657)
+                                                             (line   98)
+* bfd_flavour_name:                      bfd_target.         (line  658)
 * bfd_follow_build_id_debuglink:         Opening and Closing.
-                                                             (line  429)
+                                                             (line  333)
 * bfd_follow_gnu_debugaltlink:           Opening and Closing.
-                                                             (line  348)
+                                                             (line  289)
 * bfd_follow_gnu_debuglink:              Opening and Closing.
-                                                             (line  329)
+                                                             (line  270)
 * bfd_fopen:                             Opening and Closing.
-                                                             (line   11)
-* bfd_format_string:                     Formats.            (line   73)
+                                                             (line   10)
+* bfd_format_string:                     Formats.            (line   74)
 * bfd_generic_define_common_symbol:      Writing the symbol table.
                                                              (line   64)
 * bfd_generic_define_common_symbol <1>:  Writing the symbol table.
                                                              (line   68)
 * bfd_generic_define_start_stop:         Writing the symbol table.
                                                              (line   86)
-* bfd_generic_discard_group:             section prototypes. (line  271)
-* bfd_generic_discard_group <1>:         section prototypes. (line  275)
+* bfd_generic_discard_group:             section prototypes. (line  275)
+* bfd_generic_discard_group <1>:         section prototypes. (line  279)
 * bfd_generic_gc_sections:               howto manager.      (line 3564)
 * bfd_generic_gc_sections <1>:           howto manager.      (line 3568)
-* bfd_generic_get_relocated_section_contents: howto manager. (line 3588)
-* bfd_generic_group_name:                section prototypes. (line  264)
-* bfd_generic_is_group_section:          section prototypes. (line  257)
-* bfd_generic_is_group_section <1>:      section prototypes. (line  261)
+* bfd_generic_get_relocated_section_contents: howto manager. (line 3589)
+* bfd_generic_group_name:                section prototypes. (line  268)
+* bfd_generic_is_group_section:          section prototypes. (line  261)
+* bfd_generic_is_group_section <1>:      section prototypes. (line  265)
 * bfd_generic_lookup_section_flags:      howto manager.      (line 3572)
 * bfd_generic_lookup_section_flags <1>:  howto manager.      (line 3576)
-* bfd_generic_merge_sections:            howto manager.      (line 3580)
-* bfd_generic_merge_sections <1>:        howto manager.      (line 3584)
+* bfd_generic_merge_sections:            howto manager.      (line 3581)
+* bfd_generic_merge_sections <1>:        howto manager.      (line 3585)
 * bfd_generic_relax_section:             howto manager.      (line 3556)
 * bfd_generic_relax_section <1>:         howto manager.      (line 3560)
 * bfd_get_alt_debug_link_info:           Opening and Closing.
-                                                             (line  279)
+                                                             (line  259)
 * bfd_get_arch:                          Architectures.      (line  638)
 * bfd_get_arch_info:                     Architectures.      (line  680)
 * bfd_get_arch_size:                     Miscellaneous.      (line   58)
 * bfd_get_arch_size <1>:                 Miscellaneous.      (line   62)
 * bfd_get_debug_link_info:               Opening and Closing.
-                                                             (line  263)
-* bfd_get_debug_link_info_1:             Opening and Closing.
                                                              (line  243)
 * bfd_get_error:                         Error reporting.    (line   49)
 * bfd_get_error <1>:                     Error reporting.    (line   54)
@@ -11861,8 +11768,8 @@ BFD Index
 * bfd_get_reloc_upper_bound <1>:         Miscellaneous.      (line   12)
 * bfd_get_section_by_name:               section prototypes. (line   14)
 * bfd_get_section_by_name_if:            section prototypes. (line   41)
-* bfd_get_section_contents:              section prototypes. (line  220)
-* bfd_get_section_contents <1>:          section prototypes. (line  224)
+* bfd_get_section_contents:              section prototypes. (line  223)
+* bfd_get_section_contents <1>:          section prototypes. (line  227)
 * bfd_get_sign_extend_vma:               Miscellaneous.      (line   70)
 * bfd_get_sign_extend_vma <1>:           Miscellaneous.      (line   74)
 * bfd_get_size:                          Miscellaneous.      (line  358)
@@ -11870,7 +11777,7 @@ BFD Index
 * bfd_get_symtab_upper_bound:            symbol handling functions.
                                                              (line    5)
 * bfd_get_target_info:                   bfd_target.         (line  618)
-* bfd_get_unique_section_name:           section prototypes. (line   55)
+* bfd_get_unique_section_name:           section prototypes. (line   56)
 * bfd_hash_allocate:                     Creating and Freeing a Hash Table.
                                                              (line   17)
 * bfd_hash_lookup:                       Looking Up or Entering a String.
@@ -11888,9 +11795,9 @@ BFD Index
 * bfd_hash_traverse:                     Traversing a Hash Table.
                                                              (line    6)
 * bfd_hide_sym_by_version:               Writing the symbol table.
-                                                             (line  107)
+                                                             (line  109)
 * bfd_hide_sym_by_version <1>:           Writing the symbol table.
-                                                             (line  111)
+                                                             (line  113)
 * bfd_init:                              Initialization.     (line    3)
 * bfd_install_relocation:                typedef arelent.    (line  366)
 * bfd_install_relocation <1>:            typedef arelent.    (line  370)
@@ -11912,9 +11819,9 @@ BFD Index
                                                              (line  115)
 * bfd_iterate_over_targets:              bfd_target.         (line  648)
 * bfd_link_check_relocs:                 Writing the symbol table.
-                                                             (line  115)
+                                                             (line  117)
 * bfd_link_check_relocs <1>:             Writing the symbol table.
-                                                             (line  119)
+                                                             (line  121)
 * bfd_link_hash_entry:                   Writing the symbol table.
                                                              (line   90)
 * bfd_link_split_section:                Writing the symbol table.
@@ -11930,32 +11837,32 @@ BFD Index
                                                              (line  207)
 * bfd_make_readable <1>:                 Opening and Closing.
                                                              (line  211)
-* bfd_make_section:                      section prototypes. (line  126)
-* bfd_make_section_anyway:               section prototypes. (line  100)
-* bfd_make_section_anyway_with_flags:    section prototypes. (line   84)
-* bfd_make_section_old_way:              section prototypes. (line   65)
-* bfd_make_section_with_flags:           section prototypes. (line  115)
+* bfd_make_section:                      section prototypes. (line  128)
+* bfd_make_section_anyway:               section prototypes. (line  102)
+* bfd_make_section_anyway_with_flags:    section prototypes. (line   86)
+* bfd_make_section_old_way:              section prototypes. (line   67)
+* bfd_make_section_with_flags:           section prototypes. (line  117)
 * bfd_make_writable:                     Opening and Closing.
                                                              (line  196)
 * bfd_make_writable <1>:                 Opening and Closing.
                                                              (line  200)
-* bfd_malloc_and_get_section:            section prototypes. (line  235)
-* bfd_malloc_and_get_section <1>:        section prototypes. (line  239)
-* bfd_map_over_sections:                 section prototypes. (line  154)
-* bfd_map_over_sections <1>:             section prototypes. (line  158)
+* bfd_malloc_and_get_section:            section prototypes. (line  238)
+* bfd_malloc_and_get_section <1>:        section prototypes. (line  242)
+* bfd_map_over_sections:                 section prototypes. (line  156)
+* bfd_map_over_sections <1>:             section prototypes. (line  160)
 * bfd_merge_private_bfd_data:            Writing the symbol table.
-                                                             (line  133)
+                                                             (line  135)
 * bfd_merge_private_bfd_data <1>:        Writing the symbol table.
-                                                             (line  137)
+                                                             (line  139)
 * bfd_mmap:                              Miscellaneous.      (line  396)
-* bfd_octets_per_byte:                   Architectures.      (line  704)
+* bfd_octets_per_byte:                   Architectures.      (line  705)
 * bfd_openr:                             Opening and Closing.
-                                                             (line   34)
+                                                             (line   35)
 * bfd_openr_iovec:                       Opening and Closing.
                                                              (line   97)
 * bfd_openr_next_archived_file:          Archives.           (line   79)
 * bfd_openstreamr:                       Opening and Closing.
-                                                             (line   85)
+                                                             (line   86)
 * bfd_openw:                             Opening and Closing.
                                                              (line  140)
 * bfd_open_file:                         File Caching.       (line   43)
@@ -14436,14 +14343,14 @@ BFD Index
 * BFD_RELOC_Z8K_CALLR:                   howto manager.      (line 2672)
 * BFD_RELOC_Z8K_DISP7:                   howto manager.      (line 2670)
 * BFD_RELOC_Z8K_IMM4L:                   howto manager.      (line 2674)
-* bfd_rename_section:                    section prototypes. (line  147)
-* bfd_rename_section <1>:                section prototypes. (line  151)
+* bfd_rename_section:                    section prototypes. (line  149)
+* bfd_rename_section <1>:                section prototypes. (line  153)
 * bfd_scan_arch:                         Architectures.      (line  586)
 * bfd_scan_vma:                          Miscellaneous.      (line  115)
 * bfd_scan_vma <1>:                      Miscellaneous.      (line  119)
 * bfd_section:                           Opening and Closing.
-                                                             (line  371)
-* bfd_sections_find_if:                  section prototypes. (line  172)
+                                                             (line  312)
+* bfd_sections_find_if:                  section prototypes. (line  174)
 * bfd_section_already_linked:            Writing the symbol table.
                                                              (line   53)
 * bfd_section_already_linked <1>:        Writing the symbol table.
@@ -14465,11 +14372,11 @@ BFD Index
 * bfd_set_error_program_name:            Error reporting.    (line  134)
 * bfd_set_error_program_name <1>:        Error reporting.    (line  138)
 * bfd_set_filename:                      Opening and Closing.
-                                                             (line  451)
+                                                             (line  355)
 * bfd_set_file_flags:                    Miscellaneous.      (line   41)
 * bfd_set_file_flags <1>:                Miscellaneous.      (line   45)
-* bfd_set_format:                        Formats.            (line   64)
-* bfd_set_format <1>:                    Formats.            (line   68)
+* bfd_set_format:                        Formats.            (line   65)
+* bfd_set_format <1>:                    Formats.            (line   69)
 * bfd_set_gp_size:                       Miscellaneous.      (line  100)
 * bfd_set_gp_size <1>:                   Miscellaneous.      (line  104)
 * bfd_set_gp_value:                      Miscellaneous.      (line  108)
@@ -14480,12 +14387,12 @@ BFD Index
 * bfd_set_private_flags <1>:             Miscellaneous.      (line  165)
 * bfd_set_reloc:                         Miscellaneous.      (line   31)
 * bfd_set_reloc <1>:                     Miscellaneous.      (line   35)
-* bfd_set_section_contents:              section prototypes. (line  198)
-* bfd_set_section_contents <1>:          section prototypes. (line  202)
-* bfd_set_section_flags:                 section prototypes. (line  135)
-* bfd_set_section_flags <1>:             section prototypes. (line  139)
-* bfd_set_section_size:                  section prototypes. (line  185)
-* bfd_set_section_size <1>:              section prototypes. (line  189)
+* bfd_set_section_contents:              section prototypes. (line  201)
+* bfd_set_section_contents <1>:          section prototypes. (line  205)
+* bfd_set_section_flags:                 section prototypes. (line  137)
+* bfd_set_section_flags <1>:             section prototypes. (line  141)
+* bfd_set_section_size:                  section prototypes. (line  188)
+* bfd_set_section_size <1>:              section prototypes. (line  192)
 * bfd_set_start_address:                 Miscellaneous.      (line   84)
 * bfd_set_start_address <1>:             Miscellaneous.      (line   88)
 * bfd_set_symtab:                        symbol handling functions.
@@ -14504,55 +14411,37 @@ BFD Index
                                                              (line  225)
 * char:                                  Error reporting.    (line   78)
 * char <1>:                              Error reporting.    (line  146)
-* char <2>:                              section prototypes. (line  268)
-* char <3>:                              Formats.            (line   77)
+* char <2>:                              section prototypes. (line  272)
+* char <3>:                              Formats.            (line   78)
 * char <4>:                              howto manager.      (line 3552)
 * char <5>:                              Core Files.         (line   14)
 * char <6>:                              bfd_target.         (line  645)
-* char <7>:                              bfd_target.         (line  661)
+* char <7>:                              bfd_target.         (line  662)
 * char <8>:                              Architectures.      (line  583)
 * char <9>:                              Architectures.      (line  599)
 * char <10>:                             Architectures.      (line  699)
 * char <11>:                             Opening and Closing.
-                                                             (line  455)
-* check_build_id_file:                   Opening and Closing.
-                                                             (line  418)
-* check_build_id_file <1>:               Opening and Closing.
-                                                             (line  422)
+                                                             (line  359)
 * coff_symbol_type:                      coff.               (line  234)
 * core_file_matches_executable_p:        Core Files.         (line   31)
 * core_file_matches_executable_p <1>:    Core Files.         (line   35)
-* find_separate_debug_file:              Opening and Closing.
-                                                             (line  307)
-* generic_core_file_matches_executable_p: Core Files.        (line   39)
-* generic_core_file_matches_executable_p <1>: Core Files.    (line   43)
-* get_build_id:                          Opening and Closing.
-                                                             (line  391)
-* get_build_id_name:                     Opening and Closing.
-                                                             (line  404)
+* generic_core_file_matches_executable_p: Core Files.        (line   40)
+* generic_core_file_matches_executable_p <1>: Core Files.    (line   44)
 * Hash tables:                           Hash Tables.        (line    6)
 * int:                                   Initialization.     (line    6)
 * int <1>:                               Miscellaneous.      (line   96)
 * int <2>:                               Architectures.      (line  655)
 * int <3>:                               Architectures.      (line  662)
-* int <4>:                               Architectures.      (line  708)
-* int <5>:                               Architectures.      (line  717)
+* int <4>:                               Architectures.      (line  709)
+* int <5>:                               Architectures.      (line  718)
 * internal object-file format:           Canonical format.   (line   11)
 * Linker:                                Linker Functions.   (line    6)
 * long:                                  Architectures.      (line  649)
 * long <1>:                              Opening and Closing.
                                                              (line  236)
-* machine_type:                          aout.               (line  135)
+* machine_type:                          aout.               (line  134)
 * Other functions:                       Miscellaneous.      (line  173)
 * per_xvec_message:                      bfd_target.         (line  585)
-* separate_alt_debug_file_exists:        Opening and Closing.
-                                                             (line  301)
-* separate_alt_debug_file_exists <1>:    Opening and Closing.
-                                                             (line  305)
-* separate_debug_file_exists:            Opening and Closing.
-                                                             (line  290)
-* separate_debug_file_exists <1>:        Opening and Closing.
-                                                             (line  294)
 * struct bfd_iovec:                      Miscellaneous.      (line  313)
 * target vector (_bfd_final_link):       Performing the Final Link.
                                                              (line    6)
@@ -14578,59 +14467,59 @@ Node: typedef bfd13521
 Node: Error reporting32152
 Node: Initialization37900
 Node: Miscellaneous38435
-Node: Memory Usage55604
-Node: Sections56829
-Node: Section Input57310
-Node: Section Output58504
-Node: typedef asection60991
-Node: section prototypes85304
-Node: Symbols96398
-Node: Reading Symbols98001
-Node: Writing Symbols99109
-Node: Mini Symbols100853
-Node: typedef asymbol101827
-Node: symbol handling functions108034
-Node: Archives113313
-Node: Formats117457
-Node: Relocations120460
-Node: typedef arelent121185
-Node: howto manager136050
-Node: Core Files272431
-Node: Targets274417
-Node: bfd_target276378
-Node: Architectures304307
-Node: Opening and Closing335996
-Node: Internal354396
-Node: File Caching354500
-Node: Linker Functions356376
-Node: Creating a Linker Hash Table358050
-Node: Adding Symbols to the Hash Table359789
-Node: Differing file formats360689
-Node: Adding symbols from an object file362414
-Node: Adding symbols from an archive364564
-Node: Performing the Final Link366910
-Node: Information provided by the linker368151
-Node: Relocating the section contents369305
-Node: Writing the symbol table371057
-Node: Hash Tables378079
-Node: Creating and Freeing a Hash Table379277
-Node: Looking Up or Entering a String380527
-Node: Traversing a Hash Table381780
-Node: Deriving a New Hash Table Type382569
-Node: Define the Derived Structures383635
-Node: Write the Derived Creation Routine384716
-Node: Write Other Derived Routines387327
-Node: BFD back ends388642
-Node: What to Put Where388891
-Node: aout389049
-Node: coff395104
-Node: elf423672
-Node: mmo424073
-Node: File layout424943
-Node: Symbol-table430856
-Node: mmo section mapping434619
-Node: GNU Free Documentation License438273
-Node: BFD Index463337
+Node: Memory Usage55623
+Node: Sections56848
+Node: Section Input57329
+Node: Section Output58523
+Node: typedef asection61010
+Node: section prototypes85323
+Node: Symbols96512
+Node: Reading Symbols98115
+Node: Writing Symbols99223
+Node: Mini Symbols100967
+Node: typedef asymbol101941
+Node: symbol handling functions108148
+Node: Archives113438
+Node: Formats117586
+Node: Relocations120599
+Node: typedef arelent121324
+Node: howto manager136229
+Node: Core Files272681
+Node: Targets274682
+Node: bfd_target276643
+Node: Architectures304587
+Node: Opening and Closing336332
+Node: Internal350872
+Node: File Caching350976
+Node: Linker Functions352852
+Node: Creating a Linker Hash Table354526
+Node: Adding Symbols to the Hash Table356265
+Node: Differing file formats357165
+Node: Adding symbols from an object file358890
+Node: Adding symbols from an archive361040
+Node: Performing the Final Link363386
+Node: Information provided by the linker364627
+Node: Relocating the section contents365781
+Node: Writing the symbol table367533
+Node: Hash Tables374623
+Node: Creating and Freeing a Hash Table375821
+Node: Looking Up or Entering a String377071
+Node: Traversing a Hash Table378324
+Node: Deriving a New Hash Table Type379113
+Node: Define the Derived Structures380179
+Node: Write the Derived Creation Routine381260
+Node: Write Other Derived Routines383871
+Node: BFD back ends385186
+Node: What to Put Where385435
+Node: aout385593
+Node: coff391678
+Node: elf420246
+Node: mmo420647
+Node: File layout421517
+Node: Symbol-table427430
+Node: mmo section mapping431193
+Node: GNU Free Documentation License434847
+Node: BFD Index459911
 
 End Tag Table
 

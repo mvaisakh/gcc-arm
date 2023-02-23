@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-02-19" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-02-23" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -367,6 +367,7 @@ in the following sections.
 \&\-Wcast\-align  \-Wcast\-align=strict  \-Wcast\-function\-type  \-Wcast\-qual  
 \&\-Wchar\-subscripts 
 \&\-Wclobbered  \-Wcomment 
+\&\-Wno\-complain\-wrong\-lang 
 \&\-Wconversion  \-Wno\-coverage\-mismatch  \-Wno\-cpp 
 \&\-Wdangling\-else  \-Wdangling\-pointer  \-Wdangling\-pointer=\fR\fIn\fR  
 \&\fB\-Wdate\-time 
@@ -451,6 +452,7 @@ in the following sections.
 \&\-fanalyzer\-fine\-grained 
 \&\-fno\-analyzer\-state\-merge 
 \&\-fno\-analyzer\-state\-purge 
+\&\-fno\-analyzer\-suppress\-followups 
 \&\-fanalyzer\-transitivity 
 \&\-fno\-analyzer\-undo\-inlining 
 \&\-fanalyzer\-verbose\-edges 
@@ -8459,6 +8461,23 @@ programs.
 .IX Item "-Wclobbered"
 Warn for variables that might be changed by \f(CW\*(C`longjmp\*(C'\fR or
 \&\f(CW\*(C`vfork\*(C'\fR.  This warning is also enabled by \fB\-Wextra\fR.
+.IP "\fB\-Wno\-complain\-wrong\-lang\fR" 4
+.IX Item "-Wno-complain-wrong-lang"
+By default, language front ends complain when a command-line option is
+valid, but not applicable to that front end.
+This may be disabled with \fB\-Wno\-complain\-wrong\-lang\fR,
+which is mostly useful when invoking a single compiler driver for
+multiple source files written in different languages, for example:
+.Sp
+.Vb 1
+\&        $ g++ \-fno\-rtti a.cc b.f90
+.Ve
+.Sp
+The driver \fIg++\fR invokes the \*(C+ front end to compile \fIa.cc\fR
+and the Fortran front end to compile \fIb.f90\fR.
+The latter front end diagnoses
+\&\fBf951: Warning: command-line option '\-fno\-rtti' is valid for \*(C+/D/ObjC++ but not for Fortran\fR,
+which may be disabled with \fB\-Wno\-complain\-wrong\-lang\fR.
 .IP "\fB\-Wconversion\fR" 4
 .IX Item "-Wconversion"
 Warn for implicit conversions that may alter a value. This includes
@@ -10321,6 +10340,36 @@ and which aren't relevant to leak analysis.
 .Sp
 With \fB\-fno\-analyzer\-state\-purge\fR this purging of state can
 be suppressed, for debugging state-handling issues.
+.IP "\fB\-fno\-analyzer\-suppress\-followups\fR" 4
+.IX Item "-fno-analyzer-suppress-followups"
+This option is intended for analyzer developers.
+.Sp
+By default the analyzer will stop exploring an execution path after
+encountering certain diagnostics, in order to avoid potentially issuing a
+cascade of follow-up diagnostics.
+.Sp
+The diagnostics that terminate analysis along a path are:
+.RS 4
+.IP "*<\fB\-Wanalyzer\-null\-argument\fR>" 4
+.IX Item "*<-Wanalyzer-null-argument>"
+.PD 0
+.IP "*<\fB\-Wanalyzer\-null\-dereference\fR>" 4
+.IX Item "*<-Wanalyzer-null-dereference>"
+.IP "*<\fB\-Wanalyzer\-use\-after\-free\fR>" 4
+.IX Item "*<-Wanalyzer-use-after-free>"
+.IP "*<\fB\-Wanalyzer\-use\-of\-pointer\-in\-stale\-stack\-frame\fR>" 4
+.IX Item "*<-Wanalyzer-use-of-pointer-in-stale-stack-frame>"
+.IP "*<\fB\-Wanalyzer\-use\-of\-uninitialized\-value\fR>" 4
+.IX Item "*<-Wanalyzer-use-of-uninitialized-value>"
+.RE
+.RS 4
+.PD
+.Sp
+With \fB\-fno\-analyzer\-suppress\-followups\fR the analyzer will
+continue to explore such paths even after such diagnostics, which may
+be helpful for debugging issues in the analyzer, or for microbenchmarks
+for detecting undefined behavior.
+.RE
 .IP "\fB\-fanalyzer\-transitivity\fR" 4
 .IX Item "-fanalyzer-transitivity"
 This option enables transitivity of constraints within the analyzer.
