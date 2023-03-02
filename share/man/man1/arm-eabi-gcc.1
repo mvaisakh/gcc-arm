@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-02-26" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-03-02" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -15837,13 +15837,16 @@ overflow:
 .IX Item "-fsanitize=bounds"
 This option enables instrumentation of array bounds.  Various out of bounds
 accesses are detected.  Flexible array members, flexible array member-like
-arrays, and initializers of variables with static storage are not instrumented.
+arrays, and initializers of variables with static storage are not
+instrumented, with the exception of flexible array member-like arrays
+for which \f(CW\*(C`\-fstrict\-flex\-arrays\*(C'\fR or \f(CW\*(C`\-fstrict\-flex\-arrays=\*(C'\fR
+options or \f(CW\*(C`strict_flex_array\*(C'\fR attributes say they shouldn't be treated
+like flexible array member-like arrays.
 .IP "\fB\-fsanitize=bounds\-strict\fR" 4
 .IX Item "-fsanitize=bounds-strict"
 This option enables strict instrumentation of array bounds.  Most out of bounds
-accesses are detected, including flexible array members and flexible array
-member-like arrays.  Initializers of variables with static storage are not
-instrumented.
+accesses are detected, including flexible array member-like arrays.
+Initializers of variables with static storage are not instrumented.
 .IP "\fB\-fsanitize=alignment\fR" 4
 .IX Item "-fsanitize=alignment"
 This option enables checking of alignment of pointers when they are
