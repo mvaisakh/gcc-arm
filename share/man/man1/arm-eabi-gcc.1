@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-03-02" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-03-05" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -15296,6 +15296,10 @@ The following choices of \fIname\fR are available on i386 and x86_64 targets:
 .IP "\fBx86\-stlf\-window\-ninsns\fR" 4
 .IX Item "x86-stlf-window-ninsns"
 Instructions number above which \s-1STFL\s0 stall penalty can be compensated.
+.IP "\fBx86\-stv\-max\-visits\fR" 4
+.IX Item "x86-stv-max-visits"
+The maximum number of use and def visits when discovering a \s-1STV\s0 chain before
+the discovery is aborted.
 .RE
 .RS 4
 .RE
