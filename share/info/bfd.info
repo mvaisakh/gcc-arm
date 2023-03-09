@@ -10394,9 +10394,9 @@ The hidden information for an 'asymbol' is described in a
          (bfd *, FILE *, combined_entry_type *, combined_entry_type *,
           combined_entry_type *, unsigned int);
 
-       void (*_bfd_coff_reloc16_extra_cases)
+       bool (*_bfd_coff_reloc16_extra_cases)
          (bfd *, struct bfd_link_info *, struct bfd_link_order *, arelent *,
-          bfd_byte *, unsigned int *, unsigned int *);
+          bfd_byte *, size_t *, size_t *);
 
        int (*_bfd_coff_reloc16_estimate)
          (bfd *, asection *, arelent *, unsigned int,
@@ -14513,13 +14513,13 @@ Node: BFD back ends385186
 Node: What to Put Where385435
 Node: aout385593
 Node: coff391678
-Node: elf420246
-Node: mmo420647
-Node: File layout421517
-Node: Symbol-table427430
-Node: mmo section mapping431193
-Node: GNU Free Documentation License434847
-Node: BFD Index459911
+Node: elf420234
+Node: mmo420635
+Node: File layout421505
+Node: Symbol-table427418
+Node: mmo section mapping431181
+Node: GNU Free Documentation License434835
+Node: BFD Index459899
 
 End Tag Table
 

@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-03-05" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-03-09" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -15767,8 +15767,8 @@ operating on invalid memory addresses with non-call exceptions
 .IP "\fB\-fsanitize=leak\fR" 4
 .IX Item "-fsanitize=leak"
 Enable LeakSanitizer, a memory leak detector.
-This option only matters for linking of executables and
-the executable is linked against a library that overrides \f(CW\*(C`malloc\*(C'\fR
+This option only matters for linking of executables.
+The executable is linked against a library that overrides \f(CW\*(C`malloc\*(C'\fR
 and other allocator functions.  See
 <\fBhttps://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer\fR> for more
 details.  The run-time behavior can be influenced using the
