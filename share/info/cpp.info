@@ -4370,7 +4370,7 @@ single-letter options may _not_ be grouped: '-dM' is very different from
      path to a relative path by using '.' for NEW which can result in
      more reproducible builds that are location independent.  This
      option also affects '__builtin_FILE()' during compilation.  See
-     also '-ffile-prefix-map'.
+     also '-ffile-prefix-map' and '-fcanon-prefix-map'.
 
 '-fexec-charset=CHARSET'
      Set the execution character set, used for string and character
@@ -5617,12 +5617,12 @@ Node: Obsolete Features164178
 Node: Invocation167022
 Ref: dashMF173057
 Ref: fdollars-in-identifiers177719
-Ref: Wtrigraphs191965
-Node: Environment Variables194020
-Node: GNU Free Documentation License197711
-Node: Index of Directives222861
-Node: Option Index225160
-Node: Concept Index231262
+Ref: Wtrigraphs191990
+Node: Environment Variables194045
+Node: GNU Free Documentation License197736
+Node: Index of Directives222886
+Node: Option Index225185
+Node: Concept Index231287
 
 End Tag Table
 

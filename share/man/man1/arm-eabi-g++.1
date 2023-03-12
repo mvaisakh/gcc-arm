@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-03-09" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-03-12" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -221,8 +221,8 @@ in the following sections.
 \&\fB\-dumpdir\fR \fIdumppfx\fR  \fB\-x\fR \fIlanguage\fR  
 \&\fB\-v  \-###  \-\-help\fR[\fB=\fR\fIclass\fR[\fB,...\fR]]  \fB\-\-target\-help  \-\-version 
 \&\-pass\-exit\-codes  \-pipe  \-specs=\fR\fIfile\fR  \fB\-wrapper  
-@\fR\fIfile\fR  \fB\-ffile\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR  
-\&\fB\-fplugin=\fR\fIfile\fR  \fB\-fplugin\-arg\-\fR\fIname\fR\fB=\fR\fIarg\fR  
+@\fR\fIfile\fR  \fB\-ffile\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR  \fB\-fcanon\-prefix\-map  
+\&\-fplugin=\fR\fIfile\fR  \fB\-fplugin\-arg\-\fR\fIname\fR\fB=\fR\fIarg\fR  
 \&\fB\-fdump\-ada\-spec\fR[\fB\-slim\fR]  \fB\-fada\-spec\-parent=\fR\fIunit\fR  \fB\-fdump\-go\-spec=\fR\fIfile\fR
 .IP "\fIC Language Options\fR" 4
 .IX Item "C Language Options"
@@ -2226,9 +2226,19 @@ files resided in directory \fI\fInew\fI\fR instead.  Specifying this
 option is equivalent to specifying all the individual
 \&\fB\-f*\-prefix\-map\fR options.  This can be used to make reproducible
 builds that are location independent.  Directories referenced by
-directives are not affected by these options. See also
-\&\fB\-fmacro\-prefix\-map\fR, \fB\-fdebug\-prefix\-map\fR and
-\&\fB\-fprofile\-prefix\-map\fR.
+directives are not affected by these options.  See also
+\&\fB\-fmacro\-prefix\-map\fR, \fB\-fdebug\-prefix\-map\fR,
+\&\fB\-fprofile\-prefix\-map\fR and \fB\-fcanon\-prefix\-map\fR.
+.IP "\fB\-fcanon\-prefix\-map\fR" 4
+.IX Item "-fcanon-prefix-map"
+For the \fB\-f*\-prefix\-map\fR options normally comparison
+of \fI\fIold\fI\fR prefix against the filename that would be normally
+referenced in the result of the compilation is done using textual
+comparison of the prefixes, or ignoring character case for case insensitive
+filesystems and considering slashes and backslashes as equal on \s-1DOS\s0 based
+filesystems.  The \fB\-fcanon\-prefix\-map\fR causes such comparisons
+to be done on canonicalized paths of \fI\fIold\fI\fR
+and the referenced filename.
 .IP "\fB\-fplugin=\fR\fIname\fR\fB.so\fR" 4
 .IX Item "-fplugin=name.so"
 Load the plugin code in file \fIname\fR.so, assumed to be a
@@ -10651,7 +10661,8 @@ build-time path with an install-time path in the debug info.  It can
 also be used to change an absolute path to a relative path by using
 \&\fI.\fR for \fInew\fR.  This can give more reproducible builds, which
 are location independent, but may require an extra command to tell \s-1GDB\s0
-where to find the source files. See also \fB\-ffile\-prefix\-map\fR.
+where to find the source files. See also \fB\-ffile\-prefix\-map\fR
+and \fB\-fcanon\-prefix\-map\fR.
 .IP "\fB\-fvar\-tracking\fR" 4
 .IX Item "-fvar-tracking"
 Run variable tracking pass.  It computes where variables are stored at each
@@ -15583,7 +15594,7 @@ When compiling files residing in directory \fI\fIold\fI\fR, record
 profiling information (with \fB\-\-coverage\fR)
 describing them as if the files resided in
 directory \fI\fInew\fI\fR instead.
-See also \fB\-ffile\-prefix\-map\fR.
+See also \fB\-ffile\-prefix\-map\fR and \fB\-fcanon\-prefix\-map\fR.
 .IP "\fB\-fprofile\-update=\fR\fImethod\fR" 4
 .IX Item "-fprofile-update=method"
 Alter the update method for an application instrumented for profile
@@ -16640,7 +16651,7 @@ to change an absolute path to a relative path by using \fI.\fR for
 \&\fInew\fR which can result in more reproducible builds that are
 location independent.  This option also affects
 \&\f(CW\*(C`_\|_builtin_FILE()\*(C'\fR during compilation.  See also
-\&\fB\-ffile\-prefix\-map\fR.
+\&\fB\-ffile\-prefix\-map\fR and \fB\-fcanon\-prefix\-map\fR.
 .IP "\fB\-fexec\-charset=\fR\fIcharset\fR" 4
 .IX Item "-fexec-charset=charset"
 Set the execution character set, used for string and character

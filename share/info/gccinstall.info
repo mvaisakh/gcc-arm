@@ -419,13 +419,21 @@ Texinfo version 4.7 (or later)
      Necessary for running 'makeinfo' when modifying '*.texi' files to
      test your changes.
 
-     Necessary for running 'make dvi' or 'make pdf' to create printable
-     documentation in DVI or PDF format.  Texinfo version 4.8 or later
-     is required for 'make pdf'.
+     Necessary for running 'make dvi', 'make pdf', or 'make html' to
+     create formatted documentation.  Texinfo version 4.8 or later is
+     required for 'make pdf'.
 
-     Necessary to build GCC documentation during development because the
-     generated output files are not included in the repository.  They
-     are included in releases.
+     Necessary to build GCC documentation in info format during
+     development because the generated output files are not included in
+     the repository.  (They are included in release tarballs.)
+
+     Note that the minimum requirement is for a very old version of
+     Texinfo, but recent versions of Texinfo produce better-quality
+     output, especially for HTML format.  The version of Texinfo
+     packaged with any current operating system distribution is likely
+     to be adequate for building the documentation without error, but
+     you may still want to install a newer release to get the best
+     appearance and usability of the generated manuals.
 
 TeX (any working version)
 
@@ -3027,6 +3035,23 @@ feature.
 
      make install-strip
 
+   By default, only the man pages and info-format GCC documentation are
+built and installed.  If you want to generate the GCC manuals in other
+formats, use commands like
+
+     make dvi
+     make pdf
+     make html
+
+to build the manuals in the corresponding formats, and
+
+     make install-dvi
+     make install-pdf
+     make install-html
+
+to install them.  Alternatively, there are prebuilt online versions of
+the manuals for released versions of GCC on the GCC web site.
+
    If you are bootstrapping a released version of GCC then please
 quickly review the build status page for your release, available from
 <https://gcc.gnu.org/buildstat.html>.  If your system is not listed for
@@ -3074,20 +3099,6 @@ information is incomplete or out of date.  Send a note to
 
    If you find a bug, please report it following the bug reporting
 guidelines.
-
-   If you want to print the GCC manuals, do 'cd OBJDIR; make dvi'.  You
-will need to have 'texi2dvi' (version at least 4.7) and TeX installed.
-This creates a number of '.dvi' files in subdirectories of 'OBJDIR';
-these may be converted for printing with programs such as 'dvips'.
-Alternately, by using 'make pdf' in place of 'make dvi', you can create
-documentation in the form of '.pdf' files; this requires 'texi2pdf',
-which is included with Texinfo version 4.8 and later.  You can also buy
-printed manuals from the Free Software Foundation, though such manuals
-may not be for the most recent version of GCC.
-
-   If you would like to generate online HTML documentation, do 'cd
-OBJDIR; make html' and HTML will be generated for the gcc manuals in
-'OBJDIR/gcc/HTML'.
 
 
 File: gccinstall.info,  Node: Binaries,  Next: Specific,  Prev: Installing GCC,  Up: Top
@@ -4905,99 +4916,99 @@ Node: Prerequisites3837
 Ref: GNAT-prerequisite5825
 Ref: GDC-prerequisite7222
 Ref: GM2-prerequisite8405
-Node: Downloading the source17728
-Node: Configuration19399
-Ref: with-gnu-as37666
-Ref: with-as38561
-Ref: with-gnu-ld39970
-Ref: WithAixSoname66848
-Ref: AixLdCommand67509
-Node: Building109500
-Node: Testing125707
-Node: Final install133448
-Node: Binaries138749
-Node: Specific139784
-Ref: aarch64-x-x140318
-Ref: alpha-x-x142338
-Ref: amd64-x-solaris2142552
-Ref: amdgcn-x-amdhsa142634
-Ref: arc-x-elf32143159
-Ref: arc-linux-uclibc143335
-Ref: arm-x-eabi143476
-Ref: avr143729
-Ref: bfin144310
-Ref: cris144573
-Ref: dos144899
-Ref: epiphany-x-elf145224
-Ref: x-x-freebsd145329
-Ref: ft32-x-elf146893
-Ref: h8300-hms146991
-Ref: hppa-hp-hpux147343
-Ref: hppa-hp-hpux10149715
-Ref: hppa-hp-hpux11150128
-Ref: x-x-linux-gnu155530
-Ref: ix86-x-linux155853
-Ref: ix86-x-solaris2156166
-Ref: ia64-x-linux157242
-Ref: ia64-x-hpux157489
-Ref: x-ibm-aix158044
-Ref: TransferAixShobj161706
-Ref: iq2000-x-elf165516
-Ref: lm32-x-elf165656
-Ref: lm32-x-uclinux165760
-Ref: loongarch165888
-Ref: m32c-x-elf166582
-Ref: m32r-x-elf166684
-Ref: m68k-x-x166786
-Ref: m68k-x-uclinux167824
-Ref: microblaze-x-elf168069
-Ref: mips-x-x168188
-Ref: moxie-x-elf170098
-Ref: msp430-x-elf170145
-Ref: nds32le-x-elf170702
-Ref: nds32be-x-elf170774
-Ref: nvptx-x-none170843
-Ref: or1k-x-elf171706
-Ref: or1k-x-linux171837
-Ref: powerpc-x-x171918
-Ref: powerpc-x-darwin172109
-Ref: powerpc-x-elf172604
-Ref: powerpc-x-linux-gnu172689
-Ref: powerpc-x-netbsd172784
-Ref: powerpc-x-eabisim172872
-Ref: powerpc-x-eabi172998
-Ref: powerpcle-x-elf173074
-Ref: powerpcle-x-eabisim173166
-Ref: powerpcle-x-eabi173299
-Ref: rl78-x-elf173382
-Ref: riscv32-x-elf173488
-Ref: riscv32-x-linux173677
-Ref: riscv64-x-elf173834
-Ref: riscv64-x-linux174023
-Ref: rx-x-elf174180
-Ref: s390-x-linux174226
-Ref: s390x-x-linux174298
-Ref: s390x-ibm-tpf174385
-Ref: x-x-solaris2174516
-Ref: sparc-x-x178084
-Ref: sparc-sun-solaris2178586
-Ref: sparc-x-linux179729
-Ref: sparc64-x-solaris2179760
-Ref: sparcv9-x-solaris2180478
-Ref: c6x-x-x180565
-Ref: visium-x-elf180657
-Ref: x-x-vxworks180765
-Ref: x86-64-x-x182288
-Ref: x86-64-x-solaris2182616
-Ref: xtensa-x-elf183266
-Ref: xtensa-x-linux183937
-Ref: windows184278
-Ref: x-x-cygwin185925
-Ref: x-x-mingw32186478
-Ref: older186860
-Ref: elf188977
-Node: GNU Free Documentation License189235
-Node: Concept Index214373
+Node: Downloading the source18212
+Node: Configuration19883
+Ref: with-gnu-as38150
+Ref: with-as39045
+Ref: with-gnu-ld40454
+Ref: WithAixSoname67332
+Ref: AixLdCommand67993
+Node: Building109984
+Node: Testing126191
+Node: Final install133932
+Node: Binaries138939
+Node: Specific139974
+Ref: aarch64-x-x140508
+Ref: alpha-x-x142528
+Ref: amd64-x-solaris2142742
+Ref: amdgcn-x-amdhsa142824
+Ref: arc-x-elf32143349
+Ref: arc-linux-uclibc143525
+Ref: arm-x-eabi143666
+Ref: avr143919
+Ref: bfin144500
+Ref: cris144763
+Ref: dos145089
+Ref: epiphany-x-elf145414
+Ref: x-x-freebsd145519
+Ref: ft32-x-elf147083
+Ref: h8300-hms147181
+Ref: hppa-hp-hpux147533
+Ref: hppa-hp-hpux10149905
+Ref: hppa-hp-hpux11150318
+Ref: x-x-linux-gnu155720
+Ref: ix86-x-linux156043
+Ref: ix86-x-solaris2156356
+Ref: ia64-x-linux157432
+Ref: ia64-x-hpux157679
+Ref: x-ibm-aix158234
+Ref: TransferAixShobj161896
+Ref: iq2000-x-elf165706
+Ref: lm32-x-elf165846
+Ref: lm32-x-uclinux165950
+Ref: loongarch166078
+Ref: m32c-x-elf166772
+Ref: m32r-x-elf166874
+Ref: m68k-x-x166976
+Ref: m68k-x-uclinux168014
+Ref: microblaze-x-elf168259
+Ref: mips-x-x168378
+Ref: moxie-x-elf170288
+Ref: msp430-x-elf170335
+Ref: nds32le-x-elf170892
+Ref: nds32be-x-elf170964
+Ref: nvptx-x-none171033
+Ref: or1k-x-elf171896
+Ref: or1k-x-linux172027
+Ref: powerpc-x-x172108
+Ref: powerpc-x-darwin172299
+Ref: powerpc-x-elf172794
+Ref: powerpc-x-linux-gnu172879
+Ref: powerpc-x-netbsd172974
+Ref: powerpc-x-eabisim173062
+Ref: powerpc-x-eabi173188
+Ref: powerpcle-x-elf173264
+Ref: powerpcle-x-eabisim173356
+Ref: powerpcle-x-eabi173489
+Ref: rl78-x-elf173572
+Ref: riscv32-x-elf173678
+Ref: riscv32-x-linux173867
+Ref: riscv64-x-elf174024
+Ref: riscv64-x-linux174213
+Ref: rx-x-elf174370
+Ref: s390-x-linux174416
+Ref: s390x-x-linux174488
+Ref: s390x-ibm-tpf174575
+Ref: x-x-solaris2174706
+Ref: sparc-x-x178274
+Ref: sparc-sun-solaris2178776
+Ref: sparc-x-linux179919
+Ref: sparc64-x-solaris2179950
+Ref: sparcv9-x-solaris2180668
+Ref: c6x-x-x180755
+Ref: visium-x-elf180847
+Ref: x-x-vxworks180955
+Ref: x86-64-x-x182478
+Ref: x86-64-x-solaris2182806
+Ref: xtensa-x-elf183456
+Ref: xtensa-x-linux184127
+Ref: windows184468
+Ref: x-x-cygwin186115
+Ref: x-x-mingw32186668
+Ref: older187050
+Ref: elf189167
+Node: GNU Free Documentation License189425
+Node: Concept Index214563
 
 End Tag Table
 

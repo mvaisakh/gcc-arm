@@ -4421,332 +4421,21 @@ endianness.  When the object file format does not have an explicit
 endianness, as is true of, for example, S-records, the value will be
 stored in the endianness of the first input object file.
 
+   You can include a zero-terminated string in an output section by
+using 'ASCIZ'.  The keyword is followed by a string which is stored at
+the current value of the location counter adding a zero byte at the end.
+If the string includes spaces it must be enclosed in double quotes.  The
+string may contain '\n', '\r', '\t' and octal numbers.  Hex numbers are
+not supported.
+
+   For example, this string of 16 characters will create a 17 byte area
+       ASCIZ "This is 16 bytes"
+
    Note--these commands only work inside a section description and not
 between them, so the following will produce an error from the linker:
      SECTIONS { .text : { *(.text) } LONG(1) .data : { *(.data) } } 
    whereas this will work:
      SECTIONS { .text : { *(.text) ; LONG(1) } .data : { *(.data) } } 
-   'ASCII strings'
-
-ASCIZ                             "<string"
-ASCII              (<size>)       "<string"
-
-   You can include a zero-terminated string in an output section by
-using 'ASCIZ'.  The keyword is followed by a string which is stored at
-the current value of the location counter including adding a zero byte
-at the end.  Any length of string is supported by this directive.
-
-   You can include a fixed size string in an output section by using
-'ASCII'.  The keyword is followed by a size enclosed in parentheses and
-then a string.  The string is stored at the current value of the
-location counter and zero bytes are added at the end to fill up to the
-specified size.  Note the fill value is ignored for this padding.
-
-   If the string is too long, a warning is issued and the string is
-truncated.  The string will still be zero-terminated in this case.
-
-   If the expression evaluates to zero then the directive will be
-treated as if it were 'ASCIZ' instead.
-
-   If the string in an 'ASCII' or 'ASCIZ' command includes spaces it
-must be enclosed in double quotes.
-
-   The string can have C escape characters like '\n', '\r', '\t' and
-octal numbers.  The '\"' escape is not supported.  Nor are escaped hex
-values.
-
-
-   Example 1: This is string of 16 characters and will create a 32 byte
-area:
-       ASCII (32) "This is 16 bytes"
-
-
-   Example 2: This is a string of 16 characters and will create a 17
-byte area:
-       ASCIZ "This is 16 bytes"
-
-   'CRC Calculation'
-
-DIGEST         "<label>[#<endian>]""CRC32"              (start, end)
-DIGEST         "<label>[#<endian>]""CRC64-ECMA"         (start, end)
-DIGEST         "<label>[#<endian>]""CRC64-GO-ISO"       (start, end)
-DIGEST         "<label>[#<endian>]""CRC64-GO-ISO-R"     (start, end)
-DIGEST         "<label>[#<endian>]""CRC64-WE"           (start, end)
-DIGEST         "<label>[#<endian>]""CRC64-XZ"           (start, end)
-DIGEST         "<label>[#<endian>]"POLY (<params>)      (start, end)
-DIGEST TABLE   "<label>[#<endian>]"                     (start, end)
-
-   You can calculate the CRC of a part of an output section through the
-'DIGEST' command.  The default section is the '".text"' section.  The
-commands take parameters for a label, a 'polynome' and then two more,
-specifying range of the checked area.  The end address is the first
-address past the checked area.
-
-   The checksum is generated in little endian format, but this can be
-overridden by adding a '#BE' or '#LE' modifier to the label string.  The
-generated label does not include the modifier.  The endian can also be
-specified on the command line using '-BE' or '-LE'.
-
-
-   There is one predefined 32-bit polynome
-
-* 'CRC32'              '0x04C11DB7'
-
-   There are five predefined 64-bit polynomes
-
-* 'CRC64-ECMA'         '0x42F0E1EBA9EA3693'
-* 'CRC64-ISO'          '0x000000000000001B'
-* 'CRC64-ISO-R'        '0xD800000000000000'
-* 'CRC64-WE'           '0x42F0E1EBA9EA3693'
-* 'CRC64-XZ'           '0x42F0E1EBA9EA3693'
-
-   You can also select your own 'polynome' using the 'DIGEST POLY'.
-
-   It takes the following 'parameters' separated by commas.
-
-'size'                 size of CRC (32 or 64)
-'polynome'
-'initial'              initial value of crc before calculation
-'xor'                  xor result before return
-'input reflect'        bitreverse input data
-'output reflect'       bitreverse result (before xor'ing)
-'reciprocal'           bitreverse polynome before generating table
-
-   The parameters are explained in detail in
-
-   'http://www.sunshine2k.de/articles/coding/crc/understanding_crc.html'
-
-   Some of the predefined polynomes are the same, but differs in the
-other parameters.
-
-   Note - the generation of 64-bit polynomes on 32-bit hosts for 32-bit
-targets is not supported.
-
-   The 32-bit <polynome> command defines the following global symbols.
-
-'___CRC32___'          address of the CRC32 checksum
-'___CRC32_START___'    first address in the checked area.
-'___CRC32_END___'      first address past the checked area.
-
-
-   The 64-bit <polynome> command defines the following global symbols.
-
-'___CRC64___'          address of the CRC64 checksum
-'___CRC64_START___'    first address in the checked area.
-'___CRC64_END___'      first address past the checked area.
-
-
-   Note: The generated CRC value must be stored outside the checked
-area.
-
-
-   Example 1: This request a CRC check using the 'ECMA' algorithm
-
-       DIGEST "C64" "CRC64-ECMA" (START_CHECK,END_TEXT)
-
-   The user can retrieve the CRC value through the 'C64' label.
-
-
-   Example 2: This request a CRC check using the 'ISO' algorithm
-
-   The checksum is stored as big endian
-
-       DIGEST "C64I#BE" "CRC64-ISO" (START_CHECK,END_TEXT)
-
-   The user can retrieve the big endian CRC value through the 'C64I'
-label.
-
-
-   Example 3: This request a CRC check using a user defined 'polynome'
-
-   The setup is the "CRC32" algorithm
-
-       DIGEST "CRC" POLY (32, 0x04C11DB7,~0,~0,1,1,0) (START_CHECK,END_TEXT)
-
-   The user can retrieve the CRC value through the 'CRC' label.
-
-
-   Example 4: This request a CRC check using the 'CRC32' polynome
-
-       DIGEST "C32.SE" (START_CHECK,END_TEXT)
-
-   The user can retrieve the CRC value through the 'C32' label.
-
-   The 'DIGEST TABLE' command creates a 1 or 2 kByte table for a
-table-driven CRC calculation.  This speeds up the CRC calculation over a
-non-table-driver version since you can handle 8 bits at a time, instead
-of 1 bit.
-
-   The table generated is for the 'polynome' selected using a 'DIGEST
-<polynome>' command.
-
-   The command will define the label supplied as a parameter.  The table
-will be in small endian, unless the '.BE' or '.LE' extension is given to
-the label.  It also defines a symbol based on the size of the polynome.
-
-  1. '___CRC32_TABLE___' address of the CRC32 table, or
-  2. '___CRC64_TABLE___' address of the CRC64 table
-
-
-
-   Example 1: Generate a 1 kB table
-
-   (assuming a previous 'DIGEST "CRC32"' command)
-
-       DIGEST TABLE "crc_tab32"
-
-   The user must declare 'extern uint32_t *crc_tab32;' in his code.
-
-
-   Example 2: Generate a 2 kB table in big endian format.
-
-   (assuming a previous 'DIGEST "CRC64-###"' command)
-
-       DIGEST TABLE "crc_tab64.be"
-
-   The user must declare 'extern uint64_t *crc_tab64;' in his code.
-
-   Using the tables: The user must include CRC code in the application
-to test the CRC
-
-
-Example     Calculating CRC-64
-1:
-
-     Copyright (c) 2016 Lammert Bies
-     Copyright (c) 2021 Bastian Molkenthin
-     Copyright (c) 2023 Ulf Samuelsson
-
-
-     #define SHIFT(t)   ((sizeof(t)-1)*8)
-     uint64_t calc_crc64
-       (algorithm_desc_t * dsc, const unsigned char *input_str, size_t num_bytes)
-     {
-       uint64_t crc;
-       const unsigned char *ptr;
-       uint64_t *crc_tab = dsc->crc_tab;
-       uint64_t index;
-
-       if ((ptr = input_str) == NULL)
-         return 0;
-
-       if (crc_tab == NULL)
-         return 0;
-
-
-       crc = dsc->initial;
-       if (dsc->reciprocal)
-         {
-           for (uint32_t i = 0; i < num_bytes; i++)
-             {
-               index = ((crc >> 0) ^ (uint64_t) * ptr++) & 0x00000000000000FFull;
-               crc = (crc >> 8) ^ crc_tab[index];
-             }
-         }
-       else
-         {
-           uint32_t shift = SHIFT (uint64_t);
-           for (uint32_t i = 0; i < num_bytes; i++)
-             {
-               const unsigned char c = *ptr++;
-               uint64_t rc = (uint64_t) (dsc->ireflect ? reflect8 (c) : c);
-               crc = (crc ^ (rc << shift));
-               index = (uint32_t) (crc >> shift);
-               crc = (crc << 8);
-               crc = (crc ^ (crc_tab[index]));
-             }
-         }
-       crc = (dsc->oreflect ? reflect64 (crc) : crc);
-       crc = crc ^ dsc->xor_val;
-       return crc;
-     }  /* calc_crc64 */
-Example     Calculating CRC-32
-2:
-
-     Copyright (c) 2016 Lammert Bies
-     Copyright (c) 2021 Bastian Molkenthin
-     Copyright (c) 2023 Ulf Samuelsson
-
-
-     #define SHIFT(t)   ((sizeof(t)-1)*8)
-     uint32_t
-     calc_crc32 (algorithm_desc_t * dsc, const unsigned char *input_str,
-                 size_t num_bytes)
-     {
-       uint32_t crc;
-       const unsigned char *ptr;
-       uint32_t index;
-       uint32_t *crc_tab = dsc->crc_tab;
-
-       if ((ptr = input_str) == NULL)
-         return 0;
-
-       if (crc_tab == NULL)
-         return 0;
-
-       crc = dsc->initial;
-
-       if (dsc->reciprocal)
-         {
-           for (uint32_t i = 0; i < num_bytes; i++)
-             {
-               index = ((crc >> 0) ^ (uint32_t) * ptr++) & 0x000000FFul;
-               crc = (crc >> 8) ^ crc_tab[index];
-             }
-         }
-       else
-         {
-           uint32_t shift = SHIFT (uint32_t);
-           for (uint32_t i = 0; i < num_bytes; i++)
-             {
-               const unsigned char c = *ptr++;
-               uint32_t rc = (uint32_t) (dsc->ireflect ? reflect8 (c) : c);
-               crc = (crc ^ (rc << shift));
-               index = (uint32_t) (crc >> shift);
-               crc = (crc << 8);
-               crc = (crc ^ (crc_tab[index]));
-             }
-         }
-       crc = (dsc->oreflect ? reflect32 (crc) : crc);
-       crc = crc ^ dsc->xor_val;
-       return crc;
-     } /* calc_crc32 */
-Example     Calculating CRC-32 using optimized routine
-3:
-
-     Copyright (c) 2016 Lammert Bies
-     Copyright (c) 2021 Bastian Molkenthin
-     Copyright (c) 2023 Ulf Samuelsson
-
-
-     #define SHIFT(t)   ((sizeof(t)-1)*8)
-     extern uint32_t *crc_tab;
-
-     uint32_t
-     calc_crc32 (const unsigned char *input_str, size_t num_bytes)
-     {
-       uint32_t crc;
-       const unsigned char *ptr;
-       uint32_t index;
-       uint32_t shift = SHIFT (uint32_t);
-
-       if ((ptr = input_str) == NULL)
-         return 0;
-
-       crc = 0xFFFFFFFF;
-       for (uint32_t i = 0; i < num_bytes; i++)
-         {
-           const unsigned char c = *ptr++;
-           crc = (crc ^ (c << shift));
-           index = (uint32_t) (crc >> shift);
-           crc = (crc << 8);
-           crc = (crc ^ (crc_tab[index]));
-         }
-       return crc ^ 0xFFFFFFFF;
-     } /* calc_crc32 */
-
-   The 'TIMESTAMP' command creates 64-bit integer with the number of
-seconds since Epoch (1970-01-01 00:00).
 
    You may use the 'FILL' command to set the fill pattern for the
 current section.  It is followed by an expression in parentheses.  Any
@@ -9150,10 +8839,8 @@ LD Index
 * arithmetic operators:                  Operators.          (line    6)
 * ARM interworking support:              ARM.                (line    6)
 * ARM1176 erratum workaround:            ARM.                (line  108)
-* ASCII (EXPRESSION) ``STRING'':         Output Section Data.
-                                                             (line   38)
 * ASCIZ ``STRING'':                      Output Section Data.
-                                                             (line   38)
+                                                             (line    6)
 * ASSERT:                                Miscellaneous Commands.
                                                              (line    9)
 * assertion in linker script:            Miscellaneous Commands.
@@ -9235,22 +8922,6 @@ LD Index
 * demangling, default:                   Environment.        (line   29)
 * demangling, from command line:         Options.            (line 1361)
 * dependency file:                       Options.            (line  527)
-* DIGEST "<label>[#<endian>]" POLY (<PARMS>) (EXPR, EXPR): Output Section Data.
-                                                             (line   76)
-* DIGEST "<label>[#<endian>]" "CRC32" (EXPR, EXPR): Output Section Data.
-                                                             (line   76)
-* DIGEST "<label>[#<endian>]" "CRC64-ECMA" (EXPR, EXPR): Output Section Data.
-                                                             (line   76)
-* DIGEST "<label>[#<endian>]" "CRC64-ISO" (EXPR, EXPR): Output Section Data.
-                                                             (line   76)
-* DIGEST "<label>[#<endian>]" "CRC64-ISO-R" (EXPR, EXPR): Output Section Data.
-                                                             (line   76)
-* DIGEST "<label>[#<endian>]" "CRC64-WE" (EXPR, EXPR): Output Section Data.
-                                                             (line   76)
-* DIGEST "<label>[#<endian>]" "CRC64-XZ" (EXPR, EXPR): Output Section Data.
-                                                             (line   76)
-* DIGEST TABLE "<label>[#<endian>]":     Output Section Data.
-                                                             (line  184)
 * direct linking to a dll:               WIN32.              (line  233)
 * discarding sections:                   Output Section Discarding.
                                                              (line    6)
@@ -9298,7 +8969,7 @@ LD Index
 * fill pattern, entire section:          Output Section Fill.
                                                              (line    6)
 * FILL(EXPRESSION):                      Output Section Data.
-                                                             (line  360)
+                                                             (line   49)
 * finalization function:                 Options.            (line  338)
 * first input file:                      File Commands.      (line   88)
 * first instruction:                     Entry Point.        (line    6)
@@ -9335,7 +9006,7 @@ LD Index
 * HIDDEN:                                HIDDEN.             (line    6)
 * holes:                                 Location Counter.   (line   12)
 * holes, filling:                        Output Section Data.
-                                                             (line  360)
+                                                             (line   49)
 * HPPA multiple sub-space stubs:         HPPA ELF32.         (line    6)
 * HPPA stub grouping:                    HPPA ELF32.         (line   12)
 * image base:                            Options.            (line 2421)
@@ -9484,14 +9155,6 @@ LD Index
                                                              (line    6)
 * output section data:                   Output Section Data.
                                                              (line    6)
-* output section strings:                Output Section Data.
-                                                             (line   38)
-* output section strings <1>:            Output Section Data.
-                                                             (line   76)
-* output section strings <2>:            Output Section Data.
-                                                             (line  184)
-* output section strings <3>:            Output Section Data.
-                                                             (line  356)
 * OUTPUT(FILENAME):                      File Commands.      (line   70)
 * OUTPUT_ARCH(BFDARCH):                  Miscellaneous Commands.
                                                              (line  121)
@@ -9681,8 +9344,6 @@ LD Index
 * text segment origin, cmd line:         Options.            (line 1904)
 * thumb entry point:                     ARM.                (line   17)
 * TI COFF versions:                      TI COFF.            (line    6)
-* TIMESTAMP:                             Output Section Data.
-                                                             (line  356)
 * traditional format:                    Options.            (line 1876)
 * trampoline generation on M68HC11:      M68HC11/68HC12.     (line   30)
 * trampoline generation on M68HC12:      M68HC11/68HC12.     (line   30)
@@ -9694,7 +9355,7 @@ LD Index
 * uninitialized data placement:          Input Section Common.
                                                              (line    6)
 * unspecified memory:                    Output Section Data.
-                                                             (line  360)
+                                                             (line   49)
 * usage:                                 Options.            (line 1484)
 * USE_BLX:                               ARM.                (line   73)
 * using a DEF file:                      WIN32.              (line   52)
@@ -9756,62 +9417,62 @@ Node: Input Section Common191103
 Node: Input Section Keep192585
 Node: Input Section Example193075
 Node: Output Section Data194486
-Node: Output Section Keywords207403
-Node: Output Section Discarding210970
-Node: Output Section Attributes212860
-Node: Output Section Type213979
-Node: Output Section LMA216282
-Node: Forced Output Alignment219353
-Node: Forced Input Alignment219782
-Node: Output Section Constraint220170
-Node: Output Section Region220598
-Node: Output Section Phdr221031
-Node: Output Section Fill221695
-Node: Overlay Description222837
-Node: MEMORY227282
-Node: PHDRS231888
-Node: VERSION237214
-Node: Expressions245305
-Node: Constants246318
-Node: Symbolic Constants247192
-Node: Symbols247743
-Node: Orphan Sections248490
-Node: Location Counter250075
-Node: Operators254509
-Node: Evaluation255431
-Node: Expression Section256795
-Node: Builtin Functions260765
-Node: Implicit Linker Scripts269099
-Node: Plugins269874
-Node: libdep Plugin270430
-Node: Machine Dependent272227
-Node: H8/300273315
-Node: M68HC11/68HC12275388
-Node: ARM276835
-Node: HPPA ELF32288945
-Node: M68K290568
-Node: MIPS291477
-Node: MMIX292593
-Node: MSP430293758
-Node: NDS32295671
-Node: Nios II296635
-Node: PowerPC ELF32297951
-Node: PowerPC64 ELF64300782
-Node: S/390 ELF310540
-Node: SPU ELF310887
-Node: TI COFF313515
-Node: WIN32314041
-Node: Xtensa334188
-Node: BFD337631
-Node: BFD outline339089
-Node: BFD information loss340377
-Node: Canonical format342903
-Node: Reporting Bugs347231
-Node: Bug Criteria347925
-Node: Bug Reporting348624
-Node: MRI355659
-Node: GNU Free Documentation License360130
-Node: LD Index385267
+Node: Output Section Keywords197743
+Node: Output Section Discarding201310
+Node: Output Section Attributes203200
+Node: Output Section Type204319
+Node: Output Section LMA206622
+Node: Forced Output Alignment209693
+Node: Forced Input Alignment210122
+Node: Output Section Constraint210510
+Node: Output Section Region210938
+Node: Output Section Phdr211371
+Node: Output Section Fill212035
+Node: Overlay Description213177
+Node: MEMORY217622
+Node: PHDRS222228
+Node: VERSION227554
+Node: Expressions235645
+Node: Constants236658
+Node: Symbolic Constants237532
+Node: Symbols238083
+Node: Orphan Sections238830
+Node: Location Counter240415
+Node: Operators244849
+Node: Evaluation245771
+Node: Expression Section247135
+Node: Builtin Functions251105
+Node: Implicit Linker Scripts259439
+Node: Plugins260214
+Node: libdep Plugin260770
+Node: Machine Dependent262567
+Node: H8/300263655
+Node: M68HC11/68HC12265728
+Node: ARM267175
+Node: HPPA ELF32279285
+Node: M68K280908
+Node: MIPS281817
+Node: MMIX282933
+Node: MSP430284098
+Node: NDS32286011
+Node: Nios II286975
+Node: PowerPC ELF32288291
+Node: PowerPC64 ELF64291122
+Node: S/390 ELF300880
+Node: SPU ELF301227
+Node: TI COFF303855
+Node: WIN32304381
+Node: Xtensa324528
+Node: BFD327971
+Node: BFD outline329429
+Node: BFD information loss330717
+Node: Canonical format333243
+Node: Reporting Bugs337571
+Node: Bug Criteria338265
+Node: Bug Reporting338964
+Node: MRI345999
+Node: GNU Free Documentation License350470
+Node: LD Index375607
 
 End Tag Table
 
