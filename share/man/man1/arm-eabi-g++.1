@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-03-12" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-03-16" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -7900,7 +7900,7 @@ conversions the warnings \fB\-Wno\-int\-to\-pointer\-cast\fR and
 .IX Item "-Wzero-length-bounds"
 Warn about accesses to elements of zero-length array members that might
 overlap other members of the same object.  Declaring interior zero-length
-arrays is discouraged because accesses to them are undefined.  See
+arrays is discouraged because accesses to them are undefined.
 .Sp
 For example, the first two stores in function \f(CW\*(C`bad\*(C'\fR are diagnosed
 because the array elements overlap the subsequent members \f(CW\*(C`b\*(C'\fR and
@@ -14932,8 +14932,10 @@ E.g. to disable inline code use
 \&\fB\-\-param asan\-instrumentation\-with\-call\-threshold=0\fR.
 .IP "\fBasan-kernel-mem-intrinsic-prefix\fR" 4
 .IX Item "asan-kernel-mem-intrinsic-prefix"
-Prefix calls to memcpy, memset and memmove with _\|_asan_ or _\|_hwasan_
-for \-fsanitize=kernel\-address or \-fsanitize=kernel\-hwaddress.
+If nonzero, prefix calls to \f(CW\*(C`memcpy\*(C'\fR, \f(CW\*(C`memset\*(C'\fR and \f(CW\*(C`memmove\*(C'\fR
+with \fB_\|_asan_\fR or \fB_\|_hwasan_\fR
+for \fB\-fsanitize=kernel\-address\fR or \fB\-fsanitize=kernel\-hwaddress\fR,
+respectively.
 .IP "\fBhwasan-instrument-stack\fR" 4
 .IX Item "hwasan-instrument-stack"
 Enable hwasan instrumentation of statically sized stack-allocated variables.

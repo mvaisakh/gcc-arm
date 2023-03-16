@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2023-03-12" "binutils-2.40.50" "GNU Development Tools"
+.TH LD 1 "2023-03-16" "binutils-2.40.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -362,6 +362,20 @@ specified in the library.  If specified multiple times \f(CW\*(C`DT_DEPAUDIT\*(C
 will contain a colon separated list of audit interfaces to use.  This
 option is only meaningful on \s-1ELF\s0 platforms supporting the rtld-audit interface.
 The \-P option is provided for Solaris compatibility.
+.IP "\fB\-\-enable\-linker\-version\fR" 4
+.IX Item "--enable-linker-version"
+Enables the \f(CW\*(C`LINKER_VERSION\*(C'\fR linker script directive, described
+in \fBOutput Section Data\fR.  If this directive is used in a linker
+script and this option has been enabled then a string containing the
+linker version will be inserted at the current point.
+.Sp
+Note \- this location of this option on the linker command line is
+significant.  It will only affect linker scripts that come after it on
+the command line, or which are built into the linker.
+.IP "\fB\-\-disable\-linker\-version\fR" 4
+.IX Item "--disable-linker-version"
+Disables the \f(CW\*(C`LINKER_VERSION\*(C'\fR linker script directive, so that it
+does not insert a version string.  This is the default.
 .IP "\fB\-\-enable\-non\-contiguous\-regions\fR" 4
 .IX Item "--enable-non-contiguous-regions"
 This option avoids generating an error if an input section does not
@@ -1020,7 +1034,9 @@ in a linker script.
 .IX Item "-V"
 .PD
 Display the version number for \fBld\fR.  The \fB\-V\fR option also
-lists the supported emulations.
+lists the supported emulations.  See also the description of the
+\&\fB\-\-enable\-linker\-version\fR in \fBOptions,,Command\-line Options\fR
+which can be used to insert the linker version string into a binary.
 .IP "\fB\-x\fR" 4
 .IX Item "-x"
 .PD 0

@@ -1868,6 +1868,18 @@ correct for most targets.",
  poly_uint64, (const_tree type),
  default_preferred_vector_alignment)
 
+/* Returns whether the target has a preference for decomposing divisions using
+   shifts rather than multiplies.  */
+DEFHOOK
+(preferred_div_as_shifts_over_mult,
+ "Sometimes it is possible to implement a vector division using a sequence\n\
+of two addition-shift pairs, giving four instructions in total.\n\
+Return true if taking this approach for @var{vectype} is likely\n\
+to be better than using a sequence involving highpart multiplication.\n\
+Default is false if @code{can_mult_highpart_p}, otherwise true.",
+ bool, (const_tree type),
+ default_preferred_div_as_shifts_over_mult)
+
 /* Return true if vector alignment is reachable (by peeling N
    iterations) for the given scalar type.  */
 DEFHOOK
@@ -1904,25 +1916,6 @@ implementation approaches itself.",
  bool, (machine_mode mode, machine_mode op_mode, rtx output, rtx in0, rtx in1,
 	const vec_perm_indices &sel),
  NULL)
-
-DEFHOOK
-(can_special_div_by_const,
- "This hook is used to test whether the target has a special method of\n\
-division of vectors of type @var{vectype} using the value @var{constant},\n\
-and producing a vector of type @var{vectype}.  The division\n\
-will then not be decomposed by the vectorizer and kept as a div.\n\
-\n\
-When the hook is being used to test whether the target supports a special\n\
-divide, @var{in0}, @var{in1}, and @var{output} are all null.  When the hook\n\
-is being used to emit a division, @var{in0} and @var{in1} are the source\n\
-vectors of type @var{vecttype} and @var{output} is the destination vector of\n\
-type @var{vectype}.\n\
-\n\
-Return true if the operation is possible, emitting instructions for it\n\
-if rtxes are provided and updating @var{output}.",
- bool, (enum tree_code, tree vectype, wide_int constant, rtx *output,
-	rtx in0, rtx in1),
- default_can_special_div_by_const)
 
 /* Return true if the target supports misaligned store/load of a
    specific factor denoted in the third parameter.  The last parameter

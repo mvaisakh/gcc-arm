@@ -38063,22 +38063,14 @@ This is about addressing modes.
      VEC_PERMMODE instruction pattern.  There is no need for the hook to
      handle these two implementation approaches itself.
 
- -- Target Hook: bool TARGET_VECTORIZE_CAN_SPECIAL_DIV_BY_CONST (enum
-          TREE_CODE, tree VECTYPE, wide_int CONSTANT, rtx *OUTPUT, rtx
-          IN0, rtx IN1)
-     This hook is used to test whether the target has a special method
-     of division of vectors of type VECTYPE using the value CONSTANT,
-     and producing a vector of type VECTYPE.  The division will then not
-     be decomposed by the vectorizer and kept as a div.
-
-     When the hook is being used to test whether the target supports a
-     special divide, IN0, IN1, and OUTPUT are all null.  When the hook
-     is being used to emit a division, IN0 and IN1 are the source
-     vectors of type VECTTYPE and OUTPUT is the destination vector of
-     type VECTYPE.
-
-     Return true if the operation is possible, emitting instructions for
-     it if rtxes are provided and updating OUTPUT.
+ -- Target Hook: bool TARGET_VECTORIZE_PREFERRED_DIV_AS_SHIFTS_OVER_MULT
+          (const_tree TYPE)
+     Sometimes it is possible to implement a vector division using a
+     sequence of two addition-shift pairs, giving four instructions in
+     total.  Return true if taking this approach for VECTYPE is likely
+     to be better than using a sequence involving highpart
+     multiplication.  Default is false if 'can_mult_highpart_p',
+     otherwise true.
 
  -- Target Hook: tree TARGET_VECTORIZE_BUILTIN_VECTORIZED_FUNCTION
           (unsigned CODE, tree VEC_TYPE_OUT, tree VEC_TYPE_IN)
@@ -57241,15 +57233,15 @@ Concept Index
                                                              (line   39)
 * TARGET_GIMPLE_FOLD_BUILTIN:            Misc.               (line  699)
 * TARGET_GIMPLIFY_VA_ARG_EXPR:           Register Arguments. (line  301)
-* TARGET_GOACC_ADJUST_PRIVATE_DECL:      Addressing Modes.   (line  592)
+* TARGET_GOACC_ADJUST_PRIVATE_DECL:      Addressing Modes.   (line  584)
 * TARGET_GOACC_CREATE_WORKER_BROADCAST_RECORD: Addressing Modes.
-                                                             (line  619)
-* TARGET_GOACC_DIM_LIMIT:                Addressing Modes.   (line  553)
-* TARGET_GOACC_EXPAND_VAR_DECL:          Addressing Modes.   (line  606)
-* TARGET_GOACC_FORK_JOIN:                Addressing Modes.   (line  557)
-* TARGET_GOACC_REDUCTION:                Addressing Modes.   (line  568)
-* TARGET_GOACC_SHARED_MEM_LAYOUT:        Addressing Modes.   (line  630)
-* TARGET_GOACC_VALIDATE_DIMS:            Addressing Modes.   (line  540)
+                                                             (line  611)
+* TARGET_GOACC_DIM_LIMIT:                Addressing Modes.   (line  545)
+* TARGET_GOACC_EXPAND_VAR_DECL:          Addressing Modes.   (line  598)
+* TARGET_GOACC_FORK_JOIN:                Addressing Modes.   (line  549)
+* TARGET_GOACC_REDUCTION:                Addressing Modes.   (line  560)
+* TARGET_GOACC_SHARED_MEM_LAYOUT:        Addressing Modes.   (line  622)
+* TARGET_GOACC_VALIDATE_DIMS:            Addressing Modes.   (line  532)
 * TARGET_HANDLE_C_OPTION:                Run-time Target.    (line   73)
 * TARGET_HANDLE_GENERIC_ATTRIBUTE:       Target Attributes.  (line   93)
 * TARGET_HANDLE_OPTION:                  Run-time Target.    (line   59)
@@ -57362,7 +57354,7 @@ Concept Index
 * TARGET_OBJFMT_CPP_BUILTINS:            Run-time Target.    (line   45)
 * TARGET_OFFLOAD_OPTIONS:                Misc.               (line 1187)
 * TARGET_OMIT_STRUCT_RETURN_REG:         Scalar Return.      (line  117)
-* TARGET_OMP_DEVICE_KIND_ARCH_ISA:       Addressing Modes.   (line  532)
+* TARGET_OMP_DEVICE_KIND_ARCH_ISA:       Addressing Modes.   (line  524)
 * TARGET_OPTAB_SUPPORTED_P:              Costs.              (line  306)
 * TARGET_OPTF:                           Misc.               (line  973)
 * TARGET_OPTION_FUNCTION_VERSIONS:       Target Attributes.  (line  165)
@@ -57387,7 +57379,7 @@ Concept Index
 * TARGET_PRECOMPUTE_TLS_P:               Addressing Modes.   (line  221)
 * TARGET_PREDICT_DOLOOP_P:               Misc.               (line  729)
 * TARGET_PREFERRED_DOLOOP_MODE:          Misc.               (line  793)
-* TARGET_PREFERRED_ELSE_VALUE:           Addressing Modes.   (line  576)
+* TARGET_PREFERRED_ELSE_VALUE:           Addressing Modes.   (line  568)
 * TARGET_PREFERRED_OUTPUT_RELOAD_CLASS:  Register Classes.   (line  284)
 * TARGET_PREFERRED_RELOAD_CLASS:         Register Classes.   (line  213)
 * TARGET_PREFERRED_RENAME_CLASS:         Register Classes.   (line  201)
@@ -57484,11 +57476,11 @@ Concept Index
                                                              (line   27)
 * TARGET_SHRINK_WRAP_SET_HANDLED_COMPONENTS: Shrink-wrapping separate components.
                                                              (line   58)
-* TARGET_SIMD_CLONE_ADJUST:              Addressing Modes.   (line  519)
+* TARGET_SIMD_CLONE_ADJUST:              Addressing Modes.   (line  511)
 * TARGET_SIMD_CLONE_COMPUTE_VECSIZE_AND_SIMDLEN: Addressing Modes.
-                                                             (line  507)
-* TARGET_SIMD_CLONE_USABLE:              Addressing Modes.   (line  523)
-* TARGET_SIMT_VF:                        Addressing Modes.   (line  529)
+                                                             (line  499)
+* TARGET_SIMD_CLONE_USABLE:              Addressing Modes.   (line  515)
+* TARGET_SIMT_VF:                        Addressing Modes.   (line  521)
 * TARGET_SLOW_UNALIGNED_ACCESS:          Costs.              (line  132)
 * TARGET_SMALL_REGISTER_CLASSES_FOR_MODE_P: Register Arguments.
                                                              (line  442)
@@ -57537,29 +57529,29 @@ Concept Index
 * TARGET_VALID_DLLIMPORT_ATTRIBUTE_P:    Target Attributes.  (line   66)
 * TARGET_VALID_POINTER_MODE:             Register Arguments. (line  307)
 * TARGET_VECTORIZE_AUTOVECTORIZE_VECTOR_MODES: Addressing Modes.
-                                                             (line  405)
-* TARGET_VECTORIZE_BUILTIN_GATHER:       Addressing Modes.   (line  493)
+                                                             (line  397)
+* TARGET_VECTORIZE_BUILTIN_GATHER:       Addressing Modes.   (line  485)
 * TARGET_VECTORIZE_BUILTIN_MASK_FOR_LOAD: Addressing Modes.  (line  274)
 * TARGET_VECTORIZE_BUILTIN_MD_VECTORIZED_FUNCTION: Addressing Modes.
-                                                             (line  373)
-* TARGET_VECTORIZE_BUILTIN_SCATTER:      Addressing Modes.   (line  500)
+                                                             (line  365)
+* TARGET_VECTORIZE_BUILTIN_SCATTER:      Addressing Modes.   (line  492)
 * TARGET_VECTORIZE_BUILTIN_VECTORIZATION_COST: Addressing Modes.
                                                              (line  300)
 * TARGET_VECTORIZE_BUILTIN_VECTORIZED_FUNCTION: Addressing Modes.
-                                                             (line  365)
-* TARGET_VECTORIZE_CAN_SPECIAL_DIV_BY_CONST: Addressing Modes.
-                                                             (line  348)
-* TARGET_VECTORIZE_CREATE_COSTS:         Addressing Modes.   (line  481)
+                                                             (line  357)
+* TARGET_VECTORIZE_CREATE_COSTS:         Addressing Modes.   (line  473)
 * TARGET_VECTORIZE_EMPTY_MASK_IS_EXPENSIVE: Addressing Modes.
-                                                             (line  474)
-* TARGET_VECTORIZE_GET_MASK_MODE:        Addressing Modes.   (line  462)
-* TARGET_VECTORIZE_PREFERRED_SIMD_MODE:  Addressing Modes.   (line  390)
+                                                             (line  466)
+* TARGET_VECTORIZE_GET_MASK_MODE:        Addressing Modes.   (line  454)
+* TARGET_VECTORIZE_PREFERRED_DIV_AS_SHIFTS_OVER_MULT: Addressing Modes.
+                                                             (line  348)
+* TARGET_VECTORIZE_PREFERRED_SIMD_MODE:  Addressing Modes.   (line  382)
 * TARGET_VECTORIZE_PREFERRED_VECTOR_ALIGNMENT: Addressing Modes.
                                                              (line  306)
-* TARGET_VECTORIZE_RELATED_MODE:         Addressing Modes.   (line  436)
-* TARGET_VECTORIZE_SPLIT_REDUCTION:      Addressing Modes.   (line  397)
+* TARGET_VECTORIZE_RELATED_MODE:         Addressing Modes.   (line  428)
+* TARGET_VECTORIZE_SPLIT_REDUCTION:      Addressing Modes.   (line  389)
 * TARGET_VECTORIZE_SUPPORT_VECTOR_MISALIGNMENT: Addressing Modes.
-                                                             (line  380)
+                                                             (line  372)
 * TARGET_VECTORIZE_VECTOR_ALIGNMENT_REACHABLE: Addressing Modes.
                                                              (line  318)
 * TARGET_VECTORIZE_VEC_PERM_CONST:       Addressing Modes.   (line  324)
@@ -58483,94 +58475,94 @@ Node: Varargs1586227
 Node: Trampolines1594321
 Node: Library Calls1604014
 Node: Addressing Modes1609101
-Node: Anchored Addresses1640993
-Node: Condition Code1643636
-Node: MODE_CC Condition Codes1645481
-Node: Costs1652244
-Node: Scheduling1674564
-Node: Sections1698486
-Node: PIC1714856
-Node: Assembler Format1716915
-Node: File Framework1718053
-Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1725652
-Node: Data Output1727327
-Node: Uninitialized Data1735615
-Node: Label Output1740630
-Node: Initialization1765243
-Node: Macros for Initialization1771204
-Node: Instruction Output1778355
-Node: Dispatch Tables1788985
-Node: Exception Region Output1794736
-Node: Alignment Output1801818
-Node: Debugging Info1805505
-Node: All Debuggers1806055
-Node: DWARF1808988
-Node: VMS Debug1814763
-Node: CTF Debug1815360
-Node: BTF Debug1815721
-Node: Floating Point1816064
-Node: Mode Switching1818819
-Node: Target Attributes1823256
-Node: Emulated TLS1834659
-Node: MIPS Coprocessors1838049
-Node: PCH Target1839208
-Node: C++ ABI1841050
-Node: D Language and ABI1845842
-Node: Named Address Spaces1849066
-Node: Misc1854993
-Ref: TARGET_SHIFT_TRUNCATION_MASK1862864
-Node: Host Config1924192
-Node: Host Common1925261
-Node: Filesystem1927635
-Node: Host Misc1931750
-Node: Fragments1934199
-Node: Target Fragment1935394
-Node: Host Fragment1946206
-Node: Collect21946446
-Node: Header Dirs1949082
-Node: Type Information1950505
-Node: GTY Options1954036
-Node: Inheritance and GTY1966467
-Ref: Inheritance and GTY-Footnote-11968032
-Node: User GC1968302
-Node: GGC Roots1972053
-Node: Files1972766
-Node: Invoking the garbage collector1975397
-Node: Troubleshooting1977039
-Node: Plugins1978114
-Node: Plugins loading1979243
-Node: Plugin API1980342
-Node: Plugins pass1988209
-Node: Plugins GC1990180
-Node: Plugins description1991897
-Node: Plugins attr1992433
-Node: Plugins recording1994713
-Node: Plugins gate1995563
-Node: Plugins tracking1996154
-Node: Plugins building1996742
-Node: LTO2000245
-Node: LTO Overview2001117
-Node: LTO object file layout2006873
-Node: IPA2011372
-Node: WHOPR2020424
-Node: Internal flags2024984
-Node: Match and Simplify2026395
-Node: GIMPLE API2027365
-Node: The Language2030167
-Node: Static Analyzer2042794
-Node: Analyzer Internals2043059
-Node: Debugging the Analyzer2058829
-Node: User Experience Guidelines2062827
-Node: Guidelines for Diagnostics2063763
-Ref: input_location_example2071938
-Node: Guidelines for Options2081623
-Node: Funding2081800
-Node: GNU Project2084307
-Node: Copying2084958
-Node: GNU Free Documentation License2122475
-Node: Contributors2147601
-Node: Option Index2188684
-Node: Concept Index2189561
+Node: Anchored Addresses1640592
+Node: Condition Code1643235
+Node: MODE_CC Condition Codes1645080
+Node: Costs1651843
+Node: Scheduling1674163
+Node: Sections1698085
+Node: PIC1714455
+Node: Assembler Format1716514
+Node: File Framework1717652
+Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1725251
+Node: Data Output1726926
+Node: Uninitialized Data1735214
+Node: Label Output1740229
+Node: Initialization1764842
+Node: Macros for Initialization1770803
+Node: Instruction Output1777954
+Node: Dispatch Tables1788584
+Node: Exception Region Output1794335
+Node: Alignment Output1801417
+Node: Debugging Info1805104
+Node: All Debuggers1805654
+Node: DWARF1808587
+Node: VMS Debug1814362
+Node: CTF Debug1814959
+Node: BTF Debug1815320
+Node: Floating Point1815663
+Node: Mode Switching1818418
+Node: Target Attributes1822855
+Node: Emulated TLS1834258
+Node: MIPS Coprocessors1837648
+Node: PCH Target1838807
+Node: C++ ABI1840649
+Node: D Language and ABI1845441
+Node: Named Address Spaces1848665
+Node: Misc1854592
+Ref: TARGET_SHIFT_TRUNCATION_MASK1862463
+Node: Host Config1923791
+Node: Host Common1924860
+Node: Filesystem1927234
+Node: Host Misc1931349
+Node: Fragments1933798
+Node: Target Fragment1934993
+Node: Host Fragment1945805
+Node: Collect21946045
+Node: Header Dirs1948681
+Node: Type Information1950104
+Node: GTY Options1953635
+Node: Inheritance and GTY1966066
+Ref: Inheritance and GTY-Footnote-11967631
+Node: User GC1967901
+Node: GGC Roots1971652
+Node: Files1972365
+Node: Invoking the garbage collector1974996
+Node: Troubleshooting1976638
+Node: Plugins1977713
+Node: Plugins loading1978842
+Node: Plugin API1979941
+Node: Plugins pass1987808
+Node: Plugins GC1989779
+Node: Plugins description1991496
+Node: Plugins attr1992032
+Node: Plugins recording1994312
+Node: Plugins gate1995162
+Node: Plugins tracking1995753
+Node: Plugins building1996341
+Node: LTO1999844
+Node: LTO Overview2000716
+Node: LTO object file layout2006472
+Node: IPA2010971
+Node: WHOPR2020023
+Node: Internal flags2024583
+Node: Match and Simplify2025994
+Node: GIMPLE API2026964
+Node: The Language2029766
+Node: Static Analyzer2042393
+Node: Analyzer Internals2042658
+Node: Debugging the Analyzer2058428
+Node: User Experience Guidelines2062426
+Node: Guidelines for Diagnostics2063362
+Ref: input_location_example2071537
+Node: Guidelines for Options2081222
+Node: Funding2081399
+Node: GNU Project2083906
+Node: Copying2084557
+Node: GNU Free Documentation License2122074
+Node: Contributors2147200
+Node: Option Index2188283
+Node: Concept Index2189160
 
 End Tag Table
 
