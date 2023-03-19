@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-03-16" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-03-19" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -728,8 +728,8 @@ in the following sections.
 .IX Item "Developer Options"
 \&\fB\-d\fR\fIletters\fR  \fB\-dumpspecs  \-dumpmachine  \-dumpversion 
 \&\-dumpfullversion  \-fcallgraph\-info\fR[\fB=su,da\fR]
-\&\fB\-fchecking  \-fchecking=\fR\fIn\fR
-\&\fB\-fdbg\-cnt\-list   \-fdbg\-cnt=\fR\fIcounter-value-list\fR 
+\&\fB\-fchecking  \-fchecking=\fR\fIn\fR 
+\&\fB\-fdbg\-cnt\-list  \-fdbg\-cnt=\fR\fIcounter-value-list\fR 
 \&\fB\-fdisable\-ipa\-\fR\fIpass_name\fR 
 \&\fB\-fdisable\-rtl\-\fR\fIpass_name\fR 
 \&\fB\-fdisable\-rtl\-\fR\fIpass-name\fR\fB=\fR\fIrange-list\fR 
@@ -3162,8 +3162,9 @@ into shape for a future \*(C+ standard.
 On violation of a checked contract, the violation handler is called.
 Users can replace the violation handler by defining
 .Sp
-.Vb 1
-\&        void handle_contract_violation (const std::experimental::contract_violation&);
+.Vb 2
+\&        void
+\&        handle_contract_violation (const std::experimental::contract_violation&);
 .Ve
 .Sp
 There are different sets of additional flags that can be used together
@@ -3668,12 +3669,13 @@ style guides allow \s-1CTAD\s0 only on types that specifically \*(L"opt-in\*(R";
 types that are designed to support \s-1CTAD.\s0  This warning can be suppressed with
 the following pattern:
 .Sp
-.Vb 5
+.Vb 6
 \&        struct allow_ctad_t; // any name works
 \&        template <typename T> struct S {
 \&          S(T) { }
 \&        };
-\&        S(allow_ctad_t) \-> S<void>; // guide with incomplete parameter type will never be considered
+\&        // Guide with incomplete parameter type will never be considered.
+\&        S(allow_ctad_t) \-> S<void>;
 .Ve
 .IP "\fB\-Wctor\-dtor\-privacy\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wctor-dtor-privacy ( and Objective- only)"
@@ -3840,12 +3842,13 @@ This warning is enabled as a pedantic warning by default in \*(C+20 and
 earlier.  In \*(C+23, \fB\-Winvalid\-constexpr\fR can be turned on, in
 which case it will be an ordinary warning.  For example:
 .Sp
-.Vb 6
+.Vb 7
 \&        void f (int& i);
 \&        constexpr void
 \&        g (int& i)
 \&        {
-\&          f(i); // warns by default in C++20, in C++23 only with \-Winvalid\-constexpr
+\&          // Warns by default in C++20, in C++23 only with \-Winvalid\-constexpr.
+\&          f(i);
 \&        }
 .Ve
 .IP "\fB\-Winvalid\-imported\-macros\fR" 4
@@ -8566,22 +8569,24 @@ levels but may yield different results with optimization than without.
 At level 1 the warning diagnoses only unconditional uses of dangling pointers.
 For example
 .Sp
-.Vb 5
+.Vb 6
 \&        int f (int c1, int c2, x)
 \&        {
 \&          char *p = strchr ((char[]){ c1, c2 }, c3);
-\&          return p ? *p : \*(Aqx\*(Aq;   // warning: dangling pointer to a compound literal
+\&          // warning: dangling pointer to a compound literal
+\&          return p ? *p : \*(Aqx\*(Aq;
 \&        }
 .Ve
 .Sp
 In the following function the store of the address of the local variable
 \&\f(CW\*(C`x\*(C'\fR in the escaped pointer \f(CW*p\fR also triggers the warning.
 .Sp
-.Vb 5
+.Vb 6
 \&        void g (int **p)
 \&        {
 \&          int x = 7;
-\&          *p = &x;   // warning: storing the address of a local variable in *p
+\&          // warning: storing the address of a local variable in *p
+\&          *p = &x;
 \&        }
 .Ve
 .IP "\fB\-Wdangling\-pointer=2\fR" 4
@@ -8593,7 +8598,7 @@ For example, because the array \fIa\fR in the following function is out of
 scope when the pointer \fIs\fR that was set to point is used, the warning
 triggers at this level.
 .Sp
-.Vb 10
+.Vb 11
 \&        void f (char *s)
 \&        {
 \&          if (!s)
@@ -8601,7 +8606,8 @@ triggers at this level.
 \&              char a[12] = "tmpname";
 \&              s = a;
 \&            }
-\&          strcat (s, ".tmp");   // warning: dangling pointer to a may be used
+\&          // warning: dangling pointer to a may be used
+\&          strcat (s, ".tmp");
 \&          ...
 \&        }
 .Ve
@@ -9231,10 +9237,12 @@ Also warn about questionable values for that option.
 This variable is intended to be used for controlling class layout, to
 avoid false sharing in concurrent code:
 .Sp
-.Vb 4
+.Vb 6
 \&        struct independent_fields {
-\&          alignas(std::hardware_destructive_interference_size) std::atomic<int> one;
-\&          alignas(std::hardware_destructive_interference_size) std::atomic<int> two;
+\&          alignas(std::hardware_destructive_interference_size)
+\&            std::atomic<int> one;
+\&          alignas(std::hardware_destructive_interference_size)
+\&            std::atomic<int> two;
 \&        };
 .Ve
 .Sp
@@ -9358,16 +9366,18 @@ the second one specifies that the array argument must have at least \f(CW\*(C`n\
 elements.  In addition, calling \f(CW\*(C`f\*(C'\fR with the associated \s-1VLA\s0 bound
 parameter in excess of the actual \s-1VLA\s0 bound triggers a warning as well.
 .Sp
-.Vb 2
+.Vb 3
 \&        void f (int n, int[n]);
-\&        void f (int, int[]);     // warning: argument 2 previously declared as a VLA
+\&        // warning: argument 2 previously declared as a VLA
+\&        void f (int, int[]);
 \&        
 \&        void g (int n)
 \&        {
 \&            if (n > 4)
 \&              return;
 \&            int a[n];
-\&            f (sizeof a, a);     // warning: access to a by f may be out of bounds
+\&            // warning: access to a by f may be out of bounds
+\&            f (sizeof a, a);
 \&          ...
 \&        }
 .Ve
@@ -9515,9 +9525,8 @@ complicated for the analyzer to fully explore and it reaches an internal
 limit.  The \fB\-Wanalyzer\-too\-complex\fR option warns if this occurs.
 .IP "\fB\-Wno\-analyzer\-allocation\-size\fR" 4
 .IX Item "-Wno-analyzer-allocation-size"
-This warning requires \fB\-fanalyzer\fR, which enables it; use
-\&\fB\-Wno\-analyzer\-allocation\-size\fR
-to disable it.
+This warning requires \fB\-fanalyzer\fR, which enables it;
+to disable it, use \fB\-Wno\-analyzer\-allocation\-size\fR.
 .Sp
 This diagnostic warns for paths through the code in which a pointer to
 a buffer is assigned to point at a buffer with a size that is not a
@@ -9758,10 +9767,10 @@ pairs using attribute \f(CW\*(C`malloc\*(C'\fR.
 See  \s-1CWE\-762:\s0 Mismatched Memory Management Routines (\f(CW\*(C`https://cwe.mitre.org/data/definitions/762.html\*(C'\fR).
 .IP "\fB\-Wno\-analyzer\-out\-of\-bounds\fR" 4
 .IX Item "-Wno-analyzer-out-of-bounds"
-This warning requires \fB\-fanalyzer\fR to enable it; use
+This warning requires \fB\-fanalyzer\fR, which enables it; use
 \&\fB\-Wno\-analyzer\-out\-of\-bounds\fR to disable it.
 .Sp
-This diagnostic warns for path through the code in which a buffer is
+This diagnostic warns for paths through the code in which a buffer is
 definitely read or written out-of-bounds.  The diagnostic applies for
 cases where the analyzer is able to determine a constant offset and for
 accesses past the end of a buffer, also a constant capacity.  Further,
@@ -10258,10 +10267,16 @@ In addition, various functions with an \f(CW\*(C`_\|_analyzer_\*(C'\fR prefix ha
 special meaning to the analyzer, described in the \s-1GCC\s0 Internals manual.
 .PP
 Pertinent parameters for controlling the exploration are:
-\&\fB\-\-param analyzer\-bb\-explosion\-factor=\fR\fIvalue\fR,
-\&\fB\-\-param analyzer\-max\-enodes\-per\-program\-point=\fR\fIvalue\fR,
-\&\fB\-\-param analyzer\-max\-recursion\-depth=\fR\fIvalue\fR, and
-\&\fB\-\-param analyzer\-min\-snodes\-for\-call\-summary=\fR\fIvalue\fR.
+.IP "*<\fB\-\-param analyzer\-bb\-explosion\-factor=\fR\fIvalue\fR>" 4
+.IX Item "*<--param analyzer-bb-explosion-factor=value>"
+.PD 0
+.IP "*<\fB\-\-param analyzer\-max\-enodes\-per\-program\-point=\fR\fIvalue\fR>" 4
+.IX Item "*<--param analyzer-max-enodes-per-program-point=value>"
+.IP "*<\fB\-\-param analyzer\-max\-recursion\-depth=\fR\fIvalue\fR>" 4
+.IX Item "*<--param analyzer-max-recursion-depth=value>"
+.IP "*<\fB\-\-param analyzer\-min\-snodes\-for\-call\-summary=\fR\fIvalue\fR>" 4
+.IX Item "*<--param analyzer-min-snodes-for-call-summary=value>"
+.PD
 .PP
 The following options control the analyzer.
 .IP "\fB\-fanalyzer\-call\-summaries\fR" 4
@@ -10449,7 +10464,7 @@ other events intended for debugging the analyzer.
 .IX Item "-fdump-analyzer"
 Dump internal details about what the analyzer is doing to
 \&\fI\fIfile\fI.analyzer.txt\fR.
-This option is overridden by \fB\-fdump\-analyzer\-stderr\fR.
+\&\fB\-fdump\-analyzer\-stderr\fR overrides this option.
 .IP "\fB\-fdump\-analyzer\-stderr\fR" 4
 .IX Item "-fdump-analyzer-stderr"
 Dump internal details about what the analyzer is doing to stderr.
@@ -12086,7 +12101,8 @@ callers are impacted, therefore need to be patched as well.
 \&\fB\-flive\-patching=inline\-clone\fR disables the following optimization flags:
 \&\fB\-fwhole\-program  \-fipa\-pta  \-fipa\-reference  \-fipa\-ra 
 \&\-fipa\-icf  \-fipa\-icf\-functions  \-fipa\-icf\-variables 
-\&\-fipa\-bit\-cp  \-fipa\-vrp  \-fipa\-pure\-const  \-fipa\-reference\-addressable 
+\&\-fipa\-bit\-cp  \-fipa\-vrp  \-fipa\-pure\-const 
+\&\-fipa\-reference\-addressable 
 \&\-fipa\-stack\-alignment \-fipa\-modref\fR
 .IP "\fBinline-only-static\fR" 4
 .IX Item "inline-only-static"
@@ -15233,9 +15249,8 @@ constructs are handled by the \fBparloops\fR pass, en bloc.
 This is the current default.
 .IP "\fBopenacc-privatization\fR" 4
 .IX Item "openacc-privatization"
-Specify mode of OpenACC privatization diagnostics for
-\&\fB\-fopt\-info\-omp\-note\fR and applicable
-\&\fB\-fdump\-tree\-*\-details\fR.
+Control whether the \fB\-fopt\-info\-omp\-note\fR and applicable
+\&\fB\-fdump\-tree\-*\-details\fR options emit OpenACC privatization diagnostics.
 With \fB\-\-param=openacc\-privatization=quiet\fR, don't diagnose.
 This is the current default.
 With \fB\-\-param=openacc\-privatization=noisy\fR, do diagnose.
