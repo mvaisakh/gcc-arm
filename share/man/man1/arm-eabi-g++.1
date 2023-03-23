@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-03-19" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-03-23" "gcc-13.0.1" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -216,737 +216,737 @@ Here is a summary of all the options, grouped by type.  Explanations are
 in the following sections.
 .IP "\fIOverall Options\fR" 4
 .IX Item "Overall Options"
-\&\fB\-c  \-S  \-E  \-o\fR \fIfile\fR 
-\&\fB\-dumpbase\fR \fIdumpbase\fR  \fB\-dumpbase\-ext\fR \fIauxdropsuf\fR 
-\&\fB\-dumpdir\fR \fIdumppfx\fR  \fB\-x\fR \fIlanguage\fR  
-\&\fB\-v  \-###  \-\-help\fR[\fB=\fR\fIclass\fR[\fB,...\fR]]  \fB\-\-target\-help  \-\-version 
-\&\-pass\-exit\-codes  \-pipe  \-specs=\fR\fIfile\fR  \fB\-wrapper  
-@\fR\fIfile\fR  \fB\-ffile\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR  \fB\-fcanon\-prefix\-map  
-\&\-fplugin=\fR\fIfile\fR  \fB\-fplugin\-arg\-\fR\fIname\fR\fB=\fR\fIarg\fR  
+\&\fB\-c  \-S  \-E  \-o\fR \fIfile\fR
+\&\fB\-dumpbase\fR \fIdumpbase\fR  \fB\-dumpbase\-ext\fR \fIauxdropsuf\fR
+\&\fB\-dumpdir\fR \fIdumppfx\fR  \fB\-x\fR \fIlanguage\fR
+\&\fB\-v  \-###  \-\-help\fR[\fB=\fR\fIclass\fR[\fB,...\fR]]  \fB\-\-target\-help  \-\-version
+\&\-pass\-exit\-codes  \-pipe  \-specs=\fR\fIfile\fR  \fB\-wrapper
+@\fR\fIfile\fR  \fB\-ffile\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR  \fB\-fcanon\-prefix\-map
+\&\-fplugin=\fR\fIfile\fR  \fB\-fplugin\-arg\-\fR\fIname\fR\fB=\fR\fIarg\fR
 \&\fB\-fdump\-ada\-spec\fR[\fB\-slim\fR]  \fB\-fada\-spec\-parent=\fR\fIunit\fR  \fB\-fdump\-go\-spec=\fR\fIfile\fR
 .IP "\fIC Language Options\fR" 4
 .IX Item "C Language Options"
-\&\fB\-ansi  \-std=\fR\fIstandard\fR  \fB\-aux\-info\fR \fIfilename\fR 
-\&\fB\-fno\-asm  
-\&\-fno\-builtin  \-fno\-builtin\-\fR\fIfunction\fR  \fB\-fcond\-mismatch 
-\&\-ffreestanding  \-fgimple  \-fgnu\-tm  \-fgnu89\-inline  \-fhosted 
-\&\-flax\-vector\-conversions  \-fms\-extensions 
-\&\-foffload=\fR\fIarg\fR  \fB\-foffload\-options=\fR\fIarg\fR 
-\&\fB\-fopenacc  \-fopenacc\-dim=\fR\fIgeom\fR 
-\&\fB\-fopenmp  \-fopenmp\-simd  \-fopenmp\-target\-simd\-clone\fR[\fB=\fR\fIdevice-type\fR] 
-\&\fB\-fpermitted\-flt\-eval\-methods=\fR\fIstandard\fR 
-\&\fB\-fplan9\-extensions  \-fsigned\-bitfields  \-funsigned\-bitfields 
-\&\-fsigned\-char  \-funsigned\-char \-fstrict\-flex\-arrays[=\fR\fIn\fR\fB] 
+\&\fB\-ansi  \-std=\fR\fIstandard\fR  \fB\-aux\-info\fR \fIfilename\fR
+\&\fB\-fno\-asm
+\&\-fno\-builtin  \-fno\-builtin\-\fR\fIfunction\fR  \fB\-fcond\-mismatch
+\&\-ffreestanding  \-fgimple  \-fgnu\-tm  \-fgnu89\-inline  \-fhosted
+\&\-flax\-vector\-conversions  \-fms\-extensions
+\&\-foffload=\fR\fIarg\fR  \fB\-foffload\-options=\fR\fIarg\fR
+\&\fB\-fopenacc  \-fopenacc\-dim=\fR\fIgeom\fR
+\&\fB\-fopenmp  \-fopenmp\-simd  \-fopenmp\-target\-simd\-clone\fR[\fB=\fR\fIdevice-type\fR]
+\&\fB\-fpermitted\-flt\-eval\-methods=\fR\fIstandard\fR
+\&\fB\-fplan9\-extensions  \-fsigned\-bitfields  \-funsigned\-bitfields
+\&\-fsigned\-char  \-funsigned\-char \-fstrict\-flex\-arrays[=\fR\fIn\fR\fB]
 \&\-fsso\-struct=\fR\fIendianness\fR
 .IP "\fI\*(C+ Language Options\fR" 4
 .IX Item " Language Options"
-\&\fB\-fabi\-version=\fR\fIn\fR  \fB\-fno\-access\-control 
-\&\-faligned\-new=\fR\fIn\fR  \fB\-fargs\-in\-order=\fR\fIn\fR  \fB\-fchar8_t  \-fcheck\-new 
-\&\-fconstexpr\-depth=\fR\fIn\fR  \fB\-fconstexpr\-cache\-depth=\fR\fIn\fR 
-\&\fB\-fconstexpr\-loop\-limit=\fR\fIn\fR  \fB\-fconstexpr\-ops\-limit=\fR\fIn\fR 
-\&\fB\-fno\-elide\-constructors 
-\&\-fno\-enforce\-eh\-specs 
-\&\-fno\-gnu\-keywords 
-\&\-fno\-implicit\-templates 
-\&\-fno\-implicit\-inline\-templates 
-\&\-fno\-implement\-inlines  
-\&\-fmodule\-header\fR[\fB=\fR\fIkind\fR] \fB\-fmodule\-only \-fmodules\-ts 
-\&\-fmodule\-implicit\-inline 
-\&\-fno\-module\-lazy 
-\&\-fmodule\-mapper=\fR\fIspecification\fR 
-\&\fB\-fmodule\-version\-ignore 
-\&\-fms\-extensions 
-\&\-fnew\-inheriting\-ctors 
-\&\-fnew\-ttp\-matching 
-\&\-fno\-nonansi\-builtins  \-fnothrow\-opt  \-fno\-operator\-names 
-\&\-fno\-optional\-diags  \-fpermissive 
-\&\-fno\-pretty\-templates 
-\&\-fno\-rtti  \-fsized\-deallocation 
-\&\-ftemplate\-backtrace\-limit=\fR\fIn\fR 
-\&\fB\-ftemplate\-depth=\fR\fIn\fR 
-\&\fB\-fno\-threadsafe\-statics  \-fuse\-cxa\-atexit 
-\&\-fno\-weak  \-nostdinc++ 
-\&\-fvisibility\-inlines\-hidden 
-\&\-fvisibility\-ms\-compat 
-\&\-fext\-numeric\-literals 
-\&\-flang\-info\-include\-translate\fR[\fB=\fR\fIheader\fR] 
-\&\fB\-flang\-info\-include\-translate\-not 
-\&\-flang\-info\-module\-cmi\fR[\fB=\fR\fImodule\fR] 
-\&\fB\-stdlib=\fR\fIlibstdc++,libc++\fR 
-\&\fB\-Wabi\-tag  \-Wcatch\-value  \-Wcatch\-value=\fR\fIn\fR 
-\&\fB\-Wno\-class\-conversion  \-Wclass\-memaccess 
-\&\-Wcomma\-subscript  \-Wconditionally\-supported 
-\&\-Wno\-conversion\-null  \-Wctad\-maybe\-unsupported 
-\&\-Wctor\-dtor\-privacy  \-Wdangling\-reference 
-\&\-Wno\-delete\-incomplete 
-\&\-Wdelete\-non\-virtual\-dtor  \-Wno\-deprecated\-array\-compare 
-\&\-Wdeprecated\-copy \-Wdeprecated\-copy\-dtor 
-\&\-Wno\-deprecated\-enum\-enum\-conversion \-Wno\-deprecated\-enum\-float\-conversion 
-\&\-Weffc++  \-Wno\-exceptions \-Wextra\-semi  \-Wno\-inaccessible\-base 
-\&\-Wno\-inherited\-variadic\-ctor  \-Wno\-init\-list\-lifetime 
-\&\-Winvalid\-constexpr \-Winvalid\-imported\-macros 
-\&\-Wno\-invalid\-offsetof  \-Wno\-literal\-suffix 
-\&\-Wmismatched\-new\-delete \-Wmismatched\-tags 
-\&\-Wmultiple\-inheritance  \-Wnamespaces  \-Wnarrowing 
-\&\-Wnoexcept  \-Wnoexcept\-type  \-Wnon\-virtual\-dtor 
-\&\-Wpessimizing\-move  \-Wno\-placement\-new  \-Wplacement\-new=\fR\fIn\fR 
-\&\fB\-Wrange\-loop\-construct \-Wredundant\-move \-Wredundant\-tags 
-\&\-Wreorder  \-Wregister 
-\&\-Wstrict\-null\-sentinel  \-Wno\-subobject\-linkage  \-Wtemplates 
-\&\-Wno\-non\-template\-friend  \-Wold\-style\-cast 
-\&\-Woverloaded\-virtual  \-Wno\-pmf\-conversions \-Wself\-move \-Wsign\-promo 
-\&\-Wsized\-deallocation  \-Wsuggest\-final\-methods 
-\&\-Wsuggest\-final\-types  \-Wsuggest\-override  
-\&\-Wno\-terminate  \-Wuseless\-cast  \-Wno\-vexing\-parse  
-\&\-Wvirtual\-inheritance  
+\&\fB\-fabi\-version=\fR\fIn\fR  \fB\-fno\-access\-control
+\&\-faligned\-new=\fR\fIn\fR  \fB\-fargs\-in\-order=\fR\fIn\fR  \fB\-fchar8_t  \-fcheck\-new
+\&\-fconstexpr\-depth=\fR\fIn\fR  \fB\-fconstexpr\-cache\-depth=\fR\fIn\fR
+\&\fB\-fconstexpr\-loop\-limit=\fR\fIn\fR  \fB\-fconstexpr\-ops\-limit=\fR\fIn\fR
+\&\fB\-fno\-elide\-constructors
+\&\-fno\-enforce\-eh\-specs
+\&\-fno\-gnu\-keywords
+\&\-fno\-implicit\-templates
+\&\-fno\-implicit\-inline\-templates
+\&\-fno\-implement\-inlines
+\&\-fmodule\-header\fR[\fB=\fR\fIkind\fR] \fB\-fmodule\-only \-fmodules\-ts
+\&\-fmodule\-implicit\-inline
+\&\-fno\-module\-lazy
+\&\-fmodule\-mapper=\fR\fIspecification\fR
+\&\fB\-fmodule\-version\-ignore
+\&\-fms\-extensions
+\&\-fnew\-inheriting\-ctors
+\&\-fnew\-ttp\-matching
+\&\-fno\-nonansi\-builtins  \-fnothrow\-opt  \-fno\-operator\-names
+\&\-fno\-optional\-diags  \-fpermissive
+\&\-fno\-pretty\-templates
+\&\-fno\-rtti  \-fsized\-deallocation
+\&\-ftemplate\-backtrace\-limit=\fR\fIn\fR
+\&\fB\-ftemplate\-depth=\fR\fIn\fR
+\&\fB\-fno\-threadsafe\-statics  \-fuse\-cxa\-atexit
+\&\-fno\-weak  \-nostdinc++
+\&\-fvisibility\-inlines\-hidden
+\&\-fvisibility\-ms\-compat
+\&\-fext\-numeric\-literals
+\&\-flang\-info\-include\-translate\fR[\fB=\fR\fIheader\fR]
+\&\fB\-flang\-info\-include\-translate\-not
+\&\-flang\-info\-module\-cmi\fR[\fB=\fR\fImodule\fR]
+\&\fB\-stdlib=\fR\fIlibstdc++,libc++\fR
+\&\fB\-Wabi\-tag  \-Wcatch\-value  \-Wcatch\-value=\fR\fIn\fR
+\&\fB\-Wno\-class\-conversion  \-Wclass\-memaccess
+\&\-Wcomma\-subscript  \-Wconditionally\-supported
+\&\-Wno\-conversion\-null  \-Wctad\-maybe\-unsupported
+\&\-Wctor\-dtor\-privacy  \-Wdangling\-reference
+\&\-Wno\-delete\-incomplete
+\&\-Wdelete\-non\-virtual\-dtor  \-Wno\-deprecated\-array\-compare
+\&\-Wdeprecated\-copy \-Wdeprecated\-copy\-dtor
+\&\-Wno\-deprecated\-enum\-enum\-conversion \-Wno\-deprecated\-enum\-float\-conversion
+\&\-Weffc++  \-Wno\-exceptions \-Wextra\-semi  \-Wno\-inaccessible\-base
+\&\-Wno\-inherited\-variadic\-ctor  \-Wno\-init\-list\-lifetime
+\&\-Winvalid\-constexpr \-Winvalid\-imported\-macros
+\&\-Wno\-invalid\-offsetof  \-Wno\-literal\-suffix
+\&\-Wmismatched\-new\-delete \-Wmismatched\-tags
+\&\-Wmultiple\-inheritance  \-Wnamespaces  \-Wnarrowing
+\&\-Wnoexcept  \-Wnoexcept\-type  \-Wnon\-virtual\-dtor
+\&\-Wpessimizing\-move  \-Wno\-placement\-new  \-Wplacement\-new=\fR\fIn\fR
+\&\fB\-Wrange\-loop\-construct \-Wredundant\-move \-Wredundant\-tags
+\&\-Wreorder  \-Wregister
+\&\-Wstrict\-null\-sentinel  \-Wno\-subobject\-linkage  \-Wtemplates
+\&\-Wno\-non\-template\-friend  \-Wold\-style\-cast
+\&\-Woverloaded\-virtual  \-Wno\-pmf\-conversions \-Wself\-move \-Wsign\-promo
+\&\-Wsized\-deallocation  \-Wsuggest\-final\-methods
+\&\-Wsuggest\-final\-types  \-Wsuggest\-override
+\&\-Wno\-terminate  \-Wuseless\-cast  \-Wno\-vexing\-parse
+\&\-Wvirtual\-inheritance
 \&\-Wno\-virtual\-move\-assign  \-Wvolatile  \-Wzero\-as\-null\-pointer\-constant\fR
 .IP "\fIObjective-C and Objective\-\*(C+ Language Options\fR" 4
 .IX Item "Objective-C and Objective- Language Options"
-\&\fB\-fconstant\-string\-class=\fR\fIclass-name\fR 
-\&\fB\-fgnu\-runtime  \-fnext\-runtime 
-\&\-fno\-nil\-receivers 
-\&\-fobjc\-abi\-version=\fR\fIn\fR 
-\&\fB\-fobjc\-call\-cxx\-cdtors 
-\&\-fobjc\-direct\-dispatch 
-\&\-fobjc\-exceptions 
-\&\-fobjc\-gc 
-\&\-fobjc\-nilcheck 
-\&\-fobjc\-std=objc1 
-\&\-fno\-local\-ivars 
-\&\-fivar\-visibility=\fR[\fBpublic\fR|\fBprotected\fR|\fBprivate\fR|\fBpackage\fR] 
-\&\fB\-freplace\-objc\-classes 
-\&\-fzero\-link 
-\&\-gen\-decls 
-\&\-Wassign\-intercept  \-Wno\-property\-assign\-default 
-\&\-Wno\-protocol \-Wobjc\-root\-class \-Wselector 
-\&\-Wstrict\-selector\-match 
+\&\fB\-fconstant\-string\-class=\fR\fIclass-name\fR
+\&\fB\-fgnu\-runtime  \-fnext\-runtime
+\&\-fno\-nil\-receivers
+\&\-fobjc\-abi\-version=\fR\fIn\fR
+\&\fB\-fobjc\-call\-cxx\-cdtors
+\&\-fobjc\-direct\-dispatch
+\&\-fobjc\-exceptions
+\&\-fobjc\-gc
+\&\-fobjc\-nilcheck
+\&\-fobjc\-std=objc1
+\&\-fno\-local\-ivars
+\&\-fivar\-visibility=\fR[\fBpublic\fR|\fBprotected\fR|\fBprivate\fR|\fBpackage\fR]
+\&\fB\-freplace\-objc\-classes
+\&\-fzero\-link
+\&\-gen\-decls
+\&\-Wassign\-intercept  \-Wno\-property\-assign\-default
+\&\-Wno\-protocol \-Wobjc\-root\-class \-Wselector
+\&\-Wstrict\-selector\-match
 \&\-Wundeclared\-selector\fR
 .IP "\fIDiagnostic Message Formatting Options\fR" 4
 .IX Item "Diagnostic Message Formatting Options"
-\&\fB\-fmessage\-length=\fR\fIn\fR  
-\&\fB\-fdiagnostics\-plain\-output 
-\&\-fdiagnostics\-show\-location=\fR[\fBonce\fR|\fBevery-line\fR]  
-\&\fB\-fdiagnostics\-color=\fR[\fBauto\fR|\fBnever\fR|\fBalways\fR]  
-\&\fB\-fdiagnostics\-urls=\fR[\fBauto\fR|\fBnever\fR|\fBalways\fR]  
-\&\fB\-fdiagnostics\-format=\fR[\fBtext\fR|\fBsarif-stderr\fR|\fBsarif-file\fR|\fBjson\fR|\fBjson-stderr\fR|\fBjson-file\fR]  
-\&\fB\-fno\-diagnostics\-show\-option  \-fno\-diagnostics\-show\-caret 
-\&\-fno\-diagnostics\-show\-labels  \-fno\-diagnostics\-show\-line\-numbers 
-\&\-fno\-diagnostics\-show\-cwe  
-\&\-fno\-diagnostics\-show\-rule  
-\&\-fdiagnostics\-minimum\-margin\-width=\fR\fIwidth\fR 
-\&\fB\-fdiagnostics\-parseable\-fixits  \-fdiagnostics\-generate\-patch 
-\&\-fdiagnostics\-show\-template\-tree  \-fno\-elide\-type 
-\&\-fdiagnostics\-path\-format=\fR[\fBnone\fR|\fBseparate-events\fR|\fBinline-events\fR] 
-\&\fB\-fdiagnostics\-show\-path\-depths 
-\&\-fno\-show\-column 
-\&\-fdiagnostics\-column\-unit=\fR[\fBdisplay\fR|\fBbyte\fR] 
-\&\fB\-fdiagnostics\-column\-origin=\fR\fIorigin\fR 
+\&\fB\-fmessage\-length=\fR\fIn\fR
+\&\fB\-fdiagnostics\-plain\-output
+\&\-fdiagnostics\-show\-location=\fR[\fBonce\fR|\fBevery-line\fR]
+\&\fB\-fdiagnostics\-color=\fR[\fBauto\fR|\fBnever\fR|\fBalways\fR]
+\&\fB\-fdiagnostics\-urls=\fR[\fBauto\fR|\fBnever\fR|\fBalways\fR]
+\&\fB\-fdiagnostics\-format=\fR[\fBtext\fR|\fBsarif-stderr\fR|\fBsarif-file\fR|\fBjson\fR|\fBjson-stderr\fR|\fBjson-file\fR]
+\&\fB\-fno\-diagnostics\-show\-option  \-fno\-diagnostics\-show\-caret
+\&\-fno\-diagnostics\-show\-labels  \-fno\-diagnostics\-show\-line\-numbers
+\&\-fno\-diagnostics\-show\-cwe
+\&\-fno\-diagnostics\-show\-rule
+\&\-fdiagnostics\-minimum\-margin\-width=\fR\fIwidth\fR
+\&\fB\-fdiagnostics\-parseable\-fixits  \-fdiagnostics\-generate\-patch
+\&\-fdiagnostics\-show\-template\-tree  \-fno\-elide\-type
+\&\-fdiagnostics\-path\-format=\fR[\fBnone\fR|\fBseparate-events\fR|\fBinline-events\fR]
+\&\fB\-fdiagnostics\-show\-path\-depths
+\&\-fno\-show\-column
+\&\-fdiagnostics\-column\-unit=\fR[\fBdisplay\fR|\fBbyte\fR]
+\&\fB\-fdiagnostics\-column\-origin=\fR\fIorigin\fR
 \&\fB\-fdiagnostics\-escape\-format=\fR[\fBunicode\fR|\fBbytes\fR]
 .IP "\fIWarning Options\fR" 4
 .IX Item "Warning Options"
-\&\fB\-fsyntax\-only  \-fmax\-errors=\fR\fIn\fR  \fB\-Wpedantic 
-\&\-pedantic\-errors 
-\&\-w  \-Wextra  \-Wall  \-Wabi=\fR\fIn\fR 
-\&\fB\-Waddress  \-Wno\-address\-of\-packed\-member  \-Waggregate\-return 
-\&\-Walloc\-size\-larger\-than=\fR\fIbyte-size\fR  \fB\-Walloc\-zero 
-\&\-Walloca  \-Walloca\-larger\-than=\fR\fIbyte-size\fR 
-\&\fB\-Wno\-aggressive\-loop\-optimizations 
-\&\-Warith\-conversion 
-\&\-Warray\-bounds  \-Warray\-bounds=\fR\fIn\fR  \fB\-Warray\-compare 
-\&\-Wno\-attributes  \-Wattribute\-alias=\fR\fIn\fR \fB\-Wno\-attribute\-alias 
-\&\-Wno\-attribute\-warning  
-\&\-Wbidi\-chars=\fR[\fBnone\fR|\fBunpaired\fR|\fBany\fR|\fBucn\fR] 
-\&\fB\-Wbool\-compare  \-Wbool\-operation 
-\&\-Wno\-builtin\-declaration\-mismatch 
-\&\-Wno\-builtin\-macro\-redefined  \-Wc90\-c99\-compat  \-Wc99\-c11\-compat 
-\&\-Wc11\-c2x\-compat 
-\&\-Wc++\-compat  \-Wc++11\-compat  \-Wc++14\-compat  \-Wc++17\-compat  
-\&\-Wc++20\-compat   
-\&\-Wno\-c++11\-extensions  \-Wno\-c++14\-extensions \-Wno\-c++17\-extensions  
-\&\-Wno\-c++20\-extensions  \-Wno\-c++23\-extensions  
-\&\-Wcast\-align  \-Wcast\-align=strict  \-Wcast\-function\-type  \-Wcast\-qual  
-\&\-Wchar\-subscripts 
-\&\-Wclobbered  \-Wcomment 
-\&\-Wno\-complain\-wrong\-lang 
-\&\-Wconversion  \-Wno\-coverage\-mismatch  \-Wno\-cpp 
-\&\-Wdangling\-else  \-Wdangling\-pointer  \-Wdangling\-pointer=\fR\fIn\fR  
-\&\fB\-Wdate\-time 
-\&\-Wno\-deprecated  \-Wno\-deprecated\-declarations  \-Wno\-designated\-init 
-\&\-Wdisabled\-optimization 
-\&\-Wno\-discarded\-array\-qualifiers  \-Wno\-discarded\-qualifiers 
-\&\-Wno\-div\-by\-zero  \-Wdouble\-promotion 
-\&\-Wduplicated\-branches  \-Wduplicated\-cond 
-\&\-Wempty\-body  \-Wno\-endif\-labels  \-Wenum\-compare  \-Wenum\-conversion 
-\&\-Wenum\-int\-mismatch 
-\&\-Werror  \-Werror=*  \-Wexpansion\-to\-defined  \-Wfatal\-errors 
-\&\-Wfloat\-conversion  \-Wfloat\-equal  \-Wformat  \-Wformat=2 
-\&\-Wno\-format\-contains\-nul  \-Wno\-format\-extra\-args  
-\&\-Wformat\-nonliteral  \-Wformat\-overflow=\fR\fIn\fR 
-\&\fB\-Wformat\-security  \-Wformat\-signedness  \-Wformat\-truncation=\fR\fIn\fR 
-\&\fB\-Wformat\-y2k  \-Wframe\-address 
-\&\-Wframe\-larger\-than=\fR\fIbyte-size\fR  \fB\-Wno\-free\-nonheap\-object 
-\&\-Wno\-if\-not\-aligned  \-Wno\-ignored\-attributes 
-\&\-Wignored\-qualifiers  \-Wno\-incompatible\-pointer\-types 
-\&\-Wimplicit  \-Wimplicit\-fallthrough  \-Wimplicit\-fallthrough=\fR\fIn\fR 
-\&\fB\-Wno\-implicit\-function\-declaration  \-Wno\-implicit\-int 
-\&\-Winfinite\-recursion 
-\&\-Winit\-self  \-Winline  \-Wno\-int\-conversion  \-Wint\-in\-bool\-context 
-\&\-Wno\-int\-to\-pointer\-cast  \-Wno\-invalid\-memory\-model 
-\&\-Winvalid\-pch  \-Winvalid\-utf8  \-Wno\-unicode  \-Wjump\-misses\-init  
-\&\-Wlarger\-than=\fR\fIbyte-size\fR  \fB\-Wlogical\-not\-parentheses  \-Wlogical\-op  
-\&\-Wlong\-long  \-Wno\-lto\-type\-mismatch \-Wmain  \-Wmaybe\-uninitialized 
-\&\-Wmemset\-elt\-size  \-Wmemset\-transposed\-args 
-\&\-Wmisleading\-indentation  \-Wmissing\-attributes  \-Wmissing\-braces 
-\&\-Wmissing\-field\-initializers  \-Wmissing\-format\-attribute 
-\&\-Wmissing\-include\-dirs  \-Wmissing\-noreturn  \-Wno\-missing\-profile 
-\&\-Wno\-multichar  \-Wmultistatement\-macros  \-Wnonnull  \-Wnonnull\-compare 
-\&\-Wnormalized=\fR[\fBnone\fR|\fBid\fR|\fBnfc\fR|\fBnfkc\fR] 
-\&\fB\-Wnull\-dereference  \-Wno\-odr  
-\&\-Wopenacc\-parallelism  
-\&\-Wopenmp\-simd  
-\&\-Wno\-overflow  \-Woverlength\-strings  \-Wno\-override\-init\-side\-effects 
-\&\-Wpacked  \-Wno\-packed\-bitfield\-compat  \-Wpacked\-not\-aligned  \-Wpadded 
-\&\-Wparentheses  \-Wno\-pedantic\-ms\-format 
-\&\-Wpointer\-arith  \-Wno\-pointer\-compare  \-Wno\-pointer\-to\-int\-cast 
-\&\-Wno\-pragmas  \-Wno\-prio\-ctor\-dtor  \-Wredundant\-decls 
-\&\-Wrestrict  \-Wno\-return\-local\-addr  \-Wreturn\-type 
-\&\-Wno\-scalar\-storage\-order  \-Wsequence\-point 
-\&\-Wshadow  \-Wshadow=global  \-Wshadow=local  \-Wshadow=compatible\-local 
-\&\-Wno\-shadow\-ivar 
-\&\-Wno\-shift\-count\-negative  \-Wno\-shift\-count\-overflow  \-Wshift\-negative\-value 
-\&\-Wno\-shift\-overflow  \-Wshift\-overflow=\fR\fIn\fR 
-\&\fB\-Wsign\-compare  \-Wsign\-conversion 
-\&\-Wno\-sizeof\-array\-argument 
-\&\-Wsizeof\-array\-div 
-\&\-Wsizeof\-pointer\-div  \-Wsizeof\-pointer\-memaccess 
-\&\-Wstack\-protector  \-Wstack\-usage=\fR\fIbyte-size\fR  \fB\-Wstrict\-aliasing 
-\&\-Wstrict\-aliasing=n  \-Wstrict\-overflow  \-Wstrict\-overflow=\fR\fIn\fR 
-\&\fB\-Wstring\-compare 
-\&\-Wno\-stringop\-overflow \-Wno\-stringop\-overread 
-\&\-Wno\-stringop\-truncation \-Wstrict\-flex\-arrays 
-\&\-Wsuggest\-attribute=\fR[\fBpure\fR|\fBconst\fR|\fBnoreturn\fR|\fBformat\fR|\fBmalloc\fR] 
-\&\fB\-Wswitch  \-Wno\-switch\-bool  \-Wswitch\-default  \-Wswitch\-enum 
-\&\-Wno\-switch\-outside\-range  \-Wno\-switch\-unreachable  \-Wsync\-nand 
-\&\-Wsystem\-headers  \-Wtautological\-compare  \-Wtrampolines  \-Wtrigraphs 
-\&\-Wtrivial\-auto\-var\-init \-Wtsan \-Wtype\-limits  \-Wundef 
-\&\-Wuninitialized  \-Wunknown\-pragmas 
-\&\-Wunsuffixed\-float\-constants  \-Wunused 
-\&\-Wunused\-but\-set\-parameter  \-Wunused\-but\-set\-variable 
-\&\-Wunused\-const\-variable  \-Wunused\-const\-variable=\fR\fIn\fR 
-\&\fB\-Wunused\-function  \-Wunused\-label  \-Wunused\-local\-typedefs 
-\&\-Wunused\-macros 
-\&\-Wunused\-parameter  \-Wno\-unused\-result 
-\&\-Wunused\-value  \-Wunused\-variable 
-\&\-Wno\-varargs  \-Wvariadic\-macros 
-\&\-Wvector\-operation\-performance 
-\&\-Wvla  \-Wvla\-larger\-than=\fR\fIbyte-size\fR  \fB\-Wno\-vla\-larger\-than 
-\&\-Wvolatile\-register\-var  \-Wwrite\-strings 
-\&\-Wxor\-used\-as\-pow 
+\&\fB\-fsyntax\-only  \-fmax\-errors=\fR\fIn\fR  \fB\-Wpedantic
+\&\-pedantic\-errors
+\&\-w  \-Wextra  \-Wall  \-Wabi=\fR\fIn\fR
+\&\fB\-Waddress  \-Wno\-address\-of\-packed\-member  \-Waggregate\-return
+\&\-Walloc\-size\-larger\-than=\fR\fIbyte-size\fR  \fB\-Walloc\-zero
+\&\-Walloca  \-Walloca\-larger\-than=\fR\fIbyte-size\fR
+\&\fB\-Wno\-aggressive\-loop\-optimizations
+\&\-Warith\-conversion
+\&\-Warray\-bounds  \-Warray\-bounds=\fR\fIn\fR  \fB\-Warray\-compare
+\&\-Wno\-attributes  \-Wattribute\-alias=\fR\fIn\fR \fB\-Wno\-attribute\-alias
+\&\-Wno\-attribute\-warning
+\&\-Wbidi\-chars=\fR[\fBnone\fR|\fBunpaired\fR|\fBany\fR|\fBucn\fR]
+\&\fB\-Wbool\-compare  \-Wbool\-operation
+\&\-Wno\-builtin\-declaration\-mismatch
+\&\-Wno\-builtin\-macro\-redefined  \-Wc90\-c99\-compat  \-Wc99\-c11\-compat
+\&\-Wc11\-c2x\-compat
+\&\-Wc++\-compat  \-Wc++11\-compat  \-Wc++14\-compat  \-Wc++17\-compat
+\&\-Wc++20\-compat
+\&\-Wno\-c++11\-extensions  \-Wno\-c++14\-extensions \-Wno\-c++17\-extensions
+\&\-Wno\-c++20\-extensions  \-Wno\-c++23\-extensions
+\&\-Wcast\-align  \-Wcast\-align=strict  \-Wcast\-function\-type  \-Wcast\-qual
+\&\-Wchar\-subscripts
+\&\-Wclobbered  \-Wcomment
+\&\-Wno\-complain\-wrong\-lang
+\&\-Wconversion  \-Wno\-coverage\-mismatch  \-Wno\-cpp
+\&\-Wdangling\-else  \-Wdangling\-pointer  \-Wdangling\-pointer=\fR\fIn\fR
+\&\fB\-Wdate\-time
+\&\-Wno\-deprecated  \-Wno\-deprecated\-declarations  \-Wno\-designated\-init
+\&\-Wdisabled\-optimization
+\&\-Wno\-discarded\-array\-qualifiers  \-Wno\-discarded\-qualifiers
+\&\-Wno\-div\-by\-zero  \-Wdouble\-promotion
+\&\-Wduplicated\-branches  \-Wduplicated\-cond
+\&\-Wempty\-body  \-Wno\-endif\-labels  \-Wenum\-compare  \-Wenum\-conversion
+\&\-Wenum\-int\-mismatch
+\&\-Werror  \-Werror=*  \-Wexpansion\-to\-defined  \-Wfatal\-errors
+\&\-Wfloat\-conversion  \-Wfloat\-equal  \-Wformat  \-Wformat=2
+\&\-Wno\-format\-contains\-nul  \-Wno\-format\-extra\-args
+\&\-Wformat\-nonliteral  \-Wformat\-overflow=\fR\fIn\fR
+\&\fB\-Wformat\-security  \-Wformat\-signedness  \-Wformat\-truncation=\fR\fIn\fR
+\&\fB\-Wformat\-y2k  \-Wframe\-address
+\&\-Wframe\-larger\-than=\fR\fIbyte-size\fR  \fB\-Wno\-free\-nonheap\-object
+\&\-Wno\-if\-not\-aligned  \-Wno\-ignored\-attributes
+\&\-Wignored\-qualifiers  \-Wno\-incompatible\-pointer\-types
+\&\-Wimplicit  \-Wimplicit\-fallthrough  \-Wimplicit\-fallthrough=\fR\fIn\fR
+\&\fB\-Wno\-implicit\-function\-declaration  \-Wno\-implicit\-int
+\&\-Winfinite\-recursion
+\&\-Winit\-self  \-Winline  \-Wno\-int\-conversion  \-Wint\-in\-bool\-context
+\&\-Wno\-int\-to\-pointer\-cast  \-Wno\-invalid\-memory\-model
+\&\-Winvalid\-pch  \-Winvalid\-utf8  \-Wno\-unicode  \-Wjump\-misses\-init
+\&\-Wlarger\-than=\fR\fIbyte-size\fR  \fB\-Wlogical\-not\-parentheses  \-Wlogical\-op
+\&\-Wlong\-long  \-Wno\-lto\-type\-mismatch \-Wmain  \-Wmaybe\-uninitialized
+\&\-Wmemset\-elt\-size  \-Wmemset\-transposed\-args
+\&\-Wmisleading\-indentation  \-Wmissing\-attributes  \-Wmissing\-braces
+\&\-Wmissing\-field\-initializers  \-Wmissing\-format\-attribute
+\&\-Wmissing\-include\-dirs  \-Wmissing\-noreturn  \-Wno\-missing\-profile
+\&\-Wno\-multichar  \-Wmultistatement\-macros  \-Wnonnull  \-Wnonnull\-compare
+\&\-Wnormalized=\fR[\fBnone\fR|\fBid\fR|\fBnfc\fR|\fBnfkc\fR]
+\&\fB\-Wnull\-dereference  \-Wno\-odr
+\&\-Wopenacc\-parallelism
+\&\-Wopenmp\-simd
+\&\-Wno\-overflow  \-Woverlength\-strings  \-Wno\-override\-init\-side\-effects
+\&\-Wpacked  \-Wno\-packed\-bitfield\-compat  \-Wpacked\-not\-aligned  \-Wpadded
+\&\-Wparentheses  \-Wno\-pedantic\-ms\-format
+\&\-Wpointer\-arith  \-Wno\-pointer\-compare  \-Wno\-pointer\-to\-int\-cast
+\&\-Wno\-pragmas  \-Wno\-prio\-ctor\-dtor  \-Wredundant\-decls
+\&\-Wrestrict  \-Wno\-return\-local\-addr  \-Wreturn\-type
+\&\-Wno\-scalar\-storage\-order  \-Wsequence\-point
+\&\-Wshadow  \-Wshadow=global  \-Wshadow=local  \-Wshadow=compatible\-local
+\&\-Wno\-shadow\-ivar
+\&\-Wno\-shift\-count\-negative  \-Wno\-shift\-count\-overflow  \-Wshift\-negative\-value
+\&\-Wno\-shift\-overflow  \-Wshift\-overflow=\fR\fIn\fR
+\&\fB\-Wsign\-compare  \-Wsign\-conversion
+\&\-Wno\-sizeof\-array\-argument
+\&\-Wsizeof\-array\-div
+\&\-Wsizeof\-pointer\-div  \-Wsizeof\-pointer\-memaccess
+\&\-Wstack\-protector  \-Wstack\-usage=\fR\fIbyte-size\fR  \fB\-Wstrict\-aliasing
+\&\-Wstrict\-aliasing=n  \-Wstrict\-overflow  \-Wstrict\-overflow=\fR\fIn\fR
+\&\fB\-Wstring\-compare
+\&\-Wno\-stringop\-overflow \-Wno\-stringop\-overread
+\&\-Wno\-stringop\-truncation \-Wstrict\-flex\-arrays
+\&\-Wsuggest\-attribute=\fR[\fBpure\fR|\fBconst\fR|\fBnoreturn\fR|\fBformat\fR|\fBmalloc\fR]
+\&\fB\-Wswitch  \-Wno\-switch\-bool  \-Wswitch\-default  \-Wswitch\-enum
+\&\-Wno\-switch\-outside\-range  \-Wno\-switch\-unreachable  \-Wsync\-nand
+\&\-Wsystem\-headers  \-Wtautological\-compare  \-Wtrampolines  \-Wtrigraphs
+\&\-Wtrivial\-auto\-var\-init \-Wtsan \-Wtype\-limits  \-Wundef
+\&\-Wuninitialized  \-Wunknown\-pragmas
+\&\-Wunsuffixed\-float\-constants  \-Wunused
+\&\-Wunused\-but\-set\-parameter  \-Wunused\-but\-set\-variable
+\&\-Wunused\-const\-variable  \-Wunused\-const\-variable=\fR\fIn\fR
+\&\fB\-Wunused\-function  \-Wunused\-label  \-Wunused\-local\-typedefs
+\&\-Wunused\-macros
+\&\-Wunused\-parameter  \-Wno\-unused\-result
+\&\-Wunused\-value  \-Wunused\-variable
+\&\-Wno\-varargs  \-Wvariadic\-macros
+\&\-Wvector\-operation\-performance
+\&\-Wvla  \-Wvla\-larger\-than=\fR\fIbyte-size\fR  \fB\-Wno\-vla\-larger\-than
+\&\-Wvolatile\-register\-var  \-Wwrite\-strings
+\&\-Wxor\-used\-as\-pow
 \&\-Wzero\-length\-bounds\fR
 .IP "\fIStatic Analyzer Options\fR" 4
 .IX Item "Static Analyzer Options"
-\&\fB\-fanalyzer 
-\&\-fanalyzer\-call\-summaries 
-\&\-fanalyzer\-checker=\fR\fIname\fR 
-\&\fB\-fno\-analyzer\-feasibility 
-\&\-fanalyzer\-fine\-grained 
-\&\-fno\-analyzer\-state\-merge 
-\&\-fno\-analyzer\-state\-purge 
-\&\-fno\-analyzer\-suppress\-followups 
-\&\-fanalyzer\-transitivity 
-\&\-fno\-analyzer\-undo\-inlining 
-\&\-fanalyzer\-verbose\-edges 
-\&\-fanalyzer\-verbose\-state\-changes 
-\&\-fanalyzer\-verbosity=\fR\fIlevel\fR 
-\&\fB\-fdump\-analyzer 
-\&\-fdump\-analyzer\-callgraph 
-\&\-fdump\-analyzer\-exploded\-graph 
-\&\-fdump\-analyzer\-exploded\-nodes 
-\&\-fdump\-analyzer\-exploded\-nodes\-2 
-\&\-fdump\-analyzer\-exploded\-nodes\-3 
-\&\-fdump\-analyzer\-exploded\-paths 
-\&\-fdump\-analyzer\-feasibility 
-\&\-fdump\-analyzer\-json 
-\&\-fdump\-analyzer\-state\-purge 
-\&\-fdump\-analyzer\-stderr 
-\&\-fdump\-analyzer\-supergraph 
-\&\-fdump\-analyzer\-untracked 
-\&\-Wno\-analyzer\-double\-fclose 
-\&\-Wno\-analyzer\-double\-free 
-\&\-Wno\-analyzer\-exposure\-through\-output\-file 
-\&\-Wno\-analyzer\-exposure\-through\-uninit\-copy 
-\&\-Wno\-analyzer\-fd\-access\-mode\-mismatch 
-\&\-Wno\-analyzer\-fd\-double\-close 
-\&\-Wno\-analyzer\-fd\-leak 
-\&\-Wno\-analyzer\-fd\-phase\-mismatch 
-\&\-Wno\-analyzer\-fd\-type\-mismatch 
-\&\-Wno\-analyzer\-fd\-use\-after\-close 
-\&\-Wno\-analyzer\-fd\-use\-without\-check 
-\&\-Wno\-analyzer\-file\-leak 
-\&\-Wno\-analyzer\-free\-of\-non\-heap 
-\&\-Wno\-analyzer\-imprecise\-fp\-arithmetic 
-\&\-Wno\-analyzer\-infinite\-recursion 
-\&\-Wno\-analyzer\-jump\-through\-null 
-\&\-Wno\-analyzer\-malloc\-leak 
-\&\-Wno\-analyzer\-mismatching\-deallocation 
-\&\-Wno\-analyzer\-null\-argument 
-\&\-Wno\-analyzer\-null\-dereference 
-\&\-Wno\-analyzer\-out\-of\-bounds 
-\&\-Wno\-analyzer\-possible\-null\-argument 
-\&\-Wno\-analyzer\-possible\-null\-dereference 
-\&\-Wno\-analyzer\-putenv\-of\-auto\-var 
-\&\-Wno\-analyzer\-shift\-count\-negative 
-\&\-Wno\-analyzer\-shift\-count\-overflow 
-\&\-Wno\-analyzer\-stale\-setjmp\-buffer 
-\&\-Wno\-analyzer\-tainted\-allocation\-size 
-\&\-Wno\-analyzer\-tainted\-assertion 
-\&\-Wno\-analyzer\-tainted\-array\-index 
-\&\-Wno\-analyzer\-tainted\-divisor 
-\&\-Wno\-analyzer\-tainted\-offset 
-\&\-Wno\-analyzer\-tainted\-size 
-\&\-Wanalyzer\-too\-complex 
-\&\-Wno\-analyzer\-unsafe\-call\-within\-signal\-handler 
-\&\-Wno\-analyzer\-use\-after\-free 
-\&\-Wno\-analyzer\-use\-of\-pointer\-in\-stale\-stack\-frame 
-\&\-Wno\-analyzer\-use\-of\-uninitialized\-value 
-\&\-Wno\-analyzer\-va\-arg\-type\-mismatch 
-\&\-Wno\-analyzer\-va\-list\-exhausted 
-\&\-Wno\-analyzer\-va\-list\-leak 
-\&\-Wno\-analyzer\-va\-list\-use\-after\-va\-end 
-\&\-Wno\-analyzer\-write\-to\-const 
+\&\fB\-fanalyzer
+\&\-fanalyzer\-call\-summaries
+\&\-fanalyzer\-checker=\fR\fIname\fR
+\&\fB\-fno\-analyzer\-feasibility
+\&\-fanalyzer\-fine\-grained
+\&\-fno\-analyzer\-state\-merge
+\&\-fno\-analyzer\-state\-purge
+\&\-fno\-analyzer\-suppress\-followups
+\&\-fanalyzer\-transitivity
+\&\-fno\-analyzer\-undo\-inlining
+\&\-fanalyzer\-verbose\-edges
+\&\-fanalyzer\-verbose\-state\-changes
+\&\-fanalyzer\-verbosity=\fR\fIlevel\fR
+\&\fB\-fdump\-analyzer
+\&\-fdump\-analyzer\-callgraph
+\&\-fdump\-analyzer\-exploded\-graph
+\&\-fdump\-analyzer\-exploded\-nodes
+\&\-fdump\-analyzer\-exploded\-nodes\-2
+\&\-fdump\-analyzer\-exploded\-nodes\-3
+\&\-fdump\-analyzer\-exploded\-paths
+\&\-fdump\-analyzer\-feasibility
+\&\-fdump\-analyzer\-json
+\&\-fdump\-analyzer\-state\-purge
+\&\-fdump\-analyzer\-stderr
+\&\-fdump\-analyzer\-supergraph
+\&\-fdump\-analyzer\-untracked
+\&\-Wno\-analyzer\-double\-fclose
+\&\-Wno\-analyzer\-double\-free
+\&\-Wno\-analyzer\-exposure\-through\-output\-file
+\&\-Wno\-analyzer\-exposure\-through\-uninit\-copy
+\&\-Wno\-analyzer\-fd\-access\-mode\-mismatch
+\&\-Wno\-analyzer\-fd\-double\-close
+\&\-Wno\-analyzer\-fd\-leak
+\&\-Wno\-analyzer\-fd\-phase\-mismatch
+\&\-Wno\-analyzer\-fd\-type\-mismatch
+\&\-Wno\-analyzer\-fd\-use\-after\-close
+\&\-Wno\-analyzer\-fd\-use\-without\-check
+\&\-Wno\-analyzer\-file\-leak
+\&\-Wno\-analyzer\-free\-of\-non\-heap
+\&\-Wno\-analyzer\-imprecise\-fp\-arithmetic
+\&\-Wno\-analyzer\-infinite\-recursion
+\&\-Wno\-analyzer\-jump\-through\-null
+\&\-Wno\-analyzer\-malloc\-leak
+\&\-Wno\-analyzer\-mismatching\-deallocation
+\&\-Wno\-analyzer\-null\-argument
+\&\-Wno\-analyzer\-null\-dereference
+\&\-Wno\-analyzer\-out\-of\-bounds
+\&\-Wno\-analyzer\-possible\-null\-argument
+\&\-Wno\-analyzer\-possible\-null\-dereference
+\&\-Wno\-analyzer\-putenv\-of\-auto\-var
+\&\-Wno\-analyzer\-shift\-count\-negative
+\&\-Wno\-analyzer\-shift\-count\-overflow
+\&\-Wno\-analyzer\-stale\-setjmp\-buffer
+\&\-Wno\-analyzer\-tainted\-allocation\-size
+\&\-Wno\-analyzer\-tainted\-assertion
+\&\-Wno\-analyzer\-tainted\-array\-index
+\&\-Wno\-analyzer\-tainted\-divisor
+\&\-Wno\-analyzer\-tainted\-offset
+\&\-Wno\-analyzer\-tainted\-size
+\&\-Wanalyzer\-too\-complex
+\&\-Wno\-analyzer\-unsafe\-call\-within\-signal\-handler
+\&\-Wno\-analyzer\-use\-after\-free
+\&\-Wno\-analyzer\-use\-of\-pointer\-in\-stale\-stack\-frame
+\&\-Wno\-analyzer\-use\-of\-uninitialized\-value
+\&\-Wno\-analyzer\-va\-arg\-type\-mismatch
+\&\-Wno\-analyzer\-va\-list\-exhausted
+\&\-Wno\-analyzer\-va\-list\-leak
+\&\-Wno\-analyzer\-va\-list\-use\-after\-va\-end
+\&\-Wno\-analyzer\-write\-to\-const
 \&\-Wno\-analyzer\-write\-to\-string\-literal\fR
 .IP "\fIC and Objective-C-only Warning Options\fR" 4
 .IX Item "C and Objective-C-only Warning Options"
-\&\fB\-Wbad\-function\-cast  \-Wmissing\-declarations 
-\&\-Wmissing\-parameter\-type  \-Wmissing\-prototypes  \-Wnested\-externs 
-\&\-Wold\-style\-declaration  \-Wold\-style\-definition 
-\&\-Wstrict\-prototypes  \-Wtraditional  \-Wtraditional\-conversion 
+\&\fB\-Wbad\-function\-cast  \-Wmissing\-declarations
+\&\-Wmissing\-parameter\-type  \-Wmissing\-prototypes  \-Wnested\-externs
+\&\-Wold\-style\-declaration  \-Wold\-style\-definition
+\&\-Wstrict\-prototypes  \-Wtraditional  \-Wtraditional\-conversion
 \&\-Wdeclaration\-after\-statement  \-Wpointer\-sign\fR
 .IP "\fIDebugging Options\fR" 4
 .IX Item "Debugging Options"
-\&\fB\-g  \-g\fR\fIlevel\fR  \fB\-gdwarf  \-gdwarf\-\fR\fIversion\fR 
-\&\fB\-gbtf \-gctf  \-gctf\fR\fIlevel\fR 
-\&\fB\-ggdb  \-grecord\-gcc\-switches  \-gno\-record\-gcc\-switches 
-\&\-gstrict\-dwarf  \-gno\-strict\-dwarf 
-\&\-gas\-loc\-support  \-gno\-as\-loc\-support 
-\&\-gas\-locview\-support  \-gno\-as\-locview\-support 
-\&\-gcolumn\-info  \-gno\-column\-info  \-gdwarf32  \-gdwarf64 
-\&\-gstatement\-frontiers  \-gno\-statement\-frontiers 
-\&\-gvariable\-location\-views  \-gno\-variable\-location\-views 
-\&\-ginternal\-reset\-location\-views  \-gno\-internal\-reset\-location\-views 
-\&\-ginline\-points  \-gno\-inline\-points 
-\&\-gvms \-gz\fR[\fB=\fR\fItype\fR] 
-\&\fB\-gsplit\-dwarf  \-gdescribe\-dies  \-gno\-describe\-dies 
-\&\-fdebug\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR  \fB\-fdebug\-types\-section 
-\&\-fno\-eliminate\-unused\-debug\-types 
-\&\-femit\-struct\-debug\-baseonly  \-femit\-struct\-debug\-reduced 
-\&\-femit\-struct\-debug\-detailed\fR[\fB=\fR\fIspec-list\fR] 
-\&\fB\-fno\-eliminate\-unused\-debug\-symbols  \-femit\-class\-debug\-always 
-\&\-fno\-merge\-debug\-strings  \-fno\-dwarf2\-cfi\-asm 
+\&\fB\-g  \-g\fR\fIlevel\fR  \fB\-gdwarf  \-gdwarf\-\fR\fIversion\fR
+\&\fB\-gbtf \-gctf  \-gctf\fR\fIlevel\fR
+\&\fB\-ggdb  \-grecord\-gcc\-switches  \-gno\-record\-gcc\-switches
+\&\-gstrict\-dwarf  \-gno\-strict\-dwarf
+\&\-gas\-loc\-support  \-gno\-as\-loc\-support
+\&\-gas\-locview\-support  \-gno\-as\-locview\-support
+\&\-gcolumn\-info  \-gno\-column\-info  \-gdwarf32  \-gdwarf64
+\&\-gstatement\-frontiers  \-gno\-statement\-frontiers
+\&\-gvariable\-location\-views  \-gno\-variable\-location\-views
+\&\-ginternal\-reset\-location\-views  \-gno\-internal\-reset\-location\-views
+\&\-ginline\-points  \-gno\-inline\-points
+\&\-gvms \-gz\fR[\fB=\fR\fItype\fR]
+\&\fB\-gsplit\-dwarf  \-gdescribe\-dies  \-gno\-describe\-dies
+\&\-fdebug\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR  \fB\-fdebug\-types\-section
+\&\-fno\-eliminate\-unused\-debug\-types
+\&\-femit\-struct\-debug\-baseonly  \-femit\-struct\-debug\-reduced
+\&\-femit\-struct\-debug\-detailed\fR[\fB=\fR\fIspec-list\fR]
+\&\fB\-fno\-eliminate\-unused\-debug\-symbols  \-femit\-class\-debug\-always
+\&\-fno\-merge\-debug\-strings  \-fno\-dwarf2\-cfi\-asm
 \&\-fvar\-tracking  \-fvar\-tracking\-assignments\fR
 .IP "\fIOptimization Options\fR" 4
 .IX Item "Optimization Options"
-\&\fB\-faggressive\-loop\-optimizations 
-\&\-falign\-functions[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]] 
-\&\-falign\-jumps[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]] 
-\&\-falign\-labels[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]] 
-\&\-falign\-loops[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]] 
-\&\-fno\-allocation\-dce \-fallow\-store\-data\-races 
-\&\-fassociative\-math  \-fauto\-profile  \-fauto\-profile[=\fR\fIpath\fR\fB] 
-\&\-fauto\-inc\-dec  \-fbranch\-probabilities 
-\&\-fcaller\-saves 
-\&\-fcombine\-stack\-adjustments  \-fconserve\-stack 
-\&\-fcompare\-elim  \-fcprop\-registers  \-fcrossjumping 
-\&\-fcse\-follow\-jumps  \-fcse\-skip\-blocks  \-fcx\-fortran\-rules 
-\&\-fcx\-limited\-range 
-\&\-fdata\-sections  \-fdce  \-fdelayed\-branch 
-\&\-fdelete\-null\-pointer\-checks  \-fdevirtualize  \-fdevirtualize\-speculatively 
-\&\-fdevirtualize\-at\-ltrans  \-fdse 
-\&\-fearly\-inlining  \-fipa\-sra  \-fexpensive\-optimizations  \-ffat\-lto\-objects 
-\&\-ffast\-math  \-ffinite\-math\-only  \-ffloat\-store  \-fexcess\-precision=\fR\fIstyle\fR 
-\&\fB\-ffinite\-loops 
-\&\-fforward\-propagate  \-ffp\-contract=\fR\fIstyle\fR  \fB\-ffunction\-sections 
-\&\-fgcse  \-fgcse\-after\-reload  \-fgcse\-las  \-fgcse\-lm  \-fgraphite\-identity 
-\&\-fgcse\-sm  \-fhoist\-adjacent\-loads  \-fif\-conversion 
-\&\-fif\-conversion2  \-findirect\-inlining 
-\&\-finline\-functions  \-finline\-functions\-called\-once  \-finline\-limit=\fR\fIn\fR 
-\&\fB\-finline\-small\-functions \-fipa\-modref \-fipa\-cp  \-fipa\-cp\-clone 
-\&\-fipa\-bit\-cp  \-fipa\-vrp  \-fipa\-pta  \-fipa\-profile  \-fipa\-pure\-const 
-\&\-fipa\-reference  \-fipa\-reference\-addressable 
-\&\-fipa\-stack\-alignment  \-fipa\-icf  \-fira\-algorithm=\fR\fIalgorithm\fR 
-\&\fB\-flive\-patching=\fR\fIlevel\fR 
-\&\fB\-fira\-region=\fR\fIregion\fR  \fB\-fira\-hoist\-pressure 
-\&\-fira\-loop\-pressure  \-fno\-ira\-share\-save\-slots 
-\&\-fno\-ira\-share\-spill\-slots 
-\&\-fisolate\-erroneous\-paths\-dereference  \-fisolate\-erroneous\-paths\-attribute 
-\&\-fivopts  \-fkeep\-inline\-functions  \-fkeep\-static\-functions 
-\&\-fkeep\-static\-consts  \-flimit\-function\-alignment  \-flive\-range\-shrinkage 
-\&\-floop\-block  \-floop\-interchange  \-floop\-strip\-mine 
-\&\-floop\-unroll\-and\-jam  \-floop\-nest\-optimize 
-\&\-floop\-parallelize\-all  \-flra\-remat  \-flto  \-flto\-compression\-level 
-\&\-flto\-partition=\fR\fIalg\fR  \fB\-fmerge\-all\-constants 
-\&\-fmerge\-constants  \-fmodulo\-sched  \-fmodulo\-sched\-allow\-regmoves 
-\&\-fmove\-loop\-invariants  \-fmove\-loop\-stores  \-fno\-branch\-count\-reg 
-\&\-fno\-defer\-pop  \-fno\-fp\-int\-builtin\-inexact  \-fno\-function\-cse 
-\&\-fno\-guess\-branch\-probability  \-fno\-inline  \-fno\-math\-errno  \-fno\-peephole 
-\&\-fno\-peephole2  \-fno\-printf\-return\-value  \-fno\-sched\-interblock 
-\&\-fno\-sched\-spec  \-fno\-signed\-zeros 
-\&\-fno\-toplevel\-reorder  \-fno\-trapping\-math  \-fno\-zero\-initialized\-in\-bss 
-\&\-fomit\-frame\-pointer  \-foptimize\-sibling\-calls 
-\&\-fpartial\-inlining  \-fpeel\-loops  \-fpredictive\-commoning 
-\&\-fprefetch\-loop\-arrays 
-\&\-fprofile\-correction 
-\&\-fprofile\-use  \-fprofile\-use=\fR\fIpath\fR \fB\-fprofile\-partial\-training 
-\&\-fprofile\-values \-fprofile\-reorder\-functions 
-\&\-freciprocal\-math  \-free  \-frename\-registers  \-freorder\-blocks 
-\&\-freorder\-blocks\-algorithm=\fR\fIalgorithm\fR 
-\&\fB\-freorder\-blocks\-and\-partition  \-freorder\-functions 
-\&\-frerun\-cse\-after\-loop  \-freschedule\-modulo\-scheduled\-loops 
-\&\-frounding\-math  \-fsave\-optimization\-record 
-\&\-fsched2\-use\-superblocks  \-fsched\-pressure 
-\&\-fsched\-spec\-load  \-fsched\-spec\-load\-dangerous 
-\&\-fsched\-stalled\-insns\-dep[=\fR\fIn\fR\fB]  \-fsched\-stalled\-insns[=\fR\fIn\fR\fB] 
-\&\-fsched\-group\-heuristic  \-fsched\-critical\-path\-heuristic 
-\&\-fsched\-spec\-insn\-heuristic  \-fsched\-rank\-heuristic 
-\&\-fsched\-last\-insn\-heuristic  \-fsched\-dep\-count\-heuristic 
-\&\-fschedule\-fusion 
-\&\-fschedule\-insns  \-fschedule\-insns2  \-fsection\-anchors 
-\&\-fselective\-scheduling  \-fselective\-scheduling2 
-\&\-fsel\-sched\-pipelining  \-fsel\-sched\-pipelining\-outer\-loops 
-\&\-fsemantic\-interposition  \-fshrink\-wrap  \-fshrink\-wrap\-separate 
-\&\-fsignaling\-nans 
+\&\fB\-faggressive\-loop\-optimizations
+\&\-falign\-functions[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]]
+\&\-falign\-jumps[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]]
+\&\-falign\-labels[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]]
+\&\-falign\-loops[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]]
+\&\-fno\-allocation\-dce \-fallow\-store\-data\-races
+\&\-fassociative\-math  \-fauto\-profile  \-fauto\-profile[=\fR\fIpath\fR\fB]
+\&\-fauto\-inc\-dec  \-fbranch\-probabilities
+\&\-fcaller\-saves
+\&\-fcombine\-stack\-adjustments  \-fconserve\-stack
+\&\-fcompare\-elim  \-fcprop\-registers  \-fcrossjumping
+\&\-fcse\-follow\-jumps  \-fcse\-skip\-blocks  \-fcx\-fortran\-rules
+\&\-fcx\-limited\-range
+\&\-fdata\-sections  \-fdce  \-fdelayed\-branch
+\&\-fdelete\-null\-pointer\-checks  \-fdevirtualize  \-fdevirtualize\-speculatively
+\&\-fdevirtualize\-at\-ltrans  \-fdse
+\&\-fearly\-inlining  \-fipa\-sra  \-fexpensive\-optimizations  \-ffat\-lto\-objects
+\&\-ffast\-math  \-ffinite\-math\-only  \-ffloat\-store  \-fexcess\-precision=\fR\fIstyle\fR
+\&\fB\-ffinite\-loops
+\&\-fforward\-propagate  \-ffp\-contract=\fR\fIstyle\fR  \fB\-ffunction\-sections
+\&\-fgcse  \-fgcse\-after\-reload  \-fgcse\-las  \-fgcse\-lm  \-fgraphite\-identity
+\&\-fgcse\-sm  \-fhoist\-adjacent\-loads  \-fif\-conversion
+\&\-fif\-conversion2  \-findirect\-inlining
+\&\-finline\-functions  \-finline\-functions\-called\-once  \-finline\-limit=\fR\fIn\fR
+\&\fB\-finline\-small\-functions \-fipa\-modref \-fipa\-cp  \-fipa\-cp\-clone
+\&\-fipa\-bit\-cp  \-fipa\-vrp  \-fipa\-pta  \-fipa\-profile  \-fipa\-pure\-const
+\&\-fipa\-reference  \-fipa\-reference\-addressable
+\&\-fipa\-stack\-alignment  \-fipa\-icf  \-fira\-algorithm=\fR\fIalgorithm\fR
+\&\fB\-flive\-patching=\fR\fIlevel\fR
+\&\fB\-fira\-region=\fR\fIregion\fR  \fB\-fira\-hoist\-pressure
+\&\-fira\-loop\-pressure  \-fno\-ira\-share\-save\-slots
+\&\-fno\-ira\-share\-spill\-slots
+\&\-fisolate\-erroneous\-paths\-dereference  \-fisolate\-erroneous\-paths\-attribute
+\&\-fivopts  \-fkeep\-inline\-functions  \-fkeep\-static\-functions
+\&\-fkeep\-static\-consts  \-flimit\-function\-alignment  \-flive\-range\-shrinkage
+\&\-floop\-block  \-floop\-interchange  \-floop\-strip\-mine
+\&\-floop\-unroll\-and\-jam  \-floop\-nest\-optimize
+\&\-floop\-parallelize\-all  \-flra\-remat  \-flto  \-flto\-compression\-level
+\&\-flto\-partition=\fR\fIalg\fR  \fB\-fmerge\-all\-constants
+\&\-fmerge\-constants  \-fmodulo\-sched  \-fmodulo\-sched\-allow\-regmoves
+\&\-fmove\-loop\-invariants  \-fmove\-loop\-stores  \-fno\-branch\-count\-reg
+\&\-fno\-defer\-pop  \-fno\-fp\-int\-builtin\-inexact  \-fno\-function\-cse
+\&\-fno\-guess\-branch\-probability  \-fno\-inline  \-fno\-math\-errno  \-fno\-peephole
+\&\-fno\-peephole2  \-fno\-printf\-return\-value  \-fno\-sched\-interblock
+\&\-fno\-sched\-spec  \-fno\-signed\-zeros
+\&\-fno\-toplevel\-reorder  \-fno\-trapping\-math  \-fno\-zero\-initialized\-in\-bss
+\&\-fomit\-frame\-pointer  \-foptimize\-sibling\-calls
+\&\-fpartial\-inlining  \-fpeel\-loops  \-fpredictive\-commoning
+\&\-fprefetch\-loop\-arrays
+\&\-fprofile\-correction
+\&\-fprofile\-use  \-fprofile\-use=\fR\fIpath\fR \fB\-fprofile\-partial\-training
+\&\-fprofile\-values \-fprofile\-reorder\-functions
+\&\-freciprocal\-math  \-free  \-frename\-registers  \-freorder\-blocks
+\&\-freorder\-blocks\-algorithm=\fR\fIalgorithm\fR
+\&\fB\-freorder\-blocks\-and\-partition  \-freorder\-functions
+\&\-frerun\-cse\-after\-loop  \-freschedule\-modulo\-scheduled\-loops
+\&\-frounding\-math  \-fsave\-optimization\-record
+\&\-fsched2\-use\-superblocks  \-fsched\-pressure
+\&\-fsched\-spec\-load  \-fsched\-spec\-load\-dangerous
+\&\-fsched\-stalled\-insns\-dep[=\fR\fIn\fR\fB]  \-fsched\-stalled\-insns[=\fR\fIn\fR\fB]
+\&\-fsched\-group\-heuristic  \-fsched\-critical\-path\-heuristic
+\&\-fsched\-spec\-insn\-heuristic  \-fsched\-rank\-heuristic
+\&\-fsched\-last\-insn\-heuristic  \-fsched\-dep\-count\-heuristic
+\&\-fschedule\-fusion
+\&\-fschedule\-insns  \-fschedule\-insns2  \-fsection\-anchors
+\&\-fselective\-scheduling  \-fselective\-scheduling2
+\&\-fsel\-sched\-pipelining  \-fsel\-sched\-pipelining\-outer\-loops
+\&\-fsemantic\-interposition  \-fshrink\-wrap  \-fshrink\-wrap\-separate
+\&\-fsignaling\-nans
 \&\-fsingle\-precision\-constant  \-fsplit\-ivs\-in\-unroller  \-fsplit\-loops
-\&\-fsplit\-paths 
-\&\-fsplit\-wide\-types  \-fsplit\-wide\-types\-early  \-fssa\-backprop  \-fssa\-phiopt 
-\&\-fstdarg\-opt  \-fstore\-merging  \-fstrict\-aliasing \-fipa\-strict\-aliasing 
-\&\-fthread\-jumps  \-ftracer  \-ftree\-bit\-ccp 
-\&\-ftree\-builtin\-call\-dce  \-ftree\-ccp  \-ftree\-ch 
-\&\-ftree\-coalesce\-vars  \-ftree\-copy\-prop  \-ftree\-dce  \-ftree\-dominator\-opts 
-\&\-ftree\-dse  \-ftree\-forwprop  \-ftree\-fre  \-fcode\-hoisting 
-\&\-ftree\-loop\-if\-convert  \-ftree\-loop\-im 
-\&\-ftree\-phiprop  \-ftree\-loop\-distribution  \-ftree\-loop\-distribute\-patterns 
-\&\-ftree\-loop\-ivcanon  \-ftree\-loop\-linear  \-ftree\-loop\-optimize 
-\&\-ftree\-loop\-vectorize 
-\&\-ftree\-parallelize\-loops=\fR\fIn\fR  \fB\-ftree\-pre  \-ftree\-partial\-pre  \-ftree\-pta 
-\&\-ftree\-reassoc  \-ftree\-scev\-cprop  \-ftree\-sink  \-ftree\-slsr  \-ftree\-sra 
-\&\-ftree\-switch\-conversion  \-ftree\-tail\-merge 
-\&\-ftree\-ter  \-ftree\-vectorize  \-ftree\-vrp  \-ftrivial\-auto\-var\-init 
-\&\-funconstrained\-commons \-funit\-at\-a\-time  \-funroll\-all\-loops 
-\&\-funroll\-loops \-funsafe\-math\-optimizations  \-funswitch\-loops 
-\&\-fipa\-ra  \-fvariable\-expansion\-in\-unroller  \-fvect\-cost\-model  \-fvpt 
-\&\-fweb  \-fwhole\-program  \-fwpa  \-fuse\-linker\-plugin \-fzero\-call\-used\-regs 
+\&\-fsplit\-paths
+\&\-fsplit\-wide\-types  \-fsplit\-wide\-types\-early  \-fssa\-backprop  \-fssa\-phiopt
+\&\-fstdarg\-opt  \-fstore\-merging  \-fstrict\-aliasing \-fipa\-strict\-aliasing
+\&\-fthread\-jumps  \-ftracer  \-ftree\-bit\-ccp
+\&\-ftree\-builtin\-call\-dce  \-ftree\-ccp  \-ftree\-ch
+\&\-ftree\-coalesce\-vars  \-ftree\-copy\-prop  \-ftree\-dce  \-ftree\-dominator\-opts
+\&\-ftree\-dse  \-ftree\-forwprop  \-ftree\-fre  \-fcode\-hoisting
+\&\-ftree\-loop\-if\-convert  \-ftree\-loop\-im
+\&\-ftree\-phiprop  \-ftree\-loop\-distribution  \-ftree\-loop\-distribute\-patterns
+\&\-ftree\-loop\-ivcanon  \-ftree\-loop\-linear  \-ftree\-loop\-optimize
+\&\-ftree\-loop\-vectorize
+\&\-ftree\-parallelize\-loops=\fR\fIn\fR  \fB\-ftree\-pre  \-ftree\-partial\-pre  \-ftree\-pta
+\&\-ftree\-reassoc  \-ftree\-scev\-cprop  \-ftree\-sink  \-ftree\-slsr  \-ftree\-sra
+\&\-ftree\-switch\-conversion  \-ftree\-tail\-merge
+\&\-ftree\-ter  \-ftree\-vectorize  \-ftree\-vrp  \-ftrivial\-auto\-var\-init
+\&\-funconstrained\-commons \-funit\-at\-a\-time  \-funroll\-all\-loops
+\&\-funroll\-loops \-funsafe\-math\-optimizations  \-funswitch\-loops
+\&\-fipa\-ra  \-fvariable\-expansion\-in\-unroller  \-fvect\-cost\-model  \-fvpt
+\&\-fweb  \-fwhole\-program  \-fwpa  \-fuse\-linker\-plugin \-fzero\-call\-used\-regs
 \&\-\-param\fR \fIname\fR\fB=\fR\fIvalue\fR
 \&\fB\-O  \-O0  \-O1  \-O2  \-O3  \-Os  \-Ofast  \-Og  \-Oz\fR
 .IP "\fIProgram Instrumentation Options\fR" 4
 .IX Item "Program Instrumentation Options"
-\&\fB\-p  \-pg  \-fprofile\-arcs  \-\-coverage  \-ftest\-coverage 
-\&\-fprofile\-abs\-path 
-\&\-fprofile\-dir=\fR\fIpath\fR  \fB\-fprofile\-generate  \-fprofile\-generate=\fR\fIpath\fR 
-\&\fB\-fprofile\-info\-section  \-fprofile\-info\-section=\fR\fIname\fR 
-\&\fB\-fprofile\-note=\fR\fIpath\fR \fB\-fprofile\-prefix\-path=\fR\fIpath\fR 
-\&\fB\-fprofile\-update=\fR\fImethod\fR \fB\-fprofile\-filter\-files=\fR\fIregex\fR 
-\&\fB\-fprofile\-exclude\-files=\fR\fIregex\fR 
-\&\fB\-fprofile\-reproducible=\fR[\fBmultithreaded\fR|\fBparallel-runs\fR|\fBserial\fR] 
-\&\fB\-fsanitize=\fR\fIstyle\fR  \fB\-fsanitize\-recover  \-fsanitize\-recover=\fR\fIstyle\fR 
-\&\fB\-fsanitize\-trap   \-fsanitize\-trap=\fR\fIstyle\fR  
-\&\fB\-fasan\-shadow\-offset=\fR\fInumber\fR  \fB\-fsanitize\-sections=\fR\fIs1\fR\fB,\fR\fIs2\fR\fB,... 
-\&\-fsanitize\-undefined\-trap\-on\-error  \-fbounds\-check 
-\&\-fcf\-protection=\fR[\fBfull\fR|\fBbranch\fR|\fBreturn\fR|\fBnone\fR|\fBcheck\fR] 
-\&\fB\-fharden\-compares \-fharden\-conditional\-branches 
-\&\-fstack\-protector  \-fstack\-protector\-all  \-fstack\-protector\-strong 
-\&\-fstack\-protector\-explicit  \-fstack\-check 
-\&\-fstack\-limit\-register=\fR\fIreg\fR  \fB\-fstack\-limit\-symbol=\fR\fIsym\fR 
-\&\fB\-fno\-stack\-limit  \-fsplit\-stack 
-\&\-fvtable\-verify=\fR[\fBstd\fR|\fBpreinit\fR|\fBnone\fR] 
-\&\fB\-fvtv\-counts  \-fvtv\-debug 
-\&\-finstrument\-functions  \-finstrument\-functions\-once 
-\&\-finstrument\-functions\-exclude\-function\-list=\fR\fIsym\fR\fB,\fR\fIsym\fR\fB,... 
-\&\-finstrument\-functions\-exclude\-file\-list=\fR\fIfile\fR\fB,\fR\fIfile\fR\fB,...\fR 
-\&\-fprofile\-prefix\-map=\fIold\fR=\fInew\fR
+\&\fB\-p  \-pg  \-fprofile\-arcs  \-\-coverage  \-ftest\-coverage
+\&\-fprofile\-abs\-path
+\&\-fprofile\-dir=\fR\fIpath\fR  \fB\-fprofile\-generate  \-fprofile\-generate=\fR\fIpath\fR
+\&\fB\-fprofile\-info\-section  \-fprofile\-info\-section=\fR\fIname\fR
+\&\fB\-fprofile\-note=\fR\fIpath\fR \fB\-fprofile\-prefix\-path=\fR\fIpath\fR
+\&\fB\-fprofile\-update=\fR\fImethod\fR \fB\-fprofile\-filter\-files=\fR\fIregex\fR
+\&\fB\-fprofile\-exclude\-files=\fR\fIregex\fR
+\&\fB\-fprofile\-reproducible=\fR[\fBmultithreaded\fR|\fBparallel-runs\fR|\fBserial\fR]
+\&\fB\-fsanitize=\fR\fIstyle\fR  \fB\-fsanitize\-recover  \-fsanitize\-recover=\fR\fIstyle\fR
+\&\fB\-fsanitize\-trap   \-fsanitize\-trap=\fR\fIstyle\fR
+\&\fB\-fasan\-shadow\-offset=\fR\fInumber\fR  \fB\-fsanitize\-sections=\fR\fIs1\fR\fB,\fR\fIs2\fR\fB,...
+\&\-fsanitize\-undefined\-trap\-on\-error  \-fbounds\-check
+\&\-fcf\-protection=\fR[\fBfull\fR|\fBbranch\fR|\fBreturn\fR|\fBnone\fR|\fBcheck\fR]
+\&\fB\-fharden\-compares \-fharden\-conditional\-branches
+\&\-fstack\-protector  \-fstack\-protector\-all  \-fstack\-protector\-strong
+\&\-fstack\-protector\-explicit  \-fstack\-check
+\&\-fstack\-limit\-register=\fR\fIreg\fR  \fB\-fstack\-limit\-symbol=\fR\fIsym\fR
+\&\fB\-fno\-stack\-limit  \-fsplit\-stack
+\&\-fvtable\-verify=\fR[\fBstd\fR|\fBpreinit\fR|\fBnone\fR]
+\&\fB\-fvtv\-counts  \-fvtv\-debug
+\&\-finstrument\-functions  \-finstrument\-functions\-once
+\&\-finstrument\-functions\-exclude\-function\-list=\fR\fIsym\fR\fB,\fR\fIsym\fR\fB,...
+\&\-finstrument\-functions\-exclude\-file\-list=\fR\fIfile\fR\fB,\fR\fIfile\fR\fB,...
+\&\-fprofile\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR
 .IP "\fIPreprocessor Options\fR" 4
 .IX Item "Preprocessor Options"
-\&\fB\-A\fR\fIquestion\fR\fB=\fR\fIanswer\fR 
-\&\fB\-A\-\fR\fIquestion\fR[\fB=\fR\fIanswer\fR] 
-\&\fB\-C  \-CC  \-D\fR\fImacro\fR[\fB=\fR\fIdefn\fR] 
-\&\fB\-dD  \-dI  \-dM  \-dN  \-dU 
-\&\-fdebug\-cpp  \-fdirectives\-only  \-fdollars\-in\-identifiers  
-\&\-fexec\-charset=\fR\fIcharset\fR  \fB\-fextended\-identifiers  
-\&\-finput\-charset=\fR\fIcharset\fR  \fB\-flarge\-source\-files  
-\&\-fmacro\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR \fB\-fmax\-include\-depth=\fR\fIdepth\fR 
-\&\fB\-fno\-canonical\-system\-headers  \-fpch\-deps  \-fpch\-preprocess  
-\&\-fpreprocessed  \-ftabstop=\fR\fIwidth\fR  \fB\-ftrack\-macro\-expansion  
-\&\-fwide\-exec\-charset=\fR\fIcharset\fR  \fB\-fworking\-directory 
-\&\-H  \-imacros\fR \fIfile\fR  \fB\-include\fR \fIfile\fR 
-\&\fB\-M  \-MD  \-MF  \-MG  \-MM  \-MMD  \-MP  \-MQ  \-MT \-Mno\-modules 
-\&\-no\-integrated\-cpp  \-P  \-pthread  \-remap 
-\&\-traditional  \-traditional\-cpp  \-trigraphs 
-\&\-U\fR\fImacro\fR  \fB\-undef  
+\&\fB\-A\fR\fIquestion\fR\fB=\fR\fIanswer\fR
+\&\fB\-A\-\fR\fIquestion\fR[\fB=\fR\fIanswer\fR]
+\&\fB\-C  \-CC  \-D\fR\fImacro\fR[\fB=\fR\fIdefn\fR]
+\&\fB\-dD  \-dI  \-dM  \-dN  \-dU
+\&\-fdebug\-cpp  \-fdirectives\-only  \-fdollars\-in\-identifiers
+\&\-fexec\-charset=\fR\fIcharset\fR  \fB\-fextended\-identifiers
+\&\-finput\-charset=\fR\fIcharset\fR  \fB\-flarge\-source\-files
+\&\-fmacro\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR \fB\-fmax\-include\-depth=\fR\fIdepth\fR
+\&\fB\-fno\-canonical\-system\-headers  \-fpch\-deps  \-fpch\-preprocess
+\&\-fpreprocessed  \-ftabstop=\fR\fIwidth\fR  \fB\-ftrack\-macro\-expansion
+\&\-fwide\-exec\-charset=\fR\fIcharset\fR  \fB\-fworking\-directory
+\&\-H  \-imacros\fR \fIfile\fR  \fB\-include\fR \fIfile\fR
+\&\fB\-M  \-MD  \-MF  \-MG  \-MM  \-MMD  \-MP  \-MQ  \-MT \-Mno\-modules
+\&\-no\-integrated\-cpp  \-P  \-pthread  \-remap
+\&\-traditional  \-traditional\-cpp  \-trigraphs
+\&\-U\fR\fImacro\fR  \fB\-undef
 \&\-Wp,\fR\fIoption\fR  \fB\-Xpreprocessor\fR \fIoption\fR
 .IP "\fIAssembler Options\fR" 4
 .IX Item "Assembler Options"
 \&\fB\-Wa,\fR\fIoption\fR  \fB\-Xassembler\fR \fIoption\fR
 .IP "\fILinker Options\fR" 4
 .IX Item "Linker Options"
-\&\fIobject-file-name\fR  \fB\-fuse\-ld=\fR\fIlinker\fR  \fB\-l\fR\fIlibrary\fR 
-\&\fB\-nostartfiles  \-nodefaultlibs  \-nolibc  \-nostdlib  \-nostdlib++ 
-\&\-e\fR \fIentry\fR  \fB\-\-entry=\fR\fIentry\fR 
-\&\fB\-pie  \-pthread  \-r  \-rdynamic 
-\&\-s  \-static  \-static\-pie  \-static\-libgcc  \-static\-libstdc++ 
-\&\-static\-libasan  \-static\-libtsan  \-static\-liblsan  \-static\-libubsan 
-\&\-shared  \-shared\-libgcc  \-symbolic 
-\&\-T\fR \fIscript\fR  \fB\-Wl,\fR\fIoption\fR  \fB\-Xlinker\fR \fIoption\fR 
+\&\fIobject-file-name\fR  \fB\-fuse\-ld=\fR\fIlinker\fR  \fB\-l\fR\fIlibrary\fR
+\&\fB\-nostartfiles  \-nodefaultlibs  \-nolibc  \-nostdlib  \-nostdlib++
+\&\-e\fR \fIentry\fR  \fB\-\-entry=\fR\fIentry\fR
+\&\fB\-pie  \-pthread  \-r  \-rdynamic
+\&\-s  \-static  \-static\-pie  \-static\-libgcc  \-static\-libstdc++
+\&\-static\-libasan  \-static\-libtsan  \-static\-liblsan  \-static\-libubsan
+\&\-shared  \-shared\-libgcc  \-symbolic
+\&\-T\fR \fIscript\fR  \fB\-Wl,\fR\fIoption\fR  \fB\-Xlinker\fR \fIoption\fR
 \&\fB\-u\fR \fIsymbol\fR  \fB\-z\fR \fIkeyword\fR
 .IP "\fIDirectory Options\fR" 4
 .IX Item "Directory Options"
-\&\fB\-B\fR\fIprefix\fR  \fB\-I\fR\fIdir\fR  \fB\-I\- 
-\&\-idirafter\fR \fIdir\fR 
-\&\fB\-imacros\fR \fIfile\fR  \fB\-imultilib\fR \fIdir\fR 
-\&\fB\-iplugindir=\fR\fIdir\fR  \fB\-iprefix\fR \fIfile\fR 
-\&\fB\-iquote\fR \fIdir\fR  \fB\-isysroot\fR \fIdir\fR  \fB\-isystem\fR \fIdir\fR 
-\&\fB\-iwithprefix\fR \fIdir\fR  \fB\-iwithprefixbefore\fR \fIdir\fR  
-\&\fB\-L\fR\fIdir\fR  \fB\-no\-canonical\-prefixes  \-\-no\-sysroot\-suffix 
+\&\fB\-B\fR\fIprefix\fR  \fB\-I\fR\fIdir\fR  \fB\-I\-
+\&\-idirafter\fR \fIdir\fR
+\&\fB\-imacros\fR \fIfile\fR  \fB\-imultilib\fR \fIdir\fR
+\&\fB\-iplugindir=\fR\fIdir\fR  \fB\-iprefix\fR \fIfile\fR
+\&\fB\-iquote\fR \fIdir\fR  \fB\-isysroot\fR \fIdir\fR  \fB\-isystem\fR \fIdir\fR
+\&\fB\-iwithprefix\fR \fIdir\fR  \fB\-iwithprefixbefore\fR \fIdir\fR
+\&\fB\-L\fR\fIdir\fR  \fB\-no\-canonical\-prefixes  \-\-no\-sysroot\-suffix
 \&\-nostdinc  \-nostdinc++  \-\-sysroot=\fR\fIdir\fR
 .IP "\fICode Generation Options\fR" 4
 .IX Item "Code Generation Options"
-\&\fB\-fcall\-saved\-\fR\fIreg\fR  \fB\-fcall\-used\-\fR\fIreg\fR 
-\&\fB\-ffixed\-\fR\fIreg\fR  \fB\-fexceptions 
-\&\-fnon\-call\-exceptions  \-fdelete\-dead\-exceptions  \-funwind\-tables 
-\&\-fasynchronous\-unwind\-tables 
-\&\-fno\-gnu\-unique 
-\&\-finhibit\-size\-directive  \-fcommon  \-fno\-ident 
-\&\-fpcc\-struct\-return  \-fpic  \-fPIC  \-fpie  \-fPIE  \-fno\-plt 
-\&\-fno\-jump\-tables \-fno\-bit\-tests 
-\&\-frecord\-gcc\-switches 
-\&\-freg\-struct\-return  \-fshort\-enums  \-fshort\-wchar 
-\&\-fverbose\-asm  \-fpack\-struct[=\fR\fIn\fR\fB]  
-\&\-fleading\-underscore  \-ftls\-model=\fR\fImodel\fR 
-\&\fB\-fstack\-reuse=\fR\fIreuse_level\fR 
-\&\fB\-ftrampolines  \-ftrapv  \-fwrapv 
-\&\-fvisibility=\fR[\fBdefault\fR|\fBinternal\fR|\fBhidden\fR|\fBprotected\fR] 
+\&\fB\-fcall\-saved\-\fR\fIreg\fR  \fB\-fcall\-used\-\fR\fIreg\fR
+\&\fB\-ffixed\-\fR\fIreg\fR  \fB\-fexceptions
+\&\-fnon\-call\-exceptions  \-fdelete\-dead\-exceptions  \-funwind\-tables
+\&\-fasynchronous\-unwind\-tables
+\&\-fno\-gnu\-unique
+\&\-finhibit\-size\-directive  \-fcommon  \-fno\-ident
+\&\-fpcc\-struct\-return  \-fpic  \-fPIC  \-fpie  \-fPIE  \-fno\-plt
+\&\-fno\-jump\-tables \-fno\-bit\-tests
+\&\-frecord\-gcc\-switches
+\&\-freg\-struct\-return  \-fshort\-enums  \-fshort\-wchar
+\&\-fverbose\-asm  \-fpack\-struct[=\fR\fIn\fR\fB]
+\&\-fleading\-underscore  \-ftls\-model=\fR\fImodel\fR
+\&\fB\-fstack\-reuse=\fR\fIreuse_level\fR
+\&\fB\-ftrampolines  \-ftrapv  \-fwrapv
+\&\-fvisibility=\fR[\fBdefault\fR|\fBinternal\fR|\fBhidden\fR|\fBprotected\fR]
 \&\fB\-fstrict\-volatile\-bitfields  \-fsync\-libcalls\fR
 .IP "\fIDeveloper Options\fR" 4
 .IX Item "Developer Options"
-\&\fB\-d\fR\fIletters\fR  \fB\-dumpspecs  \-dumpmachine  \-dumpversion 
+\&\fB\-d\fR\fIletters\fR  \fB\-dumpspecs  \-dumpmachine  \-dumpversion
 \&\-dumpfullversion  \-fcallgraph\-info\fR[\fB=su,da\fR]
-\&\fB\-fchecking  \-fchecking=\fR\fIn\fR 
-\&\fB\-fdbg\-cnt\-list  \-fdbg\-cnt=\fR\fIcounter-value-list\fR 
-\&\fB\-fdisable\-ipa\-\fR\fIpass_name\fR 
-\&\fB\-fdisable\-rtl\-\fR\fIpass_name\fR 
-\&\fB\-fdisable\-rtl\-\fR\fIpass-name\fR\fB=\fR\fIrange-list\fR 
-\&\fB\-fdisable\-tree\-\fR\fIpass_name\fR 
-\&\fB\-fdisable\-tree\-\fR\fIpass-name\fR\fB=\fR\fIrange-list\fR 
-\&\fB\-fdump\-debug  \-fdump\-earlydebug 
-\&\-fdump\-noaddr  \-fdump\-unnumbered  \-fdump\-unnumbered\-links 
-\&\-fdump\-final\-insns\fR[\fB=\fR\fIfile\fR] 
-\&\fB\-fdump\-ipa\-all  \-fdump\-ipa\-cgraph  \-fdump\-ipa\-inline 
-\&\-fdump\-lang\-all 
-\&\-fdump\-lang\-\fR\fIswitch\fR 
-\&\fB\-fdump\-lang\-\fR\fIswitch\fR\fB\-\fR\fIoptions\fR 
-\&\fB\-fdump\-lang\-\fR\fIswitch\fR\fB\-\fR\fIoptions\fR\fB=\fR\fIfilename\fR 
-\&\fB\-fdump\-passes 
-\&\-fdump\-rtl\-\fR\fIpass\fR  \fB\-fdump\-rtl\-\fR\fIpass\fR\fB=\fR\fIfilename\fR 
-\&\fB\-fdump\-statistics 
-\&\-fdump\-tree\-all 
-\&\-fdump\-tree\-\fR\fIswitch\fR 
-\&\fB\-fdump\-tree\-\fR\fIswitch\fR\fB\-\fR\fIoptions\fR 
-\&\fB\-fdump\-tree\-\fR\fIswitch\fR\fB\-\fR\fIoptions\fR\fB=\fR\fIfilename\fR 
-\&\fB\-fcompare\-debug\fR[\fB=\fR\fIopts\fR]  \fB\-fcompare\-debug\-second 
-\&\-fenable\-\fR\fIkind\fR\fB\-\fR\fIpass\fR 
-\&\fB\-fenable\-\fR\fIkind\fR\fB\-\fR\fIpass\fR\fB=\fR\fIrange-list\fR 
-\&\fB\-fira\-verbose=\fR\fIn\fR 
-\&\fB\-flto\-report  \-flto\-report\-wpa  \-fmem\-report\-wpa 
-\&\-fmem\-report  \-fpre\-ipa\-mem\-report  \-fpost\-ipa\-mem\-report 
-\&\-fopt\-info  \-fopt\-info\-\fR\fIoptions\fR[\fB=\fR\fIfile\fR] 
-\&\fB\-fmultiflags  \-fprofile\-report 
-\&\-frandom\-seed=\fR\fIstring\fR  \fB\-fsched\-verbose=\fR\fIn\fR 
-\&\fB\-fsel\-sched\-verbose  \-fsel\-sched\-dump\-cfg  \-fsel\-sched\-pipelining\-verbose 
-\&\-fstats  \-fstack\-usage  \-ftime\-report  \-ftime\-report\-details 
-\&\-fvar\-tracking\-assignments\-toggle  \-gtoggle 
-\&\-print\-file\-name=\fR\fIlibrary\fR  \fB\-print\-libgcc\-file\-name 
-\&\-print\-multi\-directory  \-print\-multi\-lib  \-print\-multi\-os\-directory 
-\&\-print\-prog\-name=\fR\fIprogram\fR  \fB\-print\-search\-dirs  \-Q 
-\&\-print\-sysroot  \-print\-sysroot\-headers\-suffix 
+\&\fB\-fchecking  \-fchecking=\fR\fIn\fR
+\&\fB\-fdbg\-cnt\-list  \-fdbg\-cnt=\fR\fIcounter-value-list\fR
+\&\fB\-fdisable\-ipa\-\fR\fIpass_name\fR
+\&\fB\-fdisable\-rtl\-\fR\fIpass_name\fR
+\&\fB\-fdisable\-rtl\-\fR\fIpass-name\fR\fB=\fR\fIrange-list\fR
+\&\fB\-fdisable\-tree\-\fR\fIpass_name\fR
+\&\fB\-fdisable\-tree\-\fR\fIpass-name\fR\fB=\fR\fIrange-list\fR
+\&\fB\-fdump\-debug  \-fdump\-earlydebug
+\&\-fdump\-noaddr  \-fdump\-unnumbered  \-fdump\-unnumbered\-links
+\&\-fdump\-final\-insns\fR[\fB=\fR\fIfile\fR]
+\&\fB\-fdump\-ipa\-all  \-fdump\-ipa\-cgraph  \-fdump\-ipa\-inline
+\&\-fdump\-lang\-all
+\&\-fdump\-lang\-\fR\fIswitch\fR
+\&\fB\-fdump\-lang\-\fR\fIswitch\fR\fB\-\fR\fIoptions\fR
+\&\fB\-fdump\-lang\-\fR\fIswitch\fR\fB\-\fR\fIoptions\fR\fB=\fR\fIfilename\fR
+\&\fB\-fdump\-passes
+\&\-fdump\-rtl\-\fR\fIpass\fR  \fB\-fdump\-rtl\-\fR\fIpass\fR\fB=\fR\fIfilename\fR
+\&\fB\-fdump\-statistics
+\&\-fdump\-tree\-all
+\&\-fdump\-tree\-\fR\fIswitch\fR
+\&\fB\-fdump\-tree\-\fR\fIswitch\fR\fB\-\fR\fIoptions\fR
+\&\fB\-fdump\-tree\-\fR\fIswitch\fR\fB\-\fR\fIoptions\fR\fB=\fR\fIfilename\fR
+\&\fB\-fcompare\-debug\fR[\fB=\fR\fIopts\fR]  \fB\-fcompare\-debug\-second
+\&\-fenable\-\fR\fIkind\fR\fB\-\fR\fIpass\fR
+\&\fB\-fenable\-\fR\fIkind\fR\fB\-\fR\fIpass\fR\fB=\fR\fIrange-list\fR
+\&\fB\-fira\-verbose=\fR\fIn\fR
+\&\fB\-flto\-report  \-flto\-report\-wpa  \-fmem\-report\-wpa
+\&\-fmem\-report  \-fpre\-ipa\-mem\-report  \-fpost\-ipa\-mem\-report
+\&\-fopt\-info  \-fopt\-info\-\fR\fIoptions\fR[\fB=\fR\fIfile\fR]
+\&\fB\-fmultiflags  \-fprofile\-report
+\&\-frandom\-seed=\fR\fIstring\fR  \fB\-fsched\-verbose=\fR\fIn\fR
+\&\fB\-fsel\-sched\-verbose  \-fsel\-sched\-dump\-cfg  \-fsel\-sched\-pipelining\-verbose
+\&\-fstats  \-fstack\-usage  \-ftime\-report  \-ftime\-report\-details
+\&\-fvar\-tracking\-assignments\-toggle  \-gtoggle
+\&\-print\-file\-name=\fR\fIlibrary\fR  \fB\-print\-libgcc\-file\-name
+\&\-print\-multi\-directory  \-print\-multi\-lib  \-print\-multi\-os\-directory
+\&\-print\-prog\-name=\fR\fIprogram\fR  \fB\-print\-search\-dirs  \-Q
+\&\-print\-sysroot  \-print\-sysroot\-headers\-suffix
 \&\-save\-temps  \-save\-temps=cwd  \-save\-temps=obj  \-time\fR[\fB=\fR\fIfile\fR]
 .IP "\fIMachine-Dependent Options\fR" 4
 .IX Item "Machine-Dependent Options"
 \&\fIAArch64 Options\fR
-\&\fB\-mabi=\fR\fIname\fR  \fB\-mbig\-endian  \-mlittle\-endian 
-\&\-mgeneral\-regs\-only 
-\&\-mcmodel=tiny  \-mcmodel=small  \-mcmodel=large 
-\&\-mstrict\-align  \-mno\-strict\-align 
-\&\-momit\-leaf\-frame\-pointer 
-\&\-mtls\-dialect=desc  \-mtls\-dialect=traditional 
-\&\-mtls\-size=\fR\fIsize\fR 
-\&\fB\-mfix\-cortex\-a53\-835769  \-mfix\-cortex\-a53\-843419 
-\&\-mlow\-precision\-recip\-sqrt  \-mlow\-precision\-sqrt  \-mlow\-precision\-div 
-\&\-mpc\-relative\-literal\-loads 
-\&\-msign\-return\-address=\fR\fIscope\fR 
+\&\fB\-mabi=\fR\fIname\fR  \fB\-mbig\-endian  \-mlittle\-endian
+\&\-mgeneral\-regs\-only
+\&\-mcmodel=tiny  \-mcmodel=small  \-mcmodel=large
+\&\-mstrict\-align  \-mno\-strict\-align
+\&\-momit\-leaf\-frame\-pointer
+\&\-mtls\-dialect=desc  \-mtls\-dialect=traditional
+\&\-mtls\-size=\fR\fIsize\fR
+\&\fB\-mfix\-cortex\-a53\-835769  \-mfix\-cortex\-a53\-843419
+\&\-mlow\-precision\-recip\-sqrt  \-mlow\-precision\-sqrt  \-mlow\-precision\-div
+\&\-mpc\-relative\-literal\-loads
+\&\-msign\-return\-address=\fR\fIscope\fR
 \&\fB\-mbranch\-protection=\fR\fInone\fR\fB|\fR\fIstandard\fR\fB|\fR\fIpac-ret\fR\fB[+\fR\fIleaf\fR
-\&\fB+\fR\fIb\-key\fR\fB]|\fR\fIbti\fR 
-\&\fB\-mharden\-sls=\fR\fIopts\fR 
-\&\fB\-march=\fR\fIname\fR  \fB\-mcpu=\fR\fIname\fR  \fB\-mtune=\fR\fIname\fR  
-\&\fB\-moverride=\fR\fIstring\fR  \fB\-mverbose\-cost\-dump 
-\&\-mstack\-protector\-guard=\fR\fIguard\fR \fB\-mstack\-protector\-guard\-reg=\fR\fIsysreg\fR 
-\&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR \fB\-mtrack\-speculation 
+\&\fB+\fR\fIb\-key\fR\fB]|\fR\fIbti\fR
+\&\fB\-mharden\-sls=\fR\fIopts\fR
+\&\fB\-march=\fR\fIname\fR  \fB\-mcpu=\fR\fIname\fR  \fB\-mtune=\fR\fIname\fR
+\&\fB\-moverride=\fR\fIstring\fR  \fB\-mverbose\-cost\-dump
+\&\-mstack\-protector\-guard=\fR\fIguard\fR \fB\-mstack\-protector\-guard\-reg=\fR\fIsysreg\fR
+\&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR \fB\-mtrack\-speculation
 \&\-moutline\-atomics\fR
 .Sp
 \&\fIAdapteva Epiphany Options\fR
-\&\fB\-mhalf\-reg\-file  \-mprefer\-short\-insn\-regs 
-\&\-mbranch\-cost=\fR\fInum\fR  \fB\-mcmove  \-mnops=\fR\fInum\fR  \fB\-msoft\-cmpsf 
-\&\-msplit\-lohi  \-mpost\-inc  \-mpost\-modify  \-mstack\-offset=\fR\fInum\fR 
-\&\fB\-mround\-nearest  \-mlong\-calls  \-mshort\-calls  \-msmall16 
-\&\-mfp\-mode=\fR\fImode\fR  \fB\-mvect\-double  \-max\-vect\-align=\fR\fInum\fR 
+\&\fB\-mhalf\-reg\-file  \-mprefer\-short\-insn\-regs
+\&\-mbranch\-cost=\fR\fInum\fR  \fB\-mcmove  \-mnops=\fR\fInum\fR  \fB\-msoft\-cmpsf
+\&\-msplit\-lohi  \-mpost\-inc  \-mpost\-modify  \-mstack\-offset=\fR\fInum\fR
+\&\fB\-mround\-nearest  \-mlong\-calls  \-mshort\-calls  \-msmall16
+\&\-mfp\-mode=\fR\fImode\fR  \fB\-mvect\-double  \-max\-vect\-align=\fR\fInum\fR
 \&\fB\-msplit\-vecmove\-early  \-m1reg\-\fR\fIreg\fR
 .Sp
 \&\fI\s-1AMD GCN\s0 Options\fR
 \&\fB\-march=\fR\fIgpu\fR \fB\-mtune=\fR\fIgpu\fR \fB\-mstack\-size=\fR\fIbytes\fR
 .Sp
 \&\fI\s-1ARC\s0 Options\fR
-\&\fB\-mbarrel\-shifter  \-mjli\-always 
-\&\-mcpu=\fR\fIcpu\fR  \fB\-mA6  \-mARC600  \-mA7  \-mARC700 
-\&\-mdpfp  \-mdpfp\-compact  \-mdpfp\-fast  \-mno\-dpfp\-lrsr 
-\&\-mea  \-mno\-mpy  \-mmul32x16  \-mmul64  \-matomic 
-\&\-mnorm  \-mspfp  \-mspfp\-compact  \-mspfp\-fast  \-msimd  \-msoft\-float  \-mswap 
-\&\-mcrc  \-mdsp\-packa  \-mdvbf  \-mlock  \-mmac\-d16  \-mmac\-24  \-mrtsc  \-mswape 
-\&\-mtelephony  \-mxy  \-misize  \-mannotate\-align  \-marclinux  \-marclinux_prof 
-\&\-mlong\-calls  \-mmedium\-calls  \-msdata  \-mirq\-ctrl\-saved 
-\&\-mrgf\-banked\-regs  \-mlpc\-width=\fR\fIwidth\fR  \fB\-G\fR \fInum\fR 
-\&\fB\-mvolatile\-cache  \-mtp\-regno=\fR\fIregno\fR 
-\&\fB\-malign\-call  \-mauto\-modify\-reg  \-mbbit\-peephole  \-mno\-brcc 
-\&\-mcase\-vector\-pcrel  \-mcompact\-casesi  \-mno\-cond\-exec  \-mearly\-cbranchsi 
-\&\-mexpand\-adddi  \-mindexed\-loads  \-mlra  \-mlra\-priority\-none 
-\&\-mlra\-priority\-compact \-mlra\-priority\-noncompact  \-mmillicode 
-\&\-mmixed\-code  \-mq\-class  \-mRcq  \-mRcw  \-msize\-level=\fR\fIlevel\fR 
-\&\fB\-mtune=\fR\fIcpu\fR  \fB\-mmultcost=\fR\fInum\fR  \fB\-mcode\-density\-frame 
-\&\-munalign\-prob\-threshold=\fR\fIprobability\fR  \fB\-mmpy\-option=\fR\fImulto\fR 
+\&\fB\-mbarrel\-shifter  \-mjli\-always
+\&\-mcpu=\fR\fIcpu\fR  \fB\-mA6  \-mARC600  \-mA7  \-mARC700
+\&\-mdpfp  \-mdpfp\-compact  \-mdpfp\-fast  \-mno\-dpfp\-lrsr
+\&\-mea  \-mno\-mpy  \-mmul32x16  \-mmul64  \-matomic
+\&\-mnorm  \-mspfp  \-mspfp\-compact  \-mspfp\-fast  \-msimd  \-msoft\-float  \-mswap
+\&\-mcrc  \-mdsp\-packa  \-mdvbf  \-mlock  \-mmac\-d16  \-mmac\-24  \-mrtsc  \-mswape
+\&\-mtelephony  \-mxy  \-misize  \-mannotate\-align  \-marclinux  \-marclinux_prof
+\&\-mlong\-calls  \-mmedium\-calls  \-msdata  \-mirq\-ctrl\-saved
+\&\-mrgf\-banked\-regs  \-mlpc\-width=\fR\fIwidth\fR  \fB\-G\fR \fInum\fR
+\&\fB\-mvolatile\-cache  \-mtp\-regno=\fR\fIregno\fR
+\&\fB\-malign\-call  \-mauto\-modify\-reg  \-mbbit\-peephole  \-mno\-brcc
+\&\-mcase\-vector\-pcrel  \-mcompact\-casesi  \-mno\-cond\-exec  \-mearly\-cbranchsi
+\&\-mexpand\-adddi  \-mindexed\-loads  \-mlra  \-mlra\-priority\-none
+\&\-mlra\-priority\-compact \-mlra\-priority\-noncompact  \-mmillicode
+\&\-mmixed\-code  \-mq\-class  \-mRcq  \-mRcw  \-msize\-level=\fR\fIlevel\fR
+\&\fB\-mtune=\fR\fIcpu\fR  \fB\-mmultcost=\fR\fInum\fR  \fB\-mcode\-density\-frame
+\&\-munalign\-prob\-threshold=\fR\fIprobability\fR  \fB\-mmpy\-option=\fR\fImulto\fR
 \&\fB\-mdiv\-rem  \-mcode\-density  \-mll64  \-mfpu=\fR\fIfpu\fR  \fB\-mrf16  \-mbranch\-index\fR
 .Sp
 \&\fI\s-1ARM\s0 Options\fR
-\&\fB\-mapcs\-frame  \-mno\-apcs\-frame 
-\&\-mabi=\fR\fIname\fR 
-\&\fB\-mapcs\-stack\-check  \-mno\-apcs\-stack\-check 
-\&\-mapcs\-reentrant  \-mno\-apcs\-reentrant 
-\&\-mgeneral\-regs\-only 
-\&\-msched\-prolog  \-mno\-sched\-prolog 
-\&\-mlittle\-endian  \-mbig\-endian 
-\&\-mbe8  \-mbe32 
-\&\-mfloat\-abi=\fR\fIname\fR 
+\&\fB\-mapcs\-frame  \-mno\-apcs\-frame
+\&\-mabi=\fR\fIname\fR
+\&\fB\-mapcs\-stack\-check  \-mno\-apcs\-stack\-check
+\&\-mapcs\-reentrant  \-mno\-apcs\-reentrant
+\&\-mgeneral\-regs\-only
+\&\-msched\-prolog  \-mno\-sched\-prolog
+\&\-mlittle\-endian  \-mbig\-endian
+\&\-mbe8  \-mbe32
+\&\-mfloat\-abi=\fR\fIname\fR
 \&\fB\-mfp16\-format=\fR\fIname\fR
-\&\fB\-mthumb\-interwork  \-mno\-thumb\-interwork 
-\&\-mcpu=\fR\fIname\fR  \fB\-march=\fR\fIname\fR  \fB\-mfpu=\fR\fIname\fR  
-\&\fB\-mtune=\fR\fIname\fR  \fB\-mprint\-tune\-info 
-\&\-mstructure\-size\-boundary=\fR\fIn\fR 
-\&\fB\-mabort\-on\-noreturn 
-\&\-mlong\-calls  \-mno\-long\-calls 
-\&\-msingle\-pic\-base  \-mno\-single\-pic\-base 
-\&\-mpic\-register=\fR\fIreg\fR 
-\&\fB\-mnop\-fun\-dllimport 
-\&\-mpoke\-function\-name 
-\&\-mthumb  \-marm  \-mflip\-thumb 
-\&\-mtpcs\-frame  \-mtpcs\-leaf\-frame 
-\&\-mcaller\-super\-interworking  \-mcallee\-super\-interworking 
-\&\-mtp=\fR\fIname\fR  \fB\-mtls\-dialect=\fR\fIdialect\fR 
-\&\fB\-mword\-relocations 
-\&\-mfix\-cortex\-m3\-ldrd 
-\&\-mfix\-cortex\-a57\-aes\-1742098 
-\&\-mfix\-cortex\-a72\-aes\-1655431 
-\&\-munaligned\-access 
-\&\-mneon\-for\-64bits 
-\&\-mslow\-flash\-data 
-\&\-masm\-syntax\-unified 
-\&\-mrestrict\-it 
-\&\-mverbose\-cost\-dump 
-\&\-mpure\-code 
-\&\-mcmse 
-\&\-mfix\-cmse\-cve\-2021\-35465 
-\&\-mstack\-protector\-guard=\fR\fIguard\fR \fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR 
-\&\fB\-mfdpic 
+\&\fB\-mthumb\-interwork  \-mno\-thumb\-interwork
+\&\-mcpu=\fR\fIname\fR  \fB\-march=\fR\fIname\fR  \fB\-mfpu=\fR\fIname\fR
+\&\fB\-mtune=\fR\fIname\fR  \fB\-mprint\-tune\-info
+\&\-mstructure\-size\-boundary=\fR\fIn\fR
+\&\fB\-mabort\-on\-noreturn
+\&\-mlong\-calls  \-mno\-long\-calls
+\&\-msingle\-pic\-base  \-mno\-single\-pic\-base
+\&\-mpic\-register=\fR\fIreg\fR
+\&\fB\-mnop\-fun\-dllimport
+\&\-mpoke\-function\-name
+\&\-mthumb  \-marm  \-mflip\-thumb
+\&\-mtpcs\-frame  \-mtpcs\-leaf\-frame
+\&\-mcaller\-super\-interworking  \-mcallee\-super\-interworking
+\&\-mtp=\fR\fIname\fR  \fB\-mtls\-dialect=\fR\fIdialect\fR
+\&\fB\-mword\-relocations
+\&\-mfix\-cortex\-m3\-ldrd
+\&\-mfix\-cortex\-a57\-aes\-1742098
+\&\-mfix\-cortex\-a72\-aes\-1655431
+\&\-munaligned\-access
+\&\-mneon\-for\-64bits
+\&\-mslow\-flash\-data
+\&\-masm\-syntax\-unified
+\&\-mrestrict\-it
+\&\-mverbose\-cost\-dump
+\&\-mpure\-code
+\&\-mcmse
+\&\-mfix\-cmse\-cve\-2021\-35465
+\&\-mstack\-protector\-guard=\fR\fIguard\fR \fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR
+\&\fB\-mfdpic
 \&\-mbranch\-protection=\fR\fInone\fR\fB|\fR\fIstandard\fR\fB|\fR\fIpac-ret\fR\fB[+\fR\fIleaf\fR\fB]
 [+\fR\fIbti\fR\fB]|\fR\fIbti\fR\fB[+\fR\fIpac-ret\fR\fB[+\fR\fIleaf\fR\fB]]\fR
 .Sp
 \&\fI\s-1AVR\s0 Options\fR
-\&\fB\-mmcu=\fR\fImcu\fR  \fB\-mabsdata  \-maccumulate\-args 
-\&\-mbranch\-cost=\fR\fIcost\fR 
-\&\fB\-mcall\-prologues  \-mgas\-isr\-prologues  \-mint8 
-\&\-mdouble=\fR\fIbits\fR \fB\-mlong\-double=\fR\fIbits\fR 
-\&\fB\-mn_flash=\fR\fIsize\fR  \fB\-mno\-interrupts 
-\&\-mmain\-is\-OS_task  \-mrelax  \-mrmw  \-mstrict\-X  \-mtiny\-stack 
-\&\-mfract\-convert\-truncate 
-\&\-mshort\-calls  \-nodevicelib  \-nodevicespecs 
+\&\fB\-mmcu=\fR\fImcu\fR  \fB\-mabsdata  \-maccumulate\-args
+\&\-mbranch\-cost=\fR\fIcost\fR
+\&\fB\-mcall\-prologues  \-mgas\-isr\-prologues  \-mint8
+\&\-mdouble=\fR\fIbits\fR \fB\-mlong\-double=\fR\fIbits\fR
+\&\fB\-mn_flash=\fR\fIsize\fR  \fB\-mno\-interrupts
+\&\-mmain\-is\-OS_task  \-mrelax  \-mrmw  \-mstrict\-X  \-mtiny\-stack
+\&\-mfract\-convert\-truncate
+\&\-mshort\-calls  \-nodevicelib  \-nodevicespecs
 \&\-Waddr\-space\-convert  \-Wmisspelled\-isr\fR
 .Sp
 \&\fIBlackfin Options\fR
-\&\fB\-mcpu=\fR\fIcpu\fR[\fB\-\fR\fIsirevision\fR] 
-\&\fB\-msim  \-momit\-leaf\-frame\-pointer  \-mno\-omit\-leaf\-frame\-pointer 
-\&\-mspecld\-anomaly  \-mno\-specld\-anomaly  \-mcsync\-anomaly  \-mno\-csync\-anomaly 
-\&\-mlow\-64k  \-mno\-low64k  \-mstack\-check\-l1  \-mid\-shared\-library 
-\&\-mno\-id\-shared\-library  \-mshared\-library\-id=\fR\fIn\fR 
-\&\fB\-mleaf\-id\-shared\-library  \-mno\-leaf\-id\-shared\-library 
-\&\-msep\-data  \-mno\-sep\-data  \-mlong\-calls  \-mno\-long\-calls 
-\&\-mfast\-fp  \-minline\-plt  \-mmulticore  \-mcorea  \-mcoreb  \-msdram 
+\&\fB\-mcpu=\fR\fIcpu\fR[\fB\-\fR\fIsirevision\fR]
+\&\fB\-msim  \-momit\-leaf\-frame\-pointer  \-mno\-omit\-leaf\-frame\-pointer
+\&\-mspecld\-anomaly  \-mno\-specld\-anomaly  \-mcsync\-anomaly  \-mno\-csync\-anomaly
+\&\-mlow\-64k  \-mno\-low64k  \-mstack\-check\-l1  \-mid\-shared\-library
+\&\-mno\-id\-shared\-library  \-mshared\-library\-id=\fR\fIn\fR
+\&\fB\-mleaf\-id\-shared\-library  \-mno\-leaf\-id\-shared\-library
+\&\-msep\-data  \-mno\-sep\-data  \-mlong\-calls  \-mno\-long\-calls
+\&\-mfast\-fp  \-minline\-plt  \-mmulticore  \-mcorea  \-mcoreb  \-msdram
 \&\-micplb\fR
 .Sp
 \&\fIC6X Options\fR
-\&\fB\-mbig\-endian  \-mlittle\-endian  \-march=\fR\fIcpu\fR 
+\&\fB\-mbig\-endian  \-mlittle\-endian  \-march=\fR\fIcpu\fR
 \&\fB\-msim  \-msdata=\fR\fIsdata-type\fR
 .Sp
 \&\fI\s-1CRIS\s0 Options\fR
 \&\fB\-mcpu=\fR\fIcpu\fR  \fB\-march=\fR\fIcpu\fR
-\&\fB\-mtune=\fR\fIcpu\fR \fB\-mmax\-stack\-frame=\fR\fIn\fR 
-\&\fB\-metrax4  \-metrax100  \-mpdebug  \-mcc\-init  \-mno\-side\-effects 
-\&\-mstack\-align  \-mdata\-align  \-mconst\-align 
-\&\-m32\-bit  \-m16\-bit  \-m8\-bit  \-mno\-prologue\-epilogue 
-\&\-melf  \-maout  \-sim  \-sim2 
+\&\fB\-mtune=\fR\fIcpu\fR \fB\-mmax\-stack\-frame=\fR\fIn\fR
+\&\fB\-metrax4  \-metrax100  \-mpdebug  \-mcc\-init  \-mno\-side\-effects
+\&\-mstack\-align  \-mdata\-align  \-mconst\-align
+\&\-m32\-bit  \-m16\-bit  \-m8\-bit  \-mno\-prologue\-epilogue
+\&\-melf  \-maout  \-sim  \-sim2
 \&\-mmul\-bug\-workaround  \-mno\-mul\-bug\-workaround\fR
 .Sp
 \&\fIC\-SKY Options\fR
-\&\fB\-march=\fR\fIarch\fR  \fB\-mcpu=\fR\fIcpu\fR 
-\&\fB\-mbig\-endian  \-EB  \-mlittle\-endian  \-EL 
-\&\-mhard\-float  \-msoft\-float  \-mfpu=\fR\fIfpu\fR  \fB\-mdouble\-float  \-mfdivdu 
-\&\-mfloat\-abi=\fR\fIname\fR 
-\&\fB\-melrw  \-mistack  \-mmp  \-mcp  \-mcache  \-msecurity  \-mtrust 
-\&\-mdsp  \-medsp  \-mvdsp 
-\&\-mdiv  \-msmart  \-mhigh\-registers  \-manchor 
-\&\-mpushpop  \-mmultiple\-stld  \-mconstpool  \-mstack\-size  \-mccrt 
+\&\fB\-march=\fR\fIarch\fR  \fB\-mcpu=\fR\fIcpu\fR
+\&\fB\-mbig\-endian  \-EB  \-mlittle\-endian  \-EL
+\&\-mhard\-float  \-msoft\-float  \-mfpu=\fR\fIfpu\fR  \fB\-mdouble\-float  \-mfdivdu
+\&\-mfloat\-abi=\fR\fIname\fR
+\&\fB\-melrw  \-mistack  \-mmp  \-mcp  \-mcache  \-msecurity  \-mtrust
+\&\-mdsp  \-medsp  \-mvdsp
+\&\-mdiv  \-msmart  \-mhigh\-registers  \-manchor
+\&\-mpushpop  \-mmultiple\-stld  \-mconstpool  \-mstack\-size  \-mccrt
 \&\-mbranch\-cost=\fR\fIn\fR  \fB\-mcse\-cc  \-msched\-prolog \-msim\fR
 .Sp
 \&\fIDarwin Options\fR
-\&\fB\-all_load  \-allowable_client  \-arch  \-arch_errors_fatal 
-\&\-arch_only  \-bind_at_load  \-bundle  \-bundle_loader 
-\&\-client_name  \-compatibility_version  \-current_version 
-\&\-dead_strip 
-\&\-dependency\-file  \-dylib_file  \-dylinker_install_name 
-\&\-dynamic  \-dynamiclib  \-exported_symbols_list 
-\&\-filelist  \-flat_namespace  \-force_cpusubtype_ALL 
-\&\-force_flat_namespace  \-headerpad_max_install_names 
-\&\-iframework 
-\&\-image_base  \-init  \-install_name  \-keep_private_externs 
-\&\-multi_module  \-multiply_defined  \-multiply_defined_unused 
-\&\-noall_load   \-no_dead_strip_inits_and_terms 
-\&\-nofixprebinding  \-nomultidefs  \-noprebind  \-noseglinkedit 
-\&\-pagezero_size  \-prebind  \-prebind_all_twolevel_modules 
-\&\-private_bundle  \-read_only_relocs  \-sectalign 
-\&\-sectobjectsymbols  \-whyload  \-seg1addr 
-\&\-sectcreate  \-sectobjectsymbols  \-sectorder 
-\&\-segaddr  \-segs_read_only_addr  \-segs_read_write_addr 
-\&\-seg_addr_table  \-seg_addr_table_filename  \-seglinkedit 
-\&\-segprot  \-segs_read_only_addr  \-segs_read_write_addr 
-\&\-single_module  \-static  \-sub_library  \-sub_umbrella 
-\&\-twolevel_namespace  \-umbrella  \-undefined 
-\&\-unexported_symbols_list  \-weak_reference_mismatches 
-\&\-whatsloaded  \-F  \-gused  \-gfull  \-mmacosx\-version\-min=\fR\fIversion\fR 
+\&\fB\-all_load  \-allowable_client  \-arch  \-arch_errors_fatal
+\&\-arch_only  \-bind_at_load  \-bundle  \-bundle_loader
+\&\-client_name  \-compatibility_version  \-current_version
+\&\-dead_strip
+\&\-dependency\-file  \-dylib_file  \-dylinker_install_name
+\&\-dynamic  \-dynamiclib  \-exported_symbols_list
+\&\-filelist  \-flat_namespace  \-force_cpusubtype_ALL
+\&\-force_flat_namespace  \-headerpad_max_install_names
+\&\-iframework
+\&\-image_base  \-init  \-install_name  \-keep_private_externs
+\&\-multi_module  \-multiply_defined  \-multiply_defined_unused
+\&\-noall_load   \-no_dead_strip_inits_and_terms
+\&\-nofixprebinding  \-nomultidefs  \-noprebind  \-noseglinkedit
+\&\-pagezero_size  \-prebind  \-prebind_all_twolevel_modules
+\&\-private_bundle  \-read_only_relocs  \-sectalign
+\&\-sectobjectsymbols  \-whyload  \-seg1addr
+\&\-sectcreate  \-sectobjectsymbols  \-sectorder
+\&\-segaddr  \-segs_read_only_addr  \-segs_read_write_addr
+\&\-seg_addr_table  \-seg_addr_table_filename  \-seglinkedit
+\&\-segprot  \-segs_read_only_addr  \-segs_read_write_addr
+\&\-single_module  \-static  \-sub_library  \-sub_umbrella
+\&\-twolevel_namespace  \-umbrella  \-undefined
+\&\-unexported_symbols_list  \-weak_reference_mismatches
+\&\-whatsloaded  \-F  \-gused  \-gfull  \-mmacosx\-version\-min=\fR\fIversion\fR
 \&\fB\-mkernel  \-mone\-byte\-bool\fR
 .Sp
 \&\fI\s-1DEC\s0 Alpha Options\fR
-\&\fB\-mno\-fp\-regs  \-msoft\-float 
-\&\-mieee  \-mieee\-with\-inexact  \-mieee\-conformant 
-\&\-mfp\-trap\-mode=\fR\fImode\fR  \fB\-mfp\-rounding\-mode=\fR\fImode\fR 
-\&\fB\-mtrap\-precision=\fR\fImode\fR  \fB\-mbuild\-constants 
-\&\-mcpu=\fR\fIcpu-type\fR  \fB\-mtune=\fR\fIcpu-type\fR 
-\&\fB\-mbwx  \-mmax  \-mfix  \-mcix 
-\&\-mfloat\-vax  \-mfloat\-ieee 
-\&\-mexplicit\-relocs  \-msmall\-data  \-mlarge\-data 
-\&\-msmall\-text  \-mlarge\-text 
+\&\fB\-mno\-fp\-regs  \-msoft\-float
+\&\-mieee  \-mieee\-with\-inexact  \-mieee\-conformant
+\&\-mfp\-trap\-mode=\fR\fImode\fR  \fB\-mfp\-rounding\-mode=\fR\fImode\fR
+\&\fB\-mtrap\-precision=\fR\fImode\fR  \fB\-mbuild\-constants
+\&\-mcpu=\fR\fIcpu-type\fR  \fB\-mtune=\fR\fIcpu-type\fR
+\&\fB\-mbwx  \-mmax  \-mfix  \-mcix
+\&\-mfloat\-vax  \-mfloat\-ieee
+\&\-mexplicit\-relocs  \-msmall\-data  \-mlarge\-data
+\&\-msmall\-text  \-mlarge\-text
 \&\-mmemory\-latency=\fR\fItime\fR
 .Sp
 \&\fIeBPF Options\fR
@@ -961,352 +961,352 @@ in the following sections.
 \&\fB\-msim  \-mlra  \-mnodiv  \-mft32b  \-mcompress  \-mnopm\fR
 .Sp
 \&\fI\s-1FRV\s0 Options\fR
-\&\fB\-mgpr\-32  \-mgpr\-64  \-mfpr\-32  \-mfpr\-64 
-\&\-mhard\-float  \-msoft\-float 
-\&\-malloc\-cc  \-mfixed\-cc  \-mdword  \-mno\-dword 
-\&\-mdouble  \-mno\-double 
-\&\-mmedia  \-mno\-media  \-mmuladd  \-mno\-muladd 
-\&\-mfdpic  \-minline\-plt  \-mgprel\-ro  \-multilib\-library\-pic 
-\&\-mlinked\-fp  \-mlong\-calls  \-malign\-labels 
-\&\-mlibrary\-pic  \-macc\-4  \-macc\-8 
-\&\-mpack  \-mno\-pack  \-mno\-eflags  \-mcond\-move  \-mno\-cond\-move 
-\&\-moptimize\-membar  \-mno\-optimize\-membar 
-\&\-mscc  \-mno\-scc  \-mcond\-exec  \-mno\-cond\-exec 
-\&\-mvliw\-branch  \-mno\-vliw\-branch 
-\&\-mmulti\-cond\-exec  \-mno\-multi\-cond\-exec  \-mnested\-cond\-exec 
-\&\-mno\-nested\-cond\-exec  \-mtomcat\-stats 
-\&\-mTLS  \-mtls 
+\&\fB\-mgpr\-32  \-mgpr\-64  \-mfpr\-32  \-mfpr\-64
+\&\-mhard\-float  \-msoft\-float
+\&\-malloc\-cc  \-mfixed\-cc  \-mdword  \-mno\-dword
+\&\-mdouble  \-mno\-double
+\&\-mmedia  \-mno\-media  \-mmuladd  \-mno\-muladd
+\&\-mfdpic  \-minline\-plt  \-mgprel\-ro  \-multilib\-library\-pic
+\&\-mlinked\-fp  \-mlong\-calls  \-malign\-labels
+\&\-mlibrary\-pic  \-macc\-4  \-macc\-8
+\&\-mpack  \-mno\-pack  \-mno\-eflags  \-mcond\-move  \-mno\-cond\-move
+\&\-moptimize\-membar  \-mno\-optimize\-membar
+\&\-mscc  \-mno\-scc  \-mcond\-exec  \-mno\-cond\-exec
+\&\-mvliw\-branch  \-mno\-vliw\-branch
+\&\-mmulti\-cond\-exec  \-mno\-multi\-cond\-exec  \-mnested\-cond\-exec
+\&\-mno\-nested\-cond\-exec  \-mtomcat\-stats
+\&\-mTLS  \-mtls
 \&\-mcpu=\fR\fIcpu\fR
 .Sp
 \&\fIGNU/Linux Options\fR
-\&\fB\-mglibc  \-muclibc  \-mmusl  \-mbionic  \-mandroid 
+\&\fB\-mglibc  \-muclibc  \-mmusl  \-mbionic  \-mandroid
 \&\-tno\-android\-cc  \-tno\-android\-ld\fR
 .Sp
 \&\fIH8/300 Options\fR
 \&\fB\-mrelax  \-mh  \-ms  \-mn  \-mexr  \-mno\-exr  \-mint32  \-malign\-300\fR
 .Sp
 \&\fI\s-1HPPA\s0 Options\fR
-\&\fB\-march=\fR\fIarchitecture-type\fR 
-\&\fB\-matomic\-libcalls  \-mbig\-switch 
-\&\-mcaller\-copies  \-mdisable\-fpregs  \-mdisable\-indexing 
-\&\-mordered  \-mfast\-indirect\-calls  \-mgas  \-mgnu\-ld   \-mhp\-ld 
-\&\-mfixed\-range=\fR\fIregister-range\fR 
-\&\fB\-mcoherent\-ldcw \-mjump\-in\-delay  \-mlinker\-opt  \-mlong\-calls 
-\&\-mlong\-load\-store  \-mno\-atomic\-libcalls  \-mno\-disable\-fpregs 
-\&\-mno\-disable\-indexing  \-mno\-fast\-indirect\-calls  \-mno\-gas 
-\&\-mno\-jump\-in\-delay  \-mno\-long\-load\-store 
-\&\-mno\-portable\-runtime  \-mno\-soft\-float 
-\&\-mno\-space\-regs  \-msoft\-float  \-mpa\-risc\-1\-0 
-\&\-mpa\-risc\-1\-1  \-mpa\-risc\-2\-0  \-mportable\-runtime 
-\&\-mschedule=\fR\fIcpu-type\fR  \fB\-mspace\-regs  \-msoft\-mult  \-msio  \-mwsio 
+\&\fB\-march=\fR\fIarchitecture-type\fR
+\&\fB\-matomic\-libcalls  \-mbig\-switch
+\&\-mcaller\-copies  \-mdisable\-fpregs  \-mdisable\-indexing
+\&\-mordered  \-mfast\-indirect\-calls  \-mgas  \-mgnu\-ld   \-mhp\-ld
+\&\-mfixed\-range=\fR\fIregister-range\fR
+\&\fB\-mcoherent\-ldcw \-mjump\-in\-delay  \-mlinker\-opt  \-mlong\-calls
+\&\-mlong\-load\-store  \-mno\-atomic\-libcalls  \-mno\-disable\-fpregs
+\&\-mno\-disable\-indexing  \-mno\-fast\-indirect\-calls  \-mno\-gas
+\&\-mno\-jump\-in\-delay  \-mno\-long\-load\-store
+\&\-mno\-portable\-runtime  \-mno\-soft\-float
+\&\-mno\-space\-regs  \-msoft\-float  \-mpa\-risc\-1\-0
+\&\-mpa\-risc\-1\-1  \-mpa\-risc\-2\-0  \-mportable\-runtime
+\&\-mschedule=\fR\fIcpu-type\fR  \fB\-mspace\-regs  \-msoft\-mult  \-msio  \-mwsio
 \&\-munix=\fR\fIunix-std\fR  \fB\-nolibdld  \-static  \-threads\fR
 .Sp
 \&\fI\s-1IA\-64\s0 Options\fR
-\&\fB\-mbig\-endian  \-mlittle\-endian  \-mgnu\-as  \-mgnu\-ld  \-mno\-pic 
-\&\-mvolatile\-asm\-stop  \-mregister\-names  \-msdata  \-mno\-sdata 
-\&\-mconstant\-gp  \-mauto\-pic  \-mfused\-madd 
-\&\-minline\-float\-divide\-min\-latency 
-\&\-minline\-float\-divide\-max\-throughput 
-\&\-mno\-inline\-float\-divide 
-\&\-minline\-int\-divide\-min\-latency 
-\&\-minline\-int\-divide\-max\-throughput  
-\&\-mno\-inline\-int\-divide 
-\&\-minline\-sqrt\-min\-latency  \-minline\-sqrt\-max\-throughput 
-\&\-mno\-inline\-sqrt 
-\&\-mdwarf2\-asm  \-mearly\-stop\-bits 
-\&\-mfixed\-range=\fR\fIregister-range\fR  \fB\-mtls\-size=\fR\fItls-size\fR 
-\&\fB\-mtune=\fR\fIcpu-type\fR  \fB\-milp32  \-mlp64 
-\&\-msched\-br\-data\-spec  \-msched\-ar\-data\-spec  \-msched\-control\-spec 
-\&\-msched\-br\-in\-data\-spec  \-msched\-ar\-in\-data\-spec  \-msched\-in\-control\-spec 
-\&\-msched\-spec\-ldc  \-msched\-spec\-control\-ldc 
-\&\-msched\-prefer\-non\-data\-spec\-insns  \-msched\-prefer\-non\-control\-spec\-insns 
-\&\-msched\-stop\-bits\-after\-every\-cycle  \-msched\-count\-spec\-in\-critical\-path 
-\&\-msel\-sched\-dont\-check\-control\-spec  \-msched\-fp\-mem\-deps\-zero\-cost 
+\&\fB\-mbig\-endian  \-mlittle\-endian  \-mgnu\-as  \-mgnu\-ld  \-mno\-pic
+\&\-mvolatile\-asm\-stop  \-mregister\-names  \-msdata  \-mno\-sdata
+\&\-mconstant\-gp  \-mauto\-pic  \-mfused\-madd
+\&\-minline\-float\-divide\-min\-latency
+\&\-minline\-float\-divide\-max\-throughput
+\&\-mno\-inline\-float\-divide
+\&\-minline\-int\-divide\-min\-latency
+\&\-minline\-int\-divide\-max\-throughput
+\&\-mno\-inline\-int\-divide
+\&\-minline\-sqrt\-min\-latency  \-minline\-sqrt\-max\-throughput
+\&\-mno\-inline\-sqrt
+\&\-mdwarf2\-asm  \-mearly\-stop\-bits
+\&\-mfixed\-range=\fR\fIregister-range\fR  \fB\-mtls\-size=\fR\fItls-size\fR
+\&\fB\-mtune=\fR\fIcpu-type\fR  \fB\-milp32  \-mlp64
+\&\-msched\-br\-data\-spec  \-msched\-ar\-data\-spec  \-msched\-control\-spec
+\&\-msched\-br\-in\-data\-spec  \-msched\-ar\-in\-data\-spec  \-msched\-in\-control\-spec
+\&\-msched\-spec\-ldc  \-msched\-spec\-control\-ldc
+\&\-msched\-prefer\-non\-data\-spec\-insns  \-msched\-prefer\-non\-control\-spec\-insns
+\&\-msched\-stop\-bits\-after\-every\-cycle  \-msched\-count\-spec\-in\-critical\-path
+\&\-msel\-sched\-dont\-check\-control\-spec  \-msched\-fp\-mem\-deps\-zero\-cost
 \&\-msched\-max\-memory\-insns\-hard\-limit  \-msched\-max\-memory\-insns=\fR\fImax-insns\fR
 .Sp
 \&\fI\s-1LM32\s0 Options\fR
-\&\fB\-mbarrel\-shift\-enabled  \-mdivide\-enabled  \-mmultiply\-enabled 
+\&\fB\-mbarrel\-shift\-enabled  \-mdivide\-enabled  \-mmultiply\-enabled
 \&\-msign\-extend\-enabled  \-muser\-enabled\fR
 .Sp
 \&\fILoongArch Options\fR
-\&\fB\-march=\fR\fIcpu-type\fR  \fB\-mtune=\fR\fIcpu-type\fR \fB\-mabi=\fR\fIbase-abi-type\fR 
-\&\fB\-mfpu=\fR\fIfpu-type\fR \fB\-msoft\-float \-msingle\-float \-mdouble\-float 
-\&\-mbranch\-cost=\fR\fIn\fR  \fB\-mcheck\-zero\-division \-mno\-check\-zero\-division 
-\&\-mcond\-move\-int  \-mno\-cond\-move\-int 
-\&\-mcond\-move\-float  \-mno\-cond\-move\-float 
-\&\-memcpy  \-mno\-memcpy \-mstrict\-align \-mno\-strict\-align 
-\&\-mmax\-inline\-memcpy\-size=\fR\fIn\fR 
-\&\fB\-mexplicit\-relocs \-mno\-explicit\-relocs 
-\&\-mdirect\-extern\-access \-mno\-direct\-extern\-access 
+\&\fB\-march=\fR\fIcpu-type\fR  \fB\-mtune=\fR\fIcpu-type\fR \fB\-mabi=\fR\fIbase-abi-type\fR
+\&\fB\-mfpu=\fR\fIfpu-type\fR \fB\-msoft\-float \-msingle\-float \-mdouble\-float
+\&\-mbranch\-cost=\fR\fIn\fR  \fB\-mcheck\-zero\-division \-mno\-check\-zero\-division
+\&\-mcond\-move\-int  \-mno\-cond\-move\-int
+\&\-mcond\-move\-float  \-mno\-cond\-move\-float
+\&\-memcpy  \-mno\-memcpy \-mstrict\-align \-mno\-strict\-align
+\&\-mmax\-inline\-memcpy\-size=\fR\fIn\fR
+\&\fB\-mexplicit\-relocs \-mno\-explicit\-relocs
+\&\-mdirect\-extern\-access \-mno\-direct\-extern\-access
 \&\-mcmodel=\fR\fIcode-model\fR
 .Sp
 \&\fIM32R/D Options\fR
-\&\fB\-m32r2  \-m32rx  \-m32r 
-\&\-mdebug 
-\&\-malign\-loops  \-mno\-align\-loops 
-\&\-missue\-rate=\fR\fInumber\fR 
-\&\fB\-mbranch\-cost=\fR\fInumber\fR 
-\&\fB\-mmodel=\fR\fIcode-size-model-type\fR 
-\&\fB\-msdata=\fR\fIsdata-type\fR 
-\&\fB\-mno\-flush\-func  \-mflush\-func=\fR\fIname\fR 
-\&\fB\-mno\-flush\-trap  \-mflush\-trap=\fR\fInumber\fR 
+\&\fB\-m32r2  \-m32rx  \-m32r
+\&\-mdebug
+\&\-malign\-loops  \-mno\-align\-loops
+\&\-missue\-rate=\fR\fInumber\fR
+\&\fB\-mbranch\-cost=\fR\fInumber\fR
+\&\fB\-mmodel=\fR\fIcode-size-model-type\fR
+\&\fB\-msdata=\fR\fIsdata-type\fR
+\&\fB\-mno\-flush\-func  \-mflush\-func=\fR\fIname\fR
+\&\fB\-mno\-flush\-trap  \-mflush\-trap=\fR\fInumber\fR
 \&\fB\-G\fR \fInum\fR
 .Sp
 \&\fIM32C Options\fR
 \&\fB\-mcpu=\fR\fIcpu\fR  \fB\-msim  \-memregs=\fR\fInumber\fR
 .Sp
 \&\fIM680x0 Options\fR
-\&\fB\-march=\fR\fIarch\fR  \fB\-mcpu=\fR\fIcpu\fR  \fB\-mtune=\fR\fItune\fR 
-\&\fB\-m68000  \-m68020  \-m68020\-40  \-m68020\-60  \-m68030  \-m68040 
-\&\-m68060  \-mcpu32  \-m5200  \-m5206e  \-m528x  \-m5307  \-m5407 
-\&\-mcfv4e  \-mbitfield  \-mno\-bitfield  \-mc68000  \-mc68020 
-\&\-mnobitfield  \-mrtd  \-mno\-rtd  \-mdiv  \-mno\-div  \-mshort 
-\&\-mno\-short  \-mhard\-float  \-m68881  \-msoft\-float  \-mpcrel 
-\&\-malign\-int  \-mstrict\-align  \-msep\-data  \-mno\-sep\-data 
-\&\-mshared\-library\-id=n  \-mid\-shared\-library  \-mno\-id\-shared\-library 
+\&\fB\-march=\fR\fIarch\fR  \fB\-mcpu=\fR\fIcpu\fR  \fB\-mtune=\fR\fItune\fR
+\&\fB\-m68000  \-m68020  \-m68020\-40  \-m68020\-60  \-m68030  \-m68040
+\&\-m68060  \-mcpu32  \-m5200  \-m5206e  \-m528x  \-m5307  \-m5407
+\&\-mcfv4e  \-mbitfield  \-mno\-bitfield  \-mc68000  \-mc68020
+\&\-mnobitfield  \-mrtd  \-mno\-rtd  \-mdiv  \-mno\-div  \-mshort
+\&\-mno\-short  \-mhard\-float  \-m68881  \-msoft\-float  \-mpcrel
+\&\-malign\-int  \-mstrict\-align  \-msep\-data  \-mno\-sep\-data
+\&\-mshared\-library\-id=n  \-mid\-shared\-library  \-mno\-id\-shared\-library
 \&\-mxgot  \-mno\-xgot  \-mlong\-jump\-table\-offsets\fR
 .Sp
 \&\fIMCore Options\fR
-\&\fB\-mhardlit  \-mno\-hardlit  \-mdiv  \-mno\-div  \-mrelax\-immediates 
-\&\-mno\-relax\-immediates  \-mwide\-bitfields  \-mno\-wide\-bitfields 
-\&\-m4byte\-functions  \-mno\-4byte\-functions  \-mcallgraph\-data 
-\&\-mno\-callgraph\-data  \-mslow\-bytes  \-mno\-slow\-bytes  \-mno\-lsim 
+\&\fB\-mhardlit  \-mno\-hardlit  \-mdiv  \-mno\-div  \-mrelax\-immediates
+\&\-mno\-relax\-immediates  \-mwide\-bitfields  \-mno\-wide\-bitfields
+\&\-m4byte\-functions  \-mno\-4byte\-functions  \-mcallgraph\-data
+\&\-mno\-callgraph\-data  \-mslow\-bytes  \-mno\-slow\-bytes  \-mno\-lsim
 \&\-mlittle\-endian  \-mbig\-endian  \-m210  \-m340  \-mstack\-increment\fR
 .Sp
 \&\fIMicroBlaze Options\fR
-\&\fB\-msoft\-float  \-mhard\-float  \-msmall\-divides  \-mcpu=\fR\fIcpu\fR 
-\&\fB\-mmemcpy  \-mxl\-soft\-mul  \-mxl\-soft\-div  \-mxl\-barrel\-shift 
-\&\-mxl\-pattern\-compare  \-mxl\-stack\-check  \-mxl\-gp\-opt  \-mno\-clearbss 
-\&\-mxl\-multiply\-high  \-mxl\-float\-convert  \-mxl\-float\-sqrt 
-\&\-mbig\-endian  \-mlittle\-endian  \-mxl\-reorder  \-mxl\-mode\-\fR\fIapp-model\fR 
+\&\fB\-msoft\-float  \-mhard\-float  \-msmall\-divides  \-mcpu=\fR\fIcpu\fR
+\&\fB\-mmemcpy  \-mxl\-soft\-mul  \-mxl\-soft\-div  \-mxl\-barrel\-shift
+\&\-mxl\-pattern\-compare  \-mxl\-stack\-check  \-mxl\-gp\-opt  \-mno\-clearbss
+\&\-mxl\-multiply\-high  \-mxl\-float\-convert  \-mxl\-float\-sqrt
+\&\-mbig\-endian  \-mlittle\-endian  \-mxl\-reorder  \-mxl\-mode\-\fR\fIapp-model\fR
 \&\fB\-mpic\-data\-is\-text\-relative\fR
 .Sp
 \&\fI\s-1MIPS\s0 Options\fR
-\&\fB\-EL  \-EB  \-march=\fR\fIarch\fR  \fB\-mtune=\fR\fIarch\fR 
-\&\fB\-mips1  \-mips2  \-mips3  \-mips4  \-mips32  \-mips32r2  \-mips32r3  \-mips32r5 
-\&\-mips32r6  \-mips64  \-mips64r2  \-mips64r3  \-mips64r5  \-mips64r6 
-\&\-mips16  \-mno\-mips16  \-mflip\-mips16 
-\&\-minterlink\-compressed  \-mno\-interlink\-compressed 
-\&\-minterlink\-mips16  \-mno\-interlink\-mips16 
-\&\-mabi=\fR\fIabi\fR  \fB\-mabicalls  \-mno\-abicalls 
-\&\-mshared  \-mno\-shared  \-mplt  \-mno\-plt  \-mxgot  \-mno\-xgot 
-\&\-mgp32  \-mgp64  \-mfp32  \-mfpxx  \-mfp64  \-mhard\-float  \-msoft\-float 
-\&\-mno\-float  \-msingle\-float  \-mdouble\-float 
-\&\-modd\-spreg  \-mno\-odd\-spreg 
-\&\-mabs=\fR\fImode\fR  \fB\-mnan=\fR\fIencoding\fR 
-\&\fB\-mdsp  \-mno\-dsp  \-mdspr2  \-mno\-dspr2 
-\&\-mmcu  \-mmno\-mcu 
-\&\-meva  \-mno\-eva 
-\&\-mvirt  \-mno\-virt 
-\&\-mxpa  \-mno\-xpa 
-\&\-mcrc  \-mno\-crc 
-\&\-mginv  \-mno\-ginv 
-\&\-mmicromips  \-mno\-micromips 
-\&\-mmsa  \-mno\-msa 
-\&\-mloongson\-mmi  \-mno\-loongson\-mmi 
-\&\-mloongson\-ext  \-mno\-loongson\-ext 
-\&\-mloongson\-ext2  \-mno\-loongson\-ext2 
-\&\-mfpu=\fR\fIfpu-type\fR 
-\&\fB\-msmartmips  \-mno\-smartmips 
-\&\-mpaired\-single  \-mno\-paired\-single  \-mdmx  \-mno\-mdmx 
-\&\-mips3d  \-mno\-mips3d  \-mmt  \-mno\-mt  \-mllsc  \-mno\-llsc 
-\&\-mlong64  \-mlong32  \-msym32  \-mno\-sym32 
-\&\-G\fR\fInum\fR  \fB\-mlocal\-sdata  \-mno\-local\-sdata 
-\&\-mextern\-sdata  \-mno\-extern\-sdata  \-mgpopt  \-mno\-gopt 
-\&\-membedded\-data  \-mno\-embedded\-data 
-\&\-muninit\-const\-in\-rodata  \-mno\-uninit\-const\-in\-rodata 
-\&\-mcode\-readable=\fR\fIsetting\fR 
-\&\fB\-msplit\-addresses  \-mno\-split\-addresses 
-\&\-mexplicit\-relocs  \-mno\-explicit\-relocs 
-\&\-mcheck\-zero\-division  \-mno\-check\-zero\-division 
-\&\-mdivide\-traps  \-mdivide\-breaks 
-\&\-mload\-store\-pairs  \-mno\-load\-store\-pairs 
-\&\-munaligned\-access  \-mno\-unaligned\-access 
-\&\-mmemcpy  \-mno\-memcpy  \-mlong\-calls  \-mno\-long\-calls 
-\&\-mmad  \-mno\-mad  \-mimadd  \-mno\-imadd  \-mfused\-madd  \-mno\-fused\-madd  \-nocpp 
-\&\-mfix\-24k  \-mno\-fix\-24k 
-\&\-mfix\-r4000  \-mno\-fix\-r4000  \-mfix\-r4400  \-mno\-fix\-r4400 
-\&\-mfix\-r5900  \-mno\-fix\-r5900 
-\&\-mfix\-r10000  \-mno\-fix\-r10000  \-mfix\-rm7000  \-mno\-fix\-rm7000 
-\&\-mfix\-vr4120  \-mno\-fix\-vr4120 
-\&\-mfix\-vr4130  \-mno\-fix\-vr4130  \-mfix\-sb1  \-mno\-fix\-sb1 
-\&\-mflush\-func=\fR\fIfunc\fR  \fB\-mno\-flush\-func 
-\&\-mbranch\-cost=\fR\fInum\fR  \fB\-mbranch\-likely  \-mno\-branch\-likely 
-\&\-mcompact\-branches=\fR\fIpolicy\fR 
-\&\fB\-mfp\-exceptions  \-mno\-fp\-exceptions 
-\&\-mvr4130\-align  \-mno\-vr4130\-align  \-msynci  \-mno\-synci 
-\&\-mlxc1\-sxc1  \-mno\-lxc1\-sxc1  \-mmadd4  \-mno\-madd4 
-\&\-mrelax\-pic\-calls  \-mno\-relax\-pic\-calls  \-mmcount\-ra\-address 
+\&\fB\-EL  \-EB  \-march=\fR\fIarch\fR  \fB\-mtune=\fR\fIarch\fR
+\&\fB\-mips1  \-mips2  \-mips3  \-mips4  \-mips32  \-mips32r2  \-mips32r3  \-mips32r5
+\&\-mips32r6  \-mips64  \-mips64r2  \-mips64r3  \-mips64r5  \-mips64r6
+\&\-mips16  \-mno\-mips16  \-mflip\-mips16
+\&\-minterlink\-compressed  \-mno\-interlink\-compressed
+\&\-minterlink\-mips16  \-mno\-interlink\-mips16
+\&\-mabi=\fR\fIabi\fR  \fB\-mabicalls  \-mno\-abicalls
+\&\-mshared  \-mno\-shared  \-mplt  \-mno\-plt  \-mxgot  \-mno\-xgot
+\&\-mgp32  \-mgp64  \-mfp32  \-mfpxx  \-mfp64  \-mhard\-float  \-msoft\-float
+\&\-mno\-float  \-msingle\-float  \-mdouble\-float
+\&\-modd\-spreg  \-mno\-odd\-spreg
+\&\-mabs=\fR\fImode\fR  \fB\-mnan=\fR\fIencoding\fR
+\&\fB\-mdsp  \-mno\-dsp  \-mdspr2  \-mno\-dspr2
+\&\-mmcu  \-mmno\-mcu
+\&\-meva  \-mno\-eva
+\&\-mvirt  \-mno\-virt
+\&\-mxpa  \-mno\-xpa
+\&\-mcrc  \-mno\-crc
+\&\-mginv  \-mno\-ginv
+\&\-mmicromips  \-mno\-micromips
+\&\-mmsa  \-mno\-msa
+\&\-mloongson\-mmi  \-mno\-loongson\-mmi
+\&\-mloongson\-ext  \-mno\-loongson\-ext
+\&\-mloongson\-ext2  \-mno\-loongson\-ext2
+\&\-mfpu=\fR\fIfpu-type\fR
+\&\fB\-msmartmips  \-mno\-smartmips
+\&\-mpaired\-single  \-mno\-paired\-single  \-mdmx  \-mno\-mdmx
+\&\-mips3d  \-mno\-mips3d  \-mmt  \-mno\-mt  \-mllsc  \-mno\-llsc
+\&\-mlong64  \-mlong32  \-msym32  \-mno\-sym32
+\&\-G\fR\fInum\fR  \fB\-mlocal\-sdata  \-mno\-local\-sdata
+\&\-mextern\-sdata  \-mno\-extern\-sdata  \-mgpopt  \-mno\-gopt
+\&\-membedded\-data  \-mno\-embedded\-data
+\&\-muninit\-const\-in\-rodata  \-mno\-uninit\-const\-in\-rodata
+\&\-mcode\-readable=\fR\fIsetting\fR
+\&\fB\-msplit\-addresses  \-mno\-split\-addresses
+\&\-mexplicit\-relocs  \-mno\-explicit\-relocs
+\&\-mcheck\-zero\-division  \-mno\-check\-zero\-division
+\&\-mdivide\-traps  \-mdivide\-breaks
+\&\-mload\-store\-pairs  \-mno\-load\-store\-pairs
+\&\-munaligned\-access  \-mno\-unaligned\-access
+\&\-mmemcpy  \-mno\-memcpy  \-mlong\-calls  \-mno\-long\-calls
+\&\-mmad  \-mno\-mad  \-mimadd  \-mno\-imadd  \-mfused\-madd  \-mno\-fused\-madd  \-nocpp
+\&\-mfix\-24k  \-mno\-fix\-24k
+\&\-mfix\-r4000  \-mno\-fix\-r4000  \-mfix\-r4400  \-mno\-fix\-r4400
+\&\-mfix\-r5900  \-mno\-fix\-r5900
+\&\-mfix\-r10000  \-mno\-fix\-r10000  \-mfix\-rm7000  \-mno\-fix\-rm7000
+\&\-mfix\-vr4120  \-mno\-fix\-vr4120
+\&\-mfix\-vr4130  \-mno\-fix\-vr4130  \-mfix\-sb1  \-mno\-fix\-sb1
+\&\-mflush\-func=\fR\fIfunc\fR  \fB\-mno\-flush\-func
+\&\-mbranch\-cost=\fR\fInum\fR  \fB\-mbranch\-likely  \-mno\-branch\-likely
+\&\-mcompact\-branches=\fR\fIpolicy\fR
+\&\fB\-mfp\-exceptions  \-mno\-fp\-exceptions
+\&\-mvr4130\-align  \-mno\-vr4130\-align  \-msynci  \-mno\-synci
+\&\-mlxc1\-sxc1  \-mno\-lxc1\-sxc1  \-mmadd4  \-mno\-madd4
+\&\-mrelax\-pic\-calls  \-mno\-relax\-pic\-calls  \-mmcount\-ra\-address
 \&\-mframe\-header\-opt  \-mno\-frame\-header\-opt\fR
 .Sp
 \&\fI\s-1MMIX\s0 Options\fR
-\&\fB\-mlibfuncs  \-mno\-libfuncs  \-mepsilon  \-mno\-epsilon  \-mabi=gnu 
-\&\-mabi=mmixware  \-mzero\-extend  \-mknuthdiv  \-mtoplevel\-symbols 
-\&\-melf  \-mbranch\-predict  \-mno\-branch\-predict  \-mbase\-addresses 
+\&\fB\-mlibfuncs  \-mno\-libfuncs  \-mepsilon  \-mno\-epsilon  \-mabi=gnu
+\&\-mabi=mmixware  \-mzero\-extend  \-mknuthdiv  \-mtoplevel\-symbols
+\&\-melf  \-mbranch\-predict  \-mno\-branch\-predict  \-mbase\-addresses
 \&\-mno\-base\-addresses  \-msingle\-exit  \-mno\-single\-exit\fR
 .Sp
 \&\fI\s-1MN10300\s0 Options\fR
-\&\fB\-mmult\-bug  \-mno\-mult\-bug 
-\&\-mno\-am33  \-mam33  \-mam33\-2  \-mam34 
-\&\-mtune=\fR\fIcpu-type\fR 
-\&\fB\-mreturn\-pointer\-on\-d0 
+\&\fB\-mmult\-bug  \-mno\-mult\-bug
+\&\-mno\-am33  \-mam33  \-mam33\-2  \-mam34
+\&\-mtune=\fR\fIcpu-type\fR
+\&\fB\-mreturn\-pointer\-on\-d0
 \&\-mno\-crt0  \-mrelax  \-mliw  \-msetlb\fR
 .Sp
 \&\fIMoxie Options\fR
 \&\fB\-meb  \-mel  \-mmul.x  \-mno\-crt0\fR
 .Sp
 \&\fI\s-1MSP430\s0 Options\fR
-\&\fB\-msim  \-masm\-hex  \-mmcu=  \-mcpu=  \-mlarge  \-msmall  \-mrelax 
-\&\-mwarn\-mcu 
-\&\-mcode\-region=  \-mdata\-region= 
-\&\-msilicon\-errata=  \-msilicon\-errata\-warn= 
+\&\fB\-msim  \-masm\-hex  \-mmcu=  \-mcpu=  \-mlarge  \-msmall  \-mrelax
+\&\-mwarn\-mcu
+\&\-mcode\-region=  \-mdata\-region=
+\&\-msilicon\-errata=  \-msilicon\-errata\-warn=
 \&\-mhwmult=  \-minrt  \-mtiny\-printf  \-mmax\-inline\-shift=\fR
 .Sp
 \&\fI\s-1NDS32\s0 Options\fR
-\&\fB\-mbig\-endian  \-mlittle\-endian 
-\&\-mreduced\-regs  \-mfull\-regs 
-\&\-mcmov  \-mno\-cmov 
-\&\-mext\-perf  \-mno\-ext\-perf 
-\&\-mext\-perf2  \-mno\-ext\-perf2 
-\&\-mext\-string  \-mno\-ext\-string 
-\&\-mv3push  \-mno\-v3push 
-\&\-m16bit  \-mno\-16bit 
-\&\-misr\-vector\-size=\fR\fInum\fR 
-\&\fB\-mcache\-block\-size=\fR\fInum\fR 
-\&\fB\-march=\fR\fIarch\fR 
-\&\fB\-mcmodel=\fR\fIcode-model\fR 
+\&\fB\-mbig\-endian  \-mlittle\-endian
+\&\-mreduced\-regs  \-mfull\-regs
+\&\-mcmov  \-mno\-cmov
+\&\-mext\-perf  \-mno\-ext\-perf
+\&\-mext\-perf2  \-mno\-ext\-perf2
+\&\-mext\-string  \-mno\-ext\-string
+\&\-mv3push  \-mno\-v3push
+\&\-m16bit  \-mno\-16bit
+\&\-misr\-vector\-size=\fR\fInum\fR
+\&\fB\-mcache\-block\-size=\fR\fInum\fR
+\&\fB\-march=\fR\fIarch\fR
+\&\fB\-mcmodel=\fR\fIcode-model\fR
 \&\fB\-mctor\-dtor  \-mrelax\fR
 .Sp
 \&\fINios \s-1II\s0 Options\fR
-\&\fB\-G\fR \fInum\fR  \fB\-mgpopt=\fR\fIoption\fR  \fB\-mgpopt  \-mno\-gpopt 
-\&\-mgprel\-sec=\fR\fIregexp\fR  \fB\-mr0rel\-sec=\fR\fIregexp\fR 
-\&\fB\-mel  \-meb 
-\&\-mno\-bypass\-cache  \-mbypass\-cache 
-\&\-mno\-cache\-volatile  \-mcache\-volatile 
-\&\-mno\-fast\-sw\-div  \-mfast\-sw\-div 
-\&\-mhw\-mul  \-mno\-hw\-mul  \-mhw\-mulx  \-mno\-hw\-mulx  \-mno\-hw\-div  \-mhw\-div 
-\&\-mcustom\-\fR\fIinsn\fR\fB=\fR\fIN\fR  \fB\-mno\-custom\-\fR\fIinsn\fR 
-\&\fB\-mcustom\-fpu\-cfg=\fR\fIname\fR 
-\&\fB\-mhal  \-msmallc  \-msys\-crt0=\fR\fIname\fR  \fB\-msys\-lib=\fR\fIname\fR 
+\&\fB\-G\fR \fInum\fR  \fB\-mgpopt=\fR\fIoption\fR  \fB\-mgpopt  \-mno\-gpopt
+\&\-mgprel\-sec=\fR\fIregexp\fR  \fB\-mr0rel\-sec=\fR\fIregexp\fR
+\&\fB\-mel  \-meb
+\&\-mno\-bypass\-cache  \-mbypass\-cache
+\&\-mno\-cache\-volatile  \-mcache\-volatile
+\&\-mno\-fast\-sw\-div  \-mfast\-sw\-div
+\&\-mhw\-mul  \-mno\-hw\-mul  \-mhw\-mulx  \-mno\-hw\-mulx  \-mno\-hw\-div  \-mhw\-div
+\&\-mcustom\-\fR\fIinsn\fR\fB=\fR\fIN\fR  \fB\-mno\-custom\-\fR\fIinsn\fR
+\&\fB\-mcustom\-fpu\-cfg=\fR\fIname\fR
+\&\fB\-mhal  \-msmallc  \-msys\-crt0=\fR\fIname\fR  \fB\-msys\-lib=\fR\fIname\fR
 \&\fB\-march=\fR\fIarch\fR  \fB\-mbmx  \-mno\-bmx  \-mcdx  \-mno\-cdx\fR
 .Sp
 \&\fINvidia \s-1PTX\s0 Options\fR
 \&\fB\-m64  \-mmainkernel  \-moptimize\fR
 .Sp
 \&\fIOpenRISC Options\fR
-\&\fB\-mboard=\fR\fIname\fR  \fB\-mnewlib  \-mhard\-mul  \-mhard\-div 
-\&\-msoft\-mul  \-msoft\-div 
-\&\-msoft\-float  \-mhard\-float  \-mdouble\-float \-munordered\-float 
-\&\-mcmov  \-mror  \-mrori  \-msext  \-msfimm  \-mshftimm 
+\&\fB\-mboard=\fR\fIname\fR  \fB\-mnewlib  \-mhard\-mul  \-mhard\-div
+\&\-msoft\-mul  \-msoft\-div
+\&\-msoft\-float  \-mhard\-float  \-mdouble\-float \-munordered\-float
+\&\-mcmov  \-mror  \-mrori  \-msext  \-msfimm  \-mshftimm
 \&\-mcmodel=\fR\fIcode-model\fR
 .Sp
 \&\fI\s-1PDP\-11\s0 Options\fR
-\&\fB\-mfpu  \-msoft\-float  \-mac0  \-mno\-ac0  \-m40  \-m45  \-m10 
-\&\-mint32  \-mno\-int16  \-mint16  \-mno\-int32 
+\&\fB\-mfpu  \-msoft\-float  \-mac0  \-mno\-ac0  \-m40  \-m45  \-m10
+\&\-mint32  \-mno\-int16  \-mint16  \-mno\-int32
 \&\-msplit  \-munix\-asm  \-mdec\-asm  \-mgnu\-asm  \-mlra\fR
 .Sp
 \&\fIPowerPC Options\fR
 See \s-1RS/6000\s0 and PowerPC Options.
 .Sp
 \&\fI\s-1PRU\s0 Options\fR
-\&\fB\-mmcu=\fR\fImcu\fR  \fB\-minrt  \-mno\-relax  \-mloop 
+\&\fB\-mmcu=\fR\fImcu\fR  \fB\-minrt  \-mno\-relax  \-mloop
 \&\-mabi=\fR\fIvariant\fR
 .Sp
 \&\fIRISC-V Options\fR
-\&\fB\-mbranch\-cost=\fR\fIN\-instruction\fR 
-\&\fB\-mplt  \-mno\-plt 
-\&\-mabi=\fR\fIABI-string\fR 
-\&\fB\-mfdiv  \-mno\-fdiv 
-\&\-mdiv  \-mno\-div 
-\&\-misa\-spec=\fR\fIISA-spec-string\fR 
-\&\fB\-march=\fR\fIISA-string\fR 
-\&\fB\-mtune=\fR\fIprocessor-string\fR 
-\&\fB\-mpreferred\-stack\-boundary=\fR\fInum\fR 
-\&\fB\-msmall\-data\-limit=\fR\fIN\-bytes\fR 
-\&\fB\-msave\-restore  \-mno\-save\-restore 
-\&\-mshorten\-memrefs  \-mno\-shorten\-memrefs 
-\&\-mstrict\-align  \-mno\-strict\-align 
-\&\-mcmodel=medlow  \-mcmodel=medany 
-\&\-mexplicit\-relocs  \-mno\-explicit\-relocs 
-\&\-mrelax  \-mno\-relax 
-\&\-mriscv\-attribute  \-mno\-riscv\-attribute 
-\&\-malign\-data=\fR\fItype\fR 
-\&\fB\-mbig\-endian  \-mlittle\-endian 
-\&\-mstack\-protector\-guard=\fR\fIguard\fR  \fB\-mstack\-protector\-guard\-reg=\fR\fIreg\fR 
-\&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR 
+\&\fB\-mbranch\-cost=\fR\fIN\-instruction\fR
+\&\fB\-mplt  \-mno\-plt
+\&\-mabi=\fR\fIABI-string\fR
+\&\fB\-mfdiv  \-mno\-fdiv
+\&\-mdiv  \-mno\-div
+\&\-misa\-spec=\fR\fIISA-spec-string\fR
+\&\fB\-march=\fR\fIISA-string\fR
+\&\fB\-mtune=\fR\fIprocessor-string\fR
+\&\fB\-mpreferred\-stack\-boundary=\fR\fInum\fR
+\&\fB\-msmall\-data\-limit=\fR\fIN\-bytes\fR
+\&\fB\-msave\-restore  \-mno\-save\-restore
+\&\-mshorten\-memrefs  \-mno\-shorten\-memrefs
+\&\-mstrict\-align  \-mno\-strict\-align
+\&\-mcmodel=medlow  \-mcmodel=medany
+\&\-mexplicit\-relocs  \-mno\-explicit\-relocs
+\&\-mrelax  \-mno\-relax
+\&\-mriscv\-attribute  \-mno\-riscv\-attribute
+\&\-malign\-data=\fR\fItype\fR
+\&\fB\-mbig\-endian  \-mlittle\-endian
+\&\-mstack\-protector\-guard=\fR\fIguard\fR  \fB\-mstack\-protector\-guard\-reg=\fR\fIreg\fR
+\&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR
 \&\fB\-mcsr\-check \-mno\-csr\-check\fR
 .Sp
 \&\fI\s-1RL78\s0 Options\fR
-\&\fB\-msim  \-mmul=none  \-mmul=g13  \-mmul=g14  \-mallregs 
-\&\-mcpu=g10  \-mcpu=g13  \-mcpu=g14  \-mg10  \-mg13  \-mg14 
+\&\fB\-msim  \-mmul=none  \-mmul=g13  \-mmul=g14  \-mallregs
+\&\-mcpu=g10  \-mcpu=g13  \-mcpu=g14  \-mg10  \-mg13  \-mg14
 \&\-m64bit\-doubles  \-m32bit\-doubles  \-msave\-mduc\-in\-interrupts\fR
 .Sp
 \&\fI\s-1RS/6000\s0 and PowerPC Options\fR
-\&\fB\-mcpu=\fR\fIcpu-type\fR 
-\&\fB\-mtune=\fR\fIcpu-type\fR 
-\&\fB\-mcmodel=\fR\fIcode-model\fR 
-\&\fB\-mpowerpc64 
-\&\-maltivec  \-mno\-altivec 
-\&\-mpowerpc\-gpopt  \-mno\-powerpc\-gpopt 
-\&\-mpowerpc\-gfxopt  \-mno\-powerpc\-gfxopt 
-\&\-mmfcrf  \-mno\-mfcrf  \-mpopcntb  \-mno\-popcntb  \-mpopcntd  \-mno\-popcntd 
-\&\-mfprnd  \-mno\-fprnd 
-\&\-mcmpb  \-mno\-cmpb  \-mhard\-dfp  \-mno\-hard\-dfp 
-\&\-mfull\-toc   \-mminimal\-toc  \-mno\-fp\-in\-toc  \-mno\-sum\-in\-toc 
-\&\-m64  \-m32  \-mxl\-compat  \-mno\-xl\-compat  \-mpe 
-\&\-malign\-power  \-malign\-natural 
-\&\-msoft\-float  \-mhard\-float  \-mmultiple  \-mno\-multiple 
-\&\-mupdate  \-mno\-update 
-\&\-mavoid\-indexed\-addresses  \-mno\-avoid\-indexed\-addresses 
-\&\-mfused\-madd  \-mno\-fused\-madd  \-mbit\-align  \-mno\-bit\-align 
-\&\-mstrict\-align  \-mno\-strict\-align  \-mrelocatable 
-\&\-mno\-relocatable  \-mrelocatable\-lib  \-mno\-relocatable\-lib 
-\&\-mtoc  \-mno\-toc  \-mlittle  \-mlittle\-endian  \-mbig  \-mbig\-endian 
-\&\-mdynamic\-no\-pic  \-mswdiv  \-msingle\-pic\-base 
-\&\-mprioritize\-restricted\-insns=\fR\fIpriority\fR 
-\&\fB\-msched\-costly\-dep=\fR\fIdependence_type\fR 
-\&\fB\-minsert\-sched\-nops=\fR\fIscheme\fR 
-\&\fB\-mcall\-aixdesc  \-mcall\-eabi  \-mcall\-freebsd  
-\&\-mcall\-linux  \-mcall\-netbsd  \-mcall\-openbsd  
-\&\-mcall\-sysv  \-mcall\-sysv\-eabi  \-mcall\-sysv\-noeabi 
-\&\-mtraceback=\fR\fItraceback_type\fR 
-\&\fB\-maix\-struct\-return  \-msvr4\-struct\-return 
-\&\-mabi=\fR\fIabi-type\fR  \fB\-msecure\-plt  \-mbss\-plt 
-\&\-mlongcall  \-mno\-longcall  \-mpltseq  \-mno\-pltseq  
-\&\-mblock\-move\-inline\-limit=\fR\fInum\fR 
-\&\fB\-mblock\-compare\-inline\-limit=\fR\fInum\fR 
-\&\fB\-mblock\-compare\-inline\-loop\-limit=\fR\fInum\fR 
-\&\fB\-mno\-block\-ops\-unaligned\-vsx 
-\&\-mstring\-compare\-inline\-limit=\fR\fInum\fR 
-\&\fB\-misel  \-mno\-isel 
-\&\-mvrsave  \-mno\-vrsave 
-\&\-mmulhw  \-mno\-mulhw 
-\&\-mdlmzb  \-mno\-dlmzb 
-\&\-mprototype  \-mno\-prototype 
-\&\-msim  \-mmvme  \-mads  \-myellowknife  \-memb  \-msdata 
-\&\-msdata=\fR\fIopt\fR  \fB\-mreadonly\-in\-sdata  \-mvxworks  \-G\fR \fInum\fR 
-\&\fB\-mrecip  \-mrecip=\fR\fIopt\fR  \fB\-mno\-recip  \-mrecip\-precision 
-\&\-mno\-recip\-precision 
-\&\-mveclibabi=\fR\fItype\fR  \fB\-mfriz  \-mno\-friz 
-\&\-mpointers\-to\-nested\-functions  \-mno\-pointers\-to\-nested\-functions 
-\&\-msave\-toc\-indirect  \-mno\-save\-toc\-indirect 
-\&\-mpower8\-fusion  \-mno\-mpower8\-fusion  \-mpower8\-vector  \-mno\-power8\-vector 
-\&\-mcrypto  \-mno\-crypto  \-mhtm  \-mno\-htm 
-\&\-mquad\-memory  \-mno\-quad\-memory 
-\&\-mquad\-memory\-atomic  \-mno\-quad\-memory\-atomic 
-\&\-mcompat\-align\-parm  \-mno\-compat\-align\-parm 
-\&\-mfloat128  \-mno\-float128  \-mfloat128\-hardware  \-mno\-float128\-hardware 
-\&\-mgnu\-attribute  \-mno\-gnu\-attribute 
-\&\-mstack\-protector\-guard=\fR\fIguard\fR \fB\-mstack\-protector\-guard\-reg=\fR\fIreg\fR 
-\&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR \fB\-mprefixed \-mno\-prefixed 
-\&\-mpcrel \-mno\-pcrel \-mmma \-mno\-mmma \-mrop\-protect \-mno\-rop\-protect 
+\&\fB\-mcpu=\fR\fIcpu-type\fR
+\&\fB\-mtune=\fR\fIcpu-type\fR
+\&\fB\-mcmodel=\fR\fIcode-model\fR
+\&\fB\-mpowerpc64
+\&\-maltivec  \-mno\-altivec
+\&\-mpowerpc\-gpopt  \-mno\-powerpc\-gpopt
+\&\-mpowerpc\-gfxopt  \-mno\-powerpc\-gfxopt
+\&\-mmfcrf  \-mno\-mfcrf  \-mpopcntb  \-mno\-popcntb  \-mpopcntd  \-mno\-popcntd
+\&\-mfprnd  \-mno\-fprnd
+\&\-mcmpb  \-mno\-cmpb  \-mhard\-dfp  \-mno\-hard\-dfp
+\&\-mfull\-toc   \-mminimal\-toc  \-mno\-fp\-in\-toc  \-mno\-sum\-in\-toc
+\&\-m64  \-m32  \-mxl\-compat  \-mno\-xl\-compat  \-mpe
+\&\-malign\-power  \-malign\-natural
+\&\-msoft\-float  \-mhard\-float  \-mmultiple  \-mno\-multiple
+\&\-mupdate  \-mno\-update
+\&\-mavoid\-indexed\-addresses  \-mno\-avoid\-indexed\-addresses
+\&\-mfused\-madd  \-mno\-fused\-madd  \-mbit\-align  \-mno\-bit\-align
+\&\-mstrict\-align  \-mno\-strict\-align  \-mrelocatable
+\&\-mno\-relocatable  \-mrelocatable\-lib  \-mno\-relocatable\-lib
+\&\-mtoc  \-mno\-toc  \-mlittle  \-mlittle\-endian  \-mbig  \-mbig\-endian
+\&\-mdynamic\-no\-pic  \-mswdiv  \-msingle\-pic\-base
+\&\-mprioritize\-restricted\-insns=\fR\fIpriority\fR
+\&\fB\-msched\-costly\-dep=\fR\fIdependence_type\fR
+\&\fB\-minsert\-sched\-nops=\fR\fIscheme\fR
+\&\fB\-mcall\-aixdesc  \-mcall\-eabi  \-mcall\-freebsd
+\&\-mcall\-linux  \-mcall\-netbsd  \-mcall\-openbsd
+\&\-mcall\-sysv  \-mcall\-sysv\-eabi  \-mcall\-sysv\-noeabi
+\&\-mtraceback=\fR\fItraceback_type\fR
+\&\fB\-maix\-struct\-return  \-msvr4\-struct\-return
+\&\-mabi=\fR\fIabi-type\fR  \fB\-msecure\-plt  \-mbss\-plt
+\&\-mlongcall  \-mno\-longcall  \-mpltseq  \-mno\-pltseq
+\&\-mblock\-move\-inline\-limit=\fR\fInum\fR
+\&\fB\-mblock\-compare\-inline\-limit=\fR\fInum\fR
+\&\fB\-mblock\-compare\-inline\-loop\-limit=\fR\fInum\fR
+\&\fB\-mno\-block\-ops\-unaligned\-vsx
+\&\-mstring\-compare\-inline\-limit=\fR\fInum\fR
+\&\fB\-misel  \-mno\-isel
+\&\-mvrsave  \-mno\-vrsave
+\&\-mmulhw  \-mno\-mulhw
+\&\-mdlmzb  \-mno\-dlmzb
+\&\-mprototype  \-mno\-prototype
+\&\-msim  \-mmvme  \-mads  \-myellowknife  \-memb  \-msdata
+\&\-msdata=\fR\fIopt\fR  \fB\-mreadonly\-in\-sdata  \-mvxworks  \-G\fR \fInum\fR
+\&\fB\-mrecip  \-mrecip=\fR\fIopt\fR  \fB\-mno\-recip  \-mrecip\-precision
+\&\-mno\-recip\-precision
+\&\-mveclibabi=\fR\fItype\fR  \fB\-mfriz  \-mno\-friz
+\&\-mpointers\-to\-nested\-functions  \-mno\-pointers\-to\-nested\-functions
+\&\-msave\-toc\-indirect  \-mno\-save\-toc\-indirect
+\&\-mpower8\-fusion  \-mno\-mpower8\-fusion  \-mpower8\-vector  \-mno\-power8\-vector
+\&\-mcrypto  \-mno\-crypto  \-mhtm  \-mno\-htm
+\&\-mquad\-memory  \-mno\-quad\-memory
+\&\-mquad\-memory\-atomic  \-mno\-quad\-memory\-atomic
+\&\-mcompat\-align\-parm  \-mno\-compat\-align\-parm
+\&\-mfloat128  \-mno\-float128  \-mfloat128\-hardware  \-mno\-float128\-hardware
+\&\-mgnu\-attribute  \-mno\-gnu\-attribute
+\&\-mstack\-protector\-guard=\fR\fIguard\fR \fB\-mstack\-protector\-guard\-reg=\fR\fIreg\fR
+\&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR \fB\-mprefixed \-mno\-prefixed
+\&\-mpcrel \-mno\-pcrel \-mmma \-mno\-mmma \-mrop\-protect \-mno\-rop\-protect
 \&\-mprivileged \-mno\-privileged\fR
 .Sp
 \&\fI\s-1RX\s0 Options\fR
 \&\fB\-m64bit\-doubles  \-m32bit\-doubles  \-fpu  \-nofpu
 \&\-mcpu=
-\&\-mbig\-endian\-data  \-mlittle\-endian\-data 
-\&\-msmall\-data 
+\&\-mbig\-endian\-data  \-mlittle\-endian\-data
+\&\-msmall\-data
 \&\-msim  \-mno\-sim
 \&\-mas100\-syntax  \-mno\-as100\-syntax
 \&\-mrelax
@@ -1319,168 +1319,168 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-msave\-acc\-in\-interrupts\fR
 .Sp
 \&\fIS/390 and zSeries Options\fR
-\&\fB\-mtune=\fR\fIcpu-type\fR  \fB\-march=\fR\fIcpu-type\fR 
-\&\fB\-mhard\-float  \-msoft\-float  \-mhard\-dfp  \-mno\-hard\-dfp 
-\&\-mlong\-double\-64  \-mlong\-double\-128 
-\&\-mbackchain  \-mno\-backchain  \-mpacked\-stack  \-mno\-packed\-stack 
-\&\-msmall\-exec  \-mno\-small\-exec  \-mmvcle  \-mno\-mvcle 
-\&\-m64  \-m31  \-mdebug  \-mno\-debug  \-mesa  \-mzarch 
-\&\-mhtm  \-mvx  \-mzvector 
-\&\-mtpf\-trace  \-mno\-tpf\-trace  \-mtpf\-trace\-skip  \-mno\-tpf\-trace\-skip 
-\&\-mfused\-madd  \-mno\-fused\-madd 
-\&\-mwarn\-framesize  \-mwarn\-dynamicstack  \-mstack\-size  \-mstack\-guard 
+\&\fB\-mtune=\fR\fIcpu-type\fR  \fB\-march=\fR\fIcpu-type\fR
+\&\fB\-mhard\-float  \-msoft\-float  \-mhard\-dfp  \-mno\-hard\-dfp
+\&\-mlong\-double\-64  \-mlong\-double\-128
+\&\-mbackchain  \-mno\-backchain  \-mpacked\-stack  \-mno\-packed\-stack
+\&\-msmall\-exec  \-mno\-small\-exec  \-mmvcle  \-mno\-mvcle
+\&\-m64  \-m31  \-mdebug  \-mno\-debug  \-mesa  \-mzarch
+\&\-mhtm  \-mvx  \-mzvector
+\&\-mtpf\-trace  \-mno\-tpf\-trace  \-mtpf\-trace\-skip  \-mno\-tpf\-trace\-skip
+\&\-mfused\-madd  \-mno\-fused\-madd
+\&\-mwarn\-framesize  \-mwarn\-dynamicstack  \-mstack\-size  \-mstack\-guard
 \&\-mhotpatch=\fR\fIhalfwords\fR\fB,\fR\fIhalfwords\fR
 .Sp
 \&\fI\s-1SH\s0 Options\fR
-\&\fB\-m1  \-m2  \-m2e 
-\&\-m2a\-nofpu  \-m2a\-single\-only  \-m2a\-single  \-m2a 
-\&\-m3  \-m3e 
-\&\-m4\-nofpu  \-m4\-single\-only  \-m4\-single  \-m4 
-\&\-m4a\-nofpu  \-m4a\-single\-only  \-m4a\-single  \-m4a  \-m4al 
-\&\-mb  \-ml  \-mdalign  \-mrelax 
-\&\-mbigtable  \-mfmovd  \-mrenesas  \-mno\-renesas  \-mnomacsave 
-\&\-mieee  \-mno\-ieee  \-mbitops  \-misize  \-minline\-ic_invalidate  \-mpadstruct 
-\&\-mprefergot  \-musermode  \-multcost=\fR\fInumber\fR  \fB\-mdiv=\fR\fIstrategy\fR 
-\&\fB\-mdivsi3_libfunc=\fR\fIname\fR  \fB\-mfixed\-range=\fR\fIregister-range\fR 
-\&\fB\-maccumulate\-outgoing\-args 
-\&\-matomic\-model=\fR\fIatomic-model\fR 
-\&\fB\-mbranch\-cost=\fR\fInum\fR  \fB\-mzdcbranch  \-mno\-zdcbranch 
-\&\-mcbranch\-force\-delay\-slot 
-\&\-mfused\-madd  \-mno\-fused\-madd  \-mfsca  \-mno\-fsca  \-mfsrra  \-mno\-fsrra 
+\&\fB\-m1  \-m2  \-m2e
+\&\-m2a\-nofpu  \-m2a\-single\-only  \-m2a\-single  \-m2a
+\&\-m3  \-m3e
+\&\-m4\-nofpu  \-m4\-single\-only  \-m4\-single  \-m4
+\&\-m4a\-nofpu  \-m4a\-single\-only  \-m4a\-single  \-m4a  \-m4al
+\&\-mb  \-ml  \-mdalign  \-mrelax
+\&\-mbigtable  \-mfmovd  \-mrenesas  \-mno\-renesas  \-mnomacsave
+\&\-mieee  \-mno\-ieee  \-mbitops  \-misize  \-minline\-ic_invalidate  \-mpadstruct
+\&\-mprefergot  \-musermode  \-multcost=\fR\fInumber\fR  \fB\-mdiv=\fR\fIstrategy\fR
+\&\fB\-mdivsi3_libfunc=\fR\fIname\fR  \fB\-mfixed\-range=\fR\fIregister-range\fR
+\&\fB\-maccumulate\-outgoing\-args
+\&\-matomic\-model=\fR\fIatomic-model\fR
+\&\fB\-mbranch\-cost=\fR\fInum\fR  \fB\-mzdcbranch  \-mno\-zdcbranch
+\&\-mcbranch\-force\-delay\-slot
+\&\-mfused\-madd  \-mno\-fused\-madd  \-mfsca  \-mno\-fsca  \-mfsrra  \-mno\-fsrra
 \&\-mpretend\-cmove  \-mtas\fR
 .Sp
 \&\fISolaris 2 Options\fR
-\&\fB\-mclear\-hwcap  \-mno\-clear\-hwcap  \-mimpure\-text  \-mno\-impure\-text 
+\&\fB\-mclear\-hwcap  \-mno\-clear\-hwcap  \-mimpure\-text  \-mno\-impure\-text
 \&\-pthreads\fR
 .Sp
 \&\fI\s-1SPARC\s0 Options\fR
-\&\fB\-mcpu=\fR\fIcpu-type\fR 
-\&\fB\-mtune=\fR\fIcpu-type\fR 
-\&\fB\-mcmodel=\fR\fIcode-model\fR 
-\&\fB\-mmemory\-model=\fR\fImem-model\fR 
-\&\fB\-m32  \-m64  \-mapp\-regs  \-mno\-app\-regs 
-\&\-mfaster\-structs  \-mno\-faster\-structs  \-mflat  \-mno\-flat 
-\&\-mfpu  \-mno\-fpu  \-mhard\-float  \-msoft\-float 
-\&\-mhard\-quad\-float  \-msoft\-quad\-float 
-\&\-mstack\-bias  \-mno\-stack\-bias 
-\&\-mstd\-struct\-return  \-mno\-std\-struct\-return 
-\&\-munaligned\-doubles  \-mno\-unaligned\-doubles 
-\&\-muser\-mode  \-mno\-user\-mode 
-\&\-mv8plus  \-mno\-v8plus  \-mvis  \-mno\-vis 
-\&\-mvis2  \-mno\-vis2  \-mvis3  \-mno\-vis3 
-\&\-mvis4  \-mno\-vis4  \-mvis4b  \-mno\-vis4b 
-\&\-mcbcond  \-mno\-cbcond  \-mfmaf  \-mno\-fmaf  \-mfsmuld  \-mno\-fsmuld  
-\&\-mpopc  \-mno\-popc  \-msubxc  \-mno\-subxc 
-\&\-mfix\-at697f  \-mfix\-ut699  \-mfix\-ut700  \-mfix\-gr712rc 
+\&\fB\-mcpu=\fR\fIcpu-type\fR
+\&\fB\-mtune=\fR\fIcpu-type\fR
+\&\fB\-mcmodel=\fR\fIcode-model\fR
+\&\fB\-mmemory\-model=\fR\fImem-model\fR
+\&\fB\-m32  \-m64  \-mapp\-regs  \-mno\-app\-regs
+\&\-mfaster\-structs  \-mno\-faster\-structs  \-mflat  \-mno\-flat
+\&\-mfpu  \-mno\-fpu  \-mhard\-float  \-msoft\-float
+\&\-mhard\-quad\-float  \-msoft\-quad\-float
+\&\-mstack\-bias  \-mno\-stack\-bias
+\&\-mstd\-struct\-return  \-mno\-std\-struct\-return
+\&\-munaligned\-doubles  \-mno\-unaligned\-doubles
+\&\-muser\-mode  \-mno\-user\-mode
+\&\-mv8plus  \-mno\-v8plus  \-mvis  \-mno\-vis
+\&\-mvis2  \-mno\-vis2  \-mvis3  \-mno\-vis3
+\&\-mvis4  \-mno\-vis4  \-mvis4b  \-mno\-vis4b
+\&\-mcbcond  \-mno\-cbcond  \-mfmaf  \-mno\-fmaf  \-mfsmuld  \-mno\-fsmuld
+\&\-mpopc  \-mno\-popc  \-msubxc  \-mno\-subxc
+\&\-mfix\-at697f  \-mfix\-ut699  \-mfix\-ut700  \-mfix\-gr712rc
 \&\-mlra  \-mno\-lra\fR
 .Sp
 \&\fISystem V Options\fR
 \&\fB\-Qy  \-Qn  \-YP,\fR\fIpaths\fR  \fB\-Ym,\fR\fIdir\fR
 .Sp
 \&\fIV850 Options\fR
-\&\fB\-mlong\-calls  \-mno\-long\-calls  \-mep  \-mno\-ep 
-\&\-mprolog\-function  \-mno\-prolog\-function  \-mspace 
-\&\-mtda=\fR\fIn\fR  \fB\-msda=\fR\fIn\fR  \fB\-mzda=\fR\fIn\fR 
-\&\fB\-mapp\-regs  \-mno\-app\-regs 
-\&\-mdisable\-callt  \-mno\-disable\-callt 
-\&\-mv850e2v3  \-mv850e2  \-mv850e1  \-mv850es 
-\&\-mv850e  \-mv850  \-mv850e3v5 
-\&\-mloop 
-\&\-mrelax 
-\&\-mlong\-jumps 
-\&\-msoft\-float 
-\&\-mhard\-float 
-\&\-mgcc\-abi 
-\&\-mrh850\-abi 
+\&\fB\-mlong\-calls  \-mno\-long\-calls  \-mep  \-mno\-ep
+\&\-mprolog\-function  \-mno\-prolog\-function  \-mspace
+\&\-mtda=\fR\fIn\fR  \fB\-msda=\fR\fIn\fR  \fB\-mzda=\fR\fIn\fR
+\&\fB\-mapp\-regs  \-mno\-app\-regs
+\&\-mdisable\-callt  \-mno\-disable\-callt
+\&\-mv850e2v3  \-mv850e2  \-mv850e1  \-mv850es
+\&\-mv850e  \-mv850  \-mv850e3v5
+\&\-mloop
+\&\-mrelax
+\&\-mlong\-jumps
+\&\-msoft\-float
+\&\-mhard\-float
+\&\-mgcc\-abi
+\&\-mrh850\-abi
 \&\-mbig\-switch\fR
 .Sp
 \&\fI\s-1VAX\s0 Options\fR
 \&\fB\-mg  \-mgnu  \-munix  \-mlra\fR
 .Sp
 \&\fIVisium Options\fR
-\&\fB\-mdebug  \-msim  \-mfpu  \-mno\-fpu  \-mhard\-float  \-msoft\-float 
+\&\fB\-mdebug  \-msim  \-mfpu  \-mno\-fpu  \-mhard\-float  \-msoft\-float
 \&\-mcpu=\fR\fIcpu-type\fR  \fB\-mtune=\fR\fIcpu-type\fR  \fB\-msv\-mode  \-muser\-mode\fR
 .Sp
 \&\fI\s-1VMS\s0 Options\fR
-\&\fB\-mvms\-return\-codes  \-mdebug\-main=\fR\fIprefix\fR  \fB\-mmalloc64 
+\&\fB\-mvms\-return\-codes  \-mdebug\-main=\fR\fIprefix\fR  \fB\-mmalloc64
 \&\-mpointer\-size=\fR\fIsize\fR
 .Sp
 \&\fIVxWorks Options\fR
-\&\fB\-mrtp  \-non\-static  \-Bstatic  \-Bdynamic 
+\&\fB\-mrtp  \-non\-static  \-Bstatic  \-Bdynamic
 \&\-Xbind\-lazy  \-Xbind\-now\fR
 .Sp
 \&\fIx86 Options\fR
-\&\fB\-mtune=\fR\fIcpu-type\fR  \fB\-march=\fR\fIcpu-type\fR 
-\&\fB\-mtune\-ctrl=\fR\fIfeature-list\fR  \fB\-mdump\-tune\-features  \-mno\-default 
-\&\-mfpmath=\fR\fIunit\fR 
-\&\fB\-masm=\fR\fIdialect\fR  \fB\-mno\-fancy\-math\-387 
-\&\-mno\-fp\-ret\-in\-387  \-m80387  \-mhard\-float  \-msoft\-float 
-\&\-mno\-wide\-multiply  \-mrtd  \-malign\-double 
-\&\-mpreferred\-stack\-boundary=\fR\fInum\fR 
-\&\fB\-mincoming\-stack\-boundary=\fR\fInum\fR 
-\&\fB\-mcld  \-mcx16  \-msahf  \-mmovbe  \-mcrc32 \-mmwait 
-\&\-mrecip  \-mrecip=\fR\fIopt\fR 
-\&\fB\-mvzeroupper  \-mprefer\-avx128  \-mprefer\-vector\-width=\fR\fIopt\fR 
-\&\fB\-mmove\-max=\fR\fIbits\fR \fB\-mstore\-max=\fR\fIbits\fR 
-\&\fB\-mmmx  \-msse  \-msse2  \-msse3  \-mssse3  \-msse4.1  \-msse4.2  \-msse4  \-mavx 
-\&\-mavx2  \-mavx512f  \-mavx512pf  \-mavx512er  \-mavx512cd  \-mavx512vl 
-\&\-mavx512bw  \-mavx512dq  \-mavx512ifma  \-mavx512vbmi  \-msha  \-maes 
-\&\-mpclmul  \-mfsgsbase  \-mrdrnd  \-mf16c  \-mfma  \-mpconfig  \-mwbnoinvd  
-\&\-mptwrite  \-mprefetchwt1  \-mclflushopt  \-mclwb  \-mxsavec  \-mxsaves 
-\&\-msse4a  \-m3dnow  \-m3dnowa  \-mpopcnt  \-mabm  \-mbmi  \-mtbm  \-mfma4  \-mxop 
-\&\-madx  \-mlzcnt  \-mbmi2  \-mfxsr  \-mxsave  \-mxsaveopt  \-mrtm  \-mhle  \-mlwp 
-\&\-mmwaitx  \-mclzero  \-mpku  \-mthreads  \-mgfni  \-mvaes  \-mwaitpkg 
-\&\-mshstk \-mmanual\-endbr \-mcet\-switch \-mforce\-indirect\-call 
-\&\-mavx512vbmi2 \-mavx512bf16 \-menqcmd 
-\&\-mvpclmulqdq  \-mavx512bitalg  \-mmovdiri  \-mmovdir64b  \-mavx512vpopcntdq 
-\&\-mavx5124fmaps  \-mavx512vnni  \-mavx5124vnniw  \-mprfchw  \-mrdpid 
+\&\fB\-mtune=\fR\fIcpu-type\fR  \fB\-march=\fR\fIcpu-type\fR
+\&\fB\-mtune\-ctrl=\fR\fIfeature-list\fR  \fB\-mdump\-tune\-features  \-mno\-default
+\&\-mfpmath=\fR\fIunit\fR
+\&\fB\-masm=\fR\fIdialect\fR  \fB\-mno\-fancy\-math\-387
+\&\-mno\-fp\-ret\-in\-387  \-m80387  \-mhard\-float  \-msoft\-float
+\&\-mno\-wide\-multiply  \-mrtd  \-malign\-double
+\&\-mpreferred\-stack\-boundary=\fR\fInum\fR
+\&\fB\-mincoming\-stack\-boundary=\fR\fInum\fR
+\&\fB\-mcld  \-mcx16  \-msahf  \-mmovbe  \-mcrc32 \-mmwait
+\&\-mrecip  \-mrecip=\fR\fIopt\fR
+\&\fB\-mvzeroupper  \-mprefer\-avx128  \-mprefer\-vector\-width=\fR\fIopt\fR
+\&\fB\-mmove\-max=\fR\fIbits\fR \fB\-mstore\-max=\fR\fIbits\fR
+\&\fB\-mmmx  \-msse  \-msse2  \-msse3  \-mssse3  \-msse4.1  \-msse4.2  \-msse4  \-mavx
+\&\-mavx2  \-mavx512f  \-mavx512pf  \-mavx512er  \-mavx512cd  \-mavx512vl
+\&\-mavx512bw  \-mavx512dq  \-mavx512ifma  \-mavx512vbmi  \-msha  \-maes
+\&\-mpclmul  \-mfsgsbase  \-mrdrnd  \-mf16c  \-mfma  \-mpconfig  \-mwbnoinvd
+\&\-mptwrite  \-mprefetchwt1  \-mclflushopt  \-mclwb  \-mxsavec  \-mxsaves
+\&\-msse4a  \-m3dnow  \-m3dnowa  \-mpopcnt  \-mabm  \-mbmi  \-mtbm  \-mfma4  \-mxop
+\&\-madx  \-mlzcnt  \-mbmi2  \-mfxsr  \-mxsave  \-mxsaveopt  \-mrtm  \-mhle  \-mlwp
+\&\-mmwaitx  \-mclzero  \-mpku  \-mthreads  \-mgfni  \-mvaes  \-mwaitpkg
+\&\-mshstk \-mmanual\-endbr \-mcet\-switch \-mforce\-indirect\-call
+\&\-mavx512vbmi2 \-mavx512bf16 \-menqcmd
+\&\-mvpclmulqdq  \-mavx512bitalg  \-mmovdiri  \-mmovdir64b  \-mavx512vpopcntdq
+\&\-mavx5124fmaps  \-mavx512vnni  \-mavx5124vnniw  \-mprfchw  \-mrdpid
 \&\-mrdseed  \-msgx \-mavx512vp2intersect \-mserialize \-mtsxldtrk
 \&\-mamx\-tile  \-mamx\-int8  \-mamx\-bf16 \-muintr \-mhreset \-mavxvnni
-\&\-mavx512fp16 \-mavxifma \-mavxvnniint8 \-mavxneconvert \-mcmpccxadd \-mamx\-fp16 
-\&\-mprefetchi \-mraoint 
-\&\-mcldemote  \-mms\-bitfields  \-mno\-align\-stringops  \-minline\-all\-stringops 
-\&\-minline\-stringops\-dynamically  \-mstringop\-strategy=\fR\fIalg\fR 
-\&\fB\-mkl \-mwidekl 
-\&\-mmemcpy\-strategy=\fR\fIstrategy\fR  \fB\-mmemset\-strategy=\fR\fIstrategy\fR 
-\&\fB\-mpush\-args  \-maccumulate\-outgoing\-args  \-m128bit\-long\-double 
-\&\-m96bit\-long\-double  \-mlong\-double\-64  \-mlong\-double\-80  \-mlong\-double\-128 
-\&\-mregparm=\fR\fInum\fR  \fB\-msseregparm 
-\&\-mveclibabi=\fR\fItype\fR  \fB\-mvect8\-ret\-in\-mem 
-\&\-mpc32  \-mpc64  \-mpc80  \-mdaz\-ftz \-mstackrealign 
-\&\-momit\-leaf\-frame\-pointer  \-mno\-red\-zone  \-mno\-tls\-direct\-seg\-refs 
-\&\-mcmodel=\fR\fIcode-model\fR  \fB\-mabi=\fR\fIname\fR  \fB\-maddress\-mode=\fR\fImode\fR 
-\&\fB\-m32  \-m64  \-mx32  \-m16  \-miamcu  \-mlarge\-data\-threshold=\fR\fInum\fR 
-\&\fB\-msse2avx  \-mfentry  \-mrecord\-mcount  \-mnop\-mcount  \-m8bit\-idiv 
-\&\-minstrument\-return=\fR\fItype\fR \fB\-mfentry\-name=\fR\fIname\fR \fB\-mfentry\-section=\fR\fIname\fR 
-\&\fB\-mavx256\-split\-unaligned\-load  \-mavx256\-split\-unaligned\-store 
-\&\-malign\-data=\fR\fItype\fR  \fB\-mstack\-protector\-guard=\fR\fIguard\fR 
-\&\fB\-mstack\-protector\-guard\-reg=\fR\fIreg\fR 
-\&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR 
-\&\fB\-mstack\-protector\-guard\-symbol=\fR\fIsymbol\fR 
-\&\fB\-mgeneral\-regs\-only  \-mcall\-ms2sysv\-xlogues \-mrelax\-cmpxchg\-loop 
-\&\-mindirect\-branch=\fR\fIchoice\fR  \fB\-mfunction\-return=\fR\fIchoice\fR 
-\&\fB\-mindirect\-branch\-register \-mharden\-sls=\fR\fIchoice\fR 
-\&\fB\-mindirect\-branch\-cs\-prefix \-mneeded \-mno\-direct\-extern\-access 
+\&\-mavx512fp16 \-mavxifma \-mavxvnniint8 \-mavxneconvert \-mcmpccxadd \-mamx\-fp16
+\&\-mprefetchi \-mraoint
+\&\-mcldemote  \-mms\-bitfields  \-mno\-align\-stringops  \-minline\-all\-stringops
+\&\-minline\-stringops\-dynamically  \-mstringop\-strategy=\fR\fIalg\fR
+\&\fB\-mkl \-mwidekl
+\&\-mmemcpy\-strategy=\fR\fIstrategy\fR  \fB\-mmemset\-strategy=\fR\fIstrategy\fR
+\&\fB\-mpush\-args  \-maccumulate\-outgoing\-args  \-m128bit\-long\-double
+\&\-m96bit\-long\-double  \-mlong\-double\-64  \-mlong\-double\-80  \-mlong\-double\-128
+\&\-mregparm=\fR\fInum\fR  \fB\-msseregparm
+\&\-mveclibabi=\fR\fItype\fR  \fB\-mvect8\-ret\-in\-mem
+\&\-mpc32  \-mpc64  \-mpc80  \-mdaz\-ftz \-mstackrealign
+\&\-momit\-leaf\-frame\-pointer  \-mno\-red\-zone  \-mno\-tls\-direct\-seg\-refs
+\&\-mcmodel=\fR\fIcode-model\fR  \fB\-mabi=\fR\fIname\fR  \fB\-maddress\-mode=\fR\fImode\fR
+\&\fB\-m32  \-m64  \-mx32  \-m16  \-miamcu  \-mlarge\-data\-threshold=\fR\fInum\fR
+\&\fB\-msse2avx  \-mfentry  \-mrecord\-mcount  \-mnop\-mcount  \-m8bit\-idiv
+\&\-minstrument\-return=\fR\fItype\fR \fB\-mfentry\-name=\fR\fIname\fR \fB\-mfentry\-section=\fR\fIname\fR
+\&\fB\-mavx256\-split\-unaligned\-load  \-mavx256\-split\-unaligned\-store
+\&\-malign\-data=\fR\fItype\fR  \fB\-mstack\-protector\-guard=\fR\fIguard\fR
+\&\fB\-mstack\-protector\-guard\-reg=\fR\fIreg\fR
+\&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR
+\&\fB\-mstack\-protector\-guard\-symbol=\fR\fIsymbol\fR
+\&\fB\-mgeneral\-regs\-only  \-mcall\-ms2sysv\-xlogues \-mrelax\-cmpxchg\-loop
+\&\-mindirect\-branch=\fR\fIchoice\fR  \fB\-mfunction\-return=\fR\fIchoice\fR
+\&\fB\-mindirect\-branch\-register \-mharden\-sls=\fR\fIchoice\fR
+\&\fB\-mindirect\-branch\-cs\-prefix \-mneeded \-mno\-direct\-extern\-access
 \&\-munroll\-only\-small\-loops \-mlam=\fR\fIchoice\fR
 .Sp
 \&\fIx86 Windows Options\fR
-\&\fB\-mconsole  \-mcygwin  \-mno\-cygwin  \-mdll 
-\&\-mnop\-fun\-dllimport  \-mthread 
+\&\fB\-mconsole  \-mcygwin  \-mno\-cygwin  \-mdll
+\&\-mnop\-fun\-dllimport  \-mthread
 \&\-municode  \-mwin32  \-mwindows  \-fno\-set\-stack\-executable\fR
 .Sp
 \&\fIXstormy16 Options\fR
 \&\fB\-msim\fR
 .Sp
 \&\fIXtensa Options\fR
-\&\fB\-mconst16  \-mno\-const16 
-\&\-mfused\-madd  \-mno\-fused\-madd 
-\&\-mforce\-no\-pic 
-\&\-mserialize\-volatile  \-mno\-serialize\-volatile 
-\&\-mtext\-section\-literals  \-mno\-text\-section\-literals 
-\&\-mauto\-litpools  \-mno\-auto\-litpools 
-\&\-mtarget\-align  \-mno\-target\-align 
-\&\-mlongcalls  \-mno\-longcalls 
-\&\-mabi=\fR\fIabi-type\fR 
+\&\fB\-mconst16  \-mno\-const16
+\&\-mfused\-madd  \-mno\-fused\-madd
+\&\-mforce\-no\-pic
+\&\-mserialize\-volatile  \-mno\-serialize\-volatile
+\&\-mtext\-section\-literals  \-mno\-text\-section\-literals
+\&\-mauto\-litpools  \-mno\-auto\-litpools
+\&\-mtarget\-align  \-mno\-target\-align
+\&\-mlongcalls  \-mno\-longcalls
+\&\-mabi=\fR\fIabi-type\fR
 \&\fB\-mextra\-l32r\-costs=\fR\fIcycles\fR
 .Sp
 \&\fIzSeries Options\fR
@@ -4866,10 +4866,10 @@ may be useful when running \fBdejagnu\fR or other utilities that need to
 parse diagnostics output and prefer that it remain more stable over time.
 \&\fB\-fdiagnostics\-plain\-output\fR is currently equivalent to the following
 options:
-\&\fB\-fno\-diagnostics\-show\-caret 
-\&\-fno\-diagnostics\-show\-line\-numbers 
-\&\-fdiagnostics\-color=never 
-\&\-fdiagnostics\-urls=never 
+\&\fB\-fno\-diagnostics\-show\-caret
+\&\-fno\-diagnostics\-show\-line\-numbers
+\&\-fdiagnostics\-color=never
+\&\-fdiagnostics\-urls=never
 \&\-fdiagnostics\-path\-format=separate\-events\fR
 In the future, if \s-1GCC\s0 changes the default appearance of its diagnostics, the
 corresponding option to disable the new behavior will be added to this list.
@@ -5788,70 +5788,70 @@ Options\fR and \fBObjective-C and Objective\-\*(C+ Dialect Options\fR.
 .Sp
 \&\fB\-Wall\fR turns on the following warning flags:
 .Sp
-\&\fB\-Waddress   
-\&\-Warray\-bounds=1\fR (only with\fB \fR\fB\-O2\fR)  
-\&\fB\-Warray\-compare 
-\&\-Warray\-parameter=2\fR (C and Objective-C only) 
-\&\fB\-Wbool\-compare  
-\&\-Wbool\-operation  
-\&\-Wc++11\-compat  \-Wc++14\-compat  
-\&\-Wcatch\-value\fR (\*(C+ and Objective\-\*(C+ only)  
-\&\fB\-Wchar\-subscripts  
-\&\-Wcomment  
-\&\-Wdangling\-pointer=2  
-\&\-Wduplicate\-decl\-specifier\fR (C and Objective-C only) 
-\&\fB\-Wenum\-compare\fR (in C/ObjC; this is on by default in \*(C+) 
-\&\fB\-Wenum\-int\-mismatch\fR (C and Objective-C only) 
-\&\fB\-Wformat   
-\&\-Wformat\-overflow  
-\&\-Wformat\-truncation  
-\&\-Wint\-in\-bool\-context  
-\&\-Wimplicit\fR (C and Objective-C only) 
-\&\fB\-Wimplicit\-int\fR (C and Objective-C only) 
-\&\fB\-Wimplicit\-function\-declaration\fR (C and Objective-C only) 
-\&\fB\-Winit\-self\fR (only for \*(C+) 
-\&\fB\-Wlogical\-not\-parentheses 
-\&\-Wmain\fR (only for C/ObjC and unless\fB \fR\fB\-ffreestanding\fR)  
-\&\fB\-Wmaybe\-uninitialized 
-\&\-Wmemset\-elt\-size 
-\&\-Wmemset\-transposed\-args 
-\&\-Wmisleading\-indentation\fR (only for C/\*(C+) 
-\&\fB\-Wmismatched\-dealloc 
-\&\-Wmismatched\-new\-delete\fR (only for C/\*(C+) 
-\&\fB\-Wmissing\-attributes 
-\&\-Wmissing\-braces\fR (only for C/ObjC) 
-\&\fB\-Wmultistatement\-macros  
-\&\-Wnarrowing\fR (only for \*(C+)  
-\&\fB\-Wnonnull  
-\&\-Wnonnull\-compare  
-\&\-Wopenmp\-simd 
-\&\-Wparentheses  
-\&\-Wpessimizing\-move\fR (only for \*(C+)  
-\&\fB\-Wpointer\-sign  
-\&\-Wrange\-loop\-construct\fR (only for \*(C+)  
-\&\fB\-Wreorder   
-\&\-Wrestrict   
-\&\-Wreturn\-type  
-\&\-Wself\-move\fR (only for \*(C+)  
-\&\fB\-Wsequence\-point  
-\&\-Wsign\-compare\fR (only in \*(C+)  
-\&\fB\-Wsizeof\-array\-div 
-\&\-Wsizeof\-pointer\-div 
-\&\-Wsizeof\-pointer\-memaccess 
-\&\-Wstrict\-aliasing  
-\&\-Wstrict\-overflow=1  
-\&\-Wswitch  
-\&\-Wtautological\-compare  
-\&\-Wtrigraphs  
-\&\-Wuninitialized  
-\&\-Wunknown\-pragmas  
-\&\-Wunused\-function  
-\&\-Wunused\-label     
-\&\-Wunused\-value     
-\&\-Wunused\-variable  
-\&\-Wuse\-after\-free=2  
-\&\-Wvla\-parameter\fR (C and Objective-C only) 
-\&\fB\-Wvolatile\-register\-var  
+\&\fB\-Waddress
+\&\-Warray\-bounds=1\fR (only with\fB \fR\fB\-O2\fR)
+\&\fB\-Warray\-compare
+\&\-Warray\-parameter=2\fR (C and Objective-C only)
+\&\fB\-Wbool\-compare
+\&\-Wbool\-operation
+\&\-Wc++11\-compat  \-Wc++14\-compat
+\&\-Wcatch\-value\fR (\*(C+ and Objective\-\*(C+ only)
+\&\fB\-Wchar\-subscripts
+\&\-Wcomment
+\&\-Wdangling\-pointer=2
+\&\-Wduplicate\-decl\-specifier\fR (C and Objective-C only)
+\&\fB\-Wenum\-compare\fR (in C/ObjC; this is on by default in \*(C+)
+\&\fB\-Wenum\-int\-mismatch\fR (C and Objective-C only)
+\&\fB\-Wformat
+\&\-Wformat\-overflow
+\&\-Wformat\-truncation
+\&\-Wint\-in\-bool\-context
+\&\-Wimplicit\fR (C and Objective-C only)
+\&\fB\-Wimplicit\-int\fR (C and Objective-C only)
+\&\fB\-Wimplicit\-function\-declaration\fR (C and Objective-C only)
+\&\fB\-Winit\-self\fR (only for \*(C+)
+\&\fB\-Wlogical\-not\-parentheses
+\&\-Wmain\fR (only for C/ObjC and unless\fB \fR\fB\-ffreestanding\fR)
+\&\fB\-Wmaybe\-uninitialized
+\&\-Wmemset\-elt\-size
+\&\-Wmemset\-transposed\-args
+\&\-Wmisleading\-indentation\fR (only for C/\*(C+)
+\&\fB\-Wmismatched\-dealloc
+\&\-Wmismatched\-new\-delete\fR (only for C/\*(C+)
+\&\fB\-Wmissing\-attributes
+\&\-Wmissing\-braces\fR (only for C/ObjC)
+\&\fB\-Wmultistatement\-macros
+\&\-Wnarrowing\fR (only for \*(C+)
+\&\fB\-Wnonnull
+\&\-Wnonnull\-compare
+\&\-Wopenmp\-simd
+\&\-Wparentheses
+\&\-Wpessimizing\-move\fR (only for \*(C+)
+\&\fB\-Wpointer\-sign
+\&\-Wrange\-loop\-construct\fR (only for \*(C+)
+\&\fB\-Wreorder
+\&\-Wrestrict
+\&\-Wreturn\-type
+\&\-Wself\-move\fR (only for \*(C+)
+\&\fB\-Wsequence\-point
+\&\-Wsign\-compare\fR (only in \*(C+)
+\&\fB\-Wsizeof\-array\-div
+\&\-Wsizeof\-pointer\-div
+\&\-Wsizeof\-pointer\-memaccess
+\&\-Wstrict\-aliasing
+\&\-Wstrict\-overflow=1
+\&\-Wswitch
+\&\-Wtautological\-compare
+\&\-Wtrigraphs
+\&\-Wuninitialized
+\&\-Wunknown\-pragmas
+\&\-Wunused\-function
+\&\-Wunused\-label
+\&\-Wunused\-value
+\&\-Wunused\-variable
+\&\-Wuse\-after\-free=2
+\&\-Wvla\-parameter\fR (C and Objective-C only)
+\&\fB\-Wvolatile\-register\-var
 \&\-Wzero\-length\-bounds\fR
 .Sp
 Note that some warning flags are not implied by \fB\-Wall\fR.  Some of
@@ -5867,24 +5867,24 @@ This enables some extra warning flags that are not enabled by
 \&\fB\-Wall\fR. (This option used to be called \fB\-W\fR.  The older
 name is still supported, but the newer name is more descriptive.)
 .Sp
-\&\fB\-Wclobbered  
-\&\-Wcast\-function\-type  
-\&\-Wdeprecated\-copy\fR (\*(C+ only) 
-\&\fB\-Wempty\-body  
-\&\-Wenum\-conversion\fR (C only) 
-\&\fB\-Wignored\-qualifiers 
-\&\-Wimplicit\-fallthrough=3 
-\&\-Wmissing\-field\-initializers  
-\&\-Wmissing\-parameter\-type\fR (C only)  
-\&\fB\-Wold\-style\-declaration\fR (C only)  
-\&\fB\-Woverride\-init  
-\&\-Wsign\-compare\fR (C only) 
-\&\fB\-Wstring\-compare 
-\&\-Wredundant\-move\fR (only for \*(C+)  
-\&\fB\-Wtype\-limits  
-\&\-Wuninitialized  
-\&\-Wshift\-negative\-value\fR (in \*(C+11 to \*(C+17 and in C99 and newer)  
-\&\fB\-Wunused\-parameter\fR (only with\fB \fR\fB\-Wunused\fR\fB \fRor\fB \fR\fB\-Wall\fR) 
+\&\fB\-Wclobbered
+\&\-Wcast\-function\-type
+\&\-Wdeprecated\-copy\fR (\*(C+ only)
+\&\fB\-Wempty\-body
+\&\-Wenum\-conversion\fR (C only)
+\&\fB\-Wignored\-qualifiers
+\&\-Wimplicit\-fallthrough=3
+\&\-Wmissing\-field\-initializers
+\&\-Wmissing\-parameter\-type\fR (C only)
+\&\fB\-Wold\-style\-declaration\fR (C only)
+\&\fB\-Woverride\-init
+\&\-Wsign\-compare\fR (C only)
+\&\fB\-Wstring\-compare
+\&\-Wredundant\-move\fR (only for \*(C+)
+\&\fB\-Wtype\-limits
+\&\-Wuninitialized
+\&\-Wshift\-negative\-value\fR (in \*(C+11 to \*(C+17 and in C99 and newer)
+\&\fB\-Wunused\-parameter\fR (only with\fB \fR\fB\-Wunused\fR\fB \fRor\fB \fR\fB\-Wall\fR)
 \&\fB\-Wunused\-but\-set\-parameter\fR (only with\fB \fR\fB\-Wunused\fR\fB \fRor\fB \fR\fB\-Wall\fR)
 .Sp
 The option \fB\-Wextra\fR also prints warning messages for the
@@ -9472,44 +9472,44 @@ The analyzer is only suitable for use on C code in this release.
 .Sp
 Enabling this option effectively enables the following warnings:
 .Sp
-\&\fB\-Wanalyzer\-allocation\-size 
-\&\-Wanalyzer\-deref\-before\-check 
-\&\-Wanalyzer\-double\-fclose 
-\&\-Wanalyzer\-double\-free 
-\&\-Wanalyzer\-exposure\-through\-output\-file 
-\&\-Wanalyzer\-exposure\-through\-uninit\-copy 
-\&\-Wanalyzer\-fd\-access\-mode\-mismatch 
-\&\-Wanalyzer\-fd\-double\-close 
-\&\-Wanalyzer\-fd\-leak 
-\&\-Wanalyzer\-fd\-phase\-mismatch 
-\&\-Wanalyzer\-fd\-type\-mismatch 
-\&\-Wanalyzer\-fd\-use\-after\-close 
-\&\-Wanalyzer\-fd\-use\-without\-check 
-\&\-Wanalyzer\-file\-leak 
-\&\-Wanalyzer\-free\-of\-non\-heap 
-\&\-Wanalyzer\-imprecise\-fp\-arithmetic 
-\&\-Wanalyzer\-infinite\-recursion 
-\&\-Wanalyzer\-jump\-through\-null 
-\&\-Wanalyzer\-malloc\-leak 
-\&\-Wanalyzer\-mismatching\-deallocation 
-\&\-Wanalyzer\-null\-argument 
-\&\-Wanalyzer\-null\-dereference 
-\&\-Wanalyzer\-out\-of\-bounds 
-\&\-Wanalyzer\-possible\-null\-argument 
-\&\-Wanalyzer\-possible\-null\-dereference 
-\&\-Wanalyzer\-putenv\-of\-auto\-var 
-\&\-Wanalyzer\-shift\-count\-negative 
-\&\-Wanalyzer\-shift\-count\-overflow 
-\&\-Wanalyzer\-stale\-setjmp\-buffer 
-\&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler 
-\&\-Wanalyzer\-use\-after\-free 
-\&\-Wanalyzer\-use\-of\-pointer\-in\-stale\-stack\-frame 
-\&\-Wanalyzer\-use\-of\-uninitialized\-value 
-\&\-Wanalyzer\-va\-arg\-type\-mismatch 
-\&\-Wanalyzer\-va\-list\-exhausted 
-\&\-Wanalyzer\-va\-list\-leak 
-\&\-Wanalyzer\-va\-list\-use\-after\-va\-end 
-\&\-Wanalyzer\-write\-to\-const 
+\&\fB\-Wanalyzer\-allocation\-size
+\&\-Wanalyzer\-deref\-before\-check
+\&\-Wanalyzer\-double\-fclose
+\&\-Wanalyzer\-double\-free
+\&\-Wanalyzer\-exposure\-through\-output\-file
+\&\-Wanalyzer\-exposure\-through\-uninit\-copy
+\&\-Wanalyzer\-fd\-access\-mode\-mismatch
+\&\-Wanalyzer\-fd\-double\-close
+\&\-Wanalyzer\-fd\-leak
+\&\-Wanalyzer\-fd\-phase\-mismatch
+\&\-Wanalyzer\-fd\-type\-mismatch
+\&\-Wanalyzer\-fd\-use\-after\-close
+\&\-Wanalyzer\-fd\-use\-without\-check
+\&\-Wanalyzer\-file\-leak
+\&\-Wanalyzer\-free\-of\-non\-heap
+\&\-Wanalyzer\-imprecise\-fp\-arithmetic
+\&\-Wanalyzer\-infinite\-recursion
+\&\-Wanalyzer\-jump\-through\-null
+\&\-Wanalyzer\-malloc\-leak
+\&\-Wanalyzer\-mismatching\-deallocation
+\&\-Wanalyzer\-null\-argument
+\&\-Wanalyzer\-null\-dereference
+\&\-Wanalyzer\-out\-of\-bounds
+\&\-Wanalyzer\-possible\-null\-argument
+\&\-Wanalyzer\-possible\-null\-dereference
+\&\-Wanalyzer\-putenv\-of\-auto\-var
+\&\-Wanalyzer\-shift\-count\-negative
+\&\-Wanalyzer\-shift\-count\-overflow
+\&\-Wanalyzer\-stale\-setjmp\-buffer
+\&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler
+\&\-Wanalyzer\-use\-after\-free
+\&\-Wanalyzer\-use\-of\-pointer\-in\-stale\-stack\-frame
+\&\-Wanalyzer\-use\-of\-uninitialized\-value
+\&\-Wanalyzer\-va\-arg\-type\-mismatch
+\&\-Wanalyzer\-va\-list\-exhausted
+\&\-Wanalyzer\-va\-list\-leak
+\&\-Wanalyzer\-va\-list\-use\-after\-va\-end
+\&\-Wanalyzer\-write\-to\-const
 \&\-Wanalyzer\-write\-to\-string\-literal\fR
 .Sp
 This option is only available if \s-1GCC\s0 was configured with analyzer
@@ -10300,26 +10300,26 @@ to enable them.
 \&\fINote:\fR currently, \fB\-fanalyzer\-checker=taint\fR disables the
 following warnings from \fB\-fanalyzer\fR:
 .Sp
-\&\fB\-Wanalyzer\-deref\-before\-check 
-\&\-Wanalyzer\-double\-fclose 
-\&\-Wanalyzer\-double\-free 
-\&\-Wanalyzer\-exposure\-through\-output\-file 
-\&\-Wanalyzer\-fd\-access\-mode\-mismatch 
-\&\-Wanalyzer\-fd\-double\-close 
-\&\-Wanalyzer\-fd\-leak 
-\&\-Wanalyzer\-fd\-use\-after\-close 
-\&\-Wanalyzer\-fd\-use\-without\-check 
-\&\-Wanalyzer\-file\-leak 
-\&\-Wanalyzer\-free\-of\-non\-heap 
-\&\-Wanalyzer\-malloc\-leak 
-\&\-Wanalyzer\-mismatching\-deallocation 
-\&\-Wanalyzer\-null\-argument 
-\&\-Wanalyzer\-null\-dereference 
-\&\-Wanalyzer\-possible\-null\-argument 
-\&\-Wanalyzer\-possible\-null\-dereference 
-\&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler 
-\&\-Wanalyzer\-use\-after\-free 
-\&\-Wanalyzer\-va\-list\-leak 
+\&\fB\-Wanalyzer\-deref\-before\-check
+\&\-Wanalyzer\-double\-fclose
+\&\-Wanalyzer\-double\-free
+\&\-Wanalyzer\-exposure\-through\-output\-file
+\&\-Wanalyzer\-fd\-access\-mode\-mismatch
+\&\-Wanalyzer\-fd\-double\-close
+\&\-Wanalyzer\-fd\-leak
+\&\-Wanalyzer\-fd\-use\-after\-close
+\&\-Wanalyzer\-fd\-use\-without\-check
+\&\-Wanalyzer\-file\-leak
+\&\-Wanalyzer\-free\-of\-non\-heap
+\&\-Wanalyzer\-malloc\-leak
+\&\-Wanalyzer\-mismatching\-deallocation
+\&\-Wanalyzer\-null\-argument
+\&\-Wanalyzer\-null\-dereference
+\&\-Wanalyzer\-possible\-null\-argument
+\&\-Wanalyzer\-possible\-null\-dereference
+\&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler
+\&\-Wanalyzer\-use\-after\-free
+\&\-Wanalyzer\-va\-list\-leak
 \&\-Wanalyzer\-va\-list\-use\-after\-va\-end\fR
 .IP "\fB\-fno\-analyzer\-feasibility\fR" 4
 .IX Item "-fno-analyzer-feasibility"
@@ -11016,52 +11016,52 @@ compilation time.
 .Sp
 \&\fB\-O\fR turns on the following optimization flags:
 .Sp
-\&\fB\-fauto\-inc\-dec 
-\&\-fbranch\-count\-reg 
-\&\-fcombine\-stack\-adjustments 
-\&\-fcompare\-elim 
-\&\-fcprop\-registers 
-\&\-fdce 
-\&\-fdefer\-pop 
-\&\-fdelayed\-branch 
-\&\-fdse 
-\&\-fforward\-propagate 
-\&\-fguess\-branch\-probability 
-\&\-fif\-conversion 
-\&\-fif\-conversion2 
-\&\-finline\-functions\-called\-once 
-\&\-fipa\-modref 
-\&\-fipa\-profile 
-\&\-fipa\-pure\-const 
-\&\-fipa\-reference 
-\&\-fipa\-reference\-addressable 
-\&\-fmerge\-constants 
-\&\-fmove\-loop\-invariants 
+\&\fB\-fauto\-inc\-dec
+\&\-fbranch\-count\-reg
+\&\-fcombine\-stack\-adjustments
+\&\-fcompare\-elim
+\&\-fcprop\-registers
+\&\-fdce
+\&\-fdefer\-pop
+\&\-fdelayed\-branch
+\&\-fdse
+\&\-fforward\-propagate
+\&\-fguess\-branch\-probability
+\&\-fif\-conversion
+\&\-fif\-conversion2
+\&\-finline\-functions\-called\-once
+\&\-fipa\-modref
+\&\-fipa\-profile
+\&\-fipa\-pure\-const
+\&\-fipa\-reference
+\&\-fipa\-reference\-addressable
+\&\-fmerge\-constants
+\&\-fmove\-loop\-invariants
 \&\-fmove\-loop\-stores
-\&\-fomit\-frame\-pointer 
-\&\-freorder\-blocks 
-\&\-fshrink\-wrap 
-\&\-fshrink\-wrap\-separate 
-\&\-fsplit\-wide\-types 
-\&\-fssa\-backprop 
-\&\-fssa\-phiopt 
-\&\-ftree\-bit\-ccp 
-\&\-ftree\-ccp 
-\&\-ftree\-ch 
-\&\-ftree\-coalesce\-vars 
-\&\-ftree\-copy\-prop 
-\&\-ftree\-dce 
-\&\-ftree\-dominator\-opts 
-\&\-ftree\-dse 
-\&\-ftree\-forwprop 
-\&\-ftree\-fre 
-\&\-ftree\-phiprop 
-\&\-ftree\-pta 
-\&\-ftree\-scev\-cprop 
-\&\-ftree\-sink 
-\&\-ftree\-slsr 
-\&\-ftree\-sra 
-\&\-ftree\-ter 
+\&\-fomit\-frame\-pointer
+\&\-freorder\-blocks
+\&\-fshrink\-wrap
+\&\-fshrink\-wrap\-separate
+\&\-fsplit\-wide\-types
+\&\-fssa\-backprop
+\&\-fssa\-phiopt
+\&\-ftree\-bit\-ccp
+\&\-ftree\-ccp
+\&\-ftree\-ch
+\&\-ftree\-coalesce\-vars
+\&\-ftree\-copy\-prop
+\&\-ftree\-dce
+\&\-ftree\-dominator\-opts
+\&\-ftree\-dse
+\&\-ftree\-forwprop
+\&\-ftree\-fre
+\&\-ftree\-phiprop
+\&\-ftree\-pta
+\&\-ftree\-scev\-cprop
+\&\-ftree\-sink
+\&\-ftree\-slsr
+\&\-ftree\-sra
+\&\-ftree\-ter
 \&\-funit\-at\-a\-time\fR
 .IP "\fB\-O2\fR" 4
 .IX Item "-O2"
@@ -11073,43 +11073,43 @@ and the performance of the generated code.
 \&\fB\-O2\fR turns on all optimization flags specified by \fB\-O1\fR.  It
 also turns on the following optimization flags:
 .Sp
-\&\fB\-falign\-functions  \-falign\-jumps 
-\&\-falign\-labels  \-falign\-loops 
-\&\-fcaller\-saves 
-\&\-fcode\-hoisting 
-\&\-fcrossjumping 
-\&\-fcse\-follow\-jumps  \-fcse\-skip\-blocks 
-\&\-fdelete\-null\-pointer\-checks 
-\&\-fdevirtualize  \-fdevirtualize\-speculatively 
-\&\-fexpensive\-optimizations 
-\&\-ffinite\-loops 
-\&\-fgcse  \-fgcse\-lm  
-\&\-fhoist\-adjacent\-loads 
-\&\-finline\-functions 
-\&\-finline\-small\-functions 
-\&\-findirect\-inlining 
-\&\-fipa\-bit\-cp  \-fipa\-cp  \-fipa\-icf 
-\&\-fipa\-ra  \-fipa\-sra  \-fipa\-vrp 
-\&\-fisolate\-erroneous\-paths\-dereference 
-\&\-flra\-remat 
-\&\-foptimize\-sibling\-calls 
-\&\-foptimize\-strlen 
-\&\-fpartial\-inlining 
-\&\-fpeephole2 
-\&\-freorder\-blocks\-algorithm=stc 
-\&\-freorder\-blocks\-and\-partition  \-freorder\-functions 
-\&\-frerun\-cse\-after\-loop  
-\&\-fschedule\-insns  \-fschedule\-insns2 
-\&\-fsched\-interblock  \-fsched\-spec 
-\&\-fstore\-merging 
-\&\-fstrict\-aliasing 
-\&\-fthread\-jumps 
-\&\-ftree\-builtin\-call\-dce 
-\&\-ftree\-loop\-vectorize 
-\&\-ftree\-pre 
-\&\-ftree\-slp\-vectorize 
-\&\-ftree\-switch\-conversion  \-ftree\-tail\-merge 
-\&\-ftree\-vrp 
+\&\fB\-falign\-functions  \-falign\-jumps
+\&\-falign\-labels  \-falign\-loops
+\&\-fcaller\-saves
+\&\-fcode\-hoisting
+\&\-fcrossjumping
+\&\-fcse\-follow\-jumps  \-fcse\-skip\-blocks
+\&\-fdelete\-null\-pointer\-checks
+\&\-fdevirtualize  \-fdevirtualize\-speculatively
+\&\-fexpensive\-optimizations
+\&\-ffinite\-loops
+\&\-fgcse  \-fgcse\-lm
+\&\-fhoist\-adjacent\-loads
+\&\-finline\-functions
+\&\-finline\-small\-functions
+\&\-findirect\-inlining
+\&\-fipa\-bit\-cp  \-fipa\-cp  \-fipa\-icf
+\&\-fipa\-ra  \-fipa\-sra  \-fipa\-vrp
+\&\-fisolate\-erroneous\-paths\-dereference
+\&\-flra\-remat
+\&\-foptimize\-sibling\-calls
+\&\-foptimize\-strlen
+\&\-fpartial\-inlining
+\&\-fpeephole2
+\&\-freorder\-blocks\-algorithm=stc
+\&\-freorder\-blocks\-and\-partition  \-freorder\-functions
+\&\-frerun\-cse\-after\-loop
+\&\-fschedule\-insns  \-fschedule\-insns2
+\&\-fsched\-interblock  \-fsched\-spec
+\&\-fstore\-merging
+\&\-fstrict\-aliasing
+\&\-fthread\-jumps
+\&\-ftree\-builtin\-call\-dce
+\&\-ftree\-loop\-vectorize
+\&\-ftree\-pre
+\&\-ftree\-slp\-vectorize
+\&\-ftree\-switch\-conversion  \-ftree\-tail\-merge
+\&\-ftree\-vrp
 \&\-fvect\-cost\-model=very\-cheap\fR
 .Sp
 Please note the warning under \fB\-fgcse\fR about
@@ -11119,18 +11119,18 @@ invoking \fB\-O2\fR on programs that use computed gotos.
 Optimize yet more.  \fB\-O3\fR turns on all optimizations specified
 by \fB\-O2\fR and also turns on the following optimization flags:
 .Sp
-\&\fB\-fgcse\-after\-reload 
+\&\fB\-fgcse\-after\-reload
 \&\-fipa\-cp\-clone
-\&\-floop\-interchange 
-\&\-floop\-unroll\-and\-jam 
-\&\-fpeel\-loops 
-\&\-fpredictive\-commoning 
-\&\-fsplit\-loops 
-\&\-fsplit\-paths 
-\&\-ftree\-loop\-distribution 
-\&\-ftree\-partial\-pre 
-\&\-funswitch\-loops 
-\&\-fvect\-cost\-model=dynamic 
+\&\-floop\-interchange
+\&\-floop\-unroll\-and\-jam
+\&\-fpeel\-loops
+\&\-fpredictive\-commoning
+\&\-fsplit\-loops
+\&\-fsplit\-paths
+\&\-ftree\-loop\-distribution
+\&\-ftree\-partial\-pre
+\&\-funswitch\-loops
+\&\-fvect\-cost\-model=dynamic
 \&\-fversion\-loops\-for\-strides\fR
 .IP "\fB\-O0\fR" 4
 .IX Item "-O0"
@@ -11141,8 +11141,8 @@ results.  This is the default.
 Optimize for size.  \fB\-Os\fR enables all \fB\-O2\fR optimizations 
 except those that often increase code size:
 .Sp
-\&\fB\-falign\-functions  \-falign\-jumps 
-\&\-falign\-labels  \-falign\-loops 
+\&\fB\-falign\-functions  \-falign\-jumps
+\&\-falign\-labels  \-falign\-loops
 \&\-fprefetch\-loop\-arrays  \-freorder\-blocks\-algorithm=stc\fR
 .Sp
 It also enables \fB\-finline\-functions\fR, causes the compiler to tune for
@@ -11171,10 +11171,10 @@ optimization passes so that individual options controlling them have
 no effect.  Otherwise \fB\-Og\fR enables all \fB\-O1\fR 
 optimization flags except for those that may interfere with debugging:
 .Sp
-\&\fB\-fbranch\-count\-reg  \-fdelayed\-branch 
-\&\-fdse  \-fif\-conversion  \-fif\-conversion2  
-\&\-finline\-functions\-called\-once 
-\&\-fmove\-loop\-invariants  \-fmove\-loop\-stores  \-fssa\-phiopt 
+\&\fB\-fbranch\-count\-reg  \-fdelayed\-branch
+\&\-fdse  \-fif\-conversion  \-fif\-conversion2
+\&\-finline\-functions\-called\-once
+\&\-fmove\-loop\-invariants  \-fmove\-loop\-stores  \-fssa\-phiopt
 \&\-ftree\-bit\-ccp  \-ftree\-dse  \-ftree\-pta  \-ftree\-sra\fR
 .IP "\fB\-Oz\fR" 4
 .IX Item "-Oz"
@@ -12099,10 +12099,10 @@ As a result, when patching a function, all its callers and its clones'
 callers are impacted, therefore need to be patched as well.
 .Sp
 \&\fB\-flive\-patching=inline\-clone\fR disables the following optimization flags:
-\&\fB\-fwhole\-program  \-fipa\-pta  \-fipa\-reference  \-fipa\-ra 
-\&\-fipa\-icf  \-fipa\-icf\-functions  \-fipa\-icf\-variables 
-\&\-fipa\-bit\-cp  \-fipa\-vrp  \-fipa\-pure\-const 
-\&\-fipa\-reference\-addressable 
+\&\fB\-fwhole\-program  \-fipa\-pta  \-fipa\-reference  \-fipa\-ra
+\&\-fipa\-icf  \-fipa\-icf\-functions  \-fipa\-icf\-variables
+\&\-fipa\-bit\-cp  \-fipa\-vrp  \-fipa\-pure\-const
+\&\-fipa\-reference\-addressable
 \&\-fipa\-stack\-alignment \-fipa\-modref\fR
 .IP "\fBinline-only-static\fR" 4
 .IX Item "inline-only-static"
@@ -13269,12 +13269,12 @@ Enable profile feedback-directed optimizations,
 and the following optimizations, many of which
 are generally profitable only with profile feedback available:
 .Sp
-\&\fB\-fbranch\-probabilities  \-fprofile\-values 
-\&\-funroll\-loops  \-fpeel\-loops  \-ftracer  \-fvpt 
-\&\-finline\-functions  \-fipa\-cp  \-fipa\-cp\-clone  \-fipa\-bit\-cp 
-\&\-fpredictive\-commoning  \-fsplit\-loops  \-funswitch\-loops 
-\&\-fgcse\-after\-reload  \-ftree\-loop\-vectorize  \-ftree\-slp\-vectorize 
-\&\-fvect\-cost\-model=dynamic  \-ftree\-loop\-distribute\-patterns 
+\&\fB\-fbranch\-probabilities  \-fprofile\-values
+\&\-funroll\-loops  \-fpeel\-loops  \-ftracer  \-fvpt
+\&\-finline\-functions  \-fipa\-cp  \-fipa\-cp\-clone  \-fipa\-bit\-cp
+\&\-fpredictive\-commoning  \-fsplit\-loops  \-funswitch\-loops
+\&\-fgcse\-after\-reload  \-ftree\-loop\-vectorize  \-ftree\-slp\-vectorize
+\&\-fvect\-cost\-model=dynamic  \-ftree\-loop\-distribute\-patterns
 \&\-fprofile\-reorder\-functions\fR
 .Sp
 Before you can use this option, you must first generate profiling information.
@@ -13297,12 +13297,12 @@ Enable sampling-based feedback-directed optimizations,
 and the following optimizations,
 many of which are generally profitable only with profile feedback available:
 .Sp
-\&\fB\-fbranch\-probabilities  \-fprofile\-values 
-\&\-funroll\-loops  \-fpeel\-loops  \-ftracer  \-fvpt 
-\&\-finline\-functions  \-fipa\-cp  \-fipa\-cp\-clone  \-fipa\-bit\-cp 
-\&\-fpredictive\-commoning  \-fsplit\-loops  \-funswitch\-loops 
-\&\-fgcse\-after\-reload  \-ftree\-loop\-vectorize  \-ftree\-slp\-vectorize 
-\&\-fvect\-cost\-model=dynamic  \-ftree\-loop\-distribute\-patterns 
+\&\fB\-fbranch\-probabilities  \-fprofile\-values
+\&\-funroll\-loops  \-fpeel\-loops  \-ftracer  \-fvpt
+\&\-finline\-functions  \-fipa\-cp  \-fipa\-cp\-clone  \-fipa\-bit\-cp
+\&\-fpredictive\-commoning  \-fsplit\-loops  \-funswitch\-loops
+\&\-fgcse\-after\-reload  \-ftree\-loop\-vectorize  \-ftree\-slp\-vectorize
+\&\-fvect\-cost\-model=dynamic  \-ftree\-loop\-distribute\-patterns
 \&\-fprofile\-correction\fR
 .Sp
 \&\fIpath\fR is the name of a file containing AutoFDO profile information.
@@ -27582,50 +27582,50 @@ This option enables a predefined, named set of custom instruction encodings
 Currently, the following sets are defined:
 .Sp
 \&\fB\-mcustom\-fpu\-cfg=60\-1\fR is equivalent to:
-\&\fB\-mcustom\-fmuls=252 
-\&\-mcustom\-fadds=253 
-\&\-mcustom\-fsubs=254 
+\&\fB\-mcustom\-fmuls=252
+\&\-mcustom\-fadds=253
+\&\-mcustom\-fsubs=254
 \&\-fsingle\-precision\-constant\fR
 .Sp
 \&\fB\-mcustom\-fpu\-cfg=60\-2\fR is equivalent to:
-\&\fB\-mcustom\-fmuls=252 
-\&\-mcustom\-fadds=253 
-\&\-mcustom\-fsubs=254 
-\&\-mcustom\-fdivs=255 
+\&\fB\-mcustom\-fmuls=252
+\&\-mcustom\-fadds=253
+\&\-mcustom\-fsubs=254
+\&\-mcustom\-fdivs=255
 \&\-fsingle\-precision\-constant\fR
 .Sp
 \&\fB\-mcustom\-fpu\-cfg=72\-3\fR is equivalent to:
-\&\fB\-mcustom\-floatus=243 
-\&\-mcustom\-fixsi=244 
-\&\-mcustom\-floatis=245 
-\&\-mcustom\-fcmpgts=246 
-\&\-mcustom\-fcmples=249 
-\&\-mcustom\-fcmpeqs=250 
-\&\-mcustom\-fcmpnes=251 
-\&\-mcustom\-fmuls=252 
-\&\-mcustom\-fadds=253 
-\&\-mcustom\-fsubs=254 
-\&\-mcustom\-fdivs=255 
+\&\fB\-mcustom\-floatus=243
+\&\-mcustom\-fixsi=244
+\&\-mcustom\-floatis=245
+\&\-mcustom\-fcmpgts=246
+\&\-mcustom\-fcmples=249
+\&\-mcustom\-fcmpeqs=250
+\&\-mcustom\-fcmpnes=251
+\&\-mcustom\-fmuls=252
+\&\-mcustom\-fadds=253
+\&\-mcustom\-fsubs=254
+\&\-mcustom\-fdivs=255
 \&\-fsingle\-precision\-constant\fR
 .Sp
 \&\fB\-mcustom\-fpu\-cfg=fph2\fR is equivalent to:
-\&\fB\-mcustom\-fabss=224 
-\&\-mcustom\-fnegs=225 
-\&\-mcustom\-fcmpnes=226 
-\&\-mcustom\-fcmpeqs=227 
-\&\-mcustom\-fcmpges=228 
-\&\-mcustom\-fcmpgts=229 
-\&\-mcustom\-fcmples=230 
-\&\-mcustom\-fcmplts=231 
-\&\-mcustom\-fmaxs=232 
-\&\-mcustom\-fmins=233 
-\&\-mcustom\-round=248 
-\&\-mcustom\-fixsi=249 
-\&\-mcustom\-floatis=250 
-\&\-mcustom\-fsqrts=251 
-\&\-mcustom\-fmuls=252 
-\&\-mcustom\-fadds=253 
-\&\-mcustom\-fsubs=254 
+\&\fB\-mcustom\-fabss=224
+\&\-mcustom\-fnegs=225
+\&\-mcustom\-fcmpnes=226
+\&\-mcustom\-fcmpeqs=227
+\&\-mcustom\-fcmpges=228
+\&\-mcustom\-fcmpgts=229
+\&\-mcustom\-fcmples=230
+\&\-mcustom\-fcmplts=231
+\&\-mcustom\-fmaxs=232
+\&\-mcustom\-fmins=233
+\&\-mcustom\-round=248
+\&\-mcustom\-fixsi=249
+\&\-mcustom\-floatis=250
+\&\-mcustom\-fsqrts=251
+\&\-mcustom\-fmuls=252
+\&\-mcustom\-fadds=253
+\&\-mcustom\-fsubs=254
 \&\-mcustom\-fdivs=255\fR
 .Sp
 Custom instruction assignments given by individual
@@ -28404,13 +28404,13 @@ others.
 The \fB\-mcpu\fR options automatically enable or disable the
 following options:
 .Sp
-\&\fB\-maltivec  \-mfprnd  \-mhard\-float  \-mmfcrf  \-mmultiple 
-\&\-mpopcntb  \-mpopcntd  \-mpowerpc64 
-\&\-mpowerpc\-gpopt  \-mpowerpc\-gfxopt 
-\&\-mmulhw  \-mdlmzb  \-mmfpgpr  \-mvsx 
-\&\-mcrypto  \-mhtm  \-mpower8\-fusion  \-mpower8\-vector 
-\&\-mquad\-memory  \-mquad\-memory\-atomic  \-mfloat128 
-\&\-mfloat128\-hardware \-mprefixed \-mpcrel \-mmma 
+\&\fB\-maltivec  \-mfprnd  \-mhard\-float  \-mmfcrf  \-mmultiple
+\&\-mpopcntb  \-mpopcntd  \-mpowerpc64
+\&\-mpowerpc\-gpopt  \-mpowerpc\-gfxopt
+\&\-mmulhw  \-mdlmzb  \-mmfpgpr  \-mvsx
+\&\-mcrypto  \-mhtm  \-mpower8\-fusion  \-mpower8\-vector
+\&\-mquad\-memory  \-mquad\-memory\-atomic  \-mfloat128
+\&\-mfloat128\-hardware \-mprefixed \-mpcrel \-mmma
 \&\-mrop\-protect\fR
 .Sp
 The particular options set for any particular \s-1CPU\s0 varies between

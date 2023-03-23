@@ -1,6 +1,8 @@
 This is gcc.info, produced by makeinfo version 6.8 from gcc.texi.
 
-Copyright (C) 1988-2023 Free Software Foundation, Inc.
+This file documents the use of the GNU compilers.
+
+ Copyright (C) 1988-2023 Free Software Foundation, Inc.
 
  Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -12,13 +14,13 @@ Free Documentation License".
 
  (a) The FSF's Front-Cover Text is:
 
- A GNU Manual
+     A GNU Manual
 
  (b) The FSF's Back-Cover Text is:
 
- You have freedom to copy and modify this GNU Manual, like GNU software.
-Copies published by the Free Software Foundation raise funds for GNU
-development.
+     You have freedom to copy and modify this GNU Manual, like GNU
+     software.  Copies published by the Free Software Foundation raise
+     funds for GNU development.
 INFO-DIR-SECTION Software development
 START-INFO-DIR-ENTRY
 * gcc: (gcc).                  The GNU Compiler Collection.
@@ -29,6 +31,7 @@ START-INFO-DIR-ENTRY
 * lto-dump: (gcc) lto-dump.    'lto-dump'--Tool for
 dumping LTO object files.
 END-INFO-DIR-ENTRY
+
 
  This file documents the use of the GNU compilers.
 
@@ -44,13 +47,13 @@ Free Documentation License".
 
  (a) The FSF's Front-Cover Text is:
 
- A GNU Manual
+     A GNU Manual
 
  (b) The FSF's Back-Cover Text is:
 
- You have freedom to copy and modify this GNU Manual, like GNU software.
-Copies published by the Free Software Foundation raise funds for GNU
-development.
+     You have freedom to copy and modify this GNU Manual, like GNU
+     software.  Copies published by the Free Software Foundation raise
+     funds for GNU development.
 
 
 File: gcc.info,  Node: Top,  Next: G++ and GCC,  Up: (dir)
@@ -94,8 +97,7 @@ object files.
 * GNU Free Documentation License:: How you can copy and share this manual.
 * Contributors::    People who have contributed to GCC.
 
-* Option Index::    Index to command line options.
-* Keyword Index::   Index of concepts and symbol names.
+* Indices::         List of indices in this manual.
 
 
 File: gcc.info,  Node: G++ and GCC,  Next: Standards,  Up: Top
@@ -973,7 +975,7 @@ _Program Instrumentation Options_
           -finstrument-functions  -finstrument-functions-once
           -finstrument-functions-exclude-function-list=SYM,SYM,...
           -finstrument-functions-exclude-file-list=FILE,FILE,...
-     -fprofile-prefix-map=OLD=NEW
+          -fprofile-prefix-map=OLD=NEW
 
 _Preprocessor Options_
      *Note Options Controlling the Preprocessor: Preprocessor Options.
@@ -9165,7 +9167,6 @@ File: gcc.info,  Node: Static Analyzer Options,  Next: Debugging Options,  Prev:
 
      Enabling this option effectively enables the following warnings:
 
-
           -Wanalyzer-allocation-size
           -Wanalyzer-deref-before-check
           -Wanalyzer-double-fclose
@@ -9897,7 +9898,6 @@ special meaning to the analyzer, described in the GCC Internals manual.
 
      _Note:_ currently, '-fanalyzer-checker=taint' disables the
      following warnings from '-fanalyzer':
-
 
           -Wanalyzer-deref-before-check
           -Wanalyzer-double-fclose
@@ -33292,8 +33292,6 @@ File: gcc.info,  Node: Exception handling,  Prev: Conditionally-supported behavi
 
      The stack is not unwound before std::terminate is called.
 
- c Copyright (C) 1988-2023 Free Software Foundation, Inc.
-
 
 File: gcc.info,  Node: C Extensions,  Next: C++ Extensions,  Prev: C++ Implementation,  Up: Top
 
@@ -36404,7 +36402,7 @@ The following attributes are supported on most targets.
           '-Wnonnull-compare' option is enabled, a warning is issued.
           *Note Warning Options::.
         * The compiler may also perform optimizations based on the
-          knowledge that 'nonnul' parameters cannot be null.  This can
+          knowledge that 'nonnull' parameters cannot be null.  This can
           currently not be disabled other than by removing the nonnull
           attribute.
 
@@ -46528,12 +46526,18 @@ to be protected.  The list is ignored by GCC which treats it as empty.
 GCC interprets an empty list as meaning that all globally accessible
 variables should be protected.
 
-'TYPE __sync_fetch_and_add (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_fetch_and_sub (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_fetch_and_or (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_fetch_and_and (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_fetch_and_xor (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_fetch_and_nand (TYPE *ptr, TYPE value, ...)'
+ -- Built-in Function: TYPE __sync_fetch_and_add (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_fetch_and_sub (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_fetch_and_or (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_fetch_and_and (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_fetch_and_xor (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_fetch_and_nand (TYPE *ptr, TYPE
+          value, ...)
      These built-in functions perform the operation suggested by the
      name, and returns the value that had previously been in memory.
      That is, operations on integer operands have the following
@@ -46550,12 +46554,18 @@ variables should be protected.
      _Note:_ GCC 4.4 and later implement '__sync_fetch_and_nand' as
      '*ptr = ~(tmp & value)' instead of '*ptr = ~tmp & value'.
 
-'TYPE __sync_add_and_fetch (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_sub_and_fetch (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_or_and_fetch (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_and_and_fetch (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_xor_and_fetch (TYPE *ptr, TYPE value, ...)'
-'TYPE __sync_nand_and_fetch (TYPE *ptr, TYPE value, ...)'
+ -- Built-in Function: TYPE __sync_add_and_fetch (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_sub_and_fetch (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_or_and_fetch (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_and_and_fetch (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_xor_and_fetch (TYPE *ptr, TYPE value,
+          ...)
+ -- Built-in Function: TYPE __sync_nand_and_fetch (TYPE *ptr, TYPE
+          value, ...)
      These built-in functions perform the operation suggested by the
      name, and return the new value.  That is, operations on integer
      operands have the following semantics.  Operations on pointer
@@ -46570,8 +46580,10 @@ variables should be protected.
      _Note:_ GCC 4.4 and later implement '__sync_nand_and_fetch' as
      '*ptr = ~(*ptr & value)' instead of '*ptr = ~*ptr & value'.
 
-'bool __sync_bool_compare_and_swap (TYPE *ptr, TYPE oldval, TYPE newval, ...)'
-'TYPE __sync_val_compare_and_swap (TYPE *ptr, TYPE oldval, TYPE newval, ...)'
+ -- Built-in Function: bool __sync_bool_compare_and_swap (TYPE *ptr,
+          TYPE oldval, TYPE newval, ...)
+ -- Built-in Function: TYPE __sync_val_compare_and_swap (TYPE *ptr, TYPE
+          oldval, TYPE newval, ...)
      These built-in functions perform an atomic compare and swap.  That
      is, if the current value of '*PTR' is OLDVAL, then write NEWVAL
      into '*PTR'.
@@ -46580,10 +46592,11 @@ variables should be protected.
      and NEWVAL is written.  The "val" version returns the contents of
      '*PTR' before the operation.
 
-'__sync_synchronize (...)'
+ -- Built-in Function: void __sync_synchronize (...)
      This built-in function issues a full memory barrier.
 
-'TYPE __sync_lock_test_and_set (TYPE *ptr, TYPE value, ...)'
+ -- Built-in Function: TYPE __sync_lock_test_and_set (TYPE *ptr, TYPE
+          value, ...)
      This built-in function, as described by Intel, is not a traditional
      test-and-set operation, but rather an atomic exchange operation.
      It writes VALUE into '*PTR', and returns the previous contents of
@@ -46601,7 +46614,7 @@ variables should be protected.
      previous memory stores may not be globally visible yet, and
      previous memory loads may not yet be satisfied.
 
-'void __sync_lock_release (TYPE *ptr, ...)'
+ -- Built-in Function: void __sync_lock_release (TYPE *ptr, ...)
      This built-in function releases the lock acquired by
      '__sync_lock_test_and_set'.  Normally this means writing the
      constant 0 to '*PTR'.
@@ -47180,34 +47193,37 @@ overflowed, it issues a warning.
 'memmove', 'memset', 'strcpy', 'stpcpy', 'strncpy', 'strcat' and
 'strncat'.
 
- There are also checking built-in functions for formatted output
-functions.
-     int __builtin___sprintf_chk (char *s, int flag, size_t os, const char *fmt, ...);
-     int __builtin___snprintf_chk (char *s, size_t maxlen, int flag, size_t os,
-                                   const char *fmt, ...);
-     int __builtin___vsprintf_chk (char *s, int flag, size_t os, const char *fmt,
-                                   va_list ap);
-     int __builtin___vsnprintf_chk (char *s, size_t maxlen, int flag, size_t os,
-                                    const char *fmt, va_list ap);
+6.58.2.1 Formatted Output Function Checking
+...........................................
 
- The added FLAG argument is passed unchanged to '__sprintf_chk' etc.
-functions and can contain implementation specific flags on what
-additional security measures the checking function might take, such as
-handling '%n' differently.
+ -- Built-in Function: int __builtin___sprintf_chk (char *S, int FLAG,
+          size_t OS, const char *FMT, ...)
+ -- Built-in Function: int __builtin___snprintf_chk (char *S, size_t
+          MAXLEN, int FLAG, size_t OS, const char *FMT, ...)
+ -- Built-in Function: int __builtin___vsprintf_chk (char *S, int FLAG,
+          size_t OS, const char *FMT, va_list AP)
+ -- Built-in Function: int __builtin___vsnprintf_chk (char *S, size_t
+          MAXLEN, int FLAG, size_t OS, const char *FMT, va_list AP)
 
- The OS argument is the object size S points to, like in the other
-built-in functions.  There is a small difference in the behavior though,
-if OS is '(size_t) -1', the built-in functions are optimized into the
-non-checking functions only if FLAG is 0, otherwise the checking
-function is called with OS argument set to '(size_t) -1'.
+     The added FLAG argument is passed unchanged to '__sprintf_chk' etc.
+     functions and can contain implementation specific flags on what
+     additional security measures the checking function might take, such
+     as handling '%n' differently.
 
- In addition to this, there are checking built-in functions
-'__builtin___printf_chk', '__builtin___vprintf_chk',
-'__builtin___fprintf_chk' and '__builtin___vfprintf_chk'.  These have
-just one additional argument, FLAG, right before format string FMT.  If
-the compiler is able to optimize them to 'fputc' etc. functions, it
-does, otherwise the checking function is called and the FLAG argument
-passed to it.
+     The OS argument is the object size S points to, like in the other
+     built-in functions.  There is a small difference in the behavior
+     though, if OS is '(size_t) -1', the built-in functions are
+     optimized into the non-checking functions only if FLAG is 0,
+     otherwise the checking function is called with OS argument set to
+     '(size_t) -1'.
+
+     In addition to this, there are checking built-in functions
+     '__builtin___printf_chk', '__builtin___vprintf_chk',
+     '__builtin___fprintf_chk' and '__builtin___vfprintf_chk'.  These
+     have just one additional argument, FLAG, right before format string
+     FMT.  If the compiler is able to optimize them to 'fputc' etc.
+     functions, it does, otherwise the checking function is called and
+     the FLAG argument passed to it.
 
 
 File: gcc.info,  Node: Other Builtins,  Next: Target Builtins,  Prev: Object Size Checking,  Up: C Extensions
@@ -47347,7 +47363,7 @@ available for all target libcs, but in all cases they will gracefully
 fallback to libc calls.  These built-in functions appear both with and
 without the '__builtin_' prefix.
 
- -- Built-in Function: void *__builtin_alloca (size_t size)
+ -- Built-in Function: void * __builtin_alloca (size_t size)
      The '__builtin_alloca' function must be called at block scope.  The
      function allocates an object SIZE bytes large on the stack of the
      calling function.  The object is aligned on the default stack
@@ -47384,7 +47400,7 @@ without the '__builtin_' prefix.
      programs where GCC provides them as an extension.  *Note Variable
      Length::, for details.
 
- -- Built-in Function: void *__builtin_alloca_with_align (size_t size,
+ -- Built-in Function: void * __builtin_alloca_with_align (size_t size,
           size_t alignment)
      The '__builtin_alloca_with_align' function must be called at block
      scope.  The function allocates an object SIZE bytes large on the
@@ -47429,8 +47445,8 @@ without the '__builtin_' prefix.
      instead, in both C99 and C++ programs where GCC provides them as an
      extension.  *Note Variable Length::, for details.
 
- -- Built-in Function: void *__builtin_alloca_with_align_and_max (size_t
-          size, size_t alignment, size_t max_size)
+ -- Built-in Function: void * __builtin_alloca_with_align_and_max
+          (size_t size, size_t alignment, size_t max_size)
      Similar to '__builtin_alloca_with_align' but takes an extra
      argument specifying an upper bound for SIZE in case its value
      cannot be computed at compile time, for use by '-fstack-usage',
@@ -48261,17 +48277,11 @@ without the '__builtin_' prefix.
      'unsigned long long'.
 
  -- Built-in Function: double __builtin_powi (double, int)
+ -- Built-in Function: float __builtin_powif (float, int)
+ -- Built-in Function: long double __builtin_powil (long double, int)
      Returns the first argument raised to the power of the second.
      Unlike the 'pow' function no guarantees about precision and
      rounding are made.
-
- -- Built-in Function: float __builtin_powif (float, int)
-     Similar to '__builtin_powi', except the argument and return types
-     are 'float'.
-
- -- Built-in Function: long double __builtin_powil (long double, int)
-     Similar to '__builtin_powi', except the argument and return types
-     are 'long double'.
 
  -- Built-in Function: uint16_t __builtin_bswap16 (uint16_t x)
      Returns X with the order of the bytes reversed; for example,
@@ -51592,46 +51602,53 @@ for '-mcpu=power8' in addition to the '-misel' option.
  The following built-in functions are available on Linux 64-bit systems
 that use the ISA 3.0 instruction set ('-mcpu=power9'):
 
-'__float128 __builtin_addf128_round_to_odd (__float128, __float128)'
+ -- Built-in Function: __float128 __builtin_addf128_round_to_odd
+          (__float128, __float128)
      Perform a 128-bit IEEE floating point add using round to odd as the
      rounding mode.
 
-'__float128 __builtin_subf128_round_to_odd (__float128, __float128)'
+ -- Built-in Function: __float128 __builtin_subf128_round_to_odd
+          (__float128, __float128)
      Perform a 128-bit IEEE floating point subtract using round to odd
      as the rounding mode.
 
-'__float128 __builtin_mulf128_round_to_odd (__float128, __float128)'
+ -- Built-in Function: __float128 __builtin_mulf128_round_to_odd
+          (__float128, __float128)
      Perform a 128-bit IEEE floating point multiply using round to odd
      as the rounding mode.
 
-'__float128 __builtin_divf128_round_to_odd (__float128, __float128)'
+ -- Built-in Function: __float128 __builtin_divf128_round_to_odd
+          (__float128, __float128)
      Perform a 128-bit IEEE floating point divide using round to odd as
      the rounding mode.
 
-'__float128 __builtin_sqrtf128_round_to_odd (__float128)'
+ -- Built-in Function: __float128 __builtin_sqrtf128_round_to_odd
+          (__float128)
      Perform a 128-bit IEEE floating point square root using round to
      odd as the rounding mode.
 
-'__float128 __builtin_fmaf128_round_to_odd (__float128, __float128, __float128)'
+ -- Built-in Function: __float128 __builtin_fmaf128_round_to_odd
+          (__float128, __float128, __float128)
      Perform a 128-bit IEEE floating point fused multiply and add
      operation using round to odd as the rounding mode.
 
-'double __builtin_truncf128_round_to_odd (__float128)'
+ -- Built-in Function: double __builtin_truncf128_round_to_odd
+          (__float128)
      Convert a 128-bit IEEE floating point value to 'double' using round
      to odd as the rounding mode.
 
  The following additional built-in functions are also available for the
 PowerPC family of processors, starting with ISA 3.0 or later:
-     long long __builtin_darn (void);
-     long long __builtin_darn_raw (void);
-     int __builtin_darn_32 (void);
 
- The '__builtin_darn' and '__builtin_darn_raw' functions require a
-64-bit environment supporting ISA 3.0 or later.  The '__builtin_darn'
-function provides a 64-bit conditioned random number.  The
-'__builtin_darn_raw' function provides a 64-bit raw random number.  The
-'__builtin_darn_32' function provides a 32-bit conditioned random
-number.
+ -- Built-in Function: long long __builtin_darn (void)
+ -- Built-in Function: long long __builtin_darn_raw (void)
+ -- Built-in Function: int __builtin_darn_32 (void)
+     The '__builtin_darn' and '__builtin_darn_raw' functions require a
+     64-bit environment supporting ISA 3.0 or later.  The
+     '__builtin_darn' function provides a 64-bit conditioned random
+     number.  The '__builtin_darn_raw' function provides a 64-bit raw
+     random number.  The '__builtin_darn_32' function provides a 32-bit
+     conditioned random number.
 
  The following additional built-in functions are also available for the
 PowerPC family of processors, starting with ISA 3.0 or later:
@@ -51726,69 +51743,72 @@ options are explicitly disabled on the command line, specifying option
  The following built-in functions are available on Linux 64-bit systems
 that use a future architecture instruction set ('-mcpu=power10'):
 
-unsigned long long
-__builtin_cfuged (unsigned long long, unsigned long long)
- Perform a 64-bit centrifuge operation, as if implemented by the
-'cfuged' instruction.
+ -- Built-in Function: unsigned long long __builtin_cfuged (unsigned
+          long long, unsigned long long)
+     Perform a 64-bit centrifuge operation, as if implemented by the
+     'cfuged' instruction.
 
-unsigned long long
-__builtin_cntlzdm (unsigned long long, unsigned long long)
- Perform a 64-bit count leading zeros operation under mask, as if
-implemented by the 'cntlzdm' instruction.
+ -- Built-in Function: unsigned long long __builtin_cntlzdm (unsigned
+          long long, unsigned long long)
+     Perform a 64-bit count leading zeros operation under mask, as if
+     implemented by the 'cntlzdm' instruction.
 
-unsigned long long
-__builtin_cnttzdm (unsigned long long, unsigned long long)
- Perform a 64-bit count trailing zeros operation under mask, as if
-implemented by the 'cnttzdm' instruction.
+ -- Built-in Function: unsigned long long __builtin_cnttzdm (unsigned
+          long long, unsigned long long)
+     Perform a 64-bit count trailing zeros operation under mask, as if
+     implemented by the 'cnttzdm' instruction.
 
-unsigned long long
-__builtin_pdepd (unsigned long long, unsigned long long)
- Perform a 64-bit parallel bits deposit operation, as if implemented by
-the 'pdepd' instruction.
+ -- Built-in Function: unsigned long long __builtin_pdepd (unsigned long
+          long, unsigned long long)
+     Perform a 64-bit parallel bits deposit operation, as if implemented
+     by the 'pdepd' instruction.
 
-unsigned long long
-__builtin_pextd (unsigned long long, unsigned long long)
- Perform a 64-bit parallel bits extract operation, as if implemented by
-the 'pextd' instruction.
+ -- Built-in Function: unsigned long long __builtin_pextd (unsigned long
+          long, unsigned long long)
+     Perform a 64-bit parallel bits extract operation, as if implemented
+     by the 'pextd' instruction.
 
-vector signed __int128 vsx_xl_sext (signed long long, signed char *)
+ -- Built-in Function: vector signed __int128 vsx_xl_sext (signed long
+          long, signed char *)
+ -- Built-in Function: vector signed __int128 vsx_xl_sext (signed long
+          long, signed short *)
+ -- Built-in Function: vector signed __int128 vsx_xl_sext (signed long
+          long, signed int *)
+ -- Built-in Function: vector signed __int128 vsx_xl_sext (signed long
+          long, signed long long *)
+ -- Built-in Function: vector unsigned __int128 vsx_xl_zext (signed long
+          long, unsigned char *)
+ -- Built-in Function: vector unsigned __int128 vsx_xl_zext (signed long
+          long, unsigned short *)
+ -- Built-in Function: vector unsigned __int128 vsx_xl_zext (signed long
+          long, unsigned int *)
+ -- Built-in Function: vector unsigned __int128 vsx_xl_zext (signed long
+          long, unsigned long long *)
 
-vector signed __int128 vsx_xl_sext (signed long long, signed short *)
+     Load (and sign extend) to an __int128 vector, as if implemented by
+     the ISA 3.1 'lxvrbx', 'lxvrhx', 'lxvrwx', and 'lxvrdx'
+     instructions.
 
-vector signed __int128 vsx_xl_sext (signed long long, signed int *)
+ -- Built-in Function: void vec_xst_trunc (vector signed __int128,
+          signed long long, signed char *)
+ -- Built-in Function: void vec_xst_trunc (vector signed __int128,
+          signed long long, signed short *)
+ -- Built-in Function: void vec_xst_trunc (vector signed __int128,
+          signed long long, signed int *)
+ -- Built-in Function: void vec_xst_trunc (vector signed __int128,
+          signed long long, signed long long *)
+ -- Built-in Function: void vec_xst_trunc (vector unsigned __int128,
+          signed long long, unsigned char *)
+ -- Built-in Function: void vec_xst_trunc (vector unsigned __int128,
+          signed long long, unsigned short *)
+ -- Built-in Function: void vec_xst_trunc (vector unsigned __int128,
+          signed long long, unsigned int *)
+ -- Built-in Function: void vec_xst_trunc (vector unsigned __int128,
+          signed long long, unsigned long long *)
 
-vector signed __int128 vsx_xl_sext (signed long long, signed long long *)
-
-vector unsigned __int128 vsx_xl_zext (signed long long, unsigned char *)
-
-vector unsigned __int128 vsx_xl_zext (signed long long, unsigned short *)
-
-vector unsigned __int128 vsx_xl_zext (signed long long, unsigned int *)
-
-vector unsigned __int128 vsx_xl_zext (signed long long, unsigned long long *)
-
- Load (and sign extend) to an __int128 vector, as if implemented by the
-ISA 3.1 'lxvrbx', 'lxvrhx', 'lxvrwx', and 'lxvrdx' instructions.
-
-void vec_xst_trunc (vector signed __int128, signed long long, signed char *)
-
-void vec_xst_trunc (vector signed __int128, signed long long, signed short *)
-
-void vec_xst_trunc (vector signed __int128, signed long long, signed int *)
-
-void vec_xst_trunc (vector signed __int128, signed long long, signed long long *)
-
-void vec_xst_trunc (vector unsigned __int128, signed long long, unsigned char *)
-
-void vec_xst_trunc (vector unsigned __int128, signed long long, unsigned short *)
-
-void vec_xst_trunc (vector unsigned __int128, signed long long, unsigned int *)
-
-void vec_xst_trunc (vector unsigned __int128, signed long long, unsigned long long *)
-
- Truncate and store the rightmost element of a vector, as if implemented
-by the ISA 3.1 'stxvrbx', 'stxvrhx', 'stxvrwx', and 'stxvrdx'
-instructions.
+     Truncate and store the rightmost element of a vector, as if
+     implemented by the ISA 3.1 'stxvrbx', 'stxvrhx', 'stxvrwx', and
+     'stxvrdx' instructions.
 
 
 File: gcc.info,  Node: PowerPC AltiVec/VSX Built-in Functions,  Next: PowerPC Hardware Transactional Memory Built-in Functions,  Prev: Basic PowerPC Built-in Functions,  Up: Target Builtins
@@ -54117,7 +54137,7 @@ special PRU instructions.
 
  The built-in functions supported are:
 
-'__delay_cycles (long long CYCLES)'
+ -- Built-in Function: void __delay_cycles (constant long long CYCLES)
      This inserts an instruction sequence that takes exactly CYCLES
      cycles (between 0 and 0xffffffff) to complete.  The inserted
      sequence may use jumps, loops, or no-ops, and does not interfere
@@ -54126,10 +54146,11 @@ special PRU instructions.
      not a variable that may be optimized to a constant later.  The
      number of cycles delayed by this builtin is exact.
 
-'__halt (void)'
+ -- Built-in Function: void __halt (void)
      This inserts a HALT instruction to stop processor execution.
 
-'unsigned int __lmbd (unsigned int WORDVAL, unsigned int BITVAL)'
+ -- Built-in Function: unsigned int __lmbd (unsigned int WORDVAL,
+          unsigned int BITVAL)
      This inserts LMBD instruction to calculate the left-most bit with
      value BITVAL in value WORDVAL.  Only the least significant bit of
      BITVAL is taken into account.
@@ -54280,16 +54301,19 @@ File: gcc.info,  Node: S/390 System z Built-in Functions,  Next: SH Built-in Fun
  Macros for the possible return codes of tbegin are defined in the
 'htmintrin.h' header file:
 
-'_HTM_TBEGIN_STARTED'
+ -- Macro: _HTM_TBEGIN_STARTED
      'tbegin' has been executed as part of normal processing.  The
      transaction body is supposed to be executed.
-'_HTM_TBEGIN_INDETERMINATE'
+
+ -- Macro: _HTM_TBEGIN_INDETERMINATE
      The transaction was aborted due to an indeterminate condition which
      might be persistent.
-'_HTM_TBEGIN_TRANSIENT'
+
+ -- Macro: _HTM_TBEGIN_TRANSIENT
      The transaction aborted due to a transient failure.  The
      transaction should be re-executed in that case.
-'_HTM_TBEGIN_PERSISTENT'
+
+ -- Macro: _HTM_TBEGIN_PERSISTENT
      The transaction aborted due to a persistent failure.  Re-execution
      under same circumstances will not be productive.
 
@@ -54684,31 +54708,32 @@ these use mode 'TI'.
 functions for efficient use of 'TF' ('__float128') 128-bit floating
 point and 'TC' 128-bit complex floating-point values.
 
- The following floating-point built-in functions are always available.
-All of them implement the function that is part of the name.
+ The following floating-point built-in functions are always available:
 
-     __float128 __builtin_fabsq (__float128)
-     __float128 __builtin_copysignq (__float128, __float128)
+ -- Built-in Function: __float128 __builtin_fabsq (__float128 X))
+     Computes the absolute value of X.
 
- The following built-in functions are always available.
+ -- Built-in Function: __float128 __builtin_copysignq (__float128 X,
+          __float128 Y)
+     Copies the sign of Y into X and returns the new value of X.
 
-'__float128 __builtin_infq (void)'
+ -- Built-in Function: __float128 __builtin_infq (void)
      Similar to '__builtin_inf', except the return type is '__float128'.
 
-'__float128 __builtin_huge_valq (void)'
+ -- Built-in Function: __float128 __builtin_huge_valq (void)
      Similar to '__builtin_huge_val', except the return type is
      '__float128'.
 
-'__float128 __builtin_nanq (void)'
+ -- Built-in Function: __float128 __builtin_nanq (void)
      Similar to '__builtin_nan', except the return type is '__float128'.
 
-'__float128 __builtin_nansq (void)'
+ -- Built-in Function: __float128 __builtin_nansq (void)
      Similar to '__builtin_nans', except the return type is
      '__float128'.
 
  The following built-in function is always available.
 
-'void __builtin_ia32_pause (void)'
+ -- Built-in Function: void __builtin_ia32_pause (void)
      Generates the 'pause' machine instruction with a compiler memory
      barrier.
 
@@ -55155,19 +55180,25 @@ All of them generate the machine instruction that is part of the name.
 
  The following built-in functions are available when '-msse' is used.
 
-'v4sf __builtin_ia32_loadups (float *)'
+ -- Built-in Function: v4sf __builtin_ia32_loadups (float *)
      Generates the 'movups' machine instruction as a load from memory.
-'void __builtin_ia32_storeups (float *, v4sf)'
+
+ -- Built-in Function: void __builtin_ia32_storeups (float *, v4sf)
      Generates the 'movups' machine instruction as a store to memory.
-'v4sf __builtin_ia32_loadss (float *)'
+
+ -- Built-in Function: v4sf __builtin_ia32_loadss (float *)
      Generates the 'movss' machine instruction as a load from memory.
-'v4sf __builtin_ia32_loadhps (v4sf, const v2sf *)'
+
+ -- Built-in Function: v4sf __builtin_ia32_loadhps (v4sf, const v2sf *)
      Generates the 'movhps' machine instruction as a load from memory.
-'v4sf __builtin_ia32_loadlps (v4sf, const v2sf *)'
+
+ -- Built-in Function: v4sf __builtin_ia32_loadlps (v4sf, const v2sf *)
      Generates the 'movlps' machine instruction as a load from memory
-'void __builtin_ia32_storehps (v2sf *, v4sf)'
+
+ -- Built-in Function: void __builtin_ia32_storehps (v2sf *, v4sf)
      Generates the 'movhps' machine instruction as a store to memory.
-'void __builtin_ia32_storelps (v2sf *, v4sf)'
+
+ -- Built-in Function: void __builtin_ia32_storelps (v2sf *, v4sf)
      Generates the 'movlps' machine instruction as a store to memory.
 
  The following built-in functions are available when '-msse2' is used.
@@ -55433,25 +55464,38 @@ All of them generate the machine instruction that is part of the name.
 
  The following built-in functions are available when '-msse4.1' is used.
 
-'v4sf __builtin_ia32_vec_set_v4sf (v4sf, float, const int)'
+ -- Built-in Function: v4sf __builtin_ia32_vec_set_v4sf (v4sf, float,
+          const int)
      Generates the 'insertps' machine instruction.
-'int __builtin_ia32_vec_ext_v16qi (v16qi, const int)'
+
+ -- Built-in Function: int __builtin_ia32_vec_ext_v16qi (v16qi, const
+          int)
      Generates the 'pextrb' machine instruction.
-'v16qi __builtin_ia32_vec_set_v16qi (v16qi, int, const int)'
+
+ -- Built-in Function: v16qi __builtin_ia32_vec_set_v16qi (v16qi, int,
+          const int)
      Generates the 'pinsrb' machine instruction.
-'v4si __builtin_ia32_vec_set_v4si (v4si, int, const int)'
+
+ -- Built-in Function: v4si __builtin_ia32_vec_set_v4si (v4si, int,
+          const int)
      Generates the 'pinsrd' machine instruction.
-'v2di __builtin_ia32_vec_set_v2di (v2di, long long, const int)'
+
+ -- Built-in Function: v2di __builtin_ia32_vec_set_v2di (v2di, long
+          long, const int)
      Generates the 'pinsrq' machine instruction in 64bit mode.
 
  The following built-in functions are changed to generate new SSE4.1
 instructions when '-msse4.1' is used.
 
-'float __builtin_ia32_vec_ext_v4sf (v4sf, const int)'
+ -- Built-in Function: float __builtin_ia32_vec_ext_v4sf (v4sf, const
+          int)
      Generates the 'extractps' machine instruction.
-'int __builtin_ia32_vec_ext_v4si (v4si, const int)'
+
+ -- Built-in Function: int __builtin_ia32_vec_ext_v4si (v4si, const int)
      Generates the 'pextrd' machine instruction.
-'long long __builtin_ia32_vec_ext_v2di (v2di, const int)'
+
+ -- Built-in Function: long long __builtin_ia32_vec_ext_v2di (v2di,
+          const int)
      Generates the 'pextrq' machine instruction in 64bit mode.
 
  The following built-in functions are available when '-msse4.2' is used.
@@ -55475,24 +55519,33 @@ All of them generate the machine instruction that is part of the name.
 
  The following built-in functions are available when '-msse4.2' is used.
 
-'unsigned int __builtin_ia32_crc32qi (unsigned int, unsigned char)'
+ -- Built-in Function: unsigned int __builtin_ia32_crc32qi (unsigned
+          int, unsigned char)
      Generates the 'crc32b' machine instruction.
-'unsigned int __builtin_ia32_crc32hi (unsigned int, unsigned short)'
+
+ -- Built-in Function: unsigned int __builtin_ia32_crc32hi (unsigned
+          int, unsigned short)
      Generates the 'crc32w' machine instruction.
-'unsigned int __builtin_ia32_crc32si (unsigned int, unsigned int)'
+
+ -- Built-in Function: unsigned int __builtin_ia32_crc32si (unsigned
+          int, unsigned int)
      Generates the 'crc32l' machine instruction.
-'unsigned long long __builtin_ia32_crc32di (unsigned long long, unsigned long long)'
+
+ -- Built-in Function: unsigned long long __builtin_ia32_crc32di
+          (unsigned long long, unsigned long long)
      Generates the 'crc32q' machine instruction.
 
  The following built-in functions are changed to generate new SSE4.2
 instructions when '-msse4.2' is used.
 
-'int __builtin_popcount (unsigned int)'
+ -- Built-in Function: int __builtin_popcount (unsigned int)
      Generates the 'popcntl' machine instruction.
-'int __builtin_popcountl (unsigned long)'
+
+ -- Built-in Function: int __builtin_popcountl (unsigned long)
      Generates the 'popcntl' or 'popcntq' machine instruction, depending
      on the size of 'unsigned long'.
-'int __builtin_popcountll (unsigned long long)'
+
+ -- Built-in Function: int __builtin_popcountll (unsigned long long)
      Generates the 'popcntq' machine instruction.
 
  The following built-in functions are available when '-mavx' is used.
@@ -55814,7 +55867,8 @@ All of them generate the machine instruction that is part of the name.
 
  The following built-in function is available when '-mpclmul' is used.
 
-'v2di __builtin_ia32_pclmulqdq128 (v2di, v2di, const int)'
+ -- Built-in Function: v2di __builtin_ia32_pclmulqdq128 (v2di, v2di,
+          const int)
      Generates the 'pclmulqdq' machine instruction.
 
  The following built-in function is available when '-mfsgsbase' is used.
@@ -56183,21 +56237,26 @@ and suitable fallback code always needs to be supplied.
      code encoded as a bit mask is returned.  The following macros are
      defined:
 
-     '_XABORT_EXPLICIT'
+      -- Macro: _XABORT_EXPLICIT
           Transaction was explicitly aborted with '_xabort'.  The
           parameter passed to '_xabort' is available with
           '_XABORT_CODE(status)'.
-     '_XABORT_RETRY'
+
+      -- Macro: _XABORT_RETRY
           Transaction retry is possible.
-     '_XABORT_CONFLICT'
+
+      -- Macro: _XABORT_CONFLICT
           Transaction abort due to a memory conflict with another
           thread.
-     '_XABORT_CAPACITY'
+
+      -- Macro: _XABORT_CAPACITY
           Transaction abort due to the transaction using too much
           memory.
-     '_XABORT_DEBUG'
+
+      -- Macro: _XABORT_DEBUG
           Transaction abort due to a debug trap.
-     '_XABORT_NESTED'
+
+      -- Macro: _XABORT_NESTED
           Transaction abort in an inner nested transaction.
 
      There is no guarantee any transaction ever succeeds, so there
@@ -57800,150 +57859,147 @@ The C++ front end implements syntactic extensions that allow
 compile-time determination of various characteristics of a type (or of a
 pair of types).
 
-'__has_nothrow_assign (type)'
-     If 'type' is 'const'-qualified or is a reference type then the
-     trait is 'false'.  Otherwise if '__has_trivial_assign (type)' is
-     'true' then the trait is 'true', else if 'type' is a cv-qualified
-     class or union type with copy assignment operators that are known
-     not to throw an exception then the trait is 'true', else it is
-     'false'.  Requires: 'type' shall be a complete type, (possibly
-     cv-qualified) 'void', or an array of unknown bound.
+ -- Built-in Function: bool __has_nothrow_assign (TYPE)
+     If TYPE is 'const'-qualified or is a reference type then the trait
+     is 'false'.  Otherwise if '__has_trivial_assign (type)' is 'true'
+     then the trait is 'true', else if TYPE is a cv-qualified class or
+     union type with copy assignment operators that are known not to
+     throw an exception then the trait is 'true', else it is 'false'.
+     Requires: TYPE shall be a complete type, (possibly cv-qualified)
+     'void', or an array of unknown bound.
 
-'__has_nothrow_copy (type)'
+ -- Built-in Function: bool __has_nothrow_copy (TYPE)
      If '__has_trivial_copy (type)' is 'true' then the trait is 'true',
-     else if 'type' is a cv-qualified class or union type with copy
+     else if TYPE is a cv-qualified class or union type with copy
      constructors that are known not to throw an exception then the
-     trait is 'true', else it is 'false'.  Requires: 'type' shall be a
+     trait is 'true', else it is 'false'.  Requires: TYPE shall be a
      complete type, (possibly cv-qualified) 'void', or an array of
      unknown bound.
 
-'__has_nothrow_constructor (type)'
+ -- Built-in Function: bool __has_nothrow_constructor (TYPE)
      If '__has_trivial_constructor (type)' is 'true' then the trait is
-     'true', else if 'type' is a cv class or union type (or array
-     thereof) with a default constructor that is known not to throw an
-     exception then the trait is 'true', else it is 'false'.  Requires:
-     'type' shall be a complete type, (possibly cv-qualified) 'void', or
-     an array of unknown bound.
-
-'__has_trivial_assign (type)'
-     If 'type' is 'const'- qualified or is a reference type then the
-     trait is 'false'.  Otherwise if '__is_trivial (type)' is 'true'
-     then the trait is 'true', else if 'type' is a cv-qualified class or
-     union type with a trivial copy assignment ([class.copy]) then the
-     trait is 'true', else it is 'false'.  Requires: 'type' shall be a
-     complete type, (possibly cv-qualified) 'void', or an array of
+     'true', else if TYPE is a cv class or union type (or array thereof)
+     with a default constructor that is known not to throw an exception
+     then the trait is 'true', else it is 'false'.  Requires: TYPE shall
+     be a complete type, (possibly cv-qualified) 'void', or an array of
      unknown bound.
 
-'__has_trivial_copy (type)'
-     If '__is_trivial (type)' is 'true' or 'type' is a reference type
-     then the trait is 'true', else if 'type' is a cv class or union
-     type with a trivial copy constructor ([class.copy]) then the trait
-     is 'true', else it is 'false'.  Requires: 'type' shall be a
-     complete type, (possibly cv-qualified) 'void', or an array of
-     unknown bound.
-
-'__has_trivial_constructor (type)'
-     If '__is_trivial (type)' is 'true' then the trait is 'true', else
-     if 'type' is a cv-qualified class or union type (or array thereof)
-     with a trivial default constructor ([class.ctor]) then the trait is
-     'true', else it is 'false'.  Requires: 'type' shall be a complete
+ -- Built-in Function: bool __has_trivial_assign (TYPE)
+     If TYPE is 'const'- qualified or is a reference type then the trait
+     is 'false'.  Otherwise if '__is_trivial (type)' is 'true' then the
+     trait is 'true', else if TYPE is a cv-qualified class or union type
+     with a trivial copy assignment ([class.copy]) then the trait is
+     'true', else it is 'false'.  Requires: TYPE shall be a complete
      type, (possibly cv-qualified) 'void', or an array of unknown bound.
 
-'__has_trivial_destructor (type)'
-     If '__is_trivial (type)' is 'true' or 'type' is a reference type
-     then the trait is 'true', else if 'type' is a cv class or union
-     type (or array thereof) with a trivial destructor ([class.dtor])
-     then the trait is 'true', else it is 'false'.  Requires: 'type'
-     shall be a complete type, (possibly cv-qualified) 'void', or an
-     array of unknown bound.
-
-'__has_virtual_destructor (type)'
-     If 'type' is a class type with a virtual destructor ([class.dtor])
-     then the trait is 'true', else it is 'false'.  Requires: If 'type'
-     is a non-union class type, it shall be a complete type.
-
-'__is_abstract (type)'
-     If 'type' is an abstract class ([class.abstract]) then the trait is
-     'true', else it is 'false'.  Requires: If 'type' is a non-union
-     class type, it shall be a complete type.
-
-'__is_aggregate (type)'
-     If 'type' is an aggregate type ([dcl.init.aggr]) the trait is
-     'true', else it is 'false'.  Requires: If 'type' is a class type,
-     it shall be a complete type.
-
-'__is_base_of (base_type, derived_type)'
-     If 'base_type' is a base class of 'derived_type' ([class.derived])
-     then the trait is 'true', otherwise it is 'false'.  Top-level
-     cv-qualifications of 'base_type' and 'derived_type' are ignored.
-     For the purposes of this trait, a class type is considered is own
-     base.  Requires: if '__is_class (base_type)' and '__is_class
-     (derived_type)' are 'true' and 'base_type' and 'derived_type' are
-     not the same type (disregarding cv-qualifiers), 'derived_type'
-     shall be a complete type.  A diagnostic is produced if this
-     requirement is not met.
-
-'__is_class (type)'
-     If 'type' is a cv-qualified class type, and not a union type
-     ([basic.compound]) the trait is 'true', else it is 'false'.
-
-'__is_empty (type)'
-     If '__is_class (type)' is 'false' then the trait is 'false'.
-     Otherwise 'type' is considered empty if and only if: 'type' has no
-     non-static data members, or all non-static data members, if any,
-     are bit-fields of length 0, and 'type' has no virtual members, and
-     'type' has no virtual base classes, and 'type' has no base classes
-     'base_type' for which '__is_empty (base_type)' is 'false'.
-     Requires: If 'type' is a non-union class type, it shall be a
-     complete type.
-
-'__is_enum (type)'
-     If 'type' is a cv enumeration type ([basic.compound]) the trait is
-     'true', else it is 'false'.
-
-'__is_final (type)'
-     If 'type' is a class or union type marked 'final', then the trait
-     is 'true', else it is 'false'.  Requires: If 'type' is a class
-     type, it shall be a complete type.
-
-'__is_literal_type (type)'
-     If 'type' is a literal type ([basic.types]) the trait is 'true',
-     else it is 'false'.  Requires: 'type' shall be a complete type,
+ -- Built-in Function: bool __has_trivial_copy (TYPE)
+     If '__is_trivial (type)' is 'true' or TYPE is a reference type then
+     the trait is 'true', else if TYPE is a cv class or union type with
+     a trivial copy constructor ([class.copy]) then the trait is 'true',
+     else it is 'false'.  Requires: TYPE shall be a complete type,
      (possibly cv-qualified) 'void', or an array of unknown bound.
 
-'__is_pod (type)'
-     If 'type' is a cv POD type ([basic.types]) then the trait is
-     'true', else it is 'false'.  Requires: 'type' shall be a complete
+ -- Built-in Function: bool __has_trivial_constructor (TYPE)
+     If '__is_trivial (type)' is 'true' then the trait is 'true', else
+     if TYPE is a cv-qualified class or union type (or array thereof)
+     with a trivial default constructor ([class.ctor]) then the trait is
+     'true', else it is 'false'.  Requires: TYPE shall be a complete
      type, (possibly cv-qualified) 'void', or an array of unknown bound.
 
-'__is_polymorphic (type)'
-     If 'type' is a polymorphic class ([class.virtual]) then the trait
-     is 'true', else it is 'false'.  Requires: If 'type' is a non-union
-     class type, it shall be a complete type.
+ -- Built-in Function: bool __has_trivial_destructor (TYPE)
+     If '__is_trivial (type)' is 'true' or TYPE is a reference type then
+     the trait is 'true', else if TYPE is a cv class or union type (or
+     array thereof) with a trivial destructor ([class.dtor]) then the
+     trait is 'true', else it is 'false'.  Requires: TYPE shall be a
+     complete type, (possibly cv-qualified) 'void', or an array of
+     unknown bound.
 
-'__is_standard_layout (type)'
-     If 'type' is a standard-layout type ([basic.types]) the trait is
-     'true', else it is 'false'.  Requires: 'type' shall be a complete
+ -- Built-in Function: bool __has_virtual_destructor (TYPE)
+     If TYPE is a class type with a virtual destructor ([class.dtor])
+     then the trait is 'true', else it is 'false'.  Requires: If TYPE is
+     a non-union class type, it shall be a complete type.
+
+ -- Built-in Function: bool __is_abstract (TYPE)
+     If TYPE is an abstract class ([class.abstract]) then the trait is
+     'true', else it is 'false'.  Requires: If TYPE is a non-union class
+     type, it shall be a complete type.
+
+ -- Built-in Function: bool __is_aggregate (TYPE)
+     If TYPE is an aggregate type ([dcl.init.aggr]) the trait is 'true',
+     else it is 'false'.  Requires: If TYPE is a class type, it shall be
+     a complete type.
+
+ -- Built-in Function: bool __is_base_of (BASE_TYPE, DERIVED_TYPE)
+     If BASE_TYPE is a base class of DERIVED_TYPE ([class.derived]) then
+     the trait is 'true', otherwise it is 'false'.  Top-level
+     cv-qualifications of BASE_TYPE and DERIVED_TYPE are ignored.  For
+     the purposes of this trait, a class type is considered is own base.
+     Requires: if '__is_class (base_type)' and '__is_class
+     (derived_type)' are 'true' and BASE_TYPE and DERIVED_TYPE are not
+     the same type (disregarding cv-qualifiers), DERIVED_TYPE shall be a
+     complete type.  A diagnostic is produced if this requirement is not
+     met.
+
+ -- Built-in Function: bool __is_class (TYPE)
+     If TYPE is a cv-qualified class type, and not a union type
+     ([basic.compound]) the trait is 'true', else it is 'false'.
+
+ -- Built-in Function: bool __is_empty (TYPE)
+     If '__is_class (type)' is 'false' then the trait is 'false'.
+     Otherwise TYPE is considered empty if and only if: TYPE has no
+     non-static data members, or all non-static data members, if any,
+     are bit-fields of length 0, and TYPE has no virtual members, and
+     TYPE has no virtual base classes, and TYPE has no base classes
+     BASE_TYPE for which '__is_empty (base_type)' is 'false'.  Requires:
+     If TYPE is a non-union class type, it shall be a complete type.
+
+ -- Built-in Function: bool __is_enum (TYPE)
+     If TYPE is a cv enumeration type ([basic.compound]) the trait is
+     'true', else it is 'false'.
+
+ -- Built-in Function: bool __is_final (TYPE)
+     If TYPE is a class or union type marked 'final', then the trait is
+     'true', else it is 'false'.  Requires: If TYPE is a class type, it
+     shall be a complete type.
+
+ -- Built-in Function: bool __is_literal_type (TYPE)
+     If TYPE is a literal type ([basic.types]) the trait is 'true', else
+     it is 'false'.  Requires: TYPE shall be a complete type, (possibly
+     cv-qualified) 'void', or an array of unknown bound.
+
+ -- Built-in Function: bool __is_pod (TYPE)
+     If TYPE is a cv POD type ([basic.types]) then the trait is 'true',
+     else it is 'false'.  Requires: TYPE shall be a complete type,
+     (possibly cv-qualified) 'void', or an array of unknown bound.
+
+ -- Built-in Function: bool __is_polymorphic (TYPE)
+     If TYPE is a polymorphic class ([class.virtual]) then the trait is
+     'true', else it is 'false'.  Requires: If TYPE is a non-union class
+     type, it shall be a complete type.
+
+ -- Built-in Function: bool __is_standard_layout (TYPE)
+     If TYPE is a standard-layout type ([basic.types]) the trait is
+     'true', else it is 'false'.  Requires: TYPE shall be a complete
      type, an array of complete types, or (possibly cv-qualified)
      'void'.
 
-'__is_trivial (type)'
-     If 'type' is a trivial type ([basic.types]) the trait is 'true',
-     else it is 'false'.  Requires: 'type' shall be a complete type, an
-     array of complete types, or (possibly cv-qualified) 'void'.
+ -- Built-in Function: bool __is_trivial (TYPE)
+     If TYPE is a trivial type ([basic.types]) the trait is 'true', else
+     it is 'false'.  Requires: TYPE shall be a complete type, an array
+     of complete types, or (possibly cv-qualified) 'void'.
 
-'__is_union (type)'
-     If 'type' is a cv union type ([basic.compound]) the trait is
-     'true', else it is 'false'.
+ -- Built-in Function: bool __is_union (TYPE)
+     If TYPE is a cv union type ([basic.compound]) the trait is 'true',
+     else it is 'false'.
 
-'__underlying_type (type)'
-     The underlying type of 'type'.  Requires: 'type' shall be an
+ -- Built-in Function: bool __underlying_type (TYPE)
+     The underlying type of TYPE.  Requires: TYPE shall be an
      enumeration type ([dcl.enum]).
 
-'__integer_pack (length)'
+ -- Built-in Function: bool __integer_pack (LENGTH)
      When used as the pattern of a pack expansion within a template
      definition, expands to a template argument pack containing integers
-     from '0' to 'length-1'.  This is provided for efficient
+     from '0' to 'LENGTH-1'.  This is provided for efficient
      implementation of 'std::make_integer_sequence'.
 
 
@@ -57985,9 +58041,9 @@ rather than their type names.
 used to simplify the writing of type traits.  Note that some of these
 traits are likely to be removed in the future.
 
-'__is_same (type1, type2)'
-     A binary type trait: 'true' whenever the type arguments are the
-     same.
+ -- Built-in Function: bool __is_same (TYPE1, TYPE2)
+     A binary type trait: 'true' whenever the TYPE1 and TYPE2 refer to
+     the same type.
 
 
 File: gcc.info,  Node: Deprecated Features,  Next: Backwards Compatibility,  Prev: C++ Concepts,  Up: C++ Extensions
@@ -63255,7 +63311,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: gcc.info,  Node: Contributors,  Next: Option Index,  Prev: GNU Free Documentation License,  Up: Top
+File: gcc.info,  Node: Contributors,  Next: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 Contributors to GCC
 *******************
@@ -64569,10 +64625,21 @@ feedback and generally reminds us why we're doing this work in the first
 place.
 
 
-File: gcc.info,  Node: Option Index,  Next: Keyword Index,  Prev: Contributors,  Up: Top
+File: gcc.info,  Node: Indices,  Prev: Contributors,  Up: Top
 
-Option Index
-************
+Appendix A Indices
+******************
+
+* Menu:
+
+* Option Index::                Index to command line options.
+* Concept and Symbol Index::    Index of concepts and symbols names.
+
+
+File: gcc.info,  Node: Option Index,  Next: Concept and Symbol Index,  Up: Indices
+
+A.1 Option Index
+================
 
 GCC's command line options are indexed here without any initial '-' or
 '--'.  Where an option has both positive and negative forms (such as
@@ -64639,13 +64706,13 @@ look up both forms.
 * dU:                                    Preprocessor Options.
                                                              (line  449)
 * dump-analyzer-exploded-nodes:          Static Analyzer Options.
-                                                             (line  925)
+                                                             (line  923)
 * dump-analyzer-exploded-nodes-2:        Static Analyzer Options.
-                                                             (line  929)
+                                                             (line  927)
 * dump-analyzer-exploded-nodes-3:        Static Analyzer Options.
-                                                             (line  933)
+                                                             (line  931)
 * dump-analyzer-feasibility:             Static Analyzer Options.
-                                                             (line  942)
+                                                             (line  940)
 * dumpbase:                              Overall Options.    (line  251)
 * dumpbase-ext:                          Overall Options.    (line  324)
 * dumpdir:                               Overall Options.    (line  352)
@@ -64688,25 +64755,25 @@ look up both forms.
 * fanalyzer:                             Static Analyzer Options.
                                                              (line    6)
 * fanalyzer-call-summaries:              Static Analyzer Options.
-                                                             (line  735)
+                                                             (line  734)
 * fanalyzer-checker:                     Static Analyzer Options.
-                                                             (line  744)
+                                                             (line  743)
 * fanalyzer-feasibility:                 Static Analyzer Options.
-                                                             (line  779)
+                                                             (line  777)
 * fanalyzer-fine-grained:                Static Analyzer Options.
-                                                             (line  789)
+                                                             (line  787)
 * fanalyzer-show-duplicate-count:        Static Analyzer Options.
-                                                             (line  799)
+                                                             (line  797)
 * fanalyzer-state-merge:                 Static Analyzer Options.
-                                                             (line  806)
+                                                             (line  804)
 * fanalyzer-state-purge:                 Static Analyzer Options.
-                                                             (line  814)
+                                                             (line  812)
 * fanalyzer-suppress-followups:          Static Analyzer Options.
-                                                             (line  825)
+                                                             (line  823)
 * fanalyzer-transitivity:                Static Analyzer Options.
-                                                             (line  845)
+                                                             (line  843)
 * fanalyzer-undo-inlining:               Static Analyzer Options.
-                                                             (line  849)
+                                                             (line  847)
 * fasan-shadow-offset:                   Instrumentation Options.
                                                              (line  643)
 * fasm:                                  C Dialect Options.  (line  217)
@@ -64722,7 +64789,7 @@ look up both forms.
 * fcall-used:                            Code Gen Options.   (line  440)
 * fcaller-saves:                         Optimize Options.   (line  933)
 * fcallgraph-info:                       Developer Options.  (line   32)
-* fcanon-prefix-map:                     Overall Options.    (line  641)
+* fcanon-prefix-map:                     Overall Options.    (line  640)
 * fcf-protection:                        Instrumentation Options.
                                                              (line  738)
 * fchar8_t:                              C++ Dialect Options.
@@ -64842,23 +64909,23 @@ look up both forms.
 * fdse:                                  Optimize Options.   (line  585)
 * fdump-ada-spec:                        Overall Options.    (line  661)
 * fdump-analyzer:                        Static Analyzer Options.
-                                                             (line  907)
+                                                             (line  905)
 * fdump-analyzer-callgraph:              Static Analyzer Options.
-                                                             (line  916)
+                                                             (line  914)
 * fdump-analyzer-exploded-graph:         Static Analyzer Options.
-                                                             (line  920)
+                                                             (line  918)
 * fdump-analyzer-exploded-paths:         Static Analyzer Options.
-                                                             (line  938)
+                                                             (line  936)
 * fdump-analyzer-json:                   Static Analyzer Options.
-                                                             (line  948)
+                                                             (line  946)
 * fdump-analyzer-state-purge:            Static Analyzer Options.
-                                                             (line  952)
+                                                             (line  950)
 * fdump-analyzer-stderr:                 Static Analyzer Options.
-                                                             (line  912)
+                                                             (line  910)
 * fdump-analyzer-supergraph:             Static Analyzer Options.
-                                                             (line  958)
+                                                             (line  956)
 * fdump-analyzer-untracked:              Static Analyzer Options.
-                                                             (line  966)
+                                                             (line  964)
 * fdump-debug:                           Developer Options.  (line  272)
 * fdump-earlydebug:                      Developer Options.  (line  276)
 * fdump-final-insns:                     Developer Options.  (line  781)
@@ -65152,23 +65219,23 @@ look up both forms.
 * fno-analyzer:                          Static Analyzer Options.
                                                              (line    6)
 * fno-analyzer-call-summaries:           Static Analyzer Options.
-                                                             (line  735)
+                                                             (line  734)
 * fno-analyzer-feasibility:              Static Analyzer Options.
-                                                             (line  779)
+                                                             (line  777)
 * fno-analyzer-fine-grained:             Static Analyzer Options.
-                                                             (line  789)
+                                                             (line  787)
 * fno-analyzer-show-duplicate-count:     Static Analyzer Options.
-                                                             (line  799)
+                                                             (line  797)
 * fno-analyzer-state-merge:              Static Analyzer Options.
-                                                             (line  806)
+                                                             (line  804)
 * fno-analyzer-state-purge:              Static Analyzer Options.
-                                                             (line  814)
+                                                             (line  812)
 * fno-analyzer-suppress-followups:       Static Analyzer Options.
-                                                             (line  825)
+                                                             (line  823)
 * fno-analyzer-transitivity:             Static Analyzer Options.
-                                                             (line  845)
+                                                             (line  843)
 * fno-analyzer-undo-inlining:            Static Analyzer Options.
-                                                             (line  849)
+                                                             (line  847)
 * fno-asm:                               C Dialect Options.  (line  217)
 * fno-bit-tests:                         Code Gen Options.   (line  424)
 * fno-branch-count-reg:                  Optimize Options.   (line  427)
@@ -67866,97 +67933,97 @@ look up both forms.
 * Walloca:                               Warning Options.    (line 1788)
 * Walloca-larger-than=:                  Warning Options.    (line 1791)
 * Wanalyzer-allocation-size:             Static Analyzer Options.
-                                                             (line   77)
+                                                             (line   76)
 * Wanalyzer-deref-before-check:          Static Analyzer Options.
-                                                             (line   88)
+                                                             (line   87)
 * Wanalyzer-double-fclose:               Static Analyzer Options.
-                                                             (line  109)
+                                                             (line  108)
 * Wanalyzer-double-free:                 Static Analyzer Options.
-                                                             (line  119)
+                                                             (line  118)
 * Wanalyzer-exposure-through-output-file: Static Analyzer Options.
-                                                             (line  130)
+                                                             (line  129)
 * Wanalyzer-exposure-through-uninit-copy: Static Analyzer Options.
-                                                             (line  141)
+                                                             (line  140)
 * Wanalyzer-fd-access-mode-mismatch:     Static Analyzer Options.
-                                                             (line  154)
+                                                             (line  153)
 * Wanalyzer-fd-double-close:             Static Analyzer Options.
-                                                             (line  167)
+                                                             (line  166)
 * Wanalyzer-fd-leak:                     Static Analyzer Options.
-                                                             (line  177)
+                                                             (line  176)
 * Wanalyzer-fd-phase-mismatch:           Static Analyzer Options.
-                                                             (line  188)
+                                                             (line  187)
 * Wanalyzer-fd-type-mismatch:            Static Analyzer Options.
-                                                             (line  200)
+                                                             (line  199)
 * Wanalyzer-fd-use-after-close:          Static Analyzer Options.
-                                                             (line  210)
+                                                             (line  209)
 * Wanalyzer-fd-use-without-check:        Static Analyzer Options.
-                                                             (line  222)
+                                                             (line  221)
 * Wanalyzer-file-leak:                   Static Analyzer Options.
-                                                             (line  234)
+                                                             (line  233)
 * Wanalyzer-free-of-non-heap:            Static Analyzer Options.
-                                                             (line  245)
+                                                             (line  244)
 * Wanalyzer-imprecise-fp-arithmetic:     Static Analyzer Options.
-                                                             (line  256)
+                                                             (line  255)
 * Wanalyzer-infinite-recursion:          Static Analyzer Options.
-                                                             (line  266)
+                                                             (line  265)
 * Wanalyzer-jump-through-null:           Static Analyzer Options.
-                                                             (line  288)
+                                                             (line  287)
 * Wanalyzer-malloc-leak:                 Static Analyzer Options.
-                                                             (line  295)
+                                                             (line  294)
 * Wanalyzer-mismatching-deallocation:    Static Analyzer Options.
-                                                             (line  306)
+                                                             (line  305)
 * Wanalyzer-null-argument:               Static Analyzer Options.
-                                                             (line  357)
+                                                             (line  356)
 * Wanalyzer-null-dereference:            Static Analyzer Options.
-                                                             (line  368)
+                                                             (line  367)
 * Wanalyzer-out-of-bounds:               Static Analyzer Options.
-                                                             (line  320)
+                                                             (line  319)
 * Wanalyzer-possible-null-argument:      Static Analyzer Options.
-                                                             (line  336)
+                                                             (line  335)
 * Wanalyzer-possible-null-dereference:   Static Analyzer Options.
-                                                             (line  347)
+                                                             (line  346)
 * Wanalyzer-putenv-of-auto-var:          Static Analyzer Options.
-                                                             (line  378)
+                                                             (line  377)
 * Wanalyzer-shift-count-negative:        Static Analyzer Options.
-                                                             (line  390)
+                                                             (line  389)
 * Wanalyzer-shift-count-overflow:        Static Analyzer Options.
-                                                             (line  402)
+                                                             (line  401)
 * Wanalyzer-stale-setjmp-buffer:         Static Analyzer Options.
-                                                             (line  415)
+                                                             (line  414)
 * Wanalyzer-tainted-allocation-size:     Static Analyzer Options.
-                                                             (line  429)
+                                                             (line  428)
 * Wanalyzer-tainted-array-index:         Static Analyzer Options.
-                                                             (line  498)
+                                                             (line  497)
 * Wanalyzer-tainted-assertion:           Static Analyzer Options.
-                                                             (line  443)
+                                                             (line  442)
 * Wanalyzer-tainted-divisor:             Static Analyzer Options.
-                                                             (line  511)
+                                                             (line  510)
 * Wanalyzer-tainted-offset:              Static Analyzer Options.
-                                                             (line  524)
+                                                             (line  523)
 * Wanalyzer-tainted-size:                Static Analyzer Options.
-                                                             (line  537)
+                                                             (line  536)
 * Wanalyzer-too-complex:                 Static Analyzer Options.
-                                                             (line   67)
+                                                             (line   66)
 * Wanalyzer-unsafe-call-within-signal-handler: Static Analyzer Options.
-                                                             (line  550)
+                                                             (line  549)
 * Wanalyzer-use-after-free:              Static Analyzer Options.
-                                                             (line  561)
+                                                             (line  560)
 * Wanalyzer-use-of-pointer-in-stale-stack-frame: Static Analyzer Options.
-                                                             (line  572)
+                                                             (line  571)
 * Wanalyzer-use-of-uninitialized-value:  Static Analyzer Options.
-                                                             (line  640)
+                                                             (line  639)
 * Wanalyzer-va-arg-type-mismatch:        Static Analyzer Options.
-                                                             (line  579)
+                                                             (line  578)
 * Wanalyzer-va-list-exhausted:           Static Analyzer Options.
-                                                             (line  591)
+                                                             (line  590)
 * Wanalyzer-va-list-leak:                Static Analyzer Options.
-                                                             (line  603)
+                                                             (line  602)
 * Wanalyzer-va-list-use-after-va-end:    Static Analyzer Options.
-                                                             (line  612)
+                                                             (line  611)
 * Wanalyzer-write-to-const:              Static Analyzer Options.
-                                                             (line  620)
+                                                             (line  619)
 * Wanalyzer-write-to-string-literal:     Static Analyzer Options.
-                                                             (line  630)
+                                                             (line  629)
 * Warith-conversion:                     Warning Options.    (line 1856)
 * Warray-bounds:                         Warning Options.    (line 1868)
 * Warray-compare:                        Warning Options.    (line 1907)
@@ -68180,97 +68247,97 @@ look up both forms.
 * Wno-alloca-larger-than:                Warning Options.    (line 1791)
 * Wno-alloca-larger-than <1>:            Warning Options.    (line 1852)
 * Wno-analyzer-allocation-size:          Static Analyzer Options.
-                                                             (line   77)
+                                                             (line   76)
 * Wno-analyzer-deref-before-check:       Static Analyzer Options.
-                                                             (line   88)
+                                                             (line   87)
 * Wno-analyzer-double-fclose:            Static Analyzer Options.
-                                                             (line  109)
+                                                             (line  108)
 * Wno-analyzer-double-free:              Static Analyzer Options.
-                                                             (line  119)
+                                                             (line  118)
 * Wno-analyzer-exposure-through-output-file: Static Analyzer Options.
-                                                             (line  130)
+                                                             (line  129)
 * Wno-analyzer-exposure-through-uninit-copy: Static Analyzer Options.
-                                                             (line  141)
+                                                             (line  140)
 * Wno-analyzer-fd-access-mode-mismatch:  Static Analyzer Options.
-                                                             (line  154)
+                                                             (line  153)
 * Wno-analyzer-fd-double-close:          Static Analyzer Options.
-                                                             (line  167)
+                                                             (line  166)
 * Wno-analyzer-fd-leak:                  Static Analyzer Options.
-                                                             (line  177)
+                                                             (line  176)
 * Wno-analyzer-fd-phase-mismatch:        Static Analyzer Options.
-                                                             (line  188)
+                                                             (line  187)
 * Wno-analyzer-fd-type-mismatch:         Static Analyzer Options.
-                                                             (line  200)
+                                                             (line  199)
 * Wno-analyzer-fd-use-after-close:       Static Analyzer Options.
-                                                             (line  210)
+                                                             (line  209)
 * Wno-analyzer-fd-use-without-check:     Static Analyzer Options.
-                                                             (line  222)
+                                                             (line  221)
 * Wno-analyzer-file-leak:                Static Analyzer Options.
-                                                             (line  234)
+                                                             (line  233)
 * Wno-analyzer-free-of-non-heap:         Static Analyzer Options.
-                                                             (line  245)
+                                                             (line  244)
 * Wno-analyzer-imprecise-fp-arithmetic:  Static Analyzer Options.
-                                                             (line  256)
+                                                             (line  255)
 * Wno-analyzer-infinite-recursion:       Static Analyzer Options.
-                                                             (line  266)
+                                                             (line  265)
 * Wno-analyzer-jump-through-null:        Static Analyzer Options.
-                                                             (line  288)
+                                                             (line  287)
 * Wno-analyzer-malloc-leak:              Static Analyzer Options.
-                                                             (line  295)
+                                                             (line  294)
 * Wno-analyzer-mismatching-deallocation: Static Analyzer Options.
-                                                             (line  306)
+                                                             (line  305)
 * Wno-analyzer-null-argument:            Static Analyzer Options.
-                                                             (line  357)
+                                                             (line  356)
 * Wno-analyzer-null-dereference:         Static Analyzer Options.
-                                                             (line  368)
+                                                             (line  367)
 * Wno-analyzer-out-of-bounds:            Static Analyzer Options.
-                                                             (line  320)
+                                                             (line  319)
 * Wno-analyzer-possible-null-argument:   Static Analyzer Options.
-                                                             (line  336)
+                                                             (line  335)
 * Wno-analyzer-possible-null-dereference: Static Analyzer Options.
-                                                             (line  347)
+                                                             (line  346)
 * Wno-analyzer-putenv-of-auto-var:       Static Analyzer Options.
-                                                             (line  378)
+                                                             (line  377)
 * Wno-analyzer-shift-count-negative:     Static Analyzer Options.
-                                                             (line  390)
+                                                             (line  389)
 * Wno-analyzer-shift-count-overflow:     Static Analyzer Options.
-                                                             (line  402)
+                                                             (line  401)
 * Wno-analyzer-stale-setjmp-buffer:      Static Analyzer Options.
-                                                             (line  415)
+                                                             (line  414)
 * Wno-analyzer-tainted-allocation-size:  Static Analyzer Options.
-                                                             (line  429)
+                                                             (line  428)
 * Wno-analyzer-tainted-array-index:      Static Analyzer Options.
-                                                             (line  498)
+                                                             (line  497)
 * Wno-analyzer-tainted-assertion:        Static Analyzer Options.
-                                                             (line  443)
+                                                             (line  442)
 * Wno-analyzer-tainted-divisor:          Static Analyzer Options.
-                                                             (line  511)
+                                                             (line  510)
 * Wno-analyzer-tainted-offset:           Static Analyzer Options.
-                                                             (line  524)
+                                                             (line  523)
 * Wno-analyzer-tainted-size:             Static Analyzer Options.
-                                                             (line  537)
+                                                             (line  536)
 * Wno-analyzer-too-complex:              Static Analyzer Options.
-                                                             (line   67)
+                                                             (line   66)
 * Wno-analyzer-unsafe-call-within-signal-handler: Static Analyzer Options.
-                                                             (line  550)
+                                                             (line  549)
 * Wno-analyzer-use-after-free:           Static Analyzer Options.
-                                                             (line  561)
+                                                             (line  560)
 * Wno-analyzer-use-of-pointer-in-stale-stack-frame: Static Analyzer Options.
-                                                             (line  572)
+                                                             (line  571)
 * Wno-analyzer-use-of-uninitialized-value: Static Analyzer Options.
-                                                             (line  640)
+                                                             (line  639)
 * Wno-analyzer-va-arg-type-mismatch:     Static Analyzer Options.
-                                                             (line  579)
+                                                             (line  578)
 * Wno-analyzer-va-list-exhausted:        Static Analyzer Options.
-                                                             (line  591)
+                                                             (line  590)
 * Wno-analyzer-va-list-leak:             Static Analyzer Options.
-                                                             (line  603)
+                                                             (line  602)
 * Wno-analyzer-va-list-use-after-va-end: Static Analyzer Options.
-                                                             (line  612)
+                                                             (line  611)
 * Wno-analyzer-write-to-const:           Static Analyzer Options.
-                                                             (line  620)
+                                                             (line  619)
 * Wno-analyzer-write-to-string-literal:  Static Analyzer Options.
-                                                             (line  630)
+                                                             (line  629)
 * Wno-arith-conversion:                  Warning Options.    (line 1856)
 * Wno-array-bounds:                      Warning Options.    (line 1868)
 * Wno-array-compare:                     Warning Options.    (line 1907)
@@ -68836,18 +68903,18 @@ look up both forms.
 * z:                                     Link Options.       (line  353)
 
 
-File: gcc.info,  Node: Keyword Index,  Prev: Option Index,  Up: Top
+File: gcc.info,  Node: Concept and Symbol Index,  Prev: Option Index,  Up: Indices
 
-Keyword Index
-*************
+A.2 Concept and Symbol Index
+============================
 
  [index ]
 * Menu:
 
 * #pragma:                               Pragmas.            (line    6)
-* #pragma implementation:                C++ Interface.      (line   36)
+* #pragma implementation:                C++ Interface.      (line   34)
 * #pragma implementation, implied:       C++ Interface.      (line   43)
-* #pragma interface:                     C++ Interface.      (line   17)
+* #pragma interface:                     C++ Interface.      (line   15)
 * $:                                     Dollar Signs.       (line    6)
 * % in constraint:                       Modifiers.          (line   52)
 * %include:                              Spec Files.         (line   25)
@@ -68855,9 +68922,6 @@ Keyword Index
 * %rename:                               Spec Files.         (line   33)
 * & in constraint:                       Modifiers.          (line   25)
 * ':                                     Incompatibilities.  (line  116)
-* *__builtin_alloca:                     Other Builtins.     (line  138)
-* *__builtin_alloca_with_align:          Other Builtins.     (line  175)
-* *__builtin_alloca_with_align_and_max:  Other Builtins.     (line  220)
 * + in constraint:                       Modifiers.          (line   12)
 * -lgcc, use with -nodefaultlibs:        Link Options.       (line  157)
 * -lgcc, use with -nostdlib:             Link Options.       (line  157)
@@ -68888,18 +68952,38 @@ Keyword Index
 * _get_ssp:                              x86 control-flow protection intrinsics.
                                                              (line    6)
 * _HTM_FIRST_USER_ABORT_CODE:            S/390 System z Built-in Functions.
-                                                             (line   44)
+                                                             (line   47)
+* _HTM_TBEGIN_INDETERMINATE:             S/390 System z Built-in Functions.
+                                                             (line   35)
+* _HTM_TBEGIN_PERSISTENT:                S/390 System z Built-in Functions.
+                                                             (line   43)
+* _HTM_TBEGIN_STARTED:                   S/390 System z Built-in Functions.
+                                                             (line   31)
+* _HTM_TBEGIN_TRANSIENT:                 S/390 System z Built-in Functions.
+                                                             (line   39)
 * _inc_ssp:                              x86 control-flow protection intrinsics.
                                                              (line   12)
 * _Sat data type:                        Fixed-Point.        (line    6)
 * _xabort:                               x86 transactional memory intrinsics.
-                                                             (line   57)
+                                                             (line   62)
+* _XABORT_CAPACITY:                      x86 transactional memory intrinsics.
+                                                             (line   40)
+* _XABORT_CONFLICT:                      x86 transactional memory intrinsics.
+                                                             (line   36)
+* _XABORT_DEBUG:                         x86 transactional memory intrinsics.
+                                                             (line   44)
+* _XABORT_EXPLICIT:                      x86 transactional memory intrinsics.
+                                                             (line   28)
+* _XABORT_NESTED:                        x86 transactional memory intrinsics.
+                                                             (line   47)
+* _XABORT_RETRY:                         x86 transactional memory intrinsics.
+                                                             (line   33)
 * _xbegin:                               x86 transactional memory intrinsics.
                                                              (line   19)
 * _xend:                                 x86 transactional memory intrinsics.
-                                                             (line   48)
-* _xtest:                                x86 transactional memory intrinsics.
                                                              (line   53)
+* _xtest:                                x86 transactional memory intrinsics.
+                                                             (line   58)
 * __atomic_add_fetch:                    __atomic Builtins.  (line  177)
 * __atomic_always_lock_free:             __atomic Builtins.  (line  265)
 * __atomic_and_fetch:                    __atomic Builtins.  (line  181)
@@ -68927,14 +69011,14 @@ Keyword Index
 * __atomic_thread_fence:                 __atomic Builtins.  (line  251)
 * __atomic_xor_fetch:                    __atomic Builtins.  (line  183)
 * __builtin_addf128_round_to_odd:        Basic PowerPC Built-in Functions Available on ISA 3.0.
-                                                             (line   17)
+                                                             (line   15)
 * __builtin_add_overflow:                Integer Overflow Builtins.
                                                              (line    9)
 * __builtin_add_overflow_p:              Integer Overflow Builtins.
                                                              (line   86)
-* __builtin_alloca:                      Other Builtins.     (line    6)
-* __builtin_alloca_with_align:           Other Builtins.     (line    6)
-* __builtin_alloca_with_align_and_max:   Other Builtins.     (line    6)
+* __builtin_alloca:                      Other Builtins.     (line  138)
+* __builtin_alloca_with_align:           Other Builtins.     (line  175)
+* __builtin_alloca_with_align_and_max:   Other Builtins.     (line  220)
 * __builtin_apply:                       Constructing Calls. (line   29)
 * __builtin_apply_args:                  Constructing Calls. (line   19)
 * __builtin_arc_aligned:                 ARC Built-in Functions.
@@ -68986,14 +69070,13 @@ Keyword Index
                                                              (line   13)
 * __builtin_bpf_load_word:               BPF Built-in Functions.
                                                              (line   18)
-* __builtin_bswap128:                    Other Builtins.     (line 1076)
-* __builtin_bswap16:                     Other Builtins.     (line 1064)
-* __builtin_bswap32:                     Other Builtins.     (line 1068)
-* __builtin_bswap64:                     Other Builtins.     (line 1072)
-* __builtin_call_with_static_chain:      Other Builtins.     (line    6)
-* __builtin_call_with_static_chain <1>:  Other Builtins.     (line  394)
+* __builtin_bswap128:                    Other Builtins.     (line 1070)
+* __builtin_bswap16:                     Other Builtins.     (line 1058)
+* __builtin_bswap32:                     Other Builtins.     (line 1062)
+* __builtin_bswap64:                     Other Builtins.     (line 1066)
+* __builtin_call_with_static_chain:      Other Builtins.     (line  394)
 * __builtin_cfuged:                      Basic PowerPC Built-in Functions Available on ISA 3.1.
-                                                             (line   18)
+                                                             (line   15)
 * __builtin_choose_expr:                 Other Builtins.     (line  405)
 * __builtin_clear_padding:               Other Builtins.     (line  562)
 * __builtin_clrsb:                       Other Builtins.     (line  994)
@@ -69003,61 +69086,94 @@ Keyword Index
 * __builtin_clzl:                        Other Builtins.     (line 1008)
 * __builtin_clzll:                       Other Builtins.     (line 1031)
 * __builtin_cntlzdm:                     Basic PowerPC Built-in Functions Available on ISA 3.1.
-                                                             (line   23)
+                                                             (line   20)
 * __builtin_cnttzdm:                     Basic PowerPC Built-in Functions Available on ISA 3.1.
-                                                             (line   28)
+                                                             (line   25)
 * __builtin_complex:                     Complex.            (line   82)
 * __builtin_constant_p:                  Other Builtins.     (line  499)
 * __builtin_convertvector:               Vector Extensions.  (line  189)
+* __builtin_copysignq:                   x86 Built-in Functions.
+                                                             (line   42)
 * __builtin_cpu_init:                    Basic PowerPC Built-in Functions Available on all Configurations.
                                                              (line    6)
 * __builtin_cpu_init <1>:                x86 Built-in Functions.
-                                                             (line   68)
+                                                             (line   69)
 * __builtin_cpu_is:                      Basic PowerPC Built-in Functions Available on all Configurations.
                                                              (line   10)
 * __builtin_cpu_is <1>:                  x86 Built-in Functions.
-                                                             (line   96)
+                                                             (line   97)
 * __builtin_cpu_supports:                Basic PowerPC Built-in Functions Available on all Configurations.
                                                              (line   70)
 * __builtin_cpu_supports <1>:            x86 Built-in Functions.
-                                                             (line  264)
+                                                             (line  265)
 * __builtin_ctz:                         Other Builtins.     (line  990)
 * __builtin_ctzl:                        Other Builtins.     (line 1012)
 * __builtin_ctzll:                       Other Builtins.     (line 1035)
+* __builtin_darn_32:                     Basic PowerPC Built-in Functions Available on ISA 3.0.
+                                                             (line   55)
 * __builtin_divf128_round_to_odd:        Basic PowerPC Built-in Functions Available on ISA 3.0.
-                                                             (line   29)
+                                                             (line   30)
 * __builtin_dynamic_object_size:         Object Size Checking.
-                                                             (line    9)
-* __builtin_dynamic_object_size <1>:     Object Size Checking.
                                                              (line   56)
-* __builtin_dynamic_object_size <2>:     Other Builtins.     (line  827)
+* __builtin_dynamic_object_size <1>:     Other Builtins.     (line  827)
 * __builtin_expect:                      Other Builtins.     (line  596)
 * __builtin_expect_with_probability:     Other Builtins.     (line  631)
-* __builtin_extend_pointer:              Other Builtins.     (line    6)
-* __builtin_extend_pointer <1>:          Other Builtins.     (line 1081)
+* __builtin_extend_pointer:              Other Builtins.     (line 1075)
 * __builtin_extract_return_addr:         Return Address.     (line   50)
+* __builtin_fabsq:                       x86 Built-in Functions.
+                                                             (line   39)
 * __builtin_ffs:                         Other Builtins.     (line  982)
 * __builtin_ffsl:                        Other Builtins.     (line 1005)
 * __builtin_ffsll:                       Other Builtins.     (line 1027)
 * __builtin_FILE:                        Other Builtins.     (line  744)
 * __builtin_fmaf128_round_to_odd:        Basic PowerPC Built-in Functions Available on ISA 3.0.
-                                                             (line   37)
-* __builtin_fpclassify:                  Other Builtins.     (line    6)
-* __builtin_fpclassify <1>:              Other Builtins.     (line  853)
+                                                             (line   40)
+* __builtin_fpclassify:                  Other Builtins.     (line  853)
 * __builtin_frame_address:               Return Address.     (line   62)
 * __builtin_frob_return_addr:            Return Address.     (line   59)
 * __builtin_FUNCTION:                    Other Builtins.     (line  736)
-* __builtin_goacc_parlevel_id:           Other Builtins.     (line 1088)
-* __builtin_goacc_parlevel_size:         Other Builtins.     (line 1092)
-* __builtin_has_attribute:               Other Builtins.     (line    6)
-* __builtin_has_attribute <1>:           Other Builtins.     (line  229)
+* __builtin_goacc_parlevel_id:           Other Builtins.     (line 1082)
+* __builtin_goacc_parlevel_size:         Other Builtins.     (line 1086)
+* __builtin_has_attribute:               Other Builtins.     (line  229)
 * __builtin_huge_val:                    Other Builtins.     (line  833)
 * __builtin_huge_valf:                   Other Builtins.     (line  838)
 * __builtin_huge_valfN:                  Other Builtins.     (line  845)
 * __builtin_huge_valfNx:                 Other Builtins.     (line  849)
 * __builtin_huge_vall:                   Other Builtins.     (line  841)
 * __builtin_huge_valq:                   x86 Built-in Functions.
-                                                             (line   50)
+                                                             (line   49)
+* __builtin_ia32_loadhps:                x86 Built-in Functions.
+                                                             (line  518)
+* __builtin_ia32_loadlps:                x86 Built-in Functions.
+                                                             (line  521)
+* __builtin_ia32_loadss:                 x86 Built-in Functions.
+                                                             (line  515)
+* __builtin_ia32_loadups:                x86 Built-in Functions.
+                                                             (line  509)
+* __builtin_ia32_pause:                  x86 Built-in Functions.
+                                                             (line   62)
+* __builtin_ia32_pclmulqdq128:           x86 Built-in Functions.
+                                                             (line 1196)
+* __builtin_ia32_storehps:               x86 Built-in Functions.
+                                                             (line  524)
+* __builtin_ia32_storelps:               x86 Built-in Functions.
+                                                             (line  527)
+* __builtin_ia32_storeups:               x86 Built-in Functions.
+                                                             (line  512)
+* __builtin_ia32_vec_ext_v16qi:          x86 Built-in Functions.
+                                                             (line  797)
+* __builtin_ia32_vec_ext_v4sf:           x86 Built-in Functions.
+                                                             (line  816)
+* __builtin_ia32_vec_ext_v4si:           x86 Built-in Functions.
+                                                             (line  820)
+* __builtin_ia32_vec_set_v16qi:          x86 Built-in Functions.
+                                                             (line  801)
+* __builtin_ia32_vec_set_v2di:           x86 Built-in Functions.
+                                                             (line  809)
+* __builtin_ia32_vec_set_v4sf:           x86 Built-in Functions.
+                                                             (line  793)
+* __builtin_ia32_vec_set_v4si:           x86 Built-in Functions.
+                                                             (line  805)
 * __builtin_inf:                         Other Builtins.     (line  864)
 * __builtin_infd128:                     Other Builtins.     (line  874)
 * __builtin_infd32:                      Other Builtins.     (line  868)
@@ -69067,18 +69183,13 @@ Keyword Index
 * __builtin_inffNx:                      Other Builtins.     (line  890)
 * __builtin_infl:                        Other Builtins.     (line  883)
 * __builtin_infq:                        x86 Built-in Functions.
-                                                             (line   47)
+                                                             (line   46)
 * __builtin_isfinite:                    Other Builtins.     (line    6)
 * __builtin_isgreater:                   Other Builtins.     (line    6)
 * __builtin_isgreaterequal:              Other Builtins.     (line    6)
-* __builtin_isinf_sign:                  Other Builtins.     (line    6)
-* __builtin_isinf_sign <1>:              Other Builtins.     (line  893)
-* __builtin_isless:                      Other Builtins.     (line    6)
-* __builtin_islessequal:                 Other Builtins.     (line    6)
-* __builtin_islessgreater:               Other Builtins.     (line    6)
+* __builtin_isinf_sign:                  Other Builtins.     (line  893)
 * __builtin_isnormal:                    Other Builtins.     (line    6)
-* __builtin_issignaling:                 Other Builtins.     (line    6)
-* __builtin_issignaling <1>:             Other Builtins.     (line  969)
+* __builtin_issignaling:                 Other Builtins.     (line  969)
 * __builtin_isunordered:                 Other Builtins.     (line    6)
 * __builtin_is_constant_evaluated:       Other Builtins.     (line  544)
 * __builtin_LINE:                        Other Builtins.     (line  729)
@@ -69098,7 +69209,7 @@ Keyword Index
 * __builtin_nanfNx:                      Other Builtins.     (line  937)
 * __builtin_nanl:                        Other Builtins.     (line  930)
 * __builtin_nanq:                        x86 Built-in Functions.
-                                                             (line   54)
+                                                             (line   53)
 * __builtin_nans:                        Other Builtins.     (line  940)
 * __builtin_nansd128:                    Other Builtins.     (line  952)
 * __builtin_nansd32:                     Other Builtins.     (line  944)
@@ -69108,7 +69219,7 @@ Keyword Index
 * __builtin_nansfNx:                     Other Builtins.     (line  966)
 * __builtin_nansl:                       Other Builtins.     (line  959)
 * __builtin_nansq:                       x86 Built-in Functions.
-                                                             (line   57)
+                                                             (line   56)
 * __builtin_nds32_isb:                   NDS32 Built-in Functions.
                                                              (line   12)
 * __builtin_nds32_isync:                 NDS32 Built-in Functions.
@@ -69126,30 +69237,30 @@ Keyword Index
 * __builtin_nds32_setgie_en:             NDS32 Built-in Functions.
                                                              (line   27)
 * __builtin_non_tx_store:                S/390 System z Built-in Functions.
-                                                             (line   98)
+                                                             (line  101)
 * __builtin_object_size:                 Object Size Checking.
-                                                             (line    9)
-* __builtin_object_size <1>:             Object Size Checking.
                                                              (line   19)
-* __builtin_object_size <2>:             Other Builtins.     (line    6)
-* __builtin_object_size <3>:             Other Builtins.     (line  821)
+* __builtin_object_size <1>:             Other Builtins.     (line  821)
 * __builtin_offsetof:                    Offsetof.           (line    6)
 * __builtin_parity:                      Other Builtins.     (line 1002)
 * __builtin_parityl:                     Other Builtins.     (line 1023)
 * __builtin_parityll:                    Other Builtins.     (line 1047)
 * __builtin_pdepd:                       Basic PowerPC Built-in Functions Available on ISA 3.1.
-                                                             (line   33)
+                                                             (line   30)
 * __builtin_pextd:                       Basic PowerPC Built-in Functions Available on ISA 3.1.
-                                                             (line   38)
+                                                             (line   35)
 * __builtin_popcount:                    Other Builtins.     (line  999)
+* __builtin_popcount <1>:                x86 Built-in Functions.
+                                                             (line  867)
 * __builtin_popcountl:                   Other Builtins.     (line 1019)
+* __builtin_popcountl <1>:               x86 Built-in Functions.
+                                                             (line  870)
 * __builtin_popcountll:                  Other Builtins.     (line 1043)
-* __builtin_powi:                        Other Builtins.     (line    6)
-* __builtin_powi <1>:                    Other Builtins.     (line 1051)
-* __builtin_powif:                       Other Builtins.     (line    6)
-* __builtin_powif <1>:                   Other Builtins.     (line 1056)
-* __builtin_powil:                       Other Builtins.     (line    6)
-* __builtin_powil <1>:                   Other Builtins.     (line 1060)
+* __builtin_popcountll <1>:              x86 Built-in Functions.
+                                                             (line  874)
+* __builtin_powi:                        Other Builtins.     (line 1051)
+* __builtin_powif:                       Other Builtins.     (line 1052)
+* __builtin_powil:                       Other Builtins.     (line 1053)
 * __builtin_prefetch:                    Other Builtins.     (line  782)
 * __builtin_preserve_access_index:       BPF Built-in Functions.
                                                              (line   23)
@@ -69225,7 +69336,7 @@ Keyword Index
 * __builtin_speculation_safe_value:      Other Builtins.     (line    6)
 * __builtin_speculation_safe_value <1>:  Other Builtins.     (line  270)
 * __builtin_sqrtf128_round_to_odd:       Basic PowerPC Built-in Functions Available on ISA 3.0.
-                                                             (line   33)
+                                                             (line   35)
 * __builtin_ssubll_overflow:             Integer Overflow Builtins.
                                                              (line   49)
 * __builtin_ssubl_overflow:              Integer Overflow Builtins.
@@ -69233,25 +69344,25 @@ Keyword Index
 * __builtin_ssub_overflow:               Integer Overflow Builtins.
                                                              (line   45)
 * __builtin_subf128_round_to_odd:        Basic PowerPC Built-in Functions Available on ISA 3.0.
-                                                             (line   21)
+                                                             (line   20)
 * __builtin_sub_overflow:                Integer Overflow Builtins.
                                                              (line   43)
 * __builtin_sub_overflow_p:              Integer Overflow Builtins.
                                                              (line   88)
 * __builtin_tabort:                      S/390 System z Built-in Functions.
-                                                             (line   82)
+                                                             (line   85)
 * __builtin_tbegin:                      S/390 System z Built-in Functions.
                                                              (line    6)
 * __builtin_tbeginc:                     S/390 System z Built-in Functions.
-                                                             (line   73)
+                                                             (line   76)
 * __builtin_tbegin_nofloat:              S/390 System z Built-in Functions.
-                                                             (line   54)
+                                                             (line   57)
 * __builtin_tbegin_retry:                S/390 System z Built-in Functions.
-                                                             (line   60)
+                                                             (line   63)
 * __builtin_tbegin_retry_nofloat:        S/390 System z Built-in Functions.
-                                                             (line   67)
+                                                             (line   70)
 * __builtin_tend:                        S/390 System z Built-in Functions.
-                                                             (line   77)
+                                                             (line   80)
 * __builtin_tgmath:                      Other Builtins.     (line  445)
 * __builtin_thread_pointer:              RISC-V Built-in Functions.
                                                              (line    9)
@@ -69259,11 +69370,11 @@ Keyword Index
                                                              (line   18)
 * __builtin_trap:                        Other Builtins.     (line  640)
 * __builtin_truncf128_round_to_odd:      Basic PowerPC Built-in Functions Available on ISA 3.0.
-                                                             (line   41)
+                                                             (line   45)
 * __builtin_tx_assist:                   S/390 System z Built-in Functions.
-                                                             (line   87)
+                                                             (line   90)
 * __builtin_tx_nesting_depth:            S/390 System z Built-in Functions.
-                                                             (line   93)
+                                                             (line   96)
 * __builtin_types_compatible_p:          Other Builtins.     (line  349)
 * __builtin_uaddll_overflow:             Integer Overflow Builtins.
                                                              (line   21)
@@ -69287,8 +69398,6 @@ Keyword Index
 * __builtin_va_arg_pack:                 Constructing Calls. (line   52)
 * __builtin_va_arg_pack_len:             Constructing Calls. (line   75)
 * __builtin___clear_cache:               Other Builtins.     (line  769)
-* __builtin___fprintf_chk:               Object Size Checking.
-                                                             (line    9)
 * __builtin___memcpy_chk:                Object Size Checking.
                                                              (line    9)
 * __builtin___memmove_chk:               Object Size Checking.
@@ -69297,12 +69406,10 @@ Keyword Index
                                                              (line    9)
 * __builtin___memset_chk:                Object Size Checking.
                                                              (line    9)
-* __builtin___printf_chk:                Object Size Checking.
-                                                             (line    9)
 * __builtin___snprintf_chk:              Object Size Checking.
-                                                             (line    9)
+                                                             (line  121)
 * __builtin___sprintf_chk:               Object Size Checking.
-                                                             (line    9)
+                                                             (line  119)
 * __builtin___stpcpy_chk:                Object Size Checking.
                                                              (line    9)
 * __builtin___strcat_chk:                Object Size Checking.
@@ -69313,19 +69420,17 @@ Keyword Index
                                                              (line    9)
 * __builtin___strncpy_chk:               Object Size Checking.
                                                              (line    9)
-* __builtin___vfprintf_chk:              Object Size Checking.
-                                                             (line    9)
-* __builtin___vprintf_chk:               Object Size Checking.
-                                                             (line    9)
 * __builtin___vsnprintf_chk:             Object Size Checking.
-                                                             (line    9)
+                                                             (line  125)
 * __builtin___vsprintf_chk:              Object Size Checking.
-                                                             (line    9)
+                                                             (line  123)
 * __complex__ keyword:                   Complex.            (line    6)
 * __declspec(dllexport):                 Microsoft Windows Function Attributes.
                                                              (line    9)
 * __declspec(dllimport):                 Microsoft Windows Function Attributes.
                                                              (line   41)
+* __delay_cycles:                        PRU Built-in Functions.
+                                                             (line   11)
 * __extension__:                         Alternate Keywords. (line   30)
 * __far M32C Named Address Spaces:       Named Address Spaces.
                                                              (line  154)
@@ -69349,9 +69454,36 @@ Keyword Index
 * __fp16 data type:                      Half-Precision.     (line    6)
 * __FUNCTION__ identifier:               Function Names.     (line    6)
 * __func__ identifier:                   Function Names.     (line    6)
+* __halt:                                PRU Built-in Functions.
+                                                             (line   20)
+* __has_nothrow_assign:                  Type Traits.        (line   10)
+* __has_nothrow_constructor:             Type Traits.        (line   27)
+* __has_nothrow_copy:                    Type Traits.        (line   19)
+* __has_trivial_assign:                  Type Traits.        (line   35)
+* __has_trivial_constructor:             Type Traits.        (line   50)
+* __has_trivial_copy:                    Type Traits.        (line   43)
+* __has_trivial_destructor:              Type Traits.        (line   57)
+* __has_virtual_destructor:              Type Traits.        (line   65)
 * __ibm128 data type:                    Floating Types.     (line    6)
 * __imag__ keyword:                      Complex.            (line   43)
 * __int128 data types:                   __int128.           (line    6)
+* __integer_pack:                        Type Traits.        (line  147)
+* __is_abstract:                         Type Traits.        (line   70)
+* __is_aggregate:                        Type Traits.        (line   75)
+* __is_base_of:                          Type Traits.        (line   80)
+* __is_class:                            Type Traits.        (line   91)
+* __is_empty:                            Type Traits.        (line   95)
+* __is_enum:                             Type Traits.        (line  104)
+* __is_final:                            Type Traits.        (line  108)
+* __is_literal_type:                     Type Traits.        (line  113)
+* __is_pod:                              Type Traits.        (line  118)
+* __is_polymorphic:                      Type Traits.        (line  123)
+* __is_same:                             C++ Concepts.       (line   39)
+* __is_standard_layout:                  Type Traits.        (line  128)
+* __is_trivial:                          Type Traits.        (line  134)
+* __is_union:                            Type Traits.        (line  139)
+* __lmbd:                                PRU Built-in Functions.
+                                                             (line   23)
 * __memx AVR Named Address Spaces:       Named Address Spaces.
                                                              (line   58)
 * __PRETTY_FUNCTION__ identifier:        Function Names.     (line    6)
@@ -69364,28 +69496,29 @@ Keyword Index
                                                              (line  188)
 * __STDC_HOSTED__:                       Standards.          (line   13)
 * __sync_add_and_fetch:                  __sync Builtins.    (line   72)
-* __sync_and_and_fetch:                  __sync Builtins.    (line   72)
-* __sync_bool_compare_and_swap:          __sync Builtins.    (line   88)
-* __sync_fetch_and_add:                  __sync Builtins.    (line   50)
+* __sync_and_and_fetch:                  __sync Builtins.    (line   78)
+* __sync_bool_compare_and_swap:          __sync Builtins.    (line   98)
+* __sync_fetch_and_add:                  __sync Builtins.    (line   44)
 * __sync_fetch_and_and:                  __sync Builtins.    (line   50)
-* __sync_fetch_and_nand:                 __sync Builtins.    (line   50)
-* __sync_fetch_and_or:                   __sync Builtins.    (line   50)
-* __sync_fetch_and_sub:                  __sync Builtins.    (line   50)
-* __sync_fetch_and_xor:                  __sync Builtins.    (line   50)
-* __sync_lock_release:                   __sync Builtins.    (line  118)
-* __sync_lock_test_and_set:              __sync Builtins.    (line  100)
-* __sync_nand_and_fetch:                 __sync Builtins.    (line   72)
-* __sync_or_and_fetch:                   __sync Builtins.    (line   72)
-* __sync_sub_and_fetch:                  __sync Builtins.    (line   72)
-* __sync_synchronize:                    __sync Builtins.    (line   97)
-* __sync_val_compare_and_swap:           __sync Builtins.    (line   88)
-* __sync_xor_and_fetch:                  __sync Builtins.    (line   72)
+* __sync_fetch_and_nand:                 __sync Builtins.    (line   54)
+* __sync_fetch_and_or:                   __sync Builtins.    (line   48)
+* __sync_fetch_and_sub:                  __sync Builtins.    (line   46)
+* __sync_fetch_and_xor:                  __sync Builtins.    (line   52)
+* __sync_lock_release:                   __sync Builtins.    (line  132)
+* __sync_lock_test_and_set:              __sync Builtins.    (line  113)
+* __sync_nand_and_fetch:                 __sync Builtins.    (line   82)
+* __sync_or_and_fetch:                   __sync Builtins.    (line   76)
+* __sync_sub_and_fetch:                  __sync Builtins.    (line   74)
+* __sync_synchronize:                    __sync Builtins.    (line  110)
+* __sync_val_compare_and_swap:           __sync Builtins.    (line  100)
+* __sync_xor_and_fetch:                  __sync Builtins.    (line   80)
 * __thread:                              Thread-Local.       (line    6)
+* __underlying_type:                     Type Traits.        (line  143)
 * AArch64 Options:                       AArch64 Options.    (line    6)
 * ABI:                                   Compatibility.      (line    6)
-* abi_tag function attribute:            C++ Attributes.     (line    9)
-* abi_tag type attribute:                C++ Attributes.     (line    9)
-* abi_tag variable attribute:            C++ Attributes.     (line    9)
+* abi_tag function attribute:            C++ Attributes.     (line    8)
+* abi_tag type attribute:                C++ Attributes.     (line    8)
+* abi_tag variable attribute:            C++ Attributes.     (line    8)
 * abort:                                 Other Builtins.     (line    6)
 * abs:                                   Other Builtins.     (line    6)
 * absdata variable attribute, AVR:       AVR Variable Attributes.
@@ -69488,6 +69621,7 @@ Keyword Index
 * assembly language in C, extended:      Extended Asm.       (line    6)
 * assume statement attribute:            Statement Attributes.
                                                              (line   37)
+* assumes:                               C++ Concepts.       (line   15)
 * assume_aligned function attribute:     Common Function Attributes.
                                                              (line  209)
 * atan:                                  Other Builtins.     (line    6)
@@ -69508,6 +69642,9 @@ Keyword Index
 * aux variable attribute, ARC:           ARC Variable Attributes.
                                                              (line    6)
 * AVR Options:                           AVR Options.        (line    6)
+* axiom:                                 C++ Concepts.       (line   19)
+* axiom <1>:                             C++ Concepts.       (line   23)
+* axiom <2>:                             C++ Concepts.       (line   27)
 * Backwards Compatibility:               Backwards Compatibility.
                                                              (line    6)
 * bank_switch function attribute, M32C:  M32C Function Attributes.
@@ -70144,7 +70281,7 @@ Keyword Index
 * initializations in expressions:        Compound Literals.  (line    6)
 * initializers with labeled elements:    Designated Inits.   (line    6)
 * initializers, non-constant:            Initializers.       (line    6)
-* init_priority variable attribute:      C++ Attributes.     (line   50)
+* init_priority variable attribute:      C++ Attributes.     (line   49)
 * inline assembly language:              Using Assembly Language with C.
                                                              (line    6)
 * inline automatic for C++ member fns:   Inline.             (line   68)
@@ -70154,6 +70291,12 @@ Keyword Index
 * installation trouble:                  Trouble.            (line    6)
 * instrumentation options:               Instrumentation Options.
                                                              (line    6)
+* int:                                   x86 Built-in Functions.
+                                                             (line  848)
+* int <1>:                               x86 Built-in Functions.
+                                                             (line  852)
+* int <2>:                               x86 Built-in Functions.
+                                                             (line  856)
 * integrating function code:             Inline.             (line    6)
 * interface and implementation headers, C++: C++ Interface.  (line    6)
 * intermediate C version, nonexistent:   G++ and GCC.        (line   34)
@@ -70368,6 +70511,14 @@ Keyword Index
 * logbl:                                 Other Builtins.     (line    6)
 * logf:                                  Other Builtins.     (line    6)
 * logl:                                  Other Builtins.     (line    6)
+* long:                                  Basic PowerPC Built-in Functions Available on ISA 3.0.
+                                                             (line   53)
+* long <1>:                              Basic PowerPC Built-in Functions Available on ISA 3.0.
+                                                             (line   54)
+* long <2>:                              x86 Built-in Functions.
+                                                             (line  823)
+* long <3>:                              x86 Built-in Functions.
+                                                             (line  860)
 * long long data types:                  Long Long.          (line    6)
 * longcall function attribute, Blackfin: Blackfin Function Attributes.
                                                              (line   36)
@@ -70719,45 +70870,45 @@ Keyword Index
 * powf:                                  Other Builtins.     (line    6)
 * powl:                                  Other Builtins.     (line    6)
 * pragma GCC ivdep:                      Loop-Specific Pragmas.
-                                                             (line    7)
+                                                             (line    6)
 * pragma GCC optimize:                   Function Specific Option Pragmas.
-                                                             (line   21)
+                                                             (line   20)
 * pragma GCC pop_options:                Function Specific Option Pragmas.
-                                                             (line   33)
+                                                             (line   31)
 * pragma GCC push_options:               Function Specific Option Pragmas.
-                                                             (line   33)
+                                                             (line   31)
 * pragma GCC reset_options:              Function Specific Option Pragmas.
-                                                             (line   41)
+                                                             (line   40)
 * pragma GCC target:                     Function Specific Option Pragmas.
-                                                             (line    7)
+                                                             (line    6)
 * pragma GCC unroll N:                   Loop-Specific Pragmas.
-                                                             (line   37)
-* pragma, address:                       M32C Pragmas.       (line   15)
-* pragma, align:                         Solaris Pragmas.    (line   11)
-* pragma, ctable_entry:                  PRU Pragmas.        (line    7)
-* pragma, diagnostic:                    Diagnostic Pragmas. (line   14)
-* pragma, diagnostic <1>:                Diagnostic Pragmas. (line   72)
-* pragma, diagnostic <2>:                Diagnostic Pragmas. (line   92)
-* pragma, diagnostic <3>:                Diagnostic Pragmas. (line  114)
-* pragma, fini:                          Solaris Pragmas.    (line   20)
-* pragma, init:                          Solaris Pragmas.    (line   26)
+                                                             (line   36)
+* pragma, address:                       M32C Pragmas.       (line   14)
+* pragma, align:                         Solaris Pragmas.    (line   10)
+* pragma, ctable_entry:                  PRU Pragmas.        (line    6)
+* pragma, diagnostic:                    Diagnostic Pragmas. (line   13)
+* pragma, diagnostic <1>:                Diagnostic Pragmas. (line   71)
+* pragma, diagnostic <2>:                Diagnostic Pragmas. (line   91)
+* pragma, diagnostic <3>:                Diagnostic Pragmas. (line  113)
+* pragma, fini:                          Solaris Pragmas.    (line   19)
+* pragma, init:                          Solaris Pragmas.    (line   25)
 * pragma, longcall:                      RS/6000 and PowerPC Pragmas.
-                                                             (line   14)
-* pragma, long_calls:                    ARM Pragmas.        (line   11)
-* pragma, long_calls_off:                ARM Pragmas.        (line   17)
-* pragma, mark:                          Darwin Pragmas.     (line   11)
-* pragma, memregs:                       M32C Pragmas.       (line    7)
-* pragma, no_long_calls:                 ARM Pragmas.        (line   14)
-* pragma, options align:                 Darwin Pragmas.     (line   14)
-* pragma, pop_macro:                     Push/Pop Macro Pragmas.
-                                                             (line   15)
-* pragma, push_macro:                    Push/Pop Macro Pragmas.
-                                                             (line   11)
-* pragma, redefine_extname:              Symbol-Renaming Pragmas.
                                                              (line   13)
-* pragma, segment:                       Darwin Pragmas.     (line   21)
-* pragma, unused:                        Darwin Pragmas.     (line   24)
-* pragma, visibility:                    Visibility Pragmas. (line    8)
+* pragma, long_calls:                    ARM Pragmas.        (line   10)
+* pragma, long_calls_off:                ARM Pragmas.        (line   16)
+* pragma, mark:                          Darwin Pragmas.     (line   10)
+* pragma, memregs:                       M32C Pragmas.       (line    6)
+* pragma, no_long_calls:                 ARM Pragmas.        (line   13)
+* pragma, options align:                 Darwin Pragmas.     (line   13)
+* pragma, pop_macro:                     Push/Pop Macro Pragmas.
+                                                             (line   14)
+* pragma, push_macro:                    Push/Pop Macro Pragmas.
+                                                             (line   10)
+* pragma, redefine_extname:              Symbol-Renaming Pragmas.
+                                                             (line   12)
+* pragma, segment:                       Darwin Pragmas.     (line   20)
+* pragma, unused:                        Darwin Pragmas.     (line   23)
+* pragma, visibility:                    Visibility Pragmas. (line    6)
 * pragma, weak:                          Weak Pragmas.       (line    9)
 * pragmas:                               Pragmas.            (line    6)
 * pragmas in C++, effect on inlining:    C++ Interface.      (line   57)
@@ -70837,6 +70988,7 @@ Keyword Index
 * reordering, warning:                   C++ Dialect Options.
                                                              (line  973)
 * reporting bugs:                        Bugs.               (line    6)
+* requires:                              C++ Concepts.       (line   31)
 * resbank function attribute, SH:        SH Function Attributes.
                                                              (line   43)
 * reset function attribute, NDS32:       NDS32 Function Attributes.
@@ -70869,7 +71021,7 @@ Keyword Index
 * roundl:                                Other Builtins.     (line    6)
 * RS/6000 and PowerPC Options:           RS/6000 and PowerPC Options.
                                                              (line    6)
-* RTTI:                                  Vague Linkage.      (line   42)
+* RTTI:                                  Vague Linkage.      (line   41)
 * run-time error checking options:       Instrumentation Options.
                                                              (line    6)
 * run-time options:                      Code Gen Options.   (line    6)
@@ -71040,7 +71192,7 @@ Keyword Index
 * strstr:                                Other Builtins.     (line    6)
 * struct:                                Unnamed Fields.     (line    6)
 * struct __htm_tdb:                      S/390 System z Built-in Functions.
-                                                             (line   49)
+                                                             (line   52)
 * structures:                            Incompatibilities.  (line  146)
 * structures, constructor expression:    Compound Literals.  (line    6)
 * submodel options:                      Submodel Options.   (line    6)
@@ -71412,7 +71564,7 @@ Keyword Index
                                                              (line  145)
 * typedef names as function parameters:  Incompatibilities.  (line   97)
 * typeof:                                Typeof.             (line    6)
-* type_info:                             Vague Linkage.      (line   42)
+* type_info:                             Vague Linkage.      (line   41)
 * uhk fixed-suffix:                      Fixed-Point.        (line    6)
 * UHK fixed-suffix:                      Fixed-Point.        (line    6)
 * uhr fixed-suffix:                      Fixed-Point.        (line    6)
@@ -71473,7 +71625,7 @@ Keyword Index
 * use_debug_exception_return function attribute, MIPS: MIPS Function Attributes.
                                                              (line   38)
 * use_hazard_barrier_return function attribute, MIPS: MIPS Function Attributes.
-                                                             (line  114)
+                                                             (line  113)
 * use_shadow_register_set function attribute, MIPS: MIPS Function Attributes.
                                                              (line   27)
 * V in constraint:                       Simple Constraints. (line   43)
@@ -71560,7 +71712,21 @@ Keyword Index
 * vec_ternarylogic:                      PowerPC AltiVec Built-in Functions Available on ISA 3.1.
                                                              (line  401)
 * vec_xst_trunc:                         Basic PowerPC Built-in Functions Available on ISA 3.1.
-                                                             (line   77)
+                                                             (line   61)
+* vec_xst_trunc <1>:                     Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   63)
+* vec_xst_trunc <2>:                     Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   65)
+* vec_xst_trunc <3>:                     Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   67)
+* vec_xst_trunc <4>:                     Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   69)
+* vec_xst_trunc <5>:                     Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   71)
+* vec_xst_trunc <6>:                     Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   73)
+* vec_xst_trunc <7>:                     Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   75)
 * version_id function attribute, IA-64:  IA-64 Function Attributes.
                                                              (line   15)
 * vfprintf:                              Other Builtins.     (line    6)
@@ -71590,10 +71756,22 @@ Keyword Index
 * vsprintf:                              Other Builtins.     (line    6)
 * vsscanf:                               Other Builtins.     (line    6)
 * vsx_xl_sext:                           Basic PowerPC Built-in Functions Available on ISA 3.1.
-                                                             (line   57)
+                                                             (line   40)
+* vsx_xl_sext <1>:                       Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   42)
+* vsx_xl_sext <2>:                       Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   44)
+* vsx_xl_sext <3>:                       Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   46)
 * vsx_xl_zext:                           Basic PowerPC Built-in Functions Available on ISA 3.1.
-                                                             (line   57)
-* vtable:                                Vague Linkage.      (line   27)
+                                                             (line   48)
+* vsx_xl_zext <1>:                       Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   50)
+* vsx_xl_zext <2>:                       Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   52)
+* vsx_xl_zext <3>:                       Basic PowerPC Built-in Functions Available on ISA 3.1.
+                                                             (line   54)
+* vtable:                                Vague Linkage.      (line   26)
 * VxWorks Options:                       VxWorks Options.    (line    6)
 * w floating point suffix:               Floating Types.     (line    6)
 * W floating point suffix:               Floating Types.     (line    6)
@@ -71620,7 +71798,7 @@ Keyword Index
                                                              (line   91)
 * warn_if_not_aligned variable attribute: Common Variable Attributes.
                                                              (line  106)
-* warn_unused type attribute:            C++ Attributes.     (line   71)
+* warn_unused type attribute:            C++ Attributes.     (line   70)
 * warn_unused_result function attribute: Common Function Attributes.
                                                              (line 1499)
 * weak function attribute:               Common Function Attributes.
@@ -71661,432 +71839,433 @@ Keyword Index
 
 
 Tag Table:
-Node: Top2135
-Node: G++ and GCC4109
-Node: Standards6155
-Node: Invoking GCC19781
-Node: Option Summary25008
-Node: Overall Options84854
-Node: Invoking G++113011
-Node: C Dialect Options114534
-Node: C++ Dialect Options137798
-Node: Objective-C and Objective-C++ Dialect Options207599
-Node: Diagnostic Message Formatting Options219346
-Node: Warning Options251187
-Ref: Wtrigraphs359368
-Node: Static Analyzer Options407133
-Node: Debugging Options447057
-Node: Optimize Options467003
-Ref: Type-punning539556
-Node: Instrumentation Options662031
-Node: Preprocessor Options713932
-Ref: dashMF718779
-Ref: fdollars-in-identifiers723441
-Node: Assembler Options736791
-Node: Link Options737482
-Ref: Link Options-Footnote-1754514
-Node: Directory Options755028
-Node: Code Gen Options763431
-Node: Developer Options792304
-Node: Submodel Options835048
-Node: AArch64 Options836768
-Ref: aarch64-feature-modifiers852562
-Node: Adapteva Epiphany Options858234
-Node: AMD GCN Options864186
-Node: ARC Options865915
-Node: ARM Options886919
-Node: AVR Options931682
-Node: Blackfin Options958569
-Node: C6X Options966461
-Node: CRIS Options968004
-Node: C-SKY Options971191
-Node: Darwin Options976918
-Node: DEC Alpha Options984359
-Node: eBPF Options995975
-Node: FR30 Options998351
-Node: FT32 Options998911
-Node: FRV Options999857
-Node: GNU/Linux Options1006621
-Node: H8/300 Options1008002
-Node: HPPA Options1009454
-Node: IA-64 Options1020099
-Node: LM32 Options1028227
-Node: LoongArch Options1028755
-Node: M32C Options1035326
-Node: M32R/D Options1036604
-Node: M680x0 Options1040149
-Node: MCore Options1054304
-Node: MicroBlaze Options1055813
-Node: MIPS Options1058880
-Node: MMIX Options1095856
-Node: MN10300 Options1098333
-Node: Moxie Options1100876
-Node: MSP430 Options1101363
-Node: NDS32 Options1109124
-Node: Nios II Options1111294
-Node: Nvidia PTX Options1124510
-Node: OpenRISC Options1128044
-Node: PDP-11 Options1130798
-Node: PowerPC Options1132046
-Node: PRU Options1132264
-Node: RISC-V Options1134473
-Node: RL78 Options1142970
-Node: RS/6000 and PowerPC Options1146745
-Node: RX Options1188588
-Node: S/390 and zSeries Options1197190
-Node: SH Options1207987
-Node: Solaris 2 Options1223139
-Node: SPARC Options1224377
-Node: System V Options1240029
-Node: V850 Options1240854
-Node: VAX Options1247542
-Node: Visium Options1248234
-Node: VMS Options1250542
-Node: VxWorks Options1251358
-Node: x86 Options1252510
-Node: x86 Windows Options1325665
-Node: Xstormy16 Options1328471
-Node: Xtensa Options1328765
-Node: zSeries Options1335257
-Node: Spec Files1335453
-Node: Environment Variables1361532
-Node: Precompiled Headers1370965
-Node: C++ Modules1377174
-Ref: C++ Modules-Footnote-11382837
-Node: C++ Module Mapper1383090
-Node: C++ Module Preprocessing1388243
-Node: C++ Compiled Module Interface1390072
-Ref: C++ Compiled Module Interface-Footnote-11393456
-Ref: C++ Compiled Module Interface-Footnote-21393545
-Node: C Implementation1393601
-Node: Translation implementation1395292
-Node: Environment implementation1395883
-Node: Identifiers implementation1396437
-Node: Characters implementation1397523
-Node: Integers implementation1401173
-Node: Floating point implementation1403222
-Node: Arrays and pointers implementation1406322
-Ref: Arrays and pointers implementation-Footnote-11407782
-Node: Hints implementation1407908
-Node: Structures unions enumerations and bit-fields implementation1409403
-Node: Qualifiers implementation1411627
-Node: Declarators implementation1413688
-Node: Statements implementation1414029
-Node: Preprocessing directives implementation1414355
-Node: Library functions implementation1416676
-Node: Architecture implementation1417325
-Node: Locale-specific behavior implementation1418970
-Node: C++ Implementation1419275
-Node: Conditionally-supported behavior1420559
-Node: Exception handling1421176
-Node: C Extensions1421643
-Node: Statement Exprs1426866
-Node: Local Labels1432238
-Node: Labels as Values1435211
-Ref: Labels as Values-Footnote-11437738
-Node: Nested Functions1437923
-Node: Nonlocal Gotos1441877
-Node: Constructing Calls1444143
-Node: Typeof1448855
-Node: Conditionals1452784
-Node: __int1281453673
-Node: Long Long1454198
-Node: Complex1455689
-Node: Floating Types1460434
-Node: Half-Precision1463956
-Node: Decimal Float1467424
-Node: Hex Floats1469278
-Node: Fixed-Point1470352
-Node: Named Address Spaces1473610
-Ref: AVR Named Address Spaces1474296
-Node: Zero Length1481595
-Node: Empty Structures1485776
-Node: Variable Length1486182
-Node: Variadic Macros1488900
-Node: Escaped Newlines1491278
-Node: Subscripting1492139
-Node: Pointer Arith1492864
-Node: Variadic Pointer Args1493441
-Node: Pointers to Arrays1494166
-Node: Initializers1494919
-Node: Compound Literals1495420
-Node: Designated Inits1498987
-Node: Case Ranges1502911
-Node: Cast to Union1503592
-Node: Mixed Labels and Declarations1505326
-Node: Function Attributes1505963
-Node: Common Function Attributes1510417
-Ref: Common Function Attributes-Footnote-11588935
-Node: AArch64 Function Attributes1589252
-Node: AMD GCN Function Attributes1595446
-Node: ARC Function Attributes1598499
-Node: ARM Function Attributes1601436
-Node: AVR Function Attributes1606575
-Node: Blackfin Function Attributes1611110
-Node: BPF Function Attributes1613607
-Node: C-SKY Function Attributes1614196
-Node: Epiphany Function Attributes1615492
-Node: H8/300 Function Attributes1618247
-Node: IA-64 Function Attributes1619445
-Node: M32C Function Attributes1620487
-Node: M32R/D Function Attributes1622825
-Node: m68k Function Attributes1624299
-Node: MCORE Function Attributes1625243
-Node: MicroBlaze Function Attributes1626061
-Node: Microsoft Windows Function Attributes1627570
-Node: MIPS Function Attributes1632139
-Node: MSP430 Function Attributes1638002
-Node: NDS32 Function Attributes1642081
-Node: Nios II Function Attributes1644505
-Node: Nvidia PTX Function Attributes1645802
-Node: PowerPC Function Attributes1646417
-Node: RISC-V Function Attributes1653191
-Node: RL78 Function Attributes1654607
-Node: RX Function Attributes1655846
-Node: S/390 Function Attributes1658393
-Node: SH Function Attributes1660221
-Node: Symbian OS Function Attributes1663649
-Node: V850 Function Attributes1663985
-Node: Visium Function Attributes1664530
-Node: x86 Function Attributes1665058
-Node: Xstormy16 Function Attributes1689783
-Node: Variable Attributes1690290
-Node: Common Variable Attributes1691829
-Node: ARC Variable Attributes1715125
-Node: AVR Variable Attributes1715507
-Node: Blackfin Variable Attributes1720626
-Node: H8/300 Variable Attributes1721484
-Node: IA-64 Variable Attributes1722557
-Node: LoongArch Variable Attributes1723311
-Node: M32R/D Variable Attributes1723987
-Node: Microsoft Windows Variable Attributes1724788
-Node: MSP430 Variable Attributes1727244
-Node: Nvidia PTX Variable Attributes1728458
-Node: PowerPC Variable Attributes1729075
-Node: RL78 Variable Attributes1729632
-Node: V850 Variable Attributes1730051
-Node: x86 Variable Attributes1730684
-Node: Xstormy16 Variable Attributes1731740
-Node: Type Attributes1732310
-Node: Common Type Attributes1733974
-Node: ARC Type Attributes1756335
-Node: ARM Type Attributes1756807
-Node: BPF Type Attributes1757589
-Node: PowerPC Type Attributes1758110
-Node: x86 Type Attributes1759099
-Node: Label Attributes1760091
-Node: Enumerator Attributes1762118
-Node: Statement Attributes1763650
-Node: Attribute Syntax1765950
-Node: Function Prototypes1777207
-Node: C++ Comments1778987
-Node: Dollar Signs1779506
-Node: Character Escapes1779971
-Node: Alignment1780255
-Node: Inline1781908
-Node: Volatiles1786725
-Node: Using Assembly Language with C1789624
-Node: Basic Asm1790861
-Node: Extended Asm1796484
-Ref: Volatile1800598
-Ref: AssemblerTemplate1804711
-Ref: OutputOperands1808951
-Ref: FlagOutputOperands1816031
-Ref: InputOperands1818978
-Ref: Clobbers and Scratch Registers1823363
-Ref: GotoLabels1832004
-Ref: GenericOperandmodifiers1835627
-Ref: x86Operandmodifiers1836585
-Ref: x86floatingpointasmoperands1841401
-Ref: msp430Operandmodifiers1844732
-Ref: loongarchOperandmodifiers1846390
-Node: Constraints1846924
-Node: Simple Constraints1848030
-Node: Multi-Alternative1855344
-Node: Modifiers1857019
-Node: Machine Constraints1859818
-Node: Asm Labels1913430
-Node: Explicit Register Variables1915046
-Ref: Explicit Reg Vars1915260
-Node: Global Register Variables1915869
-Ref: Global Reg Vars1916077
-Node: Local Register Variables1920859
-Ref: Local Reg Vars1921079
-Node: Size of an asm1924707
-Node: Alternate Keywords1926185
-Node: Incomplete Enums1927690
-Node: Function Names1928447
-Node: Return Address1930351
-Node: Vector Extensions1934938
-Node: Offsetof1945921
-Node: __sync Builtins1946754
-Node: __atomic Builtins1953197
-Node: Integer Overflow Builtins1966710
-Node: x86 specific memory model extensions for transactional memory1973193
-Node: Object Size Checking1974459
-Node: Other Builtins1981871
-Node: Target Builtins2035612
-Node: AArch64 Built-in Functions2037293
-Node: Alpha Built-in Functions2037989
-Node: Altera Nios II Built-in Functions2041083
-Node: ARC Built-in Functions2045522
-Node: ARC SIMD Built-in Functions2050734
-Node: ARM iWMMXt Built-in Functions2059732
-Node: ARM C Language Extensions (ACLE)2066868
-Node: ARM Floating Point Status and Control Intrinsics2068145
-Node: ARM ARMv8-M Security Extensions2068632
-Node: AVR Built-in Functions2069924
-Node: Blackfin Built-in Functions2073690
-Node: BPF Built-in Functions2074310
-Node: FR-V Built-in Functions2078852
-Node: Argument Types2079715
-Node: Directly-mapped Integer Functions2081546
-Node: Directly-mapped Media Functions2082706
-Node: Raw read/write Functions2090988
-Node: Other Built-in Functions2091896
-Node: MIPS DSP Built-in Functions2093082
-Node: MIPS Paired-Single Support2105837
-Node: MIPS Loongson Built-in Functions2107336
-Node: Paired-Single Arithmetic2113858
-Node: Paired-Single Built-in Functions2114881
-Node: MIPS-3D Built-in Functions2117548
-Node: MIPS SIMD Architecture (MSA) Support2122942
-Node: MIPS SIMD Architecture Built-in Functions2125782
-Node: Other MIPS Built-in Functions2152636
-Node: MSP430 Built-in Functions2153645
-Node: NDS32 Built-in Functions2155046
-Node: Basic PowerPC Built-in Functions2156344
-Node: Basic PowerPC Built-in Functions Available on all Configurations2157199
-Node: Basic PowerPC Built-in Functions Available on ISA 2.052165709
-Node: Basic PowerPC Built-in Functions Available on ISA 2.062170544
-Node: Basic PowerPC Built-in Functions Available on ISA 2.072172624
-Node: Basic PowerPC Built-in Functions Available on ISA 3.02173478
-Node: Basic PowerPC Built-in Functions Available on ISA 3.12180456
-Node: PowerPC AltiVec/VSX Built-in Functions2183621
-Node: PowerPC AltiVec Built-in Functions on ISA 2.052191690
-Node: PowerPC AltiVec Built-in Functions Available on ISA 2.062217090
-Node: PowerPC AltiVec Built-in Functions Available on ISA 2.072224156
-Node: PowerPC AltiVec Built-in Functions Available on ISA 3.02233966
-Node: PowerPC AltiVec Built-in Functions Available on ISA 3.12249689
-Node: PowerPC Hardware Transactional Memory Built-in Functions2282973
-Node: PowerPC Atomic Memory Operation Functions2291523
-Node: PowerPC Matrix-Multiply Assist Built-in Functions2294086
-Node: PRU Built-in Functions2300211
-Node: RISC-V Built-in Functions2301399
-Node: RX Built-in Functions2302054
-Node: S/390 System z Built-in Functions2306056
-Node: SH Built-in Functions2311286
-Node: SPARC VIS Built-in Functions2313014
-Node: TI C6X Built-in Functions2321545
-Node: x86 Built-in Functions2322592
-Node: x86 transactional memory intrinsics2388173
-Node: x86 control-flow protection intrinsics2391440
-Node: Target Format Checks2393211
-Node: Solaris Format Checks2393643
-Node: Darwin Format Checks2394069
-Node: Pragmas2395032
-Node: AArch64 Pragmas2395957
-Node: ARM Pragmas2396414
-Node: M32C Pragmas2397041
-Node: PRU Pragmas2398113
-Node: RS/6000 and PowerPC Pragmas2398692
-Node: S/390 Pragmas2399432
-Node: Darwin Pragmas2399998
-Node: Solaris Pragmas2401051
-Node: Symbol-Renaming Pragmas2402215
-Node: Structure-Layout Pragmas2403850
-Node: Weak Pragmas2406130
-Node: Diagnostic Pragmas2406865
-Node: Visibility Pragmas2411616
-Node: Push/Pop Macro Pragmas2412301
-Node: Function Specific Option Pragmas2413274
-Node: Loop-Specific Pragmas2415240
-Node: Unnamed Fields2416840
-Node: Thread-Local2419037
-Node: C99 Thread-Local Edits2421143
-Node: C++98 Thread-Local Edits2423141
-Node: Binary constants2426586
-Node: C++ Extensions2427257
-Node: C++ Volatiles2428887
-Node: Restricted Pointers2431235
-Node: Vague Linkage2432826
-Node: C++ Interface2436449
-Ref: C++ Interface-Footnote-12440246
-Node: Template Instantiation2440384
-Node: Bound member functions2446475
-Node: C++ Attributes2448007
-Node: Function Multiversioning2452079
-Node: Type Traits2453887
-Node: C++ Concepts2461136
-Node: Deprecated Features2462642
-Node: Backwards Compatibility2464467
-Node: Objective-C2465539
-Node: GNU Objective-C runtime API2466146
-Node: Modern GNU Objective-C runtime API2467153
-Node: Traditional GNU Objective-C runtime API2469589
-Node: Executing code before main2470316
-Node: What you can and what you cannot do in +load2473060
-Node: Type encoding2475430
-Node: Legacy type encoding2480796
-Node: @encode2481886
-Node: Method signatures2482431
-Node: Garbage Collection2484423
-Node: Constant string objects2487113
-Node: compatibility_alias2489622
-Node: Exceptions2490347
-Node: Synchronization2493057
-Node: Fast enumeration2494241
-Node: Using fast enumeration2494553
-Node: c99-like fast enumeration syntax2495764
-Node: Fast enumeration details2496467
-Node: Fast enumeration protocol2498807
-Node: Messaging with the GNU Objective-C runtime2501959
-Node: Dynamically registering methods2503331
-Node: Forwarding hook2505022
-Node: Compatibility2508062
-Node: Gcov2514618
-Node: Gcov Intro2515286
-Node: Invoking Gcov2518004
-Node: Gcov and Optimization2540737
-Node: Gcov Data Files2544490
-Node: Cross-profiling2545899
-Node: Freestanding Environments2547787
-Node: Gcov-tool2562650
-Node: Gcov-tool Intro2563075
-Node: Invoking Gcov-tool2565429
-Node: Gcov-dump2568842
-Node: Gcov-dump Intro2569165
-Node: Invoking Gcov-dump2569432
-Node: lto-dump2570165
-Node: lto-dump Intro2570464
-Node: Invoking lto-dump2570714
-Node: Trouble2571810
-Node: Actual Bugs2573227
-Node: Interoperation2573674
-Node: Incompatibilities2580565
-Node: Fixed Headers2588717
-Node: Standard Libraries2590375
-Node: Disappointments2591747
-Node: C++ Misunderstandings2596106
-Node: Static Definitions2596917
-Node: Name lookup2597970
-Ref: Name lookup-Footnote-12602751
-Node: Temporaries2602940
-Node: Copy Assignment2604916
-Node: Non-bugs2606751
-Node: Warnings and Errors2617257
-Node: Bugs2619019
-Node: Bug Criteria2619486
-Node: Bug Reporting2621696
-Node: Service2621914
-Node: Contributing2622735
-Node: Funding2623481
-Node: GNU Project2625971
-Node: Copying2626619
-Node: GNU Free Documentation License2664133
-Node: Contributors2689256
-Node: Option Index2730336
-Node: Keyword Index3036607
+Node: Top2226
+Node: G++ and GCC4145
+Node: Standards6191
+Node: Invoking GCC19817
+Node: Option Summary25044
+Node: Overall Options84895
+Node: Invoking G++113052
+Node: C Dialect Options114575
+Node: C++ Dialect Options137839
+Node: Objective-C and Objective-C++ Dialect Options207640
+Node: Diagnostic Message Formatting Options219387
+Node: Warning Options251228
+Ref: Wtrigraphs359409
+Node: Static Analyzer Options407174
+Node: Debugging Options447096
+Node: Optimize Options467042
+Ref: Type-punning539595
+Node: Instrumentation Options662070
+Node: Preprocessor Options713971
+Ref: dashMF718818
+Ref: fdollars-in-identifiers723480
+Node: Assembler Options736830
+Node: Link Options737521
+Ref: Link Options-Footnote-1754553
+Node: Directory Options755067
+Node: Code Gen Options763470
+Node: Developer Options792343
+Node: Submodel Options835087
+Node: AArch64 Options836807
+Ref: aarch64-feature-modifiers852601
+Node: Adapteva Epiphany Options858273
+Node: AMD GCN Options864225
+Node: ARC Options865954
+Node: ARM Options886958
+Node: AVR Options931721
+Node: Blackfin Options958608
+Node: C6X Options966500
+Node: CRIS Options968043
+Node: C-SKY Options971230
+Node: Darwin Options976957
+Node: DEC Alpha Options984398
+Node: eBPF Options996014
+Node: FR30 Options998390
+Node: FT32 Options998950
+Node: FRV Options999896
+Node: GNU/Linux Options1006660
+Node: H8/300 Options1008041
+Node: HPPA Options1009493
+Node: IA-64 Options1020138
+Node: LM32 Options1028266
+Node: LoongArch Options1028794
+Node: M32C Options1035365
+Node: M32R/D Options1036643
+Node: M680x0 Options1040188
+Node: MCore Options1054343
+Node: MicroBlaze Options1055852
+Node: MIPS Options1058919
+Node: MMIX Options1095895
+Node: MN10300 Options1098372
+Node: Moxie Options1100915
+Node: MSP430 Options1101402
+Node: NDS32 Options1109163
+Node: Nios II Options1111333
+Node: Nvidia PTX Options1124549
+Node: OpenRISC Options1128083
+Node: PDP-11 Options1130837
+Node: PowerPC Options1132085
+Node: PRU Options1132303
+Node: RISC-V Options1134512
+Node: RL78 Options1143009
+Node: RS/6000 and PowerPC Options1146784
+Node: RX Options1188627
+Node: S/390 and zSeries Options1197229
+Node: SH Options1208026
+Node: Solaris 2 Options1223178
+Node: SPARC Options1224416
+Node: System V Options1240068
+Node: V850 Options1240893
+Node: VAX Options1247581
+Node: Visium Options1248273
+Node: VMS Options1250581
+Node: VxWorks Options1251397
+Node: x86 Options1252549
+Node: x86 Windows Options1325704
+Node: Xstormy16 Options1328510
+Node: Xtensa Options1328804
+Node: zSeries Options1335296
+Node: Spec Files1335492
+Node: Environment Variables1361571
+Node: Precompiled Headers1371004
+Node: C++ Modules1377213
+Ref: C++ Modules-Footnote-11382876
+Node: C++ Module Mapper1383129
+Node: C++ Module Preprocessing1388282
+Node: C++ Compiled Module Interface1390111
+Ref: C++ Compiled Module Interface-Footnote-11393495
+Ref: C++ Compiled Module Interface-Footnote-21393584
+Node: C Implementation1393640
+Node: Translation implementation1395331
+Node: Environment implementation1395922
+Node: Identifiers implementation1396476
+Node: Characters implementation1397562
+Node: Integers implementation1401212
+Node: Floating point implementation1403261
+Node: Arrays and pointers implementation1406361
+Ref: Arrays and pointers implementation-Footnote-11407821
+Node: Hints implementation1407947
+Node: Structures unions enumerations and bit-fields implementation1409442
+Node: Qualifiers implementation1411666
+Node: Declarators implementation1413727
+Node: Statements implementation1414068
+Node: Preprocessing directives implementation1414394
+Node: Library functions implementation1416715
+Node: Architecture implementation1417364
+Node: Locale-specific behavior implementation1419009
+Node: C++ Implementation1419314
+Node: Conditionally-supported behavior1420598
+Node: Exception handling1421215
+Node: C Extensions1421623
+Node: Statement Exprs1426846
+Node: Local Labels1432218
+Node: Labels as Values1435191
+Ref: Labels as Values-Footnote-11437718
+Node: Nested Functions1437903
+Node: Nonlocal Gotos1441857
+Node: Constructing Calls1444123
+Node: Typeof1448835
+Node: Conditionals1452764
+Node: __int1281453653
+Node: Long Long1454178
+Node: Complex1455669
+Node: Floating Types1460414
+Node: Half-Precision1463936
+Node: Decimal Float1467404
+Node: Hex Floats1469258
+Node: Fixed-Point1470332
+Node: Named Address Spaces1473590
+Ref: AVR Named Address Spaces1474276
+Node: Zero Length1481575
+Node: Empty Structures1485756
+Node: Variable Length1486162
+Node: Variadic Macros1488880
+Node: Escaped Newlines1491258
+Node: Subscripting1492119
+Node: Pointer Arith1492844
+Node: Variadic Pointer Args1493421
+Node: Pointers to Arrays1494146
+Node: Initializers1494899
+Node: Compound Literals1495400
+Node: Designated Inits1498967
+Node: Case Ranges1502891
+Node: Cast to Union1503572
+Node: Mixed Labels and Declarations1505306
+Node: Function Attributes1505943
+Node: Common Function Attributes1510397
+Ref: Common Function Attributes-Footnote-11588916
+Node: AArch64 Function Attributes1589233
+Node: AMD GCN Function Attributes1595427
+Node: ARC Function Attributes1598480
+Node: ARM Function Attributes1601417
+Node: AVR Function Attributes1606556
+Node: Blackfin Function Attributes1611091
+Node: BPF Function Attributes1613588
+Node: C-SKY Function Attributes1614177
+Node: Epiphany Function Attributes1615473
+Node: H8/300 Function Attributes1618228
+Node: IA-64 Function Attributes1619426
+Node: M32C Function Attributes1620468
+Node: M32R/D Function Attributes1622806
+Node: m68k Function Attributes1624280
+Node: MCORE Function Attributes1625224
+Node: MicroBlaze Function Attributes1626042
+Node: Microsoft Windows Function Attributes1627551
+Node: MIPS Function Attributes1632120
+Node: MSP430 Function Attributes1637983
+Node: NDS32 Function Attributes1642062
+Node: Nios II Function Attributes1644486
+Node: Nvidia PTX Function Attributes1645783
+Node: PowerPC Function Attributes1646398
+Node: RISC-V Function Attributes1653172
+Node: RL78 Function Attributes1654588
+Node: RX Function Attributes1655827
+Node: S/390 Function Attributes1658374
+Node: SH Function Attributes1660202
+Node: Symbian OS Function Attributes1663630
+Node: V850 Function Attributes1663966
+Node: Visium Function Attributes1664511
+Node: x86 Function Attributes1665039
+Node: Xstormy16 Function Attributes1689764
+Node: Variable Attributes1690271
+Node: Common Variable Attributes1691810
+Node: ARC Variable Attributes1715106
+Node: AVR Variable Attributes1715488
+Node: Blackfin Variable Attributes1720607
+Node: H8/300 Variable Attributes1721465
+Node: IA-64 Variable Attributes1722538
+Node: LoongArch Variable Attributes1723292
+Node: M32R/D Variable Attributes1723968
+Node: Microsoft Windows Variable Attributes1724769
+Node: MSP430 Variable Attributes1727225
+Node: Nvidia PTX Variable Attributes1728439
+Node: PowerPC Variable Attributes1729056
+Node: RL78 Variable Attributes1729613
+Node: V850 Variable Attributes1730032
+Node: x86 Variable Attributes1730665
+Node: Xstormy16 Variable Attributes1731721
+Node: Type Attributes1732291
+Node: Common Type Attributes1733955
+Node: ARC Type Attributes1756316
+Node: ARM Type Attributes1756788
+Node: BPF Type Attributes1757570
+Node: PowerPC Type Attributes1758091
+Node: x86 Type Attributes1759080
+Node: Label Attributes1760072
+Node: Enumerator Attributes1762099
+Node: Statement Attributes1763631
+Node: Attribute Syntax1765931
+Node: Function Prototypes1777188
+Node: C++ Comments1778968
+Node: Dollar Signs1779487
+Node: Character Escapes1779952
+Node: Alignment1780236
+Node: Inline1781889
+Node: Volatiles1786706
+Node: Using Assembly Language with C1789605
+Node: Basic Asm1790842
+Node: Extended Asm1796465
+Ref: Volatile1800579
+Ref: AssemblerTemplate1804692
+Ref: OutputOperands1808932
+Ref: FlagOutputOperands1816012
+Ref: InputOperands1818959
+Ref: Clobbers and Scratch Registers1823344
+Ref: GotoLabels1831985
+Ref: GenericOperandmodifiers1835608
+Ref: x86Operandmodifiers1836566
+Ref: x86floatingpointasmoperands1841382
+Ref: msp430Operandmodifiers1844713
+Ref: loongarchOperandmodifiers1846371
+Node: Constraints1846905
+Node: Simple Constraints1848011
+Node: Multi-Alternative1855325
+Node: Modifiers1857000
+Node: Machine Constraints1859799
+Node: Asm Labels1913411
+Node: Explicit Register Variables1915027
+Ref: Explicit Reg Vars1915241
+Node: Global Register Variables1915850
+Ref: Global Reg Vars1916058
+Node: Local Register Variables1920840
+Ref: Local Reg Vars1921060
+Node: Size of an asm1924688
+Node: Alternate Keywords1926166
+Node: Incomplete Enums1927671
+Node: Function Names1928428
+Node: Return Address1930332
+Node: Vector Extensions1934919
+Node: Offsetof1945902
+Node: __sync Builtins1946735
+Node: __atomic Builtins1953690
+Node: Integer Overflow Builtins1967203
+Node: x86 specific memory model extensions for transactional memory1973686
+Node: Object Size Checking1974952
+Node: Other Builtins1982461
+Node: Target Builtins2036019
+Node: AArch64 Built-in Functions2037700
+Node: Alpha Built-in Functions2038396
+Node: Altera Nios II Built-in Functions2041490
+Node: ARC Built-in Functions2045929
+Node: ARC SIMD Built-in Functions2051141
+Node: ARM iWMMXt Built-in Functions2060139
+Node: ARM C Language Extensions (ACLE)2067275
+Node: ARM Floating Point Status and Control Intrinsics2068552
+Node: ARM ARMv8-M Security Extensions2069039
+Node: AVR Built-in Functions2070331
+Node: Blackfin Built-in Functions2074097
+Node: BPF Built-in Functions2074717
+Node: FR-V Built-in Functions2079259
+Node: Argument Types2080122
+Node: Directly-mapped Integer Functions2081953
+Node: Directly-mapped Media Functions2083113
+Node: Raw read/write Functions2091395
+Node: Other Built-in Functions2092303
+Node: MIPS DSP Built-in Functions2093489
+Node: MIPS Paired-Single Support2106244
+Node: MIPS Loongson Built-in Functions2107743
+Node: Paired-Single Arithmetic2114265
+Node: Paired-Single Built-in Functions2115288
+Node: MIPS-3D Built-in Functions2117955
+Node: MIPS SIMD Architecture (MSA) Support2123349
+Node: MIPS SIMD Architecture Built-in Functions2126189
+Node: Other MIPS Built-in Functions2153043
+Node: MSP430 Built-in Functions2154052
+Node: NDS32 Built-in Functions2155453
+Node: Basic PowerPC Built-in Functions2156751
+Node: Basic PowerPC Built-in Functions Available on all Configurations2157606
+Node: Basic PowerPC Built-in Functions Available on ISA 2.052166116
+Node: Basic PowerPC Built-in Functions Available on ISA 2.062170951
+Node: Basic PowerPC Built-in Functions Available on ISA 2.072173031
+Node: Basic PowerPC Built-in Functions Available on ISA 3.02173885
+Node: Basic PowerPC Built-in Functions Available on ISA 3.12181160
+Node: PowerPC AltiVec/VSX Built-in Functions2185077
+Node: PowerPC AltiVec Built-in Functions on ISA 2.052193146
+Node: PowerPC AltiVec Built-in Functions Available on ISA 2.062218546
+Node: PowerPC AltiVec Built-in Functions Available on ISA 2.072225612
+Node: PowerPC AltiVec Built-in Functions Available on ISA 3.02235422
+Node: PowerPC AltiVec Built-in Functions Available on ISA 3.12251145
+Node: PowerPC Hardware Transactional Memory Built-in Functions2284429
+Node: PowerPC Atomic Memory Operation Functions2292979
+Node: PowerPC Matrix-Multiply Assist Built-in Functions2295542
+Node: PRU Built-in Functions2301667
+Node: RISC-V Built-in Functions2302947
+Node: RX Built-in Functions2303602
+Node: S/390 System z Built-in Functions2307604
+Node: SH Built-in Functions2312873
+Node: SPARC VIS Built-in Functions2314601
+Node: TI C6X Built-in Functions2323132
+Node: x86 Built-in Functions2324179
+Node: x86 transactional memory intrinsics2390525
+Node: x86 control-flow protection intrinsics2393851
+Node: Target Format Checks2395622
+Node: Solaris Format Checks2396054
+Node: Darwin Format Checks2396480
+Node: Pragmas2397443
+Node: AArch64 Pragmas2398368
+Node: ARM Pragmas2398825
+Node: M32C Pragmas2399452
+Node: PRU Pragmas2400524
+Node: RS/6000 and PowerPC Pragmas2401103
+Node: S/390 Pragmas2401843
+Node: Darwin Pragmas2402409
+Node: Solaris Pragmas2403462
+Node: Symbol-Renaming Pragmas2404626
+Node: Structure-Layout Pragmas2406261
+Node: Weak Pragmas2408541
+Node: Diagnostic Pragmas2409276
+Node: Visibility Pragmas2414027
+Node: Push/Pop Macro Pragmas2414712
+Node: Function Specific Option Pragmas2415685
+Node: Loop-Specific Pragmas2417651
+Node: Unnamed Fields2419251
+Node: Thread-Local2421448
+Node: C99 Thread-Local Edits2423554
+Node: C++98 Thread-Local Edits2425552
+Node: Binary constants2428997
+Node: C++ Extensions2429668
+Node: C++ Volatiles2431298
+Node: Restricted Pointers2433646
+Node: Vague Linkage2435237
+Node: C++ Interface2438860
+Ref: C++ Interface-Footnote-12442657
+Node: Template Instantiation2442795
+Node: Bound member functions2448886
+Node: C++ Attributes2450418
+Node: Function Multiversioning2454490
+Node: Type Traits2456298
+Node: C++ Concepts2464020
+Node: Deprecated Features2465563
+Node: Backwards Compatibility2467388
+Node: Objective-C2468460
+Node: GNU Objective-C runtime API2469067
+Node: Modern GNU Objective-C runtime API2470074
+Node: Traditional GNU Objective-C runtime API2472510
+Node: Executing code before main2473237
+Node: What you can and what you cannot do in +load2475981
+Node: Type encoding2478351
+Node: Legacy type encoding2483717
+Node: @encode2484807
+Node: Method signatures2485352
+Node: Garbage Collection2487344
+Node: Constant string objects2490034
+Node: compatibility_alias2492543
+Node: Exceptions2493268
+Node: Synchronization2495978
+Node: Fast enumeration2497162
+Node: Using fast enumeration2497474
+Node: c99-like fast enumeration syntax2498685
+Node: Fast enumeration details2499388
+Node: Fast enumeration protocol2501728
+Node: Messaging with the GNU Objective-C runtime2504880
+Node: Dynamically registering methods2506252
+Node: Forwarding hook2507943
+Node: Compatibility2510983
+Node: Gcov2517539
+Node: Gcov Intro2518207
+Node: Invoking Gcov2520925
+Node: Gcov and Optimization2543658
+Node: Gcov Data Files2547411
+Node: Cross-profiling2548820
+Node: Freestanding Environments2550708
+Node: Gcov-tool2565571
+Node: Gcov-tool Intro2565996
+Node: Invoking Gcov-tool2568350
+Node: Gcov-dump2571763
+Node: Gcov-dump Intro2572086
+Node: Invoking Gcov-dump2572353
+Node: lto-dump2573086
+Node: lto-dump Intro2573385
+Node: Invoking lto-dump2573635
+Node: Trouble2574731
+Node: Actual Bugs2576148
+Node: Interoperation2576595
+Node: Incompatibilities2583486
+Node: Fixed Headers2591638
+Node: Standard Libraries2593296
+Node: Disappointments2594668
+Node: C++ Misunderstandings2599027
+Node: Static Definitions2599838
+Node: Name lookup2600891
+Ref: Name lookup-Footnote-12605672
+Node: Temporaries2605861
+Node: Copy Assignment2607837
+Node: Non-bugs2609672
+Node: Warnings and Errors2620178
+Node: Bugs2621940
+Node: Bug Criteria2622407
+Node: Bug Reporting2624617
+Node: Service2624835
+Node: Contributing2625656
+Node: Funding2626402
+Node: GNU Project2628892
+Node: Copying2629540
+Node: GNU Free Documentation License2667054
+Node: Contributors2692177
+Node: Indices2733252
+Node: Option Index2733498
+Node: Concept and Symbol Index3039771
 
 End Tag Table
 
