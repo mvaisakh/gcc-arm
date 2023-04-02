@@ -36832,12 +36832,14 @@ memory.
  -- Target Hook: fixed_size_mode TARGET_GET_RAW_RESULT_MODE (int REGNO)
      This target hook returns the mode to be used when accessing raw
      return registers in '__builtin_return'.  Define this macro if the
-     value in REG_RAW_MODE is not correct.
+     value in REG_RAW_MODE is not correct.  Use 'VOIDmode' if a register
+     should be ignored for '__builtin_return' purposes.
 
  -- Target Hook: fixed_size_mode TARGET_GET_RAW_ARG_MODE (int REGNO)
      This target hook returns the mode to be used when accessing raw
      argument registers in '__builtin_apply_args'.  Define this macro if
-     the value in REG_RAW_MODE is not correct.
+     the value in REG_RAW_MODE is not correct.  Use 'VOIDmode' if a
+     register should be ignored for '__builtin_apply_args' purposes.
 
  -- Target Hook: bool TARGET_EMPTY_RECORD_P (const_tree TYPE)
      This target hook returns true if the type is an empty record.  The
@@ -57290,7 +57292,7 @@ Concept Index
 * TARGET_EDOM:                           Library Calls.      (line   59)
 * TARGET_EMIT_CALL_BUILTIN___CLEAR_CACHE: Trampolines.       (line  132)
 * TARGET_EMIT_SUPPORT_TINFOS:            Storage Layout.     (line  596)
-* TARGET_EMPTY_RECORD_P:                 Aggregate Return.   (line   86)
+* TARGET_EMPTY_RECORD_P:                 Aggregate Return.   (line   88)
 * TARGET_EMUTLS_DEBUG_FORM_TLS_ADDRESS:  Emulated TLS.       (line   67)
 * TARGET_EMUTLS_GET_ADDRESS:             Emulated TLS.       (line   18)
 * TARGET_EMUTLS_REGISTER_COMMON:         Emulated TLS.       (line   23)
@@ -57354,7 +57356,7 @@ Concept Index
 * TARGET_GET_FUNCTION_VERSIONS_DISPATCHER: Misc.             (line  715)
 * TARGET_GET_MULTILIB_ABI_NAME:          Register Basics.    (line   99)
 * TARGET_GET_PCH_VALIDITY:               PCH Target.         (line    6)
-* TARGET_GET_RAW_ARG_MODE:               Aggregate Return.   (line   81)
+* TARGET_GET_RAW_ARG_MODE:               Aggregate Return.   (line   82)
 * TARGET_GET_RAW_RESULT_MODE:            Aggregate Return.   (line   76)
 * TARGET_GET_VALID_OPTION_VALUES:        Stack Smashing Protection.
                                                              (line   39)
@@ -57690,7 +57692,7 @@ Concept Index
 * TARGET_VTABLE_USES_DESCRIPTORS:        Type Layout.        (line  286)
 * TARGET_WANT_DEBUG_PUB_SECTIONS:        DWARF.              (line   71)
 * TARGET_WARN_FUNC_RETURN:               Tail Calls.         (line   35)
-* TARGET_WARN_PARAMETER_PASSING_ABI:     Aggregate Return.   (line   90)
+* TARGET_WARN_PARAMETER_PASSING_ABI:     Aggregate Return.   (line   92)
 * TARGET_WEAK_NOT_IN_ARCHIVE_TOC:        Label Output.       (line  308)
 * TARGET_ZERO_CALL_USED_REGS:            Misc.               (line 1080)
 * tbranch_OPMODE3 instruction pattern:   Standard Names.     (line 2026)
@@ -58591,105 +58593,105 @@ Node: Stack Arguments1522369
 Node: Register Arguments1529822
 Node: Scalar Return1554382
 Node: Aggregate Return1560838
-Node: Caller Saves1565392
-Node: Function Entry1566134
-Node: Profiling1577686
-Node: Tail Calls1579796
-Node: Shrink-wrapping separate components1581706
-Node: Stack Smashing Protection1584747
-Node: Miscellaneous Register Hooks1587236
-Node: Varargs1588101
-Node: Trampolines1596195
-Node: Library Calls1605888
-Node: Addressing Modes1610975
-Node: Anchored Addresses1642466
-Node: Condition Code1645109
-Node: MODE_CC Condition Codes1646954
-Node: Costs1653717
-Node: Scheduling1676037
-Node: Sections1699959
-Node: PIC1716329
-Node: Assembler Format1718388
-Node: File Framework1719526
-Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1727125
-Node: Data Output1728800
-Node: Uninitialized Data1737088
-Node: Label Output1742103
-Node: Initialization1766716
-Node: Macros for Initialization1772677
-Node: Instruction Output1779828
-Node: Dispatch Tables1790458
-Node: Exception Region Output1796209
-Node: Alignment Output1803291
-Node: Debugging Info1806978
-Node: All Debuggers1807528
-Node: DWARF1810461
-Node: VMS Debug1816236
-Node: CTF Debug1816833
-Node: BTF Debug1817194
-Node: Floating Point1817537
-Node: Mode Switching1820292
-Node: Target Attributes1824729
-Node: Emulated TLS1836132
-Node: MIPS Coprocessors1839522
-Node: PCH Target1840681
-Node: C++ ABI1842523
-Node: D Language and ABI1847315
-Node: Named Address Spaces1850539
-Node: Misc1856466
-Ref: TARGET_SHIFT_TRUNCATION_MASK1864337
-Node: Host Config1925346
-Node: Host Common1926415
-Node: Filesystem1928789
-Node: Host Misc1932904
-Node: Fragments1935353
-Node: Target Fragment1936548
-Node: Host Fragment1947360
-Node: Collect21947600
-Node: Header Dirs1950236
-Node: Type Information1951659
-Node: GTY Options1955190
-Node: Inheritance and GTY1967621
-Ref: Inheritance and GTY-Footnote-11969186
-Node: User GC1969456
-Node: GGC Roots1973207
-Node: Files1973920
-Node: Invoking the garbage collector1976551
-Node: Troubleshooting1978193
-Node: Plugins1979268
-Node: Plugins loading1980397
-Node: Plugin API1981496
-Node: Plugins pass1989363
-Node: Plugins GC1991334
-Node: Plugins description1993051
-Node: Plugins attr1993587
-Node: Plugins recording1995867
-Node: Plugins gate1996717
-Node: Plugins tracking1997308
-Node: Plugins building1997896
-Node: LTO2001399
-Node: LTO Overview2002271
-Node: LTO object file layout2008027
-Node: IPA2012526
-Node: WHOPR2021578
-Node: Internal flags2026138
-Node: Match and Simplify2027549
-Node: GIMPLE API2028519
-Node: The Language2031321
-Node: Static Analyzer2043948
-Node: Analyzer Internals2044213
-Node: Debugging the Analyzer2059983
-Node: User Experience Guidelines2067350
-Node: Guidelines for Diagnostics2068286
-Ref: input_location_example2076461
-Node: Guidelines for Options2086146
-Node: Funding2086323
-Node: GNU Project2088830
-Node: Copying2089481
-Node: GNU Free Documentation License2126998
-Node: Contributors2152124
-Node: Option Index2193207
-Node: Concept Index2194084
+Node: Caller Saves1565568
+Node: Function Entry1566310
+Node: Profiling1577862
+Node: Tail Calls1579972
+Node: Shrink-wrapping separate components1581882
+Node: Stack Smashing Protection1584923
+Node: Miscellaneous Register Hooks1587412
+Node: Varargs1588277
+Node: Trampolines1596371
+Node: Library Calls1606064
+Node: Addressing Modes1611151
+Node: Anchored Addresses1642642
+Node: Condition Code1645285
+Node: MODE_CC Condition Codes1647130
+Node: Costs1653893
+Node: Scheduling1676213
+Node: Sections1700135
+Node: PIC1716505
+Node: Assembler Format1718564
+Node: File Framework1719702
+Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1727301
+Node: Data Output1728976
+Node: Uninitialized Data1737264
+Node: Label Output1742279
+Node: Initialization1766892
+Node: Macros for Initialization1772853
+Node: Instruction Output1780004
+Node: Dispatch Tables1790634
+Node: Exception Region Output1796385
+Node: Alignment Output1803467
+Node: Debugging Info1807154
+Node: All Debuggers1807704
+Node: DWARF1810637
+Node: VMS Debug1816412
+Node: CTF Debug1817009
+Node: BTF Debug1817370
+Node: Floating Point1817713
+Node: Mode Switching1820468
+Node: Target Attributes1824905
+Node: Emulated TLS1836308
+Node: MIPS Coprocessors1839698
+Node: PCH Target1840857
+Node: C++ ABI1842699
+Node: D Language and ABI1847491
+Node: Named Address Spaces1850715
+Node: Misc1856642
+Ref: TARGET_SHIFT_TRUNCATION_MASK1864513
+Node: Host Config1925522
+Node: Host Common1926591
+Node: Filesystem1928965
+Node: Host Misc1933080
+Node: Fragments1935529
+Node: Target Fragment1936724
+Node: Host Fragment1947536
+Node: Collect21947776
+Node: Header Dirs1950412
+Node: Type Information1951835
+Node: GTY Options1955366
+Node: Inheritance and GTY1967797
+Ref: Inheritance and GTY-Footnote-11969362
+Node: User GC1969632
+Node: GGC Roots1973383
+Node: Files1974096
+Node: Invoking the garbage collector1976727
+Node: Troubleshooting1978369
+Node: Plugins1979444
+Node: Plugins loading1980573
+Node: Plugin API1981672
+Node: Plugins pass1989539
+Node: Plugins GC1991510
+Node: Plugins description1993227
+Node: Plugins attr1993763
+Node: Plugins recording1996043
+Node: Plugins gate1996893
+Node: Plugins tracking1997484
+Node: Plugins building1998072
+Node: LTO2001575
+Node: LTO Overview2002447
+Node: LTO object file layout2008203
+Node: IPA2012702
+Node: WHOPR2021754
+Node: Internal flags2026314
+Node: Match and Simplify2027725
+Node: GIMPLE API2028695
+Node: The Language2031497
+Node: Static Analyzer2044124
+Node: Analyzer Internals2044389
+Node: Debugging the Analyzer2060159
+Node: User Experience Guidelines2067526
+Node: Guidelines for Diagnostics2068462
+Ref: input_location_example2076637
+Node: Guidelines for Options2086322
+Node: Funding2086499
+Node: GNU Project2089006
+Node: Copying2089657
+Node: GNU Free Documentation License2127174
+Node: Contributors2152300
+Node: Option Index2193383
+Node: Concept Index2194260
 
 End Tag Table
 

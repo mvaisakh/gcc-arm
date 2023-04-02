@@ -7326,7 +7326,8 @@ extern tree do_auto_deduction                   (tree, tree, tree,
                                                  auto_deduction_context
 						 = adc_unspecified,
 						 tree = NULL_TREE,
-						 int = LOOKUP_NORMAL);
+						 int = LOOKUP_NORMAL,
+						 tree = NULL_TREE);
 extern tree type_uses_auto			(tree);
 extern tree type_uses_auto_or_concept		(tree);
 extern void append_type_to_template_for_access_check (tree, tree, tree,
@@ -7534,6 +7535,7 @@ extern int at_function_scope_p			(void);
 extern bool at_class_scope_p			(void);
 extern bool at_namespace_scope_p		(void);
 extern tree context_for_name_lookup		(tree);
+extern tree type_context_for_name_lookup	(tree);
 extern tree lookup_conversions			(tree);
 extern tree binfo_from_vbase			(tree);
 extern tree binfo_for_vbase			(tree, tree);
