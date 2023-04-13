@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2023-04-09" "binutils-2.40.50" "GNU Development Tools"
+.TH LD 1 "2023-04-13" "binutils-2.40.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -388,9 +388,9 @@ sections are evaluated does not change, for instance:
 .Sp
 .Vb 10
 \&          MEMORY {
-\&            MEM1 (rwx) : ORIGIN : 0x1000, LENGTH = 0x14
-\&            MEM2 (rwx) : ORIGIN : 0x1000, LENGTH = 0x40
-\&            MEM3 (rwx) : ORIGIN : 0x2000, LENGTH = 0x40
+\&            MEM1 (rwx) : ORIGIN = 0x1000, LENGTH = 0x14
+\&            MEM2 (rwx) : ORIGIN = 0x1000, LENGTH = 0x40
+\&            MEM3 (rwx) : ORIGIN = 0x2000, LENGTH = 0x40
 \&          }
 \&          SECTIONS {
 \&            mem1 : { *(.data.*); } > MEM1
