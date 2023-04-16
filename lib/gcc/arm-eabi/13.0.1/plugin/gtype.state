@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "13.0.1 20230413 (Bleeding Edge)")
+(!version  "13.0.1 20230416 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 241 0
@@ -30335,15 +30335,15 @@
    (!type already_seen 2246)
   )
   gc_pointed_to "hash_map<tree,tree_pair_p>"
-  (!srcfileloc  "cp/pt.cc" 30441)
+  (!srcfileloc  "cp/pt.cc" 30448)
   (!fields 2 
    (!pair  "tree_pair_p"
     (!type already_seen 539)
-    (!srcfileloc  "cp/pt.cc" 30441)
+    (!srcfileloc  "cp/pt.cc" 30448)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/pt.cc" 30441)
+    (!srcfileloc  "cp/pt.cc" 30448)
     nil )
   )
  )
@@ -31665,7 +31665,7 @@
   nil )
  (!pair  "hash_map<tree,tree_pair_p>"
   (!type already_seen 2246)
-  (!srcfileloc  "cp/pt.cc" 30441)
+  (!srcfileloc  "cp/pt.cc" 30448)
   nil )
  (!pair  "pending_template"
   (!type already_seen 2230)
@@ -32429,7 +32429,7 @@
   nil )
  (!pair  "vinfo_t"
   (!type already_seen 1863)
-  (!srcfileloc  "ada/gcc-interface/decl.cc" 7903)
+  (!srcfileloc  "ada/gcc-interface/decl.cc" 7917)
   nil )
  (!pair  "intrin_binding_t"
   (!type already_seen 1861)
@@ -36620,7 +36620,7 @@
   nil )
  (!pair  "dguide_cache"
   (!type already_seen 2247)
-  (!srcfileloc  "cp/pt.cc" 30441)
+  (!srcfileloc  "cp/pt.cc" 30448)
   (!options 
    (!option deletable string  "")
   )
@@ -36883,11 +36883,11 @@
   nil )
  (!pair  "start_cleanup_cnt"
   (!type already_seen 2)
-  (!srcfileloc  "cp/decl.cc" 9569)
+  (!srcfileloc  "cp/decl.cc" 9579)
   nil )
  (!pair  "decomp_type_table"
   (!type already_seen 946)
-  (!srcfileloc  "cp/decl.cc" 9028)
+  (!srcfileloc  "cp/decl.cc" 9038)
   (!options 
    (!option cache string  "")
   )
@@ -37118,7 +37118,7 @@
   nil )
  (!pair  "cv_cache"
   (!type already_seen 394)
-  (!srcfileloc  "cp/constexpr.cc" 8555)
+  (!srcfileloc  "cp/constexpr.cc" 8562)
   (!options 
    (!option deletable string  "")
   )
