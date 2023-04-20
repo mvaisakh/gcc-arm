@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-04-16" "gcc-13.0.1" "GNU"
+.TH GCC 1 "2023-04-20" "gcc-14.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -530,6 +530,7 @@ in the following sections.
 \&\-gstrict\-dwarf  \-gno\-strict\-dwarf
 \&\-gas\-loc\-support  \-gno\-as\-loc\-support
 \&\-gas\-locview\-support  \-gno\-as\-locview\-support
+\&\-gcodeview
 \&\-gcolumn\-info  \-gno\-column\-info  \-gdwarf32  \-gdwarf64
 \&\-gstatement\-frontiers  \-gno\-statement\-frontiers
 \&\-gvariable\-location\-views  \-gno\-variable\-location\-views
@@ -1482,6 +1483,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-mlongcalls  \-mno\-longcalls
 \&\-mabi=\fR\fIabi-type\fR
 \&\fB\-mextra\-l32r\-costs=\fR\fIcycles\fR
+\&\fB\-mstrict\-align  \-mno\-strict\-align\fR
 .Sp
 \&\fIzSeries Options\fR
 See S/390 and zSeries Options.
@@ -10618,6 +10620,11 @@ at file-scope or global-scope only.
 .IX Item "-gvms"
 Produce debugging information in Alpha/VMS debug format (if that is
 supported).  This is the format used by \s-1DEBUG\s0 on Alpha/VMS systems.
+.IP "\fB\-gcodeview\fR" 4
+.IX Item "-gcodeview"
+Produce debugging information in CodeView debug format (if that is
+supported).  This is the format used by Microsoft Visual \*(C+ on
+Windows.
 .IP "\fB\-g\fR\fIlevel\fR" 4
 .IX Item "-glevel"
 .PD 0
@@ -33287,6 +33294,17 @@ instructions, in clock cycles.  This affects, when optimizing for speed,
 whether loading a constant from literal pool using \f(CW\*(C`L32R\*(C'\fR or
 synthesizing the constant from a small one with a couple of arithmetic
 instructions.  The default value is 0.
+.IP "\fB\-mstrict\-align\fR" 4
+.IX Item "-mstrict-align"
+.PD 0
+.IP "\fB\-mno\-strict\-align\fR" 4
+.IX Item "-mno-strict-align"
+.PD
+Avoid or allow generating memory accesses that may not be aligned on a natural
+object boundary as described in the architecture specification.
+The default is \fB\-mno\-strict\-align\fR for cores that support both
+unaligned loads and stores in hardware and \fB\-mstrict\-align\fR for all
+other cores.
 .PP
 \fIzSeries Options\fR
 .IX Subsection "zSeries Options"

@@ -67,6 +67,7 @@ SECTIONS
   }
   .plt          0 : { *(.plt) }
   .iplt         0 : { *(.iplt) }
+  .gnu.sgstubs    : { *(.gnu.sgstubs*) }
   .text         0 :
   {
     *(.text .stub)

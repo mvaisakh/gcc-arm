@@ -1910,13 +1910,13 @@ option.
 '--disable-decimal-float'
      Enable (or disable) support for the C decimal floating point
      extension that is in the IEEE 754-2008 standard.  This is enabled
-     by default only on PowerPC, i386, and x86_64 GNU/Linux systems.
-     Other systems may also support it, but require the user to
-     specifically enable it.  You can optionally control which decimal
-     floating point format is used (either 'bid' or 'dpd').  The 'bid'
-     (binary integer decimal) format is default on i386 and x86_64
-     systems, and the 'dpd' (densely packed decimal) format is default
-     on PowerPC systems.
+     by default only on AArch64, PowerPC, i386, and x86_64 GNU/Linux
+     systems.  Other systems may also support it, but require the user
+     to specifically enable it.  You can optionally control which
+     decimal floating point format is used (either 'bid' or 'dpd').  The
+     'bid' (binary integer decimal) format is default on AArch64, i386
+     and x86_64 systems, and the 'dpd' (densely packed decimal) format
+     is default on PowerPC systems.
 
 '--enable-fixed-point'
 '--disable-fixed-point'
@@ -4917,92 +4917,92 @@ Ref: with-as39045
 Ref: with-gnu-ld40454
 Ref: WithAixSoname67332
 Ref: AixLdCommand67993
-Node: Building109984
-Node: Testing126191
-Node: Final install133932
-Node: Binaries138601
-Node: Specific139636
-Ref: aarch64-x-x140170
-Ref: alpha-x-x142190
-Ref: amd64-x-solaris2142404
-Ref: amdgcn-x-amdhsa142486
-Ref: arc-x-elf32143011
-Ref: arc-linux-uclibc143187
-Ref: arm-x-eabi143328
-Ref: avr143581
-Ref: bfin144162
-Ref: cris144425
-Ref: dos144751
-Ref: epiphany-x-elf145076
-Ref: x-x-freebsd145181
-Ref: ft32-x-elf146745
-Ref: h8300-hms146843
-Ref: hppa-hp-hpux147195
-Ref: hppa-hp-hpux10149567
-Ref: hppa-hp-hpux11149980
-Ref: x-x-linux-gnu155382
-Ref: ix86-x-linux155705
-Ref: ix86-x-solaris2156018
-Ref: ia64-x-linux157094
-Ref: ia64-x-hpux157341
-Ref: x-ibm-aix157896
-Ref: TransferAixShobj161558
-Ref: iq2000-x-elf165368
-Ref: lm32-x-elf165508
-Ref: lm32-x-uclinux165612
-Ref: loongarch165740
-Ref: m32c-x-elf166434
-Ref: m32r-x-elf166536
-Ref: m68k-x-x166638
-Ref: m68k-x-uclinux167676
-Ref: microblaze-x-elf167921
-Ref: mips-x-x168040
-Ref: moxie-x-elf169950
-Ref: msp430-x-elf169997
-Ref: nds32le-x-elf170554
-Ref: nds32be-x-elf170626
-Ref: nvptx-x-none170695
-Ref: or1k-x-elf171558
-Ref: or1k-x-linux171689
-Ref: powerpc-x-x171770
-Ref: powerpc-x-darwin171961
-Ref: powerpc-x-elf172456
-Ref: powerpc-x-linux-gnu172541
-Ref: powerpc-x-netbsd172636
-Ref: powerpc-x-eabisim172724
-Ref: powerpc-x-eabi172850
-Ref: powerpcle-x-elf172926
-Ref: powerpcle-x-eabisim173018
-Ref: powerpcle-x-eabi173151
-Ref: rl78-x-elf173234
-Ref: riscv32-x-elf173340
-Ref: riscv32-x-linux173529
-Ref: riscv64-x-elf173686
-Ref: riscv64-x-linux173875
-Ref: rx-x-elf174032
-Ref: s390-x-linux174078
-Ref: s390x-x-linux174150
-Ref: s390x-ibm-tpf174237
-Ref: x-x-solaris2174368
-Ref: sparc-x-x177936
-Ref: sparc-sun-solaris2178438
-Ref: sparc-x-linux179581
-Ref: sparc64-x-solaris2179612
-Ref: sparcv9-x-solaris2180330
-Ref: c6x-x-x180417
-Ref: visium-x-elf180509
-Ref: x-x-vxworks180617
-Ref: x86-64-x-x182140
-Ref: x86-64-x-solaris2182468
-Ref: xtensa-x-elf183118
-Ref: xtensa-x-linux183789
-Ref: windows184130
-Ref: x-x-cygwin185777
-Ref: x-x-mingw32186330
-Ref: older186712
-Ref: elf188829
-Node: GNU Free Documentation License189087
-Node: Concept Index214225
+Node: Building110003
+Node: Testing126210
+Node: Final install133951
+Node: Binaries138620
+Node: Specific139655
+Ref: aarch64-x-x140189
+Ref: alpha-x-x142209
+Ref: amd64-x-solaris2142423
+Ref: amdgcn-x-amdhsa142505
+Ref: arc-x-elf32143030
+Ref: arc-linux-uclibc143206
+Ref: arm-x-eabi143347
+Ref: avr143600
+Ref: bfin144181
+Ref: cris144444
+Ref: dos144770
+Ref: epiphany-x-elf145095
+Ref: x-x-freebsd145200
+Ref: ft32-x-elf146764
+Ref: h8300-hms146862
+Ref: hppa-hp-hpux147214
+Ref: hppa-hp-hpux10149586
+Ref: hppa-hp-hpux11149999
+Ref: x-x-linux-gnu155401
+Ref: ix86-x-linux155724
+Ref: ix86-x-solaris2156037
+Ref: ia64-x-linux157113
+Ref: ia64-x-hpux157360
+Ref: x-ibm-aix157915
+Ref: TransferAixShobj161577
+Ref: iq2000-x-elf165387
+Ref: lm32-x-elf165527
+Ref: lm32-x-uclinux165631
+Ref: loongarch165759
+Ref: m32c-x-elf166453
+Ref: m32r-x-elf166555
+Ref: m68k-x-x166657
+Ref: m68k-x-uclinux167695
+Ref: microblaze-x-elf167940
+Ref: mips-x-x168059
+Ref: moxie-x-elf169969
+Ref: msp430-x-elf170016
+Ref: nds32le-x-elf170573
+Ref: nds32be-x-elf170645
+Ref: nvptx-x-none170714
+Ref: or1k-x-elf171577
+Ref: or1k-x-linux171708
+Ref: powerpc-x-x171789
+Ref: powerpc-x-darwin171980
+Ref: powerpc-x-elf172475
+Ref: powerpc-x-linux-gnu172560
+Ref: powerpc-x-netbsd172655
+Ref: powerpc-x-eabisim172743
+Ref: powerpc-x-eabi172869
+Ref: powerpcle-x-elf172945
+Ref: powerpcle-x-eabisim173037
+Ref: powerpcle-x-eabi173170
+Ref: rl78-x-elf173253
+Ref: riscv32-x-elf173359
+Ref: riscv32-x-linux173548
+Ref: riscv64-x-elf173705
+Ref: riscv64-x-linux173894
+Ref: rx-x-elf174051
+Ref: s390-x-linux174097
+Ref: s390x-x-linux174169
+Ref: s390x-ibm-tpf174256
+Ref: x-x-solaris2174387
+Ref: sparc-x-x177955
+Ref: sparc-sun-solaris2178457
+Ref: sparc-x-linux179600
+Ref: sparc64-x-solaris2179631
+Ref: sparcv9-x-solaris2180349
+Ref: c6x-x-x180436
+Ref: visium-x-elf180528
+Ref: x-x-vxworks180636
+Ref: x86-64-x-x182159
+Ref: x86-64-x-solaris2182487
+Ref: xtensa-x-elf183137
+Ref: xtensa-x-linux183808
+Ref: windows184149
+Ref: x-x-cygwin185796
+Ref: x-x-mingw32186349
+Ref: older186731
+Ref: elf188848
+Node: GNU Free Documentation License189106
+Node: Concept Index214244
 
 End Tag Table
 

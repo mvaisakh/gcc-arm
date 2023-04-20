@@ -71,6 +71,7 @@ SECTIONS
   }
   .plt            : { *(.plt) }
   .iplt           : { *(.iplt) }
+  .gnu.sgstubs    : { *(.gnu.sgstubs*) }
   .text           :
   {
     *(.text.unlikely .text.*_unlikely .text.unlikely.*)
