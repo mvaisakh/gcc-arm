@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "14.0.0 20230420 (Bleeding Edge)")
+(!version  "14.0.0 20230423 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 241 0
@@ -14201,7 +14201,7 @@
                        (!type struct 627 
                         (!type already_seen 626)
                         gc_pointed_to "cl_target_option"
-                        (!srcfileloc  "config/arm/arm.cc" 28501)
+                        (!srcfileloc  "config/arm/arm.cc" 28498)
                         (!fields 16 
                          (!pair  "x_arm_stack_protector_guard_offset"
                           (!type already_seen 2)
@@ -25758,11 +25758,11 @@
    (!type already_seen 1700)
   )
   gc_pointed_to "hash_map<char*,unsigned>"
-  (!srcfileloc  "cgraphclones.cc" 479)
+  (!srcfileloc  "cgraphclones.cc" 478)
   (!fields 1 
    (!pair  "unsigned"
     (!type already_seen 1408)
-    (!srcfileloc  "cgraphclones.cc" 479)
+    (!srcfileloc  "cgraphclones.cc" 478)
     nil )
   )
  )
@@ -26520,16 +26520,16 @@
   nil 0 nil nil )
  
  (!type struct 1826 nil  gc_unused "polymorphic_call_target_hasher"
-  (!srcfileloc  "ipa-devirt.cc" 2746)
+  (!srcfileloc  "ipa-devirt.cc" 2749)
   (!fields 0 )
   nil 4095 nil nil )
  
  (!type user_struct 1827 nil  gc_unused "hash_table<polymorphic_call_target_hasher>"
-  (!srcfileloc  "ipa-devirt.cc" 2746)
+  (!srcfileloc  "ipa-devirt.cc" 2749)
   (!fields 1 
    (!pair  "polymorphic_call_target_hasher"
     (!type already_seen 1826)
-    (!srcfileloc  "ipa-devirt.cc" 2746)
+    (!srcfileloc  "ipa-devirt.cc" 2749)
     nil )
   )
  )
@@ -30242,7 +30242,7 @@
   nil 0 nil nil )
  
  (!type undefined 2229 nil  gc_unused "class_to_loc_map_t::iterator"
-  (!srcfileloc  "cp/parser.cc" 34662)
+  (!srcfileloc  "cp/parser.cc" 34664)
  )
  
  (!type struct 2230 
@@ -30341,15 +30341,15 @@
    (!type already_seen 2246)
   )
   gc_pointed_to "hash_map<tree,tree_pair_p>"
-  (!srcfileloc  "cp/pt.cc" 30448)
+  (!srcfileloc  "cp/pt.cc" 30442)
   (!fields 2 
    (!pair  "tree_pair_p"
     (!type already_seen 539)
-    (!srcfileloc  "cp/pt.cc" 30448)
+    (!srcfileloc  "cp/pt.cc" 30442)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/pt.cc" 30448)
+    (!srcfileloc  "cp/pt.cc" 30442)
     nil )
   )
  )
@@ -30458,7 +30458,7 @@
   nil 0 nil nil )
  
  (!type struct 2261 nil  gc_used "list_hasher"
-  (!srcfileloc  "cp/tree.cc" 2182)
+  (!srcfileloc  "cp/tree.cc" 2148)
   (!fields 0 )
   nil 1028 nil nil )
  
@@ -30467,11 +30467,11 @@
    (!type already_seen 2262)
   )
   gc_pointed_to "hash_table<list_hasher>"
-  (!srcfileloc  "cp/tree.cc" 2182)
+  (!srcfileloc  "cp/tree.cc" 2148)
   (!fields 1 
    (!pair  "list_hasher"
     (!type already_seen 2261)
-    (!srcfileloc  "cp/tree.cc" 2182)
+    (!srcfileloc  "cp/tree.cc" 2148)
     nil )
   )
  )
@@ -31639,11 +31639,11 @@
   nil )
  (!pair  "list_hasher"
   (!type already_seen 2261)
-  (!srcfileloc  "cp/tree.cc" 2182)
+  (!srcfileloc  "cp/tree.cc" 2148)
   nil )
  (!pair  "hash_table<list_hasher>"
   (!type already_seen 2262)
-  (!srcfileloc  "cp/tree.cc" 2182)
+  (!srcfileloc  "cp/tree.cc" 2148)
   nil )
  (!pair  "cplus_array_hasher"
   (!type already_seen 2257)
@@ -31671,7 +31671,7 @@
   nil )
  (!pair  "hash_map<tree,tree_pair_p>"
   (!type already_seen 2246)
-  (!srcfileloc  "cp/pt.cc" 30448)
+  (!srcfileloc  "cp/pt.cc" 30442)
   nil )
  (!pair  "pending_template"
   (!type already_seen 2230)
@@ -31707,11 +31707,11 @@
   nil )
  (!pair  "iter_t"
   (!type already_seen 2229)
-  (!srcfileloc  "cp/parser.cc" 34662)
+  (!srcfileloc  "cp/parser.cc" 34664)
   nil )
  (!pair  "class_to_loc_map_t::iterator"
   (!type already_seen 2229)
-  (!srcfileloc  "cp/parser.cc" 34662)
+  (!srcfileloc  "cp/parser.cc" 34664)
   nil )
  (!pair  "cp_parser_expression_stack"
   (!type array 2369 nil  gc_unused "NUM_PREC_VALUES" 
@@ -32495,15 +32495,15 @@
   nil )
  (!pair  "polymorphic_call_target_hash_type"
   (!type already_seen 1827)
-  (!srcfileloc  "ipa-devirt.cc" 2747)
+  (!srcfileloc  "ipa-devirt.cc" 2750)
   nil )
  (!pair  "polymorphic_call_target_hasher"
   (!type already_seen 1826)
-  (!srcfileloc  "ipa-devirt.cc" 2746)
+  (!srcfileloc  "ipa-devirt.cc" 2749)
   nil )
  (!pair  "hash_table<polymorphic_call_target_hasher>"
   (!type already_seen 1827)
-  (!srcfileloc  "ipa-devirt.cc" 2746)
+  (!srcfileloc  "ipa-devirt.cc" 2749)
   nil )
  (!pair  "vec<odr_type,va_gc>"
   (!type already_seen 1821)
@@ -32851,7 +32851,7 @@
   nil )
  (!pair  "hash_map<char*,unsigned>"
   (!type already_seen 1700)
-  (!srcfileloc  "cgraphclones.cc" 479)
+  (!srcfileloc  "cgraphclones.cc" 478)
   nil )
  (!pair  "uid_range_p"
   (!type already_seen 1696)
@@ -32863,7 +32863,7 @@
   nil )
  (!pair  "cl_target_option"
   (!type already_seen 627)
-  (!srcfileloc  "config/arm/arm.cc" 28501)
+  (!srcfileloc  "config/arm/arm.cc" 28498)
   nil )
  (!pair  "arm_pragma_enum"
   (!type already_seen 2)
@@ -36610,11 +36610,11 @@
   nil )
  (!pair  "deleted_copy_types"
   (!type already_seen 467)
-  (!srcfileloc  "cp/tree.cc" 4526)
+  (!srcfileloc  "cp/tree.cc" 4492)
   nil )
  (!pair  "list_hash_table"
   (!type already_seen 2263)
-  (!srcfileloc  "cp/tree.cc" 2182)
+  (!srcfileloc  "cp/tree.cc" 2148)
   nil )
  (!pair  "cplus_array_htab"
   (!type already_seen 2259)
@@ -36634,7 +36634,7 @@
   nil )
  (!pair  "dguide_cache"
   (!type already_seen 2247)
-  (!srcfileloc  "cp/pt.cc" 30448)
+  (!srcfileloc  "cp/pt.cc" 30442)
   (!options 
    (!option deletable string  "")
   )
@@ -36723,11 +36723,11 @@
   nil )
  (!pair  "generic_parm_count"
   (!type already_seen 2)
-  (!srcfileloc  "cp/parser.cc" 49618)
+  (!srcfileloc  "cp/parser.cc" 49620)
   nil )
  (!pair  "cp_parser_decl_specs_attrs"
   (!type already_seen 85)
-  (!srcfileloc  "cp/parser.cc" 19437)
+  (!srcfileloc  "cp/parser.cc" 19439)
   nil )
  (!pair  "cp_parser_context_free_list"
   (!type already_seen 2043)
@@ -37340,7 +37340,7 @@
   nil )
  (!pair  "ext_block"
   (!type already_seen 23)
-  (!srcfileloc  "c/c-decl.cc" 12866)
+  (!srcfileloc  "c/c-decl.cc" 12873)
   nil )
  (!pair  "last_structptr_types"
   (!type array 2409 nil  gc_used "builtin_structptr_type_count" 
@@ -37698,19 +37698,19 @@
  )
  (!pair  "clone_fn_ids"
   (!type already_seen 1701)
-  (!srcfileloc  "cgraphclones.cc" 479)
+  (!srcfileloc  "cgraphclones.cc" 478)
   nil )
  (!pair  "arm_previous_fndecl"
   (!type already_seen 23)
-  (!srcfileloc  "config/arm/arm.cc" 33362)
+  (!srcfileloc  "config/arm/arm.cc" 33359)
   nil )
  (!pair  "last_asm_targ_options"
   (!type already_seen 626)
-  (!srcfileloc  "config/arm/arm.cc" 28501)
+  (!srcfileloc  "config/arm/arm.cc" 28498)
   nil )
  (!pair  "tls_get_addr_libfunc"
   (!type already_seen 100)
-  (!srcfileloc  "config/arm/arm.cc" 9184)
+  (!srcfileloc  "config/arm/arm.cc" 9182)
   nil )
  (!pair  "pic_labelno"
   (!type already_seen 2)
@@ -37742,7 +37742,7 @@
   nil )
  (!pair  "critical_name_mutexes"
   (!type already_seen 394)
-  (!srcfileloc  "omp-low.cc" 10393)
+  (!srcfileloc  "omp-low.cc" 10392)
   nil )
  (!pair  "omp_declare_variant_alt"
   (!type already_seen 1661)
@@ -37904,7 +37904,7 @@
   nil )
  (!pair  "gcc_eh_personality_decl"
   (!type already_seen 23)
-  (!srcfileloc  "tree.cc" 12099)
+  (!srcfileloc  "tree.cc" 12098)
   nil )
  (!pair  "anon_cnt"
   (!type already_seen 2)

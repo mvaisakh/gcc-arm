@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-04-20" "gcc-14.0.0" "GNU"
+.TH GCC 1 "2023-04-23" "gcc-14.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -19408,6 +19408,15 @@ Generate code for the large code model.  This makes no assumptions about
 addresses and sizes of sections.  Programs can be statically linked only.  The
 \&\fB\-mcmodel=large\fR option is incompatible with \fB\-mabi=ilp32\fR,
 \&\fB\-fpic\fR and \fB\-fPIC\fR.
+.IP "\fB\-mtp=\fR\fIname\fR" 4
+.IX Item "-mtp=name"
+Specify the system register to use as a thread pointer.  The valid values
+are \fBel0\fR, \fBel1\fR, \fBel2\fR, \fBel3\fR.  These correspond to
+using the \fBtpidr_el0\fR, \fBtpidr_el1\fR, \fBtpidr_el2\fR,
+\&\fBtpidr_el3\fR registers accordingly.  The default setting is \fBel0\fR.
+It is recommended to compile all code intended to interoperate with the same
+value of this option to avoid accessing a different thread pointer from the
+wrong exception level.
 .IP "\fB\-mstrict\-align\fR" 4
 .IX Item "-mstrict-align"
 .PD 0

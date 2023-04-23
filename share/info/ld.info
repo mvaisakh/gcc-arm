@@ -6018,7 +6018,7 @@ support is implemented with a linker plugin.
 be added here later.
 
    Plugins are enabled via the use of the '-plugin NAME' command line
-option.  *Note Options::
+option.  *Note Options::.
 
 * Menu:
 
@@ -9475,35 +9475,35 @@ Node: Expression Section248333
 Node: Builtin Functions252303
 Node: Implicit Linker Scripts260637
 Node: Plugins261412
-Node: libdep Plugin261968
-Node: Machine Dependent263765
-Node: H8/300264853
-Node: M68HC11/68HC12266926
-Node: ARM268373
-Node: HPPA ELF32280483
-Node: M68K282106
-Node: MIPS283015
-Node: MMIX284131
-Node: MSP430285296
-Node: NDS32287209
-Node: Nios II288173
-Node: PowerPC ELF32289489
-Node: PowerPC64 ELF64292320
-Node: S/390 ELF302078
-Node: SPU ELF302425
-Node: TI COFF305053
-Node: WIN32305579
-Node: Xtensa325726
-Node: BFD329169
-Node: BFD outline330627
-Node: BFD information loss331915
-Node: Canonical format334441
-Node: Reporting Bugs338769
-Node: Bug Criteria339463
-Node: Bug Reporting340162
-Node: MRI347197
-Node: GNU Free Documentation License351668
-Node: LD Index376805
+Node: libdep Plugin261969
+Node: Machine Dependent263766
+Node: H8/300264854
+Node: M68HC11/68HC12266927
+Node: ARM268374
+Node: HPPA ELF32280484
+Node: M68K282107
+Node: MIPS283016
+Node: MMIX284132
+Node: MSP430285297
+Node: NDS32287210
+Node: Nios II288174
+Node: PowerPC ELF32289490
+Node: PowerPC64 ELF64292321
+Node: S/390 ELF302079
+Node: SPU ELF302426
+Node: TI COFF305054
+Node: WIN32305580
+Node: Xtensa325727
+Node: BFD329170
+Node: BFD outline330628
+Node: BFD information loss331916
+Node: Canonical format334442
+Node: Reporting Bugs338770
+Node: Bug Criteria339464
+Node: Bug Reporting340163
+Node: MRI347198
+Node: GNU Free Documentation License351669
+Node: LD Index376806
 
 End Tag Table
 
