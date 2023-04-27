@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCOV 1"
-.TH GCOV 1 "2023-04-23" "gcc-14.0.0" "GNU"
+.TH GCOV 1 "2023-04-27" "gcc-14.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -286,7 +286,7 @@ Structure of the \s-1JSON\s0 is following:
 \&        {
 \&          "current_working_directory": "foo/bar",
 \&          "data_file": "a.out",
-\&          "format_version": "1",
+\&          "format_version": "2",
 \&          "gcc_version": "11.1.1 20210510"
 \&          "files": ["$file"]
 \&        }
@@ -301,6 +301,14 @@ a compilation unit was compiled
 \&\fIdata_file\fR: name of the data file (\s-1GCDA\s0)
 .IP "*" 4
 \&\fIformat_version\fR: semantic version of the format
+.Sp
+Changes in version \fI2\fR:
+.RS 4
+.IP "*" 4
+\&\fIcalls\fR: information about function calls is added
+.RE
+.RS 4
+.RE
 .IP "*" 4
 \&\fIgcc_version\fR: version of the \s-1GCC\s0 compiler
 .RE
@@ -367,9 +375,11 @@ this is likely to be fixed in the future.
 .Sp
 Each \fIline\fR has the following form:
 .Sp
-.Vb 7
+.Vb 9
 \&        {
+\&          "block_ids": ["$block_id"],
 \&          "branches": ["$branch"],
+\&          "calls": ["$call"],
 \&          "count": 2,
 \&          "line_number": 15,
 \&          "unexecuted_block": false,
@@ -377,8 +387,10 @@ Each \fIline\fR has the following form:
 \&        }
 .Ve
 .Sp
-Branches are present only with \fI\-b\fR option.
+Branches and calls are present only with \fI\-b\fR option.
 Fields of the \fIline\fR element have following semantics:
+.IP "*" 4
+\&\fIblock_ids\fR: IDs of basic blocks that belong to the line
 .IP "*" 4
 \&\fIcount\fR: number of executions of the line
 .IP "*" 4
@@ -394,10 +406,12 @@ Fields of the \fIline\fR element have following semantics:
 .Sp
 Each \fIbranch\fR has the following form:
 .Sp
-.Vb 5
+.Vb 7
 \&        {
 \&          "count": 11,
+\&          "destination_block_id": 17,
 \&          "fallthrough": true,
+\&          "source_block_id": 13,
 \&          "throw": false
 \&        }
 .Ve
@@ -409,6 +423,31 @@ Fields of the \fIbranch\fR element have following semantics:
 \&\fIfallthrough\fR: true when the branch is a fall through branch
 .IP "*" 4
 \&\fIthrow\fR: true when the branch is an exceptional branch
+.IP "*" 4
+\&\fIisource_block_id\fR: \s-1ID\s0 of the basic block where this branch happens
+.IP "*" 4
+\&\fIdestination_block_id\fR: \s-1ID\s0 of the basic block this branch jumps to
+.RE
+.RS 4
+.Sp
+Each \fIcall\fR has the following form:
+.Sp
+.Vb 5
+\&        {
+\&          "destination_block_id": 1,
+\&          "returned": 11,
+\&          "source_block_id": 13
+\&        }
+.Ve
+.Sp
+Fields of the \fIcall\fR element have following semantics:
+.IP "*" 4
+\&\fIreturned\fR: number of times a function call returned (call count is equal
+to \fIline::count\fR)
+.IP "*" 4
+\&\fIisource_block_id\fR: \s-1ID\s0 of the basic block where this call happens
+.IP "*" 4
+\&\fIdestination_block_id\fR: \s-1ID\s0 of the basic block this calls continues after return
 .RE
 .RS 4
 .RE

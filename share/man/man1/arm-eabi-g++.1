@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-04-23" "gcc-14.0.0" "GNU"
+.TH GCC 1 "2023-04-27" "gcc-14.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1235,7 +1235,8 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\fB\-mbig\-endian  \-mlittle\-endian
 \&\-mstack\-protector\-guard=\fR\fIguard\fR  \fB\-mstack\-protector\-guard\-reg=\fR\fIreg\fR
 \&\fB\-mstack\-protector\-guard\-offset=\fR\fIoffset\fR
-\&\fB\-mcsr\-check \-mno\-csr\-check\fR
+\&\fB\-mcsr\-check \-mno\-csr\-check
+\&\-minline\-atomics  \-mno\-inline\-atomics\fR
 .Sp
 \&\fI\s-1RL78\s0 Options\fR
 \&\fB\-msim  \-mmul=none  \-mmul=g13  \-mmul=g14  \-mallregs
@@ -28097,6 +28098,15 @@ Put global and static data smaller than \fIn\fR bytes into a special section
 Do or don't use smaller but slower prologue and epilogue code that uses
 library function calls.  The default is to use fast inline prologues and
 epilogues.
+.IP "\fB\-minline\-atomics\fR" 4
+.IX Item "-minline-atomics"
+.PD 0
+.IP "\fB\-mno\-inline\-atomics\fR" 4
+.IX Item "-mno-inline-atomics"
+.PD
+Do or don't use smaller but slower subword atomic emulation code that uses
+libatomic function calls.  The default is to use fast inline subword atomics
+that do not require libatomic.
 .IP "\fB\-mshorten\-memrefs\fR" 4
 .IX Item "-mshorten-memrefs"
 .PD 0

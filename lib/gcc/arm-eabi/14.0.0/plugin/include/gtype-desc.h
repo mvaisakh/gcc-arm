@@ -949,10 +949,10 @@ extern void gt_ggc_mx_hash_map_char__unsigned_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_gimple__va_gc_ (X);\
   } while (0)
 extern void gt_ggc_mx_vec_gimple__va_gc_ (void *);
-#define gt_ggc_m_12int_range_1_(X) do { \
-  if ((intptr_t)(X) != 0) gt_ggc_mx_int_range_1_ (X);\
+#define gt_ggc_m_12int_range_2_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_int_range_2_ (X);\
   } while (0)
-extern void gt_ggc_mx_int_range_1_ (void *);
+extern void gt_ggc_mx_int_range_2_ (void *);
 #define gt_ggc_m_26vec_ipa_agg_jf_item_va_gc_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_ipa_agg_jf_item_va_gc_ (X);\
   } while (0)
@@ -2434,10 +2434,10 @@ extern void gt_pch_nx_hash_map_char__unsigned_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_gimple__va_gc_ (X);\
   } while (0)
 extern void gt_pch_nx_vec_gimple__va_gc_ (void *);
-#define gt_pch_n_12int_range_1_(X) do { \
-  if ((intptr_t)(X) != 0) gt_pch_nx_int_range_1_ (X);\
+#define gt_pch_n_12int_range_2_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_int_range_2_ (X);\
   } while (0)
-extern void gt_pch_nx_int_range_1_ (void *);
+extern void gt_pch_nx_int_range_2_ (void *);
 #define gt_pch_n_26vec_ipa_agg_jf_item_va_gc_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_ipa_agg_jf_item_va_gc_ (X);\
   } while (0)
@@ -3575,7 +3575,7 @@ extern void gt_pch_p_24hash_map_char__unsigned_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18vec_gimple__va_gc_
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_12int_range_1_
+extern void gt_pch_p_12int_range_2_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_ipa_agg_jf_item_va_gc_
     (void *, void *, gt_pointer_operator, void *);
