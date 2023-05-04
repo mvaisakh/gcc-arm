@@ -161,6 +161,7 @@ extern bool add_operator (rtx, machine_mode);
 extern bool mem_noofs_operand (rtx, machine_mode);
 extern bool call_insn_operand (rtx, machine_mode);
 extern bool aligned_operand (rtx, machine_mode);
+extern bool arm_any_register_operand (rtx, machine_mode);
 extern bool mve_vldrd_immediate (rtx, machine_mode);
 #endif /* HAVE_MACHINE_MODES */
 

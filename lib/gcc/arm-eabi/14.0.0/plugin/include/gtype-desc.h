@@ -161,10 +161,6 @@ extern void gt_ggc_mx_hash_map_tree_tree_decl_tree_traits_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_ptr_info_def (X);\
   } while (0)
 extern void gt_ggc_mx_ptr_info_def (void *);
-#define gt_ggc_m_19irange_storage_slot(X) do { \
-  if ((intptr_t)(X) != 0) gt_ggc_mx_irange_storage_slot (X);\
-  } while (0)
-extern void gt_ggc_mx_irange_storage_slot (void *);
 #define gt_ggc_m_10die_struct(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_die_struct (X);\
   } while (0)
@@ -173,10 +169,10 @@ extern void gt_ggc_mx_die_struct (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_constructor_elt_va_gc_ (X);\
   } while (0)
 extern void gt_ggc_mx_vec_constructor_elt_va_gc_ (void *);
-#define gt_ggc_m_19frange_storage_slot(X) do { \
-  if ((intptr_t)(X) != 0) gt_ggc_mx_frange_storage_slot (X);\
+#define gt_ggc_m_14vrange_storage(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_vrange_storage (X);\
   } while (0)
-extern void gt_ggc_mx_frange_storage_slot (void *);
+extern void gt_ggc_mx_vrange_storage (void *);
 #define gt_ggc_m_15vec_tree_va_gc_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_tree_va_gc_ (X);\
   } while (0)
@@ -1037,6 +1033,14 @@ extern void gt_ggc_mx_hash_table_tree_type_map_cache_hasher_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_odr_type_va_gc_ (X);\
   } while (0)
 extern void gt_ggc_mx_vec_odr_type_va_gc_ (void *);
+#define gt_ggc_m_19registered_function(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_registered_function (X);\
+  } while (0)
+extern void gt_ggc_mx_registered_function (void *);
+#define gt_ggc_m_31vec_registered_function__va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_vec_registered_function__va_gc_ (X);\
+  } while (0)
+extern void gt_ggc_mx_vec_registered_function__va_gc_ (void *);
 #define gt_ggc_m_35hash_table_value_annotation_hasher_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_value_annotation_hasher_ (X);\
   } while (0)
@@ -1646,10 +1650,6 @@ extern void gt_pch_nx_hash_map_tree_tree_decl_tree_traits_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_ptr_info_def (X);\
   } while (0)
 extern void gt_pch_nx_ptr_info_def (void *);
-#define gt_pch_n_19irange_storage_slot(X) do { \
-  if ((intptr_t)(X) != 0) gt_pch_nx_irange_storage_slot (X);\
-  } while (0)
-extern void gt_pch_nx_irange_storage_slot (void *);
 #define gt_pch_n_10die_struct(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_die_struct (X);\
   } while (0)
@@ -1658,10 +1658,10 @@ extern void gt_pch_nx_die_struct (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_constructor_elt_va_gc_ (X);\
   } while (0)
 extern void gt_pch_nx_vec_constructor_elt_va_gc_ (void *);
-#define gt_pch_n_19frange_storage_slot(X) do { \
-  if ((intptr_t)(X) != 0) gt_pch_nx_frange_storage_slot (X);\
+#define gt_pch_n_14vrange_storage(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_vrange_storage (X);\
   } while (0)
-extern void gt_pch_nx_frange_storage_slot (void *);
+extern void gt_pch_nx_vrange_storage (void *);
 #define gt_pch_n_15vec_tree_va_gc_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_tree_va_gc_ (X);\
   } while (0)
@@ -2522,6 +2522,14 @@ extern void gt_pch_nx_hash_table_tree_type_map_cache_hasher_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_odr_type_va_gc_ (X);\
   } while (0)
 extern void gt_pch_nx_vec_odr_type_va_gc_ (void *);
+#define gt_pch_n_19registered_function(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_registered_function (X);\
+  } while (0)
+extern void gt_pch_nx_registered_function (void *);
+#define gt_pch_n_31vec_registered_function__va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_vec_registered_function__va_gc_ (X);\
+  } while (0)
+extern void gt_pch_nx_vec_registered_function__va_gc_ (void *);
 #define gt_pch_n_35hash_table_value_annotation_hasher_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_value_annotation_hasher_ (X);\
   } while (0)
@@ -3149,13 +3157,11 @@ extern void gt_pch_p_36hash_map_tree_tree_decl_tree_traits_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12ptr_info_def
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_19irange_storage_slot
-    (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10die_struct
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_constructor_elt_va_gc_
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_19frange_storage_slot
+extern void gt_pch_p_14vrange_storage
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15vec_tree_va_gc_
     (void *, void *, gt_pointer_operator, void *);
@@ -3618,6 +3624,10 @@ extern void gt_pch_p_13tree_type_map
 extern void gt_pch_p_38hash_table_tree_type_map_cache_hasher_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_19vec_odr_type_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_19registered_function
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_31vec_registered_function__va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_35hash_table_value_annotation_hasher_
     (void *, void *, gt_pointer_operator, void *);

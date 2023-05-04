@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-04-30" "gcc-14.0.0" "GNU"
+.TH GCC 1 "2023-05-04" "gcc-14.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -15048,15 +15048,9 @@ use-def chain.
 The maximum number of may-defs we analyze when looking for a must-def
 specifying the dynamic type of an object that invokes a virtual call
 we may be able to devirtualize speculatively.
-.IP "\fBevrp-sparse-threshold\fR" 4
-.IX Item "evrp-sparse-threshold"
-Maximum number of basic blocks before \s-1EVRP\s0 uses a sparse cache.
 .IP "\fBranger-debug\fR" 4
 .IX Item "ranger-debug"
 Specifies the type of debug output to be issued for ranges.
-.IP "\fBevrp-switch-limit\fR" 4
-.IX Item "evrp-switch-limit"
-Specifies the maximum number of switch cases before \s-1EVRP\s0 ignores a switch.
 .IP "\fBunroll-jam-min-percent\fR" 4
 .IX Item "unroll-jam-min-percent"
 The minimum percentage of memory references that must be optimized
@@ -15115,6 +15109,15 @@ this parameter.  The default value of this parameter is 50.
 .IP "\fBvect-induction-float\fR" 4
 .IX Item "vect-induction-float"
 Enable loop vectorization of floating point inductions.
+.IP "\fBvrp-sparse-threshold\fR" 4
+.IX Item "vrp-sparse-threshold"
+Maximum number of basic blocks before \s-1VRP\s0 uses a sparse bitmap cache.
+.IP "\fBvrp-switch-limit\fR" 4
+.IX Item "vrp-switch-limit"
+Maximum number of outgoing edges in a switch before \s-1VRP\s0 will not process it.
+.IP "\fBvrp-vector-threshold\fR" 4
+.IX Item "vrp-vector-threshold"
+Maximum number of basic blocks for \s-1VRP\s0 to use a basic cache vector.
 .IP "\fBavoid-fma-max-bits\fR" 4
 .IX Item "avoid-fma-max-bits"
 Maximum number of bits for which we avoid creating FMAs.

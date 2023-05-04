@@ -1142,9 +1142,10 @@ enum unspec {
   UQRSHLL_48 = 1106,
   SQRSHRL_64 = 1107,
   SQRSHRL_48 = 1108,
-  VSHLCQ_M_ = 1109
+  VSHLCQ_M_ = 1109,
+  REINTERPRET = 1110
 };
-#define NUM_UNSPEC_VALUES 1110
+#define NUM_UNSPEC_VALUES 1111
 extern const char *const unspec_strings[];
 
 enum unspecv {
