@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2023-05-07" "binutils-2.40.50" "GNU Development Tools"
+.TH LD 1 "2023-05-11" "binutils-2.40.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -740,6 +740,17 @@ is 0x1, and \fIbar.o\fR, whose 0xc0010001 property value is 0x1.
 .PD
 Print (or do not print) the list of discarded and garbage collected sections
 in the link map.  Enabled by default.
+.IP "\fB\-\-print\-map\-locals\fR" 4
+.IX Item "--print-map-locals"
+.PD 0
+.IP "\fB\-\-no\-print\-map\-locals\fR" 4
+.IX Item "--no-print-map-locals"
+.PD
+Print (or do not print) local symbols in the link map.  Local symbols
+will have the text \fB(local)\fR printed before their name, and will
+be listed after all of the global symbols in a given section.
+Temporary local symbols (typically those that start with \fB.L\fR)
+will not be included in the output.  Disabled by default.
 .IP "\fB\-n\fR" 4
 .IX Item "-n"
 .PD 0
