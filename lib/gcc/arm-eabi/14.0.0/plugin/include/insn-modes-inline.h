@@ -248,10 +248,10 @@ inline __attribute__((__always_inline__))
 #else
 extern __inline__ __attribute__((__always_inline__, __gnu_inline__))
 #endif
-unsigned char
+unsigned short
 mode_inner_inline (machine_mode mode)
 {
-  extern const unsigned char mode_inner[NUM_MACHINE_MODES];
+  extern const unsigned short mode_inner[NUM_MACHINE_MODES];
   gcc_assert (mode >= 0 && mode < NUM_MACHINE_MODES);
   switch (mode)
     {

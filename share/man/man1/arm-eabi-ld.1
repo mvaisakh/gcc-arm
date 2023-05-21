@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2023-05-14" "binutils-2.40.50" "GNU Development Tools"
+.TH LD 1 "2023-05-21" "binutils-2.40.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -988,14 +988,17 @@ and exit.  The same effect can be achieved in a linker script by using
 can be used multiple times to require additional symbols.
 .IP "\fB\-Ur\fR" 4
 .IX Item "-Ur"
-For anything other than \*(C+ programs, this option is equivalent to
-\&\fB\-r\fR: it generates relocatable output\-\-\-i.e., an output file that can in
-turn serve as input to \fBld\fR.  When linking \*(C+ programs, \fB\-Ur\fR
-\&\fIdoes\fR resolve references to constructors, unlike \fB\-r\fR.
-It does not work to use \fB\-Ur\fR on files that were themselves linked
-with \fB\-Ur\fR; once the constructor table has been built, it cannot
-be added to.  Use \fB\-Ur\fR only for the last partial link, and
-\&\fB\-r\fR for the others.
+For programs that do not use constructors or destructors, or for \s-1ELF\s0
+based systems this option is equivalent to \fB\-r\fR:  it generates
+relocatable output\-\-\-i.e., an output file that can in turn serve as
+input to \fBld\fR.  For other binaries however the \fB\-Ur\fR
+option is similar to \fB\-r\fR but it also resolves references to
+constructors and destructors.
+.Sp
+It does not work to use \fB\-Ur\fR on files that were themselves
+linked with \fB\-Ur\fR; once the constructor table has been built,
+it cannot be added to.  Use \fB\-Ur\fR only for the last partial
+link, and \fB\-r\fR for the others.
 .IP "\fB\-\-orphan\-handling=\fR\fI\s-1MODE\s0\fR" 4
 .IX Item "--orphan-handling=MODE"
 Control how orphan sections are handled.  An orphan section is one not

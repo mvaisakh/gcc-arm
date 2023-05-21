@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-05-14" "gcc-14.0.0" "GNU"
+.TH GCC 1 "2023-05-21" "gcc-14.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -3477,6 +3477,8 @@ defined in the \*(C+ standard; basically, a value that can be
 represented in the minimum number of bits needed to represent all the
 enumerators).  This assumption may not be valid if the program uses a
 cast to convert an arbitrary integer value to the enumerated type.
+This option has no effect for an enumeration type with a fixed underlying
+type.
 .IP "\fB\-fstrong\-eval\-order\fR" 4
 .IX Item "-fstrong-eval-order"
 Evaluate member access, array subscripting, and shift expressions in
@@ -11649,8 +11651,8 @@ Attempt to remove redundant extension instructions.  This is especially
 helpful for the x86\-64 architecture, which implicitly zero-extends in 64\-bit
 registers after writing to their lower 32\-bit half.
 .Sp
-Enabled for Alpha, AArch64 and x86 at levels \fB\-O2\fR,
-\&\fB\-O3\fR, \fB\-Os\fR.
+Enabled for Alpha, AArch64, PowerPC, RISC-V, \s-1SPARC,\s0 h83000 and x86 at levels
+\&\fB\-O2\fR, \fB\-O3\fR, \fB\-Os\fR.
 .IP "\fB\-fno\-lifetime\-dse\fR" 4
 .IX Item "-fno-lifetime-dse"
 In \*(C+ the value of an object is only affected by changes within its
@@ -17732,6 +17734,8 @@ Use it to conform to a non-default application binary interface.
 Allocate to an \f(CW\*(C`enum\*(C'\fR type only as many bytes as it needs for the
 declared range of possible values.  Specifically, the \f(CW\*(C`enum\*(C'\fR type
 is equivalent to the smallest integer type that has enough room.
+This option has no effect for an enumeration type with a fixed underlying
+type.
 .Sp
 \&\fBWarning:\fR the \fB\-fshort\-enums\fR switch causes \s-1GCC\s0 to generate
 code that is not binary compatible with code generated without that switch.
