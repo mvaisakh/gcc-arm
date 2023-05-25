@@ -100,9 +100,6 @@ public:
   bool operator== (const vrange &) const;
   bool operator!= (const vrange &r) const { return !(*this == r); }
   void dump (FILE *) const;
-
-  enum value_range_kind kind () const;		// DEPRECATED
-
 protected:
   vrange (enum value_range_discriminator d) : m_discriminator (d) { }
   ENUM_BITFIELD(value_range_kind) m_kind : 8;
@@ -490,7 +487,7 @@ inline
 int_range<N, RESIZABLE>::~int_range ()
 {
   if (RESIZABLE && m_base != m_ranges)
-    delete m_base;
+    delete[] m_base;
 }
 
 // This is an "infinite" precision irange for use in temporary
@@ -542,6 +539,9 @@ public:
   bool contains_p (tree cst) const { return m_vrange->contains_p (cst); }
   bool singleton_p (tree *result = NULL) const
     { return m_vrange->singleton_p (result); }
+  void set_zero (tree type) { return m_vrange->set_zero (type); }
+  void set_nonzero (tree type) { return m_vrange->set_nonzero (type); }
+  bool nonzero_p () const { return m_vrange->nonzero_p (); }
   bool zero_p () const { return m_vrange->zero_p (); }
   wide_int lower_bound () const; // For irange/prange comparability.
   wide_int upper_bound () const; // For irange/prange comparability.
