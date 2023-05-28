@@ -28,8 +28,8 @@ minimal necessary information needed for generating stack traces:
    - Frame Pointer (FP).
    - Return Address (RA).
 
-   The reason for existence of the SFrame format is to support fast,
-online generation of stack traces using simple means.
+   The reason for existence of the SFrame format is to provide a simple,
+fast and low-overhead mechanism to generate stack traces.
 
 * Menu:
 
@@ -63,7 +63,7 @@ provided via 'libsframe', is not accompanied here at this time.  This
 will be added later.
 
    This document is intended to be in sync with the C code in
-'sframe.h'.  Please report descrepancies between the two, if any.
+'sframe.h'.  Please report discrepancies between the two, if any.
 
 
 File: sframe-spec.info,  Node: SFrame section,  Next: Index,  Prev: Overview,  Up: Top
@@ -212,15 +212,15 @@ offset is in close vicinity with the CFA in most ABIs,
 'sfh_cfa_fixed_fp_offset' and 'sfh_cfa_fixed_ra_offset' are limited to
 signed 8-bit integers.
 
-   SFrame format has provisioned for future ABIs/architectures that it
-may support.  The 'sframe_header' structure provides an unsigned 8-bit
-integral field to denote the size of an auxilliary SFrame header.  The
-auxilliary SFrame header follows right after the 'sframe_header'
-structure.  As for the offset calculations, the _end_ of SFrame header
-must be the end of the auxilliary SFrame header, if the latter is
-present.
+   SFrame format has made some provisions for supporting more
+ABIs/architectures in the future.  The 'sframe_header' structure
+provides an unsigned 8-bit integral field to denote the size of an
+auxiliary SFrame header.  The auxiliary SFrame header follows right
+after the 'sframe_header' structure.  As for the offset calculations,
+the _end_ of SFrame header must be the end of the auxiliary SFrame
+header, if the latter is present.
 
-   Tieing it all together:
+   Putting it all together:
 
 Offset   Name                               Description
 ----------------------------------------------------------------------------------------
@@ -234,7 +234,7 @@ Offset   Name                               Description
                                             
 0x06     'int8_t sfh_cfa_fixed_ra_offset'   The CFA fixed RA offset, if any.
                                             
-0x07     'uint8_t sfh_auxhdr_len'           Size in bytes of the auxilliary header
+0x07     'uint8_t sfh_auxhdr_len'           Size in bytes of the auxiliary header
                                             that follows the 'sframe_header'
                                             structure.
                                             
@@ -602,21 +602,21 @@ Index
 
 Tag Table:
 Node: Top564
-Node: Overview1132
-Node: SFrame section2158
-Node: SFrame Preamble2630
-Node: SFrame endianness3986
-Node: SFrame version4442
-Node: SFrame flags4944
-Node: SFrame Header5664
-Node: SFrame ABI/arch identifier10714
-Node: SFrame Function Descriptor Entries11737
-Node: The SFrame FDE info word14535
-Node: The SFrame FDE types15690
-Node: The SFrame FRE types17277
-Node: SFrame Frame Row Entries18809
-Node: The SFrame FRE info word21223
-Node: Index23205
+Node: Overview1140
+Node: SFrame section2166
+Node: SFrame Preamble2638
+Node: SFrame endianness3994
+Node: SFrame version4450
+Node: SFrame flags4952
+Node: SFrame Header5672
+Node: SFrame ABI/arch identifier10731
+Node: SFrame Function Descriptor Entries11754
+Node: The SFrame FDE info word14552
+Node: The SFrame FDE types15707
+Node: The SFrame FRE types17294
+Node: SFrame Frame Row Entries18826
+Node: The SFrame FRE info word21240
+Node: Index23222
 
 End Tag Table
 

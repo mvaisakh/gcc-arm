@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "14.0.0 20230525 (Bleeding Edge)")
+(!version  "14.0.0 20230528 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 241 0
@@ -20740,13 +20740,13 @@
      (!type user_struct 1142 
       (!type already_seen 1141)
       gc_pointed_to "int_range<2>"
-      (!srcfileloc  "value-range.h" 507)
+      (!srcfileloc  "value-range.h" 509)
       (!fields 1 
        (!pair  "2"
         (!type undefined 1143 nil  gc_unused "2"
-         (!srcfileloc  "value-range.h" 507)
+         (!srcfileloc  "value-range.h" 509)
         )
-        (!srcfileloc  "value-range.h" 507)
+        (!srcfileloc  "value-range.h" 509)
         nil )
       )
      )
@@ -25732,17 +25732,17 @@
   nil 0 nil nil )
  
  (!type user_struct 1701 nil  gc_unused "irange"
-  (!srcfileloc  "value-range.h" 201)
+  (!srcfileloc  "value-range.h" 202)
   (!fields 0 )
  )
  
  (!type user_struct 1702 nil  gc_unused "vrange"
-  (!srcfileloc  "value-range.h" 107)
+  (!srcfileloc  "value-range.h" 108)
   (!fields 0 )
  )
  
  (!type user_struct 1703 nil  gc_unused "int_range"
-  (!srcfileloc  "value-range.h" 226)
+  (!srcfileloc  "value-range.h" 227)
   (!fields 0 )
  )
  
@@ -25755,24 +25755,24 @@
   nil 0 nil nil )
  
  (!type user_struct 1706 nil  gc_unused "frange"
-  (!srcfileloc  "value-range.h" 384)
+  (!srcfileloc  "value-range.h" 386)
   (!fields 0 )
  )
  
  (!type user_struct 1707 nil  gc_unused "int_range<3,true>"
-  (!srcfileloc  "value-range.h" 497)
+  (!srcfileloc  "value-range.h" 499)
   (!fields 2 
    (!pair  "true"
     (!type undefined 1708 nil  gc_unused "true"
-     (!srcfileloc  "value-range.h" 497)
+     (!srcfileloc  "value-range.h" 499)
     )
-    (!srcfileloc  "value-range.h" 497)
+    (!srcfileloc  "value-range.h" 499)
     nil )
    (!pair  "3"
     (!type undefined 1709 nil  gc_unused "3"
-     (!srcfileloc  "value-range.h" 497)
+     (!srcfileloc  "value-range.h" 499)
     )
-    (!srcfileloc  "value-range.h" 497)
+    (!srcfileloc  "value-range.h" 499)
     nil )
   )
  )
@@ -32434,7 +32434,7 @@
   nil )
  (!pair  "atomic_acces_t"
   (!type already_seen 2)
-  (!srcfileloc  "ada/gcc-interface/trans.cc" 4174)
+  (!srcfileloc  "ada/gcc-interface/trans.cc" 4180)
   nil )
  (!pair  "vec<loop_info,va_gc>"
   (!type already_seen 1886)
@@ -32506,7 +32506,7 @@
   nil )
  (!pair  "rewrite_fn"
   (!type already_seen 2)
-  (!srcfileloc  "ada/gcc-interface/gigi.h" 965)
+  (!srcfileloc  "ada/gcc-interface/gigi.h" 966)
   nil )
  (!pair  "vec<registered_function*,va_gc>"
   (!type already_seen 1851)
@@ -32832,47 +32832,47 @@
   nil )
  (!pair  "value_range"
   (!type already_seen 1142)
-  (!srcfileloc  "value-range.h" 507)
+  (!srcfileloc  "value-range.h" 509)
   nil )
  (!pair  "2"
   (!type already_seen 1143)
-  (!srcfileloc  "value-range.h" 507)
+  (!srcfileloc  "value-range.h" 509)
   nil )
  (!pair  "int_range<2>"
   (!type already_seen 1142)
-  (!srcfileloc  "value-range.h" 507)
+  (!srcfileloc  "value-range.h" 509)
   nil )
  (!pair  "int_range_max"
   (!type already_seen 1707)
-  (!srcfileloc  "value-range.h" 497)
+  (!srcfileloc  "value-range.h" 499)
   nil )
  (!pair  "true"
   (!type already_seen 1708)
-  (!srcfileloc  "value-range.h" 497)
+  (!srcfileloc  "value-range.h" 499)
   nil )
  (!pair  "3"
   (!type already_seen 1709)
-  (!srcfileloc  "value-range.h" 497)
+  (!srcfileloc  "value-range.h" 499)
   nil )
  (!pair  "int_range<3,true>"
   (!type already_seen 1707)
-  (!srcfileloc  "value-range.h" 497)
+  (!srcfileloc  "value-range.h" 499)
   nil )
  (!pair  "frange"
   (!type already_seen 1706)
-  (!srcfileloc  "value-range.h" 384)
+  (!srcfileloc  "value-range.h" 386)
   nil )
  (!pair  "int_range"
   (!type already_seen 1703)
-  (!srcfileloc  "value-range.h" 226)
+  (!srcfileloc  "value-range.h" 227)
   nil )
  (!pair  "irange"
   (!type already_seen 1701)
-  (!srcfileloc  "value-range.h" 201)
+  (!srcfileloc  "value-range.h" 202)
   nil )
  (!pair  "vrange"
   (!type already_seen 1702)
-  (!srcfileloc  "value-range.h" 107)
+  (!srcfileloc  "value-range.h" 108)
   nil )
  (!pair  "vec<gimple*,va_gc>"
   (!type already_seen 1698)
@@ -37506,7 +37506,7 @@
  )
  (!pair  "thunk_labelno"
   (!type already_seen 2)
-  (!srcfileloc  "ada/gcc-interface/trans.cc" 10885)
+  (!srcfileloc  "ada/gcc-interface/trans.cc" 10891)
   nil )
  (!pair  "gnu_loop_stack"
   (!type already_seen 1887)
@@ -37565,19 +37565,19 @@
   (!type array 2428 nil  gc_used "(int) LAST_REASON_CODE + 1" 
    (!type already_seen 23)
   )
-  (!srcfileloc  "ada/gcc-interface/gigi.h" 443)
+  (!srcfileloc  "ada/gcc-interface/gigi.h" 444)
   nil )
  (!pair  "gnat_raise_decls"
   (!type array 2429 nil  gc_used "(int) LAST_REASON_CODE + 1" 
    (!type already_seen 23)
   )
-  (!srcfileloc  "ada/gcc-interface/gigi.h" 442)
+  (!srcfileloc  "ada/gcc-interface/gigi.h" 443)
   nil )
  (!pair  "gnat_std_decls"
   (!type array 2430 nil  gc_used "(int) ADT_LAST" 
    (!type already_seen 23)
   )
-  (!srcfileloc  "ada/gcc-interface/gigi.h" 441)
+  (!srcfileloc  "ada/gcc-interface/gigi.h" 442)
   nil )
  (!pair  "registered_functions"
   (!type already_seen 1852)
@@ -38184,21 +38184,21 @@
     (!type already_seen 100)
    )
   )
-  (!srcfileloc  "emit-rtl.cc" 6483)
+  (!srcfileloc  "emit-rtl.cc" 6487)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "free_sequence_stack"
   (!type already_seen 998)
-  (!srcfileloc  "emit-rtl.cc" 5467)
+  (!srcfileloc  "emit-rtl.cc" 5471)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "spill_slot_decl"
   (!type already_seen 23)
-  (!srcfileloc  "emit-rtl.cc" 2653)
+  (!srcfileloc  "emit-rtl.cc" 2657)
   nil )
  (!pair  "const_fixed_htab"
   (!type already_seen 1441)

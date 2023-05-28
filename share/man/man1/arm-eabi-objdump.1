@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJDUMP 1"
-.TH OBJDUMP 1 "2023-05-25" "binutils-2.40.50" "GNU Development Tools"
+.TH OBJDUMP 1 "2023-05-28" "binutils-2.40.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -778,6 +778,18 @@ For \s-1XCOFF,\s0 the available options are:
 .ie n .IP """ldinfo""" 4
 .el .IP "\f(CWldinfo\fR" 4
 .IX Item "ldinfo"
+.RE
+.RS 4
+.PD
+.Sp
+For \s-1PE,\s0 the available options are:
+.ie n .IP """header""" 4
+.el .IP "\f(CWheader\fR" 4
+.IX Item "header"
+.PD 0
+.ie n .IP """sections""" 4
+.el .IP "\f(CWsections\fR" 4
+.IX Item "sections"
 .RE
 .RS 4
 .PD

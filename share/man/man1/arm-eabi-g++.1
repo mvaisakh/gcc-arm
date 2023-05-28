@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-05-25" "gcc-14.0.0" "GNU"
+.TH GCC 1 "2023-05-28" "gcc-14.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -20122,13 +20122,18 @@ thread (wave-front).  Beware that there may be many threads and limited memory
 available.  The size of the stack allocation may also have an impact on
 run-time performance.  The default is 32KB when using OpenACC or OpenMP, and
 1MB otherwise.
-.IP "\fB\-mxnack\fR" 4
-.IX Item "-mxnack"
-Compile binaries suitable for devices with the \s-1XNACK\s0 feature enabled.  Some
-devices always require \s-1XNACK\s0 and some allow the user to configure \s-1XNACK.\s0  The
-compiled code must match the device mode.  The default is \fB\-mno\-xnack\fR.
-At present this option is a placeholder for support that is not yet
-implemented.
+.IP "\fB\-mxnack=on\fR" 4
+.IX Item "-mxnack=on"
+.PD 0
+.IP "\fB\-mxnack=off\fR" 4
+.IX Item "-mxnack=off"
+.IP "\fB\-mxnack=any\fR" 4
+.IX Item "-mxnack=any"
+.PD
+Compile binaries suitable for devices with the \s-1XNACK\s0 feature enabled, disabled,
+or either mode.  Some devices always require \s-1XNACK\s0 and some allow the user to
+configure \s-1XNACK.\s0  The compiled code must match the device mode.
+At present this option is a placeholder for support that is not yet implemented.
 .PP
 \fI\s-1ARC\s0 Options\fR
 .IX Subsection "ARC Options"
