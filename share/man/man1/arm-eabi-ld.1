@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2023-05-28" "binutils-2.40.50" "GNU Development Tools"
+.TH LD 1 "2023-06-01" "binutils-2.40.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -995,10 +995,11 @@ input to \fBld\fR.  For other binaries however the \fB\-Ur\fR
 option is similar to \fB\-r\fR but it also resolves references to
 constructors and destructors.
 .Sp
-It does not work to use \fB\-Ur\fR on files that were themselves
-linked with \fB\-Ur\fR; once the constructor table has been built,
-it cannot be added to.  Use \fB\-Ur\fR only for the last partial
-link, and \fB\-r\fR for the others.
+For those systems where \fB\-r\fR and \fB\-Ur\fR behave
+differently, it does not work to use \fB\-Ur\fR on files that were
+themselves linked with \fB\-Ur\fR; once the constructor table has
+been built, it cannot be added to.  Use \fB\-Ur\fR only for the last
+partial link, and \fB\-r\fR for the others.
 .IP "\fB\-\-orphan\-handling=\fR\fI\s-1MODE\s0\fR" 4
 .IX Item "--orphan-handling=MODE"
 Control how orphan sections are handled.  An orphan section is one not
