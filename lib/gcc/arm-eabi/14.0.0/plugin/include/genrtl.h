@@ -1548,6 +1548,8 @@ gen_rtx_fmt_ssss_stat (RTX_CODE code, machine_mode mode,
   gen_rtx_fmt_e (POPCOUNT, (MODE), (ARG0))
 #define gen_rtx_PARITY(MODE, ARG0) \
   gen_rtx_fmt_e (PARITY, (MODE), (ARG0))
+#define gen_rtx_BITREVERSE(MODE, ARG0) \
+  gen_rtx_fmt_e (BITREVERSE, (MODE), (ARG0))
 #define gen_rtx_SIGN_EXTRACT(MODE, ARG0, ARG1, ARG2) \
   gen_rtx_fmt_eee (SIGN_EXTRACT, (MODE), (ARG0), (ARG1), (ARG2))
 #define gen_rtx_ZERO_EXTRACT(MODE, ARG0, ARG1, ARG2) \
@@ -1590,6 +1592,8 @@ gen_rtx_fmt_ssss_stat (RTX_CODE code, machine_mode mode,
   gen_rtx_fmt_e (US_TRUNCATE, (MODE), (ARG0))
 #define gen_rtx_FMA(MODE, ARG0, ARG1, ARG2) \
   gen_rtx_fmt_eee (FMA, (MODE), (ARG0), (ARG1), (ARG2))
+#define gen_rtx_COPYSIGN(MODE, ARG0, ARG1) \
+  gen_rtx_fmt_ee (COPYSIGN, (MODE), (ARG0), (ARG1))
 #define gen_rtx_DEBUG_IMPLICIT_PTR(MODE, ARG0) \
   gen_rtx_fmt_t (DEBUG_IMPLICIT_PTR, (MODE), (ARG0))
 #define gen_rtx_ENTRY_VALUE(MODE) \

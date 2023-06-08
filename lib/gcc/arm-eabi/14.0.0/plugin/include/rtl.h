@@ -4241,8 +4241,8 @@ extern const rtx_insn *debug_rtx_find (const rtx_insn *, int);
 extern void print_mem_expr (FILE *, const_tree);
 extern void print_rtl (FILE *, const_rtx);
 extern void print_simple_rtl (FILE *, const_rtx);
-extern int print_rtl_single (FILE *, const_rtx);
-extern int print_rtl_single_with_indent (FILE *, const_rtx, int);
+extern void print_rtl_single (FILE *, const_rtx);
+extern void print_rtl_single_with_indent (FILE *, const_rtx, int);
 extern void print_inline_rtx (FILE *, const_rtx, int);
 
 /* In stmt.cc */
@@ -4292,8 +4292,8 @@ extern HARD_REG_SET eliminable_regset;
 extern void mark_elimination (int, int);
 
 /* In reginfo.cc */
-extern int reg_classes_intersect_p (reg_class_t, reg_class_t);
-extern int reg_class_subset_p (reg_class_t, reg_class_t);
+extern bool reg_classes_intersect_p (reg_class_t, reg_class_t);
+extern bool reg_class_subset_p (reg_class_t, reg_class_t);
 extern void globalize_reg (tree, int);
 extern void init_reg_modes_target (void);
 extern void init_regs (void);
@@ -4307,7 +4307,7 @@ extern void fix_register (const char *, int, int);
 extern const HARD_REG_SET *valid_mode_changes_for_regno (unsigned int);
 
 /* In reload1.cc */
-extern int function_invariant_p (const_rtx);
+extern bool function_invariant_p (const_rtx);
 
 /* In calls.cc */
 enum libcall_type
