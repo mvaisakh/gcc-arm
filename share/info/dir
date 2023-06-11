@@ -50,15 +50,15 @@ Software development
 * Binutils: (binutils).         The GNU binary utilities.
 * CTF: (ctf-spec).              The CTF file format.
 * Cpp: (cpp).                   The GNU C preprocessor.
+* Cpplib: (cppinternals).       Cpplib internals.
 * Gas: (as).                    The GNU assembler.
 * Ld: (ld).                     The GNU linker.
 * Ld-Internals: (ldint).        The GNU linker internals.
 * SFrame: (sframe-spec).        The Simple Frame format.
-* g++: (gcc).                   The GNU C++ compiler.
-* gcc: (gcc).                   The GNU Compiler Collection.
 * gccinstall: (gccinstall).     Installing the GNU Compiler Collection.
 * gccint: (gccint).             Internals of the GNU Compiler Collection.
-* gcov: (gcc) Gcov.             'gcov'--a test coverage program.
+* gprof: (gprof).               Profiling your program's execution
+gcov: (gcc) Gcov.             'gcov'--a test coverage program.
 * gcov-dump: (gcc) Gcov-dump.   'gcov-dump'--an offline gcda and gcno profile 
                                   dump tool.
 * gcov-tool: (gcc) Gcov-tool.   'gcov-tool'--an offline gcda profile 

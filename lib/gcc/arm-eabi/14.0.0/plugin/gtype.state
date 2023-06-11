@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "14.0.0 20230608 (Bleeding Edge)")
+(!version  "14.0.0 20230611 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 241 0
@@ -20789,13 +20789,13 @@
      (!type user_struct 1144 
       (!type already_seen 1143)
       gc_pointed_to "int_range<2>"
-      (!srcfileloc  "value-range.h" 509)
+      (!srcfileloc  "value-range.h" 510)
       (!fields 1 
        (!pair  "2"
         (!type undefined 1145 nil  gc_unused "2"
-         (!srcfileloc  "value-range.h" 509)
+         (!srcfileloc  "value-range.h" 510)
         )
-        (!srcfileloc  "value-range.h" 509)
+        (!srcfileloc  "value-range.h" 510)
         nil )
       )
      )
@@ -25781,17 +25781,17 @@
   nil 0 nil nil )
  
  (!type user_struct 1703 nil  gc_unused "irange"
-  (!srcfileloc  "value-range.h" 202)
+  (!srcfileloc  "value-range.h" 203)
   (!fields 0 )
  )
  
  (!type user_struct 1704 nil  gc_unused "vrange"
-  (!srcfileloc  "value-range.h" 108)
+  (!srcfileloc  "value-range.h" 109)
   (!fields 0 )
  )
  
  (!type user_struct 1705 nil  gc_unused "int_range"
-  (!srcfileloc  "value-range.h" 227)
+  (!srcfileloc  "value-range.h" 228)
   (!fields 0 )
  )
  
@@ -25804,24 +25804,24 @@
   nil 0 nil nil )
  
  (!type user_struct 1708 nil  gc_unused "frange"
-  (!srcfileloc  "value-range.h" 386)
+  (!srcfileloc  "value-range.h" 387)
   (!fields 0 )
  )
  
  (!type user_struct 1709 nil  gc_unused "int_range<3,true>"
-  (!srcfileloc  "value-range.h" 499)
+  (!srcfileloc  "value-range.h" 500)
   (!fields 2 
    (!pair  "true"
     (!type undefined 1710 nil  gc_unused "true"
-     (!srcfileloc  "value-range.h" 499)
+     (!srcfileloc  "value-range.h" 500)
     )
-    (!srcfileloc  "value-range.h" 499)
+    (!srcfileloc  "value-range.h" 500)
     nil )
    (!pair  "3"
     (!type undefined 1711 nil  gc_unused "3"
-     (!srcfileloc  "value-range.h" 499)
+     (!srcfileloc  "value-range.h" 500)
     )
-    (!srcfileloc  "value-range.h" 499)
+    (!srcfileloc  "value-range.h" 500)
     nil )
   )
  )
@@ -30318,7 +30318,7 @@
   nil 0 nil nil )
  
  (!type undefined 2243 nil  gc_unused "class_to_loc_map_t::iterator"
-  (!srcfileloc  "cp/parser.cc" 34672)
+  (!srcfileloc  "cp/parser.cc" 34671)
  )
  
  (!type struct 2244 
@@ -30417,15 +30417,15 @@
    (!type already_seen 2260)
   )
   gc_pointed_to "hash_map<tree,tree_pair_p>"
-  (!srcfileloc  "cp/pt.cc" 30402)
+  (!srcfileloc  "cp/pt.cc" 30403)
   (!fields 2 
    (!pair  "tree_pair_p"
     (!type already_seen 541)
-    (!srcfileloc  "cp/pt.cc" 30402)
+    (!srcfileloc  "cp/pt.cc" 30403)
     nil )
    (!pair  "tree"
     (!type already_seen 23)
-    (!srcfileloc  "cp/pt.cc" 30402)
+    (!srcfileloc  "cp/pt.cc" 30403)
     nil )
   )
  )
@@ -31747,7 +31747,7 @@
   nil )
  (!pair  "hash_map<tree,tree_pair_p>"
   (!type already_seen 2260)
-  (!srcfileloc  "cp/pt.cc" 30402)
+  (!srcfileloc  "cp/pt.cc" 30403)
   nil )
  (!pair  "pending_template"
   (!type already_seen 2244)
@@ -31783,11 +31783,11 @@
   nil )
  (!pair  "iter_t"
   (!type already_seen 2243)
-  (!srcfileloc  "cp/parser.cc" 34672)
+  (!srcfileloc  "cp/parser.cc" 34671)
   nil )
  (!pair  "class_to_loc_map_t::iterator"
   (!type already_seen 2243)
-  (!srcfileloc  "cp/parser.cc" 34672)
+  (!srcfileloc  "cp/parser.cc" 34671)
   nil )
  (!pair  "cp_parser_expression_stack"
   (!type array 2383 nil  gc_unused "NUM_PREC_VALUES" 
@@ -32881,47 +32881,47 @@
   nil )
  (!pair  "value_range"
   (!type already_seen 1144)
-  (!srcfileloc  "value-range.h" 509)
+  (!srcfileloc  "value-range.h" 510)
   nil )
  (!pair  "2"
   (!type already_seen 1145)
-  (!srcfileloc  "value-range.h" 509)
+  (!srcfileloc  "value-range.h" 510)
   nil )
  (!pair  "int_range<2>"
   (!type already_seen 1144)
-  (!srcfileloc  "value-range.h" 509)
+  (!srcfileloc  "value-range.h" 510)
   nil )
  (!pair  "int_range_max"
   (!type already_seen 1709)
-  (!srcfileloc  "value-range.h" 499)
+  (!srcfileloc  "value-range.h" 500)
   nil )
  (!pair  "true"
   (!type already_seen 1710)
-  (!srcfileloc  "value-range.h" 499)
+  (!srcfileloc  "value-range.h" 500)
   nil )
  (!pair  "3"
   (!type already_seen 1711)
-  (!srcfileloc  "value-range.h" 499)
+  (!srcfileloc  "value-range.h" 500)
   nil )
  (!pair  "int_range<3,true>"
   (!type already_seen 1709)
-  (!srcfileloc  "value-range.h" 499)
+  (!srcfileloc  "value-range.h" 500)
   nil )
  (!pair  "frange"
   (!type already_seen 1708)
-  (!srcfileloc  "value-range.h" 386)
+  (!srcfileloc  "value-range.h" 387)
   nil )
  (!pair  "int_range"
   (!type already_seen 1705)
-  (!srcfileloc  "value-range.h" 227)
+  (!srcfileloc  "value-range.h" 228)
   nil )
  (!pair  "irange"
   (!type already_seen 1703)
-  (!srcfileloc  "value-range.h" 202)
+  (!srcfileloc  "value-range.h" 203)
   nil )
  (!pair  "vrange"
   (!type already_seen 1704)
-  (!srcfileloc  "value-range.h" 108)
+  (!srcfileloc  "value-range.h" 109)
   nil )
  (!pair  "vec<gimple*,va_gc>"
   (!type already_seen 1700)
@@ -36524,7 +36524,7 @@
   (!type array 2403 nil  gc_used "2" 
    (!type already_seen 23)
   )
-  (!srcfileloc  "fortran/trans-stmt.cc" 3290)
+  (!srcfileloc  "fortran/trans-stmt.cc" 3288)
   nil )
  (!pair  "dt_parm"
   (!type already_seen 23)
@@ -36712,7 +36712,7 @@
   nil )
  (!pair  "dguide_cache"
   (!type already_seen 2261)
-  (!srcfileloc  "cp/pt.cc" 30402)
+  (!srcfileloc  "cp/pt.cc" 30403)
   (!options 
    (!option deletable string  "")
   )
@@ -36801,7 +36801,7 @@
   nil )
  (!pair  "generic_parm_count"
   (!type already_seen 2)
-  (!srcfileloc  "cp/parser.cc" 49740)
+  (!srcfileloc  "cp/parser.cc" 49739)
   nil )
  (!pair  "cp_parser_decl_specs_attrs"
   (!type already_seen 85)
@@ -37241,7 +37241,7 @@
   nil )
  (!pair  "default_arg_context"
   (!type already_seen 85)
-  (!srcfileloc  "cp/call.cc" 9150)
+  (!srcfileloc  "cp/call.cc" 9158)
   nil )
  (!pair  "unemitted_tinfo_decls"
   (!type already_seen 85)
