@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-06-11" "gcc-14.0.0" "GNU"
+.TH GCC 1 "2023-06-15" "gcc-14.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2750,10 +2750,9 @@ the \fB\-foffload\-options=\fR\fItarget-list\fR\fB=\fR\fIoptions\fR form.  The
 .Sp
 Typical command lines are
 .Sp
-.Vb 3
-\&        \-foffload\-options=\-lgfortran \-foffload\-options=\-lm
-\&        \-foffload\-options="\-lgfortran \-lm" \-foffload\-options=nvptx\-none=\-latomic
-\&        \-foffload\-options=amdgcn\-amdhsa=\-march=gfx906 \-foffload\-options=\-lm
+.Vb 2
+\&        \-foffload\-options=\*(Aq\-fno\-math\-errno \-ffinite\-math\-only\*(Aq \-foffload\-options=nvptx\-none=\-latomic
+\&        \-foffload\-options=amdgcn\-amdhsa=\-march=gfx906 \-foffload\-options=\-O3
 .Ve
 .IP "\fB\-fopenacc\fR" 4
 .IX Item "-fopenacc"
@@ -19496,12 +19495,12 @@ addresses and sizes of sections.  Programs can be statically linked only.  The
 .IP "\fB\-mtp=\fR\fIname\fR" 4
 .IX Item "-mtp=name"
 Specify the system register to use as a thread pointer.  The valid values
-are \fBel0\fR, \fBel1\fR, \fBel2\fR, \fBel3\fR.  These correspond to
-using the \fBtpidr_el0\fR, \fBtpidr_el1\fR, \fBtpidr_el2\fR,
-\&\fBtpidr_el3\fR registers accordingly.  The default setting is \fBel0\fR.
-It is recommended to compile all code intended to interoperate with the same
-value of this option to avoid accessing a different thread pointer from the
-wrong exception level.
+are \fBtpidr_el0\fR, \fBtpidrro_el0\fR, \fBtpidr_el1\fR, \fBtpidr_el2\fR,
+\&\fBtpidr_el3\fR.  For backwards compatibility the aliases \fBel0\fR,
+\&\fBel1\fR, \fBel2\fR, \fBel3\fR are also accepted.
+The default setting is \fBtpidr_el0\fR.  It is recommended to compile all
+code intended to interoperate with the same value of this option to avoid
+accessing a different thread pointer from the wrong exception level.
 .IP "\fB\-mstrict\-align\fR" 4
 .IX Item "-mstrict-align"
 .PD 0
@@ -21904,12 +21903,15 @@ is not valid in \s-1AAPCS\s0 configurations because interworking is enabled
 by default.
 .IP "\fB\-mtp=\fR\fIname\fR" 4
 .IX Item "-mtp=name"
-Specify the access model for the thread local storage pointer.  The valid
-models are \fBsoft\fR, which generates calls to \f(CW\*(C`_\|_aeabi_read_tp\*(C'\fR,
-\&\fBcp15\fR, which fetches the thread pointer from \f(CW\*(C`cp15\*(C'\fR directly
-(supported in the arm6k architecture), and \fBauto\fR, which uses the
-best available method for the selected processor.  The default setting is
-\&\fBauto\fR.
+Specify the access model for the thread local storage pointer.  The model
+\&\fBsoft\fR generates calls to \f(CW\*(C`_\|_aeabi_read_tp\*(C'\fR.  Other accepted
+models are \fBtpidrurw\fR, \fBtpidruro\fR and \fBtpidrprw\fR which fetch
+the thread pointer from the corresponding system register directly
+(supported from the arm6k architecture and later).  These system registers
+are accessed through the \s-1CP15\s0 co-processor interface and the argument
+\&\fBcp15\fR is also accepted as a convenience alias of \fBtpidruro\fR.
+The argument \fBauto\fR uses the best available method for the selected
+processor.  The default setting is \fBauto\fR.
 .IP "\fB\-mtls\-dialect=\fR\fIdialect\fR" 4
 .IX Item "-mtls-dialect=dialect"
 Specify the dialect to use for accessing thread local storage.  Two

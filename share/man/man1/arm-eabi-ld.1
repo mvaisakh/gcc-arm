@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 "2023-06-11" "binutils-2.40.50" "GNU Development Tools"
+.TH LD 1 "2023-06-15" "binutils-2.40.50" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -663,6 +663,66 @@ If the \fB\-m\fR option is not used, the emulation is taken from the
 .Sp
 Otherwise, the default emulation depends upon how the linker was
 configured.
+.IP "\fB\-\-remap\-inputs=\f(BIpattern\fB=\f(BIfilename\fB\fR" 4
+.IX Item "--remap-inputs=pattern=filename"
+.PD 0
+.IP "\fB\-\-remap\-inputs\-file=\f(BIfile\fB\fR" 4
+.IX Item "--remap-inputs-file=file"
+.PD
+These options allow the names of input files to be changed before the
+linker attempts to open them.  The option
+\&\fB\-\-remap\-inputs=foo.o=bar.o\fR will cause any attempt to load a
+file called \fIfoo.o\fR to instead try to load a file called
+\&\fIbar.o\fR.  Wildcard patterns are permitted in the first filename,
+so \fB\-\-remap\-inputs=foo*.o=bar.o\fR will rename any input file that
+matches \fIfoo*.o\fR to \fIbar.o\fR.
+.Sp
+An alternative form of the option
+\&\fB\-\-remap\-inputs\-file=filename\fR allows the remappings to be read
+from a file.  Each line in the file can contain a single remapping.
+Blank lines are ignored.  Anything from a hash character (\fB#\fR) to
+the end of a line is considered to be a comment and is also ignored.
+The mapping pattern can be separated from the filename by whitespace
+or an equals (\fB=\fR) character.
+.Sp
+The options can be specified multiple times.  Their contents
+accumulate.  The remappings will be processed in the order in which
+they occur on the command line, and if they come from a file, in the
+order in which they occur in the file.  If a match is made, no further
+checking for that filename will be performed.
+.Sp
+If the replacement filename is \fI/dev/null\fR or just \fI\s-1NUL\s0\fR
+then the remapping will actually cause the input file to be ignored.
+This can be a convenient way to experiment with removing input files
+from a complicated build environment.
+.Sp
+Note that this option is position dependent and only affects filenames
+that come after it on the command line.  Thus:
+.Sp
+.Vb 1
+\&          ld foo.o \-\-remap\-inputs=foo.o=bar.o
+.Ve
+.Sp
+Will have no effect, whereas:
+.Sp
+.Vb 1
+\&          ld \-\-remap\-inputs=foo.o=bar.o foo.o
+.Ve
+.Sp
+Will rename the input file \fIfoo.o\fR to \fIbar.o\fR.
+.Sp
+Note \- these options also affect files referenced by \fI\s-1INPUT\s0\fR
+statements in linker scripts.  But since linker scripts are processed
+after the entire command line is read, the position of the remap
+options on the command line is not significant.
+.Sp
+If the \fBverbose\fR option is enabled then any mappings that match
+will be reported, although again the \fBverbose\fR option needs to
+be enabled on the command line \fIbefore\fR the remaped filenames
+appear.
+.Sp
+If the \fB\-Map\fR or \fB\-\-print\-map\fR options are enabled then
+the remapping list will be included in the map output.
 .IP "\fB\-M\fR" 4
 .IX Item "-M"
 .PD 0

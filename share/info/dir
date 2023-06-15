@@ -58,10 +58,3 @@ Software development
 * gccinstall: (gccinstall).     Installing the GNU Compiler Collection.
 * gccint: (gccint).             Internals of the GNU Compiler Collection.
 * gprof: (gprof).               Profiling your program's execution
-gcov: (gcc) Gcov.             'gcov'--a test coverage program.
-* gcov-dump: (gcc) Gcov-dump.   'gcov-dump'--an offline gcda and gcno profile 
-                                  dump tool.
-* gcov-tool: (gcc) Gcov-tool.   'gcov-tool'--an offline gcda profile 
-                                  processing program.
-* gprof: (gprof).               Profiling your program's execution
-* lto-dump: (gcc) lto-dump.     'lto-dump'--Tool for dumping LTO object files.
