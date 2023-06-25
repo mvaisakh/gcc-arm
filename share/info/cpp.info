@@ -1704,9 +1704,10 @@ the current function.  They tend to be useful in conjunction with
      standard selected, the value of the macro is '199711L' for the 1998
      C++ standard, '201103L' for the 2011 C++ standard, '201402L' for
      the 2014 C++ standard, '201703L' for the 2017 C++ standard,
-     '202002L' for the 2020 C++ standard, or an unspecified value
-     strictly larger than '202002L' for the experimental languages
-     enabled by '-std=c++23' and '-std=gnu++23'.
+     '202002L' for the 2020 C++ standard, '202302L' for the 2023 C++
+     standard, or an unspecified value strictly larger than '202302L'
+     for the experimental languages enabled by '-std=c++26' and
+     '-std=gnu++26'.
 
 '__OBJC__'
      This macro is defined, with value 1, when the Objective-C compiler
@@ -5572,57 +5573,57 @@ Node: Concatenation56032
 Node: Variadic Macros59129
 Node: Predefined Macros64081
 Node: Standard Predefined Macros64669
-Node: Common Predefined Macros71043
-Node: System-specific Predefined Macros93678
-Node: C++ Named Operators95701
-Node: Undefining and Redefining Macros96665
-Node: Directives Within Macro Arguments98763
-Node: Macro Pitfalls99704
-Node: Misnesting100237
-Node: Operator Precedence Problems101349
-Node: Swallowing the Semicolon103215
-Node: Duplication of Side Effects105238
-Node: Self-Referential Macros107421
-Node: Argument Prescan109830
-Node: Newlines in Arguments113581
-Node: Conditionals114532
-Node: Conditional Uses116228
-Node: Conditional Syntax117586
-Node: Ifdef118008
-Node: If121165
-Node: Defined123469
-Node: Else124862
-Node: Elif125432
-Node: __has_attribute126745
-Node: __has_cpp_attribute128339
-Node: __has_c_attribute129229
-Node: __has_builtin130002
-Node: __has_include131135
-Node: Deleted Code132724
-Node: Diagnostics133971
-Node: Line Control135520
-Node: Pragmas137798
-Node: Other Directives142310
-Node: Preprocessor Output143360
-Node: Traditional Mode146513
-Node: Traditional lexical analysis147650
-Node: Traditional macros150153
-Node: Traditional miscellany153950
-Node: Traditional warnings154946
-Node: Implementation Details157143
-Node: Implementation-defined behavior157706
-Ref: Identifier characters158456
-Node: Implementation limits161505
-Node: Obsolete Features164178
-Node: Invocation167022
-Ref: dashMF173057
-Ref: fdollars-in-identifiers177719
-Ref: Wtrigraphs191990
-Node: Environment Variables194045
-Node: GNU Free Documentation License197736
-Node: Index of Directives222886
-Node: Option Index225185
-Node: Concept Index231287
+Node: Common Predefined Macros71085
+Node: System-specific Predefined Macros93720
+Node: C++ Named Operators95743
+Node: Undefining and Redefining Macros96707
+Node: Directives Within Macro Arguments98805
+Node: Macro Pitfalls99746
+Node: Misnesting100279
+Node: Operator Precedence Problems101391
+Node: Swallowing the Semicolon103257
+Node: Duplication of Side Effects105280
+Node: Self-Referential Macros107463
+Node: Argument Prescan109872
+Node: Newlines in Arguments113623
+Node: Conditionals114574
+Node: Conditional Uses116270
+Node: Conditional Syntax117628
+Node: Ifdef118050
+Node: If121207
+Node: Defined123511
+Node: Else124904
+Node: Elif125474
+Node: __has_attribute126787
+Node: __has_cpp_attribute128381
+Node: __has_c_attribute129271
+Node: __has_builtin130044
+Node: __has_include131177
+Node: Deleted Code132766
+Node: Diagnostics134013
+Node: Line Control135562
+Node: Pragmas137840
+Node: Other Directives142352
+Node: Preprocessor Output143402
+Node: Traditional Mode146555
+Node: Traditional lexical analysis147692
+Node: Traditional macros150195
+Node: Traditional miscellany153992
+Node: Traditional warnings154988
+Node: Implementation Details157185
+Node: Implementation-defined behavior157748
+Ref: Identifier characters158498
+Node: Implementation limits161547
+Node: Obsolete Features164220
+Node: Invocation167064
+Ref: dashMF173099
+Ref: fdollars-in-identifiers177761
+Ref: Wtrigraphs192032
+Node: Environment Variables194087
+Node: GNU Free Documentation License197778
+Node: Index of Directives222928
+Node: Option Index225227
+Node: Concept Index231329
 
 End Tag Table
 

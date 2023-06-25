@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2023-06-22" "gcc-14.0.0" "GNU"
+.TH GCC 1 "2023-06-25" "gcc-14.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -343,6 +343,7 @@ in the following sections.
 \&\-fdiagnostics\-column\-unit=\fR[\fBdisplay\fR|\fBbyte\fR]
 \&\fB\-fdiagnostics\-column\-origin=\fR\fIorigin\fR
 \&\fB\-fdiagnostics\-escape\-format=\fR[\fBunicode\fR|\fBbytes\fR]
+\&\fB\-fdiagnostics\-text\-art\-charset=\fR[\fBnone\fR|\fBascii\fR|\fBunicode\fR|\fBemoji\fR]
 .IP "\fIWarning Options\fR" 4
 .IX Item "Warning Options"
 \&\fB\-fsyntax\-only  \-fmax\-errors=\fR\fIn\fR  \fB\-Wpedantic
@@ -2567,6 +2568,24 @@ change in incompatible ways in future releases.
 .IX Item "gnu++23"
 .PD
 \&\s-1GNU\s0 dialect of \fB\-std=c++2b\fR.  Support is highly experimental,
+and will almost certainly change in incompatible ways in future
+releases.
+.IP "\fBc++2c\fR" 4
+.IX Item "c++2c"
+.PD 0
+.IP "\fBc++26\fR" 4
+.IX Item "c++26"
+.PD
+The next revision of the \s-1ISO \*(C+\s0 standard, planned for
+2026.  Support is highly experimental, and will almost certainly
+change in incompatible ways in future releases.
+.IP "\fBgnu++2c\fR" 4
+.IX Item "gnu++2c"
+.PD 0
+.IP "\fBgnu++26\fR" 4
+.IX Item "gnu++26"
+.PD
+\&\s-1GNU\s0 dialect of \fB\-std=c++2c\fR.  Support is highly experimental,
 and will almost certainly change in incompatible ways in future
 releases.
 .RE
@@ -4885,7 +4904,8 @@ options:
 \&\-fno\-diagnostics\-show\-line\-numbers
 \&\-fdiagnostics\-color=never
 \&\-fdiagnostics\-urls=never
-\&\-fdiagnostics\-path\-format=separate\-events\fR
+\&\-fdiagnostics\-path\-format=separate\-events
+\&\-fdiagnostics\-text\-art\-charset=none\fR
 In the future, if \s-1GCC\s0 changes the default appearance of its diagnostics, the
 corresponding option to disable the new behavior will be added to this list.
 .IP "\fB\-fdiagnostics\-show\-location=once\fR" 4
@@ -5381,6 +5401,24 @@ Unicode characters.  For the example above, the following will be printed:
 .Vb 1
 \&         before<CF><80><BF>after
 .Ve
+.IP "\fB\-fdiagnostics\-text\-art\-charset=\fR\fI\s-1CHARSET\s0\fR" 4
+.IX Item "-fdiagnostics-text-art-charset=CHARSET"
+Some diagnostics can contain \*(L"text art\*(R" diagrams: visualizations created
+from text, intended to be viewed in a monospaced font.
+.Sp
+This option selects which characters should be used for printing such
+diagrams, if any.  \fI\s-1CHARSET\s0\fR is \fBnone\fR, \fBascii\fR, \fBunicode\fR,
+or \fBemoji\fR.
+.Sp
+The \fBnone\fR value suppresses the printing of such diagrams.
+The \fBascii\fR value will ensure that such diagrams are pure \s-1ASCII\s0
+(\*(L"\s-1ASCII\s0 art\*(R").  The \fBunicode\fR value will allow for conservative use of
+unicode drawing characters (such as box-drawing characters).  The \fBemoji\fR
+value further adds the possibility of emoji in the output (such as emitting
+U+26A0 \s-1WARNING SIGN\s0 followed by U+FE0F \s-1VARIATION SELECTOR\-16\s0 to select the
+emoji variant of the character).
+.Sp
+The default is \fBemoji\fR.
 .IP "\fB\-fdiagnostics\-format=\fR\fI\s-1FORMAT\s0\fR" 4
 .IX Item "-fdiagnostics-format=FORMAT"
 Select a different format for printing diagnostics.
@@ -9868,6 +9906,15 @@ the diagnostic does limited checking for accesses past the end when the
 offset as well as the capacity is symbolic.
 .Sp
 See  \s-1CWE\-119:\s0 Improper Restriction of Operations within the Bounds of a Memory Buffer (\f(CW\*(C`https://cwe.mitre.org/data/definitions/119.html\*(C'\fR).
+.Sp
+For cases where the analyzer is able, it will emit a text art diagram
+visualizing the spatial relationship between the memory region that the
+analyzer predicts would be accessed, versus the range of memory that is
+valid to access: whether they overlap, are touching, are close or far
+apart; which one is before or after in memory, the relative sizes
+involved, the direction of the access (read vs write), and, in some
+cases, the values of data involved.  This diagram can be suppressed
+using \fB\-fdiagnostics\-text\-art\-charset=none\fR.
 .IP "\fB\-Wno\-analyzer\-possible\-null\-argument\fR" 4
 .IX Item "-Wno-analyzer-possible-null-argument"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
@@ -10411,6 +10458,10 @@ following warnings from \fB\-fanalyzer\fR:
 \&\-Wanalyzer\-use\-after\-free
 \&\-Wanalyzer\-va\-list\-leak
 \&\-Wanalyzer\-va\-list\-use\-after\-va\-end\fR
+.IP "\fB\-fanalyzer\-debug\-text\-art\-headings\fR" 4
+.IX Item "-fanalyzer-debug-text-art-headings"
+This option is intended for analyzer developers.  If enabled,
+the analyzer will add extra annotations to any diagrams it generates.
 .IP "\fB\-fno\-analyzer\-feasibility\fR" 4
 .IX Item "-fno-analyzer-feasibility"
 This option is intended for analyzer developers.

@@ -910,6 +910,13 @@ option.
      '--enable-host-pie') may be used with '--enable-host-shared'), in
      which case '-fPIC' is used when compiling, and '-pie' when linking.
 
+'--enable-host-bind-now'
+     Specify that the _host_ executables should be linked with the
+     option '-Wl,-z,now', which means that the dynamic linker will
+     resolve all symbols when the executables are started, and that in
+     turn allows RELRO to mark the GOT read-only, resulting in better
+     security.
+
 '--with-gnu-as'
      Specify that the compiler should assume that the assembler it finds
      is the GNU assembler.  However, this does not modify the rules to
@@ -4866,7 +4873,7 @@ Concept Index
 * Menu:
 
 * Binaries:                              Binaries.           (line    6)
-* build_configargs:                      Configuration.      (line 1863)
+* build_configargs:                      Configuration.      (line 1870)
 * Configuration:                         Configuration.      (line    6)
 * Downloading GCC:                       Downloading the source.
                                                              (line    6)
@@ -4875,7 +4882,7 @@ Concept Index
 * FDL, GNU Free Documentation License:   GNU Free Documentation License.
                                                              (line    6)
 * Host specific installation:            Specific.           (line    6)
-* host_configargs:                       Configuration.      (line 1867)
+* host_configargs:                       Configuration.      (line 1874)
 * Installing GCC: Binaries:              Binaries.           (line    6)
 * Installing GCC: Building:              Building.           (line    6)
 * Installing GCC: Configuration:         Configuration.      (line    6)
@@ -4885,7 +4892,7 @@ Concept Index
 * Specific installation notes:           Specific.           (line    6)
 * Target specific installation:          Specific.           (line    6)
 * Target specific installation notes:    Specific.           (line    6)
-* target_configargs:                     Configuration.      (line 1871)
+* target_configargs:                     Configuration.      (line 1878)
 * Testing:                               Testing.            (line    6)
 * Testsuite:                             Testing.            (line    6)
 
@@ -4900,96 +4907,96 @@ Ref: GDC-prerequisite7222
 Ref: GM2-prerequisite8405
 Node: Downloading the source18304
 Node: Configuration19975
-Ref: with-gnu-as38825
-Ref: with-as39676
-Ref: with-gnu-ld41041
-Ref: WithAixSoname67919
-Ref: AixLdCommand68580
-Node: Building110590
-Node: Testing126801
-Node: Final install134542
-Node: Binaries139211
-Node: Specific140196
-Ref: aarch64-x-x140730
-Ref: amd64-x-solaris2142750
-Ref: amdgcn-x-amdhsa142832
-Ref: arc-x-elf32143357
-Ref: arc-linux-uclibc143533
-Ref: arm-x-eabi143674
-Ref: avr143927
-Ref: bfin144508
-Ref: cris144771
-Ref: dos145097
-Ref: epiphany-x-elf145422
-Ref: x-x-freebsd145527
-Ref: ft32-x-elf147091
-Ref: h8300-hms147189
-Ref: hppa-hp-hpux147541
-Ref: hppa-hp-hpux10149913
-Ref: hppa-hp-hpux11150326
-Ref: x-x-linux-gnu155728
-Ref: ix86-x-linux156051
-Ref: ix86-x-solaris2156364
-Ref: ia64-x-linux156612
-Ref: ia64-x-hpux156859
-Ref: x-ibm-aix157414
-Ref: TransferAixShobj161076
-Ref: iq2000-x-elf164886
-Ref: lm32-x-elf165026
-Ref: lm32-x-uclinux165130
-Ref: loongarch165258
-Ref: m32c-x-elf165952
-Ref: m32r-x-elf166054
-Ref: m68k-x-x166156
-Ref: m68k-x-uclinux167194
-Ref: microblaze-x-elf167439
-Ref: mips-x-x167558
-Ref: moxie-x-elf169468
-Ref: msp430-x-elf169515
-Ref: nds32le-x-elf170072
-Ref: nds32be-x-elf170144
-Ref: nvptx-x-none170213
-Ref: or1k-x-elf171076
-Ref: or1k-x-linux171207
-Ref: powerpc-x-x171288
-Ref: powerpc-x-darwin171479
-Ref: powerpc-x-elf171974
-Ref: powerpc-x-linux-gnu172059
-Ref: powerpc-x-netbsd172154
-Ref: powerpc-x-eabisim172242
-Ref: powerpc-x-eabi172368
-Ref: powerpcle-x-elf172444
-Ref: powerpcle-x-eabisim172536
-Ref: powerpcle-x-eabi172669
-Ref: rl78-x-elf172752
-Ref: riscv32-x-elf172858
-Ref: riscv32-x-linux173047
-Ref: riscv64-x-elf173204
-Ref: riscv64-x-linux173393
-Ref: rx-x-elf173550
-Ref: s390-x-linux173596
-Ref: s390x-x-linux173668
-Ref: s390x-ibm-tpf173755
-Ref: x-x-solaris2173886
-Ref: sparc-x-x177659
-Ref: sparc-sun-solaris2178161
-Ref: sparc-x-linux179060
-Ref: sparc64-x-solaris2179091
-Ref: sparcv9-x-solaris2179178
-Ref: c6x-x-x179899
-Ref: visium-x-elf179991
-Ref: x-x-vxworks180099
-Ref: x86-64-x-x181622
-Ref: x86-64-x-solaris2181950
-Ref: xtensa-x-elf182576
-Ref: xtensa-x-linux183247
-Ref: windows183588
-Ref: x-x-cygwin185235
-Ref: x-x-mingw32185788
-Ref: older186170
-Ref: elf188287
-Node: GNU Free Documentation License188541
-Node: Concept Index213679
+Ref: with-gnu-as39141
+Ref: with-as39992
+Ref: with-gnu-ld41357
+Ref: WithAixSoname68235
+Ref: AixLdCommand68896
+Node: Building110906
+Node: Testing127117
+Node: Final install134858
+Node: Binaries139527
+Node: Specific140512
+Ref: aarch64-x-x141046
+Ref: amd64-x-solaris2143066
+Ref: amdgcn-x-amdhsa143148
+Ref: arc-x-elf32143673
+Ref: arc-linux-uclibc143849
+Ref: arm-x-eabi143990
+Ref: avr144243
+Ref: bfin144824
+Ref: cris145087
+Ref: dos145413
+Ref: epiphany-x-elf145738
+Ref: x-x-freebsd145843
+Ref: ft32-x-elf147407
+Ref: h8300-hms147505
+Ref: hppa-hp-hpux147857
+Ref: hppa-hp-hpux10150229
+Ref: hppa-hp-hpux11150642
+Ref: x-x-linux-gnu156044
+Ref: ix86-x-linux156367
+Ref: ix86-x-solaris2156680
+Ref: ia64-x-linux156928
+Ref: ia64-x-hpux157175
+Ref: x-ibm-aix157730
+Ref: TransferAixShobj161392
+Ref: iq2000-x-elf165202
+Ref: lm32-x-elf165342
+Ref: lm32-x-uclinux165446
+Ref: loongarch165574
+Ref: m32c-x-elf166268
+Ref: m32r-x-elf166370
+Ref: m68k-x-x166472
+Ref: m68k-x-uclinux167510
+Ref: microblaze-x-elf167755
+Ref: mips-x-x167874
+Ref: moxie-x-elf169784
+Ref: msp430-x-elf169831
+Ref: nds32le-x-elf170388
+Ref: nds32be-x-elf170460
+Ref: nvptx-x-none170529
+Ref: or1k-x-elf171392
+Ref: or1k-x-linux171523
+Ref: powerpc-x-x171604
+Ref: powerpc-x-darwin171795
+Ref: powerpc-x-elf172290
+Ref: powerpc-x-linux-gnu172375
+Ref: powerpc-x-netbsd172470
+Ref: powerpc-x-eabisim172558
+Ref: powerpc-x-eabi172684
+Ref: powerpcle-x-elf172760
+Ref: powerpcle-x-eabisim172852
+Ref: powerpcle-x-eabi172985
+Ref: rl78-x-elf173068
+Ref: riscv32-x-elf173174
+Ref: riscv32-x-linux173363
+Ref: riscv64-x-elf173520
+Ref: riscv64-x-linux173709
+Ref: rx-x-elf173866
+Ref: s390-x-linux173912
+Ref: s390x-x-linux173984
+Ref: s390x-ibm-tpf174071
+Ref: x-x-solaris2174202
+Ref: sparc-x-x177975
+Ref: sparc-sun-solaris2178477
+Ref: sparc-x-linux179376
+Ref: sparc64-x-solaris2179407
+Ref: sparcv9-x-solaris2179494
+Ref: c6x-x-x180215
+Ref: visium-x-elf180307
+Ref: x-x-vxworks180415
+Ref: x86-64-x-x181938
+Ref: x86-64-x-solaris2182266
+Ref: xtensa-x-elf182892
+Ref: xtensa-x-linux183563
+Ref: windows183904
+Ref: x-x-cygwin185551
+Ref: x-x-mingw32186104
+Ref: older186486
+Ref: elf188603
+Node: GNU Free Documentation License188857
+Node: Concept Index213995
 
 End Tag Table
 
