@@ -426,6 +426,7 @@
   DWARF_ONE_KNOWN_DW_LLE_GNU (end_of_list_entry, DW_LLE_GNU_end_of_list_entry) \
   DWARF_ONE_KNOWN_DW_LLE_GNU (start_end_entry, DW_LLE_GNU_start_end_entry) \
   DWARF_ONE_KNOWN_DW_LLE_GNU (start_length_entry, DW_LLE_GNU_start_length_entry) \
+  DWARF_ONE_KNOWN_DW_LLE_GNU (view_pair, DW_LLE_GNU_view_pair) \
   /* End of DW_LLE_GNU_*.  */
 
 #define DWARF_ALL_KNOWN_DW_LNCT \

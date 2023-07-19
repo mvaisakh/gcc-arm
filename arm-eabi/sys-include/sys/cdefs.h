@@ -1,4 +1,5 @@
-/* Copyright (C) 1992-2021 Free Software Foundation, Inc.
+/* Copyright (C) 1992-2023 Free Software Foundation, Inc.
+   Copyright The GNU Toolchain Authors.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -26,8 +27,8 @@
 /* The GNU libc does not support any K&R compilers or the traditional mode
    of ISO C compilers anymore.  Check for some of the combinations not
    supported anymore.  */
-#if defined __GNUC__ && !defined __STDC__
-# error "You need a ISO C conforming compiler to use the glibc headers"
+#if defined __GNUC__ && !defined __STDC__ && !defined __cplusplus
+# error "You need a ISO C or C++ conforming compiler to use the glibc headers"
 #endif
 
 /* Some user header file might have defined this before.  */
@@ -151,6 +152,7 @@
 # define __glibc_objsize(__o) __bos (__o)
 #endif
 
+#if __USE_FORTIFY_LEVEL > 0
 /* Compile time conditions to choose between the regular, _chk and _chk_warn
    variants.  These conditions should get evaluated to constant and optimized
    away.  */
@@ -186,7 +188,7 @@
    ? __ ## f ## _alias (__VA_ARGS__)					      \
    : (__glibc_unsafe_len (__l, __s, __osz)				      \
       ? __ ## f ## _chk_warn (__VA_ARGS__, __osz)			      \
-      : __ ## f ## _chk (__VA_ARGS__, __osz)))			      \
+      : __ ## f ## _chk (__VA_ARGS__, __osz)))
 
 /* Fortify function f, where object size argument passed to f is the number of
    elements and not total size.  */
@@ -196,7 +198,8 @@
    ? __ ## f ## _alias (__VA_ARGS__)					      \
    : (__glibc_unsafe_len (__l, __s, __osz)				      \
       ? __ ## f ## _chk_warn (__VA_ARGS__, (__osz) / (__s))		      \
-      : __ ## f ## _chk (__VA_ARGS__, (__osz) / (__s))))		      \
+      : __ ## f ## _chk (__VA_ARGS__, (__osz) / (__s))))
+#endif
 
 #if __GNUC_PREREQ (4,3)
 # define __warnattr(msg) __attribute__((__warning__ (msg)))
@@ -289,6 +292,15 @@
   __attribute__ ((__alloc_size__ params))
 #else
 # define __attribute_alloc_size__(params) /* Ignore.  */
+#endif
+
+/* Tell the compiler which argument to an allocation function
+   indicates the alignment of the allocation.  */
+#if __GNUC_PREREQ (4, 9) || __glibc_has_attribute (__alloc_align__)
+# define __attribute_alloc_align__(param) \
+  __attribute__ ((__alloc_align__ param))
+#else
+# define __attribute_alloc_align__(param) /* Ignore.  */
 #endif
 
 /* At some point during the gcc 2.96 development the `pure' attribute

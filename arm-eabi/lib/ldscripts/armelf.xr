@@ -114,7 +114,7 @@ SECTIONS
   .data1        0 : { *(.data1) }
   /* This section contains data that is initialized during load,
      but not during the application's initialization sequence.  */
-  .persistent :
+  .persistent 0 :
   {
     *(.persistent)
   }
@@ -124,7 +124,7 @@ SECTIONS
   }
   /* This section contains data that is not initialized during load,
      or during the application's initialization sequence.  */
-  .noinit (NOLOAD) :
+  .noinit 0 (NOLOAD) :
   {
     *(.noinit)
   }

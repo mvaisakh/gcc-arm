@@ -244,7 +244,7 @@ extern const char *crypt_preferred_method (void);
                              XCRYPT_VERSION_MINOR)
 
 /* Version number as a string constant.  */
-#define XCRYPT_VERSION_STR "4.4.33"
+#define XCRYPT_VERSION_STR "4.4.36"
 
 __END_DECLS
 

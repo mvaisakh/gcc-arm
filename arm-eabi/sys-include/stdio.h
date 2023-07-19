@@ -1,5 +1,5 @@
 /* Define ISO C stdio on top of C++ iostreams.
-   Copyright (C) 1991-2021 Free Software Foundation, Inc.
+   Copyright (C) 1991-2023 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 
    The GNU C Library is free software; you can redistribute it and/or
@@ -131,6 +131,12 @@ typedef __fpos64_t fpos64_t;
    FOPEN_MAX	Minimum number of files that can be open at once.
    FILENAME_MAX	Maximum length of a filename.  */
 #include <bits/stdio_lim.h>
+
+
+#if __GLIBC_USE (ISOC2X)
+/* Maximum length of printf output for a NaN.  */
+# define _PRINTF_NAN_LEN_MAX 4
+#endif
 
 
 /* Standard streams.  */

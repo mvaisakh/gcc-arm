@@ -212,6 +212,11 @@ public:
     {
       return always () - unlikely ();
     }
+  /* Return true when value is not zero and can be used for scaling.   */
+  bool nonzero_p () const
+    {
+      return initialized_p () && m_val != 0;
+    }
 
   static profile_probability guessed_always ()
     {
@@ -538,6 +543,29 @@ public:
       safe_scale_64bit (m_val, num, den, &tmp);
       ret.m_val = MIN (tmp, max_probability);
       ret.m_quality = MIN (m_quality, ADJUSTED);
+      return ret;
+    }
+
+  /* Return *THIS * NUM / DEN.  */
+  profile_probability apply_scale (profile_probability num,
+				   profile_probability den) const
+    {
+      if (*this == never ())
+	return *this;
+      if (num == never ())
+	return num;
+      if (!initialized_p () || !num.initialized_p () || !den.initialized_p ())
+	return uninitialized ();
+      if (num == den)
+	return *this;
+      gcc_checking_assert (den.m_val);
+
+      profile_probability ret;
+      uint64_t val;
+      safe_scale_64bit (m_val, num.m_val, den.m_val, &val);
+      ret.m_val = MIN (val, max_probability);
+      ret.m_quality = MIN (MIN (MIN (m_quality, ADJUSTED),
+				     num.m_quality), den.m_quality);
       return ret;
     }
 
@@ -1248,15 +1276,25 @@ public:
       return ret;
     }
 
+  /* Return true if profile count is very large, so we risk overflows
+     with loop transformations.  */
+  bool
+  very_large_p ()
+  {
+    if (!initialized_p ())
+      return false;
+    return m_val > max_count / 65536;
+  }
+
   int to_frequency (struct function *fun) const;
   int to_cgraph_frequency (profile_count entry_bb_count) const;
   sreal to_sreal_scale (profile_count in, bool *known = NULL) const;
 
   /* Output THIS to F.  */
-  void dump (FILE *f) const;
+  void dump (FILE *f, struct function *fun = NULL) const;
 
   /* Output THIS to BUFFER.  */
-  void dump (char *buffer) const;
+  void dump (char *buffer, struct function *fun = NULL) const;
 
   /* Print THIS to stderr.  */
   void debug () const;

@@ -38,12 +38,16 @@
 #define DEBUGINFOD_RETRY_LIMIT_ENV_VAR "DEBUGINFOD_RETRY_LIMIT"
 #define DEBUGINFOD_MAXSIZE_ENV_VAR "DEBUGINFOD_MAXSIZE"
 #define DEBUGINFOD_MAXTIME_ENV_VAR "DEBUGINFOD_MAXTIME"
+#define DEBUGINFOD_HEADERS_FILE_ENV_VAR "DEBUGINFOD_HEADERS_FILE"
 
 /* The libdebuginfod soname.  */
 #define DEBUGINFOD_SONAME "libdebuginfod.so.1"
 
 /* Handle for debuginfod-client connection.  */
+#ifndef _ELFUTILS_DEBUGINFOD_CLIENT_TYPEDEF
 typedef struct debuginfod_client debuginfod_client;
+#define _ELFUTILS_DEBUGINFOD_CLIENT_TYPEDEF 1
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -78,6 +82,12 @@ int debuginfod_find_source (debuginfod_client *client,
                             const char *filename,
                             char **path);
 
+int debuginfod_find_section (debuginfod_client *client,
+			     const unsigned char *build_id,
+			     int build_id_len,
+			     const char *section,
+			     char **path);
+
 typedef int (*debuginfod_progressfn_t)(debuginfod_client *c, long a, long b);
 void debuginfod_set_progressfn(debuginfod_client *c,
 			       debuginfod_progressfn_t fn);
@@ -92,6 +102,10 @@ void* debuginfod_get_user_data (debuginfod_client *client);
 
 /* Get the current or last active URL, if known.  */
 const char* debuginfod_get_url (debuginfod_client *client);
+
+/* Returns set of x-debuginfod* header lines received from current or
+   last active transfer, \n separated, if known. */
+const char* debuginfod_get_headers(debuginfod_client *client);
 
 /* Add an outgoing HTTP request  "Header: Value".  Copies string.  */
 int debuginfod_add_http_header (debuginfod_client *client, const char* header);
