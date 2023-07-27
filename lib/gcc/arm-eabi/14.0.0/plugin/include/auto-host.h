@@ -2179,6 +2179,12 @@
 #endif
 
 
+/* Define to 1 if ld64 supports '-demangle'. */
+#ifndef USED_FOR_TARGET
+/* #undef LD64_HAS_DEMANGLE */
+#endif
+
+
 /* Define to 1 if ld64 supports '-export_dynamic'. */
 #ifndef USED_FOR_TARGET
 /* #undef LD64_HAS_EXPORT_DYNAMIC */
@@ -2240,7 +2246,8 @@
 #endif
 
 
-/* Define to the sub-directory where libtool stores uninstalled libraries. */
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
 #ifndef USED_FOR_TARGET
 #define LT_OBJDIR ".libs/"
 #endif

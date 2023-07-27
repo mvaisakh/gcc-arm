@@ -403,11 +403,16 @@ extern void verify_loop_structure (void);
 /* Loop analysis.  */
 extern bool just_once_each_iteration_p (const class loop *, const_basic_block);
 gcov_type expected_loop_iterations_unbounded (const class loop *,
-					      bool *read_profile_p = NULL, bool by_profile_only = false);
+					      bool *read_profile_p = NULL);
+extern bool expected_loop_iterations_by_profile (const class loop *loop,
+						 sreal *ret,
+						 bool *reliable = NULL);
+extern bool maybe_flat_loop_profile (const class loop *);
 extern unsigned expected_loop_iterations (class loop *);
 extern rtx doloop_condition_get (rtx_insn *);
 
 void mark_loop_for_removal (loop_p);
+void print_loop_info (FILE *file, const class loop *loop, const char *);
 
 /* Induction variable analysis.  */
 

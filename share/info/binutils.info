@@ -1381,6 +1381,12 @@ the ‘--reverse-bytes’ option.)
      Set the access and modification dates of the output file to be the
      same as those of the input file.
 
+     This option also copies the date stored in a PE format file’s
+     header, unless the SOURCE_DATE_EPOCH environment variable is
+     defined.  If it is defined then this variable will be used as the
+     date stored in the header, interpreted as the number of seconds
+     since the Unix epoch.
+
 ‘-D’
 ‘--enable-deterministic-archives’
      Operate in _deterministic_ mode.  When copying archive members and
@@ -5971,8 +5977,8 @@ Binutils Index
 
 * –enable-deterministic-archives:        ar cmdline.          (line 150)
 * –enable-deterministic-archives <1>:    ar cmdline.          (line 238)
-* –enable-deterministic-archives <2>:    objcopy.             (line 364)
-* –enable-deterministic-archives <3>:    objcopy.             (line 374)
+* –enable-deterministic-archives <2>:    objcopy.             (line 370)
+* –enable-deterministic-archives <3>:    objcopy.             (line 380)
 * –enable-deterministic-archives <4>:    ranlib.              (line  32)
 * –enable-deterministic-archives <5>:    ranlib.              (line  44)
 * –enable-deterministic-archives <6>:    strip.               (line 163)
@@ -5996,11 +6002,11 @@ Binutils Index
 * bugs:                                  Reporting Bugs.      (line   6)
 * bugs, reporting:                       Bug Reporting.       (line   6)
 * c++filt:                               c++filt.             (line   6)
-* changing object addresses:             objcopy.             (line 411)
-* changing section address:              objcopy.             (line 421)
-* changing section LMA:                  objcopy.             (line 430)
-* changing section VMA:                  objcopy.             (line 443)
-* changing start address:                objcopy.             (line 405)
+* changing object addresses:             objcopy.             (line 417)
+* changing section address:              objcopy.             (line 427)
+* changing section LMA:                  objcopy.             (line 436)
+* changing section VMA:                  objcopy.             (line 449)
+* changing start address:                objcopy.             (line 411)
 * collections of files:                  ar.                  (line   6)
 * Compact Type Format:                   objdump.             (line 764)
 * Compact Type Format <1>:               readelf.             (line 457)
@@ -6023,8 +6029,8 @@ Binutils Index
 * demangling in objdump <1>:             addr2line.           (line  91)
 * deterministic archives:                ar cmdline.          (line 150)
 * deterministic archives <1>:            ar cmdline.          (line 238)
-* deterministic archives <2>:            objcopy.             (line 364)
-* deterministic archives <3>:            objcopy.             (line 374)
+* deterministic archives <2>:            objcopy.             (line 370)
+* deterministic archives <3>:            objcopy.             (line 380)
 * deterministic archives <4>:            ranlib.              (line  32)
 * deterministic archives <5>:            ranlib.              (line  44)
 * deterministic archives <6>:            strip.               (line 163)
@@ -6164,30 +6170,30 @@ Node: ar cmdline7012
 Node: ar scripts20899
 Node: nm26905
 Node: objcopy43231
-Node: objdump85805
-Node: ranlib125614
-Node: size127311
-Node: strings131697
-Node: strip137785
-Node: c++filt148184
-Ref: c++filt-Footnote-1154247
-Node: addr2line154361
-Node: windmc160564
-Node: windres164497
-Node: dlltool171505
-Node: def file format185560
-Node: readelf188310
-Node: elfedit208381
-Node: Common Options211951
-Node: Selecting the Target System212997
-Node: Target Selection213937
-Node: Architecture Selection216062
-Node: debuginfod216938
-Node: Reporting Bugs217972
-Node: Bug Criteria218734
-Node: Bug Reporting219293
-Node: GNU Free Documentation License226250
-Node: Binutils Index251613
+Node: objdump86108
+Node: ranlib125917
+Node: size127614
+Node: strings132000
+Node: strip138088
+Node: c++filt148487
+Ref: c++filt-Footnote-1154550
+Node: addr2line154664
+Node: windmc160867
+Node: windres164800
+Node: dlltool171808
+Node: def file format185863
+Node: readelf188613
+Node: elfedit208684
+Node: Common Options212254
+Node: Selecting the Target System213300
+Node: Target Selection214240
+Node: Architecture Selection216365
+Node: debuginfod217241
+Node: Reporting Bugs218275
+Node: Bug Criteria219037
+Node: Bug Reporting219596
+Node: GNU Free Documentation License226553
+Node: Binutils Index251916
 
 End Tag Table
 
