@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-07-27 gcc-14.0.0 GNU
+.TH GCC 1 2023-07-30 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -875,9 +875,10 @@ in the following sections.
 \&\-mmemory\-latency=\fR\fItime\fR
 .Sp
 \&\fIeBPF Options\fR
-\&\fB\-mbig\-endian \-mlittle\-endian \-mkernel=\fR\fIversion\fR
-\&\fB\-mframe\-limit=\fR\fIbytes\fR \fB\-mxbpf \-mco\-re \-mno\-co\-re \-mjmpext
-\&\-mjmp32 \-malu32 \-mv3\-atomics \-mcpu=\fR\fIversion\fR \fB\-masm=\fR\fIdialect\fR
+\&\fB\-mbig\-endian \-mlittle\-endian
+\&\-mframe\-limit=\fR\fIbytes\fR \fB\-mxbpf \-mco\-re \-mno\-co\-re \-mjmpext
+\&\-mjmp32 \-malu32 \-mv3\-atomics \-mbswap \-msdiv \-msmov \-mcpu=\fR\fIversion\fR
+\&\fB\-masm=\fR\fIdialect\fR
 .Sp
 \&\fIFR30 Options\fR
 \&\fB\-msmall\-model  \-mno\-lsim\fR
@@ -23944,17 +23945,6 @@ This specifies the hard limit for frame sizes, in bytes.  Currently,
 the value that can be specified should be less than or equal to
 \&\fB32767\fR.  Defaults to whatever limit is imposed by the version of
 the Linux kernel targeted.
-.IP \fB\-mkernel=\fR\fIversion\fR 4
-.IX Item "-mkernel=version"
-This specifies the minimum version of the kernel that will run the
-compiled program.  GCC uses this version to determine which
-instructions to use, what kernel helpers to allow, etc.  Currently,
-\&\fIversion\fR can be one of \fB4.0\fR, \fB4.1\fR, \fB4.2\fR,
-\&\fB4.3\fR, \fB4.4\fR, \fB4.5\fR, \fB4.6\fR, \fB4.7\fR,
-\&\fB4.8\fR, \fB4.9\fR, \fB4.10\fR, \fB4.11\fR, \fB4.12\fR,
-\&\fB4.13\fR, \fB4.14\fR, \fB4.15\fR, \fB4.16\fR, \fB4.17\fR,
-\&\fB4.18\fR, \fB4.19\fR, \fB4.20\fR, \fB5.0\fR, \fB5.1\fR,
-\&\fB5.2\fR, \fBlatest\fR and \fBnative\fR.
 .IP \fB\-mbig\-endian\fR 4
 .IX Item "-mbig-endian"
 Generate code for a big-endian target.
@@ -23963,25 +23953,59 @@ Generate code for a big-endian target.
 Generate code for a little-endian target.  This is the default.
 .IP \fB\-mjmpext\fR 4
 .IX Item "-mjmpext"
-Enable generation of extra conditional-branch instructions.
+.PD 0
+.IP \fB\-mno\-jmpext\fR 4
+.IX Item "-mno-jmpext"
+.PD
+Enable or disable generation of extra conditional-branch instructions.
 Enabled for CPU v2 and above.
 .IP \fB\-mjmp32\fR 4
 .IX Item "-mjmp32"
-Enable 32\-bit jump instructions. Enabled for CPU v3 and above.
+.PD 0
+.IP \fB\-mno\-jmp32\fR 4
+.IX Item "-mno-jmp32"
+.PD
+Enable or disable generation of 32\-bit jump instructions.
+Enabled for CPU v3 and above.
 .IP \fB\-malu32\fR 4
 .IX Item "-malu32"
-Enable 32\-bit ALU instructions. Enabled for CPU v3 and above.
-.IP \fB\-mbswap\fR 4
-.IX Item "-mbswap"
-Enable byte swap instructions.  Enabled for CPU v4 and above.
-.IP \fB\-msdiv\fR 4
-.IX Item "-msdiv"
-Enable signed division and modulus instructions.  Enabled for CPU v4
-and above.
+.PD 0
+.IP \fB\-mno\-alu32\fR 4
+.IX Item "-mno-alu32"
+.PD
+Enable or disable generation of 32\-bit ALU instructions.
+Enabled for CPU v3 and above.
 .IP \fB\-mv3\-atomics\fR 4
 .IX Item "-mv3-atomics"
-Enable instructions for general atomic operations introduced in CPU v3.
-Enabled for CPU v3 and above.
+.PD 0
+.IP \fB\-mno\-v3\-atomics\fR 4
+.IX Item "-mno-v3-atomics"
+.PD
+Enable or disable instructions for general atomic operations introduced
+in CPU v3.  Enabled for CPU v3 and above.
+.IP \fB\-mbswap\fR 4
+.IX Item "-mbswap"
+.PD 0
+.IP \fB\-mno\-bswap\fR 4
+.IX Item "-mno-bswap"
+.PD
+Enable or disable byte swap instructions.  Enabled for CPU v4 and above.
+.IP \fB\-msdiv\fR 4
+.IX Item "-msdiv"
+.PD 0
+.IP \fB\-mno\-sdiv\fR 4
+.IX Item "-mno-sdiv"
+.PD
+Enable or disable signed division and modulus instructions.  Enabled for
+CPU v4 and above.
+.IP \fB\-msmov\fR 4
+.IX Item "-msmov"
+.PD 0
+.IP \fB\-mno\-smov\fR 4
+.IX Item "-mno-smov"
+.PD
+Enable or disable sign-extending move and memory load instructions.
+Enabled for CPU v4 and above.
 .IP \fB\-mcpu=\fR\fIversion\fR 4
 .IX Item "-mcpu=version"
 This specifies which version of the eBPF ISA to target. Newer versions
@@ -24016,13 +24040,17 @@ All features of v3, plus:
 .RS 4
 .IP "\-<Byte swap instructions, as in \fB\-mbswap\fR>" 4
 .IX Item "-<Byte swap instructions, as in -mbswap>"
-.RE
-.RS 4
-.RE
-.RE
-.RS 4
-.RE
 .PD 0
+.IP "\-<Signed division and modulus instructions, as in \fB\-msdiv\fR>" 4
+.IX Item "-<Signed division and modulus instructions, as in -msdiv>"
+.IP "\-<Sign\-extending move and memory load instructions, as in \fB\-msmov\fR>" 4
+.IX Item "-<Sign-extending move and memory load instructions, as in -msmov>"
+.RE
+.RS 4
+.RE
+.RE
+.RS 4
+.RE
 .IP \fB\-mco\-re\fR 4
 .IX Item "-mco-re"
 .PD

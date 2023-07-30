@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "AS 1"
-.TH AS 1 2023-07-27 binutils-2.41.50 "GNU Development Tools"
+.TH AS 1 2023-07-30 binutils-2.41.50 "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1088,6 +1088,9 @@ when assembling.  The BPF ISA versions supported are \fBv1\fR \fBv2\fR, \fBv3\fR
 The value \fBxbpf\fR can be specified to recognize extra
 instructions that are used by GCC for testing purposes.  But beware
 this is not valid BPF.
+.IP \fB\-mno\-relax\fR 4
+.IX Item "-mno-relax"
+This option tells the assembler to not relax instructions.
 .PP
 Note that if no endianness option is specified in the command line,
 the host endianness is used.
@@ -1429,6 +1432,11 @@ accept various extension mnemonics.  For example,
 \&\f(CW\*(C`rao_int\*(C'\fR,
 \&\f(CW\*(C`fred\*(C'\fR,
 \&\f(CW\*(C`lkgs\*(C'\fR,
+\&\f(CW\*(C`avx_vnni_int16\*(C'\fR,
+\&\f(CW\*(C`sha512\*(C'\fR,
+\&\f(CW\*(C`sm3\*(C'\fR,
+\&\f(CW\*(C`sm4\*(C'\fR,
+\&\f(CW\*(C`pbndkb\*(C'\fR,
 \&\f(CW\*(C`amx_int8\*(C'\fR,
 \&\f(CW\*(C`amx_bf16\*(C'\fR,
 \&\f(CW\*(C`amx_fp16\*(C'\fR,

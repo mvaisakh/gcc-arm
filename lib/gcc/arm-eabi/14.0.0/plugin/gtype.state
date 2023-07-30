@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "14.0.0 20230727 (Bleeding Edge)")
+(!version  "14.0.0 20230730 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 241 0
@@ -6398,15 +6398,15 @@
                                     nil )
                                    (!pair  "count"
                                     (!type struct 303 nil  gc_used "profile_count"
-                                     (!srcfileloc  "profile-count.h" 1331)
+                                     (!srcfileloc  "profile-count.h" 1337)
                                      (!fields 2 
                                       (!pair  "UINT64_BIT_FIELD_ALIGN"
                                        (!type already_seen 2)
-                                       (!srcfileloc  "profile-count.h" 764)
+                                       (!srcfileloc  "profile-count.h" 770)
                                        nil )
                                       (!pair  "m_quality"
                                        (!type already_seen 2)
-                                       (!srcfileloc  "profile-count.h" 766)
+                                       (!srcfileloc  "profile-count.h" 772)
                                        nil )
                                      )
                                      nil 4095 nil nil )
@@ -19705,12 +19705,12 @@
   nil 0 nil nil )
  
  (!type struct 1034 nil  gc_used "sreal"
-  (!srcfileloc  "profile-count.h" 1291)
+  (!srcfileloc  "profile-count.h" 1297)
   (!fields 0 )
   nil 4095 nil nil )
  
  (!type user_struct 1035 nil  gc_unused "profile_probability"
-  (!srcfileloc  "profile-count.h" 687)
+  (!srcfileloc  "profile-count.h" 693)
   (!fields 0 )
  )
  
@@ -34320,11 +34320,11 @@
   nil )
  (!pair  "sreal"
   (!type already_seen 1034)
-  (!srcfileloc  "profile-count.h" 1291)
+  (!srcfileloc  "profile-count.h" 1297)
   nil )
  (!pair  "profile_probability"
   (!type already_seen 1035)
-  (!srcfileloc  "profile-count.h" 687)
+  (!srcfileloc  "profile-count.h" 693)
   nil )
  (!pair  "profile_count"
   (!type already_seen 303)
@@ -37270,7 +37270,7 @@
   nil )
  (!pair  "cv_cache"
   (!type already_seen 396)
-  (!srcfileloc  "cp/constexpr.cc" 8692)
+  (!srcfileloc  "cp/constexpr.cc" 8701)
   (!options 
    (!option deletable string  "")
   )
@@ -37622,7 +37622,7 @@
  )
  (!pair  "thunk_labelno"
   (!type already_seen 2)
-  (!srcfileloc  "ada/gcc-interface/trans.cc" 10861)
+  (!srcfileloc  "ada/gcc-interface/trans.cc" 10862)
   nil )
  (!pair  "gnu_loop_stack"
   (!type already_seen 1894)
