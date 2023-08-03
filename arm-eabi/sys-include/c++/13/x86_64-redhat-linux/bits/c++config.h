@@ -38,7 +38,7 @@
 #define _GLIBCXX_RELEASE 13
 
 // The datestamp of the C++ library in compressed ISO date format.
-#define __GLIBCXX__ 20230614
+#define __GLIBCXX__ 20230728
 
 // Macros for various attributes.
 //   _GLIBCXX_PURE
@@ -1710,6 +1710,10 @@ namespace __gnu_cxx
 /* Define if the compiler supports C++11 atomics. */
 #define _GLIBCXX_ATOMIC_BUILTINS 1
 
+/* Define if global objects can be aligned to
+   std::hardware_destructive_interference_size. */
+#define _GLIBCXX_CAN_ALIGNAS_DESTRUCTIVE_SIZE 1
+
 /* Define to use concept checking code from the boost libraries. */
 /* #undef _GLIBCXX_CONCEPT_CHECKS */
 
@@ -1834,11 +1838,17 @@ namespace __gnu_cxx
 /* Define if fchmodat is available in <sys/stat.h>. */
 #define _GLIBCXX_USE_FCHMODAT 1
 
+/* Define if fseeko and ftello are available. */
+#define _GLIBCXX_USE_FSEEKO_FTELLO 1
+
 /* Defined if gettimeofday is available. */
 #define _GLIBCXX_USE_GETTIMEOFDAY 1
 
 /* Define if get_nprocs is available in <sys/sysinfo.h>. */
 #define _GLIBCXX_USE_GET_NPROCS 1
+
+/* Define if init_priority should be used for iostream initialization. */
+#define _GLIBCXX_USE_INIT_PRIORITY_ATTRIBUTE 1
 
 /* Define if LFS support is available. */
 #define _GLIBCXX_USE_LFS 1
@@ -2309,7 +2319,7 @@ namespace __gnu_cxx
 #define _GLIBCXX_RELEASE 13
 
 // The datestamp of the C++ library in compressed ISO date format.
-#define __GLIBCXX__ 20230614
+#define __GLIBCXX__ 20230728
 
 // Macros for various attributes.
 //   _GLIBCXX_PURE
@@ -3981,6 +3991,10 @@ namespace __gnu_cxx
 /* Define if the compiler supports C++11 atomics. */
 #define _GLIBCXX_ATOMIC_BUILTINS 1
 
+/* Define if global objects can be aligned to
+   std::hardware_destructive_interference_size. */
+#define _GLIBCXX_CAN_ALIGNAS_DESTRUCTIVE_SIZE 1
+
 /* Define to use concept checking code from the boost libraries. */
 /* #undef _GLIBCXX_CONCEPT_CHECKS */
 
@@ -4105,11 +4119,17 @@ namespace __gnu_cxx
 /* Define if fchmodat is available in <sys/stat.h>. */
 #define _GLIBCXX_USE_FCHMODAT 1
 
+/* Define if fseeko and ftello are available. */
+#define _GLIBCXX_USE_FSEEKO_FTELLO 1
+
 /* Defined if gettimeofday is available. */
 #define _GLIBCXX_USE_GETTIMEOFDAY 1
 
 /* Define if get_nprocs is available in <sys/sysinfo.h>. */
 #define _GLIBCXX_USE_GET_NPROCS 1
+
+/* Define if init_priority should be used for iostream initialization. */
+#define _GLIBCXX_USE_INIT_PRIORITY_ATTRIBUTE 1
 
 /* Define if LFS support is available. */
 #define _GLIBCXX_USE_LFS 1
