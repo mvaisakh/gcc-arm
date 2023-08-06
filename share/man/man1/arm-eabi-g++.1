@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-08-03 gcc-14.0.0 GNU
+.TH GCC 1 2023-08-06 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -303,6 +303,7 @@ in the following sections.
 \&\-Wempty\-body  \-Wno\-endif\-labels  \-Wenum\-compare  \-Wenum\-conversion
 \&\-Wenum\-int\-mismatch
 \&\-Werror  \-Werror=*  \-Wexpansion\-to\-defined  \-Wfatal\-errors
+\&\-Wflex\-array\-member\-not\-at\-end
 \&\-Wfloat\-conversion  \-Wfloat\-equal  \-Wformat  \-Wformat=2
 \&\-Wno\-format\-contains\-nul  \-Wno\-format\-extra\-args
 \&\-Wformat\-nonliteral  \-Wformat\-overflow=\fR\fIn\fR
@@ -1333,7 +1334,7 @@ See RS/6000 and PowerPC Options.
 \&\-mpointer\-size=\fR\fIsize\fR
 .Sp
 \&\fIVxWorks Options\fR
-\&\fB\-mrtp  \-non\-static  \-Bstatic  \-Bdynamic
+\&\fB\-mrtp  \-msmp  \-non\-static  \-Bstatic  \-Bdynamic
 \&\-Xbind\-lazy  \-Xbind\-now\fR
 .Sp
 \&\fIx86 Options\fR
@@ -8723,6 +8724,16 @@ Warn for implicit conversions that may change the sign of an integer
 value, like assigning a signed integer expression to an unsigned
 integer variable. An explicit cast silences the warning. In C, this
 option is enabled also by \fB\-Wconversion\fR.
+.IP "\fB\-Wflex\-array\-member\-not\-at\-end\fR (C and C++ only)" 4
+.IX Item "-Wflex-array-member-not-at-end (C and C++ only)"
+Warn when a structure containing a C99 flexible array member as the last
+field is not at the end of another structure.
+This warning warns e.g. about
+.Sp
+.Vb 2
+\&        struct flex  { int length; char data[]; };
+\&        struct mid_flex { int m; struct flex flex_data; int n; };
+.Ve
 .IP \fB\-Wfloat\-conversion\fR 4
 .IX Item "-Wfloat-conversion"
 Warn for implicit conversions that reduce the precision of a real value.
@@ -22156,12 +22167,12 @@ GCC supports the following AVR devices and ISAs:
 .el .IP \f(CWavrxmega2\fR 4
 .IX Item "avrxmega2"
 "XMEGA" devices with more than 8 KiB and up to 64 KiB of program memory.
-\&\fImcu\fR = \f(CW\*(C`atxmega8e5\*(C'\fR, \f(CW\*(C`atxmega16a4\*(C'\fR, \f(CW\*(C`atxmega16a4u\*(C'\fR, \f(CW\*(C`atxmega16c4\*(C'\fR, \f(CW\*(C`atxmega16d4\*(C'\fR, \f(CW\*(C`atxmega16e5\*(C'\fR, \f(CW\*(C`atxmega32a4\*(C'\fR, \f(CW\*(C`atxmega32a4u\*(C'\fR, \f(CW\*(C`atxmega32c3\*(C'\fR, \f(CW\*(C`atxmega32c4\*(C'\fR, \f(CW\*(C`atxmega32d3\*(C'\fR, \f(CW\*(C`atxmega32d4\*(C'\fR, \f(CW\*(C`atxmega32e5\*(C'\fR, \f(CW\*(C`avr64da28\*(C'\fR, \f(CW\*(C`avr64da32\*(C'\fR, \f(CW\*(C`avr64da48\*(C'\fR, \f(CW\*(C`avr64da64\*(C'\fR, \f(CW\*(C`avr64db28\*(C'\fR, \f(CW\*(C`avr64db32\*(C'\fR, \f(CW\*(C`avr64db48\*(C'\fR, \f(CW\*(C`avr64db64\*(C'\fR.
+\&\fImcu\fR = \f(CW\*(C`atxmega8e5\*(C'\fR, \f(CW\*(C`atxmega16a4\*(C'\fR, \f(CW\*(C`atxmega16a4u\*(C'\fR, \f(CW\*(C`atxmega16c4\*(C'\fR, \f(CW\*(C`atxmega16d4\*(C'\fR, \f(CW\*(C`atxmega16e5\*(C'\fR, \f(CW\*(C`atxmega32a4\*(C'\fR, \f(CW\*(C`atxmega32a4u\*(C'\fR, \f(CW\*(C`atxmega32c3\*(C'\fR, \f(CW\*(C`atxmega32c4\*(C'\fR, \f(CW\*(C`atxmega32d3\*(C'\fR, \f(CW\*(C`atxmega32d4\*(C'\fR, \f(CW\*(C`atxmega32e5\*(C'\fR, \f(CW\*(C`avr64da28\*(C'\fR, \f(CW\*(C`avr64da32\*(C'\fR, \f(CW\*(C`avr64da48\*(C'\fR, \f(CW\*(C`avr64da64\*(C'\fR, \f(CW\*(C`avr64db28\*(C'\fR, \f(CW\*(C`avr64db32\*(C'\fR, \f(CW\*(C`avr64db48\*(C'\fR, \f(CW\*(C`avr64db64\*(C'\fR, \f(CW\*(C`avr64dd14\*(C'\fR, \f(CW\*(C`avr64dd20\*(C'\fR, \f(CW\*(C`avr64dd28\*(C'\fR, \f(CW\*(C`avr64dd32\*(C'\fR, \f(CW\*(C`avr64ea28\*(C'\fR, \f(CW\*(C`avr64ea32\*(C'\fR, \f(CW\*(C`avr64ea48\*(C'\fR.
 .ie n .IP """avrxmega3""" 4
 .el .IP \f(CWavrxmega3\fR 4
 .IX Item "avrxmega3"
 "XMEGA" devices with up to 64 KiB of combined program memory and RAM, and with program memory visible in the RAM address space.
-\&\fImcu\fR = \f(CW\*(C`attiny202\*(C'\fR, \f(CW\*(C`attiny204\*(C'\fR, \f(CW\*(C`attiny212\*(C'\fR, \f(CW\*(C`attiny214\*(C'\fR, \f(CW\*(C`attiny402\*(C'\fR, \f(CW\*(C`attiny404\*(C'\fR, \f(CW\*(C`attiny406\*(C'\fR, \f(CW\*(C`attiny412\*(C'\fR, \f(CW\*(C`attiny414\*(C'\fR, \f(CW\*(C`attiny416\*(C'\fR, \f(CW\*(C`attiny417\*(C'\fR, \f(CW\*(C`attiny804\*(C'\fR, \f(CW\*(C`attiny806\*(C'\fR, \f(CW\*(C`attiny807\*(C'\fR, \f(CW\*(C`attiny814\*(C'\fR, \f(CW\*(C`attiny816\*(C'\fR, \f(CW\*(C`attiny817\*(C'\fR, \f(CW\*(C`attiny1604\*(C'\fR, \f(CW\*(C`attiny1606\*(C'\fR, \f(CW\*(C`attiny1607\*(C'\fR, \f(CW\*(C`attiny1614\*(C'\fR, \f(CW\*(C`attiny1616\*(C'\fR, \f(CW\*(C`attiny1617\*(C'\fR, \f(CW\*(C`attiny3214\*(C'\fR, \f(CW\*(C`attiny3216\*(C'\fR, \f(CW\*(C`attiny3217\*(C'\fR, \f(CW\*(C`atmega808\*(C'\fR, \f(CW\*(C`atmega809\*(C'\fR, \f(CW\*(C`atmega1608\*(C'\fR, \f(CW\*(C`atmega1609\*(C'\fR, \f(CW\*(C`atmega3208\*(C'\fR, \f(CW\*(C`atmega3209\*(C'\fR, \f(CW\*(C`atmega4808\*(C'\fR, \f(CW\*(C`atmega4809\*(C'\fR, \f(CW\*(C`avr32da28\*(C'\fR, \f(CW\*(C`avr32da32\*(C'\fR, \f(CW\*(C`avr32da48\*(C'\fR, \f(CW\*(C`avr32db28\*(C'\fR, \f(CW\*(C`avr32db32\*(C'\fR, \f(CW\*(C`avr32db48\*(C'\fR.
+\&\fImcu\fR = \f(CW\*(C`attiny202\*(C'\fR, \f(CW\*(C`attiny204\*(C'\fR, \f(CW\*(C`attiny212\*(C'\fR, \f(CW\*(C`attiny214\*(C'\fR, \f(CW\*(C`attiny402\*(C'\fR, \f(CW\*(C`attiny404\*(C'\fR, \f(CW\*(C`attiny406\*(C'\fR, \f(CW\*(C`attiny412\*(C'\fR, \f(CW\*(C`attiny414\*(C'\fR, \f(CW\*(C`attiny416\*(C'\fR, \f(CW\*(C`attiny417\*(C'\fR, \f(CW\*(C`attiny424\*(C'\fR, \f(CW\*(C`attiny426\*(C'\fR, \f(CW\*(C`attiny427\*(C'\fR, \f(CW\*(C`attiny804\*(C'\fR, \f(CW\*(C`attiny806\*(C'\fR, \f(CW\*(C`attiny807\*(C'\fR, \f(CW\*(C`attiny814\*(C'\fR, \f(CW\*(C`attiny816\*(C'\fR, \f(CW\*(C`attiny817\*(C'\fR, \f(CW\*(C`attiny824\*(C'\fR, \f(CW\*(C`attiny826\*(C'\fR, \f(CW\*(C`attiny827\*(C'\fR, \f(CW\*(C`attiny1604\*(C'\fR, \f(CW\*(C`attiny1606\*(C'\fR, \f(CW\*(C`attiny1607\*(C'\fR, \f(CW\*(C`attiny1614\*(C'\fR, \f(CW\*(C`attiny1616\*(C'\fR, \f(CW\*(C`attiny1617\*(C'\fR, \f(CW\*(C`attiny1624\*(C'\fR, \f(CW\*(C`attiny1626\*(C'\fR, \f(CW\*(C`attiny1627\*(C'\fR, \f(CW\*(C`attiny3214\*(C'\fR, \f(CW\*(C`attiny3216\*(C'\fR, \f(CW\*(C`attiny3217\*(C'\fR, \f(CW\*(C`attiny3224\*(C'\fR, \f(CW\*(C`attiny3226\*(C'\fR, \f(CW\*(C`attiny3227\*(C'\fR, \f(CW\*(C`atmega808\*(C'\fR, \f(CW\*(C`atmega809\*(C'\fR, \f(CW\*(C`atmega1608\*(C'\fR, \f(CW\*(C`atmega1609\*(C'\fR, \f(CW\*(C`atmega3208\*(C'\fR, \f(CW\*(C`atmega3209\*(C'\fR, \f(CW\*(C`atmega4808\*(C'\fR, \f(CW\*(C`atmega4809\*(C'\fR, \f(CW\*(C`avr16dd14\*(C'\fR, \f(CW\*(C`avr16dd20\*(C'\fR, \f(CW\*(C`avr16dd28\*(C'\fR, \f(CW\*(C`avr16dd32\*(C'\fR, \f(CW\*(C`avr32da28\*(C'\fR, \f(CW\*(C`avr32da32\*(C'\fR, \f(CW\*(C`avr32da48\*(C'\fR, \f(CW\*(C`avr32db28\*(C'\fR, \f(CW\*(C`avr32db32\*(C'\fR, \f(CW\*(C`avr32db48\*(C'\fR, \f(CW\*(C`avr32dd14\*(C'\fR, \f(CW\*(C`avr32dd20\*(C'\fR, \f(CW\*(C`avr32dd28\*(C'\fR, \f(CW\*(C`avr32dd32\*(C'\fR.
 .ie n .IP """avrxmega4""" 4
 .el .IP \f(CWavrxmega4\fR 4
 .IX Item "avrxmega4"
@@ -22186,7 +22197,7 @@ GCC supports the following AVR devices and ISAs:
 .el .IP \f(CWavrtiny\fR 4
 .IX Item "avrtiny"
 "TINY" Tiny core devices with 512 B up to 4 KiB of program memory.
-\&\fImcu\fR = \f(CW\*(C`attiny4\*(C'\fR, \f(CW\*(C`attiny5\*(C'\fR, \f(CW\*(C`attiny9\*(C'\fR, \f(CW\*(C`attiny10\*(C'\fR, \f(CW\*(C`attiny20\*(C'\fR, \f(CW\*(C`attiny40\*(C'\fR.
+\&\fImcu\fR = \f(CW\*(C`attiny4\*(C'\fR, \f(CW\*(C`attiny5\*(C'\fR, \f(CW\*(C`attiny9\*(C'\fR, \f(CW\*(C`attiny10\*(C'\fR, \f(CW\*(C`attiny102\*(C'\fR, \f(CW\*(C`attiny104\*(C'\fR, \f(CW\*(C`attiny20\*(C'\fR, \f(CW\*(C`attiny40\*(C'\fR.
 .ie n .IP """avr1""" 4
 .el .IP \f(CWavr1\fR 4
 .IX Item "avr1"
@@ -31397,6 +31408,12 @@ options for that target.
 GCC can generate code for both VxWorks kernels and real time processes
 (RTPs).  This option switches from the former to the latter.  It also
 defines the preprocessor macro \f(CW\*(C`_\|_RTP_\|_\*(C'\fR.
+.IP \fB\-msmp\fR 4
+.IX Item "-msmp"
+Select SMP runtimes for linking.  Not available on architectures other
+than PowerPC, nor on VxWorks version 7 or later, in which the selection
+is part of the VxWorks build configuration and the library paths are the
+same for either choice.
 .IP \fB\-non\-static\fR 4
 .IX Item "-non-static"
 Link an RTP executable against shared libraries rather than static

@@ -284,8 +284,8 @@ along with GCC; see the file COPYING3.  If not see
 	     form if possible.  */
 	  NEXT_PASS (pass_tree_loop_init, 1);
 	  NEXT_PASS (pass_tree_unswitch, 1);
-	  NEXT_PASS (pass_scev_cprop, 1);
 	  NEXT_PASS (pass_loop_split, 1);
+	  NEXT_PASS (pass_scev_cprop, 1);
 	  NEXT_PASS (pass_loop_versioning, 1);
 	  NEXT_PASS (pass_loop_jam, 1);
 	  /* All unswitching, final value replacement and splitting can expose

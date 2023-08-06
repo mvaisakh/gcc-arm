@@ -462,7 +462,7 @@ Command-Line Options: Invoking.
      can be used to override this.
 
 ‘-D’
-     Enable denugging in target specific backends, if supported.
+     Enable debugging in target specific backends, if supported.
      Otherwise ignored.  Even if ignored, this option is accepted for
      script compatibility with calls to other assemblers.
 
