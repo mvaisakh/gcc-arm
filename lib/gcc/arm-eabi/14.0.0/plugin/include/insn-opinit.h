@@ -37,6 +37,8 @@ enum optab_tag {
   vec_store_lanes_optab,
   vec_mask_load_lanes_optab,
   vec_mask_store_lanes_optab,
+  vec_mask_len_load_lanes_optab,
+  vec_mask_len_store_lanes_optab,
   vcond_optab,
   vcondu_optab,
   vcondeq_optab,
@@ -450,7 +452,7 @@ enum optab_tag {
   LAST_NORM_OPTAB = select_vl_optab
 };
 
-#define NUM_OPTABS          438
+#define NUM_OPTABS          440
 #define NUM_CONVLIB_OPTABS  15
 #define NUM_NORMLIB_OPTABS  80
 #define NUM_OPTAB_PATTERNS  929
