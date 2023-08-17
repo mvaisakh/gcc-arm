@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-08-13 gcc-14.0.0 GNU
+.TH GCC 1 2023-08-17 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -375,6 +375,7 @@ in the following sections.
 \&\-fanalyzer\-checker=\fR\fIname\fR
 \&\fB\-fno\-analyzer\-feasibility
 \&\-fanalyzer\-fine\-grained
+\&\-fanalyzer\-show\-events\-in\-system\-headers
 \&\-fno\-analyzer\-state\-merge
 \&\-fno\-analyzer\-state\-purge
 \&\-fno\-analyzer\-suppress\-followups
@@ -10440,6 +10441,12 @@ This option is intended for analyzer developers: if multiple diagnostics
 have been detected as being duplicates of each other, it emits a note when
 reporting the best diagnostic, giving the number of additional diagnostics
 that were suppressed by the deduplication logic.
+.IP \fB\-fanalyzer\-show\-events\-in\-system\-headers\fR 4
+.IX Item "-fanalyzer-show-events-in-system-headers"
+By default the analyzer emits simplified diagnostics paths by hiding
+events fully located within a system header.
+With \fB\-fanalyzer\-show\-events\-in\-system\-headers\fR such
+events are no longer suppressed.
 .IP \fB\-fno\-analyzer\-state\-merge\fR 4
 .IX Item "-fno-analyzer-state-merge"
 This option is intended for analyzer developers.
@@ -19751,7 +19758,8 @@ performance of the code.  Permissible values for this option are:
 \&\fBcortex\-a75.cortex\-a55\fR, \fBcortex\-a76.cortex\-a55\fR,
 \&\fBcortex\-r82\fR, \fBcortex\-x1\fR, \fBcortex\-x1c\fR, \fBcortex\-x2\fR,
 \&\fBcortex\-x3\fR, \fBcortex\-a510\fR, \fBcortex\-a520\fR, \fBcortex\-a710\fR,
-\&\fBcortex\-a715\fR, \fBampere1\fR, \fBampere1a\fR, and \fBnative\fR.
+\&\fBcortex\-a715\fR, \fBcortex\-a720\fR, \fBampere1\fR, \fBampere1a\fR,
+and \fBnative\fR.
 .Sp
 The values \fBcortex\-a57.cortex\-a53\fR, \fBcortex\-a72.cortex\-a53\fR,
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
