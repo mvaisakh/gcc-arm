@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-08-20 gcc-14.0.0 GNU
+.TH GCC 1 2023-08-27 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -433,7 +433,6 @@ in the following sections.
 \&\-Wno\-analyzer\-tainted\-size
 \&\-Wanalyzer\-too\-complex
 \&\-Wno\-analyzer\-unsafe\-call\-within\-signal\-handler
-\&\-Wno\-analyzer\-unterminated\-string
 \&\-Wno\-analyzer\-use\-after\-free
 \&\-Wno\-analyzer\-use\-of\-pointer\-in\-stale\-stack\-frame
 \&\-Wno\-analyzer\-use\-of\-uninitialized\-value
@@ -1370,7 +1369,6 @@ See RS/6000 and PowerPC Options.
 \&\-mamx\-tile  \-mamx\-int8  \-mamx\-bf16 \-muintr \-mhreset \-mavxvnni
 \&\-mavx512fp16 \-mavxifma \-mavxvnniint8 \-mavxneconvert \-mcmpccxadd \-mamx\-fp16
 \&\-mprefetchi \-mraoint \-mamx\-complex \-mavxvnniint16 \-msm3 \-msha512 \-msm4
-\&\-mavx10.1 \-mavx10.1\-256 \-mavx10.1\-512
 \&\-mcldemote  \-mms\-bitfields  \-mno\-align\-stringops  \-minline\-all\-stringops
 \&\-minline\-stringops\-dynamically  \-mstringop\-strategy=\fR\fIalg\fR
 \&\fB\-mkl \-mwidekl
@@ -9580,7 +9578,6 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-shift\-count\-overflow
 \&\-Wanalyzer\-stale\-setjmp\-buffer
 \&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler
-\&\-Wanalyzer\-unterminated\-string
 \&\-Wanalyzer\-use\-after\-free
 \&\-Wanalyzer\-use\-of\-pointer\-in\-stale\-stack\-frame
 \&\-Wanalyzer\-use\-of\-uninitialized\-value
@@ -10085,15 +10082,6 @@ function known to be async-signal-unsafe (such as \f(CW\*(C`fprintf\*(C'\fR) is
 called from a signal handler.
 .Sp
 See  CWE\-479: Signal Handler Use of a Non-reentrant Function (\f(CW\*(C`https://cwe.mitre.org/data/definitions/479.html\*(C'\fR).
-.IP \fB\-Wno\-analyzer\-unterminated\-string\fR 4
-.IX Item "-Wno-analyzer-unterminated-string"
-This warning requires \fB\-fanalyzer\fR, which enables it; use
-\&\fB\-Wno\-analyzer\-unterminated\-string\fR to disable it.
-.Sp
-This diagnostic warns about code paths which attempt to find the length
-of an unterminated string.  For example, passing a pointer to an unterminated
-buffer to \f(CW\*(C`strlen\*(C'\fR would lead to accesses beyond the end of the buffer
-whilst attempting to find the terminating zero character.
 .IP \fB\-Wno\-analyzer\-use\-after\-free\fR 4
 .IX Item "-Wno-analyzer-use-after-free"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
@@ -10352,6 +10340,9 @@ and of the following functions:
 .ie n .IP "*<""sigsetjmp"">" 4
 .el .IP *<\f(CWsigsetjmp\fR> 4
 .IX Item "*<sigsetjmp>"
+.ie n .IP "*<""strcat"">" 4
+.el .IP *<\f(CWstrcat\fR> 4
+.IX Item "*<strcat>"
 .ie n .IP "*<""strchr"">" 4
 .el .IP *<\f(CWstrchr\fR> 4
 .IX Item "*<strchr>"
@@ -32576,12 +32567,6 @@ preferred alignment to \fB\-mpreferred\-stack\-boundary=2\fR.
 .IX Item "-msha512"
 .IP \fB\-msm4\fR 4
 .IX Item "-msm4"
-.IP \fB\-mavx10.1\fR 4
-.IX Item "-mavx10.1"
-.IP \fB\-mavx10.1\-256\fR 4
-.IX Item "-mavx10.1-256"
-.IP \fB\-mavx10.1\-512\fR 4
-.IX Item "-mavx10.1-512"
 .PD
 These switches enable the use of instructions in the MMX, SSE,
 AVX512ER, AVX512CD, AVX512VL, AVX512BW, AVX512DQ, AVX512IFMA, AVX512VBMI, SHA,
@@ -32593,9 +32578,9 @@ GFNI, VAES, WAITPKG, VPCLMULQDQ, AVX512BITALG, MOVDIRI, MOVDIR64B, AVX512BF16,
 ENQCMD, AVX512VPOPCNTDQ, AVX5124FMAPS, AVX512VNNI, AVX5124VNNIW, SERIALIZE,
 UINTR, HRESET, AMXTILE, AMXINT8, AMXBF16, KL, WIDEKL, AVXVNNI, AVX512\-FP16,
 AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AMX\-FP16, PREFETCHI, RAOINT,
-AMX-COMPLEX, AVXVNNIINT16, SM3, SHA512, SM4, AVX10.1 or CLDEMOTE extended
-instruction sets. Each has a corresponding \fB\-mno\-\fR option to disable
-use of these instructions.
+AMX-COMPLEX, AVXVNNIINT16, SM3, SHA512, SM4 or CLDEMOTE extended instruction
+sets. Each has a corresponding \fB\-mno\-\fR option to disable use of these
+instructions.
 .Sp
 These extensions are also available as built-in functions: see
 \&\fBx86 Built-in Functions\fR, for details of the functions enabled and

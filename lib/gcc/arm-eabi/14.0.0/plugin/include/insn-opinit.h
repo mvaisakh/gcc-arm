@@ -309,6 +309,7 @@ enum optab_tag {
   mask_len_fold_left_plus_optab,
   extract_last_optab,
   fold_extract_last_optab,
+  len_fold_extract_last_optab,
   uabd_optab,
   sabd_optab,
   savg_floor_optab,
@@ -454,7 +455,7 @@ enum optab_tag {
   LAST_NORM_OPTAB = select_vl_optab
 };
 
-#define NUM_OPTABS          442
+#define NUM_OPTABS          443
 #define NUM_CONVLIB_OPTABS  15
 #define NUM_NORMLIB_OPTABS  80
 #define NUM_OPTAB_PATTERNS  929
