@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-08-27 gcc-14.0.0 GNU
+.TH GCC 1 2023-08-31 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -419,6 +419,7 @@ in the following sections.
 \&\-Wno\-analyzer\-null\-argument
 \&\-Wno\-analyzer\-null\-dereference
 \&\-Wno\-analyzer\-out\-of\-bounds
+\&\-Wno\-analyzer\-overlapping\-buffers
 \&\-Wno\-analyzer\-possible\-null\-argument
 \&\-Wno\-analyzer\-possible\-null\-dereference
 \&\-Wno\-analyzer\-putenv\-of\-auto\-var
@@ -9571,6 +9572,7 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-null\-argument
 \&\-Wanalyzer\-null\-dereference
 \&\-Wanalyzer\-out\-of\-bounds
+\&\-Wanalyzer\-overlapping\-buffers
 \&\-Wanalyzer\-possible\-null\-argument
 \&\-Wanalyzer\-possible\-null\-dereference
 \&\-Wanalyzer\-putenv\-of\-auto\-var
@@ -9863,6 +9865,33 @@ apart; which one is before or after in memory, the relative sizes
 involved, the direction of the access (read vs write), and, in some
 cases, the values of data involved.  This diagram can be suppressed
 using \fB\-fdiagnostics\-text\-art\-charset=none\fR.
+.IP \fB\-Wno\-analyzer\-overlapping\-buffers\fR 4
+.IX Item "-Wno-analyzer-overlapping-buffers"
+This warning requires \fB\-fanalyzer\fR, which enables it; use
+\&\fB\-Wno\-analyzer\-overlapping\-buffers\fR to disable it.
+.Sp
+This diagnostic warns for paths through the code in which overlapping
+buffers are passed to an API for which the behavior on such buffers
+is undefined.
+.Sp
+Specifically, the diagnostic occurs on calls to the following functions
+.RS 4
+.ie n .IP "*<""memcpy"">" 4
+.el .IP *<\f(CWmemcpy\fR> 4
+.IX Item "*<memcpy>"
+.PD 0
+.ie n .IP "*<""strcat"">" 4
+.el .IP *<\f(CWstrcat\fR> 4
+.IX Item "*<strcat>"
+.ie n .IP "*<""strcpy"">" 4
+.el .IP *<\f(CWstrcpy\fR> 4
+.IX Item "*<strcpy>"
+.RE
+.RS 4
+.PD
+.Sp
+for cases where the buffers are known to overlap.
+.RE
 .IP \fB\-Wno\-analyzer\-possible\-null\-argument\fR 4
 .IX Item "-Wno-analyzer-possible-null-argument"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
@@ -11746,8 +11775,8 @@ Attempt to remove redundant extension instructions.  This is especially
 helpful for the x86\-64 architecture, which implicitly zero-extends in 64\-bit
 registers after writing to their lower 32\-bit half.
 .Sp
-Enabled for Alpha, AArch64, PowerPC, RISC-V, SPARC, h83000 and x86 at levels
-\&\fB\-O2\fR, \fB\-O3\fR, \fB\-Os\fR.
+Enabled for Alpha, AArch64, LoongArch, PowerPC, RISC-V, SPARC, h83000 and x86 at
+levels \fB\-O2\fR, \fB\-O3\fR, \fB\-Os\fR.
 .IP \fB\-fno\-lifetime\-dse\fR 4
 .IX Item "-fno-lifetime-dse"
 In C++ the value of an object is only affected by changes within its
