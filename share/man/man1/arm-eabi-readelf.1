@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "READELF 1"
-.TH READELF 1 2023-08-31 binutils-2.41.50 "GNU Development Tools"
+.TH READELF 1 2023-09-07 binutils-2.41.50 "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -78,6 +78,7 @@ readelf [\fB\-a\fR|\fB\-\-all\fR]
         [\fB\-\-quiet\fR]
         [\fB\-\-recurse\-limit\fR|\fB\-\-no\-recurse\-limit\fR]
         [\fB\-U\fR \fImethod\fR|\fB\-\-unicode=\fR\fImethod\fR]
+        [\fB\-X\fR|\fB\-\-extra\-sym\-info\fR|\fB\-\-no\-extra\-sym\-info\fR]
         [\fB\-n\fR|\fB\-\-notes\fR]
         [\fB\-r\fR|\fB\-\-relocs\fR]
         [\fB\-u\fR|\fB\-\-unwind\fR]
@@ -284,6 +285,23 @@ unicode escape sequences but it will also highlighted them in red,
 assuming that colouring is supported by the output device.  The
 colouring is intended to draw attention to the presence of unicode
 sequences when they might not be expected.
+.IP \fB\-X\fR 4
+.IX Item "-X"
+.PD 0
+.IP \fB\-\-extra\-sym\-info\fR 4
+.IX Item "--extra-sym-info"
+.PD
+When displaying details of symbols, include extra information not
+normally presented.  Currently this just adds the name of the section
+referenced by the symbol's index field, if there is one.  In the
+future more information may be displayed when this option is enabled.
+.Sp
+Enabling this option effectively enables the \fB\-\-wide\fR option as
+well, at least when displaying symbol information.
+.IP \fB\-\-no\-extra\-sym\-info\fR 4
+.IX Item "--no-extra-sym-info"
+Disables the effect of the \fB\-\-extra\-sym\-info\fR option.  This
+is the default.
 .IP \fB\-e\fR 4
 .IX Item "-e"
 .PD 0

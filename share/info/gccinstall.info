@@ -1039,9 +1039,9 @@ option.
 ‘--without-multilib-list’
      Specify what multilibs to build.  LIST is a comma separated list of
      values, possibly consisting of a single value.  Currently only
-     implemented for aarch64*-*-*, arm*-*-*, loongarch64-*-*,
-     riscv*-*-*, sh*-*-* and x86-64-*-linux*.  The accepted values and
-     meaning for each target is given below.
+     implemented for aarch64*-*-*, arm*-*-*, loongarch*-*-*, riscv*-*-*,
+     sh*-*-* and x86-64-*-linux*.  The accepted values and meaning for
+     each target is given below.
 
      ‘aarch64*-*-*’
           LIST is a comma separated list of ‘ilp32’, and ‘lp64’ to
@@ -1106,13 +1106,34 @@ option.
                       ‘-mfloat-abi=hard’   ‘-mfloat-abi=hard’
 
      ‘loongarch*-*-*’
-          LIST is a comma-separated list of the following ABI
-          identifiers: ‘lp64d[/base]’ ‘lp64f[/base]’ ‘lp64d[/base]’,
-          where the ‘/base’ suffix may be omitted, to enable their
-          respective run-time libraries.  If LIST is empty or ‘default’,
-          or if ‘--with-multilib-list’ is not specified, then the
-          default ABI as specified by ‘--with-abi’ or implied by
-          ‘--target’ is selected.
+          LIST is a comma-separated list, with each of the element
+          starting with the following ABI identifiers: ‘lp64d[/base]’
+          ‘lp64f[/base]’ ‘lp64d[/base]’ (the ‘/base’ suffix may be
+          omitted) to enable their respective run-time libraries.
+
+          A suffix ‘[/ARCH][/OPTION/...]’ may follow immediately after
+          the ABI identifier to customize the compiler options for
+          building the given set of libraries.  ARCH denotes the
+          architecture name recognized by the ‘-march=ARCH’ compiler
+          option, which acts as a basic target ISA configuration that
+          can be adjusted using the subsequent OPTION suffixes, where
+          each OPTION is a compiler option without a leading dash (’-’).
+
+          If no such suffix is present for a given multilib variant, the
+          configured value of ‘--with-multilib-default’ is appended as a
+          default suffix.  If ‘--with-multilib-default’ is not given,
+          the default build option ‘-march=abi-default’ is applied when
+          building the variants without a suffix.
+
+          As a special case, ‘fixed’ may be used in the position of
+          ARCH, which means using the architecture configured with
+          ‘--with-arch=ARCH’, or its default value (e.g.  ‘loongarch64’
+          for ‘loongarch64-*’ targets).
+
+          If LIST is empty or ‘default’, or if ‘--with-multilib-list’ is
+          not specified, then only the default variant of the libraries
+          are built, where the default ABI is implied by the configured
+          target triplet.
 
      ‘riscv*-*-*’
           LIST is a single ABI name.  The target architecture must be
@@ -1160,6 +1181,22 @@ option.
 
           If ‘--with-multilib-list’ is not given, then only 32-bit and
           64-bit run-time libraries will be enabled.
+
+‘--with-multilib-default’
+     On LoongArch targets, set the default build options for enabled
+     multilibs without build options appended to their corresponding
+     ‘--with-multilib-list’ items.  The format of this value is
+     ‘[/ARCH][/OPTION/...]’, where ARCH is an architecture name
+     recognized by ‘-march=ARCH’ compiler option, and subsequent OPTION
+     suffixes are compiler options minus a leading dash (’-’).
+
+     Multiple OPTIONs may appear consecutively while ARCH may only
+     appear in the beginning or be omitted (which means
+     ‘-march=abi-default’ is applied when building the libraries).
+
+‘--with-strict-align-lib’
+     On LoongArch targets, build all enabled multilibs with
+     ‘-mstrict-align’ (Not enabled by default).
 
 ‘--with-multilib-generator=CONFIG’
      Specify what multilibs to build.  CONFIG is a semicolon separated
@@ -1299,6 +1336,7 @@ option.
 ‘--with-abi=ABI’
 ‘--with-fpu=TYPE’
 ‘--with-float=TYPE’
+‘--with-simd=TYPE’
      These configure options provide default values for the
      ‘-mschedule=’, ‘-march=’, ‘-mtune=’, ‘-mabi=’, and ‘-mfpu=’ options
      and for ‘-mhard-float’ or ‘-msoft-float’.  As with ‘--with-cpu’,
@@ -3752,8 +3790,7 @@ LoongArch processor.  The following LoongArch targets are available:
           Uses ‘lp64s/base’ ABI by default.
 
 ‘loongarch64-linux-gnu’
-     Same as ‘loongarch64-linux-gnuf64’, but may be used with
-     ‘--with-abi=*’ to configure the default ABI type.
+     Same as ‘loongarch64-linux-gnuf64’ for legacy support.
 
    More information about LoongArch can be found at
 <https://github.com/loongson/LoongArch-Documentation>.
@@ -4873,7 +4910,7 @@ Concept Index
 * Menu:
 
 * Binaries:                              Binaries.           (line    6)
-* build_configargs:                      Configuration.      (line 1870)
+* build_configargs:                      Configuration.      (line 1908)
 * Configuration:                         Configuration.      (line    6)
 * Downloading GCC:                       Downloading the source.
                                                              (line    6)
@@ -4882,7 +4919,7 @@ Concept Index
 * FDL, GNU Free Documentation License:   GNU Free Documentation License.
                                                              (line    6)
 * Host specific installation:            Specific.           (line    6)
-* host_configargs:                       Configuration.      (line 1874)
+* host_configargs:                       Configuration.      (line 1912)
 * Installing GCC: Binaries:              Binaries.           (line    6)
 * Installing GCC: Building:              Building.           (line    6)
 * Installing GCC: Configuration:         Configuration.      (line    6)
@@ -4892,7 +4929,7 @@ Concept Index
 * Specific installation notes:           Specific.           (line    6)
 * Target specific installation:          Specific.           (line    6)
 * Target specific installation notes:    Specific.           (line    6)
-* target_configargs:                     Configuration.      (line 1878)
+* target_configargs:                     Configuration.      (line 1916)
 * Testing:                               Testing.            (line    6)
 * Testsuite:                             Testing.            (line    6)
 
@@ -4910,93 +4947,93 @@ Node: Configuration20563
 Ref: with-gnu-as40401
 Ref: with-as41290
 Ref: with-gnu-ld42699
-Ref: WithAixSoname70677
-Ref: AixLdCommand71392
-Node: Building115548
-Node: Testing132245
-Node: Final install140208
-Node: Binaries145021
-Node: Specific146035
-Ref: aarch64-x-x146569
-Ref: amd64-x-solaris2148653
-Ref: amdgcn-x-amdhsa148739
-Ref: arc-x-elf32149304
-Ref: arc-linux-uclibc149496
-Ref: arm-x-eabi149641
-Ref: avr149898
-Ref: bfin150487
-Ref: cris150750
-Ref: dos151080
-Ref: epiphany-x-elf151405
-Ref: x-x-freebsd151510
-Ref: ft32-x-elf153098
-Ref: h8300-hms153196
-Ref: hppa-hp-hpux153548
-Ref: hppa-hp-hpux10155970
-Ref: hppa-hp-hpux11156387
-Ref: x-x-linux-gnu161905
-Ref: ix86-x-linux162236
-Ref: ix86-x-solaris2162549
-Ref: ia64-x-linux162809
-Ref: ia64-x-hpux163060
-Ref: x-ibm-aix163627
-Ref: TransferAixShobj167355
-Ref: iq2000-x-elf171257
-Ref: lm32-x-elf171397
-Ref: lm32-x-uclinux171501
-Ref: loongarch171629
-Ref: m32c-x-elf172363
-Ref: m32r-x-elf172465
-Ref: m68k-x-x172567
-Ref: m68k-x-uclinux173697
-Ref: microblaze-x-elf173950
-Ref: mips-x-x174069
-Ref: moxie-x-elf176063
-Ref: msp430-x-elf176110
-Ref: nds32le-x-elf176679
-Ref: nds32be-x-elf176751
-Ref: nvptx-x-none176820
-Ref: or1k-x-elf177729
-Ref: or1k-x-linux177860
-Ref: powerpc-x-x177941
-Ref: powerpc-x-darwin178140
-Ref: powerpc-x-elf178635
-Ref: powerpc-x-linux-gnu178720
-Ref: powerpc-x-netbsd178815
-Ref: powerpc-x-eabisim178903
-Ref: powerpc-x-eabi179029
-Ref: powerpcle-x-elf179105
-Ref: powerpcle-x-eabisim179197
-Ref: powerpcle-x-eabi179330
-Ref: rl78-x-elf179413
-Ref: riscv32-x-elf179519
-Ref: riscv32-x-linux179708
-Ref: riscv64-x-elf179865
-Ref: riscv64-x-linux180054
-Ref: rx-x-elf180211
-Ref: s390-x-linux180257
-Ref: s390x-x-linux180329
-Ref: s390x-ibm-tpf180416
-Ref: x-x-solaris2180547
-Ref: sparc-x-x184488
-Ref: sparc-sun-solaris2184990
-Ref: sparc-x-linux185905
-Ref: sparc64-x-solaris2185936
-Ref: sparcv9-x-solaris2186027
-Ref: c6x-x-x186776
-Ref: visium-x-elf186868
-Ref: x-x-vxworks186976
-Ref: x86-64-x-x188565
-Ref: x86-64-x-solaris2188897
-Ref: xtensa-x-elf189551
-Ref: xtensa-x-linux190230
-Ref: windows190583
-Ref: x-x-cygwin192236
-Ref: x-x-mingw32192791
-Ref: older193189
-Ref: elf195330
-Node: GNU Free Documentation License195584
-Node: Concept Index220925
+Ref: WithAixSoname72668
+Ref: AixLdCommand73383
+Node: Building117539
+Node: Testing134236
+Node: Final install142199
+Node: Binaries147012
+Node: Specific148026
+Ref: aarch64-x-x148560
+Ref: amd64-x-solaris2150644
+Ref: amdgcn-x-amdhsa150730
+Ref: arc-x-elf32151295
+Ref: arc-linux-uclibc151487
+Ref: arm-x-eabi151632
+Ref: avr151889
+Ref: bfin152478
+Ref: cris152741
+Ref: dos153071
+Ref: epiphany-x-elf153396
+Ref: x-x-freebsd153501
+Ref: ft32-x-elf155089
+Ref: h8300-hms155187
+Ref: hppa-hp-hpux155539
+Ref: hppa-hp-hpux10157961
+Ref: hppa-hp-hpux11158378
+Ref: x-x-linux-gnu163896
+Ref: ix86-x-linux164227
+Ref: ix86-x-solaris2164540
+Ref: ia64-x-linux164800
+Ref: ia64-x-hpux165051
+Ref: x-ibm-aix165618
+Ref: TransferAixShobj169346
+Ref: iq2000-x-elf173248
+Ref: lm32-x-elf173388
+Ref: lm32-x-uclinux173492
+Ref: loongarch173620
+Ref: m32c-x-elf174293
+Ref: m32r-x-elf174395
+Ref: m68k-x-x174497
+Ref: m68k-x-uclinux175627
+Ref: microblaze-x-elf175880
+Ref: mips-x-x175999
+Ref: moxie-x-elf177993
+Ref: msp430-x-elf178040
+Ref: nds32le-x-elf178609
+Ref: nds32be-x-elf178681
+Ref: nvptx-x-none178750
+Ref: or1k-x-elf179659
+Ref: or1k-x-linux179790
+Ref: powerpc-x-x179871
+Ref: powerpc-x-darwin180070
+Ref: powerpc-x-elf180565
+Ref: powerpc-x-linux-gnu180650
+Ref: powerpc-x-netbsd180745
+Ref: powerpc-x-eabisim180833
+Ref: powerpc-x-eabi180959
+Ref: powerpcle-x-elf181035
+Ref: powerpcle-x-eabisim181127
+Ref: powerpcle-x-eabi181260
+Ref: rl78-x-elf181343
+Ref: riscv32-x-elf181449
+Ref: riscv32-x-linux181638
+Ref: riscv64-x-elf181795
+Ref: riscv64-x-linux181984
+Ref: rx-x-elf182141
+Ref: s390-x-linux182187
+Ref: s390x-x-linux182259
+Ref: s390x-ibm-tpf182346
+Ref: x-x-solaris2182477
+Ref: sparc-x-x186418
+Ref: sparc-sun-solaris2186920
+Ref: sparc-x-linux187835
+Ref: sparc64-x-solaris2187866
+Ref: sparcv9-x-solaris2187957
+Ref: c6x-x-x188706
+Ref: visium-x-elf188798
+Ref: x-x-vxworks188906
+Ref: x86-64-x-x190495
+Ref: x86-64-x-solaris2190827
+Ref: xtensa-x-elf191481
+Ref: xtensa-x-linux192160
+Ref: windows192513
+Ref: x-x-cygwin194166
+Ref: x-x-mingw32194721
+Ref: older195119
+Ref: elf197260
+Node: GNU Free Documentation License197514
+Node: Concept Index222855
 
 End Tag Table
 

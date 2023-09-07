@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-08-31 gcc-14.0.0 GNU
+.TH GCC 1 2023-09-07 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -960,7 +960,8 @@ in the following sections.
 .Sp
 \&\fILoongArch Options\fR
 \&\fB\-march=\fR\fIcpu-type\fR  \fB\-mtune=\fR\fIcpu-type\fR \fB\-mabi=\fR\fIbase-abi-type\fR
-\&\fB\-mfpu=\fR\fIfpu-type\fR \fB\-msoft\-float \-msingle\-float \-mdouble\-float
+\&\fB\-mfpu=\fR\fIfpu-type\fR \fB\-msimd=\fR\fIsimd-type\fR
+\&\fB\-msoft\-float \-msingle\-float \-mdouble\-float \-mlsx \-mno\-lsx \-mlasx \-mno\-lasx
 \&\-mbranch\-cost=\fR\fIn\fR  \fB\-mcheck\-zero\-division \-mno\-check\-zero\-division
 \&\-mcond\-move\-int  \-mno\-cond\-move\-int
 \&\-mcond\-move\-float  \-mno\-cond\-move\-float
@@ -2950,6 +2951,9 @@ in C++14 and up.
 Version 18, which first appeard in G++ 13, fixes manglings of lambdas
 that have additional context.
 .Sp
+Version 19, which first appeard in G++ 14, fixes manglings of structured
+bindings to include ABI tags.
+.Sp
 See also \fB\-Wabi\fR.
 .IP \fB\-fabi\-compat\-version=\fR\fIn\fR 4
 .IX Item "-fabi-compat-version=n"
@@ -4612,7 +4616,7 @@ Use \fIclass-name\fR as the name of the class to instantiate for each
 literal string specified with the syntax \f(CW\*(C`@"..."\*(C'\fR.  The default
 class name is \f(CW\*(C`NXConstantString\*(C'\fR if the GNU runtime is being used, and
 \&\f(CW\*(C`NSConstantString\*(C'\fR if the NeXT runtime is being used (see below).  On
-Darwin (macOS, MacOS X) platforms, the \fB\-fconstant\-cfstrings\fR option, if
+Darwin / macOS platforms, the \fB\-fconstant\-cfstrings\fR option, if
 also present, overrides the \fB\-fconstant\-string\-class\fR setting and cause
 \&\f(CW\*(C`@"..."\*(C'\fR literals to be laid out as constant CoreFoundation strings.
 Note that \fB\-fconstant\-cfstrings\fR is an alias for the target-specific
@@ -4624,7 +4628,7 @@ runtime.  This is the default for most types of systems.
 .IP \fB\-fnext\-runtime\fR 4
 .IX Item "-fnext-runtime"
 Generate output compatible with the NeXT runtime.  This is the default
-for NeXT-based systems, including Darwin and Mac OS X.  The macro
+for NeXT-based systems, including Darwin / macOS.  The macro
 \&\f(CW\*(C`_\|_NEXT_RUNTIME_\|_\*(C'\fR is predefined if (and only if) this option is
 used.
 .IP \fB\-fno\-nil\-receivers\fR 4
@@ -10699,7 +10703,7 @@ possible.
 Produce debugging information in DWARF format (if that is supported).
 The value of \fIversion\fR may be either 2, 3, 4 or 5; the default
 version for most targets is 5 (with the exception of VxWorks, TPF and
-Darwin/Mac OS X, which default to version 2, and AIX, which defaults
+Darwin / macOS, which default to version 2, and AIX, which defaults
 to version 4).
 .Sp
 Note that with DWARF Version 2, some ports require and always
@@ -20776,7 +20780,7 @@ Does nothing.  Preserved for backward compatibility.
 Enable the use of pre/post modify with register displacement.
 .IP \fB\-mbbit\-peephole\fR 4
 .IX Item "-mbbit-peephole"
-Enable bbit peephole2.
+Does nothing.  Preserved for backward compatibility.
 .IP \fB\-mno\-brcc\fR 4
 .IX Item "-mno-brcc"
 This option disables a target-specific pass in \fIarc_reorg\fR to
@@ -25108,6 +25112,25 @@ Prevent the use of hardware floating-point instructions.
 .RE
 .RS 4
 .RE
+.IP \fB\-msimd=\fR\fIsimd-type\fR 4
+.IX Item "-msimd=simd-type"
+Enable generation of LoongArch SIMD instructions for vectorization
+and via builtin functions.  The value can be one of:
+.RS 4
+.IP \fBlasx\fR 4
+.IX Item "lasx"
+Enable generating instructions from the 256\-bit LoongArch Advanced
+SIMD Extension (LASX) and the 128\-bit LoongArch SIMD Extension (LSX).
+.IP \fBlsx\fR 4
+.IX Item "lsx"
+Enable generating instructions from the 128\-bit LoongArch SIMD
+Extension (LSX).
+.IP \fBnone\fR 4
+.IX Item "none"
+No LoongArch SIMD instruction may be generated.
+.RE
+.RS 4
+.RE
 .IP \fB\-msoft\-float\fR 4
 .IX Item "-msoft-float"
 Force \fB\-mfpu=none\fR and prevents the use of floating-point
@@ -25123,6 +25146,23 @@ ABI.
 Force \fB\-mfpu=64\fR and allow the use of 32/64\-bit floating-point
 registers for parameter passing.  This option may change the target
 ABI.
+.IP \fB\-mlasx\fR 4
+.IX Item "-mlasx"
+.PD 0
+.IP \fB\-mno\-lasx\fR 4
+.IX Item "-mno-lasx"
+.IP \fB\-mlsx\fR 4
+.IX Item "-mlsx"
+.IP \fB\-mno\-lsx\fR 4
+.IX Item "-mno-lsx"
+.PD
+Incrementally adjust the scope of the SIMD extensions (none / LSX / LASX)
+that can be used by the compiler for code generation.  Enabling LASX with
+\&\fBmlasx\fR automatically enables LSX, and diabling LSX with \fBmno-lsx\fR
+automatically disables LASX.  These driver-only options act upon the final
+\&\fBmsimd\fR configuration state and make incremental chagnes in the order
+they appear on the GCC driver's command line, deriving the final / canonicalized
+\&\fBmsimd\fR option that is passed to the compiler proper.
 .IP \fB\-mbranch\-cost=\fR\fIn\fR 4
 .IX Item "-mbranch-cost=n"
 Set the cost of branches to roughly \fIn\fR instructions.
@@ -29128,7 +29168,7 @@ processor in big-endian mode.  The \fB\-mbig\-endian\fR option is
 the same as \fB\-mbig\fR.
 .IP \fB\-mdynamic\-no\-pic\fR 4
 .IX Item "-mdynamic-no-pic"
-On Darwin and Mac OS X systems, compile code so that it is not
+On Darwin / macOS systems, compile code so that it is not
 relocatable, but that its external references are relocatable.  The
 resulting code is suitable for applications, but not shared
 libraries.

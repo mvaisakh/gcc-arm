@@ -3721,22 +3721,16 @@
 #define HAVE_mve_vbrsrq_m_n_sv4si (TARGET_HAVE_MVE)
 #define HAVE_mve_vhcaddq_rot90_m_sv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vhcaddq_rot270_m_sv16qi (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot90_m_uv16qi (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot90_m_sv16qi (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot270_m_uv16qi (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot270_m_sv16qi (TARGET_HAVE_MVE)
+#define HAVE_mve_vcaddq_rot90_m_v16qi (TARGET_HAVE_MVE)
+#define HAVE_mve_vcaddq_rot270_m_v16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vhcaddq_rot90_m_sv8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_vhcaddq_rot270_m_sv8hi (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot90_m_uv8hi (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot90_m_sv8hi (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot270_m_uv8hi (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot270_m_sv8hi (TARGET_HAVE_MVE)
+#define HAVE_mve_vcaddq_rot90_m_v8hi (TARGET_HAVE_MVE)
+#define HAVE_mve_vcaddq_rot270_m_v8hi (TARGET_HAVE_MVE)
 #define HAVE_mve_vhcaddq_rot90_m_sv4si (TARGET_HAVE_MVE)
 #define HAVE_mve_vhcaddq_rot270_m_sv4si (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot90_m_uv4si (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot90_m_sv4si (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot270_m_uv4si (TARGET_HAVE_MVE)
-#define HAVE_mve_vcaddq_rot270_m_sv4si (TARGET_HAVE_MVE)
+#define HAVE_mve_vcaddq_rot90_m_v4si (TARGET_HAVE_MVE)
+#define HAVE_mve_vcaddq_rot270_m_v4si (TARGET_HAVE_MVE)
 #define HAVE_mve_vhaddq_m_n_sv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vhaddq_m_n_uv16qi (TARGET_HAVE_MVE)
 #define HAVE_mve_vhsubq_m_n_sv16qi (TARGET_HAVE_MVE)
@@ -9541,22 +9535,16 @@ extern rtx        gen_mve_vbrsrq_m_n_uv4si                           (rtx, rtx, 
 extern rtx        gen_mve_vbrsrq_m_n_sv4si                           (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_mve_vhcaddq_rot90_m_sv16qi                     (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_mve_vhcaddq_rot270_m_sv16qi                    (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot90_m_uv16qi                      (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot90_m_sv16qi                      (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot270_m_uv16qi                     (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot270_m_sv16qi                     (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_mve_vcaddq_rot90_m_v16qi                       (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_mve_vcaddq_rot270_m_v16qi                      (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_mve_vhcaddq_rot90_m_sv8hi                      (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_mve_vhcaddq_rot270_m_sv8hi                     (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot90_m_uv8hi                       (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot90_m_sv8hi                       (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot270_m_uv8hi                      (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot270_m_sv8hi                      (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_mve_vcaddq_rot90_m_v8hi                        (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_mve_vcaddq_rot270_m_v8hi                       (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_mve_vhcaddq_rot90_m_sv4si                      (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_mve_vhcaddq_rot270_m_sv4si                     (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot90_m_uv4si                       (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot90_m_sv4si                       (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot270_m_uv4si                      (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_mve_vcaddq_rot270_m_sv4si                      (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_mve_vcaddq_rot90_m_v4si                        (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_mve_vcaddq_rot270_m_v4si                       (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_mve_vhaddq_m_n_sv16qi                          (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_mve_vhaddq_m_n_uv16qi                          (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_mve_vhsubq_m_n_sv16qi                          (rtx, rtx, rtx, rtx, rtx);
