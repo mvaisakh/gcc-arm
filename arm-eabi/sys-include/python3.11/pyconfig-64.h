@@ -719,6 +719,9 @@
 /* Define if compiling using Linux 4.1 or later. */
 #define HAVE_LINUX_CAN_RAW_JOIN_FILTERS 1
 
+/* Define to 1 if you have the <linux/limits.h> header file. */
+#define HAVE_LINUX_LIMITS_H 1
+
 /* Define to 1 if you have the <linux/memfd.h> header file. */
 #define HAVE_LINUX_MEMFD_H 1
 

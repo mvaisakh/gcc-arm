@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "AS 1"
-.TH AS 1 2023-09-07 binutils-2.41.50 "GNU Development Tools"
+.TH AS 1 2023-09-28 binutils-2.41.50 "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1439,6 +1439,10 @@ accept various extension mnemonics.  For example,
 \&\f(CW\*(C`sm3\*(C'\fR,
 \&\f(CW\*(C`sm4\*(C'\fR,
 \&\f(CW\*(C`pbndkb\*(C'\fR,
+\&\f(CW\*(C`avx10.1\*(C'\fR,
+\&\f(CW\*(C`avx10.1/512\*(C'\fR,
+\&\f(CW\*(C`avx10.1/256\*(C'\fR,
+\&\f(CW\*(C`avx10.1/128\*(C'\fR,
 \&\f(CW\*(C`amx_int8\*(C'\fR,
 \&\f(CW\*(C`amx_bf16\*(C'\fR,
 \&\f(CW\*(C`amx_fp16\*(C'\fR,
@@ -1493,7 +1497,11 @@ accept various extension mnemonics.  For example,
 \&\f(CW\*(C`svme\*(C'\fR and
 \&\f(CW\*(C`padlock\*(C'\fR.
 Note that these extension mnemonics can be prefixed with \f(CW\*(C`no\*(C'\fR to revoke
-the respective (and any dependent) functionality.
+the respective (and any dependent) functionality.  Note further that the
+suffixes permitted on \f(CW\*(C`\-march=avx10.<N>\*(C'\fR enforce a vector length
+restriction, i.e. despite these otherwise being "enabling" options, using
+these suffixes will disable all insns with wider vector or mask register
+operands.
 .Sp
 When the \f(CW\*(C`.arch\*(C'\fR directive is used with \fB\-march\fR, the
 \&\f(CW\*(C`.arch\*(C'\fR directive will take precedent.

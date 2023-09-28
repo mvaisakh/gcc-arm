@@ -1331,6 +1331,17 @@ is assumed that the instance implements all methods listed below).
      LEN and OFFSET do not need to be page aligned.  The page aligned
      address and length are written to MAP_ADDR and MAP_LEN.
 
+2.3.1.34 ‘bfd_get_current_time’
+...............................
+
+ -- Function: time_t bfd_get_current_time (time_t now);
+     Returns the current time.
+
+     If the environment variable SOURCE_DATE_EPOCH is defined then this
+     is parsed and its value is returned.  Otherwise if the paramter NOW
+     is non-zero, then that is returned.  Otherwise the result of the
+     system call "time(NULL)" is returned.
+
 
 File: bfd.info,  Node: Memory Usage,  Next: Sections,  Prev: Miscellaneous,  Up: BFD front end
 
@@ -11752,6 +11763,8 @@ BFD Index
 * bfd_get_arch_info:                     Architectures.      (line  693)
 * bfd_get_arch_size:                     Miscellaneous.      (line   58)
 * bfd_get_arch_size <1>:                 Miscellaneous.      (line   62)
+* bfd_get_current_time:                  Miscellaneous.      (line  473)
+* bfd_get_current_time <1>:              Miscellaneous.      (line  477)
 * bfd_get_debug_link_info:               Opening and Closing.
                                                              (line  266)
 * bfd_get_error:                         Error reporting.    (line   48)
@@ -14637,59 +14650,59 @@ Node: typedef bfd13686
 Node: Error reporting27089
 Node: Initialization33424
 Node: Miscellaneous33963
-Node: Memory Usage53476
-Node: Sections54721
-Node: Section Input55206
-Node: Section Output56439
-Node: typedef asection58966
-Node: section prototypes76247
-Node: Symbols87822
-Node: Reading Symbols89443
-Node: Writing Symbols90551
-Node: Mini Symbols92319
-Node: typedef asymbol93321
-Node: symbol handling functions99531
-Node: Archives104843
-Node: Formats109063
-Node: Relocations112210
-Node: typedef arelent112943
-Node: howto manager126928
-Node: Core Files267244
-Node: Targets269277
-Node: bfd_target271324
-Node: Architectures298203
-Node: Opening and Closing330658
-Node: Internal346681
-Node: File Caching358125
-Node: Linker Functions360213
-Node: Creating a Linker Hash Table361911
-Node: Adding Symbols to the Hash Table363674
-Node: Differing file formats364582
-Node: Adding symbols from an object file366343
-Node: Adding symbols from an archive368577
-Node: Performing the Final Link370989
-Node: Information provided by the linker372246
-Node: Relocating the section contents373436
-Node: Writing the symbol table375256
-Node: Hash Tables382499
-Node: Creating and Freeing a Hash Table383701
-Node: Looking Up or Entering a String385003
-Node: Traversing a Hash Table386304
-Node: Deriving a New Hash Table Type387125
-Node: Define the Derived Structures388199
-Node: Write the Derived Creation Routine389320
-Node: Write Other Derived Routines391971
-Node: BFD back ends397500
-Node: What to Put Where397770
-Node: aout397950
-Node: coff404175
-Node: elf425684
-Node: mmo426087
-Node: File layout426967
-Node: Symbol-table433092
-Node: mmo section mapping436911
-Node: GNU Free Documentation License440609
-Node: BFD Index465876
+Node: Memory Usage53892
+Node: Sections55137
+Node: Section Input55622
+Node: Section Output56855
+Node: typedef asection59382
+Node: section prototypes76663
+Node: Symbols88238
+Node: Reading Symbols89859
+Node: Writing Symbols90967
+Node: Mini Symbols92735
+Node: typedef asymbol93737
+Node: symbol handling functions99947
+Node: Archives105259
+Node: Formats109479
+Node: Relocations112626
+Node: typedef arelent113359
+Node: howto manager127344
+Node: Core Files267660
+Node: Targets269693
+Node: bfd_target271740
+Node: Architectures298619
+Node: Opening and Closing331074
+Node: Internal347097
+Node: File Caching358541
+Node: Linker Functions360629
+Node: Creating a Linker Hash Table362327
+Node: Adding Symbols to the Hash Table364090
+Node: Differing file formats364998
+Node: Adding symbols from an object file366759
+Node: Adding symbols from an archive368993
+Node: Performing the Final Link371405
+Node: Information provided by the linker372662
+Node: Relocating the section contents373852
+Node: Writing the symbol table375672
+Node: Hash Tables382915
+Node: Creating and Freeing a Hash Table384117
+Node: Looking Up or Entering a String385419
+Node: Traversing a Hash Table386720
+Node: Deriving a New Hash Table Type387541
+Node: Define the Derived Structures388615
+Node: Write the Derived Creation Routine389736
+Node: Write Other Derived Routines392387
+Node: BFD back ends397916
+Node: What to Put Where398186
+Node: aout398366
+Node: coff404591
+Node: elf426100
+Node: mmo426503
+Node: File layout427383
+Node: Symbol-table433508
+Node: mmo section mapping437327
+Node: GNU Free Documentation License441025
+Node: BFD Index466292
 
 End Tag Table
 
