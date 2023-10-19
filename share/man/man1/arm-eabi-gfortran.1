@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GFORTRAN 1"
-.TH GFORTRAN 1 2023-09-26 gcc-14.0.0 GNU
+.TH GFORTRAN 1 2023-10-19 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1038,7 +1038,8 @@ Specify a list of floating point exception traps to enable.  On most
 systems, if a floating point exception occurs and the trap for that
 exception is enabled, a SIGFPE signal will be sent and the program
 being aborted, producing a core file useful for debugging.  \fIlist\fR
-is a (possibly empty) comma-separated list of the following
+is a (possibly empty) comma-separated list of either \fBnone\fR (to
+clear the set of exceptions to be trapped), or of the following
 exceptions: \fBinvalid\fR (invalid floating point operation, such as
 \&\f(CWSQRT(\-1.0)\fR), \fBzero\fR (division by zero), \fBoverflow\fR
 (overflow in a floating point operation), \fBunderflow\fR (underflow
@@ -1058,7 +1059,8 @@ If the option is used more than once in the command line, the lists will
 be joined: '\f(CW\*(C`ffpe\-trap=\*(C'\fR\fIlist1\fR \f(CW\*(C`ffpe\-trap=\*(C'\fR\fIlist2\fR'
 is equivalent to \f(CW\*(C`ffpe\-trap=\*(C'\fR\fIlist1\fR,\fIlist2\fR.
 .Sp
-Note that once enabled an exception cannot be disabled (no negative form).
+Note that once enabled an exception cannot be disabled (no negative form),
+except by clearing all traps by specifying \fBnone\fR.
 .Sp
 Many, if not most, floating point operations incur loss of precision
 due to rounding, and hence the \f(CW\*(C`ffpe\-trap=inexact\*(C'\fR is likely to

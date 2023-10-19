@@ -2242,12 +2242,18 @@
 #define HAVE_crypto_sha1c_lb (TARGET_CRYPTO && INTVAL (operands[4]) == NEON_ENDIAN_LANE_N (V2SImode, 0))
 #define HAVE_crypto_sha1m_lb (TARGET_CRYPTO && INTVAL (operands[4]) == NEON_ENDIAN_LANE_N (V2SImode, 0))
 #define HAVE_crypto_sha1p_lb (TARGET_CRYPTO && INTVAL (operands[4]) == NEON_ENDIAN_LANE_N (V2SImode, 0))
-#define HAVE_atomic_loadqi (TARGET_HAVE_LDACQ)
-#define HAVE_atomic_loadhi (TARGET_HAVE_LDACQ)
-#define HAVE_atomic_loadsi (TARGET_HAVE_LDACQ)
-#define HAVE_atomic_storeqi (TARGET_HAVE_LDACQ)
-#define HAVE_atomic_storehi (TARGET_HAVE_LDACQ)
-#define HAVE_atomic_storesi (TARGET_HAVE_LDACQ)
+#define HAVE_arm_atomic_loadqi 1
+#define HAVE_arm_atomic_loadhi 1
+#define HAVE_arm_atomic_loadsi 1
+#define HAVE_arm_atomic_load_acquireqi (TARGET_HAVE_LDACQ)
+#define HAVE_arm_atomic_load_acquirehi (TARGET_HAVE_LDACQ)
+#define HAVE_arm_atomic_load_acquiresi (TARGET_HAVE_LDACQ)
+#define HAVE_arm_atomic_storeqi 1
+#define HAVE_arm_atomic_storehi 1
+#define HAVE_arm_atomic_storesi 1
+#define HAVE_arm_atomic_store_releaseqi (TARGET_HAVE_LDACQ)
+#define HAVE_arm_atomic_store_releasehi (TARGET_HAVE_LDACQ)
+#define HAVE_arm_atomic_store_releasesi (TARGET_HAVE_LDACQ)
 #define HAVE_arm_atomic_loaddi2_ldrd (ARM_DOUBLEWORD_ALIGN && TARGET_HAVE_LPAE)
 #define HAVE_atomic_compare_and_swap32qi_1 ((TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER) && (TARGET_32BIT))
 #define HAVE_atomic_compare_and_swap32hi_1 ((TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER) && (TARGET_32BIT))
@@ -5662,6 +5668,12 @@
 #define HAVE_crypto_sha1m (TARGET_CRYPTO)
 #define HAVE_crypto_sha1p (TARGET_CRYPTO)
 #define HAVE_memory_barrier (TARGET_HAVE_MEMORY_BARRIER)
+#define HAVE_atomic_loadqi 1
+#define HAVE_atomic_loadhi 1
+#define HAVE_atomic_loadsi 1
+#define HAVE_atomic_storeqi 1
+#define HAVE_atomic_storehi 1
+#define HAVE_atomic_storesi 1
 #define HAVE_atomic_loaddi ((TARGET_HAVE_LDREXD || TARGET_HAVE_LPAE || TARGET_HAVE_LDACQEXD) \
    && ARM_DOUBLEWORD_ALIGN)
 #define HAVE_atomic_compare_and_swapqi (TARGET_HAVE_LDREXBH && TARGET_HAVE_MEMORY_BARRIER)
@@ -8078,12 +8090,18 @@ extern rtx        gen_crypto_vmullp64                                (rtx, rtx, 
 extern rtx        gen_crypto_sha1c_lb                                (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_crypto_sha1m_lb                                (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_crypto_sha1p_lb                                (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_atomic_loadqi                                  (rtx, rtx, rtx);
-extern rtx        gen_atomic_loadhi                                  (rtx, rtx, rtx);
-extern rtx        gen_atomic_loadsi                                  (rtx, rtx, rtx);
-extern rtx        gen_atomic_storeqi                                 (rtx, rtx, rtx);
-extern rtx        gen_atomic_storehi                                 (rtx, rtx, rtx);
-extern rtx        gen_atomic_storesi                                 (rtx, rtx, rtx);
+extern rtx        gen_arm_atomic_loadqi                              (rtx, rtx);
+extern rtx        gen_arm_atomic_loadhi                              (rtx, rtx);
+extern rtx        gen_arm_atomic_loadsi                              (rtx, rtx);
+extern rtx        gen_arm_atomic_load_acquireqi                      (rtx, rtx);
+extern rtx        gen_arm_atomic_load_acquirehi                      (rtx, rtx);
+extern rtx        gen_arm_atomic_load_acquiresi                      (rtx, rtx);
+extern rtx        gen_arm_atomic_storeqi                             (rtx, rtx);
+extern rtx        gen_arm_atomic_storehi                             (rtx, rtx);
+extern rtx        gen_arm_atomic_storesi                             (rtx, rtx);
+extern rtx        gen_arm_atomic_store_releaseqi                     (rtx, rtx);
+extern rtx        gen_arm_atomic_store_releasehi                     (rtx, rtx);
+extern rtx        gen_arm_atomic_store_releasesi                     (rtx, rtx);
 extern rtx        gen_arm_atomic_loaddi2_ldrd                        (rtx, rtx);
 extern rtx        gen_atomic_compare_and_swap32qi_1                  (rtx, rtx, rtx, rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_atomic_compare_and_swap32hi_1                  (rtx, rtx, rtx, rtx, rtx, rtx, rtx, rtx);
@@ -11260,6 +11278,12 @@ extern rtx        gen_crypto_sha1c                                   (rtx, rtx, 
 extern rtx        gen_crypto_sha1m                                   (rtx, rtx, rtx, rtx);
 extern rtx        gen_crypto_sha1p                                   (rtx, rtx, rtx, rtx);
 extern rtx        gen_memory_barrier                                 (void);
+extern rtx        gen_atomic_loadqi                                  (rtx, rtx, rtx);
+extern rtx        gen_atomic_loadhi                                  (rtx, rtx, rtx);
+extern rtx        gen_atomic_loadsi                                  (rtx, rtx, rtx);
+extern rtx        gen_atomic_storeqi                                 (rtx, rtx, rtx);
+extern rtx        gen_atomic_storehi                                 (rtx, rtx, rtx);
+extern rtx        gen_atomic_storesi                                 (rtx, rtx, rtx);
 extern rtx        gen_atomic_loaddi                                  (rtx, rtx, rtx);
 extern rtx        gen_atomic_compare_and_swapqi                      (rtx, rtx, rtx, rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_atomic_compare_and_swaphi                      (rtx, rtx, rtx, rtx, rtx, rtx, rtx, rtx);

@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 2023-09-28 binutils-2.41.50 "GNU Development Tools"
+.TH LD 1 2023-10-19 binutils-2.41.50 "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1280,6 +1280,20 @@ Specify that the object's filters be processed immediately at runtime.
 .IP \fBmax\-page\-size=\fR\fIvalue\fR 4
 .IX Item "max-page-size=value"
 Set the maximum memory page size supported to \fIvalue\fR.
+.IP \fBmark-plt\fR 4
+.IX Item "mark-plt"
+.PD 0
+.IP \fBnomark-plt\fR 4
+.IX Item "nomark-plt"
+.PD
+Mark PLT entries with dynamic tags, DT_X86_64_PLT, DT_X86_64_PLTSZ and
+DT_X86_64_PLTENT.  Since this option stores a non-zero value in the
+r_addend field of R_X86_64_JUMP_SLOT relocations, the resulting
+executables and shared libraries are incompatible with dynamic linkers,
+such as those in older versions of glibc without the change to ignore
+r_addend in R_X86_64_GLOB_DAT and R_X86_64_JUMP_SLOT relocations, which
+don't ignore the r_addend field of R_X86_64_JUMP_SLOT relocations.
+Supported for x86_64.
 .IP \fBmuldefs\fR 4
 .IX Item "muldefs"
 Allow multiple definitions.

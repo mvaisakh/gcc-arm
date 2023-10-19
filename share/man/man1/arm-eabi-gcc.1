@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-09-26 gcc-14.0.0 GNU
+.TH GCC 1 2023-10-19 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -181,7 +181,7 @@ in the following sections.
 \&\-fnew\-inheriting\-ctors
 \&\-fnew\-ttp\-matching
 \&\-fno\-nonansi\-builtins  \-fnothrow\-opt  \-fno\-operator\-names
-\&\-fno\-optional\-diags  \-fpermissive
+\&\-fno\-optional\-diags
 \&\-fno\-pretty\-templates
 \&\-fno\-rtti  \-fsized\-deallocation
 \&\-ftemplate\-backtrace\-limit=\fR\fIn\fR
@@ -269,7 +269,7 @@ in the following sections.
 .IP "\fIWarning Options\fR" 4
 .IX Item "Warning Options"
 \&\fB\-fsyntax\-only  \-fmax\-errors=\fR\fIn\fR  \fB\-Wpedantic
-\&\-pedantic\-errors
+\&\-pedantic\-errors \-fpermissive
 \&\-w  \-Wextra  \-Wall  \-Wabi=\fR\fIn\fR
 \&\fB\-Waddress  \-Wno\-address\-of\-packed\-member  \-Waggregate\-return
 \&\-Walloc\-size\-larger\-than=\fR\fIbyte-size\fR  \fB\-Walloc\-zero
@@ -485,6 +485,7 @@ in the following sections.
 \&\-fauto\-inc\-dec  \-fbranch\-probabilities
 \&\-fcaller\-saves
 \&\-fcombine\-stack\-adjustments  \-fconserve\-stack
+\&\-ffold\-mem\-offsets
 \&\-fcompare\-elim  \-fcprop\-registers  \-fcrossjumping
 \&\-fcse\-follow\-jumps  \-fcse\-skip\-blocks  \-fcx\-fortran\-rules
 \&\-fcx\-limited\-range
@@ -1373,7 +1374,8 @@ See RS/6000 and PowerPC Options.
 \&\-mrdseed  \-msgx \-mavx512vp2intersect \-mserialize \-mtsxldtrk
 \&\-mamx\-tile  \-mamx\-int8  \-mamx\-bf16 \-muintr \-mhreset \-mavxvnni
 \&\-mavx512fp16 \-mavxifma \-mavxvnniint8 \-mavxneconvert \-mcmpccxadd \-mamx\-fp16
-\&\-mprefetchi \-mraoint \-mamx\-complex \-mavxvnniint16 \-msm3 \-msha512 \-msm4
+\&\-mprefetchi \-mraoint \-mamx\-complex \-mavxvnniint16 \-msm3 \-msha512 \-msm4 \-mapxf
+\&\-musermsr
 \&\-mcldemote  \-mms\-bitfields  \-mno\-align\-stringops  \-minline\-all\-stringops
 \&\-minline\-stringops\-dynamically  \-mstringop\-strategy=\fR\fIalg\fR
 \&\fB\-mkl \-mwidekl
@@ -2708,9 +2710,10 @@ Typical command lines are
 .Ve
 .IP \fB\-fopenacc\fR 4
 .IX Item "-fopenacc"
-Enable handling of OpenACC directives \f(CW\*(C`#pragma acc\*(C'\fR in C/C++ and
-\&\f(CW\*(C`!$acc\*(C'\fR in Fortran.  When \fB\-fopenacc\fR is specified, the
-compiler generates accelerated code according to the OpenACC Application
+Enable handling of OpenACC directives \fB#pragma acc\fR in C/C++ and
+\&\fB!$acc\fR in free-form Fortran and \fB!$acc\fR, \fBc$acc\fR and
+\&\fB*$acc\fR in fixed-form Fortran.  When \fB\-fopenacc\fR is specified,
+the compiler generates accelerated code according to the OpenACC Application
 Programming Interface v2.6 <\fBhttps://www.openacc.org\fR>.  This option
 implies \fB\-pthread\fR, and thus is only supported on targets that
 have support for \fB\-pthread\fR.
@@ -2722,10 +2725,12 @@ not explicitly specify.  The \fIgeom\fR value is a triple of
 can be omitted, to use a target-specific default value.
 .IP \fB\-fopenmp\fR 4
 .IX Item "-fopenmp"
-Enable handling of OpenMP directives \f(CW\*(C`#pragma omp\*(C'\fR in C/C++,
-\&\f(CW\*(C`[[omp::directive(...)]]\*(C'\fR, \f(CW\*(C`[[omp::sequence(...)]]\*(C'\fR and
-\&\f(CW\*(C`[[omp::decl(...)]]\*(C'\fR in C++ and \f(CW\*(C`!$omp\*(C'\fR in Fortran.
-When \fB\-fopenmp\fR is specified, the
+Enable handling of OpenMP directives \fB#pragma omp\fR in C/C++,
+\&\fB[[omp::directive(...)]]\fR, \fB[[omp::sequence(...)]]\fR and
+\&\fB[[omp::decl(...)]]\fR in C++ and \fB!$omp\fR in Fortran.  It
+additionally enables the conditional compilation sentinel \fB!$\fR in
+Fortran.  In fixed source form Fortran, the sentinels can also start with
+\&\fBc\fR or \fB*\fR.  When \fB\-fopenmp\fR is specified, the
 compiler generates parallel code according to the OpenMP Application
 Program Interface v4.5 <\fBhttps://www.openmp.org\fR>.  This option
 implies \fB\-pthread\fR, and thus is only supported on targets that
@@ -2738,10 +2743,12 @@ Enable handling of OpenMP's \f(CW\*(C`simd\*(C'\fR, \f(CW\*(C`declare simd\*(C'\
 and \f(CW\*(C`loop\*(C'\fR directive, and of combined or composite directives with
 \&\f(CW\*(C`simd\*(C'\fR as constituent with \f(CW\*(C`#pragma omp\*(C'\fR in C/C++,
 \&\f(CW\*(C`[[omp::directive(...)]]\*(C'\fR, \f(CW\*(C`[[omp::sequence(...)]]\*(C'\fR and
-\&\f(CW\*(C`[[omp::decl(...)]]\*(C'\fR in C++ and \f(CW\*(C`!$omp\*(C'\fR in Fortran.
-Other OpenMP directives are ignored.  Unless \fB\-fopenmp\fR is
-additionally specified, the \f(CW\*(C`loop\*(C'\fR region binds to the current
-task region, independent of the specified \f(CW\*(C`bind\*(C'\fR clause.
+\&\f(CW\*(C`[[omp::decl(...)]]\*(C'\fR in C++ and \f(CW\*(C`!$omp\*(C'\fR in Fortran.  It
+additionally enables the conditional compilation sentinel \fB!$\fR in
+Fortran.  In fixed source form Fortran, the sentinels can also start with
+\&\fBc\fR or \fB*\fR.  Other OpenMP directives are ignored.  Unless
+\&\fB\-fopenmp\fR is additionally specified, the \f(CW\*(C`loop\*(C'\fR region binds
+to the current task region, independent of the specified \f(CW\*(C`bind\*(C'\fR clause.
 .IP \fB\-fopenmp\-target\-simd\-clone\fR 4
 .IX Item "-fopenmp-target-simd-clone"
 .PD 0
@@ -3404,11 +3411,6 @@ synonyms as keywords.
 Disable diagnostics that the standard says a compiler does not need to
 issue.  Currently, the only such diagnostic issued by G++ is the one for
 a name having multiple meanings within a class.
-.IP \fB\-fpermissive\fR 4
-.IX Item "-fpermissive"
-Downgrade some diagnostics about nonconformant code from errors to
-warnings.  Thus, using \fB\-fpermissive\fR allows some
-nonconforming code to compile.
 .IP \fB\-fno\-pretty\-templates\fR 4
 .IX Item "-fno-pretty-templates"
 When an error message refers to a specialization of a function
@@ -5382,7 +5384,8 @@ value further adds the possibility of emoji in the output (such as emitting
 U+26A0 WARNING SIGN followed by U+FE0F VARIATION SELECTOR\-16 to select the
 emoji variant of the character).
 .Sp
-The default is \fBemoji\fR.
+The default is \fBemoji\fR, except when the environment variable \fBLANG\fR
+is set to \fBC\fR, in which case the default is \fBascii\fR.
 .IP \fB\-fdiagnostics\-format=\fR\fIFORMAT\fR 4
 .IX Item "-fdiagnostics-format=FORMAT"
 Select a different format for printing diagnostics.
@@ -5825,6 +5828,15 @@ errors by \fB\-pedantic\-errors\fR.  For instance:
 \&\-Wregister\fR (C++17 or later)
 \&\fB\-Wvla\fR (C90 or earlier)
 \&\fB\-Wwrite\-strings\fR (C++11 or later)\fB \fR
+.IP \fB\-fpermissive\fR 4
+.IX Item "-fpermissive"
+Downgrade some required diagnostics about nonconformant code from
+errors to warnings.  Thus, using \fB\-fpermissive\fR allows some
+nonconforming code to compile.  Some C++ diagnostics are controlled
+only by this flag, but it also downgrades some diagnostics that have
+their own flag:
+.Sp
+\&\fB\-Wnarrowing\fR (C++)\fB \fR
 .IP \fB\-Wall\fR 4
 .IX Item "-Wall"
 This enables all the warnings about constructions that some users
@@ -13400,6 +13412,15 @@ This pass only applies to certain targets that cannot explicitly represent
 the comparison operation before register allocation is complete.
 .Sp
 Enabled at levels \fB\-O1\fR, \fB\-O2\fR, \fB\-O3\fR, \fB\-Os\fR.
+.IP \fB\-ffold\-mem\-offsets\fR 4
+.IX Item "-ffold-mem-offsets"
+.PD 0
+.IP \fB\-fno\-fold\-mem\-offsets\fR 4
+.IX Item "-fno-fold-mem-offsets"
+.PD
+Try to eliminate add instructions by folding them in memory loads/stores.
+.Sp
+Enabled at levels \fB\-O2\fR, \fB\-O3\fR.
 .IP \fB\-fcprop\-registers\fR 4
 .IX Item "-fcprop-registers"
 After register allocation and post-register allocation instruction splitting,
@@ -19844,9 +19865,9 @@ performance of the code.  Permissible values for this option are:
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
 \&\fBcortex\-a75.cortex\-a55\fR, \fBcortex\-a76.cortex\-a55\fR,
 \&\fBcortex\-r82\fR, \fBcortex\-x1\fR, \fBcortex\-x1c\fR, \fBcortex\-x2\fR,
-\&\fBcortex\-x3\fR, \fBcortex\-a510\fR, \fBcortex\-a520\fR, \fBcortex\-a710\fR,
-\&\fBcortex\-a715\fR, \fBcortex\-a720\fR, \fBampere1\fR, \fBampere1a\fR,
-and \fBnative\fR.
+\&\fBcortex\-x3\fR, \fBcortex\-x4\fR, \fBcortex\-a510\fR, \fBcortex\-a520\fR,
+\&\fBcortex\-a710\fR, \fBcortex\-a715\fR, \fBcortex\-a720\fR, \fBampere1\fR,
+\&\fBampere1a\fR, and \fBnative\fR.
 .Sp
 The values \fBcortex\-a57.cortex\-a53\fR, \fBcortex\-a72.cortex\-a53\fR,
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
@@ -20779,8 +20800,7 @@ The following options control how the assembly code is annotated:
 Annotate assembler instructions with estimated addresses.
 .IP \fB\-mannotate\-align\fR 4
 .IX Item "-mannotate-align"
-Explain what alignment considerations lead to the decision to make an
-instruction short or long.
+Does nothing.  Preserved for backward compatibility.
 .PP
 The following options are passed through to the linker:
 .IP \fB\-marclinux\fR 4
@@ -31817,6 +31837,24 @@ MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
 PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
 AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AVXVNNIINT16, SHA512, SM3
 and SM4 instruction set support.
+.IP \fBclearwaterforest\fR 4
+.IX Item "clearwaterforest"
+Intel Clearwater Forest CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2,
+SSE3, SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE,
+XSAVEC, XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX, GFNI-SSE, CLWB,
+MOVDIRI, MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA,
+LZCNT, PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
+AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AVXVNNIINT16, SHA512, SM3, SM4,
+USER_MSR and PREFETCHI instruction set support.
+.IP \fBpantherlake\fR 4
+.IX Item "pantherlake"
+Intel Panther Lake CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2, SSE3,
+SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE, XSAVEC,
+XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX, GFNI-SSE, CLWB, MOVDIRI,
+MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
+PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
+AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AVXVNNIINT16, SHA512, SM3, SM4
+and PREFETCHI instruction set support.
 .IP \fBknl\fR 4
 .IX Item "knl"
 Intel Knight's Landing CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2, SSE3,
@@ -32389,9 +32427,9 @@ psABI, and \fBcacheline\fR uses increased alignment value to match
 the cache line size.  \fBcompat\fR is the default.
 .IP \fB\-mlarge\-data\-threshold=\fR\fIthreshold\fR 4
 .IX Item "-mlarge-data-threshold=threshold"
-When \fB\-mcmodel=medium\fR is specified, data objects larger than
-\&\fIthreshold\fR are placed in the large data section.  This value must be the
-same across all objects linked into the binary, and defaults to 65535.
+When \fB\-mcmodel=medium\fR or \fB\-mcmodel=large\fR is specified, data
+objects larger than \fIthreshold\fR are placed in large data sections.  The
+default is 65535.
 .IP \fB\-mrtd\fR 4
 .IX Item "-mrtd"
 Use a different function-calling convention, in which functions that
@@ -32725,6 +32763,10 @@ preferred alignment to \fB\-mpreferred\-stack\-boundary=2\fR.
 .IX Item "-msha512"
 .IP \fB\-msm4\fR 4
 .IX Item "-msm4"
+.IP \fB\-mapxf\fR 4
+.IX Item "-mapxf"
+.IP \fB\-musermsr\fR 4
+.IX Item "-musermsr"
 .PD
 These switches enable the use of instructions in the MMX, SSE,
 AVX512ER, AVX512CD, AVX512VL, AVX512BW, AVX512DQ, AVX512IFMA, AVX512VBMI, SHA,
@@ -32736,9 +32778,9 @@ GFNI, VAES, WAITPKG, VPCLMULQDQ, AVX512BITALG, MOVDIRI, MOVDIR64B, AVX512BF16,
 ENQCMD, AVX512VPOPCNTDQ, AVX5124FMAPS, AVX512VNNI, AVX5124VNNIW, SERIALIZE,
 UINTR, HRESET, AMXTILE, AMXINT8, AMXBF16, KL, WIDEKL, AVXVNNI, AVX512\-FP16,
 AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AMX\-FP16, PREFETCHI, RAOINT,
-AMX-COMPLEX, AVXVNNIINT16, SM3, SHA512, SM4 or CLDEMOTE extended instruction
-sets. Each has a corresponding \fB\-mno\-\fR option to disable use of these
-instructions.
+AMX-COMPLEX, AVXVNNIINT16, SM3, SHA512, SM4, APX_F, USER_MSR or CLDEMOTE
+extended instruction sets.  Each has a corresponding \fB\-mno\-\fR option
+to disable use of these instructions.
 .Sp
 These extensions are also available as built-in functions: see
 \&\fBx86 Built-in Functions\fR, for details of the functions enabled and

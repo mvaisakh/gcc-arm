@@ -14,7 +14,7 @@ extern __inline__ __attribute__((__always_inline__, __gnu_inline__))
 poly_uint16
 mode_size_inline (machine_mode mode)
 {
-  extern const poly_uint16_pod mode_size[NUM_MACHINE_MODES];
+  extern const poly_uint16 mode_size[NUM_MACHINE_MODES];
   gcc_assert (mode >= 0 && mode < NUM_MACHINE_MODES);
   switch (mode)
     {
@@ -133,7 +133,7 @@ extern __inline__ __attribute__((__always_inline__, __gnu_inline__))
 poly_uint16
 mode_nunits_inline (machine_mode mode)
 {
-  extern const poly_uint16_pod mode_nunits[NUM_MACHINE_MODES];
+  extern const poly_uint16 mode_nunits[NUM_MACHINE_MODES];
   switch (mode)
     {
     case E_VOIDmode: return 0;

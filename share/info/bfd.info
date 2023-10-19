@@ -9086,7 +9086,13 @@ opens the one wanted, returning its file handle.
      ‘FALSE’ is returned if closing one of the file fails, ‘TRUE’ is
      returned if all is well.
 
-2.15.1.4 ‘bfd_open_file’
+2.15.1.4 ‘bfd_cache_size’
+.........................
+
+ -- Function: unsigned bfd_cache_size (void);
+     Return the number of open files in the cache.
+
+2.15.1.5 ‘bfd_open_file’
 ........................
 
  -- Function: FILE* bfd_open_file (bfd *abfd);
@@ -11650,6 +11656,8 @@ BFD Index
 * bfd_cache_close_all <1>:               File Caching.       (line   37)
 * bfd_cache_init:                        File Caching.       (line   17)
 * bfd_cache_init <1>:                    File Caching.       (line   21)
+* bfd_cache_size:                        File Caching.       (line   45)
+* bfd_cache_size <1>:                    File Caching.       (line   49)
 * bfd_calc_gnu_debuglink_crc32:          Opening and Closing.
                                                              (line  255)
 * bfd_calc_gnu_debuglink_crc32 <1>:      Opening and Closing.
@@ -11926,8 +11934,8 @@ BFD Index
                                                              (line  101)
 * bfd_openw:                             Opening and Closing.
                                                              (line  155)
-* bfd_open_file:                         File Caching.       (line   45)
-* bfd_open_file <1>:                     File Caching.       (line   49)
+* bfd_open_file:                         File Caching.       (line   51)
+* bfd_open_file <1>:                     File Caching.       (line   55)
 * bfd_perform_relocation:                typedef arelent.    (line  311)
 * bfd_perform_relocation <1>:            typedef arelent.    (line  315)
 * bfd_perror:                            Error reporting.    (line   80)
@@ -14674,35 +14682,35 @@ Node: Architectures298619
 Node: Opening and Closing331074
 Node: Internal347097
 Node: File Caching358541
-Node: Linker Functions360629
-Node: Creating a Linker Hash Table362327
-Node: Adding Symbols to the Hash Table364090
-Node: Differing file formats364998
-Node: Adding symbols from an object file366759
-Node: Adding symbols from an archive368993
-Node: Performing the Final Link371405
-Node: Information provided by the linker372662
-Node: Relocating the section contents373852
-Node: Writing the symbol table375672
-Node: Hash Tables382915
-Node: Creating and Freeing a Hash Table384117
-Node: Looking Up or Entering a String385419
-Node: Traversing a Hash Table386720
-Node: Deriving a New Hash Table Type387541
-Node: Define the Derived Structures388615
-Node: Write the Derived Creation Routine389736
-Node: Write Other Derived Routines392387
-Node: BFD back ends397916
-Node: What to Put Where398186
-Node: aout398366
-Node: coff404591
-Node: elf426100
-Node: mmo426503
-Node: File layout427383
-Node: Symbol-table433508
-Node: mmo section mapping437327
-Node: GNU Free Documentation License441025
-Node: BFD Index466292
+Node: Linker Functions360784
+Node: Creating a Linker Hash Table362482
+Node: Adding Symbols to the Hash Table364245
+Node: Differing file formats365153
+Node: Adding symbols from an object file366914
+Node: Adding symbols from an archive369148
+Node: Performing the Final Link371560
+Node: Information provided by the linker372817
+Node: Relocating the section contents374007
+Node: Writing the symbol table375827
+Node: Hash Tables383070
+Node: Creating and Freeing a Hash Table384272
+Node: Looking Up or Entering a String385574
+Node: Traversing a Hash Table386875
+Node: Deriving a New Hash Table Type387696
+Node: Define the Derived Structures388770
+Node: Write the Derived Creation Routine389891
+Node: Write Other Derived Routines392542
+Node: BFD back ends398071
+Node: What to Put Where398341
+Node: aout398521
+Node: coff404746
+Node: elf426255
+Node: mmo426658
+Node: File layout427538
+Node: Symbol-table433663
+Node: mmo section mapping437482
+Node: GNU Free Documentation License441180
+Node: BFD Index466447
 
 End Tag Table
 
