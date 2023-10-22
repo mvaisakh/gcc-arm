@@ -2477,7 +2477,7 @@ GNU linker:
      https://systemd.io/ELF_PACKAGE_METADATA/ If the JSON argument is
      missing/empty then this will disable the creation of the metadata
      note, if one had been enabled by an earlier occurrence of the
-     –package-metdata option.  If the linker has been built with
+     –package-metadata option.  If the linker has been built with
      libjansson, then the JSON string will be validated.
 
 2.1.1 Options Specific to i386 PE Targets
@@ -9557,90 +9557,90 @@ Node: Top711
 Node: Overview1546
 Node: Invocation2693
 Node: Options3105
-Node: Environment146482
-Node: Scripts148331
-Node: Basic Script Concepts150075
-Node: Script Format152855
-Node: Simple Example153726
-Node: Simple Commands156962
-Node: Entry Point157467
-Node: File Commands158541
-Node: Format Commands163068
-Node: REGION_ALIAS165116
-Node: Miscellaneous Commands170111
-Node: Assignments176422
-Node: Simple Assignments176933
-Node: HIDDEN178736
-Node: PROVIDE179373
-Node: PROVIDE_HIDDEN180951
-Node: Source Code Reference181201
-Node: SECTIONS185164
-Node: Output Section Description187084
-Node: Output Section Name188333
-Node: Output Section Address189234
-Node: Input Section191487
-Node: Input Section Basics192288
-Node: Input Section Wildcards197442
-Node: Input Section Common202601
-Node: Input Section Keep204111
-Node: Input Section Example204619
-Node: Output Section Data206090
-Node: Output Section Keywords209836
-Node: Output Section Discarding213511
-Node: Output Section Attributes215453
-Node: Output Section Type216574
-Node: Output Section LMA218959
-Node: Forced Output Alignment222102
-Node: Forced Input Alignment222533
-Node: Output Section Constraint222921
-Node: Output Section Region223357
-Node: Output Section Phdr223794
-Node: Output Section Fill224470
-Node: Overlay Description225636
-Node: MEMORY230181
-Node: PHDRS234933
-Node: VERSION240411
-Node: Expressions248702
-Node: Constants249715
-Node: Symbolic Constants250657
-Node: Symbols251224
-Node: Orphan Sections251979
-Node: Location Counter253572
-Node: Operators258150
-Node: Evaluation259180
-Node: Expression Section260552
-Node: Builtin Functions264630
-Node: Implicit Linker Scripts273711
-Node: Plugins274498
-Node: libdep Plugin275059
-Node: Machine Dependent276904
-Node: H8/300278068
-Node: M68HC11/68HC12280269
-Node: ARM281776
-Node: HPPA ELF32294204
-Node: M68K295879
-Node: MIPS296828
-Node: MMIX297988
-Node: MSP430299209
-Node: NDS32301202
-Node: Nios II302250
-Node: PowerPC ELF32303622
-Node: PowerPC64 ELF64306567
-Node: S/390 ELF316685
-Node: SPU ELF317044
-Node: TI COFF319770
-Node: WIN32320310
-Node: Xtensa342065
-Node: BFD345620
-Node: BFD outline347082
-Node: BFD information loss348376
-Node: Canonical format350930
-Node: Reporting Bugs355275
-Node: Bug Criteria355981
-Node: Bug Reporting356704
-Node: MRI363877
-Node: GNU Free Documentation License368556
-Node: LD Index393896
+Node: Environment146483
+Node: Scripts148332
+Node: Basic Script Concepts150076
+Node: Script Format152856
+Node: Simple Example153727
+Node: Simple Commands156963
+Node: Entry Point157468
+Node: File Commands158542
+Node: Format Commands163069
+Node: REGION_ALIAS165117
+Node: Miscellaneous Commands170112
+Node: Assignments176423
+Node: Simple Assignments176934
+Node: HIDDEN178737
+Node: PROVIDE179374
+Node: PROVIDE_HIDDEN180952
+Node: Source Code Reference181202
+Node: SECTIONS185165
+Node: Output Section Description187085
+Node: Output Section Name188334
+Node: Output Section Address189235
+Node: Input Section191488
+Node: Input Section Basics192289
+Node: Input Section Wildcards197443
+Node: Input Section Common202602
+Node: Input Section Keep204112
+Node: Input Section Example204620
+Node: Output Section Data206091
+Node: Output Section Keywords209837
+Node: Output Section Discarding213512
+Node: Output Section Attributes215454
+Node: Output Section Type216575
+Node: Output Section LMA218960
+Node: Forced Output Alignment222103
+Node: Forced Input Alignment222534
+Node: Output Section Constraint222922
+Node: Output Section Region223358
+Node: Output Section Phdr223795
+Node: Output Section Fill224471
+Node: Overlay Description225637
+Node: MEMORY230182
+Node: PHDRS234934
+Node: VERSION240412
+Node: Expressions248703
+Node: Constants249716
+Node: Symbolic Constants250658
+Node: Symbols251225
+Node: Orphan Sections251980
+Node: Location Counter253573
+Node: Operators258151
+Node: Evaluation259181
+Node: Expression Section260553
+Node: Builtin Functions264631
+Node: Implicit Linker Scripts273712
+Node: Plugins274499
+Node: libdep Plugin275060
+Node: Machine Dependent276905
+Node: H8/300278069
+Node: M68HC11/68HC12280270
+Node: ARM281777
+Node: HPPA ELF32294205
+Node: M68K295880
+Node: MIPS296829
+Node: MMIX297989
+Node: MSP430299210
+Node: NDS32301203
+Node: Nios II302251
+Node: PowerPC ELF32303623
+Node: PowerPC64 ELF64306568
+Node: S/390 ELF316686
+Node: SPU ELF317045
+Node: TI COFF319771
+Node: WIN32320311
+Node: Xtensa342066
+Node: BFD345621
+Node: BFD outline347083
+Node: BFD information loss348377
+Node: Canonical format350931
+Node: Reporting Bugs355276
+Node: Bug Criteria355982
+Node: Bug Reporting356705
+Node: MRI363878
+Node: GNU Free Documentation License368557
+Node: LD Index393897
 
 End Tag Table
 

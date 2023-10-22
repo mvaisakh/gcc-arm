@@ -195,6 +195,7 @@ along with GCC; see the file COPYING3.  If not see
   NEXT_PASS (pass_omp_device_lower, 1);
   NEXT_PASS (pass_omp_target_link, 1);
   NEXT_PASS (pass_adjust_alignment, 1);
+  NEXT_PASS (pass_harden_control_flow_redundancy, 1);
   NEXT_PASS (pass_all_optimizations, 1);
   PUSH_INSERT_PASSES_WITHIN (pass_all_optimizations)
       NEXT_PASS (pass_remove_cgraph_callee_edges, 2);

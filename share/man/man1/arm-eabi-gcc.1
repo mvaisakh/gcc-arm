@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-10-19 gcc-14.0.0 GNU
+.TH GCC 1 2023-10-22 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -583,7 +583,10 @@ in the following sections.
 \&\-fsanitize\-undefined\-trap\-on\-error  \-fbounds\-check
 \&\-fcf\-protection=\fR[\fBfull\fR|\fBbranch\fR|\fBreturn\fR|\fBnone\fR|\fBcheck\fR]
 \&\fB\-fharden\-compares \-fharden\-conditional\-branches
-\&\-fstack\-protector  \-fstack\-protector\-all  \-fstack\-protector\-strong
+\&\-fharden\-control\-flow\-redundancy  \-fhardcfr\-skip\-leaf
+\&\-fhardcfr\-check\-exceptions  \-fhardcfr\-check\-returning\-calls
+\&\-fhardcfr\-check\-noreturn\-calls=\fR[\fBalways\fR|\fBno-xthrow\fR|\fBnothrow\fR|\fBnever\fR]
+\&\fB\-fstack\-protector  \-fstack\-protector\-all  \-fstack\-protector\-strong
 \&\-fstack\-protector\-explicit  \-fstack\-check
 \&\-fstack\-limit\-register=\fR\fIreg\fR  \fB\-fstack\-limit\-symbol=\fR\fIsym\fR
 \&\fB\-fno\-stack\-limit  \-fsplit\-stack
@@ -14942,6 +14945,16 @@ number of parameters in a Static Control Part (SCoP) is bounded.
 A value of zero can be used to lift
 the bound.  A variable whose value is unknown at compilation time and
 defined outside a SCoP is a parameter of the SCoP.
+.IP \fBhardcfr-max-blocks\fR 4
+.IX Item "hardcfr-max-blocks"
+Disable \fB\-fharden\-control\-flow\-redundancy\fR for functions with a
+larger number of blocks than the specified value.  Zero removes any
+limit.
+.IP \fBhardcfr-max-inline-blocks\fR 4
+.IX Item "hardcfr-max-inline-blocks"
+Force \fB\-fharden\-control\-flow\-redundancy\fR to use out-of-line
+checking for functions with a larger number of basic blocks than the
+specified value.
 .IP \fBloop-block-tile-size\fR 4
 .IX Item "loop-block-tile-size"
 Loop blocking or strip mining transforms, enabled with
@@ -16337,6 +16350,79 @@ optimizations, emit extra code to compute and verify the reversed
 condition, and to call \f(CW\*(C`_\|_builtin_trap\*(C'\fR if the result is
 unexpected.  Use with \fB\-fharden\-compares\fR to cover all
 conditionals.
+.IP \fB\-fharden\-control\-flow\-redundancy\fR 4
+.IX Item "-fharden-control-flow-redundancy"
+Emit extra code to set booleans when entering basic blocks, and to
+verify and trap, at function exits, when the booleans do not form an
+execution path that is compatible with the control flow graph.
+.Sp
+Verification takes place before returns, before mandatory tail calls
+(see below) and, optionally, before escaping exceptions with
+\&\fB\-fhardcfr\-check\-exceptions\fR, before returning calls with
+\&\fB\-fhardcfr\-check\-returning\-calls\fR, and before noreturn calls with
+\&\fB\-fhardcfr\-check\-noreturn\-calls\fR).  Tuning options
+\&\fB\-\-param hardcfr-max-blocks\fR and \fB\-\-param
+hardcfr-max-inline-blocks\fR are available.
+.Sp
+Tail call optimization takes place too late to affect control flow
+redundancy, but calls annotated as mandatory tail calls by language
+front-ends, and any calls marked early enough as potential tail calls
+would also have verification issued before the call, but these
+possibilities are merely theoretical, as these conditions can only be
+met when using custom compiler plugins.
+.IP \fB\-fhardcfr\-skip\-leaf\fR 4
+.IX Item "-fhardcfr-skip-leaf"
+Disable \fB\-fharden\-control\-flow\-redundancy\fR in leaf functions.
+.IP \fB\-fhardcfr\-check\-exceptions\fR 4
+.IX Item "-fhardcfr-check-exceptions"
+When \fB\-fharden\-control\-flow\-redundancy\fR is active, check the
+recorded execution path against the control flow graph at exception
+escape points, as if the function body was wrapped with a cleanup
+handler that performed the check and reraised.  This option is enabled
+by default; use \fB\-fno\-hardcfr\-check\-exceptions\fR to disable it.
+.IP \fB\-fhardcfr\-check\-returning\-calls\fR 4
+.IX Item "-fhardcfr-check-returning-calls"
+When \fB\-fharden\-control\-flow\-redundancy\fR is active, check the
+recorded execution path against the control flow graph before any
+function call immediately followed by a return of its result, if any, so
+as to not prevent tail-call optimization, whether or not it is
+ultimately optimized to a tail call.
+.Sp
+This option is enabled by default whenever sibling call optimizations
+are enabled (see \fB\-foptimize\-sibling\-calls\fR), but it can be
+enabled (or disabled, using its negated form) explicitly, regardless of
+the optimizations.
+.IP \fB\-fhardcfr\-check\-noreturn\-calls=\fR[\fBalways\fR|\fBno-xthrow\fR|\fBnothrow\fR|\fBnever\fR] 4
+.IX Item "-fhardcfr-check-noreturn-calls=[always|no-xthrow|nothrow|never]"
+When \fB\-fharden\-control\-flow\-redundancy\fR is active, check the
+recorded execution path against the control flow graph before
+\&\f(CW\*(C`noreturn\*(C'\fR calls, either all of them (\fBalways\fR), those that
+aren't expected to return control to the caller through an exception
+(\fBno-xthrow\fR, the default), those that may not return control to
+the caller through an exception either (\fBnothrow\fR), or none of
+them (\fBnever\fR).
+.Sp
+Checking before a \f(CW\*(C`noreturn\*(C'\fR function that may return control to
+the caller through an exception may cause checking to be performed more
+than once, if the exception is caught in the caller, whether by a
+handler or a cleanup.  When \fB\-fhardcfr\-check\-exceptions\fR is also
+enabled, the compiler will avoid associating a \f(CW\*(C`noreturn\*(C'\fR call with
+the implicitly-added cleanup handler, since it would be redundant with
+the check performed before the call, but other handlers or cleanups in
+the function, if activated, will modify the recorded execution path and
+check it again when another checkpoint is hit.  The checkpoint may even
+be another \f(CW\*(C`noreturn\*(C'\fR call, so checking may end up performed
+multiple times.
+.Sp
+Various optimizers may cause calls to be marked as \f(CW\*(C`noreturn\*(C'\fR
+and/or \f(CW\*(C`nothrow\*(C'\fR, even in the absence of the corresponding
+attributes, which may affect the placement of checks before calls, as
+well as the addition of implicit cleanup handlers for them.  This
+unpredictability, and the fact that raising and reraising exceptions
+frequently amounts to implicitly calling \f(CW\*(C`noreturn\*(C'\fR functions, have
+made \fBno-xthrow\fR the default setting for this option: it excludes
+from the \f(CW\*(C`noreturn\*(C'\fR treatment only internal functions used to
+(re)raise exceptions, that are not affected by these optimizations.
 .IP \fB\-fstack\-protector\fR 4
 .IX Item "-fstack-protector"
 Emit extra code to check for buffer overflows, such as stack smashing
@@ -20316,7 +20402,9 @@ are
 .RS 4
 .IP \fBfiji\fR 4
 .IX Item "fiji"
-Compile for GCN3 Fiji devices (gfx803).
+Compile for GCN3 Fiji devices (gfx803).  Support deprecated; availablility
+depends on how GCC has been configured, see \fB\-\-with\-arch\fR and
+\&\fB\-\-with\-multilib\-list\fR.
 .IP \fBgfx900\fR 4
 .IX Item "gfx900"
 Compile for GCN5 Vega 10 devices (gfx900).
@@ -25360,6 +25448,12 @@ environments where no dynamic link is performed, like firmwares, OS
 kernels, executables linked with \fB\-static\fR or \fB\-static\-pie\fR.
 \&\fB\-mdirect\-extern\-access\fR is not compatible with \fB\-fPIC\fR or
 \&\fB\-fpic\fR.
+.IP \fBloongarch-vect-unroll-limit\fR 4
+.IX Item "loongarch-vect-unroll-limit"
+The vectorizer will use available tuning information to determine whether it
+would be beneficial to unroll the main vectorized loop and by how much.  This
+parameter set's the upper bound of how much the vectorizer will unroll the main
+loop.  The default value is six.
 .PP
 \fIM32C Options\fR
 .IX Subsection "M32C Options"
@@ -31820,23 +31914,6 @@ MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
 PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
 AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, ENQCMD, UINTR and RAOINT
 instruction set support.
-.IP \fBarrowlake\fR 4
-.IX Item "arrowlake"
-Intel Arrow Lake CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2, SSE3,
-SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE, XSAVEC,
-XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX, GFNI-SSE, CLWB, MOVDIRI,
-MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
-PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
-AVXIFMA, AVXVNNIINT8, AVXNECONVERT and CMPCCXADD instruction set support.
-.IP \fBarrowlake-s\fR 4
-.IX Item "arrowlake-s"
-Intel Arrow Lake S CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2, SSE3,
-SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE, XSAVEC,
-XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX, GFNI-SSE, CLWB, MOVDIRI,
-MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
-PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
-AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AVXVNNIINT16, SHA512, SM3
-and SM4 instruction set support.
 .IP \fBclearwaterforest\fR 4
 .IX Item "clearwaterforest"
 Intel Clearwater Forest CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2,
@@ -31844,17 +31921,8 @@ SSE3, SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE,
 XSAVEC, XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX, GFNI-SSE, CLWB,
 MOVDIRI, MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA,
 LZCNT, PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
-AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AVXVNNIINT16, SHA512, SM3, SM4,
-USER_MSR and PREFETCHI instruction set support.
-.IP \fBpantherlake\fR 4
-.IX Item "pantherlake"
-Intel Panther Lake CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2, SSE3,
-SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE, XSAVEC,
-XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX, GFNI-SSE, CLWB, MOVDIRI,
-MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
-PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
-AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AVXVNNIINT16, SHA512, SM3, SM4
-and PREFETCHI instruction set support.
+ENQCMD, UINTR, AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AVXVNNIINT16,
+SHA512, SM3, SM4, USER_MSR and PREFETCHI instruction set support.
 .IP \fBknl\fR 4
 .IX Item "knl"
 Intel Knight's Landing CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2, SSE3,
@@ -31972,6 +32040,33 @@ VPCLMULQDQ, AVX512BITALG, RDPID, AVX512VPOPCNTDQ, PCONFIG, WBNOINVD, CLWB,
 MOVDIRI, MOVDIR64B, ENQCMD, CLDEMOTE, PTWRITE, WAITPKG, SERIALIZE, TSXLDTRK,
 UINTR, AMX\-BF16, AMX-TILE, AMX\-INT8, AVX-VNNI, AVX512FP16, AVX512BF16, AMX\-FP16,
 PREFETCHI and AMX-COMPLEX instruction set support.
+.IP \fBarrowlake\fR 4
+.IX Item "arrowlake"
+Intel Arrow Lake CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2, SSE3,
+SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE, XSAVEC,
+XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX, GFNI-SSE, CLWB, MOVDIRI,
+MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
+PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
+UINTR, AVXIFMA, AVXVNNIINT8, AVXNECONVERT and CMPCCXADD instruction set
+support.
+.IP \fBarrowlake-s\fR 4
+.IX Item "arrowlake-s"
+Intel Arrow Lake S CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2, SSE3,
+SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE, XSAVEC,
+XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX, GFNI-SSE, CLWB, MOVDIRI,
+MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
+PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
+UINTR, AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AVXVNNIINT16, SHA512,
+SM3 and SM4 instruction set support.
+.IP \fBpantherlake\fR 4
+.IX Item "pantherlake"
+Intel Panther Lake CPU with 64\-bit extensions, MOVBE, MMX, SSE, SSE2, SSE3,
+SSSE3, SSE4.1, SSE4.2, POPCNT, AES, PREFETCHW, PCLMUL, RDRND, XSAVE, XSAVEC,
+XSAVES, XSAVEOPT, FSGSBASE, PTWRITE, RDPID, SGX, GFNI-SSE, CLWB, MOVDIRI,
+MOVDIR64B, CLDEMOTE, WAITPKG, ADCX, AVX, AVX2, BMI, BMI2, F16C, FMA, LZCNT,
+PCONFIG, PKU, VAES, VPCLMULQDQ, SERIALIZE, HRESET, KL, WIDEKL, AVX-VNNI,
+UINTR, AVXIFMA, AVXVNNIINT8, AVXNECONVERT, CMPCCXADD, AVXVNNIINT16, SHA512,
+SM3, SM4 and PREFETCHI instruction set support.
 .IP \fBk6\fR 4
 .IX Item "k6"
 AMD K6 CPU with MMX instruction set support.
