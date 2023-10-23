@@ -13,6 +13,9 @@
 #ifndef LIBC_MUSL
 # define LIBC_MUSL 4
 #endif
+#ifndef HEAP_TRAMPOLINES_INIT
+# define HEAP_TRAMPOLINES_INIT 0
+#endif
 #ifdef IN_GCC
 # include "options.h"
 # include "insn-constants.h"

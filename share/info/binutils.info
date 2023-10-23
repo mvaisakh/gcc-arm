@@ -1105,10 +1105,10 @@ File: binutils.info,  Node: objcopy,  Next: objdump,  Prev: nm,  Up: Top
              [--pure]
              [--impure]
              [--file-alignment=NUM]
-             [--heap=SIZE]
+             [--heap=RESERVE[,COMMIT]]
              [--image-base=ADDRESS]
              [--section-alignment=NUM]
-             [--stack=SIZE]
+             [--stack=RESERVE[,COMMIT]]
              [--subsystem=WHICH:MAJOR.MINOR]
              [--compress-debug-sections]
              [--decompress-debug-sections]
@@ -6190,30 +6190,30 @@ Node: ar cmdline7012
 Node: ar scripts21102
 Node: nm27108
 Node: objcopy43434
-Node: objdump86311
-Node: ranlib126120
-Node: size127817
-Node: strings132203
-Node: strip138291
-Node: c++filt148690
-Ref: c++filt-Footnote-1154753
-Node: addr2line154867
-Node: windmc161070
-Node: windres165003
-Node: dlltool172011
-Node: def file format186066
-Node: readelf188816
-Node: elfedit209519
-Node: Common Options213089
-Node: Selecting the Target System214135
-Node: Target Selection215075
-Node: Architecture Selection217200
-Node: debuginfod218076
-Node: Reporting Bugs219110
-Node: Bug Criteria219872
-Node: Bug Reporting220431
-Node: GNU Free Documentation License227388
-Node: Binutils Index252751
+Node: objdump86335
+Node: ranlib126144
+Node: size127841
+Node: strings132227
+Node: strip138315
+Node: c++filt148714
+Ref: c++filt-Footnote-1154777
+Node: addr2line154891
+Node: windmc161094
+Node: windres165027
+Node: dlltool172035
+Node: def file format186090
+Node: readelf188840
+Node: elfedit209543
+Node: Common Options213113
+Node: Selecting the Target System214159
+Node: Target Selection215099
+Node: Architecture Selection217224
+Node: debuginfod218100
+Node: Reporting Bugs219134
+Node: Bug Criteria219896
+Node: Bug Reporting220455
+Node: GNU Free Documentation License227412
+Node: Binutils Index252775
 
 End Tag Table
 

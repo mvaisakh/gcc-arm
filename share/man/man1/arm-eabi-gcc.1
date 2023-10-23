@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-10-22 gcc-14.0.0 GNU
+.TH GCC 1 2023-10-23 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -654,7 +654,8 @@ in the following sections.
 \&\-fverbose\-asm  \-fpack\-struct[=\fR\fIn\fR\fB]
 \&\-fleading\-underscore  \-ftls\-model=\fR\fImodel\fR
 \&\fB\-fstack\-reuse=\fR\fIreuse_level\fR
-\&\fB\-ftrampolines  \-ftrapv  \-fwrapv
+\&\fB\-ftrampolines \-ftrampoline\-impl=\fR[\fBstack\fR|\fBheap\fR]
+\&\fB\-ftrapv  \-fwrapv
 \&\-fvisibility=\fR[\fBdefault\fR|\fBinternal\fR|\fBhidden\fR|\fBprotected\fR]
 \&\fB\-fstrict\-volatile\-bitfields  \-fsync\-libcalls\fR
 .IP "\fIDeveloper Options\fR" 4
@@ -855,7 +856,7 @@ in the following sections.
 \&\-iframework
 \&\-image_base  \-init  \-install_name  \-keep_private_externs
 \&\-multi_module  \-multiply_defined  \-multiply_defined_unused
-\&\-noall_load   \-no_dead_strip_inits_and_terms
+\&\-noall_load   \-no_dead_strip_inits_and_terms \-nodefaultrpaths
 \&\-nofixprebinding  \-nomultidefs  \-noprebind  \-noseglinkedit
 \&\-pagezero_size  \-prebind  \-prebind_all_twolevel_modules
 \&\-private_bundle  \-read_only_relocs  \-sectalign
@@ -971,7 +972,7 @@ in the following sections.
 \&\-mcond\-move\-float  \-mno\-cond\-move\-float
 \&\-memcpy  \-mno\-memcpy \-mstrict\-align \-mno\-strict\-align
 \&\-mmax\-inline\-memcpy\-size=\fR\fIn\fR
-\&\fB\-mexplicit\-relocs \-mno\-explicit\-relocs
+\&\fB\-mexplicit\-relocs=\fR\fIstyle\fR \fB\-mexplicit\-relocs \-mno\-explicit\-relocs
 \&\-mdirect\-extern\-access \-mno\-direct\-extern\-access
 \&\-mcmodel=\fR\fIcode-model\fR
 .Sp
@@ -18360,6 +18361,19 @@ For languages other than Ada, the \f(CW\*(C`\-ftrampolines\*(C'\fR and
 \&\f(CW\*(C`\-fno\-trampolines\*(C'\fR options currently have no effect, and
 trampolines are always generated on platforms that need them
 for nested functions.
+.IP \fB\-ftrampoline\-impl=\fR[\fBstack\fR|\fBheap\fR] 4
+.IX Item "-ftrampoline-impl=[stack|heap]"
+By default, trampolines are generated on stack.  However, certain platforms
+(such as the Apple M1) do not permit an executable stack.  Compiling with
+\&\fB\-ftrampoline\-impl=heap\fR generate calls to
+\&\f(CW\*(C`_\|_builtin_nested_func_ptr_created\*(C'\fR and
+\&\f(CW\*(C`_\|_builtin_nested_func_ptr_deleted\*(C'\fR in order to allocate and
+deallocate trampoline space on the executable heap.  These functions are
+implemented in libgcc, and will only be provided on specific targets:
+x86_64 Darwin, x86_64 and aarch64 Linux.  \fIPLEASE NOTE\fR: Heap
+trampolines are \fInot\fR guaranteed to be correctly deallocated if you
+\&\f(CW\*(C`setjmp\*(C'\fR, instantiate nested functions, and then \f(CW\*(C`longjmp\*(C'\fR back
+to a state prior to having allocated those nested functions.
 .IP \fB\-fvisibility=\fR[\fBdefault\fR|\fBinternal\fR|\fBhidden\fR|\fBprotected\fR] 4
 .IX Item "-fvisibility=[default|internal|hidden|protected]"
 Set the default ELF image symbol visibility to the specified option\-\-\-all
@@ -23710,6 +23724,13 @@ an executable when linking, using the Darwin \fIlibtool\fR command.
 .IX Item "-force_cpusubtype_ALL"
 This causes GCC's output file to have the \fBALL\fR subtype, instead of
 one controlled by the \fB\-mcpu\fR or \fB\-march\fR option.
+.IP \fB\-nodefaultrpaths\fR 4
+.IX Item "-nodefaultrpaths"
+Do not add default run paths for the compiler library directories to
+executables, modules or dynamic libraries. On macOS 10.5 and later,
+the embedded runpath is added by default unless the user adds
+\&\fB\-nodefaultrpaths\fR to the link line. Run paths are needed
+(and therefore enforced) to build on macOS version 10.11 or later.
 .IP "\fB\-allowable_client\fR  \fIclient_name\fR" 4
 .IX Item "-allowable_client client_name"
 .PD 0
@@ -25409,29 +25430,39 @@ The text segment and data segment must be within 2GB addressing space.
 .IX Item "extreme"
 .PD
 This mode does not limit the size of the code segment and data segment.
-The \fB\-mcmodel=extreme\fR option is incompatible with \fB\-fplt\fR and
-\&\fB\-mno\-explicit\-relocs\fR.
+The \fB\-mcmodel=extreme\fR option is incompatible with \fB\-fplt\fR,
+and it requires \fB\-mexplicit\-relocs=always\fR.
 .RE
 .RS 4
 .Sp
 The default code model is \f(CW\*(C`normal\*(C'\fR.
 .RE
-.IP \fB\-mexplicit\-relocs\fR 4
-.IX Item "-mexplicit-relocs"
-.PD 0
-.IP \fB\-mno\-explicit\-relocs\fR 4
-.IX Item "-mno-explicit-relocs"
-.PD
-Use or do not use assembler relocation operators when dealing with symbolic
+.IP \fB\-mexplicit\-relocs=\fR\fIstyle\fR 4
+.IX Item "-mexplicit-relocs=style"
+Set when to use assembler relocation operators when dealing with symbolic
 addresses.  The alternative is to use assembler macros instead, which may
-limit instruction scheduling but allow linker relaxation.  The default
+limit instruction scheduling but allow linker relaxation.
+with \fB\-mexplicit\-relocs=none\fR the assembler macros are always used,
+with \fB\-mexplicit\-relocs=always\fR the assembler relocation operators
+are always used, with \fB\-mexplicit\-relocs=auto\fR the compiler will
+use the relocation operators where the linker relaxation is impossible to
+improve the code quality, and macros elsewhere.  The default
 value for the option is determined during GCC build-time by detecting
 corresponding assembler support:
-\&\f(CW\*(C`\-mno\-explicit\-relocs\*(C'\fR if the assembler supports relaxation or it
-does not support relocation operators at all,
-\&\f(CW\*(C`\-mexplicit\-relocs\*(C'\fR otherwise.  This option is mostly useful for
+\&\fB\-mexplicit\-relocs=none\fR if the assembler does not support
+relocation operators at all,
+\&\fB\-mexplicit\-relocs=always\fR if the assembler supports relocation
+operators but does not support relaxation,
+\&\fB\-mexplicit\-relocs=auto\fR if the assembler supports both relocation
+operators and relaxation.  This option is mostly useful for
 debugging, or interoperation with assemblers different from the build-time
 one.
+.IP \fB\-mexplicit\-relocs\fR 4
+.IX Item "-mexplicit-relocs"
+An alias of \fB\-mexplicit\-relocs=always\fR for backward compatibility.
+.IP \fB\-mno\-explicit\-relocs\fR 4
+.IX Item "-mno-explicit-relocs"
+An alias of \fB\-mexplicit\-relocs=none\fR for backward compatibility.
 .IP \fB\-mdirect\-extern\-access\fR 4
 .IX Item "-mdirect-extern-access"
 .PD 0

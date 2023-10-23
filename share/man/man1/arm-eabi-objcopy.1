@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJCOPY 1"
-.TH OBJCOPY 1 2023-10-22 binutils-2.41.50 "GNU Development Tools"
+.TH OBJCOPY 1 2023-10-23 binutils-2.41.50 "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -140,10 +140,10 @@ objcopy [\fB\-F\fR \fIbfdname\fR|\fB\-\-target=\fR\fIbfdname\fR]
         [\fB\-\-pure\fR]
         [\fB\-\-impure\fR]
         [\fB\-\-file\-alignment=\fR\fInum\fR]
-        [\fB\-\-heap=\fR\fIsize\fR]
+        [\fB\-\-heap=\fR\fIreserve\fR[,\fIcommit\fR]]
         [\fB\-\-image\-base=\fR\fIaddress\fR]
         [\fB\-\-section\-alignment=\fR\fInum\fR]
-        [\fB\-\-stack=\fR\fIsize\fR]
+        [\fB\-\-stack=\fR\fIreserve\fR[,\fIcommit\fR]]
         [\fB\-\-subsystem=\fR\fIwhich\fR:\fImajor\fR.\fIminor\fR]
         [\fB\-\-compress\-debug\-sections\fR]
         [\fB\-\-decompress\-debug\-sections\fR]

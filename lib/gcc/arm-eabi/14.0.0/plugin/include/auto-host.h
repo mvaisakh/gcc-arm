@@ -50,6 +50,19 @@
 #endif
 
 
+/* Specify a runpath directory, additional to those provided by the compiler
+   */
+#ifndef USED_FOR_TARGET
+#define DARWIN_ADD_RPATH ""
+#endif
+
+
+/* Should add an extra runpath directory */
+#ifndef USED_FOR_TARGET
+#define DARWIN_DO_EXTRA_RPATH 0
+#endif
+
+
 /* Define to enable the use of a default assembler. */
 #ifndef USED_FOR_TARGET
 /* #undef DEFAULT_ASSEMBLER */
