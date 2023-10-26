@@ -37,6 +37,10 @@ extern void gt_ggc_mx_cpp_token (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_cpp_macro (X);\
   } while (0)
 extern void gt_ggc_mx_cpp_macro (void *);
+#define gt_ggc_m_18cpp_hashnode_extra(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_cpp_hashnode_extra (X);\
+  } while (0)
+extern void gt_ggc_mx_cpp_hashnode_extra (void *);
 #define gt_ggc_m_13string_concat(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_string_concat (X);\
   } while (0)
@@ -837,6 +841,10 @@ extern void gt_ggc_mx_hash_table_libfunc_decl_hasher_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_string_pool_data (X);\
   } while (0)
 extern void gt_ggc_mx_string_pool_data (void *);
+#define gt_ggc_m_22string_pool_data_extra(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_string_pool_data_extra (X);\
+  } while (0)
+extern void gt_ggc_mx_string_pool_data_extra (void *);
 #define gt_ggc_m_9type_hash(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_type_hash (X);\
   } while (0)
@@ -1518,6 +1526,10 @@ extern void gt_pch_nx_cpp_token (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_cpp_macro (X);\
   } while (0)
 extern void gt_pch_nx_cpp_macro (void *);
+#define gt_pch_n_18cpp_hashnode_extra(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_cpp_hashnode_extra (X);\
+  } while (0)
+extern void gt_pch_nx_cpp_hashnode_extra (void *);
 #define gt_pch_n_13string_concat(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_string_concat (X);\
   } while (0)
@@ -2318,6 +2330,10 @@ extern void gt_pch_nx_hash_table_libfunc_decl_hasher_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_string_pool_data (X);\
   } while (0)
 extern void gt_pch_nx_string_pool_data (void *);
+#define gt_pch_n_22string_pool_data_extra(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_string_pool_data_extra (X);\
+  } while (0)
+extern void gt_pch_nx_string_pool_data_extra (void *);
 #define gt_pch_n_9type_hash(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_type_hash (X);\
   } while (0)
@@ -2989,6 +3005,8 @@ extern void gt_pch_p_9cpp_token
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9cpp_macro
     (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_18cpp_hashnode_extra
+    (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_13string_concat
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16string_concat_db
@@ -3482,6 +3500,8 @@ extern void gt_pch_p_11user_struct
 extern void gt_pch_p_31hash_table_libfunc_decl_hasher_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16string_pool_data
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_22string_pool_data_extra
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9type_hash
     (void *, void *, gt_pointer_operator, void *);
