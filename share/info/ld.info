@@ -4361,6 +4361,25 @@ and ‘.dtors.NNNNN’, ‘NNNNN’ is 65535 minus the init_priority.
 
    ‘SORT’ is an alias for ‘SORT_BY_NAME’.
 
+   ‘REVERSE’ indicates that the sorting should be reversed.  If used on
+its own then ‘REVERSE’ implies ‘SORT_BY_NAME’, otherwise it reverses the
+enclosed ‘SORT..’ command.  Note - reverse sorting of alignment is not
+currently supported.
+
+   Note - the sorting commands only accept a single wildcard pattern.
+So for example the following will not work:
+       *(REVERSE(.text* .init*))
+   To resolve this problem list the patterns individually, like this:
+       *(REVERSE(.text*))
+       *(REVERSE(.init*))
+
+   Note - you can put the ‘EXCLUDE_FILE’ command inside a sorting
+command, but not the other way around.  So for example:
+       *(SORT_BY_NAME(EXCLUDE_FILE(foo) .text*))
+   will work, but:
+       *(EXCLUDE_FILE(foo) SORT_BY_NAME(.text*))
+   will not.
+
    When there are nested section sorting commands in linker script,
 there can be at most 1 level of nesting for section sorting commands.
 
@@ -4375,7 +4394,13 @@ there can be at most 1 level of nesting for section sorting commands.
   4. ‘SORT_BY_ALIGNMENT’ (‘SORT_BY_ALIGNMENT’ (wildcard section
      pattern)) is treated the same as ‘SORT_BY_ALIGNMENT’ (wildcard
      section pattern).
-  5. All other nested section sorting commands are invalid.
+  5. ‘SORT_BY_NAME’ (‘REVERSE’ (wildcard section pattern)) reverse sorts
+     by name.
+  6. ‘REVERSE’ (‘SORT_BY_NAME’ (wildcard section pattern)) reverse sorts
+     by name.
+  7. ‘SORT_BY_INIT_PRIORITY’ (‘REVERSE’ (wildcard section pattern))
+     reverse sorts by init priority.
+  8. All other nested section sorting commands are invalid.
 
    When both command-line section sorting option and linker script
 section sorting command are used, section sorting command always takes
@@ -9402,6 +9427,8 @@ LD Index
 * requirements for BFD:                  BFD.                (line   16)
 * retain relocations in final executable: Options.           (line  661)
 * retaining specified symbols:           Options.            (line 1793)
+* REVERSE:                               Input Section Wildcards.
+                                                             (line   60)
 * rodata segment origin, cmd line:       Options.            (line 2008)
 * ROM initialized data:                  Output Section LMA. (line   39)
 * round up expression:                   Builtin Functions.  (line   38)
@@ -9468,7 +9495,7 @@ LD Index
 * SORT_BY_NAME:                          Input Section Wildcards.
                                                              (line   37)
 * SORT_NONE:                             Input Section Wildcards.
-                                                             (line   94)
+                                                             (line  119)
 * SPU:                                   SPU ELF.            (line   29)
 * SPU <1>:                               SPU ELF.            (line   46)
 * SPU ELF options:                       SPU ELF.            (line    6)
@@ -9581,66 +9608,66 @@ Node: Output Section Address189235
 Node: Input Section191488
 Node: Input Section Basics192289
 Node: Input Section Wildcards197443
-Node: Input Section Common202602
-Node: Input Section Keep204112
-Node: Input Section Example204620
-Node: Output Section Data206091
-Node: Output Section Keywords209837
-Node: Output Section Discarding213512
-Node: Output Section Attributes215454
-Node: Output Section Type216575
-Node: Output Section LMA218960
-Node: Forced Output Alignment222103
-Node: Forced Input Alignment222534
-Node: Output Section Constraint222922
-Node: Output Section Region223358
-Node: Output Section Phdr223795
-Node: Output Section Fill224471
-Node: Overlay Description225637
-Node: MEMORY230182
-Node: PHDRS234934
-Node: VERSION240412
-Node: Expressions248703
-Node: Constants249716
-Node: Symbolic Constants250658
-Node: Symbols251225
-Node: Orphan Sections251980
-Node: Location Counter253573
-Node: Operators258151
-Node: Evaluation259181
-Node: Expression Section260553
-Node: Builtin Functions264631
-Node: Implicit Linker Scripts273712
-Node: Plugins274499
-Node: libdep Plugin275060
-Node: Machine Dependent276905
-Node: H8/300278069
-Node: M68HC11/68HC12280270
-Node: ARM281777
-Node: HPPA ELF32294205
-Node: M68K295880
-Node: MIPS296829
-Node: MMIX297989
-Node: MSP430299210
-Node: NDS32301203
-Node: Nios II302251
-Node: PowerPC ELF32303623
-Node: PowerPC64 ELF64306568
-Node: S/390 ELF316686
-Node: SPU ELF317045
-Node: TI COFF319771
-Node: WIN32320311
-Node: Xtensa342066
-Node: BFD345621
-Node: BFD outline347083
-Node: BFD information loss348377
-Node: Canonical format350931
-Node: Reporting Bugs355276
-Node: Bug Criteria355982
-Node: Bug Reporting356705
-Node: MRI363878
-Node: GNU Free Documentation License368557
-Node: LD Index393897
+Node: Input Section Common203686
+Node: Input Section Keep205196
+Node: Input Section Example205704
+Node: Output Section Data207175
+Node: Output Section Keywords210921
+Node: Output Section Discarding214596
+Node: Output Section Attributes216538
+Node: Output Section Type217659
+Node: Output Section LMA220044
+Node: Forced Output Alignment223187
+Node: Forced Input Alignment223618
+Node: Output Section Constraint224006
+Node: Output Section Region224442
+Node: Output Section Phdr224879
+Node: Output Section Fill225555
+Node: Overlay Description226721
+Node: MEMORY231266
+Node: PHDRS236018
+Node: VERSION241496
+Node: Expressions249787
+Node: Constants250800
+Node: Symbolic Constants251742
+Node: Symbols252309
+Node: Orphan Sections253064
+Node: Location Counter254657
+Node: Operators259235
+Node: Evaluation260265
+Node: Expression Section261637
+Node: Builtin Functions265715
+Node: Implicit Linker Scripts274796
+Node: Plugins275583
+Node: libdep Plugin276144
+Node: Machine Dependent277989
+Node: H8/300279153
+Node: M68HC11/68HC12281354
+Node: ARM282861
+Node: HPPA ELF32295289
+Node: M68K296964
+Node: MIPS297913
+Node: MMIX299073
+Node: MSP430300294
+Node: NDS32302287
+Node: Nios II303335
+Node: PowerPC ELF32304707
+Node: PowerPC64 ELF64307652
+Node: S/390 ELF317770
+Node: SPU ELF318129
+Node: TI COFF320855
+Node: WIN32321395
+Node: Xtensa343150
+Node: BFD346705
+Node: BFD outline348167
+Node: BFD information loss349461
+Node: Canonical format352015
+Node: Reporting Bugs356360
+Node: Bug Criteria357066
+Node: Bug Reporting357789
+Node: MRI364962
+Node: GNU Free Documentation License369641
+Node: LD Index394981
 
 End Tag Table
 

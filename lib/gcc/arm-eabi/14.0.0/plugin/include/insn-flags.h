@@ -4491,7 +4491,9 @@
 #define HAVE_stack_protect_combined_test (arm_stack_protector_guard == SSP_GLOBAL)
 #define HAVE_stack_protect_set (arm_stack_protector_guard == SSP_TLSREG)
 #define HAVE_stack_protect_test (arm_stack_protector_guard == SSP_TLSREG)
-#define HAVE_casesi ((TARGET_32BIT || optimize_size || flag_pic) && !target_pure_code)
+#define HAVE_casesi ((TARGET_ARM \
+     || (!target_pure_code \
+         && (TARGET_THUMB2 || optimize_size || flag_pic))))
 #define HAVE_arm_casesi_internal (TARGET_ARM)
 #define HAVE_indirect_jump 1
 #define HAVE_prologue 1
