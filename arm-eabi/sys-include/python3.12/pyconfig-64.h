@@ -20,6 +20,9 @@
 /* The normal alignment of `long', in bytes. */
 #define ALIGNOF_LONG 8
 
+/* The normal alignment of `max_align_t', in bytes. */
+#define ALIGNOF_MAX_ALIGN_T 16
+
 /* The normal alignment of `size_t', in bytes. */
 #define ALIGNOF_SIZE_T 8
 
@@ -303,6 +306,9 @@
 /* Defined when any dynamic module loading is enabled. */
 #define HAVE_DYNAMIC_LOADING 1
 
+/* Define to 1 if you have the <editline/readline.h> header file. */
+/* #undef HAVE_EDITLINE_READLINE_H */
+
 /* Define to 1 if you have the <endian.h> header file. */
 #define HAVE_ENDIAN_H 1
 
@@ -368,6 +374,15 @@
 
 /* Define to 1 if you have the `fexecve' function. */
 #define HAVE_FEXECVE 1
+
+/* Define if you have the 'ffi_closure_alloc' function. */
+#define HAVE_FFI_CLOSURE_ALLOC 1
+
+/* Define if you have the 'ffi_prep_cif_var' function. */
+#define HAVE_FFI_PREP_CIF_VAR 1
+
+/* Define if you have the 'ffi_prep_closure_loc' function. */
+#define HAVE_FFI_PREP_CLOSURE_LOC 1
 
 /* Define to 1 if you have the `flock' function. */
 #define HAVE_FLOCK 1
@@ -665,20 +680,11 @@
 /* Define to 1 if you have the `dld' library (-ldld). */
 /* #undef HAVE_LIBDLD */
 
-/* Define to 1 if you have the `gdbm_compat' library (-lgdbm_compat). */
-#define HAVE_LIBGDBM_COMPAT 1
-
 /* Define to 1 if you have the `ieee' library (-lieee). */
 /* #undef HAVE_LIBIEEE */
 
 /* Define to 1 if you have the <libintl.h> header file. */
 #define HAVE_LIBINTL_H 1
-
-/* Define to 1 if you have the `ndbm' library (-lndbm). */
-/* #undef HAVE_LIBNDBM */
-
-/* Define to build the readline module. */
-#define HAVE_LIBREADLINE 1
 
 /* Define to 1 if you have the `resolv' library (-lresolv). */
 /* #undef HAVE_LIBRESOLV */
@@ -718,6 +724,9 @@
 
 /* Define if compiling using Linux 4.1 or later. */
 #define HAVE_LINUX_CAN_RAW_JOIN_FILTERS 1
+
+/* Define to 1 if you have the <linux/fs.h> header file. */
+#define HAVE_LINUX_FS_H 1
 
 /* Define to 1 if you have the <linux/limits.h> header file. */
 #define HAVE_LINUX_LIMITS_H 1
@@ -818,6 +827,9 @@
 /* Define to 1 if you have the `nanosleep' function. */
 #define HAVE_NANOSLEEP 1
 
+/* Define to 1 if you have the `ncursesw' library. */
+#define HAVE_NCURSESW 1
+
 /* Define to 1 if you have the <ncurses.h> header file. */
 #define HAVE_NCURSES_H 1
 
@@ -839,6 +851,9 @@
 /* Define to 1 if you have the <netpacket/packet.h> header file. */
 #define HAVE_NETPACKET_PACKET_H 1
 
+/* Define to 1 if you have the <net/ethernet.h> header file. */
+#define HAVE_NET_ETHERNET_H 1
+
 /* Define to 1 if you have the <net/if.h> header file. */
 #define HAVE_NET_IF_H 1
 
@@ -857,6 +872,9 @@
 
 /* Define to 1 if you have the `openpty' function. */
 #define HAVE_OPENPTY 1
+
+/* Define to 1 if you have the <panel.h> header file. */
+#define HAVE_PANEL_H 1
 
 /* Define to 1 if you have the `pathconf' function. */
 #define HAVE_PATHCONF 1
@@ -944,6 +962,9 @@
 
 /* Define to 1 if you have the `pwritev2' function. */
 #define HAVE_PWRITEV2 1
+
+/* Define to 1 if you have the <readline/readline.h> header file. */
+/* #undef HAVE_READLINE_READLINE_H */
 
 /* Define to 1 if you have the `readlink' function. */
 #define HAVE_READLINK 1
@@ -1055,6 +1076,9 @@
 
 /* Define to 1 if you have the `setlocale' function. */
 #define HAVE_SETLOCALE 1
+
+/* Define to 1 if you have the `setns' function. */
+#define HAVE_SETNS 1
 
 /* Define to 1 if you have the `setpgid' function. */
 #define HAVE_SETPGID 1
@@ -1170,10 +1194,6 @@
 /* Define if you have struct stat.st_mtimensec */
 /* #undef HAVE_STAT_TV_NSEC2 */
 
-/* Define if your compiler supports variable length function prototypes (e.g.
-   void fprintf(FILE *, char *, ...);) *and* <stdarg.h> */
-#define HAVE_STDARG_PROTOTYPES 1
-
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1
 
@@ -1196,7 +1216,7 @@
 #define HAVE_STRING_H 1
 
 /* Define to 1 if you have the `strlcpy' function. */
-/* #undef HAVE_STRLCPY */
+#define HAVE_STRLCPY 1
 
 /* Define to 1 if you have the <stropts.h> header file. */
 /* #undef HAVE_STROPTS_H */
@@ -1433,6 +1453,9 @@
 /* Define to 1 if you have the `unlinkat' function. */
 #define HAVE_UNLINKAT 1
 
+/* Define to 1 if you have the `unshare' function. */
+#define HAVE_UNSHARE 1
+
 /* Define if you have a useable wchar_t type defined in wchar.h; useable means
    wchar_t must be an unsigned type with at least 16 bits. (see
    Include/unicodeobject.h). */
@@ -1559,13 +1582,13 @@
 /* #undef PYLONG_BITS_IN_DIGIT */
 
 /* enabled builtin hash modules */
-#define PY_BUILTIN_HASHLIB_HASHES "md5,sha1,sha256,sha512,sha3,blake2"
+#define PY_BUILTIN_HASHLIB_HASHES "md5,sha1,sha2,sha3,blake2"
 
 /* Define if you want to coerce the C locale to a UTF-8 based locale */
 #define PY_COERCE_C_LOCALE 1
 
-/* Define to printf format modifier for Py_ssize_t */
-#define PY_FORMAT_SIZE_T "z"
+/* Define to 1 if you have the perf trampoline. */
+#define PY_HAVE_PERF_TRAMPOLINE 1
 
 /* Define to 1 to build the sqlite module with loadable extensions support. */
 #define PY_SQLITE_ENABLE_LOAD_EXTENSION 1
@@ -1674,9 +1697,6 @@
 
 /* Library needed by timemodule.c: librt may be needed for clock_gettime() */
 /* #undef TIMEMODULE_LIB */
-
-/* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
-#define TIME_WITH_SYS_TIME 1
 
 /* Define to 1 if your <sys/time.h> declares `struct tm'. */
 /* #undef TM_IN_SYS_TIME */
@@ -1790,7 +1810,7 @@
    Dyld is necessary to support frameworks. */
 /* #undef WITH_DYLD */
 
-/* Define to build the readline module against Editline. */
+/* Define to build the readline module against libedit. */
 /* #undef WITH_EDITLINE */
 
 /* Define if you want to compile in object freelists optimization */

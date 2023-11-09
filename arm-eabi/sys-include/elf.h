@@ -210,7 +210,7 @@ typedef struct
 #define EM_68HC12	53	/* Motorola M68HC12 */
 #define EM_MMA		54	/* Fujitsu MMA Multimedia Accelerator */
 #define EM_PCP		55	/* Siemens PCP */
-#define EM_NCPU		56	/* Sony nCPU embeeded RISC */
+#define EM_NCPU		56	/* Sony nCPU embedded RISC */
 #define EM_NDR1		57	/* Denso NDR1 microprocessor */
 #define EM_STARCORE	58	/* Motorola Start*Core processor */
 #define EM_ME16		59	/* Toyota ME16 processor */
@@ -559,7 +559,7 @@ typedef struct
 
 /* Possible bitmasks for si_flags.  */
 #define SYMINFO_FLG_DIRECT	0x0001	/* Direct bound symbol */
-#define SYMINFO_FLG_PASSTHRU	0x0002	/* Pass-thru symbol for translator */
+#define SYMINFO_FLG_PASSTHRU	0x0002	/* Pass-through symbol for translator */
 #define SYMINFO_FLG_COPY	0x0004	/* Symbol is a copy-reloc */
 #define SYMINFO_FLG_LAZYLOAD	0x0008	/* Symbol bound to object to be lazy
 					   loaded */
@@ -728,6 +728,7 @@ typedef struct
 #define PT_GNU_STACK	0x6474e551	/* Indicates stack executability */
 #define PT_GNU_RELRO	0x6474e552	/* Read-only after relocation */
 #define PT_GNU_PROPERTY	0x6474e553	/* GNU property */
+#define PT_GNU_SFRAME	0x6474e554	/* SFrame segment.  */
 #define PT_LOSUNW	0x6ffffffa
 #define PT_SUNWBSS	0x6ffffffa	/* Sun Specific segment */
 #define PT_SUNWSTACK	0x6ffffffb	/* Stack segment */
@@ -1222,6 +1223,9 @@ typedef struct
 
 #define AT_HWCAP2	26		/* More machine-dependent hints about
 					   processor capabilities.  */
+
+#define AT_RSEQ_FEATURE_SIZE	27	/* rseq supported feature size.  */
+#define AT_RSEQ_ALIGN	28		/* rseq allocation alignment.  */
 
 #define AT_EXECFN	31		/* Filename of executable.  */
 
@@ -3998,8 +4002,11 @@ enum
 #define R_RISCV_SET32		56
 #define R_RISCV_32_PCREL	57
 #define R_RISCV_IRELATIVE	58
+#define R_RISCV_PLT32		59
+#define R_RISCV_SET_ULEB128	60
+#define R_RISCV_SUB_ULEB128	61
 
-#define R_RISCV_NUM		59
+#define R_RISCV_NUM		62
 
 /* RISC-V specific values for the st_other field.  */
 #define STO_RISCV_VARIANT_CC	0x80	/* Function uses variant calling

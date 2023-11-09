@@ -1,11 +1,11 @@
 /* Generated at libc build time from syscall list.  */
-/* The system call list corresponds to kernel 6.1.  */
+/* The system call list corresponds to kernel 6.4.  */
 
 #ifndef _SYSCALL_H
 # error "Never use <bits/syscall.h> directly; include <sys/syscall.h> instead."
 #endif
 
-#define __GLIBC_LINUX_VERSION_CODE 393472
+#define __GLIBC_LINUX_VERSION_CODE 394240
 
 #ifdef __NR_FAST_atomic_update
 # define SYS_FAST_atomic_update __NR_FAST_atomic_update
@@ -1817,6 +1817,10 @@
 
 #ifdef __NR_riscv_flush_icache
 # define SYS_riscv_flush_icache __NR_riscv_flush_icache
+#endif
+
+#ifdef __NR_riscv_hwprobe
+# define SYS_riscv_hwprobe __NR_riscv_hwprobe
 #endif
 
 #ifdef __NR_rmdir

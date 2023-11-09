@@ -81,7 +81,7 @@
 #  define __NTH(fct)	__attribute__ ((__nothrow__ __LEAF)) fct
 #  define __NTHNL(fct)  __attribute__ ((__nothrow__)) fct
 # else
-#  if defined __cplusplus && (__GNUC_PREREQ (2,8) || __clang_major >= 4)
+#  if defined __cplusplus && (__GNUC_PREREQ (2,8) || __clang_major__ >= 4)
 #   if __cplusplus >= 201103L
 #    define __THROW	noexcept (true)
 #   else
@@ -98,6 +98,12 @@
 #  endif
 # endif
 
+# if __GNUC_PREREQ (4, 3) || __glibc_has_attribute (__cold__)
+#  define __COLD	__attribute__ ((__cold__))
+# else
+#  define __COLD
+# endif
+
 #else	/* Not GCC or clang.  */
 
 # if (defined __cplusplus						\
@@ -110,6 +116,7 @@
 # define __THROW
 # define __THROWNL
 # define __NTH(fct)	fct
+# define __COLD
 
 #endif	/* GCC || clang.  */
 
@@ -260,6 +267,14 @@
 # endif
 # define __ASMNAME(cname)  __ASMNAME2 (__USER_LABEL_PREFIX__, cname)
 # define __ASMNAME2(prefix, cname) __STRING (prefix) cname
+
+#ifndef __REDIRECT_FORTIFY
+#define __REDIRECT_FORTIFY __REDIRECT
+#endif
+
+#ifndef __REDIRECT_FORTIFY_NTH
+#define __REDIRECT_FORTIFY_NTH __REDIRECT_NTH
+#endif
 
 /*
 #elif __SOME_OTHER_COMPILER__
@@ -569,6 +584,8 @@
 #  define __LDBL_REDIR(name, proto) ... unused__ldbl_redir
 #  define __LDBL_REDIR_DECL(name) \
   extern __typeof (name) name __asm (__ASMNAME ("__" #name "ieee128"));
+#  define __REDIRECT_LDBL(name, proto, alias) \
+  name proto __asm (__ASMNAME ("__" #alias "ieee128"))
 
 /* Alias name defined automatically, with leading underscores.  */
 #  define __LDBL_REDIR2_DECL(name) \
@@ -586,7 +603,6 @@
   __LDBL_REDIR1_NTH (name, proto, __##alias##ieee128)
 
 /* Unused.  */
-#  define __REDIRECT_LDBL(name, proto, alias) ... unused__redirect_ldbl
 #  define __LDBL_REDIR_NTH(name, proto) ... unused__ldbl_redir_nth
 
 # else

@@ -1,4 +1,4 @@
-This is cpp.info, produced by makeinfo version 7.0.2 from cpp.texi.
+This is cpp.info, produced by makeinfo version 7.0.3 from cpp.texi.
 
 Copyright © 1987-2023 Free Software Foundation, Inc.
 
@@ -1686,7 +1686,7 @@ the current function.  They tend to be useful in conjunction with
      the 2017 revision of the C standard (which is otherwise identical
      to the 2011 version apart from correction of defects).  An
      unspecified value larger than ‘201710L’ is used for the
-     experimental ‘-std=c2x’ and ‘-std=gnu2x’ modes.
+     experimental ‘-std=c23’ and ‘-std=gnu23’ modes.
 
      This macro is not defined if the ‘-traditional-cpp’ option is used,
      nor when compiling C++ or Objective-C.
@@ -3143,7 +3143,7 @@ The special operator ‘__has_attribute (OPERAND)’ may be used in ‘#if’
 and ‘#elif’ expressions to test whether the attribute referenced by its
 OPERAND is recognized by GCC. Using the operator in other contexts is
 not valid.  In C code, if compiling for strict conformance to standards
-before C2x, OPERAND must be a valid identifier.  Otherwise, OPERAND may
+before C23, OPERAND must be a valid identifier.  Otherwise, OPERAND may
 be optionally introduced by the ‘ATTRIBUTE-SCOPE::’ prefix.  The
 ATTRIBUTE-SCOPE prefix identifies the “namespace” within which the
 attribute is recognized.  The scope of GCC attributes is ‘gnu’ or

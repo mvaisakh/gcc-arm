@@ -1676,11 +1676,11 @@ namespace __gnu_cxx
 
 /* Define if C99 functions or macros in <stdio.h> should be imported in
    <cstdio> in namespace std for C++11. */
-#define _GLIBCXX11_USE_C99_STDIO 1
+/* #undef _GLIBCXX11_USE_C99_STDIO */
 
 /* Define if C99 functions or macros in <stdlib.h> should be imported in
    <cstdlib> in namespace std for C++11. */
-#define _GLIBCXX11_USE_C99_STDLIB 1
+/* #undef _GLIBCXX11_USE_C99_STDLIB */
 
 /* Define if C99 functions or macros in <wchar.h> should be imported in
    <cwchar> in namespace std for C++11. */
@@ -1701,7 +1701,7 @@ namespace __gnu_cxx
 
 /* Define if C99 functions or macros in <stdlib.h> should be imported in
    <cstdlib> in namespace std for C++98. */
-#define _GLIBCXX98_USE_C99_STDLIB 1
+/* #undef _GLIBCXX98_USE_C99_STDLIB */
 
 /* Define if C99 functions or macros in <wchar.h> should be imported in
    <cwchar> in namespace std for C++98. */
@@ -1783,7 +1783,7 @@ namespace __gnu_cxx
 
 /* Define if C99 functions or macros from <wchar.h>, <math.h>, <complex.h>,
    <stdio.h>, and <stdlib.h> can be used or exposed. */
-#define _GLIBCXX_USE_C99 1
+/* #undef _GLIBCXX_USE_C99 */
 
 /* Define if C99 functions in <complex.h> should be used in <tr1/complex>.
    Using compiler builtins for these functions requires corresponding C99

@@ -151,6 +151,7 @@
 #undef	__GLIBC_USE_ISOC2X
 #undef	__GLIBC_USE_DEPRECATED_GETS
 #undef	__GLIBC_USE_DEPRECATED_SCANF
+#undef	__GLIBC_USE_C2X_STRTOL
 
 /* Suppress kernel-name space pollution unless user expressedly asks
    for it.  */
@@ -464,6 +465,17 @@
 # define __GLIBC_USE_DEPRECATED_SCANF 0
 #endif
 
+/* ISO C2X added support for a 0b or 0B prefix on binary constants as
+   inputs to strtol-family functions (base 0 or 2).  This macro is
+   used to condition redirection in headers to allow that redirection
+   to be disabled when building those functions, despite _GNU_SOURCE
+   being defined.  */
+#if __GLIBC_USE (ISOC2X)
+# define __GLIBC_USE_C2X_STRTOL 1
+#else
+# define __GLIBC_USE_C2X_STRTOL 0
+#endif
+
 /* Get definitions of __STDC_* predefined macros, if the compiler has
    not preincluded this header automatically.  */
 #include <stdc-predef.h>
@@ -480,7 +492,7 @@
 /* Major and minor version number of the GNU C library package.  Use
    these macros to test for features in specific releases.  */
 #define	__GLIBC__	2
-#define	__GLIBC_MINOR__	37
+#define	__GLIBC_MINOR__	38
 
 #define __GLIBC_PREREQ(maj, min) \
 	((__GLIBC__ << 16) + __GLIBC_MINOR__ >= ((maj) << 16) + (min))
