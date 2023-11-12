@@ -596,6 +596,7 @@ in the following sections.
 \&\-finstrument\-functions\-exclude\-function\-list=\fR\fIsym\fR\fB,\fR\fIsym\fR\fB,...
 \&\-finstrument\-functions\-exclude\-file\-list=\fR\fIfile\fR\fB,\fR\fIfile\fR\fB,...
 \&\-fprofile\-prefix\-map=\fR\fIold\fR\fB=\fR\fInew\fR
+\&\fB\-fpatchable\-function\-entry=\fR\fIN\fR[\fB,\fR\fIM\fR]
 .IP "\fIPreprocessor Options\fR" 4
 .IX Item "Preprocessor Options"
 \&\fB\-A\fR\fIquestion\fR\fB=\fR\fIanswer\fR
@@ -6934,21 +6935,30 @@ This warning is enabled by \fB\-Wall\fR for C and C++.
 .IX Item "-Wno-return-local-addr"
 Do not warn about returning a pointer (or in C++, a reference) to a
 variable that goes out of scope after the function returns.
+.IP \fB\-Wreturn\-mismatch\fR 4
+.IX Item "-Wreturn-mismatch"
+Warn about return statements without an expressions in functions which
+do not return \f(CW\*(C`void\*(C'\fR.  Also warn about a \f(CW\*(C`return\*(C'\fR statement
+with an expression in a function whose return type is \f(CW\*(C`void\*(C'\fR,
+unless the expression type is also \f(CW\*(C`void\*(C'\fR.  As a GNU extension, the
+latter case is accepted without a warning unless \fB\-Wpedantic\fR is
+used.
+.Sp
+Attempting to use the return value of a non\-\f(CW\*(C`void\*(C'\fR function other
+than \f(CW\*(C`main\*(C'\fR that flows off the end by reaching the closing curly
+brace that terminates the function is undefined.
+.Sp
+This warning is specific to C and enabled by default.
 .IP \fB\-Wreturn\-type\fR 4
 .IX Item "-Wreturn-type"
-Warn whenever a function is defined with a return type that defaults
-to \f(CW\*(C`int\*(C'\fR.  Also warn about any \f(CW\*(C`return\*(C'\fR statement with no
-return value in a function whose return type is not \f(CW\*(C`void\*(C'\fR
-(falling off the end of the function body is considered returning
-without a value).
+Warn whenever a function is defined with a return type that defaults to
+\&\f(CW\*(C`int\*(C'\fR (unless \fB\-Wimplicit\-int\fR is active, which takes
+precedence).  Also warn if execution may reach the end of the function
+body, or if the function does not contain any return statement at all.
 .Sp
-For C only, warn about a \f(CW\*(C`return\*(C'\fR statement with an expression in a
-function whose return type is \f(CW\*(C`void\*(C'\fR, unless the expression type is
-also \f(CW\*(C`void\*(C'\fR.  As a GNU extension, the latter case is accepted
-without a warning unless \fB\-Wpedantic\fR is used.  Attempting
-to use the return value of a non\-\f(CW\*(C`void\*(C'\fR function other than \f(CW\*(C`main\*(C'\fR
-that flows off the end by reaching the closing curly brace that terminates
-the function is undefined.
+Attempting to use the return value of a non\-\f(CW\*(C`void\*(C'\fR function other
+than \f(CW\*(C`main\*(C'\fR that flows off the end by reaching the closing curly
+brace that terminates the function is undefined.
 .Sp
 Unlike in C, in C++, flowing off the end of a non\-\f(CW\*(C`void\*(C'\fR function other
 than \f(CW\*(C`main\*(C'\fR results in undefined behavior even when the value of

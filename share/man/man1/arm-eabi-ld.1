@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "LD 1"
-.TH LD 1 2023-11-09 binutils-2.41.50 "GNU Development Tools"
+.TH LD 1 2023-11-12 binutils-2.41.50 "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2519,30 +2519,58 @@ detect the use of global constructors.
 .IP \fB\-\-warn\-execstack\fR 4
 .IX Item "--warn-execstack"
 .PD 0
+.IP \fB\-\-warn\-execstack\-objects\fR 4
+.IX Item "--warn-execstack-objects"
 .IP \fB\-\-no\-warn\-execstack\fR 4
 .IX Item "--no-warn-execstack"
 .PD
-On ELF platforms this option controls how the linker generates warning
-messages when it creates an output file with an executable stack.  By
-default the linker will not warn if the \fB\-z execstack\fR command
-line option has been used, but this behaviour can be overridden by the
-\&\fB\-\-warn\-execstack\fR option.
+On ELF platforms the linker may generate warning messages if it is
+asked to create an output file that contains an executable stack.
+There are three possible states:
+.RS 4
+.IP 1. 4
+Do not generate any warnings.
+.IP 2. 4
+Always generate warnings, even if the executable stack is requested
+via the \fB\-z execstack\fR command line option.
+.IP 3. 4
+Only generate a warning if an object file requests an executable
+stack, but not if the \fB\-z execstack\fR option is used.
+.RE
+.RS 4
 .Sp
-On the other hand the linker will normally warn if the stack is made
-executable because one or more of the input files need an execuable
-stack and neither of the \fB\-z execstack\fR or \fB\-z
-noexecstack\fR command line options have been specified.  This warning
-can be disabled via the \fB\-\-no\-warn\-execstack\fR option.
+The default state depends upon how the linker was configured when it
+was built.  The \fB\-\-no\-warn\-execstack\fR option always puts the
+linker into the no-warnings state.  The \fB\-\-warn\-execstack\fR
+option puts the linker into the warn-always state.  The
+\&\fB\-\-warn\-execstack\-objects\fR option puts the linker into the
+warn-for-object-files-only state.
 .Sp
-Note: ELF format input files specify that they need an executable
+Note: ELF format input files can specify that they need an executable
 stack by having a \fI.note.GNU\-stack\fR section with the executable
 bit set in its section flags.  They can specify that they do not need
-an executable stack by having that section, but without the executable
-flag bit set.  If an input file does not have a \fI.note.GNU\-stack\fR
-section present then the default behaviour is target specific.  For
-some targets, then absence of such a section implies that an
-executable stack \fIis\fR required.  This is often a problem for hand
-crafted assembler files.
+an executable stack by having the same section, but without the
+executable flag bit set.  If an input file does not have a
+\&\fI.note.GNU\-stack\fR section then the default behaviour is target
+specific.  For some targets, then absence of such a section implies
+that an executable stack \fIis\fR required.  This is often a problem
+for hand crafted assembler files.
+.RE
+.IP \fB\-\-error\-execstack\fR 4
+.IX Item "--error-execstack"
+.PD 0
+.IP \fB\-\-no\-error\-execstack\fR 4
+.IX Item "--no-error-execstack"
+.PD
+If the linker is going to generate a warning message about an
+executable stack then the \fB\-\-error\-execstack\fR option will
+instead change that warning into an error.  Note \- this option does
+not change the linker's execstack warning generation state.  Use
+\&\fB\-\-warn\-execstack\fR or \fB\-\-warn\-execstack\-objects\fR to set
+a specific warning state.
+.Sp
+The \fB\-\-no\-error\-execstack\fR option will restore the default
+behaviour of generating warning messages.
 .IP \fB\-\-warn\-multiple\-gp\fR 4
 .IX Item "--warn-multiple-gp"
 Warn if multiple global pointer values are required in the output file.
@@ -2576,6 +2604,22 @@ not it has the read and/or write flags set.
 These warnings are enabled by default.  They can be disabled via the
 \&\fB\-\-no\-warn\-rwx\-segments\fR option and re-enabled via the
 \&\fB\-\-warn\-rwx\-segments\fR option.
+.IP \fB\-\-error\-rwx\-segments\fR 4
+.IX Item "--error-rwx-segments"
+.PD 0
+.IP \fB\-\-no\-error\-rwx\-segments\fR 4
+.IX Item "--no-error-rwx-segments"
+.PD
+If the linker is going to generate a warning message about an
+executable, writeable segment, or an executable TLS segment, then the
+\&\fB\-\-error\-rwx\-segments\fR option will turn this warning into an
+error instead.  The \fB\-\-no\-error\-rwx\-segments\fR option will
+restore the default behaviour of just generating a warning message.
+.Sp
+Note \- the \fB\-\-error\-rwx\-segments\fR option does not by itself
+turn on warnings about these segments.  These warnings are either
+enabled by default, if the linker was configured that way, or via the
+\&\fB\-\-warn\-rwx\-segments\fR command line option.
 .IP \fB\-\-warn\-section\-align\fR 4
 .IX Item "--warn-section-align"
 Warn if the address of an output section is changed because of

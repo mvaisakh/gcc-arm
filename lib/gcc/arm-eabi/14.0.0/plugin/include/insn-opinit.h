@@ -183,6 +183,7 @@ enum optab_tag {
   cond_fnma_optab,
   cond_fnms_optab,
   cond_neg_optab,
+  cond_copysign_optab,
   cond_one_cmpl_optab,
   cond_len_add_optab,
   cond_len_sub_optab,
@@ -208,6 +209,7 @@ enum optab_tag {
   cond_len_fnma_optab,
   cond_len_fnms_optab,
   cond_len_neg_optab,
+  cond_len_copysign_optab,
   cond_len_one_cmpl_optab,
   vcond_mask_len_optab,
   cmov_optab,
@@ -456,7 +458,7 @@ enum optab_tag {
   LAST_NORM_OPTAB = select_vl_optab
 };
 
-#define NUM_OPTABS          444
+#define NUM_OPTABS          446
 #define NUM_CONVLIB_OPTABS  15
 #define NUM_NORMLIB_OPTABS  80
 #define NUM_OPTAB_PATTERNS  929
