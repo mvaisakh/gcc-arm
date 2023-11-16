@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJDUMP 1"
-.TH OBJDUMP 1 2023-11-12 binutils-2.41.50 "GNU Development Tools"
+.TH OBJDUMP 1 2023-11-16 binutils-2.41.50 "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -89,6 +89,7 @@ objdump [\fB\-a\fR|\fB\-\-archive\-headers\fR]
         [\fB\-r\fR|\fB\-\-reloc\fR]
         [\fB\-R\fR|\fB\-\-dynamic\-reloc\fR]
         [\fB\-s\fR|\fB\-\-full\-contents\fR]
+        [\fB\-Z\fR|\fB\-\-decompress\fR]
         [\fB\-W[lLiaprmfFsoORtUuTgAck]\fR|
          \fB\-\-dwarf\fR[=rawline,=decodedline,=info,=abbrev,=pubnames,=aranges,=macro,=frames,=frames\-interp,=str,=str\-offsets,=loc,=Ranges,=pubtypes,=trace_info,=trace_abbrev,=trace_aranges,=gdb_index,=addr,=cu_index,=links]]
         [\fB\-WK\fR|\fB\-\-dwarf=follow\-links\fR]
@@ -747,7 +748,10 @@ disassembly.
 .PD
 Display the full contents of sections, often used in combination with
 \&\fB\-j\fR to request specific sections.  By default all non-empty
-non-bss sections are displayed.
+non-bss sections are displayed.  By default any compressed section
+will be displayed in its compressed form.  In order to see the
+contents in a decompressed form add the \fB\-Z\fR option to the
+command line.
 .IP \fB\-S\fR 4
 .IX Item "-S"
 .PD 0
@@ -1367,6 +1371,15 @@ Also do not truncate symbol names when they are displayed.
 Normally the disassembly output will skip blocks of zeroes.  This
 option directs the disassembler to disassemble those blocks, just like
 any other data.
+.IP \fB\-Z\fR 4
+.IX Item "-Z"
+.PD 0
+.IP \fB\-\-decompress\fR 4
+.IX Item "--decompress"
+.PD
+The \fB\-Z\fR option is meant to be used in conunction with the
+\&\fB\-s\fR option.  It instructs \fBobjdump\fR to decompress any
+compressed sections before displaying their contents.
 .IP \fB@\fR\fIfile\fR 4
 .IX Item "@file"
 Read command-line options from \fIfile\fR.  The options read are

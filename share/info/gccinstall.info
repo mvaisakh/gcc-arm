@@ -357,6 +357,18 @@ Python3 modules
      ada documentation
           ‘latex_elements’, ‘os’, ‘pygments’, ‘re’, ‘sys’ and ‘time’.
 
+GNU gettext
+
+     Necessary to build GCC with internationalization support via
+     ‘--enable-nls’.  It can be downloaded from
+     <https://gnu.org/s/gettext/>.  If a GNU gettext distribution is
+     found in a subdirectory of your GCC sources named ‘gettext’, it
+     will be built together with GCC, unless present in the system
+     (either in libc or as a stand-alone library).
+
+     The in-tree configuration requires GNU gettext version 0.22 or
+     later.
+
 Tools/packages necessary for modifying GCC
 ==========================================
 
@@ -493,13 +505,13 @@ of the binutils you intend to build alongside the compiler (‘bfd’,
 ‘binutils’, ‘gas’, ‘gprof’, ‘ld’, ‘opcodes’, ...) to the directory
 containing the GCC sources.
 
-   Likewise the GMP, MPFR and MPC libraries can be automatically built
-together with GCC. You may simply run the
+   Likewise the GMP, MPFR, MPC and Gettext libraries can be
+automatically built together with GCC. You may simply run the
 ‘contrib/download_prerequisites’ script in the GCC source directory to
-set up everything.  Otherwise unpack the GMP, MPFR and/or MPC source
-distributions in the directory containing the GCC sources and rename
-their directories to ‘gmp’, ‘mpfr’ and ‘mpc’, respectively (or use
-symbolic links with the same name).
+set up everything.  Otherwise unpack the GMP, MPFR, MPC and/or Gettext
+source distributions in the directory containing the GCC sources and
+rename their directories to ‘gmp’, ‘mpfr’, ‘mpc’ and ‘gettext’,
+respectively (or use symbolic links with the same name).
 
 
 File: gccinstall.info,  Node: Configuration,  Next: Building,  Prev: Downloading the source,  Up: Installing GCC
@@ -1950,9 +1962,52 @@ option.
      doing a canadian cross build.  The ‘--disable-nls’ option disables
      NLS.
 
+     Note that this functionality requires either libintl (provided by
+     GNU gettext) or C standard library that contains support for
+     gettext (such as the GNU C Library).  *Note –with-included-gettext:
+     with-included-gettext. for more information on the conditions
+     required to get gettext support.
+
+‘--with-libintl-prefix=DIR’
+‘--without-libintl-prefix’
+     Searches for libintl in ‘DIR/include’ and ‘DIR/lib’, or disables
+     manual searching for it, letting the linker handle it.
+
+‘--with-libintl-type=TYPE’
+     Specifies the type of library to search for when looking for
+     libintl.  TYPE can be one of ‘auto’, ‘static’ or ‘shared’.
+
 ‘--with-included-gettext’
-     If NLS is enabled, the ‘--with-included-gettext’ option causes the
-     build procedure to prefer its copy of GNU ‘gettext’.
+     Only available if ‘gettext’ is present in the source tree.
+
+     Forces the gettext tree to be configured to build and use a new
+     static libintl, overriding the system libintl.  Results in GCC
+     being built against the newly built libintl rather than the system
+     libintl.
+
+     The build system makes a somewhat complicated choice when picking
+     where to get gettext routines from.  The following table is a
+     summary of the possible options:
+
+     GNU       libintl   ‘gettext’ ‘--with-included-gettext’Effects on localization
+     gettext   installed present                  
+     present   on the    in libc
+     in        system
+     sources
+     ------------------------------------------------------------------------------
+     No        No        No        (ignored)      No localization
+     No        No        Yes       (ignored)      Localized, libc gettext
+     No        Yes       No        (ignored)      Localized, libintl
+     No        Yes       Yes       (ignored)      Localized, libintl
+                                                  
+     Yes       No        No        No             Localized, new, static libintl
+     Yes       No        No        Yes            Localized, new, static libintl
+     Yes       No        Yes       No             Localized, libc gettext
+     Yes       No        Yes       Yes            Localized, new, static libintl
+     Yes       Yes       No        No             Localized, libintl
+     Yes       Yes       No        Yes            Localized, new, static libintl
+     Yes       Yes       Yes       No             Localized, libintl
+     Yes       Yes       Yes       Yes            Localized, new, static libintl
 
 ‘--with-catgets’
      If NLS is enabled, and if the host lacks ‘gettext’ but has the
@@ -4930,7 +4985,7 @@ Concept Index
 * Menu:
 
 * Binaries:                              Binaries.           (line    6)
-* build_configargs:                      Configuration.      (line 1923)
+* build_configargs:                      Configuration.      (line 1966)
 * Configuration:                         Configuration.      (line    6)
 * Downloading GCC:                       Downloading the source.
                                                              (line    6)
@@ -4939,7 +4994,7 @@ Concept Index
 * FDL, GNU Free Documentation License:   GNU Free Documentation License.
                                                              (line    6)
 * Host specific installation:            Specific.           (line    6)
-* host_configargs:                       Configuration.      (line 1927)
+* host_configargs:                       Configuration.      (line 1970)
 * Installing GCC: Binaries:              Binaries.           (line    6)
 * Installing GCC: Building:              Building.           (line    6)
 * Installing GCC: Configuration:         Configuration.      (line    6)
@@ -4949,7 +5004,7 @@ Concept Index
 * Specific installation notes:           Specific.           (line    6)
 * Target specific installation:          Specific.           (line    6)
 * Target specific installation notes:    Specific.           (line    6)
-* target_configargs:                     Configuration.      (line 1931)
+* target_configargs:                     Configuration.      (line 1974)
 * Testing:                               Testing.            (line    6)
 * Testsuite:                             Testing.            (line    6)
 
@@ -4962,98 +5017,99 @@ Node: Prerequisites3859
 Ref: GNAT-prerequisite5871
 Ref: GDC-prerequisite7296
 Ref: GM2-prerequisite8501
-Node: Downloading the source18844
-Node: Configuration20563
-Ref: with-gnu-as40401
-Ref: with-as41290
-Ref: with-gnu-ld42699
-Ref: WithAixSoname73510
-Ref: AixLdCommand74225
-Node: Building118381
-Node: Testing135078
-Node: Final install143041
-Node: Binaries147854
-Node: Specific148868
-Ref: aarch64-x-x149402
-Ref: amd64-x-solaris2151486
-Ref: amdgcn-x-amdhsa151572
-Ref: arc-x-elf32152417
-Ref: arc-linux-uclibc152609
-Ref: arm-x-eabi152754
-Ref: avr153011
-Ref: bfin153600
-Ref: cris153863
-Ref: dos154193
-Ref: epiphany-x-elf154518
-Ref: x-x-freebsd154623
-Ref: ft32-x-elf156211
-Ref: h8300-hms156309
-Ref: hppa-hp-hpux156661
-Ref: hppa-hp-hpux10159083
-Ref: hppa-hp-hpux11159500
-Ref: x-x-linux-gnu165018
-Ref: ix86-x-linux165349
-Ref: ix86-x-solaris2165662
-Ref: ia64-x-linux165922
-Ref: ia64-x-hpux166173
-Ref: x-ibm-aix166740
-Ref: TransferAixShobj170468
-Ref: iq2000-x-elf174370
-Ref: lm32-x-elf174510
-Ref: lm32-x-uclinux174614
-Ref: loongarch174742
-Ref: m32c-x-elf175415
-Ref: m32r-x-elf175517
-Ref: m68k-x-x175619
-Ref: m68k-x-uclinux176749
-Ref: microblaze-x-elf177002
-Ref: mips-x-x177121
-Ref: moxie-x-elf179115
-Ref: msp430-x-elf179162
-Ref: nds32le-x-elf179731
-Ref: nds32be-x-elf179803
-Ref: nvptx-x-none179872
-Ref: or1k-x-elf180781
-Ref: or1k-x-linux180912
-Ref: powerpc-x-x180993
-Ref: powerpc-x-darwin181192
-Ref: powerpc-x-elf181687
-Ref: powerpc-x-linux-gnu181772
-Ref: powerpc-x-netbsd181867
-Ref: powerpc-x-eabisim181955
-Ref: powerpc-x-eabi182081
-Ref: powerpcle-x-elf182157
-Ref: powerpcle-x-eabisim182249
-Ref: powerpcle-x-eabi182382
-Ref: rl78-x-elf182465
-Ref: riscv32-x-elf182571
-Ref: riscv32-x-linux182760
-Ref: riscv64-x-elf182917
-Ref: riscv64-x-linux183106
-Ref: rx-x-elf183263
-Ref: s390-x-linux183309
-Ref: s390x-x-linux183381
-Ref: s390x-ibm-tpf183468
-Ref: x-x-solaris2183599
-Ref: sparc-x-x187540
-Ref: sparc-sun-solaris2188042
-Ref: sparc-x-linux188957
-Ref: sparc64-x-solaris2188988
-Ref: sparcv9-x-solaris2189079
-Ref: c6x-x-x189828
-Ref: visium-x-elf189920
-Ref: x-x-vxworks190028
-Ref: x86-64-x-x191617
-Ref: x86-64-x-solaris2191949
-Ref: xtensa-x-elf192603
-Ref: xtensa-x-linux193282
-Ref: windows193635
-Ref: x-x-cygwin195288
-Ref: x-x-mingw32195843
-Ref: older196241
-Ref: elf198382
-Node: GNU Free Documentation License198636
-Node: Concept Index223977
+Node: Downloading the source19317
+Node: Configuration21069
+Ref: with-gnu-as40907
+Ref: with-as41796
+Ref: with-gnu-ld43205
+Ref: WithAixSoname74016
+Ref: AixLdCommand74731
+Ref: with-included-gettext91477
+Node: Building121154
+Node: Testing137851
+Node: Final install145814
+Node: Binaries150627
+Node: Specific151641
+Ref: aarch64-x-x152175
+Ref: amd64-x-solaris2154259
+Ref: amdgcn-x-amdhsa154345
+Ref: arc-x-elf32155190
+Ref: arc-linux-uclibc155382
+Ref: arm-x-eabi155527
+Ref: avr155784
+Ref: bfin156373
+Ref: cris156636
+Ref: dos156966
+Ref: epiphany-x-elf157291
+Ref: x-x-freebsd157396
+Ref: ft32-x-elf158984
+Ref: h8300-hms159082
+Ref: hppa-hp-hpux159434
+Ref: hppa-hp-hpux10161856
+Ref: hppa-hp-hpux11162273
+Ref: x-x-linux-gnu167791
+Ref: ix86-x-linux168122
+Ref: ix86-x-solaris2168435
+Ref: ia64-x-linux168695
+Ref: ia64-x-hpux168946
+Ref: x-ibm-aix169513
+Ref: TransferAixShobj173241
+Ref: iq2000-x-elf177143
+Ref: lm32-x-elf177283
+Ref: lm32-x-uclinux177387
+Ref: loongarch177515
+Ref: m32c-x-elf178188
+Ref: m32r-x-elf178290
+Ref: m68k-x-x178392
+Ref: m68k-x-uclinux179522
+Ref: microblaze-x-elf179775
+Ref: mips-x-x179894
+Ref: moxie-x-elf181888
+Ref: msp430-x-elf181935
+Ref: nds32le-x-elf182504
+Ref: nds32be-x-elf182576
+Ref: nvptx-x-none182645
+Ref: or1k-x-elf183554
+Ref: or1k-x-linux183685
+Ref: powerpc-x-x183766
+Ref: powerpc-x-darwin183965
+Ref: powerpc-x-elf184460
+Ref: powerpc-x-linux-gnu184545
+Ref: powerpc-x-netbsd184640
+Ref: powerpc-x-eabisim184728
+Ref: powerpc-x-eabi184854
+Ref: powerpcle-x-elf184930
+Ref: powerpcle-x-eabisim185022
+Ref: powerpcle-x-eabi185155
+Ref: rl78-x-elf185238
+Ref: riscv32-x-elf185344
+Ref: riscv32-x-linux185533
+Ref: riscv64-x-elf185690
+Ref: riscv64-x-linux185879
+Ref: rx-x-elf186036
+Ref: s390-x-linux186082
+Ref: s390x-x-linux186154
+Ref: s390x-ibm-tpf186241
+Ref: x-x-solaris2186372
+Ref: sparc-x-x190313
+Ref: sparc-sun-solaris2190815
+Ref: sparc-x-linux191730
+Ref: sparc64-x-solaris2191761
+Ref: sparcv9-x-solaris2191852
+Ref: c6x-x-x192601
+Ref: visium-x-elf192693
+Ref: x-x-vxworks192801
+Ref: x86-64-x-x194390
+Ref: x86-64-x-solaris2194722
+Ref: xtensa-x-elf195376
+Ref: xtensa-x-linux196055
+Ref: windows196408
+Ref: x-x-cygwin198061
+Ref: x-x-mingw32198616
+Ref: older199014
+Ref: elf201155
+Node: GNU Free Documentation License201409
+Node: Concept Index226750
 
 End Tag Table
 

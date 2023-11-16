@@ -387,6 +387,12 @@
 #endif
 
 
+/* Define if your assembler supports conditional branch relaxation. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_AS_COND_BRANCH_RELAXATION */
+#endif
+
+
 /* Define if your assembler supports the --debug-prefix-map option. */
 #ifndef USED_FOR_TARGET
 #define HAVE_AS_DEBUG_PREFIX_MAP 1
@@ -821,6 +827,20 @@
 #endif
 
 
+/* Define to 1 if you have the Mac OS X function
+   CFLocaleCopyPreferredLanguages in the CoreFoundation framework. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_CFLOCALECOPYPREFERREDLANGUAGES */
+#endif
+
+
+/* Define to 1 if you have the Mac OS X function CFPreferencesCopyAppValue in
+   the CoreFoundation framework. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_CFPREFERENCESCOPYAPPVALUE */
+#endif
+
+
 /* Define to 1 if you have the `clearerr_unlocked' function. */
 #ifndef USED_FOR_TARGET
 #define HAVE_CLEARERR_UNLOCKED 1
@@ -842,6 +862,13 @@
 /* Define 0/1 if your assembler and linker support COMDAT groups. */
 #ifndef USED_FOR_TARGET
 #define HAVE_COMDAT_GROUP 1
+#endif
+
+
+/* Define if the GNU dcgettext() function is already present or preinstalled.
+   */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_DCGETTEXT */
 #endif
 
 
@@ -1517,6 +1544,12 @@
 #endif
 
 
+/* Define if the GNU gettext() function is already present or preinstalled. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_GETTEXT */
+#endif
+
+
 /* Define to 1 if you have the `gettimeofday' function. */
 #ifndef USED_FOR_TARGET
 #define HAVE_GETTIMEOFDAY 1
@@ -1548,7 +1581,7 @@
 #endif
 
 
-/* Define if you have the iconv() function. */
+/* Define if you have the iconv() function and it works. */
 #ifndef USED_FOR_TARGET
 #define HAVE_ICONV 1
 #endif

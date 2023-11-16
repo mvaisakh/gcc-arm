@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-11-09 gcc-14.0.0 GNU
+.TH GCC 1 2023-11-16 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -975,7 +975,7 @@ in the following sections.
 \&\-mmax\-inline\-memcpy\-size=\fR\fIn\fR
 \&\fB\-mexplicit\-relocs=\fR\fIstyle\fR \fB\-mexplicit\-relocs \-mno\-explicit\-relocs
 \&\-mdirect\-extern\-access \-mno\-direct\-extern\-access
-\&\-mcmodel=\fR\fIcode-model\fR
+\&\-mcmodel=\fR\fIcode-model\fR \fB\-mrelax \-mpass\-mrelax\-to\-as\fR
 .Sp
 \&\fIM32R/D Options\fR
 \&\fB\-m32r2  \-m32rx  \-m32r
@@ -9667,6 +9667,12 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-shift\-count\-negative
 \&\-Wanalyzer\-shift\-count\-overflow
 \&\-Wanalyzer\-stale\-setjmp\-buffer
+\&\-Wanalyzer\-tainted\-allocation\-size
+\&\-Wanalyzer\-tainted\-array\-index
+\&\-Wanalyzer\-tainted\-assertion
+\&\-Wanalyzer\-tainted\-divisor
+\&\-Wanalyzer\-tainted\-offset
+\&\-Wanalyzer\-tainted\-size
 \&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler
 \&\-Wanalyzer\-use\-after\-free
 \&\-Wanalyzer\-use\-of\-pointer\-in\-stale\-stack\-frame
@@ -10071,8 +10077,7 @@ to rewind to it via \f(CW\*(C`longjmp\*(C'\fR would reference a stack frame that
 no longer exists, and likely lead to a crash (or worse).
 .IP \fB\-Wno\-analyzer\-tainted\-allocation\-size\fR 4
 .IX Item "-Wno-analyzer-tainted-allocation-size"
-This warning requires both \fB\-fanalyzer\fR and
-\&\fB\-fanalyzer\-checker=taint\fR to enable it;
+This warning requires \fB\-fanalyzer\fR which enables it;
 use \fB\-Wno\-analyzer\-tainted\-allocation\-size\fR to disable it.
 .Sp
 This diagnostic warns for paths through the code in which a value
@@ -10084,8 +10089,7 @@ of service attack.
 See  CWE\-789: Memory Allocation with Excessive Size Value (\f(CW\*(C`https://cwe.mitre.org/data/definitions/789.html\*(C'\fR).
 .IP \fB\-Wno\-analyzer\-tainted\-assertion\fR 4
 .IX Item "-Wno-analyzer-tainted-assertion"
-This warning requires both \fB\-fanalyzer\fR and
-\&\fB\-fanalyzer\-checker=taint\fR to enable it;
+This warning requires \fB\-fanalyzer\fR which enables it;
 use \fB\-Wno\-analyzer\-tainted\-assertion\fR to disable it.
 .Sp
 This diagnostic warns for paths through the code in which a value
@@ -10143,8 +10147,7 @@ despite the above not being an assertion failure, strictly speaking.
 .RE
 .IP \fB\-Wno\-analyzer\-tainted\-array\-index\fR 4
 .IX Item "-Wno-analyzer-tainted-array-index"
-This warning requires both \fB\-fanalyzer\fR and
-\&\fB\-fanalyzer\-checker=taint\fR to enable it;
+This warning requires \fB\-fanalyzer\fR which enables it;
 use \fB\-Wno\-analyzer\-tainted\-array\-index\fR to disable it.
 .Sp
 This diagnostic warns for paths through the code in which a value
@@ -10155,8 +10158,7 @@ could inject an out-of-bounds access.
 See  CWE\-129: Improper Validation of Array Index (\f(CW\*(C`https://cwe.mitre.org/data/definitions/129.html\*(C'\fR).
 .IP \fB\-Wno\-analyzer\-tainted\-divisor\fR 4
 .IX Item "-Wno-analyzer-tainted-divisor"
-This warning requires both \fB\-fanalyzer\fR and
-\&\fB\-fanalyzer\-checker=taint\fR to enable it;
+This warning requires \fB\-fanalyzer\fR which enables it;
 use \fB\-Wno\-analyzer\-tainted\-divisor\fR to disable it.
 .Sp
 This diagnostic warns for paths through the code in which a value
@@ -10167,8 +10169,7 @@ an attacker could inject a division-by-zero.
 See  CWE\-369: Divide By Zero (\f(CW\*(C`https://cwe.mitre.org/data/definitions/369.html\*(C'\fR).
 .IP \fB\-Wno\-analyzer\-tainted\-offset\fR 4
 .IX Item "-Wno-analyzer-tainted-offset"
-This warning requires both \fB\-fanalyzer\fR and
-\&\fB\-fanalyzer\-checker=taint\fR to enable it;
+This warning requires \fB\-fanalyzer\fR which enables it;
 use \fB\-Wno\-analyzer\-tainted\-offset\fR to disable it.
 .Sp
 This diagnostic warns for paths through the code in which a value
@@ -10179,8 +10180,7 @@ access.
 See  CWE\-823: Use of Out-of-range Pointer Offset (\f(CW\*(C`https://cwe.mitre.org/data/definitions/823.html\*(C'\fR).
 .IP \fB\-Wno\-analyzer\-tainted\-size\fR 4
 .IX Item "-Wno-analyzer-tainted-size"
-This warning requires both \fB\-fanalyzer\fR and
-\&\fB\-fanalyzer\-checker=taint\fR to enable it;
+This warning requires \fB\-fanalyzer\fR which enables it;
 use \fB\-Wno\-analyzer\-tainted\-size\fR to disable it.
 .Sp
 This diagnostic warns for paths through the code in which a value
@@ -10496,36 +10496,6 @@ call site, and that are sufficiently complicated (as per
 .IP \fB\-fanalyzer\-checker=\fR\fIname\fR 4
 .IX Item "-fanalyzer-checker=name"
 Restrict the analyzer to run just the named checker, and enable it.
-.Sp
-Some checkers are disabled by default (even with \fB\-fanalyzer\fR),
-such as the \f(CW\*(C`taint\*(C'\fR checker that implements
-\&\fB\-Wanalyzer\-tainted\-array\-index\fR, and this option is required
-to enable them.
-.Sp
-\&\fINote:\fR currently, \fB\-fanalyzer\-checker=taint\fR disables the
-following warnings from \fB\-fanalyzer\fR:
-.Sp
-\&\fB\-Wanalyzer\-deref\-before\-check
-\&\-Wanalyzer\-double\-fclose
-\&\-Wanalyzer\-double\-free
-\&\-Wanalyzer\-exposure\-through\-output\-file
-\&\-Wanalyzer\-fd\-access\-mode\-mismatch
-\&\-Wanalyzer\-fd\-double\-close
-\&\-Wanalyzer\-fd\-leak
-\&\-Wanalyzer\-fd\-use\-after\-close
-\&\-Wanalyzer\-fd\-use\-without\-check
-\&\-Wanalyzer\-file\-leak
-\&\-Wanalyzer\-free\-of\-non\-heap
-\&\-Wanalyzer\-malloc\-leak
-\&\-Wanalyzer\-mismatching\-deallocation
-\&\-Wanalyzer\-null\-argument
-\&\-Wanalyzer\-null\-dereference
-\&\-Wanalyzer\-possible\-null\-argument
-\&\-Wanalyzer\-possible\-null\-dereference
-\&\-Wanalyzer\-unsafe\-call\-within\-signal\-handler
-\&\-Wanalyzer\-use\-after\-free
-\&\-Wanalyzer\-va\-list\-leak
-\&\-Wanalyzer\-va\-list\-use\-after\-va\-end\fR
 .IP \fB\-fanalyzer\-debug\-text\-art\-headings\fR 4
 .IX Item "-fanalyzer-debug-text-art-headings"
 This option is intended for analyzer developers.  If enabled,
@@ -25485,16 +25455,14 @@ with \fB\-mexplicit\-relocs=always\fR the assembler relocation operators
 are always used, with \fB\-mexplicit\-relocs=auto\fR the compiler will
 use the relocation operators where the linker relaxation is impossible to
 improve the code quality, and macros elsewhere.  The default
-value for the option is determined during GCC build-time by detecting
-corresponding assembler support:
+value for the option is determined with the assembler capability detected
+during GCC build-time and the setting of \fB\-mrelax\fR:
 \&\fB\-mexplicit\-relocs=none\fR if the assembler does not support
 relocation operators at all,
 \&\fB\-mexplicit\-relocs=always\fR if the assembler supports relocation
-operators but does not support relaxation,
-\&\fB\-mexplicit\-relocs=auto\fR if the assembler supports both relocation
-operators and relaxation.  This option is mostly useful for
-debugging, or interoperation with assemblers different from the build-time
-one.
+operators but \fB\-mrelax\fR is not enabled,
+\&\fB\-mexplicit\-relocs=auto\fR if the assembler supports relocation
+operators and \fB\-mrelax\fR is enabled.
 .IP \fB\-mexplicit\-relocs\fR 4
 .IX Item "-mexplicit-relocs"
 An alias of \fB\-mexplicit\-relocs=always\fR for backward compatibility.
@@ -25517,6 +25485,34 @@ environments where no dynamic link is performed, like firmwares, OS
 kernels, executables linked with \fB\-static\fR or \fB\-static\-pie\fR.
 \&\fB\-mdirect\-extern\-access\fR is not compatible with \fB\-fPIC\fR or
 \&\fB\-fpic\fR.
+.IP \fB\-mrelax\fR 4
+.IX Item "-mrelax"
+.PD 0
+.IP \fB\-mno\-relax\fR 4
+.IX Item "-mno-relax"
+.PD
+Take (do not take) advantage of linker relaxations.  If
+\&\fB\-mpass\-mrelax\-to\-as\fR is enabled, this option is also passed to
+the assembler.  The default is determined during GCC build-time by
+detecting corresponding assembler support:
+\&\fB\-mrelax\fR if the assembler supports both the \fB\-mrelax\fR
+option and the conditional branch relaxation (it's required or the
+\&\f(CW\*(C`.align\*(C'\fR directives and conditional branch instructions in the
+assembly code outputted by GCC may be rejected by the assembler because
+of a relocation overflow), \fB\-mno\-relax\fR otherwise.
+.IP \fB\-mpass\-mrelax\-to\-as\fR 4
+.IX Item "-mpass-mrelax-to-as"
+.PD 0
+.IP \fB\-mno\-pass\-mrelax\-to\-as\fR 4
+.IX Item "-mno-pass-mrelax-to-as"
+.PD
+Pass (do not pass) the \fB\-mrelax\fR or \fB\-mno\-relax\fR option
+to the assembler.  The default is determined during GCC build-time by
+detecting corresponding assembler support:
+\&\fB\-mpass\-mrelax\-to\-as\fR if the assembler supports the
+\&\fB\-mrelax\fR option, \fB\-mno\-pass\-mrelax\-to\-as\fR otherwise.
+This option is mostly useful for debugging, or interoperation with
+assemblers different from the build-time one.
 .IP \fBloongarch-vect-unroll-limit\fR 4
 .IX Item "loongarch-vect-unroll-limit"
 The vectorizer will use available tuning information to determine whether it
