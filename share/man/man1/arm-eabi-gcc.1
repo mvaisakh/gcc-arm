@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-11-16 gcc-14.0.0 GNU
+.TH GCC 1 2023-11-19 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -393,6 +393,7 @@ in the following sections.
 \&\-fdump\-analyzer\-exploded\-nodes\-3
 \&\-fdump\-analyzer\-exploded\-paths
 \&\-fdump\-analyzer\-feasibility
+\&\-fdump\-analyzer\-infinite\-loop
 \&\-fdump\-analyzer\-json
 \&\-fdump\-analyzer\-state\-purge
 \&\-fdump\-analyzer\-stderr
@@ -412,6 +413,7 @@ in the following sections.
 \&\-Wno\-analyzer\-file\-leak
 \&\-Wno\-analyzer\-free\-of\-non\-heap
 \&\-Wno\-analyzer\-imprecise\-fp\-arithmetic
+\&\-Wno\-analyzer\-infinite\-loop
 \&\-Wno\-analyzer\-infinite\-recursion
 \&\-Wno\-analyzer\-jump\-through\-null
 \&\-Wno\-analyzer\-malloc\-leak
@@ -9653,6 +9655,7 @@ Enabling this option effectively enables the following warnings:
 \&\-Wanalyzer\-file\-leak
 \&\-Wanalyzer\-free\-of\-non\-heap
 \&\-Wanalyzer\-imprecise\-fp\-arithmetic
+\&\-Wanalyzer\-infinite\-loop
 \&\-Wanalyzer\-infinite\-recursion
 \&\-Wanalyzer\-jump\-through\-null
 \&\-Wanalyzer\-malloc\-leak
@@ -9882,6 +9885,57 @@ This diagnostic warns for paths through the code in which floating-point
 arithmetic is used in locations where precise computation is needed.  This
 diagnostic only warns on use of floating-point operands inside the
 calculation of an allocation size at the moment.
+.IP \fB\-Wno\-analyzer\-infinite\-loop\fR 4
+.IX Item "-Wno-analyzer-infinite-loop"
+This warning requires \fB\-fanalyzer\fR, which enables it; use
+\&\fB\-Wno\-analyzer\-infinite\-loop\fR to disable it.
+.Sp
+This diagnostics warns for paths through the code which appear to
+lead to an infinite loop.
+.Sp
+Specifically, the analyzer will issue this warning when it "sees" a loop
+in which:
+.RS 4
+.IP * 4
+no externally-visible work could be being done within the loop
+.IP * 4
+there is no way to escape from the loop
+.IP * 4
+the analyzer is sufficiently confident about the program state
+throughout the loop to know that the above are true
+.RE
+.RS 4
+.Sp
+One way for this warning to be emitted is when there is an execution
+path through a loop for which taking the path on one iteration implies
+that the same path will be taken on all subsequent iterations.
+.Sp
+For example, consider:
+.Sp
+.Vb 10
+\&          while (1)
+\&            {
+\&              char opcode = *cpu_state.pc;
+\&              switch (opcode)
+\&               {
+\&               case OPCODE_FOO:
+\&                 handle_opcode_foo (&cpu_state);
+\&                 break;
+\&               case OPCODE_BAR:
+\&                 handle_opcode_bar (&cpu_state);
+\&                 break;
+\&               }
+\&            }
+.Ve
+.Sp
+The analyzer will complain for the above case because if \f(CW\*(C`opcode\*(C'\fR
+ever matches none of the cases, the \f(CW\*(C`switch\*(C'\fR will follow the
+implicit \f(CW\*(C`default\*(C'\fR case, making the body of the loop be a "no-op"
+with \f(CW\*(C`cpu_state.pc\*(C'\fR unchanged, and thus using the same value of
+\&\f(CW\*(C`opcode\*(C'\fR on all subseqent iterations, leading to an infinite loop.
+.Sp
+See  CWE\-835: Loop with Unreachable Exit Condition ('Infinite Loop') (\f(CW\*(C`https://cwe.mitre.org/data/definitions/835.html\*(C'\fR).
+.RE
 .IP \fB\-Wno\-analyzer\-infinite\-recursion\fR 4
 .IX Item "-Wno-analyzer-infinite-recursion"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
@@ -9904,6 +9958,8 @@ this diagnostic.
 .Sp
 Compare with \fB\-Winfinite\-recursion\fR, which provides a similar
 diagnostic, but is implemented in a different way.
+.Sp
+See  CWE\-674: Uncontrolled Recursion (\f(CW\*(C`https://cwe.mitre.org/data/definitions/674.html\*(C'\fR).
 .IP \fB\-Wno\-analyzer\-jump\-through\-null\fR 4
 .IX Item "-Wno-analyzer-jump-through-null"
 This warning requires \fB\-fanalyzer\fR, which enables it; use
@@ -10687,6 +10743,11 @@ Dump internal details about the analyzer's search for feasible paths.
 The details are written in a form suitable for viewing with GraphViz
 to filenames of the form \fIfile.*.fg.dot\fR,
 \&\fIfile.*.tg.dot\fR, and \fIfile.*.fpath.txt\fR.
+.IP \fB\-fdump\-analyzer\-infinite\-loop\fR 4
+.IX Item "-fdump-analyzer-infinite-loop"
+Dump internal details about the analyzer's search for infinite loops.
+The details are written in a form suitable for viewing with GraphViz
+to filenames of the form \fIfile.*.infinite\-loop.dot\fR.
 .IP \fB\-fdump\-analyzer\-json\fR 4
 .IX Item "-fdump-analyzer-json"
 Dump a compressed JSON representation of analyzer internals to
@@ -15885,7 +15946,24 @@ while the second one prevents profile corruption by emitting thread-safe code.
 Using \fBprefer-atomic\fR would be transformed either to \fBatomic\fR,
 when supported by a target, or to \fBsingle\fR otherwise.  The GCC driver
 automatically selects \fBprefer-atomic\fR when \fB\-pthread\fR
-is present in the command line.
+is present in the command line, otherwise the default method is \fBsingle\fR.
+.Sp
+If \fBatomic\fR is selected, then the profile information is updated using
+atomic operations on a best-effort basis.  Ideally, the profile information is
+updated through atomic operations in hardware.  If the target platform does not
+support the required atomic operations in hardware, however, \fIlibatomic\fR
+is available, then the profile information is updated through calls to
+\&\fIlibatomic\fR.  If the target platform neither supports the required atomic
+operations in hardware nor \fIlibatomic\fR, then the profile information is
+not atomically updated and a warning is issued.  In this case, the obtained
+profiling information may be corrupt for multi-threaded applications.
+.Sp
+For performance reasons, if 64\-bit counters are used for the profiling
+information and the target platform only supports 32\-bit atomic operations in
+hardware, then the performance critical profiling updates are done using two
+32\-bit atomic operations for each counter update.  If a signal interrupts these
+two operations updating a counter, then the profiling information may be in an
+inconsistent state.
 .IP \fB\-fprofile\-filter\-files=\fR\fIregex\fR 4
 .IX Item "-fprofile-filter-files=regex"
 Instrument only functions from files whose name matches

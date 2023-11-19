@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GFORTRAN 1"
-.TH GFORTRAN 1 2023-11-16 gcc-14.0.0 GNU
+.TH GFORTRAN 1 2023-11-19 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -460,17 +460,17 @@ intermediate representation of the translated Fortran code, produced by
 .IP \fB\-std=\fR\fIstd\fR 4
 .IX Item "-std=std"
 Specify the standard to which the program is expected to conform,
-which may be one of \fBf95\fR, \fBf2003\fR, \fBf2008\fR,
-\&\fBf2018\fR, \fBgnu\fR, or \fBlegacy\fR.  The default value for
+which may be one of \fBf95\fR, \fBf2003\fR, \fBf2008\fR, \fBf2018\fR,
+\&\fBf2023\fR, \fBgnu\fR, or \fBlegacy\fR.  The default value for
 \&\fIstd\fR is \fBgnu\fR, which specifies a superset of the latest
 Fortran standard that includes all of the extensions supported by GNU
 Fortran, although warnings will be given for obsolete extensions not
 recommended for use in new code.  The \fBlegacy\fR value is
 equivalent but without the warnings for obsolete extensions, and may
-be useful for old non-standard programs.  The \fBf95\fR,
-\&\fBf2003\fR, \fBf2008\fR, and \fBf2018\fR values specify strict
-conformance to the Fortran 95, Fortran 2003, Fortran 2008 and Fortran
-2018 standards, respectively; errors are given for all extensions
+be useful for old non-standard programs.  The \fBf95\fR, \fBf2003\fR,
+\&\fBf2008\fR, \fBf2018\fR, and \fBf2023\fR values specify strict
+conformance to the Fortran 95, Fortran 2003, Fortran 2008, Fortran 2018
+and Fortran 2023 standards, respectively; errors are given for all extensions
 beyond the relevant language standard, and warnings are given for the
 Fortran 77 features that are permitted but obsolescent in later
 standards. The deprecated option \fB\-std=f2008ts\fR acts as an alias for
@@ -754,7 +754,8 @@ nonstandard practices, but not all.
 However, improvements to GNU Fortran in this area are welcome.
 .Sp
 This should be used in conjunction with \fB\-std=f95\fR,
-\&\fB\-std=f2003\fR, \fB\-std=f2008\fR or \fB\-std=f2018\fR.
+\&\fB\-std=f2003\fR, \fB\-std=f2008\fR, \fB\-std=f2018\fR
+or \fB\-std=f2023\fR.
 .IP \fB\-pedantic\-errors\fR 4
 .IX Item "-pedantic-errors"
 Like \fB\-pedantic\fR, except that errors are produced rather than
@@ -793,8 +794,8 @@ The following example will trigger the warning.
 .IX Item "-Wampersand"
 Warn about missing ampersand in continued character constants. The
 warning is given with \fB\-Wampersand\fR, \fB\-pedantic\fR,
-\&\fB\-std=f95\fR, \fB\-std=f2003\fR, \fB\-std=f2008\fR and
-\&\fB\-std=f2018\fR. Note: With no ampersand given in a continued
+\&\fB\-std=f95\fR, \fB\-std=f2003\fR, \fB\-std=f2008\fR, \fB\-std=f2018\fR
+and \fB\-std=f2023\fR. Note: With no ampersand given in a continued
 character constant, GNU Fortran assumes continuation at the first
 non-comment, non-whitespace character after the ampersand that
 initiated the continuation.
@@ -900,7 +901,7 @@ of the Fortran Character Set.  For continuation lines, a tab followed
 by a digit between 1 and 9 is supported.  \fB\-Wtabs\fR will cause a
 warning to be issued if a tab is encountered. Note, \fB\-Wtabs\fR is
 active for \fB\-pedantic\fR, \fB\-std=f95\fR, \fB\-std=f2003\fR,
-\&\fB\-std=f2008\fR, \fB\-std=f2018\fR and
+\&\fB\-std=f2008\fR, \fB\-std=f2018\fR, \fB\-std=f2023\fR and
 \&\fB\-Wall\fR.
 .IP \fB\-Wundefined\-do\-loop\fR 4
 .IX Item "-Wundefined-do-loop"
