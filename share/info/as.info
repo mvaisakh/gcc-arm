@@ -20105,6 +20105,20 @@ XTheadSync
      It is documented in
      <https://github.com/T-head-Semi/thead-extension-spec/releases/download/2.0.0/xthead-2022-09-05-2.0.0.pdf>.
 
+XTheadVector
+     The XTheadVector extension provides instructions for thead vector.
+
+     It is documented in
+     <https://github.com/T-head-Semi/thead-extension-spec/releases/download/2.3.0/xthead-2023-11-10-2.3.0.pdf>.
+
+XTheadZvamo
+     The XTheadZvamo extension is a subextension of the XTheadVector
+     extension, and it provides AMO instructions for the T-Head VECTOR
+     vendor extension.
+
+     It is documented in
+     <https://github.com/T-head-Semi/thead-extension-spec/releases/download/2.3.0/xthead-2023-11-10-2.3.0.pdf>.
+
 XVentanaCondOps
      XVentanaCondOps extension provides instructions for branchless
      sequences that perform conditional arithmetic, conditional
@@ -30955,181 +30969,181 @@ Node: RISC-V-Floating-Point752651
 Node: RISC-V-Formats754133
 Node: RISC-V-ATTRIBUTE762950
 Node: RISC-V-CustomExts764974
-Node: RL78-Dependent768908
-Node: RL78-Opts769309
-Node: RL78-Modifiers770183
-Node: RL78-Directives770974
-Node: RL78-Syntax771610
-Node: RL78-Chars771806
-Node: RX-Dependent772374
-Node: RX-Opts772805
-Node: RX-Modifiers777263
-Node: RX-Directives778374
-Node: RX-Float779125
-Node: RX-Syntax779792
-Node: RX-Chars779971
-Node: S/390-Dependent780535
-Node: s390 Options781400
-Node: s390 Characters783748
-Node: s390 Syntax784281
-Node: s390 Register785183
-Node: s390 Mnemonics786007
-Node: s390 Operands789099
-Node: s390 Formats791758
-Node: s390 Aliases801485
-Node: s390 Operand Modifier805466
-Node: s390 Instruction Marker809349
-Node: s390 Literal Pool Entries810379
-Node: s390 Directives812352
-Node: s390 Floating Point818017
-Node: SCORE-Dependent818485
-Node: SCORE-Opts818787
-Node: SCORE-Pseudo820138
-Node: SCORE-Syntax822270
-Node: SCORE-Chars822452
-Node: SH-Dependent823022
-Node: SH Options823434
-Node: SH Syntax824547
-Node: SH-Chars824820
-Node: SH-Regs825379
-Node: SH-Addressing826085
-Node: SH Floating Point827053
-Node: SH Directives828154
-Node: SH Opcodes828595
-Node: Sparc-Dependent832942
-Node: Sparc-Opts833351
-Node: Sparc-Aligned-Data839398
-Node: Sparc-Syntax840246
-Node: Sparc-Chars840820
-Node: Sparc-Regs841395
-Node: Sparc-Constants847663
-Node: Sparc-Relocs852631
-Node: Sparc-Size-Translations858123
-Node: Sparc-Float859809
-Node: Sparc-Directives860004
-Node: TIC54X-Dependent862090
-Node: TIC54X-Opts862853
-Node: TIC54X-Block863940
-Node: TIC54X-Env864300
-Node: TIC54X-Constants864664
-Node: TIC54X-Subsyms865065
-Node: TIC54X-Locals867015
-Node: TIC54X-Builtins867771
-Node: TIC54X-Ext870309
-Node: TIC54X-Directives870892
-Node: TIC54X-Macros882360
-Node: TIC54X-MMRegs884491
-Node: TIC54X-Syntax884728
-Node: TIC54X-Chars884918
-Node: TIC6X-Dependent885621
-Node: TIC6X Options885924
-Node: TIC6X Syntax888031
-Node: TIC6X Directives889170
-Node: TILE-Gx-Dependent891574
-Node: TILE-Gx Options891884
-Node: TILE-Gx Syntax892241
-Node: TILE-Gx Opcodes894509
-Node: TILE-Gx Registers894801
-Node: TILE-Gx Modifiers895632
-Node: TILE-Gx Directives900807
-Node: TILEPro-Dependent901730
-Node: TILEPro Options902039
-Node: TILEPro Syntax902227
-Node: TILEPro Opcodes904495
-Node: TILEPro Registers904790
-Node: TILEPro Modifiers905620
-Node: TILEPro Directives910595
-Node: V850-Dependent911518
-Node: V850 Options911914
-Node: V850 Syntax916276
-Node: V850-Chars916516
-Node: V850-Regs917076
-Node: V850 Floating Point918762
-Node: V850 Directives918968
-Node: V850 Opcodes921070
-Node: Vax-Dependent927121
-Node: VAX-Opts927705
-Node: VAX-float931560
-Node: VAX-directives932229
-Node: VAX-opcodes933121
-Node: VAX-branch933522
-Node: VAX-operands936246
-Node: VAX-no937049
-Node: VAX-Syntax937309
-Node: VAX-Chars937475
-Node: Visium-Dependent938041
-Node: Visium Options938354
-Node: Visium Syntax938840
-Node: Visium Characters939085
-Node: Visium Registers939678
-Node: Visium Opcodes939954
-Node: WebAssembly-Dependent940392
-Node: WebAssembly-Notes940833
-Node: WebAssembly-Syntax941123
-Node: WebAssembly-Chars941689
-Node: WebAssembly-Relocs942080
-Node: WebAssembly-Signatures942826
-Node: WebAssembly-Floating-Point943359
-Node: WebAssembly-Opcodes943600
-Node: WebAssembly-module-layout944249
-Node: XGATE-Dependent944738
-Node: XGATE-Opts945165
-Node: XGATE-Syntax946194
-Node: XGATE-Directives948449
-Node: XGATE-Float948692
-Node: XGATE-opcodes949221
-Node: XSTORMY16-Dependent949333
-Node: XStormy16 Syntax949679
-Node: XStormy16-Chars949869
-Node: XStormy16 Directives950498
-Node: XStormy16 Opcodes951176
-Node: Xtensa-Dependent952271
-Node: Xtensa Options953006
-Node: Xtensa Syntax957719
-Node: Xtensa Opcodes959887
-Node: Xtensa Registers961712
-Node: Xtensa Optimizations962377
-Node: Density Instructions962833
-Node: Xtensa Automatic Alignment963943
-Node: Xtensa Relaxation966412
-Node: Xtensa Branch Relaxation967389
-Node: Xtensa Call Relaxation968781
-Node: Xtensa Jump Relaxation970608
-Node: Xtensa Immediate Relaxation972736
-Node: Xtensa Directives975391
-Node: Schedule Directive977159
-Node: Longcalls Directive977509
-Node: Transform Directive978065
-Node: Literal Directive978815
-Ref: Literal Directive-Footnote-1982530
-Node: Literal Position Directive982684
-Node: Literal Prefix Directive984427
-Node: Absolute Literals Directive985333
-Node: Z80-Dependent986695
-Node: Z80 Options987083
-Node: Z80 Syntax989702
-Node: Z80-Chars990462
-Node: Z80-Regs991333
-Node: Z80-Case991713
-Node: Z80-Labels992185
-Node: Z80 Floating Point992693
-Node: Z80 Directives993174
-Node: Z80 Opcodes995742
-Node: Z8000-Dependent997508
-Node: Z8000 Options998452
-Node: Z8000 Syntax998677
-Node: Z8000-Chars998967
-Node: Z8000-Regs999461
-Node: Z8000-Addressing1000271
-Node: Z8000 Directives1001437
-Node: Z8000 Opcodes1003146
-Node: Reporting Bugs1013092
-Node: Bug Criteria1013830
-Node: Bug Reporting1014633
-Node: Acknowledgements1021404
-Ref: Acknowledgements-Footnote-11026424
-Node: GNU Free Documentation License1026450
-Node: AS Index1051803
+Node: RL78-Dependent769446
+Node: RL78-Opts769847
+Node: RL78-Modifiers770721
+Node: RL78-Directives771512
+Node: RL78-Syntax772148
+Node: RL78-Chars772344
+Node: RX-Dependent772912
+Node: RX-Opts773343
+Node: RX-Modifiers777801
+Node: RX-Directives778912
+Node: RX-Float779663
+Node: RX-Syntax780330
+Node: RX-Chars780509
+Node: S/390-Dependent781073
+Node: s390 Options781938
+Node: s390 Characters784286
+Node: s390 Syntax784819
+Node: s390 Register785721
+Node: s390 Mnemonics786545
+Node: s390 Operands789637
+Node: s390 Formats792296
+Node: s390 Aliases802023
+Node: s390 Operand Modifier806004
+Node: s390 Instruction Marker809887
+Node: s390 Literal Pool Entries810917
+Node: s390 Directives812890
+Node: s390 Floating Point818555
+Node: SCORE-Dependent819023
+Node: SCORE-Opts819325
+Node: SCORE-Pseudo820676
+Node: SCORE-Syntax822808
+Node: SCORE-Chars822990
+Node: SH-Dependent823560
+Node: SH Options823972
+Node: SH Syntax825085
+Node: SH-Chars825358
+Node: SH-Regs825917
+Node: SH-Addressing826623
+Node: SH Floating Point827591
+Node: SH Directives828692
+Node: SH Opcodes829133
+Node: Sparc-Dependent833480
+Node: Sparc-Opts833889
+Node: Sparc-Aligned-Data839936
+Node: Sparc-Syntax840784
+Node: Sparc-Chars841358
+Node: Sparc-Regs841933
+Node: Sparc-Constants848201
+Node: Sparc-Relocs853169
+Node: Sparc-Size-Translations858661
+Node: Sparc-Float860347
+Node: Sparc-Directives860542
+Node: TIC54X-Dependent862628
+Node: TIC54X-Opts863391
+Node: TIC54X-Block864478
+Node: TIC54X-Env864838
+Node: TIC54X-Constants865202
+Node: TIC54X-Subsyms865603
+Node: TIC54X-Locals867553
+Node: TIC54X-Builtins868309
+Node: TIC54X-Ext870847
+Node: TIC54X-Directives871430
+Node: TIC54X-Macros882898
+Node: TIC54X-MMRegs885029
+Node: TIC54X-Syntax885266
+Node: TIC54X-Chars885456
+Node: TIC6X-Dependent886159
+Node: TIC6X Options886462
+Node: TIC6X Syntax888569
+Node: TIC6X Directives889708
+Node: TILE-Gx-Dependent892112
+Node: TILE-Gx Options892422
+Node: TILE-Gx Syntax892779
+Node: TILE-Gx Opcodes895047
+Node: TILE-Gx Registers895339
+Node: TILE-Gx Modifiers896170
+Node: TILE-Gx Directives901345
+Node: TILEPro-Dependent902268
+Node: TILEPro Options902577
+Node: TILEPro Syntax902765
+Node: TILEPro Opcodes905033
+Node: TILEPro Registers905328
+Node: TILEPro Modifiers906158
+Node: TILEPro Directives911133
+Node: V850-Dependent912056
+Node: V850 Options912452
+Node: V850 Syntax916814
+Node: V850-Chars917054
+Node: V850-Regs917614
+Node: V850 Floating Point919300
+Node: V850 Directives919506
+Node: V850 Opcodes921608
+Node: Vax-Dependent927659
+Node: VAX-Opts928243
+Node: VAX-float932098
+Node: VAX-directives932767
+Node: VAX-opcodes933659
+Node: VAX-branch934060
+Node: VAX-operands936784
+Node: VAX-no937587
+Node: VAX-Syntax937847
+Node: VAX-Chars938013
+Node: Visium-Dependent938579
+Node: Visium Options938892
+Node: Visium Syntax939378
+Node: Visium Characters939623
+Node: Visium Registers940216
+Node: Visium Opcodes940492
+Node: WebAssembly-Dependent940930
+Node: WebAssembly-Notes941371
+Node: WebAssembly-Syntax941661
+Node: WebAssembly-Chars942227
+Node: WebAssembly-Relocs942618
+Node: WebAssembly-Signatures943364
+Node: WebAssembly-Floating-Point943897
+Node: WebAssembly-Opcodes944138
+Node: WebAssembly-module-layout944787
+Node: XGATE-Dependent945276
+Node: XGATE-Opts945703
+Node: XGATE-Syntax946732
+Node: XGATE-Directives948987
+Node: XGATE-Float949230
+Node: XGATE-opcodes949759
+Node: XSTORMY16-Dependent949871
+Node: XStormy16 Syntax950217
+Node: XStormy16-Chars950407
+Node: XStormy16 Directives951036
+Node: XStormy16 Opcodes951714
+Node: Xtensa-Dependent952809
+Node: Xtensa Options953544
+Node: Xtensa Syntax958257
+Node: Xtensa Opcodes960425
+Node: Xtensa Registers962250
+Node: Xtensa Optimizations962915
+Node: Density Instructions963371
+Node: Xtensa Automatic Alignment964481
+Node: Xtensa Relaxation966950
+Node: Xtensa Branch Relaxation967927
+Node: Xtensa Call Relaxation969319
+Node: Xtensa Jump Relaxation971146
+Node: Xtensa Immediate Relaxation973274
+Node: Xtensa Directives975929
+Node: Schedule Directive977697
+Node: Longcalls Directive978047
+Node: Transform Directive978603
+Node: Literal Directive979353
+Ref: Literal Directive-Footnote-1983068
+Node: Literal Position Directive983222
+Node: Literal Prefix Directive984965
+Node: Absolute Literals Directive985871
+Node: Z80-Dependent987233
+Node: Z80 Options987621
+Node: Z80 Syntax990240
+Node: Z80-Chars991000
+Node: Z80-Regs991871
+Node: Z80-Case992251
+Node: Z80-Labels992723
+Node: Z80 Floating Point993231
+Node: Z80 Directives993712
+Node: Z80 Opcodes996280
+Node: Z8000-Dependent998046
+Node: Z8000 Options998990
+Node: Z8000 Syntax999215
+Node: Z8000-Chars999505
+Node: Z8000-Regs999999
+Node: Z8000-Addressing1000809
+Node: Z8000 Directives1001975
+Node: Z8000 Opcodes1003684
+Node: Reporting Bugs1013630
+Node: Bug Criteria1014368
+Node: Bug Reporting1015171
+Node: Acknowledgements1021942
+Ref: Acknowledgements-Footnote-11026962
+Node: GNU Free Documentation License1026988
+Node: AS Index1052341
 
 End Tag Table
 

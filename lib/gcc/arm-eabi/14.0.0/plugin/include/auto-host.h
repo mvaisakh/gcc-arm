@@ -1333,6 +1333,12 @@
 #endif
 
 
+/* Define 0/1 if -fhardened is supported */
+#ifndef USED_FOR_TARGET
+#define HAVE_FHARDENED_SUPPORT 0
+#endif
+
+
 /* Define to 1 if you have the `fileno_unlocked' function. */
 #ifndef USED_FOR_TARGET
 #define HAVE_FILENO_UNLOCKED 1
@@ -1741,6 +1747,12 @@
 #endif
 
 
+/* Define 0/1 if your linker supports -z now */
+#ifndef USED_FOR_TARGET
+#define HAVE_LD_NOW_SUPPORT 1
+#endif
+
+
 /* Define if your PowerPC64 linker only needs function descriptor syms. */
 #ifndef USED_FOR_TARGET
 /* #undef HAVE_LD_NO_DOT_SYMS */
@@ -1781,6 +1793,12 @@
 /* Define if your linker supports --push-state/--pop-state */
 #ifndef USED_FOR_TARGET
 #define HAVE_LD_PUSHPOPSTATE_SUPPORT 1
+#endif
+
+
+/* Define 0/1 if your linker supports -z relro */
+#ifndef USED_FOR_TARGET
+#define HAVE_LD_RELRO_SUPPORT 1
 #endif
 
 
@@ -1866,12 +1884,6 @@
 /* Define to 1 if you have the `mbstowcs' function. */
 #ifndef USED_FOR_TARGET
 #define HAVE_MBSTOWCS 1
-#endif
-
-
-/* Define if valgrind's memcheck.h header is installed. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_MEMCHECK_H */
 #endif
 
 
@@ -2134,12 +2146,6 @@
 /* Define to 1 if the system has the type `unsigned long long int'. */
 #ifndef USED_FOR_TARGET
 #define HAVE_UNSIGNED_LONG_LONG_INT 1
-#endif
-
-
-/* Define if valgrind's valgrind/memcheck.h header is installed. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_VALGRIND_MEMCHECK_H */
 #endif
 
 

@@ -16,5 +16,6 @@
 #define HAVE_peephole 0
 #define HAVE_peephole2 1
 #define MAX_INSNS_PER_PEEP2 8
+#define NUM_REGISTER_FILTERS 0
 
 #endif /* GCC_INSN_CONFIG_H */

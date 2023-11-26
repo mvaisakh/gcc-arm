@@ -1062,37 +1062,6 @@ gen_rtx_fmt_ses_stat (RTX_CODE code, machine_mode mode,
   init_rtx_fmt_ses (rtx_alloca ((c)), (m), (arg0), (arg1), (arg2))
 
 static inline rtx
-init_rtx_fmt_sss (rtx rt, machine_mode mode,
-	const char *arg0,
-	const char *arg1,
-	const char *arg2)
-{
-  PUT_MODE_RAW (rt, mode);
-  XSTR (rt, 0) = arg0;
-  XSTR (rt, 1) = arg1;
-  XSTR (rt, 2) = arg2;
-  return rt;
-}
-
-static inline rtx
-gen_rtx_fmt_sss_stat (RTX_CODE code, machine_mode mode,
-	const char *arg0,
-	const char *arg1,
-	const char *arg2 MEM_STAT_DECL)
-{
-  rtx rt;
-
-  rt = rtx_alloc (code PASS_MEM_STAT);
-  return init_rtx_fmt_sss (rt, mode, arg0, arg1, arg2);
-}
-
-#define gen_rtx_fmt_sss(c, m, arg0, arg1, arg2) \
-  gen_rtx_fmt_sss_stat ((c), (m), (arg0), (arg1), (arg2) MEM_STAT_INFO)
-
-#define alloca_rtx_fmt_sss(c, m, arg0, arg1, arg2) \
-  init_rtx_fmt_sss (rtx_alloca ((c)), (m), (arg0), (arg1), (arg2))
-
-static inline rtx
 init_rtx_fmt_sse (rtx rt, machine_mode mode,
 	const char *arg0,
 	const char *arg1,
@@ -1626,8 +1595,6 @@ gen_rtx_fmt_ssss_stat (RTX_CODE code, machine_mode mode,
   gen_rtx_fmt_ses (DEFINE_PREDICATE, (MODE), (ARG0), (ARG1), (ARG2))
 #define gen_rtx_DEFINE_SPECIAL_PREDICATE(MODE, ARG0, ARG1, ARG2) \
   gen_rtx_fmt_ses (DEFINE_SPECIAL_PREDICATE, (MODE), (ARG0), (ARG1), (ARG2))
-#define gen_rtx_DEFINE_REGISTER_CONSTRAINT(MODE, ARG0, ARG1, ARG2) \
-  gen_rtx_fmt_sss (DEFINE_REGISTER_CONSTRAINT, (MODE), (ARG0), (ARG1), (ARG2))
 #define gen_rtx_DEFINE_CONSTRAINT(MODE, ARG0, ARG1, ARG2) \
   gen_rtx_fmt_sse (DEFINE_CONSTRAINT, (MODE), (ARG0), (ARG1), (ARG2))
 #define gen_rtx_DEFINE_MEMORY_CONSTRAINT(MODE, ARG0, ARG1, ARG2) \

@@ -22,6 +22,7 @@ extern bool memory_operand (rtx, machine_mode);
 extern bool indirect_operand (rtx, machine_mode);
 extern bool ordered_comparison_operator (rtx, machine_mode);
 extern bool comparison_operator (rtx, machine_mode);
+extern bool aligned_register_operand (rtx, machine_mode);
 extern bool const_1_to_4_operand (rtx, machine_mode);
 extern bool const_2_4_8_16_operand (rtx, machine_mode);
 extern bool alu_shift_operator_lsl_1_to_4 (rtx, machine_mode);
@@ -165,6 +166,28 @@ extern bool call_insn_operand (rtx, machine_mode);
 extern bool aligned_operand (rtx, machine_mode);
 extern bool arm_any_register_operand (rtx, machine_mode);
 #endif /* HAVE_MACHINE_MODES */
+
+#ifdef GCC_HARD_REG_SET_H
+struct target_constraints {
+  HARD_REG_SET register_filters[1];
+};
+
+extern struct target_constraints default_target_constraints;
+#if SWITCHABLE_TARGET
+extern struct target_constraints *this_target_constraints;
+#else
+#define this_target_constraints (&default_target_constraints)
+#endif
+
+#define TEST_REGISTER_FILTER_BIT(ID, REGNO) \
+  ((void) (ID), (void) (REGNO), false)
+
+inline bool
+test_register_filters (unsigned int, unsigned int)
+{
+  return true;
+}
+#endif
 
 #define CONSTRAINT_NUM_DEFINED_P 1
 enum constraint_num
@@ -410,5 +433,19 @@ get_constraint_type (enum constraint_num c)
   if (c >= CONSTRAINT_Pj)
     return CT_CONST_INT;
   return CT_REGISTER;
+}
+
+#ifdef GCC_HARD_REG_SET_H
+static inline const HARD_REG_SET *
+get_register_filter (constraint_num)
+{
+  return nullptr;
+}
+#endif
+
+static inline int
+get_register_filter_id (constraint_num)
+{
+  return -1;
 }
 #endif /* tm-preds.h */

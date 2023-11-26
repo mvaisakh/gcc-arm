@@ -1501,6 +1501,78 @@ gen_mve_q_m_f (int arg0, int arg1, machine_mode arg2, rtx x0, rtx x1, rtx x2, rt
   return res;
 }
 
+extern insn_code maybe_code_for_mve_vld1q_f (machine_mode);
+inline insn_code
+code_for_mve_vld1q_f (machine_mode arg0)
+{
+  insn_code code = maybe_code_for_mve_vld1q_f (arg0);
+  gcc_assert (code != CODE_FOR_nothing);
+  return code;
+}
+
+extern rtx maybe_gen_mve_vld1q_f (machine_mode, rtx, rtx);
+inline rtx
+gen_mve_vld1q_f (machine_mode arg0, rtx x0, rtx x1)
+{
+  rtx res = maybe_gen_mve_vld1q_f (arg0, x0, x1);
+  gcc_assert (res);
+  return res;
+}
+
+extern insn_code maybe_code_for_mve_vld1q (int, machine_mode);
+inline insn_code
+code_for_mve_vld1q (int arg0, machine_mode arg1)
+{
+  insn_code code = maybe_code_for_mve_vld1q (arg0, arg1);
+  gcc_assert (code != CODE_FOR_nothing);
+  return code;
+}
+
+extern rtx maybe_gen_mve_vld1q (int, machine_mode, rtx, rtx);
+inline rtx
+gen_mve_vld1q (int arg0, machine_mode arg1, rtx x0, rtx x1)
+{
+  rtx res = maybe_gen_mve_vld1q (arg0, arg1, x0, x1);
+  gcc_assert (res);
+  return res;
+}
+
+extern insn_code maybe_code_for_mve_vst1q_f (machine_mode);
+inline insn_code
+code_for_mve_vst1q_f (machine_mode arg0)
+{
+  insn_code code = maybe_code_for_mve_vst1q_f (arg0);
+  gcc_assert (code != CODE_FOR_nothing);
+  return code;
+}
+
+extern rtx maybe_gen_mve_vst1q_f (machine_mode, rtx, rtx);
+inline rtx
+gen_mve_vst1q_f (machine_mode arg0, rtx x0, rtx x1)
+{
+  rtx res = maybe_gen_mve_vst1q_f (arg0, x0, x1);
+  gcc_assert (res);
+  return res;
+}
+
+extern insn_code maybe_code_for_mve_vst1q (int, machine_mode);
+inline insn_code
+code_for_mve_vst1q (int arg0, machine_mode arg1)
+{
+  insn_code code = maybe_code_for_mve_vst1q (arg0, arg1);
+  gcc_assert (code != CODE_FOR_nothing);
+  return code;
+}
+
+extern rtx maybe_gen_mve_vst1q (int, machine_mode, rtx, rtx);
+inline rtx
+gen_mve_vst1q (int arg0, machine_mode arg1, rtx x0, rtx x1)
+{
+  rtx res = maybe_gen_mve_vst1q (arg0, arg1, x0, x1);
+  gcc_assert (res);
+  return res;
+}
+
 extern insn_code maybe_code_for_arm_mve_reinterpret (machine_mode);
 inline insn_code
 code_for_arm_mve_reinterpret (machine_mode arg0)

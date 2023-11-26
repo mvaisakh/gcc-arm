@@ -33,6 +33,7 @@ the section entitled “GNU Free Documentation License”.
 * Invocation::                  Invocation
 * Scripts::                     Linker Scripts
 * Plugins::                     Linker Plugins
+* Special Sections::            Special Sections
 * Machine Dependent::           Machine Dependent Features
 * BFD::                         BFD
 
@@ -6263,6 +6264,49 @@ library ‘libcrypto.a’ which may be found in ‘/usr/local/lib’, the
      -L/usr/local/lib -lcrypto
 
 
+File: ld.info,  Node: Special Sections,  Next: Machine Dependent,  Prev: Plugins,  Up: Top
+
+When linking ELF format object files ‘ld’ treats some sections in a
+special, non standard manner.  This part of the manual describes these
+sections.
+
+‘.gnu.warning’
+     The contents of any section with this name are assumed to be an
+     ascii format warning message.  The contents will be displayed to
+     the user if the sections appears in any input file, but the section
+     will not be copied into the output image.  If the
+     ‘--fatal-warnings’ option is enabled then the warnings - if any are
+     encountered - will also stop the link from completing.
+
+     Note - the ‘.gnu.warning’ section is not subject to linker garbage
+     collection or orphan handling.
+
+‘.gnu.warning.SYM’
+     The contents of any section whoes name starts with the prefix
+     ‘.gnu.warning.’ and then finishes with the name of a symbol is
+     treated in a similar fashion to the ‘.gnu.warning’ section, but
+     only if the named symbol is referenced.  So for example the
+     contents of a section called ‘.gnu.warning.foo’ will be displayed
+     as warning message if, and only if, the symbol ‘foo’ is referenced
+     by one or more of the input files.  This includes object files
+     pulled in from static libraries, shared objects needed to complete
+     the link and so on.
+
+     Note - because these warning messages are generated before the
+     linker performs garbage collection (if enabled) it is possible for
+     a warning to be displayed for a symbol that is later removed and
+     then never appears in the final output.
+
+‘.note.gnu.property’
+     When the linker combines sections of this name it will merge them
+     together according to various rules encoded into the notes
+     themselves.  Therefore the contents of the output
+     .note.gnu.property section may not correspond to a simple
+     concatenation of the input sections.  If the ‘-Map’ option has been
+     used to request a linker map then details of any property merging
+     will be included in the map.
+
+
 File: ld.info,  Node: Machine Dependent,  Next: BFD,  Prev: Plugins,  Up: Top
 
 5 Machine Dependent Features
@@ -9655,93 +9699,94 @@ LD Index
 
 Tag Table:
 Node: Top711
-Node: Overview1546
-Node: Invocation2693
-Node: Options3105
-Node: Environment148277
-Node: Scripts150126
-Node: Basic Script Concepts151870
-Node: Script Format154650
-Node: Simple Example155521
-Node: Simple Commands158757
-Node: Entry Point159262
-Node: File Commands160336
-Node: Format Commands164863
-Node: REGION_ALIAS166911
-Node: Miscellaneous Commands171906
-Node: Assignments178217
-Node: Simple Assignments178728
-Node: HIDDEN180531
-Node: PROVIDE181168
-Node: PROVIDE_HIDDEN182746
-Node: Source Code Reference182996
-Node: SECTIONS186959
-Node: Output Section Description188879
-Node: Output Section Name190128
-Node: Output Section Address191029
-Node: Input Section193282
-Node: Input Section Basics194083
-Node: Input Section Wildcards199237
-Node: Input Section Common205480
-Node: Input Section Keep206990
-Node: Input Section Example207498
-Node: Output Section Data208969
-Node: Output Section Keywords214310
-Node: Output Section Discarding217985
-Node: Output Section Attributes219927
-Node: Output Section Type221048
-Node: Output Section LMA223433
-Node: Forced Output Alignment226576
-Node: Forced Input Alignment227007
-Node: Output Section Constraint227395
-Node: Output Section Region227831
-Node: Output Section Phdr228268
-Node: Output Section Fill228944
-Node: Overlay Description230331
-Node: MEMORY234876
-Node: PHDRS239628
-Node: VERSION245106
-Node: Expressions253397
-Node: Constants254410
-Node: Symbolic Constants255352
-Node: Symbols255919
-Node: Orphan Sections256674
-Node: Location Counter258267
-Node: Operators262845
-Node: Evaluation263875
-Node: Expression Section265247
-Node: Builtin Functions269325
-Node: Implicit Linker Scripts278406
-Node: Plugins279193
-Node: libdep Plugin279754
-Node: Machine Dependent281599
-Node: H8/300282763
-Node: M68HC11/68HC12284964
-Node: ARM286471
-Node: HPPA ELF32298899
-Node: M68K300574
-Node: MIPS301523
-Node: MMIX302683
-Node: MSP430303904
-Node: NDS32305897
-Node: Nios II306945
-Node: PowerPC ELF32308317
-Node: PowerPC64 ELF64311262
-Node: S/390 ELF321380
-Node: SPU ELF321739
-Node: TI COFF324465
-Node: WIN32325005
-Node: Xtensa346760
-Node: BFD350315
-Node: BFD outline351777
-Node: BFD information loss353071
-Node: Canonical format355625
-Node: Reporting Bugs359970
-Node: Bug Criteria360676
-Node: Bug Reporting361399
-Node: MRI368572
-Node: GNU Free Documentation License373251
-Node: LD Index398591
+Node: Overview1595
+Node: Invocation2742
+Node: Options3154
+Node: Environment148326
+Node: Scripts150175
+Node: Basic Script Concepts151919
+Node: Script Format154699
+Node: Simple Example155570
+Node: Simple Commands158806
+Node: Entry Point159311
+Node: File Commands160385
+Node: Format Commands164912
+Node: REGION_ALIAS166960
+Node: Miscellaneous Commands171955
+Node: Assignments178266
+Node: Simple Assignments178777
+Node: HIDDEN180580
+Node: PROVIDE181217
+Node: PROVIDE_HIDDEN182795
+Node: Source Code Reference183045
+Node: SECTIONS187008
+Node: Output Section Description188928
+Node: Output Section Name190177
+Node: Output Section Address191078
+Node: Input Section193331
+Node: Input Section Basics194132
+Node: Input Section Wildcards199286
+Node: Input Section Common205529
+Node: Input Section Keep207039
+Node: Input Section Example207547
+Node: Output Section Data209018
+Node: Output Section Keywords214359
+Node: Output Section Discarding218034
+Node: Output Section Attributes219976
+Node: Output Section Type221097
+Node: Output Section LMA223482
+Node: Forced Output Alignment226625
+Node: Forced Input Alignment227056
+Node: Output Section Constraint227444
+Node: Output Section Region227880
+Node: Output Section Phdr228317
+Node: Output Section Fill228993
+Node: Overlay Description230380
+Node: MEMORY234925
+Node: PHDRS239677
+Node: VERSION245155
+Node: Expressions253446
+Node: Constants254459
+Node: Symbolic Constants255401
+Node: Symbols255968
+Node: Orphan Sections256723
+Node: Location Counter258316
+Node: Operators262894
+Node: Evaluation263924
+Node: Expression Section265296
+Node: Builtin Functions269374
+Node: Implicit Linker Scripts278455
+Node: Plugins279242
+Node: libdep Plugin279803
+Node: Special Sections281648
+Node: Machine Dependent283767
+Node: H8/300284931
+Node: M68HC11/68HC12287132
+Node: ARM288639
+Node: HPPA ELF32301067
+Node: M68K302742
+Node: MIPS303691
+Node: MMIX304851
+Node: MSP430306072
+Node: NDS32308065
+Node: Nios II309113
+Node: PowerPC ELF32310485
+Node: PowerPC64 ELF64313430
+Node: S/390 ELF323548
+Node: SPU ELF323907
+Node: TI COFF326633
+Node: WIN32327173
+Node: Xtensa348928
+Node: BFD352483
+Node: BFD outline353945
+Node: BFD information loss355239
+Node: Canonical format357793
+Node: Reporting Bugs362138
+Node: Bug Criteria362844
+Node: Bug Reporting363567
+Node: MRI370740
+Node: GNU Free Documentation License375419
+Node: LD Index400759
 
 End Tag Table
 
