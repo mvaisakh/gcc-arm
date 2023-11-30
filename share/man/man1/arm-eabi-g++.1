@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-11-26 gcc-14.0.0 GNU
+.TH GCC 1 2023-11-30 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -502,6 +502,7 @@ in the following sections.
 \&\-fgcse  \-fgcse\-after\-reload  \-fgcse\-las  \-fgcse\-lm  \-fgraphite\-identity
 \&\-fgcse\-sm  \-fhoist\-adjacent\-loads  \-fif\-conversion
 \&\-fif\-conversion2  \-findirect\-inlining
+\&\-finline\-stringops[=\fR\fIfn\fR\fB]
 \&\-finline\-functions  \-finline\-functions\-called\-once  \-finline\-limit=\fR\fIn\fR
 \&\fB\-finline\-small\-functions \-fipa\-modref \-fipa\-cp  \-fipa\-cp\-clone
 \&\-fipa\-bit\-cp  \-fipa\-vrp  \-fipa\-pta  \-fipa\-profile  \-fipa\-pure\-const
@@ -11538,6 +11539,19 @@ Optimize various standard C string functions (e.g. \f(CW\*(C`strlen\*(C'\fR,
 their \f(CW\*(C`_FORTIFY_SOURCE\*(C'\fR counterparts into faster alternatives.
 .Sp
 Enabled at levels \fB\-O2\fR, \fB\-O3\fR.
+.IP \fB\-finline\-stringops[=\fR\fIfn\fR\fB]\fR 4
+.IX Item "-finline-stringops[=fn]"
+Expand memory and string operations (for now, only \f(CW\*(C`memset\*(C'\fR)
+inline, even when the length is variable or big enough as to require
+looping.  This is most useful along with \fB\-ffreestanding\fR and
+\&\fB\-fno\-builtin\fR.
+.Sp
+In some circumstances, it enables the compiler to generate code that
+takes advantage of known alignment and length multipliers, but even then
+it may be less efficient than optimized runtime implementations, and
+grow code size so much that even a less performant but shared
+implementation runs faster due to better use of code caches.  This
+option is disabled by default.
 .IP \fB\-fno\-inline\fR 4
 .IX Item "-fno-inline"
 Do not expand any functions inline apart from those marked with
@@ -12756,6 +12770,26 @@ The values used for pattern initialization might be changed in the future.
 .RS 4
 .Sp
 The default is \fBuninitialized\fR.
+.Sp
+Note that the initializer values, whether \fBzero\fR or \fBpattern\fR,
+refer to data representation (in memory or machine registers), rather
+than to their interpretation as numerical values.  This distinction may
+be important in languages that support types with biases or implicit
+multipliers, and with such extensions as \fBhardbool\fR.  For example, a variable that uses 8 bits to represent
+(biased) quantities in the \f(CW\*(C`range 160..400\*(C'\fR will be initialized
+with the bit patterns \f(CW0x00\fR or \f(CW0xFE\fR, depending on
+\&\fIchoice\fR, whether or not these representations stand for values in
+that range, and even if they do, the interpretation of the value held by
+the variable will depend on the bias.  A \fBhardbool\fR variable that
+uses say \f(CW\*(C`0X5A\*(C'\fR and \f(CW0xA5\fR for \f(CW\*(C`false\*(C'\fR and \f(CW\*(C`true\*(C'\fR,
+respectively, will trap with either \fBchoice\fR of trivial
+initializer, i.e., \fBzero\fR initialization will not convert to the
+representation for \f(CW\*(C`false\*(C'\fR, even if it would for a \f(CW\*(C`static\*(C'\fR
+variable of the same type.  This means the initializer pattern doesn't
+generally depend on the type of the initialized variable.  One notable
+exception is that (non-hardened) boolean variables that fit in registers
+are initialized with \f(CW\*(C`false\*(C'\fR (zero), even when \fBpattern\fR is
+requested.
 .Sp
 You can control this behavior for a specific variable by using the variable
 attribute \f(CW\*(C`uninitialized\*(C'\fR.
@@ -20117,7 +20151,7 @@ performance of the code.  Permissible values for this option are:
 \&\fBcortex\-r82\fR, \fBcortex\-x1\fR, \fBcortex\-x1c\fR, \fBcortex\-x2\fR,
 \&\fBcortex\-x3\fR, \fBcortex\-x4\fR, \fBcortex\-a510\fR, \fBcortex\-a520\fR,
 \&\fBcortex\-a710\fR, \fBcortex\-a715\fR, \fBcortex\-a720\fR, \fBampere1\fR,
-\&\fBampere1a\fR, and \fBnative\fR.
+\&\fBampere1a\fR, \fBampere1b\fR, and \fBnative\fR.
 .Sp
 The values \fBcortex\-a57.cortex\-a53\fR, \fBcortex\-a72.cortex\-a53\fR,
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
@@ -28663,9 +28697,10 @@ conventions are: \fBilp32\fR, \fBilp32f\fR, \fBilp32d\fR, \fBlp64\fR,
 \&\fBlp64f\fR, and \fBlp64d\fR.  Some calling conventions are impossible to
 implement on some ISAs: for example, \fB\-march=rv32if \-mabi=ilp32d\fR is
 invalid because the ABI requires 64\-bit values be passed in F registers, but F
-registers are only 32 bits wide.  There is also the \fBilp32e\fR ABI that can
-only be used with the \fBrv32e\fR architecture.  This ABI is not well
-specified at present, and is subject to change.
+registers are only 32 bits wide.  There are also the \fBilp32e\fR ABI that can
+only be used with the \fBrv32e\fR architecture and the \fBlp64e\fR ABI that
+can only be used with the \fBrv64e\fR.  Those ABIs are not well specified at
+present, and are subject to change.
 .IP \fB\-mfdiv\fR 4
 .IX Item "-mfdiv"
 .PD 0

@@ -2900,6 +2900,8 @@ directive”: ‘#if’, ‘#ifdef’ or ‘#ifndef’.
 * __has_cpp_attribute::
 * __has_c_attribute::
 * __has_builtin::
+* __has_feature::
+* __has_extension::
 * __has_include::
 
 
@@ -3203,7 +3205,7 @@ introduced into the C standard, or when the syntax of operands to the
 attribute was extended in the C standard.
 
 
-File: cpp.info,  Node: __has_builtin,  Next: __has_include,  Prev: __has_c_attribute,  Up: Conditional Syntax
+File: cpp.info,  Node: __has_builtin,  Next: __has_feature,  Prev: __has_c_attribute,  Up: Conditional Syntax
 
 4.2.9 ‘__has_builtin’
 ---------------------
@@ -3229,9 +3231,52 @@ portable code.  Thus, the recommended use of the operator is as follows:
      #endif
 
 
-File: cpp.info,  Node: __has_include,  Prev: __has_builtin,  Up: Conditional Syntax
+File: cpp.info,  Node: __has_feature,  Next: __has_extension,  Prev: __has_builtin,  Up: Conditional Syntax
 
-4.2.10 ‘__has_include’
+4.2.10 ‘__has_feature’
+----------------------
+
+The special operator ‘__has_feature (OPERAND)’ may be used in constant
+integer contexts and in preprocessor ‘#if’ and ‘#elif’ expressions to
+test whether the identifier given in OPERAND is recognized as a feature
+supported by GCC given the current options and, in the case of standard
+language features, whether the feature is available in the chosen
+version of the language standard.
+
+   Note that ‘__has_feature’ and ‘__has_extension’ are not recommended
+for use in new code, and are only provided for compatibility with Clang.
+For details of which identifiers are accepted by these function-like
+macros, see
+the Clang documentation (https://clang.llvm.org/docs/LanguageExtensions.html#has-feature-and-has-extension).
+
+
+File: cpp.info,  Node: __has_extension,  Next: __has_include,  Prev: __has_feature,  Up: Conditional Syntax
+
+4.2.11 ‘__has_extension’
+------------------------
+
+The special operator ‘__has_extension (OPERAND)’ may be used in constant
+integer contexts and in preprocessor ‘#if’ and ‘#elif’ expressions to
+test whether the identifier given in OPERAND is recognized as an
+extension supported by GCC given the current options.  In any given
+context, the features accepted by ‘__has_extension’ are a strict
+superset of those accepted by ‘__has_feature’.  Unlike ‘__has_feature’,
+‘__has_extension’ tests whether a given feature is available regardless
+of strict language standards conformance.
+
+   If the ‘-pedantic-errors’ flag is given, ‘__has_extension’ is
+equivalent to ‘__has_feature’.
+
+   Note that ‘__has_feature’ and ‘__has_extension’ are not recommended
+for use in new code, and are only provided for compatibility with Clang.
+For details of which identifiers are accepted by these function-like
+macros, see
+the Clang documentation (https://clang.llvm.org/docs/LanguageExtensions.html#has-feature-and-has-extension).
+
+
+File: cpp.info,  Node: __has_include,  Prev: __has_extension,  Up: Conditional Syntax
+
+4.2.12 ‘__has_include’
 ----------------------
 
 The special operator ‘__has_include (OPERAND)’ may be used in ‘#if’ and
@@ -5408,6 +5453,8 @@ Concept Index
 * __has_builtin:                         __has_builtin.       (line   6)
 * __has_cpp_attribute:                   __has_cpp_attribute. (line   6)
 * __has_c_attribute:                     __has_c_attribute.   (line   6)
+* __has_extension:                       __has_extension.     (line   6)
+* __has_feature:                         __has_feature.       (line   6)
 * __has_include:                         __has_include.       (line   6)
 * alternative tokens:                    Tokenization.        (line 100)
 * arguments:                             Macro Arguments.     (line   6)
@@ -5589,41 +5636,43 @@ Node: Newlines in Arguments117404
 Node: Conditionals118361
 Node: Conditional Uses120081
 Node: Conditional Syntax121445
-Node: Ifdef121883
-Node: If125128
-Node: Defined127502
-Node: Else128963
-Node: Elif129549
-Node: __has_attribute130938
-Node: __has_cpp_attribute132578
-Node: __has_c_attribute133496
-Node: __has_builtin134305
-Node: __has_include135466
-Node: Deleted Code137101
-Node: Diagnostics138394
-Node: Line Control139983
-Node: Pragmas142333
-Node: Other Directives146997
-Node: Preprocessor Output148075
-Node: Traditional Mode151302
-Node: Traditional lexical analysis152443
-Node: Traditional macros154972
-Node: Traditional miscellany158793
-Node: Traditional warnings159827
-Node: Implementation Details162094
-Node: Implementation-defined behavior162659
-Ref: Identifier characters163429
-Node: Implementation limits166556
-Node: Obsolete Features169261
-Node: Invocation172163
-Ref: dashMF178440
-Ref: fdollars-in-identifiers183374
-Ref: Wtrigraphs198257
-Node: Environment Variables200382
-Node: GNU Free Documentation License204207
-Node: Index of Directives229560
-Node: Option Index231859
-Node: Concept Index237971
+Node: Ifdef121921
+Node: If125166
+Node: Defined127540
+Node: Else129001
+Node: Elif129587
+Node: __has_attribute130976
+Node: __has_cpp_attribute132616
+Node: __has_c_attribute133534
+Node: __has_builtin134343
+Node: __has_feature135504
+Node: __has_extension136407
+Node: __has_include137581
+Node: Deleted Code139218
+Node: Diagnostics140511
+Node: Line Control142100
+Node: Pragmas144450
+Node: Other Directives149114
+Node: Preprocessor Output150192
+Node: Traditional Mode153419
+Node: Traditional lexical analysis154560
+Node: Traditional macros157089
+Node: Traditional miscellany160910
+Node: Traditional warnings161944
+Node: Implementation Details164211
+Node: Implementation-defined behavior164776
+Ref: Identifier characters165546
+Node: Implementation limits168673
+Node: Obsolete Features171378
+Node: Invocation174280
+Ref: dashMF180557
+Ref: fdollars-in-identifiers185491
+Ref: Wtrigraphs200374
+Node: Environment Variables202499
+Node: GNU Free Documentation License206324
+Node: Index of Directives231677
+Node: Option Index233976
+Node: Concept Index240088
 
 End Tag Table
 
