@@ -1565,7 +1565,7 @@ the ‘--reverse-bytes’ option.)
      over using a linker script to perform the rename in that the output
      stays as an object file and does not become a linked executable.
      This option accepts the same set of flags as the
-     ‘--sect-section-flags’ option.
+     ‘--set-section-flags’ option.
 
      This option is particularly helpful when the input format is
      binary, since this will always create a section called .data.  If
@@ -6203,30 +6203,30 @@ Node: ar cmdline7012
 Node: ar scripts21102
 Node: nm27108
 Node: objcopy43434
-Node: objdump86335
-Node: ranlib126589
-Node: size128286
-Node: strings132672
-Node: strip138760
-Node: c++filt149159
-Ref: c++filt-Footnote-1155222
-Node: addr2line155336
-Node: windmc161539
-Node: windres165472
-Node: dlltool172480
-Node: def file format186535
-Node: readelf189285
-Node: elfedit209988
-Node: Common Options213558
-Node: Selecting the Target System214604
-Node: Target Selection215544
-Node: Architecture Selection217669
-Node: debuginfod218545
-Node: Reporting Bugs219579
-Node: Bug Criteria220341
-Node: Bug Reporting220900
-Node: GNU Free Documentation License227857
-Node: Binutils Index253220
+Node: objdump86334
+Node: ranlib126588
+Node: size128285
+Node: strings132671
+Node: strip138759
+Node: c++filt149158
+Ref: c++filt-Footnote-1155221
+Node: addr2line155335
+Node: windmc161538
+Node: windres165471
+Node: dlltool172479
+Node: def file format186534
+Node: readelf189284
+Node: elfedit209987
+Node: Common Options213557
+Node: Selecting the Target System214603
+Node: Target Selection215543
+Node: Architecture Selection217668
+Node: debuginfod218544
+Node: Reporting Bugs219578
+Node: Bug Criteria220340
+Node: Bug Reporting220899
+Node: GNU Free Documentation License227856
+Node: Binutils Index253219
 
 End Tag Table
 

@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-11-30 gcc-14.0.0 GNU
+.TH GCC 1 2023-12-07 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -169,6 +169,7 @@ in the following sections.
 \&\fB\-fno\-elide\-constructors
 \&\-fno\-enforce\-eh\-specs
 \&\-fno\-gnu\-keywords
+\&\-fno\-immediate\-escalation
 \&\-fno\-implicit\-templates
 \&\-fno\-implicit\-inline\-templates
 \&\-fno\-implement\-inlines
@@ -252,7 +253,8 @@ in the following sections.
 \&\fB\-fdiagnostics\-color=\fR[\fBauto\fR|\fBnever\fR|\fBalways\fR]
 \&\fB\-fdiagnostics\-urls=\fR[\fBauto\fR|\fBnever\fR|\fBalways\fR]
 \&\fB\-fdiagnostics\-format=\fR[\fBtext\fR|\fBsarif-stderr\fR|\fBsarif-file\fR|\fBjson\fR|\fBjson-stderr\fR|\fBjson-file\fR]
-\&\fB\-fno\-diagnostics\-show\-option  \-fno\-diagnostics\-show\-caret
+\&\fB\-fno\-diagnostics\-json\-formatting
+\&\-fno\-diagnostics\-show\-option  \-fno\-diagnostics\-show\-caret
 \&\-fno\-diagnostics\-show\-labels  \-fno\-diagnostics\-show\-line\-numbers
 \&\-fno\-diagnostics\-show\-cwe
 \&\-fno\-diagnostics\-show\-rule
@@ -434,6 +436,7 @@ in the following sections.
 \&\-Wno\-analyzer\-tainted\-divisor
 \&\-Wno\-analyzer\-tainted\-offset
 \&\-Wno\-analyzer\-tainted\-size
+\&\-Wanalyzer\-symbol\-too\-complex
 \&\-Wanalyzer\-too\-complex
 \&\-Wno\-analyzer\-undefined\-behavior\-strtok
 \&\-Wno\-analyzer\-unsafe\-call\-within\-signal\-handler
@@ -449,7 +452,8 @@ in the following sections.
 .IP "\fIC and Objective-C-only Warning Options\fR" 4
 .IX Item "C and Objective-C-only Warning Options"
 \&\fB\-Wbad\-function\-cast  \-Wmissing\-declarations
-\&\-Wmissing\-parameter\-type \-Wmissing\-prototypes \-Wmissing\-variable\-declarations
+\&\-Wmissing\-parameter\-type \-Wdeclaration\-missing\-parameter\-type
+\&\-Wmissing\-prototypes \-Wmissing\-variable\-declarations
 \&\-Wnested\-externs \-Wold\-style\-declaration  \-Wold\-style\-definition
 \&\-Wstrict\-prototypes  \-Wtraditional  \-Wtraditional\-conversion
 \&\-Wdeclaration\-after\-statement  \-Wpointer\-sign\fR
@@ -594,6 +598,8 @@ in the following sections.
 \&\-fstack\-protector\-explicit  \-fstack\-check
 \&\-fstack\-limit\-register=\fR\fIreg\fR  \fB\-fstack\-limit\-symbol=\fR\fIsym\fR
 \&\fB\-fno\-stack\-limit  \-fsplit\-stack
+\&\-fstrub=disable  \-fstrub=strict  \-fstrub=relaxed
+\&\-fstrub=all  \-fstrub=at\-calls  \-fstrub=internal
 \&\-fvtable\-verify=\fR[\fBstd\fR|\fBpreinit\fR|\fBnone\fR]
 \&\fB\-fvtv\-counts  \-fvtv\-debug
 \&\-finstrument\-functions  \-finstrument\-functions\-once
@@ -3315,6 +3321,37 @@ Do not recognize \f(CW\*(C`typeof\*(C'\fR as a keyword, so that code can use thi
 word as an identifier.  You can use the keyword \f(CW\*(C`_\|_typeof_\|_\*(C'\fR instead.
 This option is implied by the strict ISO C++ dialects: \fB\-ansi\fR,
 \&\fB\-std=c++98\fR, \fB\-std=c++11\fR, etc.
+.IP \fB\-fno\-immediate\-escalation\fR 4
+.IX Item "-fno-immediate-escalation"
+Do not enable immediate function escalation whereby certain functions
+can be promoted to consteval, as specified in P2564R3.  For example:
+.Sp
+.Vb 1
+\&        consteval int id(int i) { return i; }
+\&        
+\&        constexpr int f(auto t)
+\&        {
+\&          return t + id(t); // id causes f<int> to be promoted to consteval
+\&        }
+\&        
+\&        void g(int i)
+\&        {
+\&          f (3);
+\&        }
+.Ve
+.Sp
+compiles in C++20: \f(CW\*(C`f\*(C'\fR is an immediate-escalating function (due to
+the \f(CW\*(C`auto\*(C'\fR it is a function template and is declared \f(CW\*(C`constexpr\*(C'\fR)
+and \f(CWid(t)\fR is an immediate-escalating expression, so \f(CW\*(C`f\*(C'\fR is
+promoted to \f(CW\*(C`consteval\*(C'\fR.  Consequently, the call to \f(CWid(t)\fR
+is in an immediate context, so doesn't have to produce a constant (that
+is the mechanism allowing consteval function composition).  However,
+with \fB\-fno\-immediate\-escalation\fR, \f(CW\*(C`f\*(C'\fR is not promoted to
+\&\f(CW\*(C`consteval\*(C'\fR, and since the call to consteval function \f(CWid(t)\fR
+is not a constant expression, the compiler rejects the code.
+.Sp
+This option is turned on by default; it is only effective in C++20 mode
+or later.
 .IP \fB\-fimplicit\-constexpr\fR 4
 .IX Item "-fimplicit-constexpr"
 Make inline functions implicitly constexpr, if they satisfy the
@@ -5425,8 +5462,7 @@ where the JSON is emitted to \- with the former, the JSON is emitted to stderr,
 whereas with \fBjson-file\fR it is written to \fIsource.gcc.json\fR.
 .Sp
 The emitted JSON consists of a top-level JSON array containing JSON objects
-representing the diagnostics.  The JSON is emitted as one line, without
-formatting; the examples below have been formatted for clarity.
+representing the diagnostics.
 .Sp
 Diagnostics can have child diagnostics.  For example, this error and note:
 .Sp
@@ -5682,6 +5718,22 @@ Diagnostics have a boolean attribute \f(CW\*(C`escape\-source\*(C'\fR, hinting w
 non-ASCII bytes should be escaped when printing the pertinent lines of
 source code (\f(CW\*(C`true\*(C'\fR for diagnostics involving source encoding issues).
 .RE
+.IP \fB\-fno\-diagnostics\-json\-formatting\fR 4
+.IX Item "-fno-diagnostics-json-formatting"
+By default, when JSON is emitted for diagnostics (via
+\&\fB\-fdiagnostics\-format=sarif\-stderr\fR,
+\&\fB\-fdiagnostics\-format=sarif\-file\fR,
+\&\fB\-fdiagnostics\-format=json\fR,
+\&\fB\-fdiagnostics\-format=json\-stderr\fR,
+\&\fB\-fdiagnostics\-format=json\-file\fR),
+GCC will add newlines and indentation to visually emphasize the
+hierarchical structure of the JSON.
+.Sp
+Use \fB\-fno\-diagnostics\-json\-formatting\fR to suppress this whitespace.
+It must be passed before the option it is to affect.
+.Sp
+This is intended for compatibility with tools that do not expect the output
+to contain newlines, such as that emitted by older GCC releases.
 .SS "Options to Request or Suppress Warnings"
 .IX Subsection "Options to Request or Suppress Warnings"
 Warnings are diagnostic messages that report constructions that
@@ -5857,7 +5909,13 @@ nonconforming code to compile.  Some C++ diagnostics are controlled
 only by this flag, but it also downgrades some C and C++ diagnostics
 that have their own flag:
 .Sp
-\&\fB\-Wnarrowing\fR (C++)\fB \fR
+\&\fB\-Wdeclaration\-missing\-parameter\-type\fR (C and Objective-C only)
+\&\fB\-Wimplicit\-function\-declaration\fR (C and Objective-C only)
+\&\fB\-Wimplicit\-int\fR (C and Objective-C only)
+\&\fB\-Wincompatible\-pointer\-types\fR (C and Objective-C only)
+\&\fB\-Wint\-conversion\fR (C and Objective-C only)
+\&\fB\-Wnarrowing\fR (C++)
+\&\fB\-Wreturn\-mismatch\fR (C and Objective-C only)\fB \fR
 .Sp
 The \fB\-fpermissive\fR option is the default for historic C language
 modes (\fB\-std=c89\fR, \fB\-std=gnu89\fR, \fB\-std=c90\fR,
@@ -6468,15 +6526,20 @@ This warning is enabled by \fB\-Wall\fR in C++.
 .IP "\fB\-Wno\-implicit\-int\fR (C and Objective-C only)" 4
 .IX Item "-Wno-implicit-int (C and Objective-C only)"
 This option controls warnings when a declaration does not specify a type.
-This warning is enabled by default in C99 and later dialects of C,
-and also by \fB\-Wall\fR.
+This warning is enabled by default, as an error, in C99 and later
+dialects of C, and also by \fB\-Wall\fR.  The error can be downgraded
+to a warning using \fB\-fpermissive\fR (along with certain other
+errors), or for this error alone, with \fB\-Wno\-error=implicit\-int\fR.
 .Sp
 This warning is upgraded to an error by \fB\-pedantic\-errors\fR.
 .IP "\fB\-Wno\-implicit\-function\-declaration\fR (C and Objective-C only)" 4
 .IX Item "-Wno-implicit-function-declaration (C and Objective-C only)"
 This option controls warnings when a function is used before being declared.
-This warning is enabled by default in C99 and later dialects of C,
-and also by \fB\-Wall\fR.
+This warning is enabled by default, as an error, in C99 and later
+dialects of C, and also by \fB\-Wall\fR.  The error can be downgraded
+to a warning using \fB\-fpermissive\fR (along with certain other
+errors), or for this error alone, with
+\&\fB\-Wno\-error=implicit\-function\-declaration\fR.
 .Sp
 This warning is upgraded to an error by \fB\-pedantic\-errors\fR.
 .IP "\fB\-Wimplicit\fR (C and Objective-C only)" 4
@@ -6963,7 +7026,10 @@ Attempting to use the return value of a non\-\f(CW\*(C`void\*(C'\fR function oth
 than \f(CW\*(C`main\*(C'\fR that flows off the end by reaching the closing curly
 brace that terminates the function is undefined.
 .Sp
-This warning is specific to C and enabled by default.
+This warning is specific to C and enabled by default.  In C99 and later
+language dialects, it is treated as an error.  It can be downgraded
+to a warning using \fB\-fpermissive\fR (along with other warnings),
+or for just this warning, with \fB\-Wno\-error=return\-mismatch\fR.
 .IP \fB\-Wreturn\-type\fR 4
 .IX Item "-Wreturn-type"
 Warn whenever a function is defined with a return type that defaults to
@@ -8031,6 +8097,11 @@ types.  This warning is for cases not covered by \fB\-Wno\-pointer\-sign\fR,
 which warns for pointer argument passing or assignment with different
 signedness.
 .Sp
+By default, in C99 and later dialects of C, GCC treats this issue as an
+error.  The error can be downgraded to a warning using
+\&\fB\-fpermissive\fR (along with certain other errors), or for this
+error alone, with \fB\-Wno\-error=incompatible\-pointer\-types\fR.
+.Sp
 This warning is upgraded to an error by \fB\-pedantic\-errors\fR.
 .IP "\fB\-Wno\-int\-conversion\fR (C and Objective-C only)" 4
 .IX Item "-Wno-int-conversion (C and Objective-C only)"
@@ -8038,6 +8109,11 @@ Do not warn about incompatible integer to pointer and pointer to integer
 conversions.  This warning is about implicit conversions; for explicit
 conversions the warnings \fB\-Wno\-int\-to\-pointer\-cast\fR and
 \&\fB\-Wno\-pointer\-to\-int\-cast\fR may be used.
+.Sp
+By default, in C99 and later dialects of C, GCC treats this issue as an
+error.  The error can be downgraded to a warning using
+\&\fB\-fpermissive\fR (along with certain other errors), or for this
+error alone, with \fB\-Wno\-error=int\-conversion\fR.
 .Sp
 This warning is upgraded to an error by \fB\-pedantic\-errors\fR.
 .IP \fB\-Wzero\-length\-bounds\fR 4
@@ -9111,6 +9187,18 @@ functions:
 .Ve
 .Sp
 This warning is also enabled by \fB\-Wextra\fR.
+.IP "\fB\-Wno\-declaration\-missing\-parameter\-type\fR (C and Objective-C only)" 4
+.IX Item "-Wno-declaration-missing-parameter-type (C and Objective-C only)"
+Do not warn if a function declaration contains a parameter name without
+a type.  Such function declarations do not provide a function prototype
+and prevent most type checking in function calls.
+.Sp
+This warning is enabled by default.  In C99 and later dialects of C, it
+is treated as an error.  The error can be downgraded to a warning using
+\&\fB\-fpermissive\fR (along with certain other errors), or for this
+error alone, with \fB\-Wno\-error=declaration\-missing\-parameter\-type\fR.
+.Sp
+This warning is upgraded to an error by \fB\-pedantic\-errors\fR.
 .IP "\fB\-Wmissing\-prototypes\fR (C and Objective-C only)" 4
 .IX Item "-Wmissing-prototypes (C and Objective-C only)"
 Warn if a global function is defined without a previous prototype
@@ -9715,6 +9803,17 @@ Enabling this option effectively enables the following warnings:
 .Sp
 This option is only available if GCC was configured with analyzer
 support enabled.
+.IP \fB\-Wanalyzer\-symbol\-too\-complex\fR 4
+.IX Item "-Wanalyzer-symbol-too-complex"
+If \fB\-fanalyzer\fR is enabled, the analyzer uses various heuristics
+to attempt to track the state of memory, but these can be defeated by
+sufficiently complicated code.
+.Sp
+By default, the analysis silently stops tracking values of expressions
+if they exceed the threshold defined by
+\&\fB\-\-param analyzer\-max\-svalue\-depth=\fR\fIvalue\fR, and falls back
+to an imprecise representation for such expressions.
+The \fB\-Wanalyzer\-symbol\-too\-complex\fR option warns if this occurs.
 .IP \fB\-Wanalyzer\-too\-complex\fR 4
 .IX Item "-Wanalyzer-too-complex"
 If \fB\-fanalyzer\fR is enabled, the analyzer uses various heuristics
@@ -16731,6 +16830,50 @@ then the linker can fix up these calls so that the code compiled
 without \fB\-fsplit\-stack\fR always has a large stack.  Support for
 this is implemented in the gold linker in GNU binutils release 2.21
 and later.
+.IP \fB\-fstrub=disable\fR 4
+.IX Item "-fstrub=disable"
+Disable stack scrubbing entirely, ignoring any \f(CW\*(C`strub\*(C'\fR attributes.
+See
+.IP \fB\-fstrub=strict\fR 4
+.IX Item "-fstrub=strict"
+Functions default to \f(CW\*(C`strub\*(C'\fR mode \f(CW\*(C`disabled\*(C'\fR, and apply
+\&\fBstrict\fRly the restriction that only functions associated with
+\&\f(CW\*(C`strub\*(C'\fR\-\f(CW\*(C`callable\*(C'\fR modes (\f(CW\*(C`at\-calls\*(C'\fR, \f(CW\*(C`callable\*(C'\fR and
+\&\f(CW\*(C`always_inline\*(C'\fR \f(CW\*(C`internal\*(C'\fR) are \f(CW\*(C`callable\*(C'\fR by functions
+with \f(CW\*(C`strub\*(C'\fR\-enabled modes (\f(CW\*(C`at\-calls\*(C'\fR and \f(CW\*(C`internal\*(C'\fR).
+.IP \fB\-fstrub=relaxed\fR 4
+.IX Item "-fstrub=relaxed"
+Restore the default stack scrub (\f(CW\*(C`strub\*(C'\fR) setting, namely,
+\&\f(CW\*(C`strub\*(C'\fR is only enabled as required by \f(CW\*(C`strub\*(C'\fR attributes
+associated with function and data types.  \f(CW\*(C`Relaxed\*(C'\fR means that
+strub contexts are only prevented from calling functions explicitly
+associated with \f(CW\*(C`strub\*(C'\fR mode \f(CW\*(C`disabled\*(C'\fR.  This option is only
+useful to override other \fB\-fstrub=*\fR options that precede it in
+the command line.
+.IP \fB\-fstrub=at\-calls\fR 4
+.IX Item "-fstrub=at-calls"
+Enable \f(CW\*(C`at\-calls\*(C'\fR \f(CW\*(C`strub\*(C'\fR mode where viable.  The primary use
+of this option is for testing.  It exercises the \f(CW\*(C`strub\*(C'\fR machinery
+in scenarios strictly local to a translation unit.  This \f(CW\*(C`strub\*(C'\fR
+mode modifies function interfaces, so any function that is visible to
+other translation units, or that has its address taken, will \fInot\fR
+be affected by this option.  Optimization options may also affect
+viability.  See the \f(CW\*(C`strub\*(C'\fR attribute documentation for details on
+viability and eligibility requirements.
+.IP \fB\-fstrub=internal\fR 4
+.IX Item "-fstrub=internal"
+Enable \f(CW\*(C`internal\*(C'\fR \f(CW\*(C`strub\*(C'\fR mode where viable.  The primary use
+of this option is for testing.  This option is intended to exercise
+thoroughly parts of the \f(CW\*(C`strub\*(C'\fR machinery that implement the less
+efficient, but interface-preserving \f(CW\*(C`strub\*(C'\fR mode.  Functions that
+would not be affected by this option are quite uncommon.
+.IP \fB\-fstrub=all\fR 4
+.IX Item "-fstrub=all"
+Enable some \f(CW\*(C`strub\*(C'\fR mode where viable.  When both strub modes are
+viable, \f(CW\*(C`at\-calls\*(C'\fR is preferred.  \fB\-fdump\-ipa\-strubm\fR adds
+function attributes that tell which mode was selected for each function.
+The primary use of this option is for testing, to exercise thoroughly
+the \f(CW\*(C`strub\*(C'\fR machinery.
 .IP \fB\-fvtable\-verify=\fR[\fBstd\fR|\fBpreinit\fR|\fBnone\fR] 4
 .IX Item "-fvtable-verify=[std|preinit|none]"
 This option is only available when compiling C++ code.
@@ -19033,6 +19176,14 @@ and inlining decisions.
 .IP \fBinline\fR 4
 .IX Item "inline"
 Dump after function inlining.
+.IP \fBstrubm\fR 4
+.IX Item "strubm"
+Dump after selecting \f(CW\*(C`strub\*(C'\fR modes, and recording the selections as
+function attributes.
+.IP \fBstrub\fR 4
+.IX Item "strub"
+Dump \f(CW\*(C`strub\*(C'\fR transformations: interface changes, function wrapping,
+and insertion of builtin calls for stack scrubbing and watermarking.
 .RE
 .RS 4
 .Sp
@@ -20094,6 +20245,8 @@ and the features that they enable by default:
 .IX Item "armv8.7-a : Armv8.7-A : armv8.6-a, +ls64"
 .IP "\fBarmv8.8\-a\fR : Armv8.8\-a : \fBarmv8.7\-a\fR, \fB+mops\fR" 4
 .IX Item "armv8.8-a : Armv8.8-a : armv8.7-a, +mops"
+.IP "\fBarmv8.9\-a\fR : Armv8.9\-a : \fBarmv8.8\-a\fR" 4
+.IX Item "armv8.9-a : Armv8.9-a : armv8.8-a"
 .IP "\fBarmv9\-a\fR : Armv9\-A : \fBarmv8.5\-a\fR, \fB+sve\fR, \fB+sve2\fR" 4
 .IX Item "armv9-a : Armv9-A : armv8.5-a, +sve, +sve2"
 .IP "\fBarmv9.1\-a\fR : Armv9.1\-A : \fBarmv9\-a\fR, \fB+bf16\fR, \fB+i8mm\fR" 4
@@ -20102,6 +20255,8 @@ and the features that they enable by default:
 .IX Item "armv9.2-a : Armv9.2-A : armv9.1-a, +ls64"
 .IP "\fBarmv9.3\-a\fR : Armv9.3\-A : \fBarmv9.2\-a\fR, \fB+mops\fR" 4
 .IX Item "armv9.3-a : Armv9.3-A : armv9.2-a, +mops"
+.IP "\fBarmv9.4\-a\fR : Armv9.4\-A : \fBarmv9.3\-a\fR" 4
+.IX Item "armv9.4-a : Armv9.4-A : armv9.3-a"
 .IP "\fBarmv8\-r\fR : Armv8\-R : \fBarmv8\-r\fR" 4
 .IX Item "armv8-r : Armv8-R : armv8-r"
 .RE
@@ -20439,6 +20594,26 @@ Enable the Pointer Authentication Extension.
 .IP \fBcssc\fR 4
 .IX Item "cssc"
 Enable the Common Short Sequence Compression instructions.
+.IP \fBsme\fR 4
+.IX Item "sme"
+Enable the Scalable Matrix Extension.
+.IP \fBsme\-i16i64\fR 4
+.IX Item "sme-i16i64"
+Enable the FEAT_SME_I16I64 extension to SME.
+.IP \fBsme\-f64f64\fR 4
+.IX Item "sme-f64f64"
+Enable the FEAT_SME_F64F64 extension to SME.
++@item sme2
+Enable the Scalable Matrix Extension 2.  This also enables SME instructions.
+.IP \fBd128\fR 4
+.IX Item "d128"
+Enable support for 128\-bit system register read/write instructions.
+.IP \fBgcs\fR 4
+.IX Item "gcs"
+Enable support for Armv9.4\-a Guarded Control Stack extension.
+.IP \fBthe\fR 4
+.IX Item "the"
+Enable support for Armv8.9\-a/9.4\-a translation hardening extension.
 .PP
 Feature \fBcrypto\fR implies \fBaes\fR, \fBsha2\fR, and \fBsimd\fR,
 which implies \fBfp\fR.
@@ -28761,7 +28936,7 @@ by particular CPU name.
 Permissible values for this option are: \fBsifive\-e20\fR, \fBsifive\-e21\fR,
 \&\fBsifive\-e24\fR, \fBsifive\-e31\fR, \fBsifive\-e34\fR, \fBsifive\-e76\fR,
 \&\fBsifive\-s21\fR, \fBsifive\-s51\fR, \fBsifive\-s54\fR, \fBsifive\-s76\fR,
-\&\fBsifive\-u54\fR, and \fBsifive\-u74\fR.
+\&\fBsifive\-u54\fR, \fBsifive\-u74\fR, and \fBsifive\-x280\fR.
 .IP \fB\-mtune=\fR\fIprocessor-string\fR 4
 .IX Item "-mtune=processor-string"
 Optimize the output for the given processor, specified by microarchitecture or
@@ -28837,6 +29012,10 @@ Do or do not attempt to inline strcmp calls if possible.
 Inlining will only be done if the strings are properly aligned
 and instructions for accelerated processing are available.
 The default is to not inline strcmp calls.
+.Sp
+The \fB\-\-param riscv\-strcmp\-inline\-limit=\fR\fIn\fR parameter controls
+the maximum number of bytes compared by the inlined code.
+The default value is 64.
 .IP \fB\-minline\-strncmp\fR 4
 .IX Item "-minline-strncmp"
 .PD 0
@@ -28847,6 +29026,10 @@ Do or do not attempt to inline strncmp calls if possible.
 Inlining will only be done if the strings are properly aligned
 and instructions for accelerated processing are available.
 The default is to not inline strncmp calls.
+.Sp
+The \fB\-\-param riscv\-strcmp\-inline\-limit=\fR\fIn\fR parameter controls
+the maximum number of bytes compared by the inlined code.
+The default value is 64.
 .IP \fB\-mshorten\-memrefs\fR 4
 .IX Item "-mshorten-memrefs"
 .PD 0

@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJCOPY 1"
-.TH OBJCOPY 1 2023-11-30 binutils-2.41.50 "GNU Development Tools"
+.TH OBJCOPY 1 2023-12-07 binutils-2.41.50 "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -693,7 +693,7 @@ changing the section's flags to \fIflags\fR in the process.  This has
 the advantage over using a linker script to perform the rename in that
 the output stays as an object file and does not become a linked
 executable.  This option accepts the same set of flags as the
-\&\fB\-\-sect\-section\-flags\fR option.
+\&\fB\-\-set\-section\-flags\fR option.
 .Sp
 This option is particularly helpful when the input format is binary,
 since this will always create a section called .data.  If for example,

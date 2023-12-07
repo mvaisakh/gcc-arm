@@ -540,9 +540,9 @@ configuration and build phases.
 
    First, we *highly* recommend that GCC be built into a separate
 directory from the sources which does *not* reside within the source
-tree.  This is how we generally build GCC; building where SRCDIR ==
-OBJDIR should still work, but doesn’t get extensive testing; building
-where OBJDIR is a subdirectory of SRCDIR is unsupported.
+tree.  This is how we generally build GCC; building where OBJDIR is a
+subdirectory of SRCDIR should work as well; building where OBJDIR ==
+SRCDIR is unsupported.
 
    If you have previously built GCC in the same directory for a
 different target machine, do ‘make distclean’ to delete all files that
@@ -5011,97 +5011,97 @@ Ref: GDC-prerequisite7296
 Ref: GM2-prerequisite8501
 Node: Downloading the source19317
 Node: Configuration21088
-Ref: with-gnu-as40926
-Ref: with-as41815
-Ref: with-gnu-ld43224
-Ref: WithAixSoname74035
-Ref: AixLdCommand74750
-Ref: with-included-gettext91496
-Node: Building121173
-Node: Testing137870
-Node: Final install145833
-Node: Binaries150646
-Node: Specific151660
-Ref: aarch64-x-x152194
-Ref: amd64-x-solaris2154278
-Ref: amdgcn-x-amdhsa154364
-Ref: arc-x-elf32155206
-Ref: arc-linux-uclibc155398
-Ref: arm-x-eabi155543
-Ref: avr155800
-Ref: bfin156389
-Ref: cris156652
-Ref: dos156982
-Ref: epiphany-x-elf157307
-Ref: x-x-freebsd157412
-Ref: ft32-x-elf158559
-Ref: h8300-hms158657
-Ref: hppa-hp-hpux159009
-Ref: hppa-hp-hpux10161431
-Ref: hppa-hp-hpux11161848
-Ref: x-x-linux-gnu167366
-Ref: ix86-x-linux167697
-Ref: ix86-x-solaris2168010
-Ref: ia64-x-linux168270
-Ref: ia64-x-hpux168521
-Ref: x-ibm-aix169088
-Ref: TransferAixShobj172816
-Ref: iq2000-x-elf176718
-Ref: lm32-x-elf176858
-Ref: lm32-x-uclinux176962
-Ref: loongarch177090
-Ref: m32c-x-elf177763
-Ref: m32r-x-elf177865
-Ref: m68k-x-x177967
-Ref: m68k-x-uclinux179097
-Ref: microblaze-x-elf179350
-Ref: mips-x-x179469
-Ref: moxie-x-elf181463
-Ref: msp430-x-elf181510
-Ref: nds32le-x-elf182079
-Ref: nds32be-x-elf182151
-Ref: nvptx-x-none182220
-Ref: or1k-x-elf183129
-Ref: or1k-x-linux183260
-Ref: powerpc-x-x183341
-Ref: powerpc-x-darwin183540
-Ref: powerpc-x-elf184035
-Ref: powerpc-x-linux-gnu184120
-Ref: powerpc-x-netbsd184215
-Ref: powerpc-x-eabisim184303
-Ref: powerpc-x-eabi184429
-Ref: powerpcle-x-elf184505
-Ref: powerpcle-x-eabisim184597
-Ref: powerpcle-x-eabi184730
-Ref: rl78-x-elf184813
-Ref: riscv32-x-elf184919
-Ref: riscv32-x-linux185108
-Ref: riscv64-x-elf185265
-Ref: riscv64-x-linux185454
-Ref: rx-x-elf185611
-Ref: s390-x-linux185657
-Ref: s390x-x-linux185729
-Ref: s390x-ibm-tpf185816
-Ref: x-x-solaris2185947
-Ref: sparc-x-x189888
-Ref: sparc-sun-solaris2190390
-Ref: sparc-x-linux191305
-Ref: sparc64-x-solaris2191336
-Ref: sparcv9-x-solaris2191427
-Ref: c6x-x-x192176
-Ref: visium-x-elf192268
-Ref: x-x-vxworks192376
-Ref: x86-64-x-x193965
-Ref: x86-64-x-solaris2194297
-Ref: xtensa-x-elf194951
-Ref: xtensa-x-linux195630
-Ref: windows195983
-Ref: x-x-cygwin197636
-Ref: x-x-mingw32198191
-Ref: older198589
-Ref: elf200730
-Node: GNU Free Documentation License200984
-Node: Concept Index226325
+Ref: with-gnu-as40891
+Ref: with-as41780
+Ref: with-gnu-ld43189
+Ref: WithAixSoname74000
+Ref: AixLdCommand74715
+Ref: with-included-gettext91461
+Node: Building121138
+Node: Testing137835
+Node: Final install145798
+Node: Binaries150611
+Node: Specific151625
+Ref: aarch64-x-x152159
+Ref: amd64-x-solaris2154243
+Ref: amdgcn-x-amdhsa154329
+Ref: arc-x-elf32155171
+Ref: arc-linux-uclibc155363
+Ref: arm-x-eabi155508
+Ref: avr155765
+Ref: bfin156354
+Ref: cris156617
+Ref: dos156947
+Ref: epiphany-x-elf157272
+Ref: x-x-freebsd157377
+Ref: ft32-x-elf158524
+Ref: h8300-hms158622
+Ref: hppa-hp-hpux158974
+Ref: hppa-hp-hpux10161396
+Ref: hppa-hp-hpux11161813
+Ref: x-x-linux-gnu167331
+Ref: ix86-x-linux167662
+Ref: ix86-x-solaris2167975
+Ref: ia64-x-linux168235
+Ref: ia64-x-hpux168486
+Ref: x-ibm-aix169053
+Ref: TransferAixShobj172781
+Ref: iq2000-x-elf176683
+Ref: lm32-x-elf176823
+Ref: lm32-x-uclinux176927
+Ref: loongarch177055
+Ref: m32c-x-elf177728
+Ref: m32r-x-elf177830
+Ref: m68k-x-x177932
+Ref: m68k-x-uclinux179062
+Ref: microblaze-x-elf179315
+Ref: mips-x-x179434
+Ref: moxie-x-elf181428
+Ref: msp430-x-elf181475
+Ref: nds32le-x-elf182044
+Ref: nds32be-x-elf182116
+Ref: nvptx-x-none182185
+Ref: or1k-x-elf183094
+Ref: or1k-x-linux183225
+Ref: powerpc-x-x183306
+Ref: powerpc-x-darwin183505
+Ref: powerpc-x-elf184000
+Ref: powerpc-x-linux-gnu184085
+Ref: powerpc-x-netbsd184180
+Ref: powerpc-x-eabisim184268
+Ref: powerpc-x-eabi184394
+Ref: powerpcle-x-elf184470
+Ref: powerpcle-x-eabisim184562
+Ref: powerpcle-x-eabi184695
+Ref: rl78-x-elf184778
+Ref: riscv32-x-elf184884
+Ref: riscv32-x-linux185073
+Ref: riscv64-x-elf185230
+Ref: riscv64-x-linux185419
+Ref: rx-x-elf185576
+Ref: s390-x-linux185622
+Ref: s390x-x-linux185694
+Ref: s390x-ibm-tpf185781
+Ref: x-x-solaris2185912
+Ref: sparc-x-x189853
+Ref: sparc-sun-solaris2190355
+Ref: sparc-x-linux191270
+Ref: sparc64-x-solaris2191301
+Ref: sparcv9-x-solaris2191392
+Ref: c6x-x-x192141
+Ref: visium-x-elf192233
+Ref: x-x-vxworks192341
+Ref: x86-64-x-x193930
+Ref: x86-64-x-solaris2194262
+Ref: xtensa-x-elf194916
+Ref: xtensa-x-linux195595
+Ref: windows195948
+Ref: x-x-cygwin197601
+Ref: x-x-mingw32198156
+Ref: older198554
+Ref: elf200695
+Node: GNU Free Documentation License200949
+Node: Concept Index226290
 
 End Tag Table
 

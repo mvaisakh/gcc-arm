@@ -6206,7 +6206,7 @@ read at the position in the command line where the implicit linker
 script was read.  This can affect archive searching.
 
 
-File: ld.info,  Node: Plugins,  Next: Machine Dependent,  Prev: Scripts,  Up: Top
+File: ld.info,  Node: Plugins,  Next: Special Sections,  Prev: Scripts,  Up: Top
 
 4 Linker Plugins
 ****************
@@ -6266,6 +6266,9 @@ library ‘libcrypto.a’ which may be found in ‘/usr/local/lib’, the
 
 File: ld.info,  Node: Special Sections,  Next: Machine Dependent,  Prev: Plugins,  Up: Top
 
+5 Special Sections
+******************
+
 When linking ELF format object files ‘ld’ treats some sections in a
 special, non standard manner.  This part of the manual describes these
 sections.
@@ -6307,9 +6310,9 @@ sections.
      will be included in the map.
 
 
-File: ld.info,  Node: Machine Dependent,  Next: BFD,  Prev: Plugins,  Up: Top
+File: ld.info,  Node: Machine Dependent,  Next: BFD,  Prev: Special Sections,  Up: Top
 
-5 Machine Dependent Features
+6 Machine Dependent Features
 ****************************
 
 ‘ld’ has additional features on some platforms; the following sections
@@ -6339,7 +6342,7 @@ not listed.
 
 File: ld.info,  Node: H8/300,  Next: M68HC11/68HC12,  Up: Machine Dependent
 
-5.1 ‘ld’ and the H8/300
+6.1 ‘ld’ and the H8/300
 =======================
 
 For the H8/300, ‘ld’ can perform these global optimizations when you
@@ -6384,10 +6387,10 @@ _system control instructions_
 
 File: ld.info,  Node: M68HC11/68HC12,  Next: ARM,  Prev: H8/300,  Up: Machine Dependent
 
-5.2 ‘ld’ and the Motorola 68HC11 and 68HC12 families
+6.2 ‘ld’ and the Motorola 68HC11 and 68HC12 families
 ====================================================
 
-5.2.1 Linker Relaxation
+6.2.1 Linker Relaxation
 -----------------------
 
 For the Motorola 68HC11, ‘ld’ can perform these global optimizations
@@ -6408,7 +6411,7 @@ _relaxing gcc instruction group_
      addressing mode.  These instructions consists of ‘bclr’ or ‘bset’
      instructions.
 
-5.2.2 Trampoline Generation
+6.2.2 Trampoline Generation
 ---------------------------
 
 For 68HC11 and 68HC12, ‘ld’ can generate trampoline code to call a far
@@ -6421,7 +6424,7 @@ function trampoline.
 
 File: ld.info,  Node: ARM,  Next: HPPA ELF32,  Prev: M68HC11/68HC12,  Up: Machine Dependent
 
-5.3 ‘ld’ and the ARM family
+6.3 ‘ld’ and the ARM family
 ===========================
 
 For the ARM, ‘ld’ will generate code stubs to allow functions calls
@@ -6667,7 +6670,7 @@ libraries, ie.  when ‘--cmse-implib’ is specified.
 
 File: ld.info,  Node: HPPA ELF32,  Next: M68K,  Prev: ARM,  Up: Machine Dependent
 
-5.4 ‘ld’ and HPPA 32-bit ELF Support
+6.4 ‘ld’ and HPPA 32-bit ELF Support
 ====================================
 
 When generating a shared library, ‘ld’ will by default generate import
@@ -6698,7 +6701,7 @@ large, it may not be possible for a branch to reach its stub.
 
 File: ld.info,  Node: M68K,  Next: MIPS,  Prev: HPPA ELF32,  Up: Machine Dependent
 
-5.5 ‘ld’ and the Motorola 68K family
+6.5 ‘ld’ and the Motorola 68K family
 ====================================
 
 The ‘--got=TYPE’ option lets you choose the GOT generation scheme.  The
@@ -6716,7 +6719,7 @@ different GOTs.  Not all environments support such GOTs.
 
 File: ld.info,  Node: MIPS,  Next: MMIX,  Prev: M68K,  Up: Machine Dependent
 
-5.6 ‘ld’ and the MIPS family
+6.6 ‘ld’ and the MIPS family
 ============================
 
 The ‘--insn32’ and ‘--no-insn32’ options control the choice of microMIPS
@@ -6739,7 +6742,7 @@ an ISA mode transition to produce an error.
 
 File: ld.info,  Node: MMIX,  Next: MSP430,  Prev: MIPS,  Up: Machine Dependent
 
-5.7 ‘ld’ and MMIX
+6.7 ‘ld’ and MMIX
 =================
 
 For MMIX, there is a choice of generating ‘ELF’ object files or ‘mmo’
@@ -6767,7 +6770,7 @@ section, are left out from an mmo file.
 
 File: ld.info,  Node: MSP430,  Next: NDS32,  Prev: MMIX,  Up: Machine Dependent
 
-5.8 ‘ld’ and MSP430
+6.8 ‘ld’ and MSP430
 ===================
 
 For the MSP430 it is possible to select the MPU architecture.  The flag
@@ -6819,7 +6822,7 @@ specific:
 
 File: ld.info,  Node: NDS32,  Next: Nios II,  Prev: MSP430,  Up: Machine Dependent
 
-5.9 ‘ld’ and NDS32
+6.9 ‘ld’ and NDS32
 ==================
 
 For NDS32, there are some options to select relaxation behavior.  The
@@ -6858,7 +6861,7 @@ linker relaxes objects according to these options.
 
 File: ld.info,  Node: Nios II,  Next: PowerPC ELF32,  Prev: NDS32,  Up: Machine Dependent
 
-5.10 ‘ld’ and the Altera Nios II
+6.10 ‘ld’ and the Altera Nios II
 ================================
 
 Call and immediate jump instructions on Nios II processors are limited
@@ -6886,7 +6889,7 @@ relaxation.
 
 File: ld.info,  Node: PowerPC ELF32,  Next: PowerPC64 ELF64,  Prev: Nios II,  Up: Machine Dependent
 
-5.11 ‘ld’ and PowerPC 32-bit ELF Support
+6.11 ‘ld’ and PowerPC 32-bit ELF Support
 ========================================
 
 Branches on PowerPC processors are limited to a signed 26-bit
@@ -6942,7 +6945,7 @@ considered potentially out of range, and trampolines inserted.
 
 File: ld.info,  Node: PowerPC64 ELF64,  Next: S/390 ELF,  Prev: PowerPC ELF32,  Up: Machine Dependent
 
-5.12 ‘ld’ and PowerPC64 64-bit ELF Support
+6.12 ‘ld’ and PowerPC64 64-bit ELF Support
 ==========================================
 
 ‘--stub-group-size’
@@ -7130,7 +7133,7 @@ File: ld.info,  Node: PowerPC64 ELF64,  Next: S/390 ELF,  Prev: PowerPC ELF32,  
 
 File: ld.info,  Node: S/390 ELF,  Next: SPU ELF,  Prev: PowerPC64 ELF64,  Up: Machine Dependent
 
-5.13 ‘ld’ and S/390 ELF Support
+6.13 ‘ld’ and S/390 ELF Support
 ===============================
 
 ‘--s390-pgste’
@@ -7141,7 +7144,7 @@ File: ld.info,  Node: S/390 ELF,  Next: SPU ELF,  Prev: PowerPC64 ELF64,  Up: Ma
 
 File: ld.info,  Node: SPU ELF,  Next: TI COFF,  Prev: S/390 ELF,  Up: Machine Dependent
 
-5.14 ‘ld’ and SPU ELF Support
+6.14 ‘ld’ and SPU ELF Support
 =============================
 
 ‘--plugin’
@@ -7197,7 +7200,7 @@ File: ld.info,  Node: SPU ELF,  Next: TI COFF,  Prev: S/390 ELF,  Up: Machine De
 
 File: ld.info,  Node: TI COFF,  Next: WIN32,  Prev: SPU ELF,  Up: Machine Dependent
 
-5.15 ‘ld’’s Support for Various TI COFF Versions
+6.15 ‘ld’’s Support for Various TI COFF Versions
 ================================================
 
 The ‘--format’ switch allows selection of one of the various TI COFF
@@ -7209,7 +7212,7 @@ depends on the default specified by the specific target.
 
 File: ld.info,  Node: WIN32,  Next: Xtensa,  Prev: TI COFF,  Up: Machine Dependent
 
-5.16 ‘ld’ and WIN32 (cygwin/mingw)
+6.16 ‘ld’ and WIN32 (cygwin/mingw)
 ==================================
 
 This section describes some of the win32 specific ‘ld’ issues.  See
@@ -7665,7 +7668,7 @@ _aligned common symbols_
 
 File: ld.info,  Node: Xtensa,  Prev: WIN32,  Up: Machine Dependent
 
-5.17 ‘ld’ and Xtensa Processors
+6.17 ‘ld’ and Xtensa Processors
 ===============================
 
 The default ‘ld’ behavior for Xtensa processors is to interpret
@@ -7737,7 +7740,7 @@ control the linker:
 
 File: ld.info,  Node: BFD,  Next: Reporting Bugs,  Prev: Machine Dependent,  Up: Top
 
-6 BFD
+7 BFD
 *****
 
 The linker accesses object and archive files using the BFD libraries.
@@ -7770,7 +7773,7 @@ conversion and during output.  *Note BFD information loss::.
 
 File: ld.info,  Node: BFD outline,  Up: BFD
 
-6.1 How It Works: An Outline of BFD
+7.1 How It Works: An Outline of BFD
 ===================================
 
 When an object file is opened, BFD subroutines automatically determine
@@ -7799,7 +7802,7 @@ chosen output format.
 
 File: ld.info,  Node: BFD information loss,  Next: Canonical format,  Up: BFD outline
 
-6.1.1 Information Loss
+7.1.1 Information Loss
 ----------------------
 
 _Information can be lost during output._  The output formats supported
@@ -7845,7 +7848,7 @@ the files whose format differs from the destination.
 
 File: ld.info,  Node: Canonical format,  Prev: BFD information loss,  Up: BFD outline
 
-6.1.2 The BFD canonical object-file format
+7.1.2 The BFD canonical object-file format
 ------------------------------------------
 
 The greatest potential for loss of information occurs when there is the
@@ -7926,7 +7929,7 @@ _line numbers_
 
 File: ld.info,  Node: Reporting Bugs,  Next: MRI,  Prev: BFD,  Up: Top
 
-7 Reporting Bugs
+8 Reporting Bugs
 ****************
 
 Your bug reports play an essential role in making ‘ld’ reliable.
@@ -7947,7 +7950,7 @@ information that enables us to fix the bug.
 
 File: ld.info,  Node: Bug Criteria,  Next: Bug Reporting,  Up: Reporting Bugs
 
-7.1 Have You Found a Bug?
+8.1 Have You Found a Bug?
 =========================
 
 If you are not sure whether you have found a bug, here are some
@@ -7968,7 +7971,7 @@ guidelines:
 
 File: ld.info,  Node: Bug Reporting,  Prev: Bug Criteria,  Up: Reporting Bugs
 
-7.2 How to Report Bugs
+8.2 How to Report Bugs
 ======================
 
 A number of companies and individuals offer support for GNU products.
@@ -9757,36 +9760,36 @@ Node: Expression Section265296
 Node: Builtin Functions269374
 Node: Implicit Linker Scripts278455
 Node: Plugins279242
-Node: libdep Plugin279803
-Node: Special Sections281648
-Node: Machine Dependent283767
-Node: H8/300284931
-Node: M68HC11/68HC12287132
-Node: ARM288639
-Node: HPPA ELF32301067
-Node: M68K302742
-Node: MIPS303691
-Node: MMIX304851
-Node: MSP430306072
-Node: NDS32308065
-Node: Nios II309113
-Node: PowerPC ELF32310485
-Node: PowerPC64 ELF64313430
-Node: S/390 ELF323548
-Node: SPU ELF323907
-Node: TI COFF326633
-Node: WIN32327173
-Node: Xtensa348928
-Node: BFD352483
-Node: BFD outline353945
-Node: BFD information loss355239
-Node: Canonical format357793
-Node: Reporting Bugs362138
-Node: Bug Criteria362844
-Node: Bug Reporting363567
-Node: MRI370740
-Node: GNU Free Documentation License375419
-Node: LD Index400759
+Node: libdep Plugin279802
+Node: Special Sections281647
+Node: Machine Dependent283805
+Node: H8/300284978
+Node: M68HC11/68HC12287179
+Node: ARM288686
+Node: HPPA ELF32301114
+Node: M68K302789
+Node: MIPS303738
+Node: MMIX304898
+Node: MSP430306119
+Node: NDS32308112
+Node: Nios II309160
+Node: PowerPC ELF32310532
+Node: PowerPC64 ELF64313477
+Node: S/390 ELF323595
+Node: SPU ELF323954
+Node: TI COFF326680
+Node: WIN32327220
+Node: Xtensa348975
+Node: BFD352530
+Node: BFD outline353992
+Node: BFD information loss355286
+Node: Canonical format357840
+Node: Reporting Bugs362185
+Node: Bug Criteria362891
+Node: Bug Reporting363614
+Node: MRI370787
+Node: GNU Free Documentation License375466
+Node: LD Index400806
 
 End Tag Table
 
