@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-12-07 gcc-14.0.0 GNU
+.TH GCC 1 2023-12-10 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -986,6 +986,7 @@ in the following sections.
 \&\fB\-mexplicit\-relocs=\fR\fIstyle\fR \fB\-mexplicit\-relocs \-mno\-explicit\-relocs
 \&\-mdirect\-extern\-access \-mno\-direct\-extern\-access
 \&\-mcmodel=\fR\fIcode-model\fR \fB\-mrelax \-mpass\-mrelax\-to\-as\fR
+\&\-mrecip  \-mrecip=\fIopt\fR
 .Sp
 \&\fIM32R/D Options\fR
 \&\fB\-m32r2  \-m32rx  \-m32r
@@ -20420,6 +20421,20 @@ Enable compiler hardening against straight line speculation (SLS).
 In addition, \fB\-mharden\-sls=all\fR enables all SLS hardening while
 \&\fB\-mharden\-sls=none\fR disables all SLS hardening.
 .RE
+.IP \fB\-mearly\-ra=\fR\fIscope\fR 4
+.IX Item "-mearly-ra=scope"
+Determine when to enable an early register allocation pass.  This pass runs
+before instruction scheduling and tries to find a spill-free allocation of
+floating-point and vector code.  It also tries to make use of strided
+multi-register instructions, such as SME2's strided LD1 and ST1.
+.Sp
+The possible values of \fIscope\fR are: \fIall\fR, which runs the pass on
+all functions; \fIstrided\fR, which runs the pass on functions that have
+access to strided multi-register instructions; and \fInone\fR, which
+disables the pass.
+.Sp
+\&\fB\-mearly\-ra=all\fR is the default for \fB\-O2\fR and above, and for
+\&\fB\-Os\fR.  \fB\-mearly\-ra=none\fR is the default otherwise.
 .IP \fB\-msve\-vector\-bits=\fR\fIbits\fR 4
 .IX Item "-msve-vector-bits=bits"
 Specify the number of bits in an SVE vector register.  This option only has
@@ -20614,6 +20629,9 @@ Enable support for Armv9.4\-a Guarded Control Stack extension.
 .IP \fBthe\fR 4
 .IX Item "the"
 Enable support for Armv8.9\-a/9.4\-a translation hardening extension.
+.IP \fBrcpc3\fR 4
+.IX Item "rcpc3"
+Enable the RCpc3 (Release Consistency) extension.
 .PP
 Feature \fBcrypto\fR implies \fBaes\fR, \fBsha2\fR, and \fBsimd\fR,
 which implies \fBfp\fR.
@@ -25864,6 +25882,59 @@ detecting corresponding assembler support:
 \&\fB\-mrelax\fR option, \fB\-mno\-pass\-mrelax\-to\-as\fR otherwise.
 This option is mostly useful for debugging, or interoperation with
 assemblers different from the build-time one.
+.IP \fB\-mrecip\fR 4
+.IX Item "-mrecip"
+This option enables use of the reciprocal estimate and reciprocal square
+root estimate instructions with additional Newton-Raphson steps to increase
+precision instead of doing a divide or square root and divide for
+floating-point arguments.
+These instructions are generated only when \fB\-funsafe\-math\-optimizations\fR
+is enabled together with \fB\-ffinite\-math\-only\fR and
+\&\fB\-fno\-trapping\-math\fR.
+This option is off by default. Before you can use this option, you must sure the
+target CPU supports frecipe and frsqrte instructions.
+Note that while the throughput of the sequence is higher than the throughput of
+the non-reciprocal instruction, the precision of the sequence can be decreased
+by up to 2 ulp (i.e. the inverse of 1.0 equals 0.99999994).
+.IP \fB\-mrecip=\fR\fIopt\fR 4
+.IX Item "-mrecip=opt"
+This option controls which reciprocal estimate instructions
+may be used.  \fIopt\fR is a comma-separated list of options, which may
+be preceded by a \fB!\fR to invert the option:
+.RS 4
+.IP \fBall\fR 4
+.IX Item "all"
+Enable all estimate instructions.
+.IP \fBdefault\fR 4
+.IX Item "default"
+Enable the default instructions, equivalent to \fB\-mrecip\fR.
+.IP \fBnone\fR 4
+.IX Item "none"
+Disable all estimate instructions, equivalent to \fB\-mno\-recip\fR.
+.IP \fBdiv\fR 4
+.IX Item "div"
+Enable the approximation for scalar division.
+.IP \fBvec-div\fR 4
+.IX Item "vec-div"
+Enable the approximation for vectorized division.
+.IP \fBsqrt\fR 4
+.IX Item "sqrt"
+Enable the approximation for scalar square root.
+.IP \fBvec-sqrt\fR 4
+.IX Item "vec-sqrt"
+Enable the approximation for vectorized square root.
+.IP \fBrsqrt\fR 4
+.IX Item "rsqrt"
+Enable the approximation for scalar reciprocal square root.
+.IP \fBvec-rsqrt\fR 4
+.IX Item "vec-rsqrt"
+Enable the approximation for vectorized reciprocal square root.
+.RE
+.RS 4
+.Sp
+So, for example, \fB\-mrecip=all,!sqrt\fR enables
+all of the reciprocal approximations, except for scalar square root.
+.RE
 .IP \fBloongarch-vect-unroll-limit\fR 4
 .IX Item "loongarch-vect-unroll-limit"
 The vectorizer will use available tuning information to determine whether it

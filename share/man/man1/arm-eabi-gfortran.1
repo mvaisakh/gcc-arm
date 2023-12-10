@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GFORTRAN 1"
-.TH GFORTRAN 1 2023-12-07 gcc-14.0.0 GNU
+.TH GFORTRAN 1 2023-12-10 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -109,8 +109,9 @@ by type.  Explanations are in the following sections.
 \&\-ffree\-form \-ffree\-line\-length\-\fR\fIn\fR \fB\-ffree\-line\-length\-none
 \&\-fimplicit\-none \-finteger\-4\-integer\-8 \-fmax\-identifier\-length
 \&\-fmodule\-private \-ffixed\-form \-fno\-range\-check \-fopenacc \-fopenmp
-\&\-freal\-4\-real\-10 \-freal\-4\-real\-16 \-freal\-4\-real\-8 \-freal\-8\-real\-10
-\&\-freal\-8\-real\-16 \-freal\-8\-real\-4 \-std=\fR\fIstd\fR \fB\-ftest\-forall\-temp\fR
+\&\-fopenmp\-allocators \-fopenmp\-simd \-freal\-4\-real\-10 \-freal\-4\-real\-16
+\&\-freal\-4\-real\-8 \-freal\-8\-real\-10 \-freal\-8\-real\-16 \-freal\-8\-real\-4
+\&\-std=\fR\fIstd\fR \fB\-ftest\-forall\-temp\fR
 .IP "\fIPreprocessing Options\fR" 4
 .IX Item "Preprocessing Options"
 \&\fB\-A\-\fR\fIquestion\fR[\fB=\fR\fIanswer\fR]
@@ -341,21 +342,52 @@ Enable the Cray pointer extension, which provides C\-like pointer
 functionality.
 .IP \fB\-fopenacc\fR 4
 .IX Item "-fopenacc"
-Enable the OpenACC extensions.  This includes OpenACC \f(CW\*(C`!$acc\*(C'\fR
-directives in free form and \f(CW\*(C`c$acc\*(C'\fR, \f(CW*$acc\fR and
-\&\f(CW\*(C`!$acc\*(C'\fR directives in fixed form, \f(CW\*(C`!$\*(C'\fR conditional
-compilation sentinels in free form and \f(CW\*(C`c$\*(C'\fR, \f(CW\*(C`*$\*(C'\fR and
-\&\f(CW\*(C`!$\*(C'\fR sentinels in fixed form, and when linking arranges for the
-OpenACC runtime library to be linked in.
+Enable handling of OpenACC directives \fB!$acc\fR in free-form Fortran and
+\&\fB!$acc\fR, \fBc$acc\fR and \fB*$acc\fR in fixed-form Fortran.  When
+\&\fB\-fopenacc\fR is specified, the compiler generates accelerated code
+according to the OpenACC Application Programming Interface v2.6
+<\fBhttps://www.openacc.org\fR>.  This option implies \fB\-pthread\fR,
+and thus is only supported on targets that have support for \fB\-pthread\fR.
+The option \fB\-fopenacc\fR implies \fB\-frecursive\fR.
 .IP \fB\-fopenmp\fR 4
 .IX Item "-fopenmp"
-Enable the OpenMP extensions.  This includes OpenMP \f(CW\*(C`!$omp\*(C'\fR directives
-in free form
-and \f(CW\*(C`c$omp\*(C'\fR, \f(CW*$omp\fR and \f(CW\*(C`!$omp\*(C'\fR directives in fixed form,
-\&\f(CW\*(C`!$\*(C'\fR conditional compilation sentinels in free form
-and \f(CW\*(C`c$\*(C'\fR, \f(CW\*(C`*$\*(C'\fR and \f(CW\*(C`!$\*(C'\fR sentinels in fixed form, 
-and when linking arranges for the OpenMP runtime library to be linked
-in.  The option \fB\-fopenmp\fR implies \fB\-frecursive\fR.
+Enable handling of OpenMP directives \fB!$omp\fR in Fortran.  It
+additionally enables the conditional compilation sentinel \fB!$\fR in
+Fortran.  In fixed source form Fortran, the sentinels can also start with
+\&\fBc\fR or \fB*\fR.  When \fB\-fopenmp\fR is specified, the
+compiler generates parallel code according to the OpenMP Application
+Program Interface v4.5 <\fBhttps://www.openmp.org\fR>.  This option
+implies \fB\-pthread\fR, and thus is only supported on targets that
+have support for \fB\-pthread\fR. \fB\-fopenmp\fR implies
+\&\fB\-fopenmp\-simd\fR and \fB\-frecursive\fR.
+.IP \fB\-fopenmp\-allocators\fR 4
+.IX Item "-fopenmp-allocators"
+Enables handling of allocation, reallocation and deallocation of Fortran
+allocatable and pointer variables that are allocated using the
+\&\fB!$omp allocators\fR and \fB!$omp allocate\fR constructs.  Files
+containing either directive have to be compiled with this option in addition
+to \fB\-fopenmp\fR.  Additionally, all files that might deallocate or
+reallocate a variable that has been allocated with an OpenMP allocator
+have to be compiled with this option.  This includes intrinsic assignment
+to allocatable variables when reallocation may occur and deallocation
+due to either of the following: end of scope, explicit deallocation,
+\&\fBintent(out)\fR, deallocation of allocatable components etc.
+Files not changing the allocation status or only for components of
+a derived type that have not been allocated using those two directives
+do not need to be compiled with this option.  Nor do files that handle
+such variables after they have been deallocated or allocated by the
+normal Fortran allocator.
+.IP \fB\-fopenmp\-simd\fR 4
+.IX Item "-fopenmp-simd"
+Enable handling of OpenMP's \f(CW\*(C`simd\*(C'\fR, \f(CW\*(C`declare simd\*(C'\fR,
+\&\f(CW\*(C`declare reduction\*(C'\fR, \f(CW\*(C`assume\*(C'\fR, \f(CW\*(C`ordered\*(C'\fR, \f(CW\*(C`scan\*(C'\fR
+and \f(CW\*(C`loop\*(C'\fR directive, and of combined or composite directives with
+\&\f(CW\*(C`simd\*(C'\fR as constituent with  \f(CW\*(C`!$omp\*(C'\fR in Fortran.  It additionally
+enables the conditional compilation sentinel \fB!$\fR in Fortran.  In
+fixed source form Fortran, the sentinels can also start with \fBc\fR or
+\&\fB*\fR.  Other OpenMP directives are ignored.  Unless \fB\-fopenmp\fR
+is additionally specified, the \f(CW\*(C`loop\*(C'\fR region binds to the current task
+region, independent of the specified \f(CW\*(C`bind\*(C'\fR clause.
 .IP \fB\-fno\-range\-check\fR 4
 .IX Item "-fno-range-check"
 Disable range checking on results of simplification of constant
