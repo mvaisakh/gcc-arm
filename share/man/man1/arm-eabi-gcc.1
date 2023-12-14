@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-12-10 gcc-14.0.0 GNU
+.TH GCC 1 2023-12-14 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -3262,6 +3262,10 @@ called.  If the handler returns, execution continues normally.
 .IP \fB\-fcoroutines\fR 4
 .IX Item "-fcoroutines"
 Enable support for the C++ coroutines extension (experimental).
+.IP \fB\-fdiagnostics\-all\-candidates\fR 4
+.IX Item "-fdiagnostics-all-candidates"
+Permit the C++ front end to note all candidates during overload resolution
+failure, including when a deleted function is selected.
 .IP \fB\-fno\-elide\-constructors\fR 4
 .IX Item "-fno-elide-constructors"
 The C++ standard allows an implementation to omit creating a temporary
@@ -5915,7 +5919,7 @@ that have their own flag:
 \&\fB\-Wimplicit\-int\fR (C and Objective-C only)
 \&\fB\-Wincompatible\-pointer\-types\fR (C and Objective-C only)
 \&\fB\-Wint\-conversion\fR (C and Objective-C only)
-\&\fB\-Wnarrowing\fR (C++)
+\&\fB\-Wnarrowing\fR (C++ and Objective\-C++ only)
 \&\fB\-Wreturn\-mismatch\fR (C and Objective-C only)\fB \fR
 .Sp
 The \fB\-fpermissive\fR option is the default for historic C language
@@ -19860,7 +19864,8 @@ allocation before or after interprocedural optimization.
 .IX Item "-fmultiflags"
 This option enables multilib-aware \f(CW\*(C`TFLAGS\*(C'\fR to be used to build
 target libraries with options different from those the compiler is
-configured to use by default, through the use of specs
+configured to use by default, through the use of specs set up by compiler internals, by the target, or by builders at
+configure time.
 .Sp
 Like \f(CW\*(C`TFLAGS\*(C'\fR, this allows the target libraries to be built for
 portable baseline environments, while the compiler defaults to more
@@ -20841,7 +20846,8 @@ run-time performance.  The default is 32KB when using OpenACC or OpenMP, and
 Compile binaries suitable for devices with the XNACK feature enabled, disabled,
 or either mode.  Some devices always require XNACK and some allow the user to
 configure XNACK.  The compiled code must match the device mode.
-At present this option is a placeholder for support that is not yet implemented.
+The default is \fB\-mxnack=any\fR on devices that support Unified Shared
+Memory, and \fB\-mxnack=no\fR otherwise.
 .PP
 \fIARC Options\fR
 .IX Subsection "ARC Options"
@@ -25807,8 +25813,8 @@ The text segment and data segment must be within 2GB addressing space.
 .IX Item "extreme"
 .PD
 This mode does not limit the size of the code segment and data segment.
-The \fB\-mcmodel=extreme\fR option is incompatible with \fB\-fplt\fR,
-and it requires \fB\-mexplicit\-relocs=always\fR.
+The \fB\-mcmodel=extreme\fR option is incompatible with \fB\-fplt\fR
+and/or \fB\-mexplicit\-relocs=none\fR.
 .RE
 .RS 4
 .Sp
