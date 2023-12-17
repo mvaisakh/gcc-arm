@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GFORTRAN 1"
-.TH GFORTRAN 1 2023-12-14 gcc-14.0.0 GNU
+.TH GFORTRAN 1 2023-12-17 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -254,8 +254,11 @@ Enable B/I/J/K kind variants of existing integer functions (e.g. BIAND, IIAND,
 JIAND, etc...). For a complete list of intrinsics see the full documentation.
 .IP \fB\-fdec\-math\fR 4
 .IX Item "-fdec-math"
-Enable legacy math intrinsics such as COTAN and degree-valued trigonometric
-functions (e.g. TAND, ATAND, etc...) for compatability with older code.
+Obsolete flag.  The purpose of this option was to
+enable legacy math intrinsics such as COTAN and degree-valued trigonometric
+functions (e.g. TAND, ATAND, etc...) for compatability with older code. This
+option is no longer operable. The trigonometric functions are now either 
+part of Fortran 2023 or GNU extensions.
 .IP \fB\-fdec\-static\fR 4
 .IX Item "-fdec-static"
 Enable DEC-style STATIC and AUTOMATIC attributes to explicitly specify
