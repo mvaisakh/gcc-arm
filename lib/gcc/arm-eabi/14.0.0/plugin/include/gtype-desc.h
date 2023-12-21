@@ -1413,6 +1413,10 @@ extern void gt_ggc_mx_hash_table_spec_hasher_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_ctp_hasher_ (X);\
   } while (0)
 extern void gt_ggc_mx_hash_table_ctp_hasher_ (void *);
+#define gt_ggc_m_25hash_map_const_tree_tree_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_map_const_tree_tree_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_map_const_tree_tree_ (void *);
 #define gt_ggc_m_26hash_map_tree_tree_pair_p_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_map_tree_tree_pair_p_ (X);\
   } while (0)
@@ -2914,6 +2918,10 @@ extern void gt_pch_nx_hash_table_spec_hasher_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_ctp_hasher_ (X);\
   } while (0)
 extern void gt_pch_nx_hash_table_ctp_hasher_ (void *);
+#define gt_pch_n_25hash_map_const_tree_tree_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_map_const_tree_tree_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_map_const_tree_tree_ (void *);
 #define gt_pch_n_26hash_map_tree_tree_pair_p_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_map_tree_tree_pair_p_ (X);\
   } while (0)
@@ -3838,6 +3846,8 @@ extern void gt_pch_p_16pending_template
 extern void gt_pch_p_23hash_table_spec_hasher_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_22hash_table_ctp_hasher_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_25hash_map_const_tree_tree_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26hash_map_tree_tree_pair_p_
     (void *, void *, gt_pointer_operator, void *);

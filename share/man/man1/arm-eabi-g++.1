@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2023-12-17 gcc-14.0.0 GNU
+.TH GCC 1 2023-12-21 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -274,7 +274,7 @@ in the following sections.
 \&\-pedantic\-errors \-fpermissive
 \&\-w  \-Wextra  \-Wall  \-Wabi=\fR\fIn\fR
 \&\fB\-Waddress  \-Wno\-address\-of\-packed\-member  \-Waggregate\-return
-\&\-Walloc\-size\-larger\-than=\fR\fIbyte-size\fR  \fB\-Walloc\-zero
+\&\-Walloc\-size  \-Walloc\-size\-larger\-than=\fR\fIbyte-size\fR  \fB\-Walloc\-zero
 \&\-Walloca  \-Walloca\-larger\-than=\fR\fIbyte-size\fR
 \&\fB\-Wno\-aggressive\-loop\-optimizations
 \&\-Warith\-conversion
@@ -290,6 +290,7 @@ in the following sections.
 \&\-Wc++20\-compat
 \&\-Wno\-c++11\-extensions  \-Wno\-c++14\-extensions \-Wno\-c++17\-extensions
 \&\-Wno\-c++20\-extensions  \-Wno\-c++23\-extensions
+\&\-Wcalloc\-transposed\-args
 \&\-Wcast\-align  \-Wcast\-align=strict  \-Wcast\-function\-type  \-Wcast\-qual
 \&\-Wchar\-subscripts
 \&\-Wclobbered  \-Wcomment
@@ -1541,6 +1542,8 @@ C++ header file to be turned into a precompiled header or Ada spec.
 .IX Item "file.for"
 .IP \fIfile\fR\fB.ftn\fR 4
 .IX Item "file.ftn"
+.IP \fIfile\fR\fB.fi\fR 4
+.IX Item "file.fi"
 .PD
 Fixed form Fortran source code that should not be preprocessed.
 .IP \fIfile\fR\fB.F\fR 4
@@ -1566,6 +1569,8 @@ preprocessor).
 .IX Item "file.f03"
 .IP \fIfile\fR\fB.f08\fR 4
 .IX Item "file.f08"
+.IP \fIfile\fR\fB.fii\fR 4
+.IX Item "file.fii"
 .PD
 Free form Fortran source code that should not be preprocessed.
 .IP \fIfile\fR\fB.F90\fR 4
@@ -7756,8 +7761,7 @@ Warn about calls to allocation functions decorated with attribute
 \&\f(CW\*(C`alloc_size\*(C'\fR that specify insufficient size for the target type of
 the pointer the result is assigned to, including those to the built-in
 forms of the functions \f(CW\*(C`aligned_alloc\*(C'\fR, \f(CW\*(C`alloca\*(C'\fR,
-\&\f(CW\*(C`calloc\*(C'\fR,
-\&\f(CW\*(C`malloc\*(C'\fR, and \f(CW\*(C`realloc\*(C'\fR.
+\&\f(CW\*(C`calloc\*(C'\fR, \f(CW\*(C`malloc\*(C'\fR, and \f(CW\*(C`realloc\*(C'\fR.
 .IP \fB\-Walloc\-zero\fR 4
 .IX Item "-Walloc-zero"
 Warn about calls to allocation functions decorated with attribute
@@ -7767,6 +7771,19 @@ forms of the functions \f(CW\*(C`aligned_alloc\*(C'\fR, \f(CW\*(C`alloca\*(C'\fR
 when called with a zero size differs among implementations (and in the case
 of \f(CW\*(C`realloc\*(C'\fR has been deprecated) relying on it may result in subtle
 portability bugs and should be avoided.
+.IP \fB\-Wcalloc\-transposed\-args\fR 4
+.IX Item "-Wcalloc-transposed-args"
+Warn about calls to allocation functions decorated with attribute
+\&\f(CW\*(C`alloc_size\*(C'\fR with two arguments, which use \f(CW\*(C`sizeof\*(C'\fR operator
+as the earlier size argument and don't use it as the later size argument.
+This is a coding style warning.  The first argument to \f(CW\*(C`calloc\*(C'\fR is
+documented to be number of elements in array, while the second argument
+is size of each element, so \f(CW\*(C`calloc (\fR\f(CIn\fR\f(CW, sizeof (int))\*(C'\fR is preferred
+over \f(CW\*(C`calloc (sizeof (int), \fR\f(CIn\fR\f(CW)\*(C'\fR.  If \f(CW\*(C`sizeof\*(C'\fR in the earlier
+argument and not the latter is intentional, the warning can be suppressed
+by using \f(CW\*(C`calloc (sizeof (struct \fR\f(CIS\fR\f(CW) + 0, n)\*(C'\fR or
+\&\f(CW\*(C`calloc (1 * sizeof (struct \fR\f(CIS\fR\f(CW), 4)\*(C'\fR or using \f(CW\*(C`sizeof\*(C'\fR in the
+later argument as well.
 .IP \fB\-Walloc\-size\-larger\-than=\fR\fIbyte-size\fR 4
 .IX Item "-Walloc-size-larger-than=byte-size"
 Warn about calls to functions decorated with attribute \f(CW\*(C`alloc_size\*(C'\fR
