@@ -6952,6 +6952,7 @@ extern bool merge_default_template_args		(tree, tree, bool);
 extern tree duplicate_decls			(tree, tree,
 						 bool hiding = false,
 						 bool was_hidden = false);
+extern void mark_label_addressed		(tree);
 extern tree declare_local_label			(tree);
 extern tree define_label			(location_t, tree);
 extern void check_goto				(tree);
@@ -7928,7 +7929,7 @@ extern tree lambda_regenerating_args		(tree);
 extern tree most_general_lambda			(tree);
 extern tree finish_omp_target			(location_t, tree, tree, bool);
 extern void finish_omp_target_clauses		(location_t, tree, tree *);
-extern void maybe_warn_unparenthesized_assignment (tree, tsubst_flags_t);
+extern void maybe_warn_unparenthesized_assignment (tree, bool, tsubst_flags_t);
 extern tree cp_check_pragma_unroll		(location_t, tree);
 
 /* in tree.cc */

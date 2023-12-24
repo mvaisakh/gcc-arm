@@ -1145,6 +1145,10 @@ extern void gt_ggc_mx_vec_c_goto_bindings_p_va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_c_inline_static (X);\
   } while (0)
 extern void gt_ggc_mx_c_inline_static (void *);
+#define gt_ggc_m_27hash_table_c_struct_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_c_struct_hasher_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_c_struct_hasher_ (void *);
 #define gt_ggc_m_18sorted_fields_type(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_sorted_fields_type (X);\
   } while (0)
@@ -1429,6 +1433,10 @@ extern void gt_ggc_mx_vec_tinfo_s_va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_deferred_access_va_gc_ (X);\
   } while (0)
 extern void gt_ggc_mx_vec_deferred_access_va_gc_ (void *);
+#define gt_ggc_m_19hash_map_tree_bool_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_map_tree_bool_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_map_tree_bool_ (void *);
 #define gt_ggc_m_30hash_table_cplus_array_hasher_(X) do { \
   if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_cplus_array_hasher_ (X);\
   } while (0)
@@ -2650,6 +2658,10 @@ extern void gt_pch_nx_vec_c_goto_bindings_p_va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_c_inline_static (X);\
   } while (0)
 extern void gt_pch_nx_c_inline_static (void *);
+#define gt_pch_n_27hash_table_c_struct_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_c_struct_hasher_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_c_struct_hasher_ (void *);
 #define gt_pch_n_18sorted_fields_type(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_sorted_fields_type (X);\
   } while (0)
@@ -2934,6 +2946,10 @@ extern void gt_pch_nx_vec_tinfo_s_va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_deferred_access_va_gc_ (X);\
   } while (0)
 extern void gt_pch_nx_vec_deferred_access_va_gc_ (void *);
+#define gt_pch_n_19hash_map_tree_bool_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_map_tree_bool_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_map_tree_bool_ (void *);
 #define gt_pch_n_30hash_table_cplus_array_hasher_(X) do { \
   if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_cplus_array_hasher_ (X);\
   } while (0)
@@ -3713,6 +3729,8 @@ extern void gt_pch_p_28vec_c_goto_bindings_p_va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_15c_inline_static
     (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_27hash_table_c_struct_hasher_
+    (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_18sorted_fields_type
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23vec_const_char_p_va_gc_
@@ -3854,6 +3872,8 @@ extern void gt_pch_p_26hash_map_tree_tree_pair_p_
 extern void gt_pch_p_18vec_tinfo_s_va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_26vec_deferred_access_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_19hash_map_tree_bool_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_30hash_table_cplus_array_hasher_
     (void *, void *, gt_pointer_operator, void *);

@@ -19541,9 +19541,6 @@ The following table lists all available RISC-V specific directives.
      This is meant to be used by the compiler in shared libraries for
      DWARF debug info for thread local variables.
 
-‘.bss’
-     Sets the current section to the BSS section.
-
 ‘.uleb128 VALUE’
 ‘.sleb128 VALUE’
      Emits a signed or unsigned LEB128 value at the current position.
@@ -28076,7 +28073,7 @@ AS Index
 * .arc_attribute directive, ARC:         ARC Directives.     (line  240)
 * .arm directive, ARM:                   ARM Directives.     (line   30)
 * .assume directive, Z80:                Z80 Directives.     (line   12)
-* .attribute directive, RISC-V:          RISC-V-Directives.  (line  124)
+* .attribute directive, RISC-V:          RISC-V-Directives.  (line  121)
 * .big directive, M32RX:                 M32R-Directives.    (line   88)
 * .bss directive, AArch64:               AArch64 Directives. (line   21)
 * .bss directive, ARM:                   ARM Directives.     (line   33)
@@ -28555,7 +28552,6 @@ AS Index
 * break directive, TIC54X:               TIC54X-Directives.  (line  141)
 * BSD syntax:                            PDP-11-Syntax.      (line    6)
 * bss directive:                         Bss.                (line    6)
-* BSS directive:                         RISC-V-Directives.  (line   24)
 * bss directive, TIC54X:                 TIC54X-Directives.  (line   27)
 * bss section:                           Ld Sections.        (line   20)
 * bss section <1>:                       bss.                (line    6)
@@ -29086,7 +29082,7 @@ AS Index
 * input:                                 Input Files.        (line    6)
 * input file linenumbers:                Input Files.        (line   35)
 * insn directive:                        i386-Directives.    (line   31)
-* INSN directives:                       RISC-V-Directives.  (line  106)
+* INSN directives:                       RISC-V-Directives.  (line  103)
 * instruction aliases, s390:             s390 Aliases.       (line    6)
 * instruction bundle:                    Bundle directives.  (line    9)
 * instruction expansion, CRIS:           CRIS-Expand.        (line    6)
@@ -29186,7 +29182,7 @@ AS Index
 * ldouble directive, TIC54X:             TIC54X-Directives.  (line   62)
 * LDR reg,=<expr> pseudo op, AArch64:    AArch64 Opcodes.    (line    9)
 * LDR reg,=<label> pseudo op, ARM:       ARM Opcodes.        (line   15)
-* LEB128 directives:                     RISC-V-Directives.  (line   27)
+* LEB128 directives:                     RISC-V-Directives.  (line   24)
 * length directive, TIC54X:              TIC54X-Directives.  (line  125)
 * length of symbols:                     Symbol Intro.       (line   20)
 * level 1 interrupt link register, ARC:  ARC-Regs.           (line   23)
@@ -29748,8 +29744,8 @@ AS Index
 * optimization, D30V:                    Overview.           (line  699)
 * optimizations:                         Xtensa Optimizations.
                                                              (line    6)
-* Option directive:                      RISC-V-Directives.  (line   34)
-* option directive:                      RISC-V-Directives.  (line   34)
+* Option directive:                      RISC-V-Directives.  (line   31)
+* option directive:                      RISC-V-Directives.  (line   31)
 * option directive, TIC54X:              TIC54X-Directives.  (line  177)
 * option summary:                        Overview.           (line    6)
 * options for AArch64 (none):            AArch64 Options.    (line    6)
@@ -31041,186 +31037,186 @@ Node: PRU Opcodes740836
 Node: RISC-V-Dependent741261
 Node: RISC-V-Options741805
 Node: RISC-V-Directives744539
-Node: RISC-V-Modifiers750093
-Node: RISC-V-Floating-Point754208
-Node: RISC-V-Formats755690
-Node: RISC-V-ATTRIBUTE764507
-Node: RISC-V-CustomExts766531
-Node: RL78-Dependent771375
-Node: RL78-Opts771776
-Node: RL78-Modifiers772650
-Node: RL78-Directives773441
-Node: RL78-Syntax774077
-Node: RL78-Chars774273
-Node: RX-Dependent774841
-Node: RX-Opts775272
-Node: RX-Modifiers779730
-Node: RX-Directives780841
-Node: RX-Float781592
-Node: RX-Syntax782259
-Node: RX-Chars782438
-Node: S/390-Dependent783002
-Node: s390 Options783867
-Node: s390 Characters786215
-Node: s390 Syntax786748
-Node: s390 Register787650
-Node: s390 Mnemonics788474
-Node: s390 Operands791566
-Node: s390 Formats794225
-Node: s390 Aliases803952
-Node: s390 Operand Modifier807933
-Node: s390 Instruction Marker811816
-Node: s390 Literal Pool Entries812846
-Node: s390 Directives814819
-Node: s390 Floating Point820484
-Node: SCORE-Dependent820952
-Node: SCORE-Opts821254
-Node: SCORE-Pseudo822605
-Node: SCORE-Syntax824737
-Node: SCORE-Chars824919
-Node: SH-Dependent825489
-Node: SH Options825901
-Node: SH Syntax827014
-Node: SH-Chars827287
-Node: SH-Regs827846
-Node: SH-Addressing828552
-Node: SH Floating Point829520
-Node: SH Directives830621
-Node: SH Opcodes831062
-Node: Sparc-Dependent835409
-Node: Sparc-Opts835818
-Node: Sparc-Aligned-Data841865
-Node: Sparc-Syntax842713
-Node: Sparc-Chars843287
-Node: Sparc-Regs843862
-Node: Sparc-Constants850130
-Node: Sparc-Relocs855098
-Node: Sparc-Size-Translations860590
-Node: Sparc-Float862276
-Node: Sparc-Directives862471
-Node: TIC54X-Dependent864557
-Node: TIC54X-Opts865320
-Node: TIC54X-Block866407
-Node: TIC54X-Env866767
-Node: TIC54X-Constants867131
-Node: TIC54X-Subsyms867532
-Node: TIC54X-Locals869482
-Node: TIC54X-Builtins870238
-Node: TIC54X-Ext872776
-Node: TIC54X-Directives873359
-Node: TIC54X-Macros884827
-Node: TIC54X-MMRegs886958
-Node: TIC54X-Syntax887195
-Node: TIC54X-Chars887385
-Node: TIC6X-Dependent888088
-Node: TIC6X Options888391
-Node: TIC6X Syntax890498
-Node: TIC6X Directives891637
-Node: TILE-Gx-Dependent894041
-Node: TILE-Gx Options894351
-Node: TILE-Gx Syntax894708
-Node: TILE-Gx Opcodes896976
-Node: TILE-Gx Registers897268
-Node: TILE-Gx Modifiers898099
-Node: TILE-Gx Directives903274
-Node: TILEPro-Dependent904197
-Node: TILEPro Options904506
-Node: TILEPro Syntax904694
-Node: TILEPro Opcodes906962
-Node: TILEPro Registers907257
-Node: TILEPro Modifiers908087
-Node: TILEPro Directives913062
-Node: V850-Dependent913985
-Node: V850 Options914381
-Node: V850 Syntax918743
-Node: V850-Chars918983
-Node: V850-Regs919543
-Node: V850 Floating Point921229
-Node: V850 Directives921435
-Node: V850 Opcodes923537
-Node: Vax-Dependent929588
-Node: VAX-Opts930172
-Node: VAX-float934027
-Node: VAX-directives934696
-Node: VAX-opcodes935588
-Node: VAX-branch935989
-Node: VAX-operands938713
-Node: VAX-no939516
-Node: VAX-Syntax939776
-Node: VAX-Chars939942
-Node: Visium-Dependent940508
-Node: Visium Options940821
-Node: Visium Syntax941307
-Node: Visium Characters941552
-Node: Visium Registers942145
-Node: Visium Opcodes942421
-Node: WebAssembly-Dependent942859
-Node: WebAssembly-Notes943300
-Node: WebAssembly-Syntax943590
-Node: WebAssembly-Chars944156
-Node: WebAssembly-Relocs944547
-Node: WebAssembly-Signatures945293
-Node: WebAssembly-Floating-Point945826
-Node: WebAssembly-Opcodes946067
-Node: WebAssembly-module-layout946716
-Node: XGATE-Dependent947205
-Node: XGATE-Opts947632
-Node: XGATE-Syntax948661
-Node: XGATE-Directives950916
-Node: XGATE-Float951159
-Node: XGATE-opcodes951688
-Node: XSTORMY16-Dependent951800
-Node: XStormy16 Syntax952146
-Node: XStormy16-Chars952336
-Node: XStormy16 Directives952965
-Node: XStormy16 Opcodes953643
-Node: Xtensa-Dependent954738
-Node: Xtensa Options955473
-Node: Xtensa Syntax960186
-Node: Xtensa Opcodes962354
-Node: Xtensa Registers964179
-Node: Xtensa Optimizations964844
-Node: Density Instructions965300
-Node: Xtensa Automatic Alignment966410
-Node: Xtensa Relaxation968879
-Node: Xtensa Branch Relaxation969856
-Node: Xtensa Call Relaxation971248
-Node: Xtensa Jump Relaxation973075
-Node: Xtensa Immediate Relaxation975203
-Node: Xtensa Directives977858
-Node: Schedule Directive979626
-Node: Longcalls Directive979976
-Node: Transform Directive980532
-Node: Literal Directive981282
-Ref: Literal Directive-Footnote-1984997
-Node: Literal Position Directive985151
-Node: Literal Prefix Directive986894
-Node: Absolute Literals Directive987800
-Node: Z80-Dependent989162
-Node: Z80 Options989550
-Node: Z80 Syntax992169
-Node: Z80-Chars992929
-Node: Z80-Regs993800
-Node: Z80-Case994180
-Node: Z80-Labels994652
-Node: Z80 Floating Point995160
-Node: Z80 Directives995641
-Node: Z80 Opcodes998209
-Node: Z8000-Dependent999975
-Node: Z8000 Options1000919
-Node: Z8000 Syntax1001144
-Node: Z8000-Chars1001434
-Node: Z8000-Regs1001928
-Node: Z8000-Addressing1002738
-Node: Z8000 Directives1003904
-Node: Z8000 Opcodes1005613
-Node: Reporting Bugs1015559
-Node: Bug Criteria1016297
-Node: Bug Reporting1017100
-Node: Acknowledgements1023871
-Ref: Acknowledgements-Footnote-11028891
-Node: GNU Free Documentation License1028917
-Node: AS Index1054270
+Node: RISC-V-Modifiers750031
+Node: RISC-V-Floating-Point754146
+Node: RISC-V-Formats755628
+Node: RISC-V-ATTRIBUTE764445
+Node: RISC-V-CustomExts766469
+Node: RL78-Dependent771313
+Node: RL78-Opts771714
+Node: RL78-Modifiers772588
+Node: RL78-Directives773379
+Node: RL78-Syntax774015
+Node: RL78-Chars774211
+Node: RX-Dependent774779
+Node: RX-Opts775210
+Node: RX-Modifiers779668
+Node: RX-Directives780779
+Node: RX-Float781530
+Node: RX-Syntax782197
+Node: RX-Chars782376
+Node: S/390-Dependent782940
+Node: s390 Options783805
+Node: s390 Characters786153
+Node: s390 Syntax786686
+Node: s390 Register787588
+Node: s390 Mnemonics788412
+Node: s390 Operands791504
+Node: s390 Formats794163
+Node: s390 Aliases803890
+Node: s390 Operand Modifier807871
+Node: s390 Instruction Marker811754
+Node: s390 Literal Pool Entries812784
+Node: s390 Directives814757
+Node: s390 Floating Point820422
+Node: SCORE-Dependent820890
+Node: SCORE-Opts821192
+Node: SCORE-Pseudo822543
+Node: SCORE-Syntax824675
+Node: SCORE-Chars824857
+Node: SH-Dependent825427
+Node: SH Options825839
+Node: SH Syntax826952
+Node: SH-Chars827225
+Node: SH-Regs827784
+Node: SH-Addressing828490
+Node: SH Floating Point829458
+Node: SH Directives830559
+Node: SH Opcodes831000
+Node: Sparc-Dependent835347
+Node: Sparc-Opts835756
+Node: Sparc-Aligned-Data841803
+Node: Sparc-Syntax842651
+Node: Sparc-Chars843225
+Node: Sparc-Regs843800
+Node: Sparc-Constants850068
+Node: Sparc-Relocs855036
+Node: Sparc-Size-Translations860528
+Node: Sparc-Float862214
+Node: Sparc-Directives862409
+Node: TIC54X-Dependent864495
+Node: TIC54X-Opts865258
+Node: TIC54X-Block866345
+Node: TIC54X-Env866705
+Node: TIC54X-Constants867069
+Node: TIC54X-Subsyms867470
+Node: TIC54X-Locals869420
+Node: TIC54X-Builtins870176
+Node: TIC54X-Ext872714
+Node: TIC54X-Directives873297
+Node: TIC54X-Macros884765
+Node: TIC54X-MMRegs886896
+Node: TIC54X-Syntax887133
+Node: TIC54X-Chars887323
+Node: TIC6X-Dependent888026
+Node: TIC6X Options888329
+Node: TIC6X Syntax890436
+Node: TIC6X Directives891575
+Node: TILE-Gx-Dependent893979
+Node: TILE-Gx Options894289
+Node: TILE-Gx Syntax894646
+Node: TILE-Gx Opcodes896914
+Node: TILE-Gx Registers897206
+Node: TILE-Gx Modifiers898037
+Node: TILE-Gx Directives903212
+Node: TILEPro-Dependent904135
+Node: TILEPro Options904444
+Node: TILEPro Syntax904632
+Node: TILEPro Opcodes906900
+Node: TILEPro Registers907195
+Node: TILEPro Modifiers908025
+Node: TILEPro Directives913000
+Node: V850-Dependent913923
+Node: V850 Options914319
+Node: V850 Syntax918681
+Node: V850-Chars918921
+Node: V850-Regs919481
+Node: V850 Floating Point921167
+Node: V850 Directives921373
+Node: V850 Opcodes923475
+Node: Vax-Dependent929526
+Node: VAX-Opts930110
+Node: VAX-float933965
+Node: VAX-directives934634
+Node: VAX-opcodes935526
+Node: VAX-branch935927
+Node: VAX-operands938651
+Node: VAX-no939454
+Node: VAX-Syntax939714
+Node: VAX-Chars939880
+Node: Visium-Dependent940446
+Node: Visium Options940759
+Node: Visium Syntax941245
+Node: Visium Characters941490
+Node: Visium Registers942083
+Node: Visium Opcodes942359
+Node: WebAssembly-Dependent942797
+Node: WebAssembly-Notes943238
+Node: WebAssembly-Syntax943528
+Node: WebAssembly-Chars944094
+Node: WebAssembly-Relocs944485
+Node: WebAssembly-Signatures945231
+Node: WebAssembly-Floating-Point945764
+Node: WebAssembly-Opcodes946005
+Node: WebAssembly-module-layout946654
+Node: XGATE-Dependent947143
+Node: XGATE-Opts947570
+Node: XGATE-Syntax948599
+Node: XGATE-Directives950854
+Node: XGATE-Float951097
+Node: XGATE-opcodes951626
+Node: XSTORMY16-Dependent951738
+Node: XStormy16 Syntax952084
+Node: XStormy16-Chars952274
+Node: XStormy16 Directives952903
+Node: XStormy16 Opcodes953581
+Node: Xtensa-Dependent954676
+Node: Xtensa Options955411
+Node: Xtensa Syntax960124
+Node: Xtensa Opcodes962292
+Node: Xtensa Registers964117
+Node: Xtensa Optimizations964782
+Node: Density Instructions965238
+Node: Xtensa Automatic Alignment966348
+Node: Xtensa Relaxation968817
+Node: Xtensa Branch Relaxation969794
+Node: Xtensa Call Relaxation971186
+Node: Xtensa Jump Relaxation973013
+Node: Xtensa Immediate Relaxation975141
+Node: Xtensa Directives977796
+Node: Schedule Directive979564
+Node: Longcalls Directive979914
+Node: Transform Directive980470
+Node: Literal Directive981220
+Ref: Literal Directive-Footnote-1984935
+Node: Literal Position Directive985089
+Node: Literal Prefix Directive986832
+Node: Absolute Literals Directive987738
+Node: Z80-Dependent989100
+Node: Z80 Options989488
+Node: Z80 Syntax992107
+Node: Z80-Chars992867
+Node: Z80-Regs993738
+Node: Z80-Case994118
+Node: Z80-Labels994590
+Node: Z80 Floating Point995098
+Node: Z80 Directives995579
+Node: Z80 Opcodes998147
+Node: Z8000-Dependent999913
+Node: Z8000 Options1000857
+Node: Z8000 Syntax1001082
+Node: Z8000-Chars1001372
+Node: Z8000-Regs1001866
+Node: Z8000-Addressing1002676
+Node: Z8000 Directives1003842
+Node: Z8000 Opcodes1005551
+Node: Reporting Bugs1015497
+Node: Bug Criteria1016235
+Node: Bug Reporting1017038
+Node: Acknowledgements1023809
+Ref: Acknowledgements-Footnote-11028829
+Node: GNU Free Documentation License1028855
+Node: AS Index1054208
 
 End Tag Table
 
