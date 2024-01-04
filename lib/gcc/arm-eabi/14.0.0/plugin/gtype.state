@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "14.0.0 20231231 (Bleeding Edge)")
+(!version  "14.0.0 20240104 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 244 0
@@ -37978,7 +37978,7 @@
   nil )
  (!pair  "default_arg_context"
   (!type already_seen 85)
-  (!srcfileloc  "cp/call.cc" 9258)
+  (!srcfileloc  "cp/call.cc" 9272)
   nil )
  (!pair  "unemitted_tinfo_decls"
   (!type already_seen 85)
