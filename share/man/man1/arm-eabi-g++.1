@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2024-01-04 gcc-14.0.0 GNU
+.TH GCC 1 2024-01-07 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -15752,15 +15752,23 @@ With \fB\-\-param=openacc\-privatization=noisy\fR, do diagnose.
 .RS 4
 .Sp
 The following choices of \fIname\fR are available on AArch64 targets:
-.IP \fBaarch64\-sve\-compare\-costs\fR 4
-.IX Item "aarch64-sve-compare-costs"
-When vectorizing for SVE, consider using "unpacked" vectors for
-smaller elements and use the cost model to pick the cheapest approach.
-Also use the cost model to choose between SVE and Advanced SIMD vectorization.
-.Sp
-Using unpacked vectors includes storing smaller elements in larger
-containers and accessing elements with extending loads and truncating
-stores.
+.IP \fBaarch64\-vect\-compare\-costs\fR 4
+.IX Item "aarch64-vect-compare-costs"
+When vectorizing, consider using multiple different approaches and use
+the cost model to choose the cheapest one.  This includes:
+.RS 4
+.IP * 4
+Trying both SVE and Advanced SIMD, when SVE is available.
+.IP * 4
+Trying to use 64\-bit Advanced SIMD vectors for the smallest data elements,
+rather than using 128\-bit vectors for everything.
+.IP * 4
+Trying to use "unpacked" SVE vectors for smaller elements.  This includes
+storing smaller elements in larger containers and accessing elements with
+extending loads and truncating stores.
+.RE
+.RS 4
+.RE
 .IP \fBaarch64\-float\-recp\-precision\fR 4
 .IX Item "aarch64-float-recp-precision"
 The number of Newton iterations for calculating the reciprocal for float type.

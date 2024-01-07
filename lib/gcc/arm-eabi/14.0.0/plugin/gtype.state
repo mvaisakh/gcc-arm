@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "14.0.0 20240104 (Bleeding Edge)")
+(!version  "14.0.0 20240107 (Bleeding Edge)")
 (!srcdir  "../../gcc/gcc")
 (!languages 12 ada c cp d fortran go jit lto m2 objc objcp rust)
 (!fileslist 244 0
@@ -4560,94 +4560,94 @@
                                            (!type union 217 
                                             (!type already_seen 216)
                                             gc_pointed_to "section"
-                                            (!srcfileloc  "output.h" 511)
+                                            (!srcfileloc  "output.h" 515)
                                             (!fields 4 
                                              (!pair  "common"
                                               (!type struct 218 nil  gc_used "section_common"
-                                               (!srcfileloc  "output.h" 453)
+                                               (!srcfileloc  "output.h" 457)
                                                (!fields 1 
                                                 (!pair  "flags"
                                                  (!type already_seen 2)
-                                                 (!srcfileloc  "output.h" 452)
+                                                 (!srcfileloc  "output.h" 456)
                                                  nil )
                                                )
                                                nil 4095 nil nil )
-                                              (!srcfileloc  "output.h" 507)
+                                              (!srcfileloc  "output.h" 511)
                                               (!options 
                                                (!option skip string  "")
                                               )
                                              )
                                              (!pair  "named"
                                               (!type struct 219 nil  gc_used "named_section"
-                                               (!srcfileloc  "output.h" 465)
+                                               (!srcfileloc  "output.h" 469)
                                                (!fields 3 
                                                 (!pair  "common"
                                                  (!type already_seen 218)
-                                                 (!srcfileloc  "output.h" 457)
+                                                 (!srcfileloc  "output.h" 461)
                                                  nil )
                                                 (!pair  "name"
                                                  (!type already_seen 11)
-                                                 (!srcfileloc  "output.h" 460)
+                                                 (!srcfileloc  "output.h" 464)
                                                  nil )
                                                 (!pair  "decl"
                                                  (!type already_seen 23)
-                                                 (!srcfileloc  "output.h" 464)
+                                                 (!srcfileloc  "output.h" 468)
                                                  nil )
                                                )
                                                nil 4095 nil nil )
-                                              (!srcfileloc  "output.h" 508)
+                                              (!srcfileloc  "output.h" 512)
                                               (!options 
                                                (!option tag string  "SECTION_NAMED")
                                               )
                                              )
                                              (!pair  "unnamed"
                                               (!type struct 220 nil  gc_used "unnamed_section"
-                                               (!srcfileloc  "output.h" 482)
+                                               (!srcfileloc  "output.h" 486)
                                                (!fields 4 
                                                 (!pair  "common"
                                                  (!type already_seen 218)
-                                                 (!srcfileloc  "output.h" 473)
+                                                 (!srcfileloc  "output.h" 477)
                                                  nil )
                                                 (!pair  "callback"
                                                  (!type callback 221 nil  gc_used)
-                                                 (!srcfileloc  "output.h" 477)
+                                                 (!srcfileloc  "output.h" 481)
                                                  (!options 
                                                   (!option callback string  "")
                                                  )
                                                 )
                                                 (!pair  "data"
                                                  (!type already_seen 11)
-                                                 (!srcfileloc  "output.h" 478)
+                                                 (!srcfileloc  "output.h" 482)
                                                  nil )
                                                 (!pair  "next"
                                                  (!type already_seen 216)
-                                                 (!srcfileloc  "output.h" 481)
+                                                 (!srcfileloc  "output.h" 485)
                                                  nil )
                                                )
                                                nil 4095 nil nil )
-                                              (!srcfileloc  "output.h" 509)
+                                              (!srcfileloc  "output.h" 513)
                                               (!options 
                                                (!option tag string  "SECTION_UNNAMED")
                                               )
                                              )
                                              (!pair  "noswitch"
                                               (!type struct 222 nil  gc_used "noswitch_section"
-                                               (!srcfileloc  "output.h" 503)
+                                               (!srcfileloc  "output.h" 507)
                                                (!fields 2 
                                                 (!pair  "common"
                                                  (!type already_seen 218)
-                                                 (!srcfileloc  "output.h" 499)
+                                                 (!srcfileloc  "output.h" 503)
                                                  nil )
                                                 (!pair  "callback"
                                                  (!type already_seen 221)
-                                                 (!srcfileloc  "output.h" 502)
+                                                 (!srcfileloc  "output.h" 506)
                                                  (!options 
                                                   (!option callback string  "")
                                                  )
                                                 )
                                                )
                                                nil 4095 nil nil )
-                                              (!srcfileloc  "output.h" 510)
+                                              (!srcfileloc  "output.h" 514)
                                               (!options 
                                                (!option tag string  "SECTION_NOSWITCH")
                                               )
@@ -4729,47 +4729,47 @@
                                     (!type struct 227 
                                      (!type already_seen 226)
                                      gc_pointed_to "constant_descriptor_rtx"
-                                     (!srcfileloc  "varasm.cc" 3741)
+                                     (!srcfileloc  "varasm.cc" 3755)
                                      (!fields 10 
                                       (!pair  "next"
                                        (!type already_seen 226)
-                                       (!srcfileloc  "varasm.cc" 3731)
+                                       (!srcfileloc  "varasm.cc" 3745)
                                        nil )
                                       (!pair  "mem"
                                        (!type already_seen 100)
-                                       (!srcfileloc  "varasm.cc" 3732)
+                                       (!srcfileloc  "varasm.cc" 3746)
                                        nil )
                                       (!pair  "sym"
                                        (!type already_seen 100)
-                                       (!srcfileloc  "varasm.cc" 3733)
+                                       (!srcfileloc  "varasm.cc" 3747)
                                        nil )
                                       (!pair  "constant"
                                        (!type already_seen 100)
-                                       (!srcfileloc  "varasm.cc" 3734)
+                                       (!srcfileloc  "varasm.cc" 3748)
                                        nil )
                                       (!pair  "offset"
                                        (!type already_seen 2)
-                                       (!srcfileloc  "varasm.cc" 3735)
+                                       (!srcfileloc  "varasm.cc" 3749)
                                        nil )
                                       (!pair  "hash"
                                        (!type already_seen 2)
-                                       (!srcfileloc  "varasm.cc" 3736)
+                                       (!srcfileloc  "varasm.cc" 3750)
                                        nil )
                                       (!pair  "mode"
                                        (!type already_seen 2)
-                                       (!srcfileloc  "varasm.cc" 3737)
+                                       (!srcfileloc  "varasm.cc" 3751)
                                        nil )
                                       (!pair  "align"
                                        (!type already_seen 2)
-                                       (!srcfileloc  "varasm.cc" 3738)
+                                       (!srcfileloc  "varasm.cc" 3752)
                                        nil )
                                       (!pair  "labelno"
                                        (!type already_seen 2)
-                                       (!srcfileloc  "varasm.cc" 3739)
+                                       (!srcfileloc  "varasm.cc" 3753)
                                        nil )
                                       (!pair  "mark"
                                        (!type already_seen 2)
-                                       (!srcfileloc  "varasm.cc" 3740)
+                                       (!srcfileloc  "varasm.cc" 3754)
                                        nil )
                                      )
                                      (!options 
@@ -19794,38 +19794,38 @@
    (!type already_seen 1034)
   )
   gc_pointed_to "rtx_constant_pool"
-  (!srcfileloc  "varasm.cc" 3770)
+  (!srcfileloc  "varasm.cc" 3784)
   (!fields 4 
    (!pair  "first"
     (!type already_seen 226)
-    (!srcfileloc  "varasm.cc" 3758)
+    (!srcfileloc  "varasm.cc" 3772)
     nil )
    (!pair  "last"
     (!type already_seen 226)
-    (!srcfileloc  "varasm.cc" 3759)
+    (!srcfileloc  "varasm.cc" 3773)
     nil )
    (!pair  "const_rtx_htab"
     (!type pointer 1036 nil  gc_used
      (!type user_struct 1037 
       (!type already_seen 1036)
       gc_pointed_to "hash_table<const_rtx_desc_hasher>"
-      (!srcfileloc  "varasm.cc" 3765)
+      (!srcfileloc  "varasm.cc" 3779)
       (!fields 1 
        (!pair  "const_rtx_desc_hasher"
         (!type struct 1038 nil  gc_used "const_rtx_desc_hasher"
-         (!srcfileloc  "varasm.cc" 3765)
+         (!srcfileloc  "varasm.cc" 3779)
          (!fields 0 )
          nil 4095 nil nil )
-        (!srcfileloc  "varasm.cc" 3765)
+        (!srcfileloc  "varasm.cc" 3779)
         nil )
       )
      )
     )
-    (!srcfileloc  "varasm.cc" 3765)
+    (!srcfileloc  "varasm.cc" 3779)
     nil )
    (!pair  "offset"
     (!type already_seen 2)
-    (!srcfileloc  "varasm.cc" 3769)
+    (!srcfileloc  "varasm.cc" 3783)
     nil )
   )
   nil 4095 nil nil )
@@ -20739,7 +20739,7 @@
   4095 nil nil )
  
  (!type struct 1122 nil  gc_used "tree_descriptor_hasher"
-  (!srcfileloc  "varasm.cc" 3094)
+  (!srcfileloc  "varasm.cc" 3108)
   (!fields 0 )
   nil 4095 nil nil )
  
@@ -25341,7 +25341,7 @@
   nil 0 nil nil )
  
  (!type struct 1592 nil  gc_used "section_hasher"
-  (!srcfileloc  "varasm.cc" 189)
+  (!srcfileloc  "varasm.cc" 190)
   (!fields 0 )
   nil 4095 nil nil )
  
@@ -25350,17 +25350,17 @@
    (!type already_seen 1593)
   )
   gc_pointed_to "hash_table<section_hasher>"
-  (!srcfileloc  "varasm.cc" 189)
+  (!srcfileloc  "varasm.cc" 190)
   (!fields 1 
    (!pair  "section_hasher"
     (!type already_seen 1592)
-    (!srcfileloc  "varasm.cc" 189)
+    (!srcfileloc  "varasm.cc" 190)
     nil )
   )
  )
  
  (!type struct 1595 nil  gc_used "object_block_hasher"
-  (!srcfileloc  "varasm.cc" 200)
+  (!srcfileloc  "varasm.cc" 201)
   (!fields 0 )
   nil 4095 nil nil )
  
@@ -25369,11 +25369,11 @@
    (!type already_seen 1596)
   )
   gc_pointed_to "hash_table<object_block_hasher>"
-  (!srcfileloc  "varasm.cc" 200)
+  (!srcfileloc  "varasm.cc" 201)
   (!fields 1 
    (!pair  "object_block_hasher"
     (!type already_seen 1595)
-    (!srcfileloc  "varasm.cc" 200)
+    (!srcfileloc  "varasm.cc" 201)
     nil )
   )
  )
@@ -25387,11 +25387,11 @@
    (!type already_seen 1599)
   )
   gc_pointed_to "hash_table<tree_descriptor_hasher>"
-  (!srcfileloc  "varasm.cc" 3094)
+  (!srcfileloc  "varasm.cc" 3108)
   (!fields 1 
    (!pair  "tree_descriptor_hasher"
     (!type already_seen 1122)
-    (!srcfileloc  "varasm.cc" 3094)
+    (!srcfileloc  "varasm.cc" 3108)
     nil )
   )
  )
@@ -25417,7 +25417,7 @@
   nil 0 nil nil )
  
  (!type struct 1605 nil  gc_used "tm_clone_hasher"
-  (!srcfileloc  "varasm.cc" 6445)
+  (!srcfileloc  "varasm.cc" 6459)
   (!fields 0 )
   nil 4095 nil nil )
  
@@ -25426,11 +25426,11 @@
    (!type already_seen 1606)
   )
   gc_pointed_to "hash_table<tm_clone_hasher>"
-  (!srcfileloc  "varasm.cc" 6445)
+  (!srcfileloc  "varasm.cc" 6459)
   (!fields 1 
    (!pair  "tm_clone_hasher"
     (!type already_seen 1605)
-    (!srcfileloc  "varasm.cc" 6445)
+    (!srcfileloc  "varasm.cc" 6459)
     nil )
   )
  )
@@ -25881,21 +25881,21 @@
   nil 0 nil nil )
  
  (!type user_struct 1680 nil  gc_used "generic_wide_int<fixed_wide_int_storage<1024>>"
-  (!srcfileloc  "omp-general.cc" 2187)
+  (!srcfileloc  "omp-general.cc" 2185)
   (!fields 1 
    (!pair  "fixed_wide_int_storage<1024"
     (!type user_struct 1681 nil  gc_used "fixed_wide_int_storage<1024"
-     (!srcfileloc  "omp-general.cc" 2187)
+     (!srcfileloc  "omp-general.cc" 2185)
      (!fields 1 
       (!pair  "1024"
        (!type undefined 1682 nil  gc_unused "1024"
-        (!srcfileloc  "omp-general.cc" 2187)
+        (!srcfileloc  "omp-general.cc" 2185)
        )
-       (!srcfileloc  "omp-general.cc" 2187)
+       (!srcfileloc  "omp-general.cc" 2185)
        nil )
      )
     )
-    (!srcfileloc  "omp-general.cc" 2187)
+    (!srcfileloc  "omp-general.cc" 2185)
     nil )
   )
  )
@@ -25905,27 +25905,27 @@
  (!type already_seen 1682)
  
  (!type struct 1683 nil  gc_used "omp_declare_variant_entry"
-  (!srcfileloc  "omp-general.cc" 2283)
+  (!srcfileloc  "omp-general.cc" 2281)
   (!fields 5 
    (!pair  "variant"
     (!type already_seen 830)
-    (!srcfileloc  "omp-general.cc" 2264)
+    (!srcfileloc  "omp-general.cc" 2262)
     nil )
    (!pair  "score"
     (!type already_seen 1680)
-    (!srcfileloc  "omp-general.cc" 2266)
+    (!srcfileloc  "omp-general.cc" 2264)
     nil )
    (!pair  "score_in_declare_simd_clone"
     (!type already_seen 1680)
-    (!srcfileloc  "omp-general.cc" 2268)
+    (!srcfileloc  "omp-general.cc" 2266)
     nil )
    (!pair  "ctx"
     (!type already_seen 23)
-    (!srcfileloc  "omp-general.cc" 2270)
+    (!srcfileloc  "omp-general.cc" 2268)
     nil )
    (!pair  "matches"
     (!type already_seen 2)
-    (!srcfileloc  "omp-general.cc" 2272)
+    (!srcfileloc  "omp-general.cc" 2270)
     nil )
   )
   nil 4095 nil nil )
@@ -25935,33 +25935,33 @@
    (!type already_seen 1684)
   )
   gc_pointed_to "vec<omp_declare_variant_entry,va_gc>"
-  (!srcfileloc  "omp-general.cc" 2283)
+  (!srcfileloc  "omp-general.cc" 2281)
   (!fields 2 
    (!pair  "va_gc"
     (!type already_seen 80)
-    (!srcfileloc  "omp-general.cc" 2283)
+    (!srcfileloc  "omp-general.cc" 2281)
     nil )
    (!pair  "omp_declare_variant_entry"
     (!type already_seen 1683)
-    (!srcfileloc  "omp-general.cc" 2283)
+    (!srcfileloc  "omp-general.cc" 2281)
     nil )
   )
  )
  
  (!type struct 1686 nil  gc_pointed_to "omp_declare_variant_base_entry"
-  (!srcfileloc  "omp-general.cc" 2284)
+  (!srcfileloc  "omp-general.cc" 2282)
   (!fields 3 
    (!pair  "base"
     (!type already_seen 830)
-    (!srcfileloc  "omp-general.cc" 2278)
+    (!srcfileloc  "omp-general.cc" 2276)
     nil )
    (!pair  "node"
     (!type already_seen 830)
-    (!srcfileloc  "omp-general.cc" 2281)
+    (!srcfileloc  "omp-general.cc" 2279)
     nil )
    (!pair  "variants"
     (!type already_seen 1685)
-    (!srcfileloc  "omp-general.cc" 2283)
+    (!srcfileloc  "omp-general.cc" 2281)
     nil )
   )
   (!options 
@@ -25970,7 +25970,7 @@
   4095 nil nil )
  
  (!type struct 1687 nil  gc_used "omp_declare_variant_hasher"
-  (!srcfileloc  "omp-general.cc" 2332)
+  (!srcfileloc  "omp-general.cc" 2330)
   (!fields 0 )
   nil 4095 nil nil )
  
@@ -25979,17 +25979,17 @@
    (!type already_seen 1688)
   )
   gc_pointed_to "hash_table<omp_declare_variant_hasher>"
-  (!srcfileloc  "omp-general.cc" 2332)
+  (!srcfileloc  "omp-general.cc" 2330)
   (!fields 1 
    (!pair  "omp_declare_variant_hasher"
     (!type already_seen 1687)
-    (!srcfileloc  "omp-general.cc" 2332)
+    (!srcfileloc  "omp-general.cc" 2330)
     nil )
   )
  )
  
  (!type struct 1690 nil  gc_used "omp_declare_variant_alt_hasher"
-  (!srcfileloc  "omp-general.cc" 2354)
+  (!srcfileloc  "omp-general.cc" 2352)
   (!fields 0 )
   nil 4095 nil nil )
  
@@ -25998,11 +25998,11 @@
    (!type already_seen 1691)
   )
   gc_pointed_to "hash_table<omp_declare_variant_alt_hasher>"
-  (!srcfileloc  "omp-general.cc" 2354)
+  (!srcfileloc  "omp-general.cc" 2352)
   (!fields 1 
    (!pair  "omp_declare_variant_alt_hasher"
     (!type already_seen 1690)
-    (!srcfileloc  "omp-general.cc" 2354)
+    (!srcfileloc  "omp-general.cc" 2352)
     nil )
   )
  )
@@ -33628,43 +33628,43 @@
   nil )
  (!pair  "omp_declare_variant_alt_hasher"
   (!type already_seen 1690)
-  (!srcfileloc  "omp-general.cc" 2354)
+  (!srcfileloc  "omp-general.cc" 2352)
   nil )
  (!pair  "hash_table<omp_declare_variant_alt_hasher>"
   (!type already_seen 1691)
-  (!srcfileloc  "omp-general.cc" 2354)
+  (!srcfileloc  "omp-general.cc" 2352)
   nil )
  (!pair  "omp_declare_variant_hasher"
   (!type already_seen 1687)
-  (!srcfileloc  "omp-general.cc" 2332)
+  (!srcfileloc  "omp-general.cc" 2330)
   nil )
  (!pair  "hash_table<omp_declare_variant_hasher>"
   (!type already_seen 1688)
-  (!srcfileloc  "omp-general.cc" 2332)
+  (!srcfileloc  "omp-general.cc" 2330)
   nil )
  (!pair  "omp_declare_variant_entry"
   (!type already_seen 1683)
-  (!srcfileloc  "omp-general.cc" 2283)
+  (!srcfileloc  "omp-general.cc" 2281)
   nil )
  (!pair  "vec<omp_declare_variant_entry,va_gc>"
   (!type already_seen 1684)
-  (!srcfileloc  "omp-general.cc" 2283)
+  (!srcfileloc  "omp-general.cc" 2281)
   nil )
  (!pair  "score_wide_int"
   (!type already_seen 1680)
-  (!srcfileloc  "omp-general.cc" 2187)
+  (!srcfileloc  "omp-general.cc" 2185)
   nil )
  (!pair  "1024"
   (!type already_seen 1682)
-  (!srcfileloc  "omp-general.cc" 2187)
+  (!srcfileloc  "omp-general.cc" 2185)
   nil )
  (!pair  "fixed_wide_int_storage<1024"
   (!type already_seen 1681)
-  (!srcfileloc  "omp-general.cc" 2187)
+  (!srcfileloc  "omp-general.cc" 2185)
   nil )
  (!pair  "generic_wide_int<fixed_wide_int_storage<1024>>"
   (!type already_seen 1680)
-  (!srcfileloc  "omp-general.cc" 2187)
+  (!srcfileloc  "omp-general.cc" 2185)
   nil )
  (!pair  "use_optype_p"
   (!type already_seen 408)
@@ -33732,43 +33732,43 @@
   nil )
  (!pair  "tm_clone_hasher"
   (!type already_seen 1605)
-  (!srcfileloc  "varasm.cc" 6445)
+  (!srcfileloc  "varasm.cc" 6459)
   nil )
  (!pair  "hash_table<tm_clone_hasher>"
   (!type already_seen 1606)
-  (!srcfileloc  "varasm.cc" 6445)
+  (!srcfileloc  "varasm.cc" 6459)
   nil )
  (!pair  "const_rtx_desc_hasher"
   (!type already_seen 1038)
-  (!srcfileloc  "varasm.cc" 3765)
+  (!srcfileloc  "varasm.cc" 3779)
   nil )
  (!pair  "hash_table<const_rtx_desc_hasher>"
   (!type already_seen 1037)
-  (!srcfileloc  "varasm.cc" 3765)
+  (!srcfileloc  "varasm.cc" 3779)
   nil )
  (!pair  "tree_descriptor_hasher"
   (!type already_seen 1122)
-  (!srcfileloc  "varasm.cc" 3094)
+  (!srcfileloc  "varasm.cc" 3108)
   nil )
  (!pair  "hash_table<tree_descriptor_hasher>"
   (!type already_seen 1599)
-  (!srcfileloc  "varasm.cc" 3094)
+  (!srcfileloc  "varasm.cc" 3108)
   nil )
  (!pair  "object_block_hasher"
   (!type already_seen 1595)
-  (!srcfileloc  "varasm.cc" 200)
+  (!srcfileloc  "varasm.cc" 201)
   nil )
  (!pair  "hash_table<object_block_hasher>"
   (!type already_seen 1596)
-  (!srcfileloc  "varasm.cc" 200)
+  (!srcfileloc  "varasm.cc" 201)
   nil )
  (!pair  "section_hasher"
   (!type already_seen 1592)
-  (!srcfileloc  "varasm.cc" 189)
+  (!srcfileloc  "varasm.cc" 190)
   nil )
  (!pair  "hash_table<section_hasher>"
   (!type already_seen 1593)
-  (!srcfileloc  "varasm.cc" 189)
+  (!srcfileloc  "varasm.cc" 190)
   nil )
  (!pair  "tree_vec_map_cache_hasher"
   (!type already_seen 959)
@@ -34972,11 +34972,11 @@
   nil )
  (!pair  "noswitch_section_callback"
   (!type already_seen 2)
-  (!srcfileloc  "output.h" 495)
+  (!srcfileloc  "output.h" 499)
   nil )
  (!pair  "unnamed_section_callback"
   (!type already_seen 2)
-  (!srcfileloc  "output.h" 469)
+  (!srcfileloc  "output.h" 473)
   nil )
  (!pair  "__gcc_host_wide_int__"
   (!type already_seen 2)
@@ -38457,11 +38457,11 @@
  )
  (!pair  "hwasan_ctor_statements"
   (!type already_seen 23)
-  (!srcfileloc  "asan.cc" 4650)
+  (!srcfileloc  "asan.cc" 4648)
   nil )
  (!pair  "asan_ctor_statements"
   (!type already_seen 23)
-  (!srcfileloc  "asan.cc" 3598)
+  (!srcfileloc  "asan.cc" 3596)
   nil )
  (!pair  "asan_detect_stack_use_after_return"
   (!type already_seen 23)
@@ -38585,11 +38585,11 @@
   nil )
  (!pair  "omp_declare_variant_alt"
   (!type already_seen 1692)
-  (!srcfileloc  "omp-general.cc" 2355)
+  (!srcfileloc  "omp-general.cc" 2353)
   nil )
  (!pair  "omp_declare_variants"
   (!type already_seen 1689)
-  (!srcfileloc  "omp-general.cc" 2332)
+  (!srcfileloc  "omp-general.cc" 2330)
   nil )
  (!pair  "offload_ind_funcs"
   (!type already_seen 85)
@@ -38680,74 +38680,74 @@
   nil )
  (!pair  "elf_fini_array_section"
   (!type already_seen 216)
-  (!srcfileloc  "varasm.cc" 8493)
+  (!srcfileloc  "varasm.cc" 8507)
   nil )
  (!pair  "elf_init_array_section"
   (!type already_seen 216)
-  (!srcfileloc  "varasm.cc" 8492)
+  (!srcfileloc  "varasm.cc" 8506)
   nil )
  (!pair  "tm_clone_hash"
   (!type already_seen 1607)
-  (!srcfileloc  "varasm.cc" 6445)
+  (!srcfileloc  "varasm.cc" 6459)
   (!options 
    (!option cache string  "")
   )
  )
  (!pair  "weakref_targets"
   (!type already_seen 23)
-  (!srcfileloc  "varasm.cc" 6097)
+  (!srcfileloc  "varasm.cc" 6111)
   nil )
  (!pair  "const_desc_htab"
   (!type already_seen 1600)
-  (!srcfileloc  "varasm.cc" 3094)
+  (!srcfileloc  "varasm.cc" 3108)
   nil )
  (!pair  "initial_trampoline"
   (!type already_seen 100)
-  (!srcfileloc  "varasm.cc" 2758)
+  (!srcfileloc  "varasm.cc" 2772)
   nil )
  (!pair  "weak_decls"
   (!type already_seen 23)
-  (!srcfileloc  "varasm.cc" 2544)
+  (!srcfileloc  "varasm.cc" 2558)
   nil )
  (!pair  "pending_libcall_symbols"
   (!type already_seen 100)
-  (!srcfileloc  "varasm.cc" 2466)
+  (!srcfileloc  "varasm.cc" 2480)
   nil )
  (!pair  "pending_assemble_externals"
   (!type already_seen 23)
-  (!srcfileloc  "varasm.cc" 2462)
+  (!srcfileloc  "varasm.cc" 2476)
   nil )
  (!pair  "shared_constant_pool"
   (!type already_seen 1035)
-  (!srcfileloc  "varasm.cc" 206)
+  (!srcfileloc  "varasm.cc" 207)
   nil )
  (!pair  "anchor_labelno"
   (!type already_seen 2)
-  (!srcfileloc  "varasm.cc" 203)
+  (!srcfileloc  "varasm.cc" 204)
   nil )
  (!pair  "object_block_htab"
   (!type already_seen 1597)
-  (!srcfileloc  "varasm.cc" 200)
+  (!srcfileloc  "varasm.cc" 201)
   nil )
  (!pair  "section_htab"
   (!type already_seen 1594)
-  (!srcfileloc  "varasm.cc" 189)
+  (!srcfileloc  "varasm.cc" 190)
   nil )
  (!pair  "unnamed_sections"
   (!type already_seen 216)
-  (!srcfileloc  "varasm.cc" 174)
+  (!srcfileloc  "varasm.cc" 175)
   nil )
  (!pair  "const_labelno"
   (!type already_seen 2)
-  (!srcfileloc  "varasm.cc" 81)
+  (!srcfileloc  "varasm.cc" 82)
   nil )
  (!pair  "weak_global_object_name"
   (!type already_seen 11)
-  (!srcfileloc  "varasm.cc" 67)
+  (!srcfileloc  "varasm.cc" 68)
   nil )
  (!pair  "first_global_object_name"
   (!type already_seen 11)
-  (!srcfileloc  "varasm.cc" 66)
+  (!srcfileloc  "varasm.cc" 67)
   nil )
  (!pair  "gcc_eh_personality_decl"
   (!type already_seen 23)
@@ -39556,67 +39556,67 @@
   nil )
  (!pair  "in_cold_section_p"
   (!type already_seen 2)
-  (!srcfileloc  "output.h" 535)
+  (!srcfileloc  "output.h" 539)
   nil )
  (!pair  "in_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 534)
+  (!srcfileloc  "output.h" 538)
   nil )
  (!pair  "bss_noswitch_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 532)
+  (!srcfileloc  "output.h" 536)
   nil )
  (!pair  "lcomm_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 531)
+  (!srcfileloc  "output.h" 535)
   nil )
  (!pair  "comm_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 530)
+  (!srcfileloc  "output.h" 534)
   nil )
  (!pair  "tls_comm_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 529)
+  (!srcfileloc  "output.h" 533)
   nil )
  (!pair  "eh_frame_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 528)
+  (!srcfileloc  "output.h" 532)
   nil )
  (!pair  "exception_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 527)
+  (!srcfileloc  "output.h" 531)
   nil )
  (!pair  "sbss_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 526)
+  (!srcfileloc  "output.h" 530)
   nil )
  (!pair  "bss_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 525)
+  (!srcfileloc  "output.h" 529)
   nil )
  (!pair  "dtors_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 524)
+  (!srcfileloc  "output.h" 528)
   nil )
  (!pair  "ctors_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 523)
+  (!srcfileloc  "output.h" 527)
   nil )
  (!pair  "sdata_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 522)
+  (!srcfileloc  "output.h" 526)
   nil )
  (!pair  "readonly_data_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 521)
+  (!srcfileloc  "output.h" 525)
   nil )
  (!pair  "data_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 520)
+  (!srcfileloc  "output.h" 524)
   nil )
  (!pair  "text_section"
   (!type already_seen 216)
-  (!srcfileloc  "output.h" 519)
+  (!srcfileloc  "output.h" 523)
   nil )
  (!pair  "types_used_by_cur_var_decl"
   (!type already_seen 85)
