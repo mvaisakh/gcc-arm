@@ -108,6 +108,7 @@ enum processor_type
   TARGET_CPU_cortexm23,
   TARGET_CPU_cortexm33,
   TARGET_CPU_cortexm35p,
+  TARGET_CPU_cortexm52,
   TARGET_CPU_cortexm55,
   TARGET_CPU_starmc1,
   TARGET_CPU_cortexm85,

@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2024-01-07 gcc-14.0.0 GNU
+.TH GCC 1 2024-01-11 gcc-14.0.0 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -22286,7 +22286,7 @@ Permissible names are: \fBarm7tdmi\fR, \fBarm7tdmi\-s\fR, \fBarm710t\fR,
 \&\fBcortex\-r7\fR, \fBcortex\-r8\fR, \fBcortex\-r52\fR, \fBcortex\-r52plus\fR,
 \&\fBcortex\-m0\fR, \fBcortex\-m0plus\fR, \fBcortex\-m1\fR, \fBcortex\-m3\fR,
 \&\fBcortex\-m4\fR, \fBcortex\-m7\fR, \fBcortex\-m23\fR, \fBcortex\-m33\fR,
-\&\fBcortex\-m35p\fR, \fBcortex\-m55\fR, \fBcortex\-m85\fR, \fBcortex\-x1\fR,
+\&\fBcortex\-m35p\fR, \fBcortex\-m52\fR, \fBcortex\-m55\fR, \fBcortex\-m85\fR, \fBcortex\-x1\fR,
 \&\fBcortex\-x1c\fR, \fBcortex\-m1.small\-multiply\fR, \fBcortex\-m0.small\-multiply\fR,
 \&\fBcortex\-m0plus.small\-multiply\fR, \fBexynos\-m1\fR, \fBmarvell\-pj4\fR,
 \&\fBneoverse\-n1\fR, \fBneoverse\-n2\fR, \fBneoverse\-v1\fR, \fBxscale\fR,
@@ -22351,34 +22351,34 @@ The following extension options are common to the listed CPUs:
 .IP \fB+nodsp\fR 4
 .IX Item "+nodsp"
 Disable the DSP instructions on \fBcortex\-m33\fR, \fBcortex\-m35p\fR,
-\&\fBcortex\-m55\fR and \fBcortex\-m85\fR. Also disable the M\-Profile Vector
-Extension (MVE) integer and single precision floating-point instructions on
-\&\fBcortex\-m55\fR and \fBcortex\-m85\fR.
+\&\fBcortex\-m52\fR, \fBcortex\-m55\fR and \fBcortex\-m85\fR.
+Also disable the M\-Profile Vector Extension (MVE) integer and
+single precision floating-point instructions on
+\&\fBcortex\-m52\fR, \fBcortex\-m55\fR and \fBcortex\-m85\fR.
 .IP \fB+nopacbti\fR 4
 .IX Item "+nopacbti"
 Disable the Pointer Authentication and Branch Target Identification Extension
-on \fBcortex\-m85\fR.
+on \fBcortex\-m52\fR and \fBcortex\-m85\fR.
 .IP \fB+nomve\fR 4
 .IX Item "+nomve"
 Disable the M\-Profile Vector Extension (MVE) integer and single precision
-floating-point instructions on \fBcortex\-m55\fR and \fBcortex\-m85\fR.
+floating-point instructions on \fBcortex\-m52\fR, \fBcortex\-m55\fR and \fBcortex\-m85\fR.
 .IP \fB+nomve.fp\fR 4
 .IX Item "+nomve.fp"
 Disable the M\-Profile Vector Extension (MVE) single precision floating-point
-instructions on \fBcortex\-m55\fR and \fBcortex\-m85\fR.
+instructions on \fBcortex\-m52\fR, \fBcortex\-m55\fR and \fBcortex\-m85\fR.
 .IP "\fB+cdecp0, +cdecp1, ... , +cdecp7\fR" 4
 .IX Item "+cdecp0, +cdecp1, ... , +cdecp7"
 Enable the Custom Datapath Extension (CDE) on selected coprocessors according
-to the numbers given in the options in the range 0 to 7 on \fBcortex\-m55\fR.
+to the numbers given in the options in the range 0 to 7 on \fBcortex\-m52\fR and \fBcortex\-m55\fR.
 .IP \fB+nofp\fR 4
 .IX Item "+nofp"
 Disables the floating-point instructions on \fBarm9e\fR,
 \&\fBarm946e\-s\fR, \fBarm966e\-s\fR, \fBarm968e\-s\fR, \fBarm10e\fR,
 \&\fBarm1020e\fR, \fBarm1022e\fR, \fBarm926ej\-s\fR,
 \&\fBarm1026ej\-s\fR, \fBcortex\-r5\fR, \fBcortex\-r7\fR, \fBcortex\-r8\fR,
-\&\fBcortex\-m4\fR, \fBcortex\-m7\fR, \fBcortex\-m33\fR, \fBcortex\-m35p\fR
 \&\fBcortex\-m4\fR, \fBcortex\-m7\fR, \fBcortex\-m33\fR, \fBcortex\-m35p\fR,
-\&\fBcortex\-m55\fR and \fBcortex\-m85\fR.
+\&\fBcortex\-m52\fR, \fBcortex\-m55\fR and \fBcortex\-m85\fR.
 Disables the floating-point and SIMD instructions on
 \&\fBgeneric\-armv7\-a\fR, \fBcortex\-a5\fR, \fBcortex\-a7\fR,
 \&\fBcortex\-a8\fR, \fBcortex\-a9\fR, \fBcortex\-a12\fR,
@@ -22703,9 +22703,9 @@ Development Tools Engineering Specification", which can be found on
 Mitigate against a potential security issue with the \f(CW\*(C`VLLDM\*(C'\fR instruction
 in some M\-profile devices when using CMSE (CVE\-2021\-365465).  This option is
 enabled by default when the option \fB\-mcpu=\fR is used with
-\&\f(CW\*(C`cortex\-m33\*(C'\fR, \f(CW\*(C`cortex\-m35p\*(C'\fR, \f(CW\*(C`cortex\-m55\*(C'\fR, \f(CW\*(C`cortex\-m85\*(C'\fR
-or \f(CW\*(C`star\-mc1\*(C'\fR. The option \fB\-mno\-fix\-cmse\-cve\-2021\-35465\fR can be used
-to disable the mitigation.
+\&\f(CW\*(C`cortex\-m33\*(C'\fR, \f(CW\*(C`cortex\-m35p\*(C'\fR, \f(CW\*(C`cortex\-m52\*(C'\fR, \f(CW\*(C`cortex\-m55\*(C'\fR,
+\&\f(CW\*(C`cortex\-m85\*(C'\fR or \f(CW\*(C`star\-mc1\*(C'\fR. The option \fB\-mno\-fix\-cmse\-cve\-2021\-35465\fR
+can be used to disable the mitigation.
 .IP \fB\-mstack\-protector\-guard=\fR\fIguard\fR 4
 .IX Item "-mstack-protector-guard=guard"
 .PD 0
@@ -33579,8 +33579,8 @@ In 64\-bit mode, the \f(CW\*(C`SAHF\*(C'\fR instruction is used to optimize \f(C
 see \fBOther Builtins\fR for details.
 .IP \fB\-mmovbe\fR 4
 .IX Item "-mmovbe"
-This option enables use of the \f(CW\*(C`movbe\*(C'\fR instruction to implement
-\&\f(CW\*(C`_\|_builtin_bswap32\*(C'\fR and \f(CW\*(C`_\|_builtin_bswap64\*(C'\fR.
+This option enables use of the \f(CW\*(C`movbe\*(C'\fR instruction to optimize
+byte swapping of four and eight byte entities.
 .IP \fB\-mshstk\fR 4
 .IX Item "-mshstk"
 The \fB\-mshstk\fR option enables shadow stack built-in functions
@@ -34136,6 +34136,13 @@ Add CS prefix to call and jmp to indirect thunk with branch target in
 r8\-r15 registers so that the call and jmp instruction length is 6 bytes
 to allow them to be replaced with \fBlfence; call *%r8\-r15\fR or
 \&\fBlfence; jmp *%r8\-r15\fR at run-time.
+.IP \fB\-mapx\-inline\-asm\-use\-gpr32\fR 4
+.IX Item "-mapx-inline-asm-use-gpr32"
+For inline asm support with APX, by default the EGPR feature was
+disabled to prevent potential illegal instruction with EGPR occurs.
+To invoke egpr usage in inline asm, use new compiler option
+\&\-mapx\-inline\-asm\-use\-gpr32 and user should ensure the instruction
+supports EGPR.
 .PP
 These \fB\-m\fR switches are supported in addition to the above
 on x86\-64 processors in 64\-bit environments.

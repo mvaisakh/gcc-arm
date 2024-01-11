@@ -5025,6 +5025,13 @@
 #define HAVE_movv4hf (TARGET_NEON)
 #define HAVE_movv4bf (TARGET_NEON)
 #define HAVE_movv8bf (TARGET_NEON)
+#define HAVE_cbranchv8qi4 (TARGET_NEON)
+#define HAVE_cbranchv16qi4 (TARGET_NEON)
+#define HAVE_cbranchv4hi4 (TARGET_NEON)
+#define HAVE_cbranchv8hi4 (TARGET_NEON)
+#define HAVE_cbranchv2si4 (TARGET_NEON)
+#define HAVE_cbranchv4si4 (TARGET_NEON)
+#define HAVE_cbranchv2di4 (TARGET_NEON)
 #define HAVE_divv2sf3 (TARGET_NEON && !optimize_size \
    && flag_reciprocal_math)
 #define HAVE_divv4sf3 (TARGET_NEON && !optimize_size \
@@ -10657,6 +10664,13 @@ extern rtx        gen_movxi                                          (rtx, rtx);
 extern rtx        gen_movv4hf                                        (rtx, rtx);
 extern rtx        gen_movv4bf                                        (rtx, rtx);
 extern rtx        gen_movv8bf                                        (rtx, rtx);
+extern rtx        gen_cbranchv8qi4                                   (rtx, rtx, rtx, rtx);
+extern rtx        gen_cbranchv16qi4                                  (rtx, rtx, rtx, rtx);
+extern rtx        gen_cbranchv4hi4                                   (rtx, rtx, rtx, rtx);
+extern rtx        gen_cbranchv8hi4                                   (rtx, rtx, rtx, rtx);
+extern rtx        gen_cbranchv2si4                                   (rtx, rtx, rtx, rtx);
+extern rtx        gen_cbranchv4si4                                   (rtx, rtx, rtx, rtx);
+extern rtx        gen_cbranchv2di4                                   (rtx, rtx, rtx, rtx);
 extern rtx        gen_divv2sf3                                       (rtx, rtx, rtx);
 extern rtx        gen_divv4sf3                                       (rtx, rtx, rtx);
 extern rtx        gen_ceilv2sf2                                      (rtx, rtx);
