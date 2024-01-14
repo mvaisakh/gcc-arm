@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2024-01-11 gcc-14.0.0 GNU
+.TH GCC 1 2024-01-14 gcc-14.0.1 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1393,7 +1393,7 @@ See RS/6000 and PowerPC Options.
 \&\-mamx\-tile  \-mamx\-int8  \-mamx\-bf16 \-muintr \-mhreset \-mavxvnni
 \&\-mavx512fp16 \-mavxifma \-mavxvnniint8 \-mavxneconvert \-mcmpccxadd \-mamx\-fp16
 \&\-mprefetchi \-mraoint \-mamx\-complex \-mavxvnniint16 \-msm3 \-msha512 \-msm4 \-mapxf
-\&\-musermsr \-mavx10.1 \-mavx10.1\-256 \-mavx10.1\-512
+\&\-musermsr \-mavx10.1 \-mavx10.1\-256 \-mavx10.1\-512 \-mevex512
 \&\-mcldemote  \-mms\-bitfields  \-mno\-align\-stringops  \-minline\-all\-stringops
 \&\-minline\-stringops\-dynamically  \-mstringop\-strategy=\fR\fIalg\fR
 \&\fB\-mkl \-mwidekl
@@ -16623,6 +16623,9 @@ function.  The value \f(CW\*(C`full\*(C'\fR is an alias for specifying both
 \&\f(CW\*(C`branch\*(C'\fR and \f(CW\*(C`return\*(C'\fR. The value \f(CW\*(C`none\*(C'\fR turns off
 instrumentation.
 .Sp
+To override \fB\-fcf\-protection\fR, \fB\-fcf\-protection=none\fR
+needs to be added and then with \fB\-fcf\-protection=xxx\fR.
+.Sp
 The value \f(CW\*(C`check\*(C'\fR is used for the final link with link-time
 optimization (LTO).  An error is issued if LTO object files are
 compiled with different \fB\-fcf\-protection\fR values.  The
@@ -22861,7 +22864,7 @@ GCC supports the following AVR devices and ISAs:
 .ie n .IP """avrtiny""" 4
 .el .IP \f(CWavrtiny\fR 4
 .IX Item "avrtiny"
-"TINY" Tiny core devices with 512 B up to 4 KiB of program memory.
+"Reduced Tiny" Tiny core devices with only 16 general purpose registers and 512 B up to 4 KiB of program memory.
 \&\fImcu\fR = \f(CW\*(C`attiny4\*(C'\fR, \f(CW\*(C`attiny5\*(C'\fR, \f(CW\*(C`attiny9\*(C'\fR, \f(CW\*(C`attiny10\*(C'\fR, \f(CW\*(C`attiny102\*(C'\fR, \f(CW\*(C`attiny104\*(C'\fR, \f(CW\*(C`attiny20\*(C'\fR, \f(CW\*(C`attiny40\*(C'\fR.
 .ie n .IP """avr1""" 4
 .el .IP \f(CWavr1\fR 4
@@ -22934,10 +22937,6 @@ size.
 Do not save registers in \f(CW\*(C`main\*(C'\fR.  The effect is the same like
 attaching attribute \fBAVR Function Attributes,,\fR\f(CB\*(C`OS_task\*(C'\fR
 to \f(CW\*(C`main\*(C'\fR. It is activated per default if optimization is on.
-.IP \fB\-mn\-flash=\fR\fInum\fR 4
-.IX Item "-mn-flash=num"
-Assume that the flash memory has a size of 
-\&\fInum\fR times 64 KiB.
 .IP \fB\-mno\-interrupts\fR 4
 .IX Item "-mno-interrupts"
 Generated code is not compatible with hardware interrupts.
@@ -22957,31 +22956,6 @@ differ from instructions in the assembler code.
 .Sp
 Relaxing must be turned on if linker stubs are needed, see the
 section on \f(CW\*(C`EIND\*(C'\fR and linker stubs below.
-.IP \fB\-mrmw\fR 4
-.IX Item "-mrmw"
-Assume that the device supports the Read-Modify-Write
-instructions \f(CW\*(C`XCH\*(C'\fR, \f(CW\*(C`LAC\*(C'\fR, \f(CW\*(C`LAS\*(C'\fR and \f(CW\*(C`LAT\*(C'\fR.
-.IP \fB\-mshort\-calls\fR 4
-.IX Item "-mshort-calls"
-Assume that \f(CW\*(C`RJMP\*(C'\fR and \f(CW\*(C`RCALL\*(C'\fR can target the whole
-program memory.
-.Sp
-This option is used internally for multilib selection.  It is
-not an optimization option, and you don't need to set it by hand.
-.IP \fB\-msp8\fR 4
-.IX Item "-msp8"
-Treat the stack pointer register as an 8\-bit register,
-i.e. assume the high byte of the stack pointer is zero.
-In general, you don't need to set this option by hand.
-.Sp
-This option is used internally by the compiler to select and
-build multilibs for architectures \f(CW\*(C`avr2\*(C'\fR and \f(CW\*(C`avr25\*(C'\fR.
-These architectures mix devices with and without \f(CW\*(C`SPH\*(C'\fR.
-For any setting other than \fB\-mmcu=avr2\fR or \fB\-mmcu=avr25\fR
-the compiler driver adds or removes this option from the compiler
-proper's command line, because the compiler then knows if the device
-or architecture has an 8\-bit stack pointer and thus no \f(CW\*(C`SPH\*(C'\fR
-register or not.
 .IP \fB\-mstrict\-X\fR 4
 .IX Item "-mstrict-X"
 Use address register \f(CW\*(C`X\*(C'\fR in a way proposed by the hardware.  This means
@@ -23460,6 +23434,38 @@ and is defined to \f(CW2\fR or \f(CW3\fR.
 .PD
 Reflects the \f(CW\*(C`\-\-with\-libf7={libgcc|math|math\-symbols}\*(C'\fR
 configure\ option (\f(CW\*(C`https://gcc.gnu.org/install/configure.html#avr\*(C'\fR).
+.PP
+AVR Internal Options
+.IX Subsection "AVR Internal Options"
+.PP
+The following options are used internally by the compiler and to communicate
+between device specs files and the compiler proper. You don't need to set these
+options by hand, in particular they are not optimization options.
+Using these options in the wrong way may lead to sub-optimal or wrong code.
+They are documented for completeness, and in order to get a better
+understanding of
+device\ specs (\f(CW\*(C`https://gcc.gnu.org/wiki/avr\-gcc#spec\-files\*(C'\fR)
+files.
+.IP \fB\-mn\-flash=\fR\fInum\fR 4
+.IX Item "-mn-flash=num"
+Assume that the flash memory has a size of \fInum\fR times 64 KiB.
+This determines which \f(CW\*(C`_\|_flash\fR\f(CIN\fR\f(CW\*(C'\fR address spaces are available.
+.IP \fB\-mrmw\fR 4
+.IX Item "-mrmw"
+Assume that the device supports the Read-Modify-Write
+instructions \f(CW\*(C`XCH\*(C'\fR, \f(CW\*(C`LAC\*(C'\fR, \f(CW\*(C`LAS\*(C'\fR and \f(CW\*(C`LAT\*(C'\fR.
+.IP \fB\-mshort\-calls\fR 4
+.IX Item "-mshort-calls"
+Assume that \f(CW\*(C`RJMP\*(C'\fR and \f(CW\*(C`RCALL\*(C'\fR can target the whole
+program memory. This option is used for multilib generation and selection
+for the devices from architecture \f(CW\*(C`avrxmega3\*(C'\fR.
+.IP \fB\-msp8\fR 4
+.IX Item "-msp8"
+Treat the stack pointer register as an 8\-bit register,
+i.e. assume the high byte of the stack pointer is zero.
+This option is used by the compiler to select and
+build multilibs for architectures \f(CW\*(C`avr2\*(C'\fR and \f(CW\*(C`avr25\*(C'\fR.
+These architectures mix devices with and without \f(CW\*(C`SPH\*(C'\fR.
 .PP
 \fIBlackfin Options\fR
 .IX Subsection "Blackfin Options"
@@ -34143,6 +34149,13 @@ disabled to prevent potential illegal instruction with EGPR occurs.
 To invoke egpr usage in inline asm, use new compiler option
 \&\-mapx\-inline\-asm\-use\-gpr32 and user should ensure the instruction
 supports EGPR.
+.IP \fB\-mevex512\fR 4
+.IX Item "-mevex512"
+.PD 0
+.IP \fB\-mno\-evex512\fR 4
+.IX Item "-mno-evex512"
+.PD
+Enables/disables 512\-bit vector. It will be default on if AVX512F is enabled.
 .PP
 These \fB\-m\fR switches are supported in addition to the above
 on x86\-64 processors in 64\-bit environments.
