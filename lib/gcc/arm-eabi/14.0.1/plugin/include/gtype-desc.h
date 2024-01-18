@@ -1529,6 +1529,66 @@ extern void gt_ggc_mx_vec_prot_list_entry_va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_ggc_mx_vec_ivarref_entry_va_gc_ (X);\
   } while (0)
 extern void gt_ggc_mx_vec_ivarref_entry_va_gc_ (void *);
+#define gt_ggc_m_21rust_constexpr_fundef(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_rust_constexpr_fundef (X);\
+  } while (0)
+extern void gt_ggc_mx_rust_constexpr_fundef (void *);
+#define gt_ggc_m_19rust_constexpr_call(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_rust_constexpr_call (X);\
+  } while (0)
+extern void gt_ggc_mx_rust_constexpr_call (void *);
+#define gt_ggc_m_40hash_table_rust_constexpr_fundef_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_rust_constexpr_fundef_hasher_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_rust_constexpr_fundef_hasher_ (void *);
+#define gt_ggc_m_38hash_table_rust_constexpr_call_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_rust_constexpr_call_hasher_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_rust_constexpr_call_hasher_ (void *);
+#define gt_ggc_m_33vec_rust_cxx_saved_binding_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_vec_rust_cxx_saved_binding_va_gc_ (X);\
+  } while (0)
+extern void gt_ggc_mx_vec_rust_cxx_saved_binding_va_gc_ (void *);
+#define gt_ggc_m_34vec_omp_declare_target_attr_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_vec_omp_declare_target_attr_va_gc_ (X);\
+  } while (0)
+extern void gt_ggc_mx_vec_omp_declare_target_attr_va_gc_ (void *);
+#define gt_ggc_m_32vec_rust_cp_class_binding_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_vec_rust_cp_class_binding_va_gc_ (X);\
+  } while (0)
+extern void gt_ggc_mx_vec_rust_cp_class_binding_va_gc_ (void *);
+#define gt_ggc_m_21rust_cp_binding_level(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_rust_cp_binding_level (X);\
+  } while (0)
+extern void gt_ggc_mx_rust_cp_binding_level (void *);
+#define gt_ggc_m_22rust_named_label_entry(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_rust_named_label_entry (X);\
+  } while (0)
+extern void gt_ggc_mx_rust_named_label_entry (void *);
+#define gt_ggc_m_33hash_table_rust_named_label_hash_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_rust_named_label_hash_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_rust_named_label_hash_ (void *);
+#define gt_ggc_m_32hash_table_rust_named_decl_hash_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_rust_named_decl_hash_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_rust_named_decl_hash_ (void *);
+#define gt_ggc_m_27vec_rust_tree_pair_s_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_vec_rust_tree_pair_s_va_gc_ (X);\
+  } while (0)
+extern void gt_ggc_mx_vec_rust_tree_pair_s_va_gc_ (void *);
+#define gt_ggc_m_33hash_table_rust_conv_type_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_rust_conv_type_hasher_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_rust_conv_type_hasher_ (void *);
+#define gt_ggc_m_35hash_table_rust_cplus_array_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_rust_cplus_array_hasher_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_rust_cplus_array_hasher_ (void *);
+#define gt_ggc_m_49hash_table_rust_source_location_table_entry_hash_(X) do { \
+  if ((intptr_t)(X) != 0) gt_ggc_mx_hash_table_rust_source_location_table_entry_hash_ (X);\
+  } while (0)
+extern void gt_ggc_mx_hash_table_rust_source_location_table_entry_hash_ (void *);
 
 /* functions code */
 
@@ -3042,6 +3102,66 @@ extern void gt_pch_nx_vec_prot_list_entry_va_gc_ (void *);
   if ((intptr_t)(X) != 0) gt_pch_nx_vec_ivarref_entry_va_gc_ (X);\
   } while (0)
 extern void gt_pch_nx_vec_ivarref_entry_va_gc_ (void *);
+#define gt_pch_n_21rust_constexpr_fundef(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_rust_constexpr_fundef (X);\
+  } while (0)
+extern void gt_pch_nx_rust_constexpr_fundef (void *);
+#define gt_pch_n_19rust_constexpr_call(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_rust_constexpr_call (X);\
+  } while (0)
+extern void gt_pch_nx_rust_constexpr_call (void *);
+#define gt_pch_n_40hash_table_rust_constexpr_fundef_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_rust_constexpr_fundef_hasher_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_rust_constexpr_fundef_hasher_ (void *);
+#define gt_pch_n_38hash_table_rust_constexpr_call_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_rust_constexpr_call_hasher_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_rust_constexpr_call_hasher_ (void *);
+#define gt_pch_n_33vec_rust_cxx_saved_binding_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_vec_rust_cxx_saved_binding_va_gc_ (X);\
+  } while (0)
+extern void gt_pch_nx_vec_rust_cxx_saved_binding_va_gc_ (void *);
+#define gt_pch_n_34vec_omp_declare_target_attr_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_vec_omp_declare_target_attr_va_gc_ (X);\
+  } while (0)
+extern void gt_pch_nx_vec_omp_declare_target_attr_va_gc_ (void *);
+#define gt_pch_n_32vec_rust_cp_class_binding_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_vec_rust_cp_class_binding_va_gc_ (X);\
+  } while (0)
+extern void gt_pch_nx_vec_rust_cp_class_binding_va_gc_ (void *);
+#define gt_pch_n_21rust_cp_binding_level(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_rust_cp_binding_level (X);\
+  } while (0)
+extern void gt_pch_nx_rust_cp_binding_level (void *);
+#define gt_pch_n_22rust_named_label_entry(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_rust_named_label_entry (X);\
+  } while (0)
+extern void gt_pch_nx_rust_named_label_entry (void *);
+#define gt_pch_n_33hash_table_rust_named_label_hash_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_rust_named_label_hash_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_rust_named_label_hash_ (void *);
+#define gt_pch_n_32hash_table_rust_named_decl_hash_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_rust_named_decl_hash_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_rust_named_decl_hash_ (void *);
+#define gt_pch_n_27vec_rust_tree_pair_s_va_gc_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_vec_rust_tree_pair_s_va_gc_ (X);\
+  } while (0)
+extern void gt_pch_nx_vec_rust_tree_pair_s_va_gc_ (void *);
+#define gt_pch_n_33hash_table_rust_conv_type_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_rust_conv_type_hasher_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_rust_conv_type_hasher_ (void *);
+#define gt_pch_n_35hash_table_rust_cplus_array_hasher_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_rust_cplus_array_hasher_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_rust_cplus_array_hasher_ (void *);
+#define gt_pch_n_49hash_table_rust_source_location_table_entry_hash_(X) do { \
+  if ((intptr_t)(X) != 0) gt_pch_nx_hash_table_rust_source_location_table_entry_hash_ (X);\
+  } while (0)
+extern void gt_pch_nx_hash_table_rust_source_location_table_entry_hash_ (void *);
 
 /* functions code */
 
@@ -3920,4 +4040,34 @@ extern void gt_pch_p_23vec_msgref_entry_va_gc_
 extern void gt_pch_p_26vec_prot_list_entry_va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24vec_ivarref_entry_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_21rust_constexpr_fundef
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_19rust_constexpr_call
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_40hash_table_rust_constexpr_fundef_hasher_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_38hash_table_rust_constexpr_call_hasher_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_33vec_rust_cxx_saved_binding_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_34vec_omp_declare_target_attr_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_32vec_rust_cp_class_binding_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_21rust_cp_binding_level
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_22rust_named_label_entry
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_33hash_table_rust_named_label_hash_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_32hash_table_rust_named_decl_hash_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_27vec_rust_tree_pair_s_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_33hash_table_rust_conv_type_hasher_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_35hash_table_rust_cplus_array_hasher_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_49hash_table_rust_source_location_table_entry_hash_
     (void *, void *, gt_pointer_operator, void *);

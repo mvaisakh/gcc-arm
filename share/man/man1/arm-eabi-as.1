@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "AS 1"
-.TH AS 1 2024-01-14 binutils-2.41.50 "GNU Development Tools"
+.TH AS 1 2024-01-18 binutils-2.42.50 "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -64,7 +64,7 @@
 AS \- the portable GNU assembler.
 .SH SYNOPSIS
 .IX Header "SYNOPSIS"
-as [\fB\-a\fR[\fBcdghlns\fR][=\fIfile\fR]]
+as [\fB\-a\fR[\fBcdghilns\fR][=\fIfile\fR]]
  [\fB\-\-alternate\fR]
  [\fB\-\-compress\-debug\-sections\fR] [\fB\-\-nocompress\-debug\-sections\fR]
  [\fB\-D\fR]
@@ -93,6 +93,7 @@ as [\fB\-a\fR[\fBcdghlns\fR][=\fIfile\fR]]
  [\fB\-\-multibyte\-handling=[allow|warn|warn\-sym\-only]\fR]
  [\fB\-\-no\-pad\-sections\fR]
  [\fB\-o\fR \fIobjfile\fR] [\fB\-R\fR]
+ [\fB\-\-scfi=experimental\fR]
  [\fB\-\-sectname\-subst\fR]
  [\fB\-\-size\-check=[error|warning]\fR]
  [\fB\-\-statistics\fR]
@@ -469,8 +470,8 @@ option in either single or double quotes.  Any character (including a
 backslash) may be included by prefixing the character to be included
 with a backslash.  The \fIfile\fR may itself contain additional
 @\fIfile\fR options; any such options will be processed recursively.
-.IP \fB\-a[cdghlmns]\fR 4
-.IX Item "-a[cdghlmns]"
+.IP \fB\-a[cdghilmns]\fR 4
+.IX Item "-a[cdghilmns]"
 Turn on listings, in any of a variety of ways:
 .RS 4
 .IP \fB\-ac\fR 4
@@ -488,6 +489,9 @@ include high-level source
 .IP \fB\-al\fR 4
 .IX Item "-al"
 include assembly
+.IP \fB\-ali\fR 4
+.IX Item "-ali"
+include assembly with ginsn
 .IP \fB\-am\fR 4
 .IX Item "-am"
 include macro expansions
@@ -736,6 +740,20 @@ Fold the data section into the text section.
 .IX Item "--reduce-memory-overheads"
 Ignored.  Supported for compatibility with tools that apss the same option to
 both the assembler and the linker.
+.IP \fB\-\-scfi=experimental\fR 4
+.IX Item "--scfi=experimental"
+This option controls whether the assembler should synthesize CFI for
+hand-written input.  If the input already contains some synthesizable CFI
+directives, the assembler ignores them and emits a warning.  Note that
+\&\f(CW\*(C`\-\-scfi=experimental\*(C'\fR is not intended to be used for compiler-generated
+code, including inline assembly.  This experimental support is work in
+progress.  Only System V AMD64 ABI is supported.
+.Sp
+Each input function in assembly must begin with the \f(CW\*(C`.type\*(C'\fR directive, and
+should ideally be closed off using a \f(CW\*(C`.size\*(C'\fR directive.  When using SCFI,
+each \f(CW\*(C`.type\*(C'\fR directive prompts GAS to start a new FDE (a.k.a., Function
+Descriptor Entry).  This implies that with each \f(CW\*(C`.type\*(C'\fR directive, a
+previous block of instructions, if any, is finalised as a distinct FDE.
 .IP \fB\-\-sectname\-subst\fR 4
 .IX Item "--sectname-subst"
 Honor substitution sequences in section names.

@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2024-01-14 gcc-14.0.1 GNU
+.TH GCC 1 2024-01-18 gcc-14.0.1 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -158,7 +158,7 @@ in the following sections.
 \&\fB\-fopenmp  \-fopenmp\-simd  \-fopenmp\-target\-simd\-clone\fR[\fB=\fR\fIdevice-type\fR]
 \&\fB\-fpermitted\-flt\-eval\-methods=\fR\fIstandard\fR
 \&\fB\-fplan9\-extensions  \-fsigned\-bitfields  \-funsigned\-bitfields
-\&\-fsigned\-char  \-funsigned\-char \-fstrict\-flex\-arrays[=\fR\fIn\fR\fB]
+\&\-fsigned\-char  \-funsigned\-char  \-fstrict\-flex\-arrays[=\fR\fIn\fR\fB]
 \&\-fsso\-struct=\fR\fIendianness\fR
 .IP "\fIC++ Language Options\fR" 4
 .IX Item "C++ Language Options"
@@ -221,8 +221,7 @@ in the following sections.
 \&\-Woverloaded\-virtual  \-Wno\-pmf\-conversions \-Wself\-move \-Wsign\-promo
 \&\-Wsized\-deallocation  \-Wsuggest\-final\-methods
 \&\-Wsuggest\-final\-types  \-Wsuggest\-override
-\&\-Wno\-terminate  \-Wuseless\-cast  \-Wno\-vexing\-parse
-\&\-Wvirtual\-inheritance
+\&\-Wno\-terminate  \-Wno\-vexing\-parse  \-Wvirtual\-inheritance
 \&\-Wno\-virtual\-move\-assign  \-Wvolatile  \-Wzero\-as\-null\-pointer\-constant\fR
 .IP "\fIObjective-C and Objective\-C++ Language Options\fR" 4
 .IX Item "Objective-C and Objective-C++ Language Options"
@@ -352,7 +351,7 @@ in the following sections.
 \&\-Wstrict\-aliasing=n  \-Wstrict\-overflow  \-Wstrict\-overflow=\fR\fIn\fR
 \&\fB\-Wstring\-compare
 \&\-Wno\-stringop\-overflow \-Wno\-stringop\-overread
-\&\-Wno\-stringop\-truncation \-Wstrict\-flex\-arrays
+\&\-Wno\-stringop\-truncation  \-Wstrict\-flex\-arrays
 \&\-Wsuggest\-attribute=\fR[\fBpure\fR|\fBconst\fR|\fBnoreturn\fR|\fBformat\fR|\fBmalloc\fR]
 \&\fB\-Wswitch  \-Wno\-switch\-bool  \-Wswitch\-default  \-Wswitch\-enum
 \&\-Wno\-switch\-outside\-range  \-Wno\-switch\-unreachable  \-Wsync\-nand
@@ -366,6 +365,7 @@ in the following sections.
 \&\-Wunused\-macros
 \&\-Wunused\-parameter  \-Wno\-unused\-result
 \&\-Wunused\-value  \-Wunused\-variable
+\&\-Wuse\-after\-free  \-Wuse\-after\-free=\fR\fIn\fR  \fB\-Wuseless\-cast
 \&\-Wno\-varargs  \-Wvariadic\-macros
 \&\-Wvector\-operation\-performance
 \&\-Wvla  \-Wvla\-larger\-than=\fR\fIbyte-size\fR  \fB\-Wno\-vla\-larger\-than
@@ -813,12 +813,12 @@ in the following sections.
 \&\fIAVR Options\fR
 \&\fB\-mmcu=\fR\fImcu\fR  \fB\-mabsdata  \-maccumulate\-args
 \&\-mbranch\-cost=\fR\fIcost\fR
-\&\fB\-mcall\-prologues  \-mgas\-isr\-prologues  \-mint8
-\&\-mdouble=\fR\fIbits\fR \fB\-mlong\-double=\fR\fIbits\fR
+\&\fB\-mcall\-prologues  \-mgas\-isr\-prologues  \-mint8  \-mflmap
+\&\-mdouble=\fR\fIbits\fR  \fB\-mlong\-double=\fR\fIbits\fR
 \&\fB\-mn_flash=\fR\fIsize\fR  \fB\-mno\-interrupts
 \&\-mmain\-is\-OS_task  \-mrelax  \-mrmw  \-mstrict\-X  \-mtiny\-stack
-\&\-mfract\-convert\-truncate
-\&\-mshort\-calls  \-nodevicelib  \-nodevicespecs
+\&\-mrodata\-in\-ram  \-mfract\-convert\-truncate
+\&\-mshort\-calls  \-mskip\-bug  \-nodevicelib  \-nodevicespecs
 \&\-Waddr\-space\-convert  \-Wmisspelled\-isr\fR
 .Sp
 \&\fIBlackfin Options\fR
@@ -2896,27 +2896,33 @@ make such a program work with the opposite default.
 The type \f(CW\*(C`char\*(C'\fR is always a distinct type from each of
 \&\f(CW\*(C`signed char\*(C'\fR or \f(CW\*(C`unsigned char\*(C'\fR, even though its behavior
 is always just like one of those two.
-.IP \fB\-fstrict\-flex\-arrays\fR 4
-.IX Item "-fstrict-flex-arrays"
-Control when to treat the trailing array of a structure as a flexible array
-member for the purpose of accessing the elements of such an array.
-The positive form is equivalent to \fB\-fstrict\-flex\-arrays=3\fR, which is the
-strictest.  A trailing array is treated as a flexible array member only when it
-is declared as a flexible array member per C99 standard onwards.
-The negative form is equivalent to \fB\-fstrict\-flex\-arrays=0\fR, which is the
-least strict.  All trailing arrays of structures are treated as flexible array
-members.
-.IP \fB\-fstrict\-flex\-arrays=\fR\fIlevel\fR 4
-.IX Item "-fstrict-flex-arrays=level"
+.IP "\fB\-fstrict\-flex\-arrays\fR (C and C++ only)" 4
+.IX Item "-fstrict-flex-arrays (C and C++ only)"
+.PD 0
+.IP "\fB\-fstrict\-flex\-arrays=\fR\fIlevel\fR\fB \fR(C and C++ only)" 4
+.IX Item "-fstrict-flex-arrays=level (C and C++ only)"
+.PD
 Control when to treat the trailing array of a structure as a flexible array
 member for the purpose of accessing the elements of such an array.  The value
 of \fIlevel\fR controls the level of strictness.
+.Sp
+\&\fB\-fstrict\-flex\-arrays\fR is equivalent to
+\&\fB\-fstrict\-flex\-arrays=3\fR, which is the strictest; all
+trailing arrays of structures are treated as flexible array members.
+.Sp
+The negative form \fB\-fno\-strict\-flex\-arrays\fR is equivalent to
+\&\fB\-fstrict\-flex\-arrays=0\fR, which is the least strict.  In this
+case a trailing array is treated as a flexible array member only when
+it is declared as a flexible array member per C99 standard onwards.
 .Sp
 The possible values of \fIlevel\fR are the same as for the
 \&\f(CW\*(C`strict_flex_array\*(C'\fR attribute.
 .Sp
 You can control this behavior for a specific trailing array field of a
 structure by using the variable attribute \f(CW\*(C`strict_flex_array\*(C'\fR attribute.
+.Sp
+The \fB\-fstrict_flex_arrays\fR option interacts with the
+\&\fB\-Wstrict\-flex\-arrays\fR option.
 .IP \fB\-fsso\-struct=\fR\fIendianness\fR 4
 .IX Item "-fsso-struct=endianness"
 Set the default scalar storage order of structures and unions to the
@@ -4598,89 +4604,6 @@ annotations.
 .IX Item "-Wsuggest-override"
 Warn about overriding virtual functions that are not marked with the
 \&\f(CW\*(C`override\*(C'\fR keyword.
-.IP \fB\-Wuse\-after\-free\fR 4
-.IX Item "-Wuse-after-free"
-.PD 0
-.IP \fB\-Wuse\-after\-free=\fR\fIn\fR 4
-.IX Item "-Wuse-after-free=n"
-.PD
-Warn about uses of pointers to dynamically allocated objects that have
-been rendered indeterminate by a call to a deallocation function.
-The warning is enabled at all optimization levels but may yield different
-results with optimization than without.
-.RS 4
-.IP \fB\-Wuse\-after\-free=1\fR 4
-.IX Item "-Wuse-after-free=1"
-At level 1 the warning attempts to diagnose only unconditional uses
-of pointers made indeterminate by a deallocation call or a successful
-call to \f(CW\*(C`realloc\*(C'\fR, regardless of whether or not the call resulted
-in an actual reallocatio of memory.  This includes double\-\f(CW\*(C`free\*(C'\fR
-calls as well as uses in arithmetic and relational expressions.  Although
-undefined, uses of indeterminate pointers in equality (or inequality)
-expressions are not diagnosed at this level.
-.IP \fB\-Wuse\-after\-free=2\fR 4
-.IX Item "-Wuse-after-free=2"
-At level 2, in addition to unconditional uses, the warning also diagnoses
-conditional uses of pointers made indeterminate by a deallocation call.
-As at level 2, uses in equality (or inequality) expressions are not
-diagnosed.  For example, the second call to \f(CW\*(C`free\*(C'\fR in the following
-function is diagnosed at this level:
-.Sp
-.Vb 1
-\&        struct A { int refcount; void *data; };
-\&        
-\&        void release (struct A *p)
-\&        {
-\&          int refcount = \-\-p\->refcount;
-\&          free (p);
-\&          if (refcount == 0)
-\&            free (p\->data);   // warning: p may be used after free
-\&        }
-.Ve
-.IP \fB\-Wuse\-after\-free=3\fR 4
-.IX Item "-Wuse-after-free=3"
-At level 3, the warning also diagnoses uses of indeterminate pointers in
-equality expressions.  All uses of indeterminate pointers are undefined
-but equality tests sometimes appear after calls to \f(CW\*(C`realloc\*(C'\fR as
-an attempt to determine whether the call resulted in relocating the object
-to a different address.  They are diagnosed at a separate level to aid
-legacy code gradually transition to safe alternatives.  For example,
-the equality test in the function below is diagnosed at this level:
-.Sp
-.Vb 1
-\&        void adjust_pointers (int**, int);
-\&        
-\&        void grow (int **p, int n)
-\&        {
-\&          int **q = (int**)realloc (p, n *= 2);
-\&          if (q == p)
-\&            return;
-\&          adjust_pointers ((int**)q, n);
-\&        }
-.Ve
-.Sp
-To avoid the warning at this level, store offsets into allocated memory
-instead of pointers.  This approach obviates needing to adjust the stored
-pointers after reallocation.
-.RE
-.RS 4
-.Sp
-\&\fB\-Wuse\-after\-free=2\fR is included in \fB\-Wall\fR.
-.RE
-.IP "\fB\-Wuseless\-cast\fR (C, Objective-C, C++ and Objective\-C++ only)" 4
-.IX Item "-Wuseless-cast (C, Objective-C, C++ and Objective-C++ only)"
-Warn when an expression is cast to its own type.  This warning does not
-occur when a class object is converted to a non-reference type as that
-is a way to create a temporary:
-.Sp
-.Vb 6
-\&        struct S { };
-\&        void g (S&&);
-\&        void f (S&& arg)
-\&        {
-\&          g (S(arg)); // make arg prvalue so that it can bind to S&&
-\&        }
-.Ve
 .IP "\fB\-Wno\-conversion\-null\fR (C++ and Objective\-C++ only)" 4
 .IX Item "-Wno-conversion-null (C++ and Objective-C++ only)"
 Do not warn for conversions between \f(CW\*(C`NULL\*(C'\fR and non-pointer
@@ -7272,6 +7195,89 @@ All the above \fB\-Wunused\fR options combined.
 In order to get a warning about an unused function parameter, you must
 either specify \fB\-Wextra \-Wunused\fR (note that \fB\-Wall\fR implies
 \&\fB\-Wunused\fR), or separately specify \fB\-Wunused\-parameter\fR.
+.IP "\fB\-Wuse\-after\-free\fR (C, Objective-C, C++ and Objective\-C++ only)" 4
+.IX Item "-Wuse-after-free (C, Objective-C, C++ and Objective-C++ only)"
+.PD 0
+.IP \fB\-Wuse\-after\-free=\fR\fIn\fR 4
+.IX Item "-Wuse-after-free=n"
+.PD
+Warn about uses of pointers to dynamically allocated objects that have
+been rendered indeterminate by a call to a deallocation function.
+The warning is enabled at all optimization levels but may yield different
+results with optimization than without.
+.RS 4
+.IP \fB\-Wuse\-after\-free=1\fR 4
+.IX Item "-Wuse-after-free=1"
+At level 1 the warning attempts to diagnose only unconditional uses
+of pointers made indeterminate by a deallocation call or a successful
+call to \f(CW\*(C`realloc\*(C'\fR, regardless of whether or not the call resulted
+in an actual reallocation of memory.  This includes double\-\f(CW\*(C`free\*(C'\fR
+calls as well as uses in arithmetic and relational expressions.  Although
+undefined, uses of indeterminate pointers in equality (or inequality)
+expressions are not diagnosed at this level.
+.IP \fB\-Wuse\-after\-free=2\fR 4
+.IX Item "-Wuse-after-free=2"
+At level 2, in addition to unconditional uses, the warning also diagnoses
+conditional uses of pointers made indeterminate by a deallocation call.
+As at level 2, uses in equality (or inequality) expressions are not
+diagnosed.  For example, the second call to \f(CW\*(C`free\*(C'\fR in the following
+function is diagnosed at this level:
+.Sp
+.Vb 1
+\&        struct A { int refcount; void *data; };
+\&        
+\&        void release (struct A *p)
+\&        {
+\&          int refcount = \-\-p\->refcount;
+\&          free (p);
+\&          if (refcount == 0)
+\&            free (p\->data);   // warning: p may be used after free
+\&        }
+.Ve
+.IP \fB\-Wuse\-after\-free=3\fR 4
+.IX Item "-Wuse-after-free=3"
+At level 3, the warning also diagnoses uses of indeterminate pointers in
+equality expressions.  All uses of indeterminate pointers are undefined
+but equality tests sometimes appear after calls to \f(CW\*(C`realloc\*(C'\fR as
+an attempt to determine whether the call resulted in relocating the object
+to a different address.  They are diagnosed at a separate level to aid
+gradually transitioning legacy code to safe alternatives.  For example,
+the equality test in the function below is diagnosed at this level:
+.Sp
+.Vb 1
+\&        void adjust_pointers (int**, int);
+\&        
+\&        void grow (int **p, int n)
+\&        {
+\&          int **q = (int**)realloc (p, n *= 2);
+\&          if (q == p)
+\&            return;
+\&          adjust_pointers ((int**)q, n);
+\&        }
+.Ve
+.Sp
+To avoid the warning at this level, store offsets into allocated memory
+instead of pointers.  This approach obviates needing to adjust the stored
+pointers after reallocation.
+.RE
+.RS 4
+.Sp
+\&\fB\-Wuse\-after\-free=2\fR is included in \fB\-Wall\fR.
+.RE
+.IP "\fB\-Wuseless\-cast\fR (C, Objective-C, C++ and Objective\-C++ only)" 4
+.IX Item "-Wuseless-cast (C, Objective-C, C++ and Objective-C++ only)"
+Warn when an expression is cast to its own type.  This warning does not
+occur when a class object is converted to a non-reference type as that
+is a way to create a temporary:
+.Sp
+.Vb 6
+\&        struct S { };
+\&        void g (S&&);
+\&        void f (S&& arg)
+\&        {
+\&          g (S(arg)); // make arg prvalue so that it can bind to S&&
+\&        }
+.Ve
 .IP \fB\-Wuninitialized\fR 4
 .IX Item "-Wuninitialized"
 Warn if an object with automatic or allocated storage duration is used
@@ -7671,28 +7677,30 @@ however, are not suitable arguments to functions that expect
 \&\f(CW\*(C`NUL\*(C'\fR\-terminated strings.  To help detect accidental misuses of
 such arrays GCC issues warnings unless it can prove that the use is
 safe.
-.IP \fB\-Wstrict\-flex\-arrays\fR 4
-.IX Item "-Wstrict-flex-arrays"
-Warn about inproper usages of flexible array members
+.IP "\fB\-Wstrict\-flex\-arrays\fR (C and C++ only)" 4
+.IX Item "-Wstrict-flex-arrays (C and C++ only)"
+Warn about improper usages of flexible array members
 according to the \fIlevel\fR of the \f(CW\*(C`strict_flex_array (\fR\f(CIlevel\fR\f(CW)\*(C'\fR
 attribute attached to the trailing array field of a structure if it's
 available, otherwise according to the \fIlevel\fR of the option
-\&\fB\-fstrict\-flex\-arrays=\fR\fIlevel\fR.
+\&\fB\-fstrict\-flex\-arrays=\fR\fIlevel\fR.    \f(CW\*(C`\-Wstrict\-flex\-arrays\*(C'\fR
+is effective only when \fIlevel\fR is greater than 0.
 .Sp
-This option is effective only when \fIlevel\fR is bigger than 0.  Otherwise,
-it will be ignored with a warning.
-.Sp
-when \fIlevel\fR=1, warnings will be issued for a trailing array reference
+When \fIlevel\fR=1, warnings are issued for a trailing array reference
 of a structure that have 2 or more elements if the trailing array is referenced
 as a flexible array member.
 .Sp
-when \fIlevel\fR=2, in addition to \fIlevel\fR=1, additional warnings will be
+When \fIlevel\fR=2, in addition to \fIlevel\fR=1, additional warnings are
 issued for a trailing one-element array reference of a structure
 if the array is referenced as a flexible array member.
 .Sp
-when \fIlevel\fR=3, in addition to \fIlevel\fR=2, additional warnings will be
+When \fIlevel\fR=3, in addition to \fIlevel\fR=2, additional warnings are
 issued for a trailing zero-length array reference of a structure
 if the array is referenced as a flexible array member.
+.Sp
+This option is more effective when \fB\-ftree\-vrp\fR is active (the
+default for \fB\-O2\fR and above) but some warnings may be diagnosed
+even without optimization.
 .IP \fB\-Wsuggest\-attribute=\fR[\fBpure\fR|\fBconst\fR|\fBnoreturn\fR|\fBformat\fR|\fBcold\fR|\fBmalloc\fR]\fBreturns_nonnull\fR| 4
 .IX Item "-Wsuggest-attribute=[pure|const|noreturn|format|cold|malloc]returns_nonnull|"
 Warn for cases where adding an attribute may be beneficial. The
@@ -20360,7 +20368,7 @@ performance of the code.  Permissible values for this option are:
 \&\fBcortex\-r82\fR, \fBcortex\-x1\fR, \fBcortex\-x1c\fR, \fBcortex\-x2\fR,
 \&\fBcortex\-x3\fR, \fBcortex\-x4\fR, \fBcortex\-a510\fR, \fBcortex\-a520\fR,
 \&\fBcortex\-a710\fR, \fBcortex\-a715\fR, \fBcortex\-a720\fR, \fBampere1\fR,
-\&\fBampere1a\fR, \fBampere1b\fR, and \fBnative\fR.
+\&\fBampere1a\fR, \fBampere1b\fR, \fBcobalt\-100\fR and \fBnative\fR.
 .Sp
 The values \fBcortex\-a57.cortex\-a53\fR, \fBcortex\-a72.cortex\-a53\fR,
 \&\fBcortex\-a73.cortex\-a35\fR, \fBcortex\-a73.cortex\-a53\fR,
@@ -22840,7 +22848,7 @@ GCC supports the following AVR devices and ISAs:
 .el .IP \f(CWavrxmega3\fR 4
 .IX Item "avrxmega3"
 "XMEGA" devices with up to 64 KiB of combined program memory and RAM, and with program memory visible in the RAM address space.
-\&\fImcu\fR = \f(CW\*(C`attiny202\*(C'\fR, \f(CW\*(C`attiny204\*(C'\fR, \f(CW\*(C`attiny212\*(C'\fR, \f(CW\*(C`attiny214\*(C'\fR, \f(CW\*(C`attiny402\*(C'\fR, \f(CW\*(C`attiny404\*(C'\fR, \f(CW\*(C`attiny406\*(C'\fR, \f(CW\*(C`attiny412\*(C'\fR, \f(CW\*(C`attiny414\*(C'\fR, \f(CW\*(C`attiny416\*(C'\fR, \f(CW\*(C`attiny417\*(C'\fR, \f(CW\*(C`attiny424\*(C'\fR, \f(CW\*(C`attiny426\*(C'\fR, \f(CW\*(C`attiny427\*(C'\fR, \f(CW\*(C`attiny804\*(C'\fR, \f(CW\*(C`attiny806\*(C'\fR, \f(CW\*(C`attiny807\*(C'\fR, \f(CW\*(C`attiny814\*(C'\fR, \f(CW\*(C`attiny816\*(C'\fR, \f(CW\*(C`attiny817\*(C'\fR, \f(CW\*(C`attiny824\*(C'\fR, \f(CW\*(C`attiny826\*(C'\fR, \f(CW\*(C`attiny827\*(C'\fR, \f(CW\*(C`attiny1604\*(C'\fR, \f(CW\*(C`attiny1606\*(C'\fR, \f(CW\*(C`attiny1607\*(C'\fR, \f(CW\*(C`attiny1614\*(C'\fR, \f(CW\*(C`attiny1616\*(C'\fR, \f(CW\*(C`attiny1617\*(C'\fR, \f(CW\*(C`attiny1624\*(C'\fR, \f(CW\*(C`attiny1626\*(C'\fR, \f(CW\*(C`attiny1627\*(C'\fR, \f(CW\*(C`attiny3214\*(C'\fR, \f(CW\*(C`attiny3216\*(C'\fR, \f(CW\*(C`attiny3217\*(C'\fR, \f(CW\*(C`attiny3224\*(C'\fR, \f(CW\*(C`attiny3226\*(C'\fR, \f(CW\*(C`attiny3227\*(C'\fR, \f(CW\*(C`atmega808\*(C'\fR, \f(CW\*(C`atmega809\*(C'\fR, \f(CW\*(C`atmega1608\*(C'\fR, \f(CW\*(C`atmega1609\*(C'\fR, \f(CW\*(C`atmega3208\*(C'\fR, \f(CW\*(C`atmega3209\*(C'\fR, \f(CW\*(C`atmega4808\*(C'\fR, \f(CW\*(C`atmega4809\*(C'\fR, \f(CW\*(C`avr16dd14\*(C'\fR, \f(CW\*(C`avr16dd20\*(C'\fR, \f(CW\*(C`avr16dd28\*(C'\fR, \f(CW\*(C`avr16dd32\*(C'\fR, \f(CW\*(C`avr32da28\*(C'\fR, \f(CW\*(C`avr32da32\*(C'\fR, \f(CW\*(C`avr32da48\*(C'\fR, \f(CW\*(C`avr32db28\*(C'\fR, \f(CW\*(C`avr32db32\*(C'\fR, \f(CW\*(C`avr32db48\*(C'\fR, \f(CW\*(C`avr32dd14\*(C'\fR, \f(CW\*(C`avr32dd20\*(C'\fR, \f(CW\*(C`avr32dd28\*(C'\fR, \f(CW\*(C`avr32dd32\*(C'\fR.
+\&\fImcu\fR = \f(CW\*(C`attiny202\*(C'\fR, \f(CW\*(C`attiny204\*(C'\fR, \f(CW\*(C`attiny212\*(C'\fR, \f(CW\*(C`attiny214\*(C'\fR, \f(CW\*(C`attiny402\*(C'\fR, \f(CW\*(C`attiny404\*(C'\fR, \f(CW\*(C`attiny406\*(C'\fR, \f(CW\*(C`attiny412\*(C'\fR, \f(CW\*(C`attiny414\*(C'\fR, \f(CW\*(C`attiny416\*(C'\fR, \f(CW\*(C`attiny417\*(C'\fR, \f(CW\*(C`attiny424\*(C'\fR, \f(CW\*(C`attiny426\*(C'\fR, \f(CW\*(C`attiny427\*(C'\fR, \f(CW\*(C`attiny804\*(C'\fR, \f(CW\*(C`attiny806\*(C'\fR, \f(CW\*(C`attiny807\*(C'\fR, \f(CW\*(C`attiny814\*(C'\fR, \f(CW\*(C`attiny816\*(C'\fR, \f(CW\*(C`attiny817\*(C'\fR, \f(CW\*(C`attiny824\*(C'\fR, \f(CW\*(C`attiny826\*(C'\fR, \f(CW\*(C`attiny827\*(C'\fR, \f(CW\*(C`attiny1604\*(C'\fR, \f(CW\*(C`attiny1606\*(C'\fR, \f(CW\*(C`attiny1607\*(C'\fR, \f(CW\*(C`attiny1614\*(C'\fR, \f(CW\*(C`attiny1616\*(C'\fR, \f(CW\*(C`attiny1617\*(C'\fR, \f(CW\*(C`attiny1624\*(C'\fR, \f(CW\*(C`attiny1626\*(C'\fR, \f(CW\*(C`attiny1627\*(C'\fR, \f(CW\*(C`attiny3214\*(C'\fR, \f(CW\*(C`attiny3216\*(C'\fR, \f(CW\*(C`attiny3217\*(C'\fR, \f(CW\*(C`attiny3224\*(C'\fR, \f(CW\*(C`attiny3226\*(C'\fR, \f(CW\*(C`attiny3227\*(C'\fR, \f(CW\*(C`atmega808\*(C'\fR, \f(CW\*(C`atmega809\*(C'\fR, \f(CW\*(C`atmega1608\*(C'\fR, \f(CW\*(C`atmega1609\*(C'\fR, \f(CW\*(C`atmega3208\*(C'\fR, \f(CW\*(C`atmega3209\*(C'\fR, \f(CW\*(C`atmega4808\*(C'\fR, \f(CW\*(C`atmega4809\*(C'\fR, \f(CW\*(C`avr16dd14\*(C'\fR, \f(CW\*(C`avr16dd20\*(C'\fR, \f(CW\*(C`avr16dd28\*(C'\fR, \f(CW\*(C`avr16dd32\*(C'\fR, \f(CW\*(C`avr16ea28\*(C'\fR, \f(CW\*(C`avr16ea32\*(C'\fR, \f(CW\*(C`avr16ea48\*(C'\fR, \f(CW\*(C`avr16eb14\*(C'\fR, \f(CW\*(C`avr16eb20\*(C'\fR, \f(CW\*(C`avr16eb28\*(C'\fR, \f(CW\*(C`avr16eb32\*(C'\fR, \f(CW\*(C`avr32da28\*(C'\fR, \f(CW\*(C`avr32da32\*(C'\fR, \f(CW\*(C`avr32da48\*(C'\fR, \f(CW\*(C`avr32db28\*(C'\fR, \f(CW\*(C`avr32db32\*(C'\fR, \f(CW\*(C`avr32db48\*(C'\fR, \f(CW\*(C`avr32dd14\*(C'\fR, \f(CW\*(C`avr32dd20\*(C'\fR, \f(CW\*(C`avr32dd28\*(C'\fR, \f(CW\*(C`avr32dd32\*(C'\fR, \f(CW\*(C`avr32ea28\*(C'\fR, \f(CW\*(C`avr32ea32\*(C'\fR, \f(CW\*(C`avr32ea48\*(C'\fR.
 .ie n .IP """avrxmega4""" 4
 .el .IP \f(CWavrxmega4\fR 4
 .IX Item "avrxmega4"
@@ -22956,6 +22964,22 @@ differ from instructions in the assembler code.
 .Sp
 Relaxing must be turned on if linker stubs are needed, see the
 section on \f(CW\*(C`EIND\*(C'\fR and linker stubs below.
+.IP \fB\-mrodata\-in\-ram\fR 4
+.IX Item "-mrodata-in-ram"
+.PD 0
+.IP \fB\-mno\-rodata\-in\-ram\fR 4
+.IX Item "-mno-rodata-in-ram"
+.PD
+Locate the \f(CW\*(C`.rodata\*(C'\fR sections for read-only data in RAM resp.
+in program memory.
+For most devices, there is no choice and this option acts rather
+like an assertion.
+.Sp
+Since v14 and for the AVR64* and AVR128* devices, \f(CW\*(C`.rodata\*(C'\fR
+is located in flash memory per default, provided the required GNU Binutils
+support (PR31124 (\f(CW\*(C`https://sourceware.org/PR31124\*(C'\fR)) is available.
+In that case, \fB\-mrodata\-in\-ram\fR can be used to return to the old
+layout with \f(CW\*(C`.rodata\*(C'\fR in RAM.
 .IP \fB\-mstrict\-X\fR 4
 .IX Item "-mstrict-X"
 Use address register \f(CW\*(C`X\*(C'\fR in a way proposed by the hardware.  This means
@@ -23375,6 +23399,31 @@ description file, and is currently available for
 \&\f(CW\*(C`avrtiny\*(C'\fR and \f(CW\*(C`avrxmega3\*(C'\fR.  Even more convenient,
 there is no need to use address spaces like \f(CW\*(C`_\|_flash\*(C'\fR or
 features like attribute \f(CW\*(C`progmem\*(C'\fR and \f(CW\*(C`pgm_read_*\*(C'\fR.
+.ie n .IP """_\|_AVR_HAVE_FLMAP_\|_""" 4
+.el .IP \f(CW_\|_AVR_HAVE_FLMAP_\|_\fR 4
+.IX Item "__AVR_HAVE_FLMAP__"
+This macro is defined provided the following conditions are met:
+.RS 4
+.ie n .IP "*<The device has the ""NVMCTRL_CTRLB.FLMAP"" bitfield.>" 4
+.el .IP "*<The device has the \f(CWNVMCTRL_CTRLB.FLMAP\fR bitfield.>" 4
+.IX Item "*<The device has the NVMCTRL_CTRLB.FLMAP bitfield.>"
+This applies to the AVR64* and AVR128* devices.
+.IP "*<It's not known at assembler-time which emulation will be used.>" 4
+.IX Item "*<It's not known at assembler-time which emulation will be used.>"
+.RE
+.RS 4
+.Sp
+This implies the compiler was configured with GNU Binutils that implement
+PR31124 (\f(CW\*(C`https://sourceware.org/PR31124\*(C'\fR).
+.RE
+.ie n .IP """_\|_AVR_RODATA_IN_RAM_\|_""" 4
+.el .IP \f(CW_\|_AVR_RODATA_IN_RAM_\|_\fR 4
+.IX Item "__AVR_RODATA_IN_RAM__"
+This macro is undefined when the code is compiled for a core architecture.
+.Sp
+When the code is compiled for a device, the macro is defined to 1
+when the \f(CW\*(C`.rodata\*(C'\fR sections for read-only data is located in RAM;
+and defined to 0, otherwise.
 .ie n .IP """_\|_WITH_AVRLIBC_\|_""" 4
 .el .IP \f(CW_\|_WITH_AVRLIBC_\|_\fR 4
 .IX Item "__WITH_AVRLIBC__"
@@ -23450,6 +23499,10 @@ files.
 .IX Item "-mn-flash=num"
 Assume that the flash memory has a size of \fInum\fR times 64 KiB.
 This determines which \f(CW\*(C`_\|_flash\fR\f(CIN\fR\f(CW\*(C'\fR address spaces are available.
+.IP \fB\-mflmap\fR 4
+.IX Item "-mflmap"
+The device has the \f(CW\*(C`FLMAP\*(C'\fR bit field located in special function
+register \f(CW\*(C`NVMCTRL_CTRLB\*(C'\fR.
 .IP \fB\-mrmw\fR 4
 .IX Item "-mrmw"
 Assume that the device supports the Read-Modify-Write
@@ -23459,6 +23512,10 @@ instructions \f(CW\*(C`XCH\*(C'\fR, \f(CW\*(C`LAC\*(C'\fR, \f(CW\*(C`LAS\*(C'\fR
 Assume that \f(CW\*(C`RJMP\*(C'\fR and \f(CW\*(C`RCALL\*(C'\fR can target the whole
 program memory. This option is used for multilib generation and selection
 for the devices from architecture \f(CW\*(C`avrxmega3\*(C'\fR.
+.IP \fB\-mskip\-bug\fR 4
+.IX Item "-mskip-bug"
+Generate code without skips (\f(CW\*(C`CPSE\*(C'\fR, \f(CW\*(C`SBRS\*(C'\fR,
+\&\f(CW\*(C`SBRC\*(C'\fR, \f(CW\*(C`SBIS\*(C'\fR, \f(CW\*(C`SBIC\*(C'\fR) over 32\-bit instructions.
 .IP \fB\-msp8\fR 4
 .IX Item "-msp8"
 Treat the stack pointer register as an 8\-bit register,
