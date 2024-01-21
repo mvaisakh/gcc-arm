@@ -8892,6 +8892,7 @@ struct GTY(()) cl_optimization
   signed char x_flag_finite_loops;
   signed char x_flag_finite_math_only;
   signed char x_flag_float_store;
+  signed char x_flag_fold_mem_offsets;
   signed char x_flag_fold_simple_inlines;
   signed char x_flag_forward_propagate;
   signed char x_flag_fp_int_builtin_inexact;
@@ -9090,7 +9091,7 @@ struct GTY(()) cl_optimization
   signed char x_flag_wrapv;
   signed char x_flag_wrapv_pointer;
   signed char x_debug_nonbind_markers_p;
-  /* 510 members */
+  /* 511 members */
   unsigned HOST_WIDE_INT explicit_mask[8];
 };
 
