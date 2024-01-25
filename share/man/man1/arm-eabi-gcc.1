@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 2024-01-21 gcc-14.0.1 GNU
+.TH GCC 1 2024-01-25 gcc-14.0.1 GNU
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -489,6 +489,7 @@ in the following sections.
 \&\-falign\-jumps[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]]
 \&\-falign\-labels[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]]
 \&\-falign\-loops[=\fR\fIn\fR\fB[:\fR\fIm\fR\fB:[\fR\fIn2\fR\fB[:\fR\fIm2\fR\fB]]]]
+\&\-fmin\-function\-alignment=[\fR\fIn\fR\fB]
 \&\-fno\-allocation\-dce \-fallow\-store\-data\-races
 \&\-fassociative\-math  \-fauto\-profile  \-fauto\-profile[=\fR\fIpath\fR\fB]
 \&\-fauto\-inc\-dec  \-fbranch\-probabilities
@@ -1068,7 +1069,8 @@ in the following sections.
 \&\-mcode\-readable=\fR\fIsetting\fR
 \&\fB\-msplit\-addresses  \-mno\-split\-addresses
 \&\-mexplicit\-relocs  \-mno\-explicit\-relocs
-\&\-mcheck\-zero\-division  \-mno\-check\-zero\-division
+\&\-mexplicit\-relocs=\fR\fIrelease\fR
+\&\fB\-mcheck\-zero\-division  \-mno\-check\-zero\-division
 \&\-mdivide\-traps  \-mdivide\-breaks
 \&\-mload\-store\-pairs  \-mno\-load\-store\-pairs
 \&\-munaligned\-access  \-mno\-unaligned\-access
@@ -5865,52 +5867,64 @@ Options\fR and \fBObjective-C and Objective\-C++ Dialect Options\fR.
 \&\fB\-Wall\fR turns on the following warning flags:
 .Sp
 \&\fB\-Waddress
-\&\-Warray\-bounds=1\fR (only with\fB \fR\fB\-O2\fR)
+\&\-Waligned\-new\fR (C++ and Objective\-C++ only)
+\&\fB\-Warray\-bounds=1\fR (only with\fB \fR\fB\-O2\fR)
 \&\fB\-Warray\-compare
-\&\-Warray\-parameter=2\fR (C and Objective-C only)
-\&\fB\-Wbool\-compare
+\&\-Warray\-parameter=2
+\&\-Wbool\-compare
 \&\-Wbool\-operation
-\&\-Wc++11\-compat  \-Wc++14\-compat
+\&\-Wc++11\-compat  \-Wc++14\-compat  \-Wc++17compat  \-Wc++20compat
 \&\-Wcatch\-value\fR (C++ and Objective\-C++ only)
 \&\fB\-Wchar\-subscripts
-\&\-Wcomment
+\&\-Wclass\-memaccess\fR (C++ and Objective\-C++ only)
+\&\fB\-Wcomment
+\&\-Wdangling\-else
 \&\-Wdangling\-pointer=2
-\&\-Wduplicate\-decl\-specifier\fR (C and Objective-C only)
+\&\-Wdelete\-non\-virtual\-dtor\fR (C++ and Objective\-C++ only)
+\&\fB\-Wduplicate\-decl\-specifier\fR (C and Objective-C only)
 \&\fB\-Wenum\-compare\fR (in C/ObjC; this is on by default in C++)
 \&\fB\-Wenum\-int\-mismatch\fR (C and Objective-C only)
-\&\fB\-Wformat
-\&\-Wformat\-overflow
-\&\-Wformat\-truncation
-\&\-Wint\-in\-bool\-context
+\&\fB\-Wformat=1
+\&\-Wformat\-contains\-nul
+\&\-Wformat\-diag
+\&\-Wformat\-extra\-args
+\&\-Wformat\-overflow=1
+\&\-Wformat\-truncation=1
+\&\-Wformat\-zero\-length
+\&\-Wframe\-address
 \&\-Wimplicit\fR (C and Objective-C only)
-\&\fB\-Wimplicit\-int\fR (C and Objective-C only)
 \&\fB\-Wimplicit\-function\-declaration\fR (C and Objective-C only)
-\&\fB\-Winit\-self\fR (only for C++)
-\&\fB\-Wlogical\-not\-parentheses
+\&\fB\-Wimplicit\-int\fR (C and Objective-C only)
+\&\fB\-Winfinite\-recursion
+\&\-Winit\-self\fR (C++ and Objective\-C++ only)
+\&\fB\-Wint\-in\-bool\-context
+\&\-Wlogical\-not\-parentheses
 \&\-Wmain\fR (only for C/ObjC and unless\fB \fR\fB\-ffreestanding\fR)
 \&\fB\-Wmaybe\-uninitialized
 \&\-Wmemset\-elt\-size
 \&\-Wmemset\-transposed\-args
 \&\-Wmisleading\-indentation\fR (only for C/C++)
 \&\fB\-Wmismatched\-dealloc
-\&\-Wmismatched\-new\-delete\fR (only for C/C++)
+\&\-Wmismatched\-new\-delete\fR (C++ and Objective\-C++ only)
 \&\fB\-Wmissing\-attributes
 \&\-Wmissing\-braces\fR (only for C/ObjC)
 \&\fB\-Wmultistatement\-macros
-\&\-Wnarrowing\fR (only for C++)
+\&\-Wnarrowing\fR  (C++ and Objective\-C++ only)
 \&\fB\-Wnonnull
 \&\-Wnonnull\-compare
-\&\-Wopenmp\-simd
+\&\-Wopenmp\-simd\fR (C and C++ only)
+\&\fB\-Woverloaded\-virtual=1\fR (C++ and Objective\-C++ only)
+\&\fB\-Wpacked\-not\-aligned
 \&\-Wparentheses
-\&\-Wpessimizing\-move\fR (only for C++)
-\&\fB\-Wpointer\-sign
-\&\-Wrange\-loop\-construct\fR (only for C++)
-\&\fB\-Wreorder
-\&\-Wrestrict
+\&\-Wpessimizing\-move\fR (C++ and Objective\-C++ only)
+\&\fB\-Wpointer\-sign\fR (only for C/ObjC)
+\&\fB\-Wrange\-loop\-construct\fR (C++ and Objective\-C++ only)
+\&\fB\-Wreorder\fR (C++ and Objective\-C++ only)
+\&\fB\-Wrestrict
 \&\-Wreturn\-type
-\&\-Wself\-move\fR (only for C++)
+\&\-Wself\-move\fR (C++ and Objective\-C++ only)
 \&\fB\-Wsequence\-point
-\&\-Wsign\-compare\fR (only in C++)
+\&\-Wsign\-compare\fR (C++ and Objective\-C++ only)
 \&\fB\-Wsizeof\-array\-div
 \&\-Wsizeof\-pointer\-div
 \&\-Wsizeof\-pointer\-memaccess
@@ -5921,13 +5935,17 @@ Options\fR and \fBObjective-C and Objective\-C++ Dialect Options\fR.
 \&\-Wtrigraphs
 \&\-Wuninitialized
 \&\-Wunknown\-pragmas
-\&\-Wunused\-function
+\&\-Wunused
+\&\-Wunused\-but\-set\-variable
+\&\-Wunused\-const\-variable=1\fR (only for C/ObjC)
+\&\fB\-Wunused\-function
 \&\-Wunused\-label
+\&\-Wunused\-local\-typedefs
 \&\-Wunused\-value
 \&\-Wunused\-variable
 \&\-Wuse\-after\-free=2
-\&\-Wvla\-parameter\fR (C and Objective-C only)
-\&\fB\-Wvolatile\-register\-var
+\&\-Wvla\-parameter
+\&\-Wvolatile\-register\-var
 \&\-Wzero\-length\-bounds\fR
 .Sp
 Note that some warning flags are not implied by \fB\-Wall\fR.  Some of
@@ -5943,24 +5961,30 @@ This enables some extra warning flags that are not enabled by
 \&\fB\-Wall\fR. (This option used to be called \fB\-W\fR.  The older
 name is still supported, but the newer name is more descriptive.)
 .Sp
-\&\fB\-Wclobbered
+\&\fB\-Wabsolute\-value\fR (only for C/ObjC)
+\&\fB\-Walloc\-size
+\&\-Wcalloc\-transposed\-args
 \&\-Wcast\-function\-type
-\&\-Wdeprecated\-copy\fR (C++ only)
+\&\-Wclobbered
+\&\-Wdeprecated\-copy\fR (C++ and Objective\-C++ only)
 \&\fB\-Wempty\-body
-\&\-Wenum\-conversion\fR (C only)
-\&\fB\-Wignored\-qualifiers
-\&\-Wimplicit\-fallthrough=3
+\&\-Wenum\-conversion\fR (only for C/ObjC)
+\&\fB\-Wexpansion\-to\-defined
+\&\-Wignored\-qualifiers\fR  (only for C/C++)
+\&\fB\-Wimplicit\-fallthrough=3
+\&\-Wmaybe\-uninitialized
 \&\-Wmissing\-field\-initializers
-\&\-Wmissing\-parameter\-type\fR (C only)
-\&\fB\-Wold\-style\-declaration\fR (C only)
-\&\fB\-Woverride\-init
-\&\-Wsign\-compare\fR (C only)
+\&\-Wmissing\-parameter\-type\fR (C/ObjC only)
+\&\fB\-Wold\-style\-declaration\fR (C/ObjC only)
+\&\fB\-Woverride\-init\fR (C/ObjC only)
+\&\fB\-Wredundant\-move\fR (C++ and Objective\-C++ only)
+\&\fB\-Wshift\-negative\-value\fR (in C++11 to C++17 and in C99 and newer)
+\&\fB\-Wsign\-compare\fR (C++ and Objective\-C++ only)
+\&\fB\-Wsized\-deallocation\fR (C++ and Objective\-C++ only)
 \&\fB\-Wstring\-compare
-\&\-Wredundant\-move\fR (only for C++)
-\&\fB\-Wtype\-limits
+\&\-Wtype\-limits
 \&\-Wuninitialized
-\&\-Wshift\-negative\-value\fR (in C++11 to C++17 and in C99 and newer)
-\&\fB\-Wunused\-parameter\fR (only with\fB \fR\fB\-Wunused\fR\fB \fRor\fB \fR\fB\-Wall\fR)
+\&\-Wunused\-parameter\fR (only with\fB \fR\fB\-Wunused\fR\fB \fRor\fB \fR\fB\-Wall\fR)
 \&\fB\-Wunused\-but\-set\-parameter\fR (only with\fB \fR\fB\-Wunused\fR\fB \fRor\fB \fR\fB\-Wall\fR)
 .Sp
 The option \fB\-Wextra\fR also prints warning messages for the
@@ -7136,6 +7160,8 @@ This warning is enabled by \fB\-Wall\fR.
 .IP \fB\-Wunused\-parameter\fR 4
 .IX Item "-Wunused-parameter"
 Warn whenever a function parameter is unused aside from its declaration.
+This option is not enabled by \f(CW\*(C`\-Wunused\*(C'\fR unless \f(CW\*(C`\-Wextra\*(C'\fR is also
+specified.
 .Sp
 To suppress this warning use the \f(CW\*(C`unused\*(C'\fR attribute.
 .IP \fB\-Wno\-unused\-result\fR 4
@@ -7157,24 +7183,25 @@ To suppress this warning use the \f(CW\*(C`unused\*(C'\fR attribute.
 .IX Item "-Wunused-const-variable=n"
 .PD
 Warn whenever a constant static variable is unused aside from its declaration.
-\&\fB\-Wunused\-const\-variable=1\fR is enabled by \fB\-Wunused\-variable\fR
-for C, but not for C++. In C this declares variable storage, but in C++ this
-is not an error since const variables take the place of \f(CW\*(C`#define\*(C'\fRs.
 .Sp
 To suppress this warning use the \f(CW\*(C`unused\*(C'\fR attribute.
 .RS 4
 .IP \fB\-Wunused\-const\-variable=1\fR 4
 .IX Item "-Wunused-const-variable=1"
-This is the warning level that is enabled by \fB\-Wunused\-variable\fR for
-C.  It warns only about unused static const variables defined in the main
+Warn about unused static const variables defined in the main
 compilation unit, but not about static const variables declared in any
 header included.
+.Sp
+\&\fB\-Wunused\-const\-variable=1\fR is enabled by either
+\&\fB\-Wunused\-variable\fR or \fB\-Wunused\fR for C, but not for
+C++. In C this declares variable storage, but in C++ this is not an
+error since const variables take the place of \f(CW\*(C`#define\*(C'\fRs.
 .IP \fB\-Wunused\-const\-variable=2\fR 4
 .IX Item "-Wunused-const-variable=2"
 This warning level also warns for unused constant static variables in
-headers (excluding system headers).  This is the warning level of
-\&\fB\-Wunused\-const\-variable\fR and must be explicitly requested since
-in C++ this isn't an error and in C it might be harder to clean up all
+headers (excluding system headers).  It is equivalent to the short form
+\&\fB\-Wunused\-const\-variable\fR.  This level must be explicitly
+requested in both C and C++ because it might be hard to clean up all
 headers included.
 .RE
 .RS 4
@@ -7191,11 +7218,16 @@ an expression such as \f(CW\*(C`x[i,j]\*(C'\fR causes a warning, while
 This warning is enabled by \fB\-Wall\fR.
 .IP \fB\-Wunused\fR 4
 .IX Item "-Wunused"
-All the above \fB\-Wunused\fR options combined.
+All the above \fB\-Wunused\fR options combined, except those documented
+as needing to be specified explicitly.
 .Sp
 In order to get a warning about an unused function parameter, you must
 either specify \fB\-Wextra \-Wunused\fR (note that \fB\-Wall\fR implies
-\&\fB\-Wunused\fR), or separately specify \fB\-Wunused\-parameter\fR.
+\&\fB\-Wunused\fR), or separately specify \fB\-Wunused\-parameter\fR and/or
+\&\fB\-Wunused\-but\-set\-parameter\fR.
+.Sp
+\&\fB\-Wunused\fR enables only \fB\-Wunused\-const\-variable=1\fR rather than
+\&\fB\-Wunused\-const\-variable\fR, and only for C, not C++.
 .IP "\fB\-Wuse\-after\-free\fR (C, Objective-C, C++ and Objective\-C++ only)" 4
 .IX Item "-Wuse-after-free (C, Objective-C, C++ and Objective-C++ only)"
 .PD 0
@@ -8842,55 +8874,64 @@ levels but may yield different results with optimization than without.
 .RS 4
 .IP \fB\-Wdangling\-pointer=1\fR 4
 .IX Item "-Wdangling-pointer=1"
-At level 1 the warning diagnoses only unconditional uses of dangling pointers.
-For example
+At level 1, the warning diagnoses only unconditional uses of dangling pointers.
+.IP \fB\-Wdangling\-pointer=2\fR 4
+.IX Item "-Wdangling-pointer=2"
+At level 2, in addition to unconditional uses the warning also diagnoses
+conditional uses of dangling pointers.
+.RE
+.RS 4
 .Sp
-.Vb 6
-\&        int f (int c1, int c2, x)
+The short form \fB\-Wdangling\-pointer\fR is equivalent to
+\&\fB\-Wdangling\-pointer=2\fR, while \fB\-Wno\-dangling\-pointer\fR and
+\&\fB\-Wdangling\-pointer=0\fR have the same effect of disabling the warnings.
+\&\fB\-Wdangling\-pointer=2\fR is included in \fB\-Wall\fR.
+.Sp
+This example triggers the warning at level 1; the address of the unnamed
+temporary is unconditionally referenced outside of its scope.
+.Sp
+.Vb 9
+\&        char f (char c1, char c2, char c3)
 \&        {
-\&          char *p = strchr ((char[]){ c1, c2 }, c3);
-\&          // warning: dangling pointer to a compound literal
-\&          return p ? *p : \*(Aqx\*(Aq;
+\&          char *p;
+\&          {
+\&            p = (char[]) { c1, c2, c3 };
+\&          }
+\&          // warning: using dangling pointer \*(Aqp\*(Aq to an unnamed temporary
+\&          return *p;
 \&        }
 .Ve
 .Sp
 In the following function the store of the address of the local variable
-\&\f(CW\*(C`x\*(C'\fR in the escaped pointer \f(CW*p\fR also triggers the warning.
+\&\f(CW\*(C`x\*(C'\fR in the escaped pointer \f(CW*p\fR triggers the warning at
+level 1.
 .Sp
 .Vb 6
 \&        void g (int **p)
 \&        {
 \&          int x = 7;
-\&          // warning: storing the address of a local variable in *p
+\&          // warning: storing the address of local variable \*(Aqx\*(Aq in \*(Aq*p\*(Aq
 \&          *p = &x;
 \&        }
 .Ve
-.IP \fB\-Wdangling\-pointer=2\fR 4
-.IX Item "-Wdangling-pointer=2"
-At level 2, in addition to unconditional uses the warning also diagnoses
-conditional uses of dangling pointers.
 .Sp
-For example, because the array \fIa\fR in the following function is out of
-scope when the pointer \fIs\fR that was set to point is used, the warning
-triggers at this level.
+In this example, the array \fIa\fR is out of
+scope when the pointer \fIs\fR is used.  Since the code that sets \f(CW\*(C`s\*(C'\fR
+is conditional, the warning triggers at level 2.
 .Sp
 .Vb 11
-\&        void f (char *s)
+\&        extern void frob (const char *);
+\&        void h (char *s)
 \&        {
 \&          if (!s)
 \&            {
 \&              char a[12] = "tmpname";
 \&              s = a;
 \&            }
-\&          // warning: dangling pointer to a may be used
-\&          strcat (s, ".tmp");
-\&          ...
+\&          // warning: dangling pointer \*(Aqs\*(Aq to \*(Aqa\*(Aq may be used
+\&          frob (s);
 \&        }
 .Ve
-.RE
-.RS 4
-.Sp
-\&\fB\-Wdangling\-pointer=2\fR is included in \fB\-Wall\fR.
 .RE
 .IP \fB\-Wdate\-time\fR 4
 .IX Item "-Wdate-time"
@@ -13197,6 +13238,9 @@ Align the start of functions to the next power-of-two greater than or
 equal to \fIn\fR, skipping up to \fIm\fR\-1 bytes.  This ensures that at
 least the first \fIm\fR bytes of the function can be fetched by the CPU
 without crossing an \fIn\fR\-byte alignment boundary.
+This is an optimization of code performance and alignment is ignored for
+functions considered cold.  If alignment is required for all functions,
+use \fB\-fmin\-function\-alignment\fR.
 .Sp
 If \fIm\fR is not specified, it defaults to \fIn\fR.
 .Sp
@@ -13270,6 +13314,8 @@ Enabled at levels \fB\-O2\fR, \fB\-O3\fR.
 Align loops to a power-of-two boundary.  If the loops are executed
 many times, this makes up for any execution of the dummy padding
 instructions.
+This is an optimization of code performance and alignment is ignored for
+loops considered cold.
 .Sp
 If \fB\-falign\-labels\fR is greater than this value, then its value
 is used instead.
@@ -13297,6 +13343,8 @@ Enabled at levels \fB\-O2\fR, \fB\-O3\fR.
 Align branch targets to a power-of-two boundary, for branch targets
 where the targets can only be reached by jumping.  In this case,
 no dummy operations need be executed.
+This is an optimization of code performance and alignment is ignored for
+jumps considered cold.
 .Sp
 If \fB\-falign\-labels\fR is greater than this value, then its value
 is used instead.
@@ -13309,6 +13357,12 @@ If \fIn\fR is not specified or is zero, use a machine-dependent default.
 The maximum allowed \fIn\fR option value is 65536.
 .Sp
 Enabled at levels \fB\-O2\fR, \fB\-O3\fR.
+.IP \fB\-fmin\-function\-alignment\fR 4
+.IX Item "-fmin-function-alignment"
+Specify minimal alignment of functions to the next power-of-two greater than or
+equal to \fIn\fR. Unlike \fB\-falign\-functions\fR this alignment is applied
+also to all functions (even those considered cold).  The alignment is also not
+affected by \fB\-flimit\-function\-alignment\fR
 .IP \fB\-fno\-allocation\-dce\fR 4
 .IX Item "-fno-allocation-dce"
 Do not remove unused C++ allocations in dead code elimination.
@@ -13397,7 +13451,7 @@ To use the link-time optimizer, \fB\-flto\fR and optimization
 options should be specified at compile time and during the final link.
 It is recommended that you compile all the files participating in the
 same link with the same options and also specify those options at
-link time.  
+link time.
 For example:
 .Sp
 .Vb 3
@@ -27821,6 +27875,24 @@ The \fB\-mcompact\-branches=optimal\fR option will cause a delay slot
 branch to be used if one is available in the current ISA and the delay
 slot is successfully filled.  If the delay slot is not filled, a compact
 branch will be chosen if one is available.
+.IP \fB\-mexplicit\-relocs=none\fR 4
+.IX Item "-mexplicit-relocs=none"
+.PD 0
+.IP \fB\-mexplicit\-relocs=base\fR 4
+.IX Item "-mexplicit-relocs=base"
+.IP \fB\-mexplicit\-relocs=pcrel\fR 4
+.IX Item "-mexplicit-relocs=pcrel"
+.IP \fB\-mexplicit\-relocs\fR 4
+.IX Item "-mexplicit-relocs"
+.IP \fB\-mno\-explicit\-relocs\fR 4
+.IX Item "-mno-explicit-relocs"
+.PD
+These options control whether explicit relocs (such as \f(CW%gp_rel\fR) are used.
+The default value depends on the version of GAS when GCC itself was built.
+.Sp
+The \f(CW\*(C`base\*(C'\fR explicit-relocs support introdunced into GAS in 2001.
+The \f(CW\*(C`pcrel\*(C'\fR explicit-relocs support introdunced into GAS in 2014,
+which supports \f(CW%pcrel_hi\fR and \f(CW%pcrel_lo\fR.
 .IP \fB\-mfp\-exceptions\fR 4
 .IX Item "-mfp-exceptions"
 .PD 0
