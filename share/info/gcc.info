@@ -20396,6 +20396,12 @@ These options are defined specifically for the AMD GCN port.
      ‘gfx90a’
           Compile for CDNA2 Instinct MI200 series devices (gfx90a).
 
+     ‘gfx1030’
+          Compile for RDNA2 gfx1030 devices (GFX10 series).
+
+     ‘gfx1100’
+          Compile for RDNA3 gfx1100 devices (GFX11 series).
+
 ‘-msram-ecc=on’
 ‘-msram-ecc=off’
 ‘-msram-ecc=any’
@@ -40786,6 +40792,13 @@ These function attributes are supported by the x86 back end:
      assume that the called function pops off the stack space used to
      pass arguments, unless it takes a variable number of arguments.
 
+‘no_callee_saved_registers’
+     Use this attribute to indicate that the specified function has no
+     callee-saved registers.  That is, all registers can be used as
+     scratch registers.  For example, this attribute can be used for a
+     function called from the interrupt handler assembly stub which will
+     preserve all registers and return from interrupt.
+
 ‘no_caller_saved_registers’
      Use this attribute to indicate that the specified function has no
      caller-saved registers.  That is, all registers are callee-saved.
@@ -58831,7 +58844,10 @@ File: gcc.info,  Node: CORE-V Built-in Functions,  Next: RX Built-in Functions, 
 6.62.33 CORE-V Built-in Functions
 ---------------------------------
 
-These built-in functions are available for the CORE-V MAC machine
+For more information on all CORE-V built-ins, please see
+<https://github.com/openhwgroup/core-v-sw/blob/master/specifications/corev-builtin-spec.md>
+
+ These built-in functions are available for the CORE-V MAC machine
 architecture.  For more information on CORE-V built-ins, please see
 <https://github.com/openhwgroup/core-v-sw/blob/master/specifications/corev-builtin-spec.md#listing-of-multiply-accumulate-builtins-xcvmac>.
 
@@ -59014,6 +59030,888 @@ please see
 
  -- Built-in Function: uint32_t __builtin_riscv_cv_elw_elw (uint32_t *)
      Generated assembler ‘cv.elw’
+
+ These built-in functions are available for the CORE-V SIMD machine
+architecture.  For more information on CORE-V SIMD built-ins, please see
+<https://github.com/openhwgroup/core-v-sw/blob/master/specifications/corev-builtin-spec.md#listing-of-pulp-816-bit-simd-builtins-xcvsimd>
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_add_h (uint32_t,
+          uint32_t, uint4_t)
+     Generated assembler ‘cv.add.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_add_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.add.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_add_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.add.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_add_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.add.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_add_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.add.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_add_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.add.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sub_h (uint32_t,
+          uint32_t, uint4_t)
+     Generated assembler ‘cv.sub.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sub_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.sub.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sub_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.sub.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sub_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.sub.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sub_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.sub.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sub_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.sub.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avg_h (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.avg.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avg_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.avg.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avg_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.avg.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avg_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.avg.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avg_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.avg.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avg_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.avg.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avgu_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.avgu.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avgu_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.avgu.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avgu_sc_h
+          (uint32_t, uint16_t)
+     Generated assembler ‘cv.avgu.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avgu_sc_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.avgu.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avgu_sc_b
+          (uint32_t, uint8_t)
+     Generated assembler ‘cv.avgu.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_avgu_sc_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.avgu.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_min_h (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.min.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_min_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.min.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_min_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.min.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_min_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.min.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_min_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.min.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_min_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.min.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_minu_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.minu.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_minu_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.minu.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_minu_sc_h
+          (uint32_t, uint16_t)
+     Generated assembler ‘cv.minu.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_minu_sc_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.minu.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_minu_sc_b
+          (uint32_t, uint8_t)
+     Generated assembler ‘cv.minu.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_minu_sc_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.minu.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_max_h (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.max.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_max_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.max.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_max_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.max.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_max_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.max.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_max_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.max.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_max_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.max.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_maxu_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.maxu.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_maxu_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.maxu.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_maxu_sc_h
+          (uint32_t, uint16_t)
+     Generated assembler ‘cv.maxu.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_maxu_sc_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.maxu.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_maxu_sc_b
+          (uint32_t, uint8_t)
+     Generated assembler ‘cv.maxu.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_maxu_sc_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.maxu.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_srl_h (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.srl.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_srl_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.srl.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_srl_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.srl.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_srl_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.srl.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_srl_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.srl.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_srl_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.srl.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sra_h (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.sra.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sra_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.sra.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sra_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.sra.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sra_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.sra.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sra_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.sra.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sra_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.sra.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sll_h (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.sll.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sll_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.sll.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sll_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.sll.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sll_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.sll.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sll_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.sll.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sll_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.sll.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_or_h (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.or.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_or_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.or.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_or_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.or.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_or_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.or.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_or_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.or.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_or_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.or.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_xor_h (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.xor.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_xor_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.xor.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_xor_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.xor.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_xor_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.xor.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_xor_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.xor.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_xor_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.xor.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_and_h (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.and.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_and_b (uint32_t,
+          uint32_t)
+     Generated assembler ‘cv.and.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_and_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.and.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_and_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.and.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_and_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.and.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_and_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.and.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_abs_h (uint32_t)
+     Generated assembler ‘cv.abs.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_abs_b (uint32_t)
+     Generated assembler ‘cv.abs.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotup_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.dotup.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotup_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.dotup.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotup_sc_h
+          (uint32_t, uint16_t)
+     Generated assembler ‘cv.dotup.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotup_sc_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.dotup.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotup_sc_b
+          (uint32_t, uint8_t)
+     Generated assembler ‘cv.dotup.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotup_sc_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.dotup.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotusp_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.dotusp.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotusp_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.dotusp.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotusp_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.dotusp.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotusp_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.dotusp.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotusp_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.dotusp.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotusp_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.dotusp.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotsp_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.dotsp.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotsp_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.dotsp.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotsp_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.dotsp.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotsp_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.dotsp.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotsp_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.dotsp.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_dotsp_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.dotsp.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotup_h
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.sdotup.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotup_b
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.sdotup.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotup_sc_h
+          (uint32_t, uint16_t, uint32_t)
+     Generated assembler ‘cv.sdotup.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotup_sc_h
+          (uint32_t, uint6_t, uint32_t)
+     Generated assembler ‘cv.sdotup.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotup_sc_b
+          (uint32_t, uint8_t, uint32_t)
+     Generated assembler ‘cv.sdotup.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotup_sc_b
+          (uint32_t, uint6_t, uint32_t)
+     Generated assembler ‘cv.sdotup.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotusp_h
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.sdotusp.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotusp_b
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.sdotusp.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotusp_sc_h
+          (uint32_t, int16_t, uint32_t)
+     Generated assembler ‘cv.sdotusp.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotusp_sc_h
+          (uint32_t, int6_t, uint32_t)
+     Generated assembler ‘cv.sdotusp.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotusp_sc_b
+          (uint32_t, int8_t, uint32_t)
+     Generated assembler ‘cv.sdotusp.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotusp_sc_b
+          (uint32_t, int6_t, uint32_t)
+     Generated assembler ‘cv.sdotusp.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotsp_h
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.sdotsp.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotsp_b
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.sdotsp.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotsp_sc_h
+          (uint32_t, int16_t, uint32_t)
+     Generated assembler ‘cv.sdotsp.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotsp_sc_h
+          (uint32_t, int6_t, uint32_t)
+     Generated assembler ‘cv.sdotsp.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotsp_sc_b
+          (uint32_t, int8_t, uint32_t)
+     Generated assembler ‘cv.sdotsp.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sdotsp_sc_b
+          (uint32_t, int6_t, uint32_t)
+     Generated assembler ‘cv.sdotsp.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_extract_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.extract.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_extract_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.extract.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_extractu_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.extractu.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_extractu_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.extractu.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_insert_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.insert.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_insert_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.insert.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_shuffle_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.shuffle.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_shuffle_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.shuffle.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_shuffle_sci_h
+          (uint32_t, uint4_t)
+     Generated assembler ‘cv.shuffle.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_shufflei0_sci_b
+          (uint32_t, uint4_t)
+     Generated assembler ‘cv.shufflei0.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_shufflei1_sci_b
+          (uint32_t, uint4_t)
+     Generated assembler ‘cv.shufflei1.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_shufflei2_sci_b
+          (uint32_t, uint4_t)
+     Generated assembler ‘cv.shufflei2.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_shufflei3_sci_b
+          (uint32_t, uint4_t)
+     Generated assembler ‘cv.shufflei3.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_shuffle2_h
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.shuffle2.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_shuffle2_b
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.shuffle2.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_packlo_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.pack’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_packhi_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.pack.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_packhi_b
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.packhi.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_packlo_b
+          (uint32_t, uint32_t, uint32_t)
+     Generated assembler ‘cv.packlo.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpeq_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpeq.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpeq_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpeq.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpeq_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.cmpeq.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpeq_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmpeq.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpeq_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.cmpeq.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpeq_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmpeq.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpne_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpne.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpne_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpne.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpne_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.cmpne.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpne_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmpne.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpne_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.cmpne.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpne_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmpne.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgt_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpgt.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgt_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpgt.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgt_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.cmpgt.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgt_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmpgt.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgt_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.cmpgt.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgt_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmpgt.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpge_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpge.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpge_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpge.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpge_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.cmpge.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpge_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmpge.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpge_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.cmpge.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpge_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmpge.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmplt_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmplt.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmplt_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmplt.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmplt_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.cmplt.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmplt_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmplt.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmplt_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.cmplt.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmplt_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmplt.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmple_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmple.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmple_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmple.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmple_sc_h
+          (uint32_t, int16_t)
+     Generated assembler ‘cv.cmple.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmple_sc_h
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmple.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmple_sc_b
+          (uint32_t, int8_t)
+     Generated assembler ‘cv.cmple.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmple_sc_b
+          (uint32_t, int6_t)
+     Generated assembler ‘cv.cmple.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgtu_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpgtu.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgtu_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpgtu.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgtu_sc_h
+          (uint32_t, uint16_t)
+     Generated assembler ‘cv.cmpgtu.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgtu_sc_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.cmpgtu.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgtu_sc_b
+          (uint32_t, uint8_t)
+     Generated assembler ‘cv.cmpgtu.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgtu_sc_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.cmpgtu.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgeu_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpgeu.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgeu_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpgeu.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgeu_sc_h
+          (uint32_t, uint16_t)
+     Generated assembler ‘cv.cmpgeu.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgeu_sc_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.cmpgeu.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgeu_sc_b
+          (uint32_t, uint8_t)
+     Generated assembler ‘cv.cmpgeu.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpgeu_sc_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.cmpgeu.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpltu_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpltu.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpltu_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpltu.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpltu_sc_h
+          (uint32_t, uint16_t)
+     Generated assembler ‘cv.cmpltu.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpltu_sc_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.cmpltu.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpltu_sc_b
+          (uint32_t, uint8_t)
+     Generated assembler ‘cv.cmpltu.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpltu_sc_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.cmpltu.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpleu_h
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpleu.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpleu_b
+          (uint32_t, uint32_t)
+     Generated assembler ‘cv.cmpleu.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpleu_sc_h
+          (uint32_t, uint16_t)
+     Generated assembler ‘cv.cmpleu.sc.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpleu_sc_h
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.cmpleu.sci.h’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpleu_sc_b
+          (uint32_t, uint8_t)
+     Generated assembler ‘cv.cmpleu.sc.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cmpleu_sc_b
+          (uint32_t, uint6_t)
+     Generated assembler ‘cv.cmpleu.sci.b’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cplxmul_r
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.cplxmul.r’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cplxmul_i
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.cplxmul.i’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cplxmul_r
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.cplxmul.r.div2’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cplxmul_i
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.cplxmul.i.div2’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cplxmul_r
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.cplxmul.r.div4’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cplxmul_i
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.cplxmul.i.div4’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cplxmul_r
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.cplxmul.r.div8’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cplxmul_i
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.cplxmul.i.div8’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_cplxconj
+          (uint32_t)
+     Generated assembler ‘cv.cplxconj’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_subrotmj
+          (uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.subrotmj’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_subrotmj
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.subrotmj.div2’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_subrotmj
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.subrotmj.div4’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_subrotmj
+          (uint32_t, uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.subrotmj.div8’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_add_h (uint32_t,
+          uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.add.div2’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_add_h (uint32_t,
+          uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.add.div4’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_add_h (uint32_t,
+          uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.add.div8’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sub_h (uint32_t,
+          uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.sub.div2’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sub_h (uint32_t,
+          uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.sub.div4’
+
+ -- Built-in Function: uint32_t __builtin_riscv_cv_simd_sub_h (uint32_t,
+          uint32_t, uint32_t, uint4_t)
+     Generated assembler ‘cv.sub.div8’
 
 
 File: gcc.info,  Node: RX Built-in Functions,  Next: S/390 System z Built-in Functions,  Prev: CORE-V Built-in Functions,  Up: Target Builtins
@@ -71869,7 +72767,7 @@ look up both forms.
 * mno-default:                           x86 Options.        (line 1101)
 * mno-direct-extern-access:              x86 Options.        (line 1778)
 * mno-direct-extern-access <1>:          x86 Function Attributes.
-                                                             (line  776)
+                                                             (line  783)
 * mno-disable-callt:                     V850 Options.       (line   90)
 * mno-div:                               M680x0 Options.     (line  205)
 * mno-div <1>:                           MCore Options.      (line   13)
@@ -72535,7 +73433,7 @@ look up both forms.
                                                              (line  106)
 * msplit-vecmove-early:                  Adapteva Epiphany Options.
                                                              (line  125)
-* msram-ecc:                             AMD GCN Options.    (line   30)
+* msram-ecc:                             AMD GCN Options.    (line   36)
 * msse:                                  x86 Options.        (line  951)
 * msse2:                                 x86 Options.        (line  952)
 * msse2avx:                              x86 Options.        (line 1542)
@@ -72573,7 +73471,7 @@ look up both forms.
 * mstack-protector-guard-reg <3>:        x86 Options.        (line 1612)
 * mstack-protector-guard-symbol:         RS/6000 and PowerPC Options.
                                                              (line  912)
-* mstack-size:                           AMD GCN Options.    (line   38)
+* mstack-size:                           AMD GCN Options.    (line   44)
 * mstack-size <1>:                       C-SKY Options.      (line  148)
 * mstack-size <2>:                       S/390 and zSeries Options.
                                                              (line  200)
@@ -72770,7 +73668,7 @@ look up both forms.
 * mxl-soft-div:                          MicroBlaze Options. (line   28)
 * mxl-soft-mul:                          MicroBlaze Options. (line   25)
 * mxl-stack-check:                       MicroBlaze Options. (line   40)
-* mxnack:                                AMD GCN Options.    (line   45)
+* mxnack:                                AMD GCN Options.    (line   51)
 * mxop:                                  x86 Options.        (line  988)
 * mxpa:                                  MIPS Options.       (line  415)
 * mxsave:                                x86 Options.        (line  999)
@@ -74392,83 +75290,523 @@ A.2 Concept and Symbol Index
 * __builtin_return:                      Constructing Calls. (line   47)
 * __builtin_return_address:              Return Address.     (line    9)
 * __builtin_riscv_cv_alu_addN:           CORE-V Built-in Functions.
-                                                             (line  134)
+                                                             (line  137)
 * __builtin_riscv_cv_alu_addRN:          CORE-V Built-in Functions.
-                                                             (line  146)
+                                                             (line  149)
 * __builtin_riscv_cv_alu_adduN:          CORE-V Built-in Functions.
-                                                             (line  140)
+                                                             (line  143)
 * __builtin_riscv_cv_alu_adduRN:         CORE-V Built-in Functions.
-                                                             (line  152)
+                                                             (line  155)
 * __builtin_riscv_cv_alu_clip:           CORE-V Built-in Functions.
-                                                             (line  122)
+                                                             (line  125)
 * __builtin_riscv_cv_alu_clipu:          CORE-V Built-in Functions.
-                                                             (line  128)
+                                                             (line  131)
 * __builtin_riscv_cv_alu_extbs:          CORE-V Built-in Functions.
-                                                             (line  116)
-* __builtin_riscv_cv_alu_extbz:          CORE-V Built-in Functions.
                                                              (line  119)
+* __builtin_riscv_cv_alu_extbz:          CORE-V Built-in Functions.
+                                                             (line  122)
 * __builtin_riscv_cv_alu_exths:          CORE-V Built-in Functions.
-                                                             (line  110)
-* __builtin_riscv_cv_alu_exthz:          CORE-V Built-in Functions.
                                                              (line  113)
+* __builtin_riscv_cv_alu_exthz:          CORE-V Built-in Functions.
+                                                             (line  116)
 * __builtin_riscv_cv_alu_max:            CORE-V Built-in Functions.
-                                                             (line  102)
+                                                             (line  105)
 * __builtin_riscv_cv_alu_maxu:           CORE-V Built-in Functions.
-                                                             (line  106)
+                                                             (line  109)
 * __builtin_riscv_cv_alu_min:            CORE-V Built-in Functions.
-                                                             (line   94)
+                                                             (line   97)
 * __builtin_riscv_cv_alu_minu:           CORE-V Built-in Functions.
-                                                             (line   98)
+                                                             (line  101)
 * __builtin_riscv_cv_alu_slet:           CORE-V Built-in Functions.
-                                                             (line   86)
+                                                             (line   89)
 * __builtin_riscv_cv_alu_sletu:          CORE-V Built-in Functions.
-                                                             (line   90)
+                                                             (line   93)
 * __builtin_riscv_cv_alu_subN:           CORE-V Built-in Functions.
-                                                             (line  158)
+                                                             (line  161)
 * __builtin_riscv_cv_alu_subRN:          CORE-V Built-in Functions.
-                                                             (line  170)
+                                                             (line  173)
 * __builtin_riscv_cv_alu_subuN:          CORE-V Built-in Functions.
-                                                             (line  164)
+                                                             (line  167)
 * __builtin_riscv_cv_alu_subuRN:         CORE-V Built-in Functions.
-                                                             (line  176)
+                                                             (line  179)
 * __builtin_riscv_cv_elw_elw:            CORE-V Built-in Functions.
-                                                             (line  187)
+                                                             (line  190)
 * __builtin_riscv_cv_mac_mac:            CORE-V Built-in Functions.
-                                                             (line   10)
+                                                             (line   13)
 * __builtin_riscv_cv_mac_machhsN:        CORE-V Built-in Functions.
-                                                             (line   62)
+                                                             (line   65)
 * __builtin_riscv_cv_mac_machhsRN:       CORE-V Built-in Functions.
-                                                             (line   78)
+                                                             (line   81)
 * __builtin_riscv_cv_mac_machhuN:        CORE-V Built-in Functions.
-                                                             (line   54)
+                                                             (line   57)
 * __builtin_riscv_cv_mac_machhuRN:       CORE-V Built-in Functions.
-                                                             (line   70)
+                                                             (line   73)
 * __builtin_riscv_cv_mac_macsN:          CORE-V Built-in Functions.
-                                                             (line   58)
+                                                             (line   61)
 * __builtin_riscv_cv_mac_macsRN:         CORE-V Built-in Functions.
-                                                             (line   74)
+                                                             (line   77)
 * __builtin_riscv_cv_mac_macuN:          CORE-V Built-in Functions.
-                                                             (line   50)
+                                                             (line   53)
 * __builtin_riscv_cv_mac_macuRN:         CORE-V Built-in Functions.
-                                                             (line   66)
+                                                             (line   69)
 * __builtin_riscv_cv_mac_msu:            CORE-V Built-in Functions.
-                                                             (line   14)
+                                                             (line   17)
 * __builtin_riscv_cv_mac_mulhhsN:        CORE-V Built-in Functions.
-                                                             (line   30)
+                                                             (line   33)
 * __builtin_riscv_cv_mac_mulhhsRN:       CORE-V Built-in Functions.
-                                                             (line   46)
+                                                             (line   49)
 * __builtin_riscv_cv_mac_mulhhuN:        CORE-V Built-in Functions.
-                                                             (line   22)
+                                                             (line   25)
 * __builtin_riscv_cv_mac_mulhhuRN:       CORE-V Built-in Functions.
-                                                             (line   38)
+                                                             (line   41)
 * __builtin_riscv_cv_mac_mulsN:          CORE-V Built-in Functions.
-                                                             (line   26)
+                                                             (line   29)
 * __builtin_riscv_cv_mac_mulsRN:         CORE-V Built-in Functions.
-                                                             (line   42)
+                                                             (line   45)
 * __builtin_riscv_cv_mac_muluN:          CORE-V Built-in Functions.
-                                                             (line   18)
+                                                             (line   21)
 * __builtin_riscv_cv_mac_muluRN:         CORE-V Built-in Functions.
-                                                             (line   34)
+                                                             (line   37)
+* __builtin_riscv_cv_simd_abs_b:         CORE-V Built-in Functions.
+                                                             (line  536)
+* __builtin_riscv_cv_simd_abs_h:         CORE-V Built-in Functions.
+                                                             (line  533)
+* __builtin_riscv_cv_simd_add_b:         CORE-V Built-in Functions.
+                                                             (line  201)
+* __builtin_riscv_cv_simd_add_h:         CORE-V Built-in Functions.
+                                                             (line  197)
+* __builtin_riscv_cv_simd_add_h <1>:     CORE-V Built-in Functions.
+                                                             (line 1051)
+* __builtin_riscv_cv_simd_add_h <2>:     CORE-V Built-in Functions.
+                                                             (line 1055)
+* __builtin_riscv_cv_simd_add_h <3>:     CORE-V Built-in Functions.
+                                                             (line 1059)
+* __builtin_riscv_cv_simd_add_sc_b:      CORE-V Built-in Functions.
+                                                             (line  213)
+* __builtin_riscv_cv_simd_add_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  217)
+* __builtin_riscv_cv_simd_add_sc_h:      CORE-V Built-in Functions.
+                                                             (line  205)
+* __builtin_riscv_cv_simd_add_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  209)
+* __builtin_riscv_cv_simd_and_b:         CORE-V Built-in Functions.
+                                                             (line  513)
+* __builtin_riscv_cv_simd_and_h:         CORE-V Built-in Functions.
+                                                             (line  509)
+* __builtin_riscv_cv_simd_and_sc_b:      CORE-V Built-in Functions.
+                                                             (line  525)
+* __builtin_riscv_cv_simd_and_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  529)
+* __builtin_riscv_cv_simd_and_sc_h:      CORE-V Built-in Functions.
+                                                             (line  517)
+* __builtin_riscv_cv_simd_and_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  521)
+* __builtin_riscv_cv_simd_avgu_b:        CORE-V Built-in Functions.
+                                                             (line  273)
+* __builtin_riscv_cv_simd_avgu_h:        CORE-V Built-in Functions.
+                                                             (line  269)
+* __builtin_riscv_cv_simd_avgu_sc_b:     CORE-V Built-in Functions.
+                                                             (line  285)
+* __builtin_riscv_cv_simd_avgu_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  289)
+* __builtin_riscv_cv_simd_avgu_sc_h:     CORE-V Built-in Functions.
+                                                             (line  277)
+* __builtin_riscv_cv_simd_avgu_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  281)
+* __builtin_riscv_cv_simd_avg_b:         CORE-V Built-in Functions.
+                                                             (line  249)
+* __builtin_riscv_cv_simd_avg_h:         CORE-V Built-in Functions.
+                                                             (line  245)
+* __builtin_riscv_cv_simd_avg_sc_b:      CORE-V Built-in Functions.
+                                                             (line  261)
+* __builtin_riscv_cv_simd_avg_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  265)
+* __builtin_riscv_cv_simd_avg_sc_h:      CORE-V Built-in Functions.
+                                                             (line  253)
+* __builtin_riscv_cv_simd_avg_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  257)
+* __builtin_riscv_cv_simd_cmpeq_b:       CORE-V Built-in Functions.
+                                                             (line  763)
+* __builtin_riscv_cv_simd_cmpeq_h:       CORE-V Built-in Functions.
+                                                             (line  759)
+* __builtin_riscv_cv_simd_cmpeq_sc_b:    CORE-V Built-in Functions.
+                                                             (line  775)
+* __builtin_riscv_cv_simd_cmpeq_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  779)
+* __builtin_riscv_cv_simd_cmpeq_sc_h:    CORE-V Built-in Functions.
+                                                             (line  767)
+* __builtin_riscv_cv_simd_cmpeq_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  771)
+* __builtin_riscv_cv_simd_cmpgeu_b:      CORE-V Built-in Functions.
+                                                             (line  931)
+* __builtin_riscv_cv_simd_cmpgeu_h:      CORE-V Built-in Functions.
+                                                             (line  927)
+* __builtin_riscv_cv_simd_cmpgeu_sc_b:   CORE-V Built-in Functions.
+                                                             (line  943)
+* __builtin_riscv_cv_simd_cmpgeu_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  947)
+* __builtin_riscv_cv_simd_cmpgeu_sc_h:   CORE-V Built-in Functions.
+                                                             (line  935)
+* __builtin_riscv_cv_simd_cmpgeu_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  939)
+* __builtin_riscv_cv_simd_cmpge_b:       CORE-V Built-in Functions.
+                                                             (line  835)
+* __builtin_riscv_cv_simd_cmpge_h:       CORE-V Built-in Functions.
+                                                             (line  831)
+* __builtin_riscv_cv_simd_cmpge_sc_b:    CORE-V Built-in Functions.
+                                                             (line  847)
+* __builtin_riscv_cv_simd_cmpge_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  851)
+* __builtin_riscv_cv_simd_cmpge_sc_h:    CORE-V Built-in Functions.
+                                                             (line  839)
+* __builtin_riscv_cv_simd_cmpge_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  843)
+* __builtin_riscv_cv_simd_cmpgtu_b:      CORE-V Built-in Functions.
+                                                             (line  907)
+* __builtin_riscv_cv_simd_cmpgtu_h:      CORE-V Built-in Functions.
+                                                             (line  903)
+* __builtin_riscv_cv_simd_cmpgtu_sc_b:   CORE-V Built-in Functions.
+                                                             (line  919)
+* __builtin_riscv_cv_simd_cmpgtu_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  923)
+* __builtin_riscv_cv_simd_cmpgtu_sc_h:   CORE-V Built-in Functions.
+                                                             (line  911)
+* __builtin_riscv_cv_simd_cmpgtu_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  915)
+* __builtin_riscv_cv_simd_cmpgt_b:       CORE-V Built-in Functions.
+                                                             (line  811)
+* __builtin_riscv_cv_simd_cmpgt_h:       CORE-V Built-in Functions.
+                                                             (line  807)
+* __builtin_riscv_cv_simd_cmpgt_sc_b:    CORE-V Built-in Functions.
+                                                             (line  823)
+* __builtin_riscv_cv_simd_cmpgt_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  827)
+* __builtin_riscv_cv_simd_cmpgt_sc_h:    CORE-V Built-in Functions.
+                                                             (line  815)
+* __builtin_riscv_cv_simd_cmpgt_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  819)
+* __builtin_riscv_cv_simd_cmpleu_b:      CORE-V Built-in Functions.
+                                                             (line  979)
+* __builtin_riscv_cv_simd_cmpleu_h:      CORE-V Built-in Functions.
+                                                             (line  975)
+* __builtin_riscv_cv_simd_cmpleu_sc_b:   CORE-V Built-in Functions.
+                                                             (line  991)
+* __builtin_riscv_cv_simd_cmpleu_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  995)
+* __builtin_riscv_cv_simd_cmpleu_sc_h:   CORE-V Built-in Functions.
+                                                             (line  983)
+* __builtin_riscv_cv_simd_cmpleu_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  987)
+* __builtin_riscv_cv_simd_cmple_b:       CORE-V Built-in Functions.
+                                                             (line  883)
+* __builtin_riscv_cv_simd_cmple_h:       CORE-V Built-in Functions.
+                                                             (line  879)
+* __builtin_riscv_cv_simd_cmple_sc_b:    CORE-V Built-in Functions.
+                                                             (line  895)
+* __builtin_riscv_cv_simd_cmple_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  899)
+* __builtin_riscv_cv_simd_cmple_sc_h:    CORE-V Built-in Functions.
+                                                             (line  887)
+* __builtin_riscv_cv_simd_cmple_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  891)
+* __builtin_riscv_cv_simd_cmpltu_b:      CORE-V Built-in Functions.
+                                                             (line  955)
+* __builtin_riscv_cv_simd_cmpltu_h:      CORE-V Built-in Functions.
+                                                             (line  951)
+* __builtin_riscv_cv_simd_cmpltu_sc_b:   CORE-V Built-in Functions.
+                                                             (line  967)
+* __builtin_riscv_cv_simd_cmpltu_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  971)
+* __builtin_riscv_cv_simd_cmpltu_sc_h:   CORE-V Built-in Functions.
+                                                             (line  959)
+* __builtin_riscv_cv_simd_cmpltu_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  963)
+* __builtin_riscv_cv_simd_cmplt_b:       CORE-V Built-in Functions.
+                                                             (line  859)
+* __builtin_riscv_cv_simd_cmplt_h:       CORE-V Built-in Functions.
+                                                             (line  855)
+* __builtin_riscv_cv_simd_cmplt_sc_b:    CORE-V Built-in Functions.
+                                                             (line  871)
+* __builtin_riscv_cv_simd_cmplt_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  875)
+* __builtin_riscv_cv_simd_cmplt_sc_h:    CORE-V Built-in Functions.
+                                                             (line  863)
+* __builtin_riscv_cv_simd_cmplt_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  867)
+* __builtin_riscv_cv_simd_cmpne_b:       CORE-V Built-in Functions.
+                                                             (line  787)
+* __builtin_riscv_cv_simd_cmpne_h:       CORE-V Built-in Functions.
+                                                             (line  783)
+* __builtin_riscv_cv_simd_cmpne_sc_b:    CORE-V Built-in Functions.
+                                                             (line  799)
+* __builtin_riscv_cv_simd_cmpne_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  803)
+* __builtin_riscv_cv_simd_cmpne_sc_h:    CORE-V Built-in Functions.
+                                                             (line  791)
+* __builtin_riscv_cv_simd_cmpne_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  795)
+* __builtin_riscv_cv_simd_cplxconj:      CORE-V Built-in Functions.
+                                                             (line 1031)
+* __builtin_riscv_cv_simd_cplxmul_i:     CORE-V Built-in Functions.
+                                                             (line 1003)
+* __builtin_riscv_cv_simd_cplxmul_i <1>: CORE-V Built-in Functions.
+                                                             (line 1011)
+* __builtin_riscv_cv_simd_cplxmul_i <2>: CORE-V Built-in Functions.
+                                                             (line 1019)
+* __builtin_riscv_cv_simd_cplxmul_i <3>: CORE-V Built-in Functions.
+                                                             (line 1027)
+* __builtin_riscv_cv_simd_cplxmul_r:     CORE-V Built-in Functions.
+                                                             (line  999)
+* __builtin_riscv_cv_simd_cplxmul_r <1>: CORE-V Built-in Functions.
+                                                             (line 1007)
+* __builtin_riscv_cv_simd_cplxmul_r <2>: CORE-V Built-in Functions.
+                                                             (line 1015)
+* __builtin_riscv_cv_simd_cplxmul_r <3>: CORE-V Built-in Functions.
+                                                             (line 1023)
+* __builtin_riscv_cv_simd_dotsp_b:       CORE-V Built-in Functions.
+                                                             (line  591)
+* __builtin_riscv_cv_simd_dotsp_h:       CORE-V Built-in Functions.
+                                                             (line  587)
+* __builtin_riscv_cv_simd_dotsp_sc_b:    CORE-V Built-in Functions.
+                                                             (line  603)
+* __builtin_riscv_cv_simd_dotsp_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  607)
+* __builtin_riscv_cv_simd_dotsp_sc_h:    CORE-V Built-in Functions.
+                                                             (line  595)
+* __builtin_riscv_cv_simd_dotsp_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  599)
+* __builtin_riscv_cv_simd_dotup_b:       CORE-V Built-in Functions.
+                                                             (line  543)
+* __builtin_riscv_cv_simd_dotup_h:       CORE-V Built-in Functions.
+                                                             (line  539)
+* __builtin_riscv_cv_simd_dotup_sc_b:    CORE-V Built-in Functions.
+                                                             (line  555)
+* __builtin_riscv_cv_simd_dotup_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  559)
+* __builtin_riscv_cv_simd_dotup_sc_h:    CORE-V Built-in Functions.
+                                                             (line  547)
+* __builtin_riscv_cv_simd_dotup_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  551)
+* __builtin_riscv_cv_simd_dotusp_b:      CORE-V Built-in Functions.
+                                                             (line  567)
+* __builtin_riscv_cv_simd_dotusp_h:      CORE-V Built-in Functions.
+                                                             (line  563)
+* __builtin_riscv_cv_simd_dotusp_sc_b:   CORE-V Built-in Functions.
+                                                             (line  579)
+* __builtin_riscv_cv_simd_dotusp_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  583)
+* __builtin_riscv_cv_simd_dotusp_sc_h:   CORE-V Built-in Functions.
+                                                             (line  571)
+* __builtin_riscv_cv_simd_dotusp_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  575)
+* __builtin_riscv_cv_simd_extractu_b:    CORE-V Built-in Functions.
+                                                             (line  695)
+* __builtin_riscv_cv_simd_extractu_h:    CORE-V Built-in Functions.
+                                                             (line  691)
+* __builtin_riscv_cv_simd_extract_b:     CORE-V Built-in Functions.
+                                                             (line  687)
+* __builtin_riscv_cv_simd_extract_h:     CORE-V Built-in Functions.
+                                                             (line  683)
+* __builtin_riscv_cv_simd_insert_b:      CORE-V Built-in Functions.
+                                                             (line  703)
+* __builtin_riscv_cv_simd_insert_h:      CORE-V Built-in Functions.
+                                                             (line  699)
+* __builtin_riscv_cv_simd_maxu_b:        CORE-V Built-in Functions.
+                                                             (line  369)
+* __builtin_riscv_cv_simd_maxu_h:        CORE-V Built-in Functions.
+                                                             (line  365)
+* __builtin_riscv_cv_simd_maxu_sc_b:     CORE-V Built-in Functions.
+                                                             (line  381)
+* __builtin_riscv_cv_simd_maxu_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  385)
+* __builtin_riscv_cv_simd_maxu_sc_h:     CORE-V Built-in Functions.
+                                                             (line  373)
+* __builtin_riscv_cv_simd_maxu_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  377)
+* __builtin_riscv_cv_simd_max_b:         CORE-V Built-in Functions.
+                                                             (line  345)
+* __builtin_riscv_cv_simd_max_h:         CORE-V Built-in Functions.
+                                                             (line  341)
+* __builtin_riscv_cv_simd_max_sc_b:      CORE-V Built-in Functions.
+                                                             (line  357)
+* __builtin_riscv_cv_simd_max_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  361)
+* __builtin_riscv_cv_simd_max_sc_h:      CORE-V Built-in Functions.
+                                                             (line  349)
+* __builtin_riscv_cv_simd_max_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  353)
+* __builtin_riscv_cv_simd_minu_b:        CORE-V Built-in Functions.
+                                                             (line  321)
+* __builtin_riscv_cv_simd_minu_h:        CORE-V Built-in Functions.
+                                                             (line  317)
+* __builtin_riscv_cv_simd_minu_sc_b:     CORE-V Built-in Functions.
+                                                             (line  333)
+* __builtin_riscv_cv_simd_minu_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  337)
+* __builtin_riscv_cv_simd_minu_sc_h:     CORE-V Built-in Functions.
+                                                             (line  325)
+* __builtin_riscv_cv_simd_minu_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  329)
+* __builtin_riscv_cv_simd_min_b:         CORE-V Built-in Functions.
+                                                             (line  297)
+* __builtin_riscv_cv_simd_min_h:         CORE-V Built-in Functions.
+                                                             (line  293)
+* __builtin_riscv_cv_simd_min_sc_b:      CORE-V Built-in Functions.
+                                                             (line  309)
+* __builtin_riscv_cv_simd_min_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  313)
+* __builtin_riscv_cv_simd_min_sc_h:      CORE-V Built-in Functions.
+                                                             (line  301)
+* __builtin_riscv_cv_simd_min_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  305)
+* __builtin_riscv_cv_simd_or_b:          CORE-V Built-in Functions.
+                                                             (line  465)
+* __builtin_riscv_cv_simd_or_h:          CORE-V Built-in Functions.
+                                                             (line  461)
+* __builtin_riscv_cv_simd_or_sc_b:       CORE-V Built-in Functions.
+                                                             (line  477)
+* __builtin_riscv_cv_simd_or_sc_b <1>:   CORE-V Built-in Functions.
+                                                             (line  481)
+* __builtin_riscv_cv_simd_or_sc_h:       CORE-V Built-in Functions.
+                                                             (line  469)
+* __builtin_riscv_cv_simd_or_sc_h <1>:   CORE-V Built-in Functions.
+                                                             (line  473)
+* __builtin_riscv_cv_simd_packhi_b:      CORE-V Built-in Functions.
+                                                             (line  751)
+* __builtin_riscv_cv_simd_packhi_h:      CORE-V Built-in Functions.
+                                                             (line  747)
+* __builtin_riscv_cv_simd_packlo_b:      CORE-V Built-in Functions.
+                                                             (line  755)
+* __builtin_riscv_cv_simd_packlo_h:      CORE-V Built-in Functions.
+                                                             (line  743)
+* __builtin_riscv_cv_simd_sdotsp_b:      CORE-V Built-in Functions.
+                                                             (line  663)
+* __builtin_riscv_cv_simd_sdotsp_h:      CORE-V Built-in Functions.
+                                                             (line  659)
+* __builtin_riscv_cv_simd_sdotsp_sc_b:   CORE-V Built-in Functions.
+                                                             (line  675)
+* __builtin_riscv_cv_simd_sdotsp_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  679)
+* __builtin_riscv_cv_simd_sdotsp_sc_h:   CORE-V Built-in Functions.
+                                                             (line  667)
+* __builtin_riscv_cv_simd_sdotsp_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  671)
+* __builtin_riscv_cv_simd_sdotup_b:      CORE-V Built-in Functions.
+                                                             (line  615)
+* __builtin_riscv_cv_simd_sdotup_h:      CORE-V Built-in Functions.
+                                                             (line  611)
+* __builtin_riscv_cv_simd_sdotup_sc_b:   CORE-V Built-in Functions.
+                                                             (line  627)
+* __builtin_riscv_cv_simd_sdotup_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  631)
+* __builtin_riscv_cv_simd_sdotup_sc_h:   CORE-V Built-in Functions.
+                                                             (line  619)
+* __builtin_riscv_cv_simd_sdotup_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  623)
+* __builtin_riscv_cv_simd_sdotusp_b:     CORE-V Built-in Functions.
+                                                             (line  639)
+* __builtin_riscv_cv_simd_sdotusp_h:     CORE-V Built-in Functions.
+                                                             (line  635)
+* __builtin_riscv_cv_simd_sdotusp_sc_b:  CORE-V Built-in Functions.
+                                                             (line  651)
+* __builtin_riscv_cv_simd_sdotusp_sc_b <1>: CORE-V Built-in Functions.
+                                                             (line  655)
+* __builtin_riscv_cv_simd_sdotusp_sc_h:  CORE-V Built-in Functions.
+                                                             (line  643)
+* __builtin_riscv_cv_simd_sdotusp_sc_h <1>: CORE-V Built-in Functions.
+                                                             (line  647)
+* __builtin_riscv_cv_simd_shuffle2_b:    CORE-V Built-in Functions.
+                                                             (line  739)
+* __builtin_riscv_cv_simd_shuffle2_h:    CORE-V Built-in Functions.
+                                                             (line  735)
+* __builtin_riscv_cv_simd_shufflei0_sci_b: CORE-V Built-in Functions.
+                                                             (line  719)
+* __builtin_riscv_cv_simd_shufflei1_sci_b: CORE-V Built-in Functions.
+                                                             (line  723)
+* __builtin_riscv_cv_simd_shufflei2_sci_b: CORE-V Built-in Functions.
+                                                             (line  727)
+* __builtin_riscv_cv_simd_shufflei3_sci_b: CORE-V Built-in Functions.
+                                                             (line  731)
+* __builtin_riscv_cv_simd_shuffle_b:     CORE-V Built-in Functions.
+                                                             (line  711)
+* __builtin_riscv_cv_simd_shuffle_h:     CORE-V Built-in Functions.
+                                                             (line  707)
+* __builtin_riscv_cv_simd_shuffle_sci_h: CORE-V Built-in Functions.
+                                                             (line  715)
+* __builtin_riscv_cv_simd_sll_b:         CORE-V Built-in Functions.
+                                                             (line  441)
+* __builtin_riscv_cv_simd_sll_h:         CORE-V Built-in Functions.
+                                                             (line  437)
+* __builtin_riscv_cv_simd_sll_sc_b:      CORE-V Built-in Functions.
+                                                             (line  453)
+* __builtin_riscv_cv_simd_sll_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  457)
+* __builtin_riscv_cv_simd_sll_sc_h:      CORE-V Built-in Functions.
+                                                             (line  445)
+* __builtin_riscv_cv_simd_sll_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  449)
+* __builtin_riscv_cv_simd_sra_b:         CORE-V Built-in Functions.
+                                                             (line  417)
+* __builtin_riscv_cv_simd_sra_h:         CORE-V Built-in Functions.
+                                                             (line  413)
+* __builtin_riscv_cv_simd_sra_sc_b:      CORE-V Built-in Functions.
+                                                             (line  429)
+* __builtin_riscv_cv_simd_sra_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  433)
+* __builtin_riscv_cv_simd_sra_sc_h:      CORE-V Built-in Functions.
+                                                             (line  421)
+* __builtin_riscv_cv_simd_sra_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  425)
+* __builtin_riscv_cv_simd_srl_b:         CORE-V Built-in Functions.
+                                                             (line  393)
+* __builtin_riscv_cv_simd_srl_h:         CORE-V Built-in Functions.
+                                                             (line  389)
+* __builtin_riscv_cv_simd_srl_sc_b:      CORE-V Built-in Functions.
+                                                             (line  405)
+* __builtin_riscv_cv_simd_srl_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  409)
+* __builtin_riscv_cv_simd_srl_sc_h:      CORE-V Built-in Functions.
+                                                             (line  397)
+* __builtin_riscv_cv_simd_srl_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  401)
+* __builtin_riscv_cv_simd_subrotmj:      CORE-V Built-in Functions.
+                                                             (line 1035)
+* __builtin_riscv_cv_simd_subrotmj <1>:  CORE-V Built-in Functions.
+                                                             (line 1039)
+* __builtin_riscv_cv_simd_subrotmj <2>:  CORE-V Built-in Functions.
+                                                             (line 1043)
+* __builtin_riscv_cv_simd_subrotmj <3>:  CORE-V Built-in Functions.
+                                                             (line 1047)
+* __builtin_riscv_cv_simd_sub_b:         CORE-V Built-in Functions.
+                                                             (line  225)
+* __builtin_riscv_cv_simd_sub_h:         CORE-V Built-in Functions.
+                                                             (line  221)
+* __builtin_riscv_cv_simd_sub_h <1>:     CORE-V Built-in Functions.
+                                                             (line 1063)
+* __builtin_riscv_cv_simd_sub_h <2>:     CORE-V Built-in Functions.
+                                                             (line 1067)
+* __builtin_riscv_cv_simd_sub_h <3>:     CORE-V Built-in Functions.
+                                                             (line 1071)
+* __builtin_riscv_cv_simd_sub_sc_b:      CORE-V Built-in Functions.
+                                                             (line  237)
+* __builtin_riscv_cv_simd_sub_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  241)
+* __builtin_riscv_cv_simd_sub_sc_h:      CORE-V Built-in Functions.
+                                                             (line  229)
+* __builtin_riscv_cv_simd_sub_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  233)
+* __builtin_riscv_cv_simd_xor_b:         CORE-V Built-in Functions.
+                                                             (line  489)
+* __builtin_riscv_cv_simd_xor_h:         CORE-V Built-in Functions.
+                                                             (line  485)
+* __builtin_riscv_cv_simd_xor_sc_b:      CORE-V Built-in Functions.
+                                                             (line  501)
+* __builtin_riscv_cv_simd_xor_sc_b <1>:  CORE-V Built-in Functions.
+                                                             (line  505)
+* __builtin_riscv_cv_simd_xor_sc_h:      CORE-V Built-in Functions.
+                                                             (line  493)
+* __builtin_riscv_cv_simd_xor_sc_h <1>:  CORE-V Built-in Functions.
+                                                             (line  497)
 * __builtin_riscv_pause:                 RISC-V Built-in Functions.
                                                              (line   12)
 * __builtin_rx_brk:                      RX Built-in Functions.
@@ -74991,7 +76329,7 @@ A.2 Concept and Symbol Index
 * cexpf:                                 Other Builtins.     (line    6)
 * cexpl:                                 Other Builtins.     (line    6)
 * cf_check function attribute, x86:      x86 Function Attributes.
-                                                             (line  753)
+                                                             (line  760)
 * character set, execution:              Preprocessor Options.
                                                              (line  272)
 * character set, input:                  Preprocessor Options.
@@ -75294,9 +76632,9 @@ A.2 Concept and Symbol Index
 * fd_arg_write function attribute:       Common Function Attributes.
                                                              (line  437)
 * fentry_name function attribute, x86:   x86 Function Attributes.
-                                                             (line  765)
+                                                             (line  772)
 * fentry_section function attribute, x86: x86 Function Attributes.
-                                                             (line  771)
+                                                             (line  778)
 * ffs:                                   Other Builtins.     (line    6)
 * file name suffix:                      Overall Options.    (line   14)
 * file names:                            Link Options.       (line   10)
@@ -75395,7 +76733,7 @@ A.2 Concept and Symbol Index
 * functions with printf, scanf, strftime or strfmon style arguments: Common Function Attributes.
                                                              (line  453)
 * function_return function attribute, x86: x86 Function Attributes.
-                                                             (line  692)
+                                                             (line  699)
 * function_vector function attribute, H8/300: H8/300 Function Attributes.
                                                              (line    8)
 * function_vector function attribute, M16C/M32C: M32C Function Attributes.
@@ -75518,9 +76856,9 @@ A.2 Concept and Symbol Index
 * indirect functions:                    Common Function Attributes.
                                                              (line  621)
 * indirect_branch function attribute, x86: x86 Function Attributes.
-                                                             (line  683)
+                                                             (line  690)
 * indirect_return function attribute, x86: x86 Function Attributes.
-                                                             (line  759)
+                                                             (line  766)
 * initializations in expressions:        Compound Literals.  (line    6)
 * initializers with labeled elements:    Designated Inits.   (line    6)
 * initializers, non-constant:            Initializers.       (line    6)
@@ -75572,7 +76910,7 @@ A.2 Concept and Symbol Index
 * interrupt function attribute, Visium:  Visium Function Attributes.
                                                              (line    8)
 * interrupt function attribute, x86:     x86 Function Attributes.
-                                                             (line  123)
+                                                             (line  130)
 * interrupt function attribute, Xstormy16: Xstormy16 Function Attributes.
                                                              (line    8)
 * interrupt_handler function attribute:  Common Function Attributes.
@@ -75927,7 +77265,7 @@ A.2 Concept and Symbol Index
 * nmi_handler function attribute, Blackfin: Blackfin Function Attributes.
                                                              (line   49)
 * nocf_check function attribute:         x86 Function Attributes.
-                                                             (line  700)
+                                                             (line  707)
 * noclone function attribute:            Common Function Attributes.
                                                              (line  925)
 * nocommon variable attribute:           Common Variable Attributes.
@@ -75935,7 +77273,7 @@ A.2 Concept and Symbol Index
 * nocompression function attribute, MIPS: MIPS Function Attributes.
                                                              (line  107)
 * nodirect_extern_access function attribute: x86 Function Attributes.
-                                                             (line  776)
+                                                             (line  783)
 * noinit variable attribute:             Common Variable Attributes.
                                                              (line  216)
 * noinline function attribute:           Common Function Attributes.
@@ -75967,8 +77305,10 @@ A.2 Concept and Symbol Index
                                                              (line    6)
 * not_nested function attribute, NDS32:  NDS32 Function Attributes.
                                                              (line   19)
-* no_caller_saved_registers function attribute, x86: x86 Function Attributes.
+* no_callee_saved_registers function attribute, x86: x86 Function Attributes.
                                                              (line  112)
+* no_caller_saved_registers function attribute, x86: x86 Function Attributes.
+                                                             (line  119)
 * no_gccisr function attribute, AVR:     AVR Function Attributes.
                                                              (line   32)
 * no_icf function attribute:             Common Function Attributes.
@@ -76159,7 +77499,7 @@ A.2 Concept and Symbol Index
 * precompiled headers:                   Precompiled Headers.
                                                              (line    6)
 * prefer-vector-width function attribute, x86: x86 Function Attributes.
-                                                             (line  663)
+                                                             (line  670)
 * preprocessing numbers:                 Incompatibilities.  (line  173)
 * preprocessing tokens:                  Incompatibilities.  (line  173)
 * preprocessor options:                  Preprocessor Options.
@@ -76478,132 +77818,132 @@ A.2 Concept and Symbol Index
 * target function attribute <4>:         S/390 Function Attributes.
                                                              (line   21)
 * target function attribute <5>:         x86 Function Attributes.
-                                                             (line  179)
+                                                             (line  186)
 * target machine, specifying:            Invoking GCC.       (line   24)
 * target("3dnow") function attribute, x86: x86 Function Attributes.
-                                                             (line  184)
+                                                             (line  191)
 * target("3dnowa") function attribute, x86: x86 Function Attributes.
-                                                             (line  188)
+                                                             (line  195)
 * target("abm") function attribute, x86: x86 Function Attributes.
-                                                             (line  193)
+                                                             (line  200)
 * target("adx") function attribute, x86: x86 Function Attributes.
-                                                             (line  198)
+                                                             (line  205)
 * target("aes") function attribute, x86: x86 Function Attributes.
-                                                             (line  202)
+                                                             (line  209)
 * target("align-stringops") function attribute, x86: x86 Function Attributes.
-                                                             (line  636)
+                                                             (line  643)
 * target("altivec") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   26)
 * target("amx-bf16") function attribute, x86: x86 Function Attributes.
-                                                             (line  516)
+                                                             (line  523)
 * target("amx-complex") function attribute, x86: x86 Function Attributes.
-                                                             (line  569)
+                                                             (line  576)
 * target("amx-fp16") function attribute, x86: x86 Function Attributes.
-                                                             (line  557)
+                                                             (line  564)
 * target("amx-int8") function attribute, x86: x86 Function Attributes.
-                                                             (line  512)
+                                                             (line  519)
 * target("amx-tile") function attribute, x86: x86 Function Attributes.
-                                                             (line  508)
+                                                             (line  515)
 * target("apxf") function attribute, x86: x86 Function Attributes.
-                                                             (line  594)
+                                                             (line  601)
 * target("arch=ARCH") function attribute, x86: x86 Function Attributes.
-                                                             (line  649)
+                                                             (line  656)
 * target("arm") function attribute, ARM: ARM Function Attributes.
                                                              (line   86)
 * target("avoid-indexed-addresses") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  140)
 * target("avx") function attribute, x86: x86 Function Attributes.
-                                                             (line  206)
+                                                             (line  213)
 * target("avx10.1") function attribute, x86: x86 Function Attributes.
-                                                             (line  599)
+                                                             (line  606)
 * target("avx10.1-256") function attribute, x86: x86 Function Attributes.
-                                                             (line  603)
+                                                             (line  610)
 * target("avx10.1-512") function attribute, x86: x86 Function Attributes.
-                                                             (line  607)
+                                                             (line  614)
 * target("avx2") function attribute, x86: x86 Function Attributes.
-                                                             (line  210)
+                                                             (line  217)
 * target("avx5124fmaps") function attribute, x86: x86 Function Attributes.
-                                                             (line  214)
+                                                             (line  221)
 * target("avx5124vnniw") function attribute, x86: x86 Function Attributes.
-                                                             (line  219)
+                                                             (line  226)
 * target("avx512bitalg") function attribute, x86: x86 Function Attributes.
-                                                             (line  224)
+                                                             (line  231)
 * target("avx512bw") function attribute, x86: x86 Function Attributes.
-                                                             (line  229)
+                                                             (line  236)
 * target("avx512cd") function attribute, x86: x86 Function Attributes.
-                                                             (line  233)
+                                                             (line  240)
 * target("avx512dq") function attribute, x86: x86 Function Attributes.
-                                                             (line  237)
+                                                             (line  244)
 * target("avx512er") function attribute, x86: x86 Function Attributes.
-                                                             (line  241)
+                                                             (line  248)
 * target("avx512f") function attribute, x86: x86 Function Attributes.
-                                                             (line  245)
+                                                             (line  252)
 * target("avx512ifma") function attribute, x86: x86 Function Attributes.
-                                                             (line  249)
+                                                             (line  256)
 * target("avx512pf") function attribute, x86: x86 Function Attributes.
-                                                             (line  253)
+                                                             (line  260)
 * target("avx512vbmi") function attribute, x86: x86 Function Attributes.
-                                                             (line  257)
+                                                             (line  264)
 * target("avx512vbmi2") function attribute, x86: x86 Function Attributes.
-                                                             (line  261)
+                                                             (line  268)
 * target("avx512vl") function attribute, x86: x86 Function Attributes.
-                                                             (line  265)
+                                                             (line  272)
 * target("avx512vnni") function attribute, x86: x86 Function Attributes.
-                                                             (line  269)
+                                                             (line  276)
 * target("avx512vpopcntdq") function attribute, x86: x86 Function Attributes.
-                                                             (line  273)
+                                                             (line  280)
 * target("avxifma") function attribute, x86: x86 Function Attributes.
-                                                             (line  540)
+                                                             (line  547)
 * target("avxneconvert") function attribute, x86: x86 Function Attributes.
-                                                             (line  548)
+                                                             (line  555)
 * target("avxvnni") function attribute, x86: x86 Function Attributes.
-                                                             (line  536)
+                                                             (line  543)
 * target("avxvnniint16") function attribute, x86: x86 Function Attributes.
-                                                             (line  573)
+                                                             (line  580)
 * target("avxvnniint8") function attribute, x86: x86 Function Attributes.
-                                                             (line  544)
+                                                             (line  551)
 * target("bmi") function attribute, x86: x86 Function Attributes.
-                                                             (line  278)
+                                                             (line  285)
 * target("bmi2") function attribute, x86: x86 Function Attributes.
-                                                             (line  282)
+                                                             (line  289)
 * target("cld") function attribute, x86: x86 Function Attributes.
-                                                             (line  612)
+                                                             (line  619)
 * target("cldemote") function attribute, x86: x86 Function Attributes.
-                                                             (line  286)
+                                                             (line  293)
 * target("clflushopt") function attribute, x86: x86 Function Attributes.
-                                                             (line  290)
+                                                             (line  297)
 * target("clwb") function attribute, x86: x86 Function Attributes.
-                                                             (line  294)
+                                                             (line  301)
 * target("clzero") function attribute, x86: x86 Function Attributes.
-                                                             (line  298)
+                                                             (line  305)
 * target("cmpb") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   32)
 * target("cmpccxadd") function attribute, x86: x86 Function Attributes.
-                                                             (line  553)
+                                                             (line  560)
 * target("cpu=CPU") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  156)
 * target("crc32") function attribute, x86: x86 Function Attributes.
-                                                             (line  302)
+                                                             (line  309)
 * target("custom-fpu-cfg=NAME") function attribute, Nios II: Nios II Function Attributes.
                                                              (line   24)
 * target("custom-INSN=N") function attribute, Nios II: Nios II Function Attributes.
                                                              (line   14)
 * target("cx16") function attribute, x86: x86 Function Attributes.
-                                                             (line  306)
+                                                             (line  313)
 * target("default") function attribute, x86: x86 Function Attributes.
-                                                             (line  310)
+                                                             (line  317)
 * target("dlmzb") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   38)
 * target("f16c") function attribute, x86: x86 Function Attributes.
-                                                             (line  314)
+                                                             (line  321)
 * target("fancy-math-387") function attribute, x86: x86 Function Attributes.
-                                                             (line  616)
+                                                             (line  623)
 * target("fma") function attribute, x86: x86 Function Attributes.
-                                                             (line  318)
+                                                             (line  325)
 * target("fma4") function attribute, x86: x86 Function Attributes.
-                                                             (line  322)
+                                                             (line  329)
 * target("fpmath=FPMATH") function attribute, x86: x86 Function Attributes.
-                                                             (line  657)
+                                                             (line  664)
 * target("fprnd") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   45)
 * target("fpu=") function attribute, ARM: ARM Function Attributes.
@@ -76611,65 +77951,65 @@ A.2 Concept and Symbol Index
 * target("friz") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  131)
 * target("fsgsbase") function attribute, x86: x86 Function Attributes.
-                                                             (line  326)
+                                                             (line  333)
 * target("fxsr") function attribute, x86: x86 Function Attributes.
-                                                             (line  330)
+                                                             (line  337)
 * target("general-regs-only") function attribute, x86: x86 Function Attributes.
-                                                             (line  646)
+                                                             (line  653)
 * target("gfni") function attribute, x86: x86 Function Attributes.
-                                                             (line  334)
+                                                             (line  341)
 * target("hard-dfp") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   51)
 * target("hle") function attribute, x86: x86 Function Attributes.
-                                                             (line  338)
+                                                             (line  345)
 * target("hreset") function attribute, x86: x86 Function Attributes.
-                                                             (line  524)
+                                                             (line  531)
 * target("ieee-fp") function attribute, x86: x86 Function Attributes.
-                                                             (line  621)
+                                                             (line  628)
 * target("inline-all-stringops") function attribute, x86: x86 Function Attributes.
-                                                             (line  626)
+                                                             (line  633)
 * target("inline-stringops-dynamically") function attribute, x86: x86 Function Attributes.
-                                                             (line  630)
+                                                             (line  637)
 * target("isel") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   57)
 * target("kl") function attribute, x86:  x86 Function Attributes.
-                                                             (line  528)
+                                                             (line  535)
 * target("longcall") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  150)
 * target("lwp") function attribute, x86: x86 Function Attributes.
-                                                             (line  342)
+                                                             (line  349)
 * target("lzcnt") function attribute, x86: x86 Function Attributes.
-                                                             (line  346)
+                                                             (line  353)
 * target("mfcrf") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   61)
 * target("mmx") function attribute, x86: x86 Function Attributes.
-                                                             (line  350)
+                                                             (line  357)
 * target("movbe") function attribute, x86: x86 Function Attributes.
-                                                             (line  354)
+                                                             (line  361)
 * target("movdir64b") function attribute, x86: x86 Function Attributes.
-                                                             (line  358)
+                                                             (line  365)
 * target("movdiri") function attribute, x86: x86 Function Attributes.
-                                                             (line  362)
+                                                             (line  369)
 * target("mulhw") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   68)
 * target("multiple") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   75)
 * target("mwait") function attribute, x86: x86 Function Attributes.
-                                                             (line  366)
+                                                             (line  373)
 * target("mwaitx") function attribute, x86: x86 Function Attributes.
-                                                             (line  371)
+                                                             (line  378)
 * target("no-custom-INSN") function attribute, Nios II: Nios II Function Attributes.
                                                              (line   14)
 * target("paired") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  145)
 * target("pclmul") function attribute, x86: x86 Function Attributes.
-                                                             (line  375)
+                                                             (line  382)
 * target("pconfig") function attribute, x86: x86 Function Attributes.
-                                                             (line  379)
+                                                             (line  386)
 * target("pku") function attribute, x86: x86 Function Attributes.
-                                                             (line  383)
+                                                             (line  390)
 * target("popcnt") function attribute, x86: x86 Function Attributes.
-                                                             (line  387)
+                                                             (line  394)
 * target("popcntb") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   86)
 * target("popcntd") function attribute, PowerPC: PowerPC Function Attributes.
@@ -76679,95 +78019,95 @@ A.2 Concept and Symbol Index
 * target("powerpc-gpopt") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  105)
 * target("prefetchi") function attribute, x86: x86 Function Attributes.
-                                                             (line  561)
+                                                             (line  568)
 * target("prefetchwt1") function attribute, x86: x86 Function Attributes.
-                                                             (line  391)
+                                                             (line  398)
 * target("prfchw") function attribute, x86: x86 Function Attributes.
-                                                             (line  395)
+                                                             (line  402)
 * target("ptwrite") function attribute, x86: x86 Function Attributes.
-                                                             (line  399)
+                                                             (line  406)
 * target("raoint") function attribute, x86: x86 Function Attributes.
-                                                             (line  565)
+                                                             (line  572)
 * target("rdpid") function attribute, x86: x86 Function Attributes.
-                                                             (line  403)
+                                                             (line  410)
 * target("rdrnd") function attribute, x86: x86 Function Attributes.
-                                                             (line  407)
+                                                             (line  414)
 * target("rdseed") function attribute, x86: x86 Function Attributes.
-                                                             (line  411)
+                                                             (line  418)
 * target("recip") function attribute, x86: x86 Function Attributes.
-                                                             (line  640)
+                                                             (line  647)
 * target("recip-precision") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  111)
 * target("rtm") function attribute, x86: x86 Function Attributes.
-                                                             (line  415)
+                                                             (line  422)
 * target("sahf") function attribute, x86: x86 Function Attributes.
-                                                             (line  419)
+                                                             (line  426)
 * target("sgx") function attribute, x86: x86 Function Attributes.
-                                                             (line  423)
+                                                             (line  430)
 * target("sha") function attribute, x86: x86 Function Attributes.
-                                                             (line  427)
+                                                             (line  434)
 * target("sha512") function attribute, x86: x86 Function Attributes.
-                                                             (line  582)
+                                                             (line  589)
 * target("shstk") function attribute, x86: x86 Function Attributes.
-                                                             (line  431)
+                                                             (line  438)
 * target("sm3") function attribute, x86: x86 Function Attributes.
-                                                             (line  578)
+                                                             (line  585)
 * target("sm4") function attribute, x86: x86 Function Attributes.
-                                                             (line  586)
+                                                             (line  593)
 * target("sse") function attribute, x86: x86 Function Attributes.
-                                                             (line  435)
+                                                             (line  442)
 * target("sse2") function attribute, x86: x86 Function Attributes.
-                                                             (line  439)
+                                                             (line  446)
 * target("sse3") function attribute, x86: x86 Function Attributes.
-                                                             (line  443)
+                                                             (line  450)
 * target("sse4") function attribute, x86: x86 Function Attributes.
-                                                             (line  447)
+                                                             (line  454)
 * target("sse4.1") function attribute, x86: x86 Function Attributes.
-                                                             (line  452)
+                                                             (line  459)
 * target("sse4.2") function attribute, x86: x86 Function Attributes.
-                                                             (line  456)
+                                                             (line  463)
 * target("sse4a") function attribute, x86: x86 Function Attributes.
-                                                             (line  460)
+                                                             (line  467)
 * target("ssse3") function attribute, x86: x86 Function Attributes.
-                                                             (line  464)
+                                                             (line  471)
 * target("string") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  117)
 * target("tbm") function attribute, x86: x86 Function Attributes.
-                                                             (line  468)
+                                                             (line  475)
 * target("thumb") function attribute, ARM: ARM Function Attributes.
                                                              (line   82)
 * target("tune=TUNE") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  163)
 * target("tune=TUNE") function attribute, x86: x86 Function Attributes.
-                                                             (line  653)
+                                                             (line  660)
 * target("uintr") function attribute, x86: x86 Function Attributes.
-                                                             (line  520)
+                                                             (line  527)
 * target("update") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line   80)
 * target("usermsr") function attribute, x86: x86 Function Attributes.
-                                                             (line  590)
+                                                             (line  597)
 * target("vaes") function attribute, x86: x86 Function Attributes.
-                                                             (line  472)
+                                                             (line  479)
 * target("vpclmulqdq") function attribute, x86: x86 Function Attributes.
-                                                             (line  476)
+                                                             (line  483)
 * target("vsx") function attribute, PowerPC: PowerPC Function Attributes.
                                                              (line  123)
 * target("waitpkg") function attribute, x86: x86 Function Attributes.
-                                                             (line  480)
+                                                             (line  487)
 * target("wbnoinvd") function attribute, x86: x86 Function Attributes.
-                                                             (line  484)
+                                                             (line  491)
 * target("widekl") function attribute, x86: x86 Function Attributes.
-                                                             (line  532)
+                                                             (line  539)
 * target("xop") function attribute, x86: x86 Function Attributes.
-                                                             (line  488)
+                                                             (line  495)
 * target("xsave") function attribute, x86: x86 Function Attributes.
-                                                             (line  492)
+                                                             (line  499)
 * target("xsavec") function attribute, x86: x86 Function Attributes.
-                                                             (line  496)
+                                                             (line  503)
 * target("xsaveopt") function attribute, x86: x86 Function Attributes.
-                                                             (line  500)
+                                                             (line  507)
 * target("xsaves") function attribute, x86: x86 Function Attributes.
-                                                             (line  504)
+                                                             (line  511)
 * target-dependent options:              Submodel Options.   (line    6)
 * target_clones function attribute:      Common Function Attributes.
                                                              (line 1415)
@@ -77140,431 +78480,431 @@ Node: AArch64 Options904535
 Ref: aarch64-feature-modifiers923139
 Node: Adapteva Epiphany Options929677
 Node: AMD GCN Options935831
-Node: ARC Options937833
-Node: ARM Options960026
-Node: AVR Options1007524
-Ref: avr21007922
-Ref: avr251008245
-Ref: avr31008957
-Ref: avr311009101
-Ref: avr351009234
-Ref: avr41009581
-Ref: avr51010150
-Ref: avr511012403
-Ref: avr61012760
-Ref: avrxmega21012988
-Ref: avrxmega31013696
-Ref: avrxmega41015277
-Ref: avrxmega51015752
-Ref: avrxmega61015956
-Ref: avrxmega71016512
-Ref: avrtiny1016722
-Ref: avr11017032
-Ref: eind1023508
-Ref: ramp1028445
-Ref: avr-macros1030038
-Node: Blackfin Options1039512
-Node: C6X Options1047794
-Node: CRIS Options1049437
-Node: C-SKY Options1052784
-Node: Darwin Options1059077
-Node: DEC Alpha Options1067824
-Node: eBPF Options1079886
-Node: FR30 Options1083190
-Node: FT32 Options1083762
-Node: FRV Options1084732
-Node: GNU/Linux Options1091850
-Node: H8/300 Options1093335
-Node: HPPA Options1094863
-Node: IA-64 Options1105974
-Node: LM32 Options1114450
-Node: LoongArch Options1115002
-Node: M32C Options1127147
-Node: M32R/D Options1128457
-Node: M680x0 Options1132165
-Node: MCore Options1147400
-Node: MicroBlaze Options1149001
-Node: MIPS Options1152232
-Node: MMIX Options1192027
-Node: MN10300 Options1194616
-Node: Moxie Options1197275
-Node: MSP430 Options1197786
-Node: NDS32 Options1205857
-Node: Nios II Options1208127
-Node: Nvidia PTX Options1221959
-Node: OpenRISC Options1225673
-Node: PDP-11 Options1228579
-Node: PowerPC Options1229903
-Node: PRU Options1230121
-Node: RISC-V Options1232386
-Node: RL78 Options1254656
-Node: RS/6000 and PowerPC Options1258603
-Node: RX Options1302641
-Node: S/390 and zSeries Options1311605
-Node: SH Options1322932
-Node: Solaris 2 Options1338680
-Node: SPARC Options1339974
-Node: System V Options1356428
-Node: V850 Options1357293
-Node: VAX Options1364331
-Node: Visium Options1365051
-Node: VMS Options1367439
-Node: VxWorks Options1368303
-Node: x86 Options1369772
-Node: x86 Windows Options1450705
-Node: Xstormy16 Options1454803
-Node: Xtensa Options1455101
-Node: zSeries Options1462207
-Node: Spec Files1462403
-Node: Environment Variables1489785
-Node: Precompiled Headers1499608
-Node: C++ Modules1505957
-Ref: C++ Modules-Footnote-11511703
-Node: C++ Module Mapper1511964
-Node: C++ Module Preprocessing1517229
-Node: C++ Compiled Module Interface1519102
-Ref: C++ Compiled Module Interface-Footnote-11522533
-Ref: C++ Compiled Module Interface-Footnote-21522622
-Node: C Implementation1522678
-Node: Translation implementation1524377
-Node: Environment implementation1524980
-Node: Identifiers implementation1525540
-Node: Characters implementation1526644
-Node: Integers implementation1530432
-Node: Floating point implementation1532539
-Node: Arrays and pointers implementation1535791
-Ref: Arrays and pointers implementation-Footnote-11537263
-Node: Hints implementation1537393
-Node: Structures unions enumerations and bit-fields implementation1538950
-Node: Qualifiers implementation1541302
-Node: Declarators implementation1543387
-Node: Statements implementation1543734
-Node: Preprocessing directives implementation1544074
-Node: Library functions implementation1546505
-Node: Architecture implementation1547180
-Node: Locale-specific behavior implementation1548881
-Node: C++ Implementation1549186
-Node: Conditionally-supported behavior1550478
-Node: Exception handling1551105
-Node: C Extensions1551519
-Node: Statement Exprs1556932
-Node: Local Labels1562468
-Node: Labels as Values1565457
-Ref: Labels as Values-Footnote-11568136
-Node: Nested Functions1568321
-Node: Nonlocal Gotos1572351
-Node: Constructing Calls1574681
-Node: Typeof1579421
-Node: Conditionals1583844
-Node: __int1281584741
-Node: Long Long1585286
-Node: Complex1586821
-Node: Floating Types1591794
-Node: Half-Precision1595508
-Node: Decimal Float1599100
-Node: Hex Floats1601054
-Node: Fixed-Point1602184
-Node: Named Address Spaces1605968
-Ref: AVR Named Address Spaces1606662
-Node: Zero Length1614320
-Node: Empty Structures1620273
-Node: Variable Length1620683
-Node: Variadic Macros1623448
-Node: Escaped Newlines1625846
-Node: Subscripting1626709
-Node: Pointer Arith1627438
-Node: Variadic Pointer Args1628039
-Node: Pointers to Arrays1628780
-Node: Initializers1629545
-Node: Compound Literals1630046
-Node: Designated Inits1633661
-Node: Case Ranges1637653
-Node: Cast to Union1638346
-Node: Mixed Labels and Declarations1640110
-Node: Function Attributes1640747
-Node: Common Function Attributes1645209
-Ref: Common Function Attributes-Footnote-11730089
-Node: AArch64 Function Attributes1730422
-Node: AMD GCN Function Attributes1736872
-Node: ARC Function Attributes1740079
-Node: ARM Function Attributes1743120
-Node: AVR Function Attributes1748425
-Node: Blackfin Function Attributes1753141
-Node: BPF Function Attributes1755730
-Node: C-SKY Function Attributes1756874
-Node: Epiphany Function Attributes1758198
-Node: H8/300 Function Attributes1761025
-Node: IA-64 Function Attributes1762235
-Node: M32C Function Attributes1763293
-Node: M32R/D Function Attributes1765673
-Node: m68k Function Attributes1767195
-Node: MCORE Function Attributes1768155
-Node: MicroBlaze Function Attributes1768989
-Node: Microsoft Windows Function Attributes1770542
-Node: MIPS Function Attributes1775240
-Node: MSP430 Function Attributes1781838
-Node: NDS32 Function Attributes1786057
-Node: Nios II Function Attributes1788541
-Node: Nvidia PTX Function Attributes1789874
-Node: PowerPC Function Attributes1790497
-Node: RISC-V Function Attributes1797515
-Node: RL78 Function Attributes1800716
-Node: RX Function Attributes1801999
-Node: S/390 Function Attributes1804602
-Node: SH Function Attributes1806554
-Node: Symbian OS Function Attributes1810042
-Node: V850 Function Attributes1810386
-Node: Visium Function Attributes1810939
-Node: x86 Function Attributes1811471
-Node: Xstormy16 Function Attributes1838902
-Node: Variable Attributes1839413
-Node: Common Variable Attributes1841150
-Node: ARC Variable Attributes1865698
-Node: AVR Variable Attributes1866090
-Node: Blackfin Variable Attributes1871843
-Node: H8/300 Variable Attributes1872749
-Node: IA-64 Variable Attributes1873830
-Node: LoongArch Variable Attributes1874600
-Node: M32R/D Variable Attributes1875296
-Node: Microsoft Windows Variable Attributes1876121
-Node: MSP430 Variable Attributes1878637
-Node: Nvidia PTX Variable Attributes1879887
-Node: PowerPC Variable Attributes1880512
-Node: RL78 Variable Attributes1881085
-Node: V850 Variable Attributes1881508
-Node: x86 Variable Attributes1882153
-Node: Xstormy16 Variable Attributes1883245
-Node: Type Attributes1883839
-Node: Common Type Attributes1885721
-Node: ARC Type Attributes1924048
-Node: ARM Type Attributes1924536
-Node: BPF Type Attributes1925346
-Node: PowerPC Type Attributes1925879
-Node: x86 Type Attributes1926916
-Node: Label Attributes1927944
-Node: Enumerator Attributes1930027
-Node: Statement Attributes1931587
-Node: Attribute Syntax1933927
-Node: Function Prototypes1946503
-Node: C++ Comments1948317
-Node: Dollar Signs1948852
-Node: Character Escapes1949317
-Node: Alignment1949605
-Node: Inline1951314
-Node: Const and Volatile Functions1956302
-Node: Volatiles1957544
-Node: Using Assembly Language with C1960469
-Node: Basic Asm1961746
-Node: Extended Asm1967593
-Ref: Volatile1971841
-Ref: AssemblerTemplate1976054
-Ref: OutputOperands1980382
-Ref: FlagOutputOperands1987662
-Ref: InputOperands1991021
-Ref: Clobbers and Scratch Registers1995490
-Ref: GotoLabels2004355
-Ref: GenericOperandmodifiers2008116
-Ref: aarch64Operandmodifiers2009114
-Ref: x86Operandmodifiers2010243
-Ref: x86floatingpointasmoperands2015633
-Ref: msp430Operandmodifiers2019072
-Ref: loongarchOperandmodifiers2020862
-Ref: riscvOperandmodifiers2022730
-Node: Constraints2023164
-Node: Simple Constraints2024292
-Node: Multi-Alternative2031882
-Node: Modifiers2033583
-Node: Machine Constraints2036468
-Node: Asm Labels2094988
-Node: Explicit Register Variables2096636
-Ref: Explicit Reg Vars2096850
-Node: Global Register Variables2097459
-Ref: Global Reg Vars2097667
-Node: Local Register Variables2102523
-Ref: Local Reg Vars2102743
-Node: Size of an asm2106441
-Node: Alternate Keywords2107947
-Node: Incomplete Enums2110033
-Node: Function Names2110814
-Node: Return Address2112762
-Node: Stack Scrubbing2118669
-Node: Vector Extensions2120985
-Node: Offsetof2132568
-Node: __sync Builtins2133413
-Node: __atomic Builtins2140516
-Node: Integer Overflow Builtins2154351
-Node: x86 specific memory model extensions for transactional memory2163332
-Node: Object Size Checking2164618
-Node: Other Builtins2172269
-Node: Target Builtins2238121
-Node: AArch64 Built-in Functions2240004
-Node: Alpha Built-in Functions2240700
-Node: Altera Nios II Built-in Functions2243838
-Node: ARC Built-in Functions2248321
-Node: ARC SIMD Built-in Functions2253947
-Node: ARM iWMMXt Built-in Functions2264453
-Node: ARM C Language Extensions (ACLE)2271593
-Node: ARM Floating Point Status and Control Intrinsics2272878
-Node: ARM ARMv8-M Security Extensions2273365
-Node: AVR Built-in Functions2274665
-Node: Blackfin Built-in Functions2278569
-Node: BPF Built-in Functions2279197
-Node: FR-V Built-in Functions2285725
-Node: Argument Types2286610
-Node: Directly-mapped Integer Functions2288545
-Node: Directly-mapped Media Functions2289825
-Node: Raw read/write Functions2299163
-Node: Other Built-in Functions2300109
-Node: LoongArch Base Built-in Functions2301327
-Node: LoongArch SX Vector Intrinsics2308127
-Node: LoongArch ASX Vector Intrinsics2347067
-Node: MIPS DSP Built-in Functions2388417
-Node: MIPS Paired-Single Support2401386
-Node: MIPS Loongson Built-in Functions2402919
-Node: Paired-Single Arithmetic2409481
-Node: Paired-Single Built-in Functions2410608
-Node: MIPS-3D Built-in Functions2413471
-Node: MIPS SIMD Architecture (MSA) Support2419245
-Node: MIPS SIMD Architecture Built-in Functions2422249
-Node: Other MIPS Built-in Functions2449103
-Node: MSP430 Built-in Functions2450136
-Node: NDS32 Built-in Functions2451549
-Node: Nvidia PTX Built-in Functions2452844
-Node: Basic PowerPC Built-in Functions2453438
-Node: Basic PowerPC Built-in Functions Available on all Configurations2454298
-Node: Basic PowerPC Built-in Functions Available on ISA 2.052463671
-Node: Basic PowerPC Built-in Functions Available on ISA 2.062469831
-Node: Basic PowerPC Built-in Functions Available on ISA 2.072471947
-Node: Basic PowerPC Built-in Functions Available on ISA 3.02472833
-Node: Basic PowerPC Built-in Functions Available on ISA 3.12480368
-Node: PowerPC AltiVec/VSX Built-in Functions2484349
-Node: PowerPC AltiVec Built-in Functions on ISA 2.052493304
-Node: PowerPC AltiVec Built-in Functions Available on ISA 2.062518708
-Node: PowerPC AltiVec Built-in Functions Available on ISA 2.072525822
-Node: PowerPC AltiVec Built-in Functions Available on ISA 3.02535956
-Node: PowerPC AltiVec Built-in Functions Available on ISA 3.12552988
-Node: PowerPC Hardware Transactional Memory Built-in Functions2586686
-Node: PowerPC Atomic Memory Operation Functions2595300
-Node: PowerPC Matrix-Multiply Assist Built-in Functions2597867
-Node: PRU Built-in Functions2603996
-Node: RISC-V Built-in Functions2605276
-Node: RISC-V Vector Intrinsics2605954
-Node: CORE-V Built-in Functions2606457
-Node: RX Built-in Functions2614437
-Node: S/390 System z Built-in Functions2618539
-Node: SH Built-in Functions2623900
-Node: SPARC VIS Built-in Functions2625664
-Node: TI C6X Built-in Functions2634215
-Node: x86 Built-in Functions2635266
-Node: x86 transactional memory intrinsics2702745
-Node: x86 control-flow protection intrinsics2706099
-Node: Target Format Checks2707886
-Node: Solaris Format Checks2708318
-Node: Darwin Format Checks2708768
-Node: Pragmas2709775
-Node: AArch64 Pragmas2710700
-Node: ARM Pragmas2711165
-Node: M32C Pragmas2711828
-Node: PRU Pragmas2712922
-Node: RS/6000 and PowerPC Pragmas2713505
-Node: S/390 Pragmas2714277
-Node: Darwin Pragmas2714855
-Node: Solaris Pragmas2715941
-Node: Symbol-Renaming Pragmas2717143
-Node: Structure-Layout Pragmas2718810
-Node: Weak Pragmas2721174
-Node: Diagnostic Pragmas2721921
-Node: Visibility Pragmas2726783
-Node: Push/Pop Macro Pragmas2727480
-Node: Function Specific Option Pragmas2728477
-Node: Loop-Specific Pragmas2730507
-Node: Unnamed Fields2732640
-Node: Thread-Local2734913
-Node: C99 Thread-Local Edits2737069
-Node: C++98 Thread-Local Edits2739143
-Node: Binary constants2742688
-Node: C++ Extensions2743387
-Node: C++ Volatiles2745033
-Node: Restricted Pointers2747384
-Node: Vague Linkage2749029
-Node: C++ Interface2752692
-Ref: C++ Interface-Footnote-12756584
-Node: Template Instantiation2756740
-Node: Bound member functions2762866
-Node: C++ Attributes2764410
-Node: Function Multiversioning2769734
-Node: Type Traits2771542
-Node: C++ Concepts2779616
-Node: Deprecated Features2781194
-Node: Backwards Compatibility2783031
-Node: Objective-C2784115
-Node: GNU Objective-C runtime API2784722
-Node: Modern GNU Objective-C runtime API2785733
-Node: Traditional GNU Objective-C runtime API2788249
-Node: Executing code before main2788992
-Node: What you can and what you cannot do in +load2791828
-Node: Type encoding2794316
-Node: Legacy type encoding2800082
-Node: @encode2801214
-Node: Method signatures2801795
-Node: Garbage Collection2803879
-Node: Constant string objects2806605
-Node: compatibility_alias2809172
-Node: Exceptions2809934
-Node: Synchronization2812736
-Node: Fast enumeration2813956
-Node: Using fast enumeration2814268
-Node: c99-like fast enumeration syntax2815511
-Node: Fast enumeration details2816218
-Node: Fast enumeration protocol2818648
-Node: Messaging with the GNU Objective-C runtime2821894
-Node: Dynamically registering methods2823286
-Node: Forwarding hook2825033
-Node: Compatibility2828161
-Node: Gcov2834815
-Node: Gcov Intro2835491
-Node: Invoking Gcov2838290
-Node: Gcov and Optimization2862546
-Node: Gcov Data Files2866381
-Node: Cross-profiling2867850
-Node: Freestanding Environments2869786
-Node: Gcov-tool2884917
-Node: Gcov-tool Intro2885350
-Node: Invoking Gcov-tool2887740
-Node: Gcov-dump2891337
-Node: Gcov-dump Intro2891664
-Node: Invoking Gcov-dump2891939
-Node: lto-dump2892736
-Node: lto-dump Intro2893039
-Node: Invoking lto-dump2893297
-Node: Trouble2894465
-Node: Actual Bugs2895887
-Node: Interoperation2896348
-Node: Incompatibilities2903413
-Node: Fixed Headers2911839
-Node: Standard Libraries2913523
-Node: Disappointments2914931
-Node: C++ Misunderstandings2919349
-Node: Static Definitions2920160
-Node: Name lookup2921245
-Ref: Name lookup-Footnote-12926154
-Node: Temporaries2926347
-Node: Copy Assignment2928376
-Node: Non-bugs2930247
-Node: Warnings and Errors2940969
-Node: Bugs2942759
-Node: Bug Criteria2943228
-Node: Bug Reporting2945484
-Node: Service2945702
-Node: Contributing2946527
-Node: Funding2947273
-Node: GNU Project2949782
-Node: Copying2950444
-Node: GNU Free Documentation License2988177
-Node: Contributors3013503
-Node: Indices3056094
-Node: Option Index3056340
-Node: Concept and Symbol Index3372899
+Node: ARC Options937993
+Node: ARM Options960186
+Node: AVR Options1007684
+Ref: avr21008082
+Ref: avr251008405
+Ref: avr31009117
+Ref: avr311009261
+Ref: avr351009394
+Ref: avr41009741
+Ref: avr51010310
+Ref: avr511012563
+Ref: avr61012920
+Ref: avrxmega21013148
+Ref: avrxmega31013856
+Ref: avrxmega41015437
+Ref: avrxmega51015912
+Ref: avrxmega61016116
+Ref: avrxmega71016672
+Ref: avrtiny1016882
+Ref: avr11017192
+Ref: eind1023668
+Ref: ramp1028605
+Ref: avr-macros1030198
+Node: Blackfin Options1039672
+Node: C6X Options1047954
+Node: CRIS Options1049597
+Node: C-SKY Options1052944
+Node: Darwin Options1059237
+Node: DEC Alpha Options1067984
+Node: eBPF Options1080046
+Node: FR30 Options1083350
+Node: FT32 Options1083922
+Node: FRV Options1084892
+Node: GNU/Linux Options1092010
+Node: H8/300 Options1093495
+Node: HPPA Options1095023
+Node: IA-64 Options1106134
+Node: LM32 Options1114610
+Node: LoongArch Options1115162
+Node: M32C Options1127307
+Node: M32R/D Options1128617
+Node: M680x0 Options1132325
+Node: MCore Options1147560
+Node: MicroBlaze Options1149161
+Node: MIPS Options1152392
+Node: MMIX Options1192187
+Node: MN10300 Options1194776
+Node: Moxie Options1197435
+Node: MSP430 Options1197946
+Node: NDS32 Options1206017
+Node: Nios II Options1208287
+Node: Nvidia PTX Options1222119
+Node: OpenRISC Options1225833
+Node: PDP-11 Options1228739
+Node: PowerPC Options1230063
+Node: PRU Options1230281
+Node: RISC-V Options1232546
+Node: RL78 Options1254816
+Node: RS/6000 and PowerPC Options1258763
+Node: RX Options1302801
+Node: S/390 and zSeries Options1311765
+Node: SH Options1323092
+Node: Solaris 2 Options1338840
+Node: SPARC Options1340134
+Node: System V Options1356588
+Node: V850 Options1357453
+Node: VAX Options1364491
+Node: Visium Options1365211
+Node: VMS Options1367599
+Node: VxWorks Options1368463
+Node: x86 Options1369932
+Node: x86 Windows Options1450865
+Node: Xstormy16 Options1454963
+Node: Xtensa Options1455261
+Node: zSeries Options1462367
+Node: Spec Files1462563
+Node: Environment Variables1489945
+Node: Precompiled Headers1499768
+Node: C++ Modules1506117
+Ref: C++ Modules-Footnote-11511863
+Node: C++ Module Mapper1512124
+Node: C++ Module Preprocessing1517389
+Node: C++ Compiled Module Interface1519262
+Ref: C++ Compiled Module Interface-Footnote-11522693
+Ref: C++ Compiled Module Interface-Footnote-21522782
+Node: C Implementation1522838
+Node: Translation implementation1524537
+Node: Environment implementation1525140
+Node: Identifiers implementation1525700
+Node: Characters implementation1526804
+Node: Integers implementation1530592
+Node: Floating point implementation1532699
+Node: Arrays and pointers implementation1535951
+Ref: Arrays and pointers implementation-Footnote-11537423
+Node: Hints implementation1537553
+Node: Structures unions enumerations and bit-fields implementation1539110
+Node: Qualifiers implementation1541462
+Node: Declarators implementation1543547
+Node: Statements implementation1543894
+Node: Preprocessing directives implementation1544234
+Node: Library functions implementation1546665
+Node: Architecture implementation1547340
+Node: Locale-specific behavior implementation1549041
+Node: C++ Implementation1549346
+Node: Conditionally-supported behavior1550638
+Node: Exception handling1551265
+Node: C Extensions1551679
+Node: Statement Exprs1557092
+Node: Local Labels1562628
+Node: Labels as Values1565617
+Ref: Labels as Values-Footnote-11568296
+Node: Nested Functions1568481
+Node: Nonlocal Gotos1572511
+Node: Constructing Calls1574841
+Node: Typeof1579581
+Node: Conditionals1584004
+Node: __int1281584901
+Node: Long Long1585446
+Node: Complex1586981
+Node: Floating Types1591954
+Node: Half-Precision1595668
+Node: Decimal Float1599260
+Node: Hex Floats1601214
+Node: Fixed-Point1602344
+Node: Named Address Spaces1606128
+Ref: AVR Named Address Spaces1606822
+Node: Zero Length1614480
+Node: Empty Structures1620433
+Node: Variable Length1620843
+Node: Variadic Macros1623608
+Node: Escaped Newlines1626006
+Node: Subscripting1626869
+Node: Pointer Arith1627598
+Node: Variadic Pointer Args1628199
+Node: Pointers to Arrays1628940
+Node: Initializers1629705
+Node: Compound Literals1630206
+Node: Designated Inits1633821
+Node: Case Ranges1637813
+Node: Cast to Union1638506
+Node: Mixed Labels and Declarations1640270
+Node: Function Attributes1640907
+Node: Common Function Attributes1645369
+Ref: Common Function Attributes-Footnote-11730249
+Node: AArch64 Function Attributes1730582
+Node: AMD GCN Function Attributes1737032
+Node: ARC Function Attributes1740239
+Node: ARM Function Attributes1743280
+Node: AVR Function Attributes1748585
+Node: Blackfin Function Attributes1753301
+Node: BPF Function Attributes1755890
+Node: C-SKY Function Attributes1757034
+Node: Epiphany Function Attributes1758358
+Node: H8/300 Function Attributes1761185
+Node: IA-64 Function Attributes1762395
+Node: M32C Function Attributes1763453
+Node: M32R/D Function Attributes1765833
+Node: m68k Function Attributes1767355
+Node: MCORE Function Attributes1768315
+Node: MicroBlaze Function Attributes1769149
+Node: Microsoft Windows Function Attributes1770702
+Node: MIPS Function Attributes1775400
+Node: MSP430 Function Attributes1781998
+Node: NDS32 Function Attributes1786217
+Node: Nios II Function Attributes1788701
+Node: Nvidia PTX Function Attributes1790034
+Node: PowerPC Function Attributes1790657
+Node: RISC-V Function Attributes1797675
+Node: RL78 Function Attributes1800876
+Node: RX Function Attributes1802159
+Node: S/390 Function Attributes1804762
+Node: SH Function Attributes1806714
+Node: Symbian OS Function Attributes1810202
+Node: V850 Function Attributes1810546
+Node: Visium Function Attributes1811099
+Node: x86 Function Attributes1811631
+Node: Xstormy16 Function Attributes1839433
+Node: Variable Attributes1839944
+Node: Common Variable Attributes1841681
+Node: ARC Variable Attributes1866229
+Node: AVR Variable Attributes1866621
+Node: Blackfin Variable Attributes1872374
+Node: H8/300 Variable Attributes1873280
+Node: IA-64 Variable Attributes1874361
+Node: LoongArch Variable Attributes1875131
+Node: M32R/D Variable Attributes1875827
+Node: Microsoft Windows Variable Attributes1876652
+Node: MSP430 Variable Attributes1879168
+Node: Nvidia PTX Variable Attributes1880418
+Node: PowerPC Variable Attributes1881043
+Node: RL78 Variable Attributes1881616
+Node: V850 Variable Attributes1882039
+Node: x86 Variable Attributes1882684
+Node: Xstormy16 Variable Attributes1883776
+Node: Type Attributes1884370
+Node: Common Type Attributes1886252
+Node: ARC Type Attributes1924579
+Node: ARM Type Attributes1925067
+Node: BPF Type Attributes1925877
+Node: PowerPC Type Attributes1926410
+Node: x86 Type Attributes1927447
+Node: Label Attributes1928475
+Node: Enumerator Attributes1930558
+Node: Statement Attributes1932118
+Node: Attribute Syntax1934458
+Node: Function Prototypes1947034
+Node: C++ Comments1948848
+Node: Dollar Signs1949383
+Node: Character Escapes1949848
+Node: Alignment1950136
+Node: Inline1951845
+Node: Const and Volatile Functions1956833
+Node: Volatiles1958075
+Node: Using Assembly Language with C1961000
+Node: Basic Asm1962277
+Node: Extended Asm1968124
+Ref: Volatile1972372
+Ref: AssemblerTemplate1976585
+Ref: OutputOperands1980913
+Ref: FlagOutputOperands1988193
+Ref: InputOperands1991552
+Ref: Clobbers and Scratch Registers1996021
+Ref: GotoLabels2004886
+Ref: GenericOperandmodifiers2008647
+Ref: aarch64Operandmodifiers2009645
+Ref: x86Operandmodifiers2010774
+Ref: x86floatingpointasmoperands2016164
+Ref: msp430Operandmodifiers2019603
+Ref: loongarchOperandmodifiers2021393
+Ref: riscvOperandmodifiers2023261
+Node: Constraints2023695
+Node: Simple Constraints2024823
+Node: Multi-Alternative2032413
+Node: Modifiers2034114
+Node: Machine Constraints2036999
+Node: Asm Labels2095519
+Node: Explicit Register Variables2097167
+Ref: Explicit Reg Vars2097381
+Node: Global Register Variables2097990
+Ref: Global Reg Vars2098198
+Node: Local Register Variables2103054
+Ref: Local Reg Vars2103274
+Node: Size of an asm2106972
+Node: Alternate Keywords2108478
+Node: Incomplete Enums2110564
+Node: Function Names2111345
+Node: Return Address2113293
+Node: Stack Scrubbing2119200
+Node: Vector Extensions2121516
+Node: Offsetof2133099
+Node: __sync Builtins2133944
+Node: __atomic Builtins2141047
+Node: Integer Overflow Builtins2154882
+Node: x86 specific memory model extensions for transactional memory2163863
+Node: Object Size Checking2165149
+Node: Other Builtins2172800
+Node: Target Builtins2238652
+Node: AArch64 Built-in Functions2240535
+Node: Alpha Built-in Functions2241231
+Node: Altera Nios II Built-in Functions2244369
+Node: ARC Built-in Functions2248852
+Node: ARC SIMD Built-in Functions2254478
+Node: ARM iWMMXt Built-in Functions2264984
+Node: ARM C Language Extensions (ACLE)2272124
+Node: ARM Floating Point Status and Control Intrinsics2273409
+Node: ARM ARMv8-M Security Extensions2273896
+Node: AVR Built-in Functions2275196
+Node: Blackfin Built-in Functions2279100
+Node: BPF Built-in Functions2279728
+Node: FR-V Built-in Functions2286256
+Node: Argument Types2287141
+Node: Directly-mapped Integer Functions2289076
+Node: Directly-mapped Media Functions2290356
+Node: Raw read/write Functions2299694
+Node: Other Built-in Functions2300640
+Node: LoongArch Base Built-in Functions2301858
+Node: LoongArch SX Vector Intrinsics2308658
+Node: LoongArch ASX Vector Intrinsics2347598
+Node: MIPS DSP Built-in Functions2388948
+Node: MIPS Paired-Single Support2401917
+Node: MIPS Loongson Built-in Functions2403450
+Node: Paired-Single Arithmetic2410012
+Node: Paired-Single Built-in Functions2411139
+Node: MIPS-3D Built-in Functions2414002
+Node: MIPS SIMD Architecture (MSA) Support2419776
+Node: MIPS SIMD Architecture Built-in Functions2422780
+Node: Other MIPS Built-in Functions2449634
+Node: MSP430 Built-in Functions2450667
+Node: NDS32 Built-in Functions2452080
+Node: Nvidia PTX Built-in Functions2453375
+Node: Basic PowerPC Built-in Functions2453969
+Node: Basic PowerPC Built-in Functions Available on all Configurations2454829
+Node: Basic PowerPC Built-in Functions Available on ISA 2.052464202
+Node: Basic PowerPC Built-in Functions Available on ISA 2.062470362
+Node: Basic PowerPC Built-in Functions Available on ISA 2.072472478
+Node: Basic PowerPC Built-in Functions Available on ISA 3.02473364
+Node: Basic PowerPC Built-in Functions Available on ISA 3.12480899
+Node: PowerPC AltiVec/VSX Built-in Functions2484880
+Node: PowerPC AltiVec Built-in Functions on ISA 2.052493835
+Node: PowerPC AltiVec Built-in Functions Available on ISA 2.062519239
+Node: PowerPC AltiVec Built-in Functions Available on ISA 2.072526353
+Node: PowerPC AltiVec Built-in Functions Available on ISA 3.02536487
+Node: PowerPC AltiVec Built-in Functions Available on ISA 3.12553519
+Node: PowerPC Hardware Transactional Memory Built-in Functions2587217
+Node: PowerPC Atomic Memory Operation Functions2595831
+Node: PowerPC Matrix-Multiply Assist Built-in Functions2598398
+Node: PRU Built-in Functions2604527
+Node: RISC-V Built-in Functions2605807
+Node: RISC-V Vector Intrinsics2606485
+Node: CORE-V Built-in Functions2606988
+Node: RX Built-in Functions2646867
+Node: S/390 System z Built-in Functions2650969
+Node: SH Built-in Functions2656330
+Node: SPARC VIS Built-in Functions2658094
+Node: TI C6X Built-in Functions2666645
+Node: x86 Built-in Functions2667696
+Node: x86 transactional memory intrinsics2735175
+Node: x86 control-flow protection intrinsics2738529
+Node: Target Format Checks2740316
+Node: Solaris Format Checks2740748
+Node: Darwin Format Checks2741198
+Node: Pragmas2742205
+Node: AArch64 Pragmas2743130
+Node: ARM Pragmas2743595
+Node: M32C Pragmas2744258
+Node: PRU Pragmas2745352
+Node: RS/6000 and PowerPC Pragmas2745935
+Node: S/390 Pragmas2746707
+Node: Darwin Pragmas2747285
+Node: Solaris Pragmas2748371
+Node: Symbol-Renaming Pragmas2749573
+Node: Structure-Layout Pragmas2751240
+Node: Weak Pragmas2753604
+Node: Diagnostic Pragmas2754351
+Node: Visibility Pragmas2759213
+Node: Push/Pop Macro Pragmas2759910
+Node: Function Specific Option Pragmas2760907
+Node: Loop-Specific Pragmas2762937
+Node: Unnamed Fields2765070
+Node: Thread-Local2767343
+Node: C99 Thread-Local Edits2769499
+Node: C++98 Thread-Local Edits2771573
+Node: Binary constants2775118
+Node: C++ Extensions2775817
+Node: C++ Volatiles2777463
+Node: Restricted Pointers2779814
+Node: Vague Linkage2781459
+Node: C++ Interface2785122
+Ref: C++ Interface-Footnote-12789014
+Node: Template Instantiation2789170
+Node: Bound member functions2795296
+Node: C++ Attributes2796840
+Node: Function Multiversioning2802164
+Node: Type Traits2803972
+Node: C++ Concepts2812046
+Node: Deprecated Features2813624
+Node: Backwards Compatibility2815461
+Node: Objective-C2816545
+Node: GNU Objective-C runtime API2817152
+Node: Modern GNU Objective-C runtime API2818163
+Node: Traditional GNU Objective-C runtime API2820679
+Node: Executing code before main2821422
+Node: What you can and what you cannot do in +load2824258
+Node: Type encoding2826746
+Node: Legacy type encoding2832512
+Node: @encode2833644
+Node: Method signatures2834225
+Node: Garbage Collection2836309
+Node: Constant string objects2839035
+Node: compatibility_alias2841602
+Node: Exceptions2842364
+Node: Synchronization2845166
+Node: Fast enumeration2846386
+Node: Using fast enumeration2846698
+Node: c99-like fast enumeration syntax2847941
+Node: Fast enumeration details2848648
+Node: Fast enumeration protocol2851078
+Node: Messaging with the GNU Objective-C runtime2854324
+Node: Dynamically registering methods2855716
+Node: Forwarding hook2857463
+Node: Compatibility2860591
+Node: Gcov2867245
+Node: Gcov Intro2867921
+Node: Invoking Gcov2870720
+Node: Gcov and Optimization2894976
+Node: Gcov Data Files2898811
+Node: Cross-profiling2900280
+Node: Freestanding Environments2902216
+Node: Gcov-tool2917347
+Node: Gcov-tool Intro2917780
+Node: Invoking Gcov-tool2920170
+Node: Gcov-dump2923767
+Node: Gcov-dump Intro2924094
+Node: Invoking Gcov-dump2924369
+Node: lto-dump2925166
+Node: lto-dump Intro2925469
+Node: Invoking lto-dump2925727
+Node: Trouble2926895
+Node: Actual Bugs2928317
+Node: Interoperation2928778
+Node: Incompatibilities2935843
+Node: Fixed Headers2944269
+Node: Standard Libraries2945953
+Node: Disappointments2947361
+Node: C++ Misunderstandings2951779
+Node: Static Definitions2952590
+Node: Name lookup2953675
+Ref: Name lookup-Footnote-12958584
+Node: Temporaries2958777
+Node: Copy Assignment2960806
+Node: Non-bugs2962677
+Node: Warnings and Errors2973399
+Node: Bugs2975189
+Node: Bug Criteria2975658
+Node: Bug Reporting2977914
+Node: Service2978132
+Node: Contributing2978957
+Node: Funding2979703
+Node: GNU Project2982212
+Node: Copying2982874
+Node: GNU Free Documentation License3020607
+Node: Contributors3045933
+Node: Indices3088524
+Node: Option Index3088770
+Node: Concept and Symbol Index3405329
 
 End Tag Table
 
