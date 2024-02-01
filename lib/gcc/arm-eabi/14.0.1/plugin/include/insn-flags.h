@@ -208,6 +208,7 @@
 #define HAVE_arm_rev16si2_alt1 (arm_arch6 \
    && aarch_rev16_shleft_mask_imm_p (operands[3], SImode) \
    && aarch_rev16_shright_mask_imm_p (operands[2], SImode))
+#define HAVE_arm_rev16si2 (arm_arch6)
 #define HAVE_arm_crc32b (TARGET_CRC32)
 #define HAVE_arm_crc32h (TARGET_CRC32)
 #define HAVE_arm_crc32w (TARGET_CRC32)
@@ -4688,7 +4689,6 @@
 #define HAVE_thumb_legacy_rev (TARGET_THUMB)
 #define HAVE_modsi3 (TARGET_32BIT)
 #define HAVE_bswapsi2 (TARGET_EITHER && (arm_arch6 || !optimize_size))
-#define HAVE_arm_rev16si2 (arm_arch6)
 #define HAVE_bswaphi2 (arm_arch6)
 #define HAVE_copysignsf3 (TARGET_SOFT_FLOAT && arm_arch_thumb2)
 #define HAVE_copysigndf3 (TARGET_SOFT_FLOAT && arm_arch_thumb2)
@@ -6347,6 +6347,7 @@ extern rtx        gen_load_tp_soft_fdpic                             (void);
 extern rtx        gen_load_tp_soft                                   (void);
 extern rtx        gen_tlscall                                        (rtx, rtx);
 extern rtx        gen_arm_rev16si2_alt1                              (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_rev16si2                                   (rtx, rtx);
 extern rtx        gen_arm_crc32b                                     (rtx, rtx, rtx);
 extern rtx        gen_arm_crc32h                                     (rtx, rtx, rtx);
 extern rtx        gen_arm_crc32w                                     (rtx, rtx, rtx);
@@ -10706,7 +10707,6 @@ extern rtx        gen_arm_legacy_rev                                 (rtx, rtx, 
 extern rtx        gen_thumb_legacy_rev                               (rtx, rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_modsi3                                         (rtx, rtx, rtx);
 extern rtx        gen_bswapsi2                                       (rtx, rtx);
-extern rtx        gen_arm_rev16si2                                   (rtx, rtx);
 extern rtx        gen_bswaphi2                                       (rtx, rtx);
 extern rtx        gen_copysignsf3                                    (rtx, rtx, rtx);
 extern rtx        gen_copysigndf3                                    (rtx, rtx, rtx);

@@ -12,6 +12,7 @@
 #define HAVE_conditional_move 1
 #define HAVE_conditional_execution 1
 #define HAVE_lo_sum 1
+#define HAVE_rotate 1
 #define HAVE_rotatert 1
 #define HAVE_peephole 0
 #define HAVE_peephole2 1

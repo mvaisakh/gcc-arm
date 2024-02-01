@@ -3281,13 +3281,15 @@ amdgcn-*-amdhsa
 
 AMD GCN GPU target.
 
-   Instead of GNU Binutils, you will need to install LLVM 13.0.1, or
-later, and copy ‘bin/llvm-mc’ to ‘amdgcn-amdhsa/bin/as’, ‘bin/lld’ to
+   Instead of GNU Binutils, you will need to install LLVM 15, or later,
+and copy ‘bin/llvm-mc’ to ‘amdgcn-amdhsa/bin/as’, ‘bin/lld’ to
 ‘amdgcn-amdhsa/bin/ld’, ‘bin/llvm-nm’ to ‘amdgcn-amdhsa/bin/nm’, and
 ‘bin/llvm-ar’ to both ‘bin/amdgcn-amdhsa-ar’ and
-‘bin/amdgcn-amdhsa-ranlib’.
+‘bin/amdgcn-amdhsa-ranlib’.  Note that LLVM 13.0.1 or LLVM 14 can be
+used by specifying a ‘--with-multilib-list=’ that does not list
+‘gfx1100’.
 
-   Use Newlib (4.3.0 or newer).
+   Use Newlib (4.3.0 or newer; 4.4.0 or later is recommended).
 
    To run the binaries, install the HSA Runtime from the ROCm Platform,
 and use ‘libexec/gcc/amdhsa-amdhsa/VERSION/gcn-run’ to launch them on
@@ -4949,82 +4951,82 @@ Node: Specific149739
 Ref: aarch64-x-x150273
 Ref: amd64-x-solaris2152357
 Ref: amdgcn-x-amdhsa152443
-Ref: arc-x-elf32153285
-Ref: arc-linux-uclibc153477
-Ref: arm-x-eabi153622
-Ref: avr153879
-Ref: bfin154468
-Ref: cris154731
-Ref: dos155061
-Ref: epiphany-x-elf155386
-Ref: x-x-freebsd155491
-Ref: ft32-x-elf156638
-Ref: h8300-hms156736
-Ref: hppa-hp-hpux157088
-Ref: hppa-hp-hpux11158638
-Ref: x-x-linux-gnu163856
-Ref: ix86-x-linux164187
-Ref: ix86-x-solaris2164500
-Ref: ia64-x-linux164760
-Ref: ia64-x-hpux165011
-Ref: x-ibm-aix165578
-Ref: TransferAixShobj169306
-Ref: iq2000-x-elf173208
-Ref: lm32-x-elf173348
-Ref: lm32-x-uclinux173452
-Ref: loongarch173580
-Ref: m32c-x-elf174253
-Ref: m32r-x-elf174355
-Ref: m68k-x-x174457
-Ref: m68k-x-uclinux175587
-Ref: microblaze-x-elf175840
-Ref: mips-x-x175959
-Ref: moxie-x-elf177953
-Ref: msp430-x-elf178000
-Ref: nds32le-x-elf178569
-Ref: nds32be-x-elf178641
-Ref: nvptx-x-none178710
-Ref: or1k-x-elf179619
-Ref: or1k-x-linux179750
-Ref: powerpc-x-x179831
-Ref: powerpc-x-darwin180030
-Ref: powerpc-x-elf180525
-Ref: powerpc-x-linux-gnu180610
-Ref: powerpc-x-netbsd180705
-Ref: powerpc-x-eabisim180793
-Ref: powerpc-x-eabi180919
-Ref: powerpcle-x-elf180995
-Ref: powerpcle-x-eabisim181087
-Ref: powerpcle-x-eabi181220
-Ref: rl78-x-elf181303
-Ref: riscv32-x-elf181409
-Ref: riscv32-x-linux181598
-Ref: riscv64-x-elf181755
-Ref: riscv64-x-linux181944
-Ref: rx-x-elf182101
-Ref: s390-x-linux182147
-Ref: s390x-x-linux182219
-Ref: s390x-ibm-tpf182306
-Ref: x-x-solaris2182437
-Ref: sparc-x-x186378
-Ref: sparc-sun-solaris2186880
-Ref: sparc-x-linux187795
-Ref: sparc64-x-solaris2187826
-Ref: sparcv9-x-solaris2187917
-Ref: c6x-x-x188666
-Ref: visium-x-elf188758
-Ref: x-x-vxworks188866
-Ref: x86-64-x-x190455
-Ref: x86-64-x-solaris2190787
-Ref: xtensa-x-elf191441
-Ref: xtensa-x-linux192120
-Ref: windows192473
-Ref: x-x-cygwin194126
-Ref: x-x-mingw32194681
-Ref: older195079
-Ref: elf197220
-Node: GNU Free Documentation License197474
-Node: Concept Index222815
+Ref: arc-x-elf32153436
+Ref: arc-linux-uclibc153628
+Ref: arm-x-eabi153773
+Ref: avr154030
+Ref: bfin154619
+Ref: cris154882
+Ref: dos155212
+Ref: epiphany-x-elf155537
+Ref: x-x-freebsd155642
+Ref: ft32-x-elf156789
+Ref: h8300-hms156887
+Ref: hppa-hp-hpux157239
+Ref: hppa-hp-hpux11158789
+Ref: x-x-linux-gnu164007
+Ref: ix86-x-linux164338
+Ref: ix86-x-solaris2164651
+Ref: ia64-x-linux164911
+Ref: ia64-x-hpux165162
+Ref: x-ibm-aix165729
+Ref: TransferAixShobj169457
+Ref: iq2000-x-elf173359
+Ref: lm32-x-elf173499
+Ref: lm32-x-uclinux173603
+Ref: loongarch173731
+Ref: m32c-x-elf174404
+Ref: m32r-x-elf174506
+Ref: m68k-x-x174608
+Ref: m68k-x-uclinux175738
+Ref: microblaze-x-elf175991
+Ref: mips-x-x176110
+Ref: moxie-x-elf178104
+Ref: msp430-x-elf178151
+Ref: nds32le-x-elf178720
+Ref: nds32be-x-elf178792
+Ref: nvptx-x-none178861
+Ref: or1k-x-elf179770
+Ref: or1k-x-linux179901
+Ref: powerpc-x-x179982
+Ref: powerpc-x-darwin180181
+Ref: powerpc-x-elf180676
+Ref: powerpc-x-linux-gnu180761
+Ref: powerpc-x-netbsd180856
+Ref: powerpc-x-eabisim180944
+Ref: powerpc-x-eabi181070
+Ref: powerpcle-x-elf181146
+Ref: powerpcle-x-eabisim181238
+Ref: powerpcle-x-eabi181371
+Ref: rl78-x-elf181454
+Ref: riscv32-x-elf181560
+Ref: riscv32-x-linux181749
+Ref: riscv64-x-elf181906
+Ref: riscv64-x-linux182095
+Ref: rx-x-elf182252
+Ref: s390-x-linux182298
+Ref: s390x-x-linux182370
+Ref: s390x-ibm-tpf182457
+Ref: x-x-solaris2182588
+Ref: sparc-x-x186529
+Ref: sparc-sun-solaris2187031
+Ref: sparc-x-linux187946
+Ref: sparc64-x-solaris2187977
+Ref: sparcv9-x-solaris2188068
+Ref: c6x-x-x188817
+Ref: visium-x-elf188909
+Ref: x-x-vxworks189017
+Ref: x86-64-x-x190606
+Ref: x86-64-x-solaris2190938
+Ref: xtensa-x-elf191592
+Ref: xtensa-x-linux192271
+Ref: windows192624
+Ref: x-x-cygwin194277
+Ref: x-x-mingw32194832
+Ref: older195230
+Ref: elf197371
+Node: GNU Free Documentation License197625
+Node: Concept Index222966
 
 End Tag Table
 
